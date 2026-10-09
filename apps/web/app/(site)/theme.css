@@ -1119,3 +1119,23 @@
 .hero-curl pre {
   font-size: 12px;
 }
+
+/* ── Sample rows ──────────────────────────────────────────────────────
+   These were scrolling marquees. Motion reads as "something is arriving",
+   and with ingestion stopped that would be a claim the system cannot make.
+   A still row of sample headlines says the same thing honestly. */
+.sample-row {
+  display: flex;
+  align-items: center;
+  gap: 3.5rem;
+  overflow: hidden;
+}
+.sample-row > div {
+  flex: none;
+}
+@media (max-width: 900px) {
+  .sample-row {
+    gap: 1.5rem;
+    overflow-x: auto;
+  }
+}

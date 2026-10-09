@@ -89,10 +89,8 @@ export default function Dashboard() {
       }
     }
     load();
-    const id = setInterval(load, 30000);
     return () => {
       cancelled = true;
-      clearInterval(id);
     };
   }, []);
 

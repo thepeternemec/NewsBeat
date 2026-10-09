@@ -1,7 +1,6 @@
 "use client";
 
 import { ArrowRight, Bell, Coins, FileCheck, Filter, Plug, Zap } from "lucide-react";
-import Marquee from "@/components/ui/marquee/marquee";
 import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
 import CopyButton from "@/components/site/copy-button";
@@ -199,11 +198,11 @@ export default function Home() {
               <div className="mock-bar">
                 <span className="mock-dots"><span /><span /><span /></span>
                 <span className="mock-title">newsgraph — your agent asks, newsgraph answers</span>
-                <span className="mock-live">streaming</span>
+                <span className="mock-live">sample</span>
               </div>
               <div className="mock-body">
                 <div className="mock-ticker">
-                  <Marquee speed={55} gap="3.5rem" pauseOnHover>
+                  <div className="sample-row">
                     <div style={{ display: "flex", alignItems: "center" }}>
                       {ticker.map((it, i) => (
                         <span key={i} style={{ whiteSpace: "nowrap", font: "11px var(--font-mono), monospace", color: "#bdbdbd" }}>
@@ -213,7 +212,7 @@ export default function Home() {
                         </span>
                       ))}
                     </div>
-                  </Marquee>
+                  </div>
                 </div>
                 <div className="mock-feed">
                   <div className="mock-row">
@@ -295,13 +294,13 @@ export default function Home() {
           <div className="wrap">
             <span className="marquee-strip-label">Coverage includes</span>
           </div>
-          <Marquee speed={52} gap="2.75rem" pauseOnHover>
+          <div className="sample-row">
             <div className="rail-items">
               {SOURCES.map((source) => (
                 <span key={source} className="rail-item"><i />{source}</span>
               ))}
             </div>
-          </Marquee>
+          </div>
         </section>
 
         {/* FEATURES */}

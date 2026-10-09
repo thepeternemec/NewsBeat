@@ -42,9 +42,20 @@ Vercel deployment. There is no generated code and no second runtime.
   data; they raise a ceiling
 - The site: landing, pricing, six docs pages, FAQ, dashboard, connect, `auth.md`
 
-**Ingestion is scheduled and running.** Vercel Cron calls `/api/cron/ingest` every fifteen minutes;
-all 1035 topics are checked on that cycle, and 966 of them currently carry articles. The 68 that do
-not are thin small-caps with nothing published in a 24-hour window, not failures.
+**Ingestion is stopped.** The Vercel Cron was removed from `apps/web/vercel.json` on
+2026-09-22 and the definitions are now empty, so nothing calls `/api/cron/ingest`. Topics hold
+their last successful check and will report `stale` once they pass their freshness SLO. The data
+already stored is intact and the API serves it unchanged.
+
+To restart: put the schedule back and redeploy.
+
+```json
+"crons": [{ "path": "/api/cron/ingest", "schedule": "*/15 * * * *" }]
+```
+
+The live presentation was stopped with it, because motion is a claim that something is arriving:
+the landing's `STREAMING` badge reads `sample`, its scrolling headline tickers are static rows,
+and the dashboard no longer polls on a timer.
 
 ## Not built
 
