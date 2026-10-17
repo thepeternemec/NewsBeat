@@ -102,6 +102,14 @@ client → /api/v2/news?beat_id=…&cursor=…
 second host, no CORS and no generated copy to keep in sync. It still runs standalone on Node via
 `apps/api/src/server.ts` if you ever want that.
 
+> **Ingestion is switched off.** `apps/web/vercel.json` has `"crons": []`, so
+> nothing is being indexed. The API still answers, but only with whatever was
+> last ingested — at the time of writing that was 9 October, and the newest
+> article was from 24 September. The news crawler now runs locally in FomoX
+> (`fomox/tools/ingest-news.mjs`) instead, so this deployment should be treated
+> as a frozen archive rather than a live feed. Re-adding the cron resumes
+> indexing; do that deliberately, not by accident.
+
 Setup, environment and the first ingestion: **[docs/GO-LIVE.md](docs/GO-LIVE.md)**.
 
 ---
