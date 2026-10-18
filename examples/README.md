@@ -15,3 +15,16 @@ The workspace SDK is not yet published to npm. Use it from this repository. MCP 
 Test each agent host separately before claiming host-specific compatibility. The protocol check is not evidence of an installation in Claude, Cursor, or Codex.
 
 The deployed `news-api` is currently protected. Set `NEWSGRAPH_API_TOKEN` to a valid project anonymous JWT when running the verification script against staging. Never use a service-role credential. All three interfaces passed against real articles on 2026-09-13; public access is pending release approval.
+
+## What is covered
+
+`openrouter-tools.mjs` handles **every tool the API advertises** — `newsgraph_topics`,
+`newsgraph_news`, `newsgraph_changes`, `newsgraph_brief`, `newsgraph_stories` and
+`newsgraph_watch`. It loads the schemas from `GET /v2/tools` rather than hard-coding
+them, so a tool added to the API is dispatched here the moment it is mapped.
+
+Watch the method: everything is a `GET` except `newsgraph_watch`, which posts a body
+because fifty cursors do not fit in a URL.
+
+Verified against the live API: `loaded 6 tools`, and one call each returns topics,
+news, a brief, stories, zero changes on a fresh cursor, and a batched watch.
