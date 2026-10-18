@@ -1166,3 +1166,41 @@
   /* was unset: the buttons touched the code block above them. */
   margin-top: 28px;
 }
+
+/* ── Article clusters: soften and separate ────────────────────────────
+   Six collapsed rows 6px apart, each with a visible edge, read as a stack of
+   boxes rather than a list. The gaps go up and the edges come down — the row
+   should be legible without being outlined. */
+.cluster-accordion {
+  gap: 10px;
+  padding: 16px;
+}
+.cluster-trigger {
+  border-color: rgba(255, 255, 255, 0.07) !important;
+  background: transparent;
+  outline: none !important;
+}
+.cluster-trigger:hover {
+  border-color: rgba(255, 255, 255, 0.16) !important;
+  background: rgba(255, 255, 255, 0.03);
+}
+/* The accordion item itself can carry a ring from the theme; drop it so the
+   only edge is the one above, at the weight intended. */
+.cluster-accordion > *,
+.cluster-accordion [data-state] {
+  outline: none !important;
+  box-shadow: none !important;
+}
+/* The open panel is the interesting one; give it a slightly firmer edge so the
+   expanded cluster is distinguishable from the ten collapsed ones. */
+.cluster-accordion [data-state="open"] .cluster-trigger {
+  border-color: rgba(255, 255, 255, 0.16) !important;
+}
+
+/* Sona's `animated` variant sets a 1.5rem transform gap so neighbouring rows
+   shift as one opens. At this density it reads as an empty band under the open
+   panel rather than as motion, so the shift is removed and the grid gap does
+   the separating. */
+.cluster-accordion [class*="animated"] {
+  --_margin-gap: 0rem;
+}

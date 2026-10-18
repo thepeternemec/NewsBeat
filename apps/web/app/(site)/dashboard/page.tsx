@@ -357,7 +357,7 @@ export default function Dashboard() {
               <span className="mock-dots"><span /><span /><span /></span>
               <span className="mock-title">article clusters · every article by title</span>
               <span className="mock-live">
-                {clusters.length} of {topics.filter((t) => t.status !== "unavailable").length}
+                {clusters.length} of {catalogTotal || "…"}
               </span>
             </div>
             {/* Sona UI's Accordion, already vendored and unused. Ten clusters were
