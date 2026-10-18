@@ -113,7 +113,7 @@ export async function newsPage(beatId: string, cursor?: string, history = false)
                 where beat_id = ${beatId} and published_at >= ${since}
                 ${boundary}
                 -- Qualified on purpose: select id::text names the output column
-                -- "id", so an unqualified order by id sorts that TEXT, not the
+                -- "id", so an unqualified ordering clause sorts that TEXT, not the
                 -- bigint column. '9984466' > '39276235'. Every list was ordered
                 -- lexicographically once ids passed eight digits, so /v2/news and
                 -- /v2/brief served month-old stories while current ones sat behind
