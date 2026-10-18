@@ -16,6 +16,7 @@
  *    redirect when we cannot. `source` is always the publisher.
  */
 import type { ProviderArticle } from "./newsapi.js";
+import { scoreHeadline } from "./sentiment.js";
 
 const ENDPOINT = "https://news.google.com/rss/search";
 const USER_AGENT = "Mozilla/5.0 (compatible; NewsGraph/0.1; +https://newsgraph.vercel.app)";
@@ -121,6 +122,10 @@ export async function searchGoogleNews(
         uri: id,
         url,
         title: stripPublisherSuffix(rawTitle, publisher),
+        /* Google returns no sentiment; the paid provider does. The schema has
+           the field, so leaving it undefined made Google-sourced rows a special
+           case for every consumer. */
+        sentiment: scoreHeadline(stripPublisherSuffix(rawTitle, publisher)).sentiment,
         // The feed carries no prose, only a link. Better an empty excerpt than
         // a duplicated headline pretending to be one.
         body: "",
