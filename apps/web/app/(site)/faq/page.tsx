@@ -10,8 +10,8 @@ export default function Page() {
         <div className="page-head">
           <div className="wrap">
             <span className="sec-eyebrow">FAQ & status</span>
-            <h1 className="sec-title">Questions, and where the line is.</h1>
-            <p className="sec-sub">What is live, what is not, and what we will not claim.</p>
+            <h1 className="sec-title">Before you connect.</h1>
+            <p className="sec-sub">How NewsGraph works, what is available today, and what is coming next.</p>
           </div>
         </div>
         {/* FAQ */}
@@ -19,7 +19,7 @@ export default function Page() {
           <div className="wrap-tight">
             <div className="sec-head">
               <span className="sec-eyebrow">FAQ</span>
-              <h2 className="sec-title">The questions we get first.</h2>
+              <h2 className="sec-title">Your questions, answered.</h2>
             </div>
             <div className="faq">
               {FAQ.map((f) => (
@@ -37,9 +37,9 @@ export default function Page() {
           <div className="wrap">
             <div className="sec-head">
               <span className="sec-eyebrow">Status</span>
-              <h2 className="sec-title">What is shipped, and what is not.</h2>
+              <h2 className="sec-title">Built today. Coming next.</h2>
               <p className="sec-sub">
-                Early users deserve to know exactly where the line is. This is it.
+                Connect through MCP or API today, with more integrations on the way.
               </p>
             </div>
             <div className="features grid-4">

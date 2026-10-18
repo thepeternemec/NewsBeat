@@ -6,7 +6,7 @@ import { PRICES } from "@/components/site/content";
 export const metadata = {
   title: "Pricing",
   description:
-    "Free while in early access. No signup, no credential required, and a published price list for when billing is switched on.",
+    "Usage-based news access for AI agents. Published prepaid plans from $0.20 a day, with no seat licences. Free during early access.",
 };
 
 const ROUTES: Array<[string, string]> = [
@@ -31,21 +31,20 @@ export default function Pricing() {
         <div className="page-head">
           <div className="wrap">
             <span className="sec-eyebrow">Pricing</span>
-            <h1 className="sec-title">$0.20 a day.</h1>
+            <h1 className="sec-title">Pay for usage. No seat licences.</h1>
             <p className="sec-sub">
-              Watch up to fifty tickers as hard as the fifteen-minute schedule allows — roughly
-              5,000 checks a day. Bought as a prepaid balance, drawn down one day at a time, so it
-              cannot surprise you with a bill. Seven days free, no card.
+              Published prepaid plans start at $0.20 a day for up to fifty tickers on the
+              fifteen-minute refresh schedule. Choose the plan that fits your agent workflow.
             </p>
             <div className="hero-cta">
-              <a className="btn-primary" href="/docs/quickstart">
-                Start with the quickstart <ArrowRight size={14} />
+              <a className="btn-primary" href="/connect">
+                Connect your agent <ArrowRight size={14} />
               </a>
-              <a className="btn-ghost" href="/connect">
-                Connect
+              <a className="btn-ghost" href="/dashboard">
+                Explore live news
               </a>
             </div>
-            <p className="hero-tiny">not charged today · billing is not switched on</p>
+            <p className="hero-tiny">Free during early access · Stripe checkout coming soon</p>
           </div>
         </div>
 
@@ -53,11 +52,10 @@ export default function Pricing() {
           <div className="wrap">
             <div className="sec-head">
               <span className="sec-eyebrow">Today</span>
-              <h2 className="sec-title">What it costs right now: nothing.</h2>
+              <h2 className="sec-title">Start building today.</h2>
               <p className="sec-sub">
-                Billing is not switched on, and no mechanism in this codebase could charge you. The
-                API is open and anonymous. The plan below is published so the shape is not a
-                surprise later, not because it is running.
+                Connect your agent and explore the API for free during early access.
+                Stripe checkout for prepaid access is coming soon. Current request limits are below.
               </p>
             </div>
             <div className="table-scroll">
@@ -81,9 +79,8 @@ export default function Pricing() {
             </table>
             </div>
             <p className="hero-tiny" style={{ marginTop: 16 }}>
-              Keys are issued by hand while the catalog is still settling, so ask rather than
-              self-serve. Only the hash is stored, and a lost key cannot be recovered — you are
-              issued another.
+              Public access needs no key. Optional keys raise the request limit and are currently
+              issued by the operator.
             </p>
           </div>
         </section>
@@ -91,12 +88,11 @@ export default function Pricing() {
         <section className="scaffold" id="later">
           <div className="wrap">
             <div className="sec-head">
-              <span className="sec-eyebrow">The plan · published, not yet charged</span>
-              <h2 className="sec-title">One rate, and no bill to be surprised by.</h2>
+              <span className="sec-eyebrow">Published prepaid plans</span>
+              <h2 className="sec-title">One daily rate. Choose your balance.</h2>
               <p className="sec-sub">
-                A prepaid balance is bought in blocks and drawn down a day at a time. Larger blocks
-                keep more of the money — 92% at $6, 97% at $60 — because a card fee falls as a
-                share of the charge.
+                The planned prepaid balance is drawn down one day at a time. Every option uses
+                the same daily rate, so you can choose how much access to fund upfront.
               </p>
             </div>
             <div className="features grid-4">
@@ -113,8 +109,8 @@ export default function Pricing() {
               ))}
             </div>
             <p className="hero-tiny" style={{ marginTop: 16 }}>
-              No seat licence, no minimum, no annual commitment. Nothing above is being charged
-              today, and there is no mechanism in this codebase that could charge it.
+              No seat licences or annual commitment. These are the published plans for paid access;
+              the API remains free until billing launches.
             </p>
           </div>
         </section>
@@ -123,7 +119,7 @@ export default function Pricing() {
           <div className="wrap">
             <div className="sec-head">
               <span className="sec-eyebrow">The surface</span>
-              <h2 className="sec-title">Six routes, all of them open.</h2>
+              <h2 className="sec-title">Connect through MCP or API.</h2>
               <p className="sec-sub">
                 +1000 topics covered — equities and crypto — refreshed every fifteen
                 minutes.
@@ -159,18 +155,18 @@ export default function Pricing() {
 
         <section className="cta-section">
           <div className="wrap">
-            <h2 className="cta-title">Built to be extended.</h2>
+            <h2 className="cta-title">Give your agent a market to watch.</h2>
             <p className="cta-sub">
-              MIT licensed, one API and one worker, with the state of the project written down in
-              STATUS.md. The cheapest contribution is proposing a topic.
+              Choose your topics, connect through MCP or API, and start building with news
+              your agent can use.
             </p>
             <div className="cta-row">
-              <a className="btn-primary" href="https://github.com/thepeternemec/NewsGraph">
-                Open the repository <ArrowRight size={14} />
+              <a className="btn-primary" href="/connect">
+                Connect your agent <ArrowRight size={14} />
               </a>
               <a className="btn-ghost" href="/docs">Read the docs</a>
             </div>
-            <p className="cta-tiny">no signup · no billing · no seat licence</p>
+            <p className="cta-tiny">The news layer for AI agents · Usage-based pricing · No seat licences</p>
           </div>
         </section>
       </main>

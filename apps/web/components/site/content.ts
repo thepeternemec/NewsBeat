@@ -1,87 +1,86 @@
 /**
- * Shared content for the NewsGraph site.
- *
- * Only what is actually referenced lives here: the price card, the roadmap and
- * the FAQ. The beat catalog is fetched live, and page-specific copy sits with
- * its page rather than in a grab bag of unused exports.
+ * Shared pricing, roadmap, and FAQ copy for the NewsGraph site.
+ * Keep the current service state separate from planned paid access.
  */
 
-/** The public news API. Read-only, no credential, no billing. */
-export const API_BASE =
-  process.env.NEXT_PUBLIC_API_BASE_URL ??
-  "/api";
+/** The public, read-only news API. */
+export const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "/api";
 
 export const PRICES = [
   {
-    label: "the rate",
-    price: "$0.20",
-    desc: "A day. Watch up to fifty tickers as hard as the fifteen-minute schedule allows — about 5,000 checks.",
+    "label": "daily rate",
+    "price": "$0.20",
+    "desc": "Per day for up to fifty tickers, checked on the fifteen-minute refresh schedule. No seat licences."
   },
   {
-    label: "top up · 30 days",
-    price: "$6",
-    desc: "One charge, drawn down a day at a time. A balance cannot surprise you with a bill.",
+    "label": "prepaid · 30 days",
+    "price": "$6",
+    "desc": "Thirty days of access at the same daily rate. A simple starting point for your agent workflow."
   },
   {
-    label: "top up · 90 days",
-    price: "$18",
-    desc: "The same rate, and less of it goes to card fees — 95% of it reaches us rather than 92%.",
+    "label": "prepaid · 90 days",
+    "price": "$18",
+    "desc": "Ninety days of access for agents you run regularly. Same rate, fewer top-ups."
   },
   {
-    label: "top up · 300 days",
-    price: "$60",
-    desc: "For an agent that runs all year without anyone thinking about it.",
-  },
+    "label": "prepaid · 300 days",
+    "price": "$60",
+    "desc": "Three hundred days of access for ongoing market research and monitoring."
+  }
 ];
 
 export const ROADMAP = [
   {
-    when: "Shipped",
-    what: "Beat catalog, frozen contract, article clusters per beat, poll and delta against persisted packs, receipts, and metered billing behind a flag",
+    "when": "Shipped",
+    "what": "1,000+ equity and crypto topics, fifteen-minute ingestion, a public REST API, OpenAI-compatible tools, hosted MCP, cursors, briefs, and story grouping."
   },
   {
-    when: "In progress",
-    what: "Topic queries rebuilt for a 100-beat catalog, and live ingestion switched back on",
+    "when": "In progress",
+    "what": "Stripe checkout for prepaid access, direct publisher URLs, and short descriptions for items that currently carry only a headline."
   },
   {
-    when: "Next",
-    what: "Task-to-topic resolution, scheduled watches, briefs, an MCP server and WebSocket push",
+    "when": "Next",
+    "what": "Telegram, Discord, and more service integrations, plus scheduled watches and push updates."
   },
   {
-    when: "Later",
-    what: "Self-serve billing, the desk export rail, and coverage beyond English",
-  },
+    "when": "Open",
+    "what": "MIT-licensed source, public schemas and documentation, and an open topic catalog. Suggest a topic or contribute an integration."
+  }
 ];
 
 export const FAQ = [
   {
-    q: "What is actually live today?",
-    a: "The catalog, the agent tool schema, pricing, stats, poll and delta against persisted packs, and webhooks — against 20 seeded English beats that each carry their own article cluster. Built but not yet switched on: metered billing and receipts. Not built: task-to-topic resolution, watches and briefs. Live ingestion is paused while the topic queries are rebuilt for a 100-beat catalog, so the terminal shows the current state of the graph rather than a moving one.",
+    "q": "What is live today?",
+    "a": "NewsGraph covers 1,000+ equity and crypto topics using English-language financial news from Google News RSS, refreshed every fifteen minutes. The public REST API, OpenAI-compatible tools, and hosted MCP support topic discovery, headlines, changes since a cursor, briefs, and story grouping."
   },
   {
-    q: "Is this a search engine?",
-    a: "No, and it is not trying to be. Search answers a question once and forgets it. NewsGraph keeps a cursor per topic, so the question your agent asks on a schedule is whether anything moved — and nothing moved is a cheap, successful, billable answer.",
+    "q": "How does NewsGraph track what changed?",
+    "a": "Choose a topic and keep the cursor returned by the API. On the next check, send that cursor to receive stories that appeared since. An empty result means nothing new was found in that window; always check the topic's freshness status too."
   },
   {
-    q: "Do I get article bodies?",
-    a: "Never. No body field exists at any price. A page holds at most 8 items, each with a headline, a link that resolves to the article, the publisher's name and the time it was published. You get the signal and the citation; you fetch the story yourself.",
+    "q": "Do I get full articles?",
+    "a": "Each news page contains up to eight items with a headline, publisher, publication time, and a link that resolves to the article. NewsGraph does not supply full article bodies. Current links may redirect through Google News."
   },
   {
-    q: "How fast is before the mainstream?",
-    a: "Topics refresh on a 60-minute target with a 90-minute freshness SLO, and market topics are built to tighten to 5–15 minutes. Every item carries first_indexed_at next to published_at, so lead time is a field in the payload rather than a marketing line. The public comparison harness ships with the next milestone; until then the board on the site is illustrative.",
+    "q": "How fresh is the news?",
+    "a": "Ingestion runs on a fifteen-minute schedule. Availability also depends on the upstream source and each topic's last successful check. Responses report freshness, and items include publication and indexing timestamps, so your agent can assess the update before using it."
   },
   {
-    q: "How do I get access?",
-    a: "The catalog, the tool definitions and pricing need no credential at all, so you can evaluate the whole contract before spending anything. Early access beyond that is operator-granted while self-serve billing is built: send a note with your use case and you get an account plus a starting balance when metering is switched on.",
+    "q": "How do I connect my agent?",
+    "a": "Use the hosted MCP endpoint, OpenAI-compatible tool definitions, or the REST API. Public access currently needs no API key. The Connect page includes setup instructions and the quickstart shows your first request."
   },
   {
-    q: "How does billing work?",
-    a: "Nothing, today — billing is not switched on and no mechanism in this codebase can charge you. The plan when it is: $0.20 a day, bought as a prepaid balance and drawn down one day at a time. A balance cannot surprise you with a bill, which is the point. Seven days are free and need no card.",
+    "q": "How does pricing work?",
+    "a": "Usage-based pricing, with no seat licences. Published prepaid plans start at $0.20 a day for up to fifty tickers: $6 for 30 days, $18 for 90 days, or $60 for 300 days. The API is free during early access; Stripe checkout and paid access are coming soon."
   },
   {
-    q: "Can my agent pay for itself?",
-    a: "That is the design, and it is not live yet. Because the balance is metered per answer rather than licensed per seat, an agent that checks a topic every hour costs about fourteen cents a day — so it can fund its own context out of whatever value it creates. A default daily ceiling of $0.50 and 50 distinct topics keeps a runaway loop from becoming an incident.",
+    "q": "Can I use NewsGraph for trading or Polymarket research?",
+    "a": "Yes. Bring relevant equity and crypto headlines into your research alongside your own market data and probability models. NewsGraph supplies news context; it does not execute trades, provide Polymarket prices, or connect directly to your Polymarket account."
   },
+  {
+    "q": "Are Telegram and Discord integrations available?",
+    "a": "MCP and the REST API are available today. Dedicated Telegram, Discord, and other service integrations are planned. You can already use the API in your own bots and workflows."
+  }
 ];
 
 export function hhmm(iso: string | null): string {

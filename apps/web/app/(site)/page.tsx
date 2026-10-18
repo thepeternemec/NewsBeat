@@ -12,8 +12,8 @@ import { FAQ, PRICES } from "@/components/site/content";
 const FEATURES = [
   {
     icon: Zap,
-    title: "Hear it at publish time",
-    desc: "Your agent asks on a schedule, so it learns about a story when it breaks rather than when it trends.",
+    title: "Know what changed",
+    desc: "Get new stories since your last check, so your agent can focus on the latest developments.",
     tag: "a question, not a feed",
     viz: (
       <>
@@ -26,8 +26,8 @@ const FEATURES = [
   },
   {
     icon: Filter,
-    title: "An answer, not a pile",
-    desc: "You get up to eight stories already chosen and ordered. No result page, no ranking to argue with, no scrolling.",
+    title: "Keep context compact",
+    desc: "Up to eight stories per answer, ready to fit into your agent's research and analysis workflow.",
     tag: "≤8 stories",
     viz: (
       <>
@@ -41,47 +41,47 @@ const FEATURES = [
   },
   {
     icon: Coins,
-    title: "Cheap to ask often",
-    desc: "Most checks come back empty, and an empty answer costs a twentieth of a cent. Asking every hour is affordable.",
-    tag: "$0.0005 when nothing moved",
+    title: "Check on your schedule",
+    desc: "Let your agent ask regularly. A clear answer when nothing changed is useful too.",
+    tag: "keep the latest cursor",
     viz: (
       <>
-        <div className="viz-line"><span className="viz-key">48 checks today</span><span className="viz-val">$0.14</span></div>
+        <div className="viz-line"><span className="viz-key">scheduled checks</span><span className="viz-val">your cadence</span></div>
         <div className="viz-bar"><i style={{ width: "93%" }} /></div>
-        <div className="viz-line"><span>47 came back empty</span><span className="viz-val">$0.0005 each</span></div>
+        <div className="viz-line"><span>nothing changed</span><span className="viz-val">a useful answer</span></div>
       </>
     ),
   },
   {
     icon: FileCheck,
-    title: "Cited to the publisher",
-    desc: "Every story carries the publisher's own link, name and timestamp. We hand you the signal, never the article.",
+    title: "Follow the source",
+    desc: "Every item includes a headline, publisher, timestamp, and link so you can investigate further.",
     tag: "link on every item",
     viz: (
       <>
         <div className="viz-line"><span className="viz-key">Reuters</span><span className="viz-val">cited</span></div>
-        <div className="viz-line"><span>reuters.com/markets/…</span></div>
-        <div className="viz-line"><span>no body</span><span className="viz-val">320c lede</span></div>
+        <div className="viz-line"><span>headline · source · timestamp</span></div>
+        <div className="viz-line"><span>no body</span><span className="viz-val">article link</span></div>
       </>
     ),
   },
   {
     icon: Bell,
-    title: "Pays for itself",
-    desc: "Metered per answer, so an empty check costs a twentieth of a cent. No seat licence, no subscription, no minimum spend.",
-    tag: "per answer, not per seat",
+    title: "Pay for usage",
+    desc: "Usage-based pricing with no seat licences. Choose the plan that fits the way your agents work.",
+    tag: "no seat licences",
     viz: (
       <>
-        <div className="viz-line"><span className="viz-key">balance</span><span className="viz-val">$5.00 → $4.86</span></div>
+        <div className="viz-line"><span className="viz-key">pricing</span><span className="viz-val">usage-based</span></div>
         <div className="viz-bar"><i style={{ width: "97%" }} /></div>
-        <div className="viz-line"><span>funded once</span><span className="viz-val">card or invoice</span></div>
+        <div className="viz-line"><span>published plans</span><span className="viz-val">no seat licences</span></div>
       </>
     ),
   },
   {
     icon: Plug,
-    title: "Drops into your stack",
-    desc: "REST, an OpenAI-compatible tool schema, and an MCP server — the same shapes, so you wire it up once.",
+    title: "Connect to your stack",
+    desc: "Use REST, OpenAI-compatible tools, or MCP to bring news into the agents you already run.",
     tag: "REST · tools · MCP",
     viz: (
       <>
@@ -130,8 +130,8 @@ const STEPS = [
   {
     n: "1",
     title: "Pick your topics",
-    desc: "Twenty are ready today, across markets, policy, energy and science. Each one is a beat with a stable ID you can store.",
-    tag: "4 topics live",
+    desc: "Choose from 1,000+ equity and crypto topics. Each has a stable ID your agent can keep in its watchlist.",
+    tag: "1,000+ topics",
   },
   {
     n: "2",
@@ -141,9 +141,9 @@ const STEPS = [
   },
   {
     n: "3",
-    title: "It pays for the answer",
-    desc: "Per call, or drawn down from a prepaid balance. No invoice, no seat, and no minimum spend.",
-    tag: "no invoice, no seat",
+    title: "Bring the news into your workflow",
+    desc: "Carry new headlines and their sources into research, alerts, and market analysis. Store the latest cursor for the next check.",
+    tag: "research · alerts · analysis",
   },
 ];
 
@@ -158,21 +158,25 @@ export default function Home() {
         <section className="hero" id="top">
           <div className="wrap">
             <span className="eyebrow">
-              <span className="eyebrow-tag">MIT · open source</span>
+              <span className="eyebrow-tag">For trading &amp; prediction-market research</span>
               <span className="eyebrow-stat">{stats?.beats ?? "…"} topics</span>
               <span className="eyebrow-stat">
-                <span className="eyebrow-sep">·</span> 23,303 publishers
+                <span className="eyebrow-sep">·</span> MCP + REST API
               </span>
               <span className="eyebrow-stat eyebrow-stat-optional">
                 <span className="eyebrow-sep">·</span> no key required
               </span>
             </span>
 
-            <h1>Ask if a topic moved.</h1>
+            <h1>The news layer for AI agents.</h1>
             <p className="lede">
-              An API for agents that need to know what changed. Send a topic and a cursor, and get
-              back either <strong>&ldquo;nothing moved&rdquo;</strong> — a real answer, and the cheap
-              one — or the few cited stories that appeared since. No key, no signup, no SDK.
+              Give your agents the news behind the market. Track equities and crypto, see what
+              changed, and bring source-linked headlines into your trading and prediction-market research.
+              Connect through MCP or API for a concise update when new stories appear, or a clear
+              answer when nothing changed.
+            </p>
+            <p className="hero-tiny">
+              <strong>Usage-based pricing. No seat licences.</strong> Open source.
             </p>
 
             <div className="code hero-curl">
@@ -184,11 +188,11 @@ export default function Home() {
             </div>
 
             <div className="hero-cta">
-              <a className="btn-primary" href="/docs/quickstart">
-                Quickstart <ArrowRight size={14} />
+              <a className="btn-primary" href="/connect">
+                Connect your agent <ArrowRight size={14} />
               </a>
               <a className="btn-ghost" href="/dashboard">
-                Live terminal
+                Explore live news
               </a>
               <a className="btn-ghost" href="https://github.com/thepeternemec/NewsGraph">
                 Source
@@ -199,7 +203,7 @@ export default function Home() {
               <div className="mock-bar">
                 <span className="mock-dots"><span /><span /><span /></span>
                 <span className="mock-title">newsgraph — your agent asks, newsgraph answers</span>
-                <span className="mock-live">streaming</span>
+                <span className="mock-live">live headlines</span>
               </div>
               <div className="mock-body">
                 <div className="mock-ticker">
@@ -229,12 +233,12 @@ export default function Home() {
                   <div className="mock-row">
                     <span className="k">ask</span>
                     <span className="v">has this moved since I last looked?</span>
-                    <span className="s">$0.0005</span>
+                    <span className="s">check</span>
                   </div>
                   <div className="mock-row">
                     <span className="k">answer</span>
                     <span className="v">moved · 3 new stories · cited</span>
-                    <span className="s">$0.004</span>
+                    <span className="s">new stories</span>
                   </div>
                   {items.slice(0, 3).map((it, i) => (
                     <div key={i} className="mock-row">
@@ -246,14 +250,14 @@ export default function Home() {
                   {items.length === 0 && (
                     <div className="mock-row">
                       <span className="k">awaiting</span>
-                      <span className="v">Ingestion paused while the topic catalog is rebuilt.</span>
+                      <span className="v">Loading the latest headlines. Explore the terminal for topic status.</span>
                       <span className="s">system</span>
                     </div>
                   )}
                 </div>
                 <div className="mock-foot">
                   <span>read-only · public</span>
-                  <span>per call</span>
+                  <span>MCP + API</span>
                   <span style={{ marginLeft: "auto" }}>{stamp ? `updated ${stamp}` : "connecting…"}</span>
                 </div>
               </div>
@@ -266,26 +270,26 @@ export default function Home() {
           <div className="wrap">
             <div className="metrics-grid">
               <div>
-                <div className="metric-num">23,303</div>
-                <div className="metric-label">Publishers watched around the clock</div>
+                <div className="metric-num">1,000+</div>
+                <div className="metric-label">Equity and crypto topics to follow</div>
               </div>
               <div>
-                <div className="metric-num">$0.0005</div>
-                <div className="metric-label">What it costs to hear that nothing changed</div>
+                <div className="metric-num">0</div>
+                <div className="metric-label">Seat licences required</div>
               </div>
               <div>
                 <div className="metric-num">≤8</div>
-                <div className="metric-label">Stories in an answer, so it fits any context window</div>
+                <div className="metric-label">Stories per answer, ready for your agent</div>
               </div>
               <div>
-                <div className="metric-num">90m</div>
-                <div className="metric-label">Freshness SLO, on a 60-minute refresh target</div>
+                <div className="metric-num">15m</div>
+                <div className="metric-label">Scheduled refresh interval; check topic freshness</div>
               </div>
             </div>
             <p className="hero-tiny" style={{ marginTop: 34 }}>
               {stats?.live
                 ? `live · ${stats.beats} topics · ${stats.live} with articles · updated ${stamp || "\u2026"}`
-                : `${stats?.beats ?? 20} topics configured · ingestion paused while the topic catalog is rebuilt`}
+                : "1,000+ equity and crypto topics · loading live status"}
             </p>
           </div>
         </section>
@@ -309,10 +313,10 @@ export default function Home() {
           <div className="wrap">
             <div className="sec-head">
               <span className="sec-eyebrow">What you get</span>
-              <h2 className="sec-title">News your agent can act on.</h2>
+              <h2 className="sec-title">Give every decision current context.</h2>
               <p className="sec-sub">
-                Not another feed to read. A question you can afford to ask constantly, answered in
-                something small enough to use straight away.
+                Track the companies and crypto assets that matter to your strategy. Get a compact
+                set of new headlines, with sources and timestamps, ready for research, alerts, and market analysis.
               </p>
             </div>
             <div className="features">
@@ -335,54 +339,54 @@ export default function Home() {
         <section className="scaffold" id="agent">
           <div className="wrap">
             <div className="sec-head">
-              <span className="sec-eyebrow">The hyper-news agent</span>
-              <h2 className="sec-title">An agent that buys its own news.</h2>
+              <span className="sec-eyebrow">Trading &amp; prediction markets</span>
+              <h2 className="sec-title">Keep your agent watching the market.</h2>
               <p className="sec-sub">
-                It wakes on a schedule, asks what moved, and pays for only the answers it uses.
-                No API key to rotate, no invoice to approve, no human in the loop.
+                From a stock watchlist to a crypto thesis or a Polymarket research workflow,
+                give your agent a repeatable way to check the news.
               </p>
             </div>
 
             <div className="showcase">
               <div>
-                <h3>Fourteen cents buys a day of vigilance.</h3>
+                <h3>Follow the stories behind your watchlist.</h3>
                 <p>
-                  Most wakes return nothing, and nothing is cheap. When a topic does move, the same
-                  agent pays four tenths of a cent for a short, cited brief and moves on. The cost
-                  tracks the news, not the seat.
+                  Follow relevant companies and assets, collect new headlines, and carry the sources
+                  into your analysis. Combine NewsGraph with your market data and probability models
+                  to investigate what changed—and whether it changes your view.
                 </p>
                 <ul>
-                  <li>Wake on a schedule — a minute on a market topic, hourly on the rest</li>
-                  <li>Pay per answer, billed to the account that owns it</li>
-                  <li>Nothing moved is a real answer, and the cheapest one</li>
-                  <li>Every call returns a receipt the operator can reconcile</li>
+                  <li>Check your watchlist on a schedule that fits your workflow</li>
+                  <li>Bring source-linked headlines into your research</li>
+                  <li>Nothing changed is a useful answer too</li>
+                  <li>Store the latest cursor so your next check picks up where you left off</li>
                 </ul>
               </div>
               <div className="mock">
                 <div className="mock-bar">
                   <span className="mock-dots"><span /><span /><span /></span>
-                  <span className="mock-title">agent loop · one topic · one day</span>
+                  <span className="mock-title">example agent loop · one topic</span>
                   <span className="mock-live">read-only</span>
                 </div>
                 <div className="mock-feed">
                   <div className="mock-row">
                     <span className="k">06:00 wake</span>
                     <span className="v">check NVIDIA</span>
-                    <span className="s">$0.0005</span>
+                    <span className="s">check</span>
                   </div>
                   <div className="mock-row">
                     <span className="k">06:00 nothing</span>
                     <span className="v">nothing moved · cursor held</span>
-                    <span className="s">$0.0005</span>
+                    <span className="s">check</span>
                   </div>
                   <div className="mock-row">
                     <span className="k">06:30 wake</span>
-                    <span className="v">three new stories · 14 publishers</span>
-                    <span className="s">$0.004</span>
+                    <span className="v">three new stories · sources included</span>
+                    <span className="s">new stories</span>
                   </div>
                   <div className="mock-row">
                     <span className="k">06:30 cite</span>
-                    <span className="v">Reuters · published 06:41 · indexed 06:43</span>
+                    <span className="v">Reuters · published 06:21 · indexed 06:28</span>
                     <span className="s">cited</span>
                   </div>
                   <div className="mock-row">
@@ -392,9 +396,9 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="mock-foot">
-                  <span>48 wakes a day</span>
-                  <span>≈ $0.14</span>
-                  <span style={{ marginLeft: "auto" }}>paid per answer</span>
+                  <span>your watchlist</span>
+                  <span>your schedule</span>
+                  <span style={{ marginLeft: "auto" }}>source-linked updates</span>
                 </div>
               </div>
             </div>
@@ -406,9 +410,9 @@ export default function Home() {
           <div className="wrap">
             <div className="sec-head">
               <span className="sec-eyebrow">How it works</span>
-              <h2 className="sec-title">Three steps, then it runs itself.</h2>
+              <h2 className="sec-title">Choose your topics. Connect your agent. Stay informed.</h2>
               <p className="sec-sub">
-                You set it up once. After that the loop is the agent&rsquo;s problem, not yours.
+                Choose what matters, ask what changed, and bring the answer into your workflow.
               </p>
             </div>
             <div className="features">
@@ -429,12 +433,11 @@ export default function Home() {
         <section className="scaffold" id="pricing">
           <div className="wrap">
             <div className="sec-head">
-              <span className="sec-eyebrow">Pricing · published, not yet charged</span>
-              <h2 className="sec-title">Pay for answers, not for seats.</h2>
+              <span className="sec-eyebrow">Usage-based pricing</span>
+              <h2 className="sec-title">Pay for usage. No seat licences.</h2>
               <p className="sec-sub">
-                Everything is free while we are in early access. These are the prices billing will
-                use when it is switched on: nothing moved costs a twentieth of a cent and a real
-                answer less than half a cent, so asking often stays rational.
+                Choose the plan that fits your agents. Published prepaid plans start at $0.20 a day
+                for up to fifty tickers. The API is free during early access; Stripe checkout is coming soon.
               </p>
             </div>
             <div className="features grid-4">
@@ -446,7 +449,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <p className="more"><a href="/pricing">What is free today, and what billing will cost</a></p>
+            <p className="more"><a href="/pricing">View pricing</a></p>
           </div>
         </section>
 
@@ -455,37 +458,36 @@ export default function Home() {
           <div className="wrap">
             <div className="sec-head">
               <span className="sec-eyebrow">Why now</span>
-              <h2 className="sec-title">Agents are shipping faster than their context updates.</h2>
+              <h2 className="sec-title">Markets move. Keep your agent&rsquo;s context current.</h2>
               <p className="sec-sub">
-                A model&rsquo;s training data is months old the day it deploys. Retrieval answers a
-                question once and forgets it. Neither tells an agent what changed in the last hour,
-                which is the only thing a market actually reacts to.
+                Your agent needs a way to bring new developments into its analysis. NewsGraph adds
+                repeatable news checks to the data and tools your strategy already uses.
               </p>
             </div>
             <div className="features">
               <div className="feature" style={{ minHeight: 220 }}>
-                <h3 className="feature-title">A cutoff date is not a strategy</h3>
+                <h3 className="feature-title">Bring in new developments</h3>
                 <p className="feature-desc">
-                  Every deployed agent is already behind. The gap widens every day it runs, and no
-                  amount of prompt engineering closes it.
+                  Supplement your model&rsquo;s existing knowledge with news about the companies
+                  and assets you follow.
                 </p>
-                <span className="feature-tag">stale by default</span>
+                <span className="feature-tag">current context</span>
               </div>
               <div className="feature" style={{ minHeight: 220 }}>
-                <h3 className="feature-title">Search answers and forgets</h3>
+                <h3 className="feature-title">Keep track of what changed</h3>
                 <p className="feature-desc">
-                  A query returns ranked results and no memory. An agent that polls needs state: what
-                  it already saw, and what is genuinely new.
+                  Keep a cursor for each topic. Your next check asks for the stories that appeared
+                  since, giving your agent a consistent starting point.
                 </p>
-                <span className="feature-tag">stateless by design</span>
+                <span className="feature-tag">updates since your last check</span>
               </div>
               <div className="feature" style={{ minHeight: 220 }}>
-                <h3 className="feature-title">Feeds are built for humans</h3>
+                <h3 className="feature-title">Built for agent workflows</h3>
                 <p className="feature-desc">
-                  A person reads a feed; an agent needs a bounded answer it can put in a context
-                  window and cite. Those are different products.
+                  Use compact, structured answers with sources and timestamps in your prompts,
+                  tools, research notes, and alerts.
                 </p>
-                <span className="feature-tag">wrong shape</span>
+                <span className="feature-tag">structured and source-linked</span>
               </div>
             </div>
           </div>
@@ -496,19 +498,18 @@ export default function Home() {
           <div className="wrap">
             <div className="sec-head">
               <span className="sec-eyebrow">Where we are</span>
-              <h2 className="sec-title">Early, and specific about it.</h2>
+              <h2 className="sec-title">Built today. Coming next.</h2>
               <p className="sec-sub">
-                Enough is built to be used and measured. We would rather you know the line than
-                discover it.
+                Your tools. Your channels. Your news. Connect through MCP or API today, with
+                more integrations on the way.
               </p>
             </div>
             <div className="features grid-4">
               <div className="feature" style={{ minHeight: 200 }}>
                 <span className="feature-tag" style={{ marginTop: 0, paddingTop: 0 }}>Shipped</span>
                 <p className="feature-desc" style={{ marginTop: 14 }}>
-                  +1000 topics covered — equities and crypto, all with coverage, ingested free from Google News every
-                  fifteen minutes. Cursors, briefs, pagination and rate limits — public, and no
-                  credential required.
+                  1,000+ equity and crypto topics, refreshed every fifteen minutes. REST API,
+                  OpenAI-compatible tools, and hosted MCP, with cursors, briefs, and topic freshness status.
                 </p>
               </div>
               <div className="feature" style={{ minHeight: 200 }}>
@@ -521,8 +522,8 @@ export default function Home() {
               <div className="feature" style={{ minHeight: 200 }}>
                 <span className="feature-tag" style={{ marginTop: 0, paddingTop: 0 }}>Next</span>
                 <p className="feature-desc" style={{ marginTop: 14 }}>
-                  Scheduled watches, WebSocket push so a beat can wake an agent instead of being
-                  polled, and a hosted MCP endpoint.
+                  Telegram, Discord, and more service integrations, bringing news updates into
+                  the places where you research, collaborate, and act. Scheduled watches and push updates are also planned.
                 </p>
               </div>
               <div className="feature" style={{ minHeight: 200 }}>
@@ -543,7 +544,7 @@ export default function Home() {
           <div className="wrap-tight">
             <div className="sec-head">
               <span className="sec-eyebrow">Questions</span>
-              <h2 className="sec-title">The ones that come up first.</h2>
+              <h2 className="sec-title">Before you connect.</h2>
               <p className="sec-sub">
                 Five answers here, and the rest on{" "}
                 <a href="/faq" style={{ color: "#fff", borderBottom: "1px solid var(--border-strong)" }}>
@@ -620,17 +621,17 @@ export default function Home() {
         {/* CTA */}
         <section className="cta-section">
           <div className="wrap">
-            <h2 className="cta-title">Never miss the signal.</h2>
+            <h2 className="cta-title">Give your agent a market to watch.</h2>
             <p className="cta-sub">
-              Point your agent at the topics that matter and let it tell you when something
-              changes. Usage-based, no seat licence, free while we are in early access.
+              Choose your topics, connect through MCP or API, and start building with news
+              your agent can use.
             </p>
             <div className="cta-row">
-              <a className="btn-primary" href="/dashboard">Open the live terminal <ArrowRight size={14} /></a>
-              <a className="btn-ghost" href="/docs">Read the docs</a>
+              <a className="btn-primary" href="/connect">Connect your agent <ArrowRight size={14} /></a>
+              <a className="btn-ghost" href="/dashboard">Explore live news</a>
             </div>
             <p className="cta-tiny">
-              free while in early access · no key · no billing
+              The news layer for AI agents · Usage-based pricing · No seat licences
             </p>
           </div>
         </section>
