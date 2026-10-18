@@ -3,6 +3,7 @@
 import { ArrowRight, Bell, Coins, FileCheck, Filter, Plug, Zap } from "lucide-react";
 import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
+import Marquee from "@/components/ui/marquee/marquee";
 import CopyButton from "@/components/site/copy-button";
 import { useNewsGraphStats } from "@/components/site/use-stats";
 import { FAQ, PRICES } from "@/components/site/content";
@@ -198,11 +199,11 @@ export default function Home() {
               <div className="mock-bar">
                 <span className="mock-dots"><span /><span /><span /></span>
                 <span className="mock-title">newsgraph — your agent asks, newsgraph answers</span>
-                <span className="mock-live">sample</span>
+                <span className="mock-live">streaming</span>
               </div>
               <div className="mock-body">
                 <div className="mock-ticker">
-                  <div className="sample-row">
+                  <Marquee speed={55} gap="3.5rem" pauseOnHover>
                     <div style={{ display: "flex", alignItems: "center" }}>
                       {ticker.map((it, i) => (
                         <span key={i} style={{ whiteSpace: "nowrap", font: "11px var(--font-mono), monospace", color: "#bdbdbd" }}>
@@ -212,9 +213,9 @@ export default function Home() {
                         </span>
                       ))}
                     </div>
+                  </Marquee>
                   </div>
-                </div>
-                <div className="mock-feed">
+                  <div className="mock-feed">
                   <div className="mock-row">
                     <span className="k">your agent</span>
                     <span className="v">{`{"task": "due diligence on Nvidia China exposure"}`}</span>
@@ -294,13 +295,13 @@ export default function Home() {
           <div className="wrap">
             <span className="marquee-strip-label">Coverage includes</span>
           </div>
-          <div className="sample-row">
+          <Marquee speed={52} gap="2.75rem" pauseOnHover>
             <div className="rail-items">
               {SOURCES.map((source) => (
                 <span key={source} className="rail-item"><i />{source}</span>
               ))}
             </div>
-          </div>
+          </Marquee>
         </section>
 
         {/* FEATURES */}
