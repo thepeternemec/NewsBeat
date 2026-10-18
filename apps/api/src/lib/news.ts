@@ -112,12 +112,12 @@ export async function newsPage(beatId: string, cursor?: string, history = false)
                 from news_articles
                 where beat_id = ${beatId} and published_at >= ${since}
                 ${boundary}
-                -- Qualified on purpose. `select id::text ... order by id` sorts the
-                -- TEXT output alias, not the bigint column: '9984466' > '39276235'.
-                -- Every list was ordered lexicographically once ids passed eight
-                -- digits, so /v2/news and /v2/brief served month-old stories while
-                -- current ones sat behind them. Same bug as the ticker search: it
-                -- looked right while every id had the same number of digits.
+                -- Qualified on purpose: select id::text names the output column
+                -- "id", so an unqualified order by id sorts that TEXT, not the
+                -- bigint column. '9984466' > '39276235'. Every list was ordered
+                -- lexicographically once ids passed eight digits, so /v2/news and
+                -- /v2/brief served month-old stories while current ones sat behind
+                -- them. Invisible while all ids had the same digit count.
                 order by news_articles.id ${direction}
                 limit 9`,
             sql`select last_success_at from news_ingestion_status where beat_id = ${beatId} limit 1`,
