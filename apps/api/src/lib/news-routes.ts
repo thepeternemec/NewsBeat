@@ -46,6 +46,10 @@ export async function callNewsTool(name: string, args: unknown) {
         const input = z.object({ beat_id: z.string() }).strict().parse(args);
         return brief(input.beat_id);
     }
+    if (name === "newsgraph_stories") {
+        const input = z.object({ beat_id: z.string() }).strict().parse(args);
+        return stories(input.beat_id);
+    }
     if (name === "newsgraph_changes") {
         const input = z.object({ beat_id: z.string(), cursor: z.string().max(2048) }).strict().parse(args);
         return newsPage(input.beat_id, input.cursor);
