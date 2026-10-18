@@ -174,7 +174,10 @@ export default function Dashboard() {
   // still carry nothing. The label promised "carrying articles", so this counts
   // articles — the number and the words now measure the same thing.
   const carrying = topics.filter((t) => (t.article_count ?? 0) > 0).length;
-  const carryingPct = catalogTotal ? Math.round((carrying / catalogTotal) * 100) : 0;
+  // Floor, not round. 1031 of 1035 is 99.6%, which rounds to "100% of the
+  // catalog" while four topics carry nothing — the metric overstating the thing
+  // it is reporting, which is the defect this repository keeps finding.
+  const carryingPct = catalogTotal ? Math.floor((carrying / catalogTotal) * 100) : 0;
   const movedRecently = topics.reduce((sum, t) => sum + (t.recent_12h ?? 0), 0);
 
   const term = query.trim().toLowerCase();
