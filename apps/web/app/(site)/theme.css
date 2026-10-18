@@ -1114,7 +1114,10 @@
    copy-pasteable request that works is the fastest way to answer that. */
 .hero-curl {
   max-width: 660px;
-  margin: 28px 0 0;
+  /* auto, not 0. The hero is a centred column — the eyebrow, h1, lede and
+     buttons all sit on the viewport centre — and a zero side margin put this
+     one block 258px to the left of everything else. */
+  margin: 28px auto 0;
 }
 .hero-curl pre {
   font-size: 12px;
