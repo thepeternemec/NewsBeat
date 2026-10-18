@@ -12,14 +12,14 @@ const clamp = (raw: string | undefined, fallback: number, max: number) => {
 newsRoutes.get("/stories", async (c) => {
     const beatId = (c.req.query("beat_id") ?? "").trim();
     if (!beatId)
-        return c.json({ error: "invalid_request", detail: "beat_id is required" }, 400);
+        throw new NewsError("invalid_request", "beat_id is required.", 400);
     const limit = clamp(c.req.query("limit"), 200, 500) || 200;
     return c.json(await stories(beatId, limit));
 });
 newsRoutes.get("/brief", async (c) => {
     const beatId = (c.req.query("beat_id") ?? "").trim();
     if (!beatId)
-        return c.json({ error: "invalid_request", detail: "beat_id is required" }, 400);
+        throw new NewsError("invalid_request", "beat_id is required.", 400);
     return c.json(await brief(beatId, c.req.query("cursor") || undefined, c.req.query("history") === "true"));
 });
 newsRoutes.get("/topics", async (c) => {
