@@ -31,20 +31,24 @@ curl "/api/v2/topics?q=nvidia"     # search a ticker or a company name`}</pre>
       "label": "NVIDIA",
       "ticker": "NVDA",
       "asset": "equity",
-      "article_count": 521,
-      "recent_12h": 65,
+      "article_count": 6427,
+      "recent_12h": 87,
       "status": "fresh",
       "last_success_at": "2026-09-19T10:15:31.920Z",
       "last_checked_at": "2026-09-19T10:15:31.920Z"
     }
   ],
-  "total": 1034,
+  "total": 1035,
   "limit": 1,
   "offset": 0,
   "has_more": true,
   "next_offset": 1
 }`}</pre>
       </div>
+      <p>
+        These numbers move — <code>article_count</code> grows every fifteen minutes, so yours will
+        not match this sample and that is expected. What does not move is the shape.
+      </p>
       <p>
         Keep the <code>beat_id</code>. It is stable, and it is the only argument the other routes
         need. The catalog is paginated — follow <code>next_offset</code> while <code>has_more</code>{" "}

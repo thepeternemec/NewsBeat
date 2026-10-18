@@ -79,6 +79,23 @@ test("every command the contributor guide gives exists", () => {
   }
 });
 
+test("sample responses quote the real catalog size", () => {
+  // A sample copied from a live response goes stale the moment the catalog
+  // grows, and a reader comparing their own response to the docs concludes
+  // something is broken. `article_count` moves every fifteen minutes and cannot
+  // be guarded; the catalog total can.
+  for (const file of ["apps/web/app/(site)/docs/quickstart/page.tsx"]) {
+    const text = read(`${ROOT}${file}`);
+    for (const match of text.matchAll(/"total":\s*(\d+)/g)) {
+      assert.equal(
+        Number(match[1]),
+        SEED_BEATS.length,
+        `${file} shows "total": ${match[1]} in a sample; the catalog has ${SEED_BEATS.length}`,
+      );
+    }
+  }
+});
+
 test("the published floor is a floor", () => {
   // Marketing copy says "+1000 topics covered" rather than naming the exact
   // count, because a number printed on a landing page is a number that goes
