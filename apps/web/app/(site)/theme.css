@@ -1142,3 +1142,25 @@
     overflow-x: auto;
   }
 }
+
+/* ── Hero vertical rhythm ─────────────────────────────────────────────
+   Everything sat too close: the request block and the buttons below it had a
+   measured gap of 0px, so they read as one object. Increased in order of how
+   wrong they were, not uniformly — the code/buttons pair needed 28px, the
+   headline and lede needed a little air. */
+.hero .eyebrow {
+  margin-bottom: 34px;
+}
+.hero h1 {
+  margin-bottom: 26px;
+}
+.hero .lede {
+  margin-bottom: 40px;
+}
+.hero-curl {
+  margin-top: 36px;
+}
+.hero-cta {
+  /* was unset: the buttons touched the code block above them. */
+  margin-top: 28px;
+}
