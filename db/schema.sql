@@ -189,3 +189,19 @@ alter table public.api_keys
   add column if not exists account_id uuid references public.accounts(account_id) on delete cascade;
 
 create index if not exists api_keys_account_idx on public.api_keys (account_id);
+
+-- ── GitHub identity ─────────────────────────────────────────────────────
+-- Self-serve keys are gated on a GitHub account rather than on nothing. Without
+-- some identity, minting keys is free and the rate limit stops meaning anything —
+-- one person could hold a thousand keys. GitHub is the cheapest identity that a
+-- developer already has, and it needs no email delivery to verify.
+alter table public.accounts
+  add column if not exists github_user_id text unique;
+
+create index if not exists accounts_github_idx
+  on public.accounts (github_user_id) where github_user_id is not null;
+
+-- The login, for display. Email is optional on GitHub and often hidden, so it
+-- cannot be the identity.
+alter table public.accounts
+  add column if not exists github_login text;

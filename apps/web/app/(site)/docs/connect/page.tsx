@@ -146,6 +146,28 @@ X-RateLimit-Reset: 43          # seconds until the window rolls over
 X-RateLimit-Tier: anonymous`}</pre>
       </div>
 
+      <h2>Getting a key</h2>
+      <p>
+        <strong>You do not need one.</strong> The API is public. A key raises the limit from 120
+        requests a minute to 1200 and gives usage an owner; it unlocks no data.
+      </p>
+      <div className="code">
+        <div className="code-bar">self-serve</div>
+        <pre>{`open https://newsgraph.vercel.app/keys
+# sign in with GitHub, read:user only
+# the key is shown once, then only its hash exists`}</pre>
+      </div>
+      <p>
+        Signing in again rotates the key and revokes the previous one in the same transaction. An
+        account holding five live keys would have five times the allowance whether it needed it or
+        not.
+      </p>
+      <p>
+        What is stored is the GitHub numeric id, the login and the SHA-256 of the key — no email, no
+        repositories. If the deployment has no OAuth app configured, that page says so and
+        <code>/api/keys/authorize</code> returns a 503 naming the two variables an operator must set.
+      </p>
+
       <h2>When something goes wrong</h2>
       <div className="table-scroll">
       <table>

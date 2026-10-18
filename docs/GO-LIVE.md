@@ -120,3 +120,30 @@ secret is needed for those; `NEWSGRAPH_CRON_SECRET` only guards manual runs.
 - [ ] First ingestion returned `ok: true` with a non-zero `inserted`
 - [ ] `/api/v2/topics` shows `fresh` or `stale` rather than `unavailable`
 - [ ] The cron cadence matches the plan you are on
+
+## Self-serve API keys (GitHub OAuth)
+
+Keys are issued by hand until this is configured. Two values, from an OAuth app
+that **cannot be created by an API** — GitHub only exposes it as a settings form:
+
+1. Open <https://github.com/settings/developers> → **New OAuth App**.
+2. Name: anything. Homepage: `https://newsgraph.vercel.app`.
+3. **Authorization callback URL**: `https://newsgraph.vercel.app/api/keys/callback`
+   — it must match exactly, including the scheme and the path.
+4. Copy the Client ID, generate a Client Secret.
+5. Set both on Vercel as `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET`, then redeploy.
+
+Until then `/api/keys/authorize` returns a page that says it is not configured and
+tells the operator these same steps — it does not redirect somewhere broken.
+
+What it asks GitHub for is `read:user` and nothing else. What it stores is the
+GitHub numeric id, the login and the SHA-256 of the key — no email, no
+repositories.
+
+Signing in twice **rotates** the key and revokes the previous one in the same
+transaction. An account holding five live keys has five times the allowance whether
+it needs it or not, and the older ones are the ones nobody remembers holding.
+
+For preview deployments, the callback is derived from the request origin, so each
+deployment serves its own `/api/keys/callback`. GitHub allows one callback URL per
+OAuth app, so a preview will refuse the redirect unless you register a second app.

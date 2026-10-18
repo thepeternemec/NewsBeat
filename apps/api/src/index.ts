@@ -12,6 +12,7 @@
 import { Hono } from "hono";
 import { newsRoutes } from "./lib/news-routes.js";
 import { rateLimit, rateLimits } from "./lib/limit.js";
+import { keyRoutes } from "./lib/key-routes.js";
 import { mcpResponse } from "./lib/mcp.js";
 
 const app = new Hono();
@@ -37,12 +38,14 @@ app.get("/", (c) =>
     service: "NewsGraph",
     docs: "https://newsgraph.vercel.app/docs",
     repo: "https://github.com/thepeternemec/NewsGraph",
-    routes: ["/v2/topics", "/v2/news", "/v2/changes", "/v2/tools", "/mcp", "/health"],
+    routes: ["/v2/topics", "/v2/news", "/v2/changes", "/v2/watch", "/v2/brief", "/v2/stories", "/v2/tools", "/mcp", "/health", "/keys/authorize"],
     rate_limits: rateLimits,
   }),
 );
 
 app.route("/v2", newsRoutes);
+  // Self-serve keys. Separate from /v2 because it is not a news route.
+  app.route("/keys", keyRoutes);
 app.all("/mcp", (c) => mcpResponse(c.req.raw));
 
 export default app;

@@ -34,6 +34,7 @@ const ADVERTISING = ["AGENTS.md", "README.md", "apps/web/public/llms.txt", "apps
 
 /** Pages whose prose and samples tell a developer what to call. */
 const SITE = [
+  "apps/web/app/(site)/docs/connect/page.tsx",
   "apps/web/app/(site)/docs/quickstart/page.tsx",
   "apps/web/app/(site)/docs/connect/page.tsx",
   "apps/web/app/(site)/connect/page.tsx",
