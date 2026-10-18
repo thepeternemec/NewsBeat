@@ -751,7 +751,9 @@
 .ticker-picker {
   margin-top: 36px;
   display: grid;
-  gap: 12px;
+  /* This is the input-to-chips gap. At 12px the search box and the ticker row
+     read as one control; 24px separates the field from its results. */
+  gap: 24px;
 }
 
 .ticker-search {
