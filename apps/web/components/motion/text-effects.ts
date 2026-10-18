@@ -119,12 +119,24 @@ export function countUp(selector: string, duration = 1500): () => void {
     if (!Number.isFinite(target)) return;
 
     const format = (n: number) => Math.round(n).toLocaleString("en-US");
+    const restore = () => {
+      el.textContent = raw;
+    };
     let raf = 0;
-    el.textContent = format(0);
+
+    // The text is not zeroed here. It used to be, before the observer below had
+    // fired — so a metric that never reached the threshold, or a browser that
+    // never reported one, was left reading "0" instead of its real value. That
+    // is the same defect the decrypt effect had, and the same fix: write the
+    // placeholder only once the animation is committed, and restore on a timer
+    // regardless.
+    const fallback = window.setTimeout(restore, 3000);
 
     const stop = inView(
       el,
       () => {
+        window.clearTimeout(fallback);
+        el.textContent = format(0);
         const start = performance.now();
         const tick = (now: number) => {
           const t = Math.min(1, (now - start) / duration);
@@ -139,8 +151,9 @@ export function countUp(selector: string, duration = 1500): () => void {
 
     cleanups.push(() => {
       stop();
+      window.clearTimeout(fallback);
       if (raf) cancelAnimationFrame(raf);
-      el.textContent = raw;
+      restore();
     });
   });
   return () => cleanups.forEach((fn) => fn());
