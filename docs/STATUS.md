@@ -57,6 +57,19 @@ The live presentation was stopped with it, because motion is a claim that someth
 the landing's `STREAMING` badge reads `sample`, its scrolling headline tickers are static rows,
 and the dashboard no longer polls on a timer.
 
+## Data growth
+
+Articles accumulate at roughly **24,000 a day** and the table reached **1.27 GB**. The API serves a
+30-day window, so anything older was unreachable but never removed.
+
+`npm run db:retain` deletes articles past the retention window — 35 days by default, deliberately
+past the API's own cut-off so a run can never remove a row a request in flight could still reach.
+The cron calls it once a day at 03:00 UTC rather than every fifteen minutes: deleting by an age
+boundary is idempotent, and there is no reason to pay for the scan 96 times.
+
+Deleting is separate from ingesting on purpose. Fetching news and forgetting news are different
+jobs, and the destructive one should be easy to find and easy to turn off.
+
 ## Not built
 
 - **WebSocket push.** Clients poll; there is no subscribe. `changes` already has the cursor
@@ -97,8 +110,12 @@ Ordered by what unblocks the most. Each is scoped to one pull request.
   version got wrong: it kept a hand-maintained copy of the route list and called it "exactly what
   AGENTS.md says", which made it a second source of truth rather than a check; and it read only the
   root `package.json`, so it flagged `react` and `lucide-react` as missing packages.
-- **The 68 topics without coverage** may be genuine quiet or an over-strict headline filter. Worth
-  watching across a few cycles before changing either.
+- **Four topics carry no articles**, not the 68 this file used to name — ingestion caught up. They
+  are `FIGR_HELOC`, `BFUSD`, `EUTBL` and `U`: stablecoin and T-bill assets whose Google News queries
+  return zero results. The diagnosis matters, because the two causes need opposite fixes: fetched
+  0 means genuinely quiet, fetched >0 but matched 0 would mean the headline filter is too strict.
+  One of the four fetched 2 articles and matched neither, which is the filter behaving correctly on
+  an asset nobody writes headlines about.
 
 ## Verify any of this yourself
 

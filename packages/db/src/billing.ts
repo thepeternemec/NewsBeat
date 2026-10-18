@@ -101,3 +101,20 @@ export async function usageSummary(sql: Sql, sinceHours = 24): Promise<UsageSumm
     movedChecks: r?.moved ?? 0,
   };
 }
+
+/**
+ * Delete articles past the retention window.
+ *
+ * The API serves a 30-day window, so older rows are unreachable — but nothing
+ * removed them and the table reached 1.27 GB at roughly 24,000 rows a day. The
+ * default 35 days is deliberately past the API's own cut-off, so retention can
+ * never remove a row a request in flight could still reach.
+ */
+export async function pruneOldArticles(sql: Sql, days = 35): Promise<number> {
+  const safeDays = Math.max(31, days);
+  const removed = await sql`
+    delete from public.news_articles
+    where published_at < now() - (${safeDays} || ' days')::interval
+    returning 1`;
+  return removed.length;
+}

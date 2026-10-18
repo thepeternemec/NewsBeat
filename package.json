@@ -21,7 +21,8 @@
     "key:issue": "node db/issue-key.mjs",
     "db:prune": "node db/prune-mismatched.mjs",
     "check": "npm run build && npm test",
-    "prepare": "git config core.hooksPath .githooks || true"
+    "prepare": "git config core.hooksPath .githooks || true",
+    "db:retain": "node db/retain.mjs"
   },
   "allowScripts": {
     "esbuild@0.28.2": true

@@ -177,7 +177,12 @@ test("no doc still describes a catalog of four topics", () => {
   // The specific drift that started this: the catalog went 4 -> 148 -> 540 and
   // the docs kept naming NVIDIA, Bitcoin, Tesla and the oil price.
   for (const [name, text] of [["AGENTS.md", agents], ["docs/STATUS.md", status], ["README.md", readme]] as const) {
-    assert.equal(/\bfour topics\b/i.test(text), false, `${name} still says four topics`);
+    // Specific to the claim, not to the phrase. A bare `/four topics/` flagged
+    // "four topics carry no articles" — a true sentence — as the old
+    // "the catalog holds four topics". A guard that fires on true statements
+    // teaches people to ignore it.
+    const claimsFour = /(catalog[^.]{0,48}four topics)|(four topics[^.]{0,32}catalog)|(holds? four topics)|(four topics exist)/i;
+    assert.equal(claimsFour.test(text), false, `${name} still describes a four-topic catalog`);
     assert.equal(
       /NVIDIA, Bitcoin, Tesla/.test(text),
       false,

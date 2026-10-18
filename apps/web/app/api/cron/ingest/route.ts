@@ -7,6 +7,7 @@
  *   curl -H "Authorization: Bearer $CRON_SECRET" https://newsgraph.vercel.app/api/cron/ingest
  */
 import { runIngestion } from "newsgraph-worker";
+import { db, hasDatabaseEnv, pruneOldArticles } from "@newsgraph/db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
