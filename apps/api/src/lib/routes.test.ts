@@ -1,42 +1,150 @@
 /**
- * The API must serve every route the documentation advertises.
+ * The API must serve every route anything advertises.
  *
- * `/v2/brief` shipped without appearing in the agent guide, and the guide's
- * endpoint table is what an integrator builds against. A route that exists but
- * is undocumented is nearly as bad as one that is documented and missing.
+ * `/v2/brief` shipped without appearing in the agent guide; `newsgraph_stories`
+ * shipped with no handler; `/connect` told developers to import a package that
+ * had been deleted. All three are the same defect at different layers: a promise
+ * made in prose that nothing verified.
  *
- * This asserts against the Hono app itself, so it needs no database and no
- * network — the routers are constructed at import time and matched on request.
+ * The first version of this file kept a hard-coded copy of the documented routes
+ * and described it as "exactly what AGENTS.md says". Nothing read AGENTS.md, so
+ * the list was a second source of truth that could drift from the first — the
+ * same mistake the guard was supposed to catch.
+ *
+ * It now derives the list from the documents themselves, and checks the site's
+ * prose too, because that is where the deleted-SDK promise lived.
  */
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { test } from "node:test";
+import { fileURLToPath } from "node:url";
 import app from "../index.js";
 
-/** Exactly what AGENTS.md and llms.txt tell a client it can call. */
-const DOCUMENTED = [
-  "/health",
-  "/v2/topics",
-  "/v2/news",
-  "/v2/changes",
-  "/v2/brief",
-  "/v2/tools",
-  "/mcp",
+const ROOT = fileURLToPath(new URL("../../../../", import.meta.url));
+const read = (rel: string) => readFileSync(join(ROOT, rel), "utf8");
+
+const served = () => app.routes.map((r) => ({ method: r.method, path: r.path }));
+
+/** Any `/v2/foo` or `/mcp` or `/health` an author wrote down. */
+const routePattern = /\/(?:v\d\/[a-z]+|mcp|health)\b/g;
+
+/** Documents a client is expected to read and act on. */
+const ADVERTISING = ["AGENTS.md", "README.md", "apps/web/public/llms.txt", "apps/web/public/skill.md"];
+
+/** Pages whose prose and samples tell a developer what to call. */
+const SITE = [
+  "apps/web/app/(site)/docs/quickstart/page.tsx",
+  "apps/web/app/(site)/docs/connect/page.tsx",
+  "apps/web/app/(site)/connect/page.tsx",
+  "apps/web/app/(site)/docs/page.tsx",
 ];
 
-const served = () =>
-  app.routes.map((route) => ({
-    method: route.method,
-    path: route.path,
-  }));
-
-test("every documented route is served", () => {
+test("every route the docs advertise is served", () => {
   const routes = served();
-  for (const documented of DOCUMENTED) {
-    assert.ok(
-      routes.some((r) => r.path === documented),
-      `${documented} is documented but not mounted; mounted: ${routes.map((r) => r.path).join(", ")}`,
-    );
+  const paths = new Set(routes.map((r) => r.path));
+  const reported = new Set<string>();
+
+  for (const file of ADVERTISING) {
+    const text = read(file);
+    // A doc naming /v2/x means a client will call /api/v2/x.
+    for (const mention of text.match(routePattern) ?? []) {
+      if (reported.has(mention)) continue;
+      // `/v2/topics` in prose maps to the mounted `/v2/topics`.
+      const mounted = paths.has(mention) || paths.has(`/api${mention}`);
+      if (!mounted) reported.add(mention);
+    }
   }
+
+  assert.deepEqual(
+    [...reported],
+    [],
+    `these routes are advertised but not mounted: ${[...reported].join(", ")}`,
+  );
+});
+
+test("every route the site's samples call is served", () => {
+  const paths = new Set(served().map((r) => r.path));
+  const missing = new Set<string>();
+
+  for (const file of SITE) {
+    let text: string;
+    try {
+      text = read(file);
+    } catch {
+      continue; // a page that does not exist is caught elsewhere
+    }
+    for (const mention of text.match(routePattern) ?? []) {
+      if (!paths.has(mention) && !paths.has(`/api${mention}`)) missing.add(`${mention} (${file})`);
+    }
+  }
+
+  assert.deepEqual([...missing], [], `the site calls routes that do not exist: ${[...missing].join(", ")}`);
+});
+
+test("no sample imports a package that does not exist", () => {
+  // `/connect` told developers to `import { NewsGraphClient } from "@newsgraph/sdk"`
+  // for weeks after that package was deleted. It is the most damaging kind of
+  // stale doc: the reader copies it, gets a resolution error, and concludes the
+  // project is broken rather than the sample.
+  // Dependencies live per workspace, not at the root — `react` and
+  // `lucide-react` are installed by apps/web. Checking only the root package
+  // reported them as missing, which is a guard failing on working code.
+  const WORKSPACES = ["apps/api", "apps/web", "apps/worker", "packages/contracts", "packages/db"];
+  const installed = new Set<string>();
+  for (const dir of [".", ...WORKSPACES]) {
+    try {
+      const pkg = JSON.parse(read(`${dir}/package.json`)) as {
+        dependencies?: Record<string, string>;
+        devDependencies?: Record<string, string>;
+      };
+      for (const name of [...Object.keys(pkg.dependencies ?? {}), ...Object.keys(pkg.devDependencies ?? {})]) {
+        installed.add(name);
+      }
+    } catch {
+      /* not a package */
+    }
+  }
+
+  // Workspace package names, read from the workspaces themselves.
+  const workspacePkg = (dirs: string[]) => {
+    const names = new Set<string>();
+    for (const dir of dirs) {
+      try {
+        names.add((JSON.parse(read(`${dir}/package.json`)) as { name: string }).name);
+      } catch {
+        /* not a package */
+      }
+    }
+    return names;
+  };
+  const local = workspacePkg(WORKSPACES);
+
+  const bare = (spec: string) =>
+    !spec.startsWith(".") && !spec.startsWith("@/") && !spec.startsWith("node:");
+
+  const offenders = new Set<string>();
+  for (const file of [...SITE, ...ADVERTISING]) {
+    let text: string;
+    try {
+      text = read(file);
+    } catch {
+      continue;
+    }
+    for (const match of text.matchAll(/from\s+["']([^"']+)["']/g)) {
+      const spec = match[1]!;
+      if (!bare(spec)) continue;
+      // "@scope/pkg/sub" resolves against the package, so trim to two segments.
+      const name = spec.startsWith("@") ? spec.split("/").slice(0, 2).join("/") : spec.split("/")[0]!;
+      if (!installed.has(name) && !local.has(name)) offenders.add(`${name} (${file})`);
+    }
+  }
+
+  assert.deepEqual(
+    [...offenders],
+    [],
+    `these samples import packages that are not installed or not in the workspace: ${[...offenders].join(", ")}`,
+  );
 });
 
 test("the catalog routes are read-only GETs", () => {
@@ -46,5 +154,15 @@ test("the catalog routes are read-only GETs", () => {
     if (route.path.startsWith("/v2/")) {
       assert.equal(route.method, "GET", `${route.path} is served as ${route.method}`);
     }
+  }
+});
+
+test("the advertising documents name at least the core routes", () => {
+  // A guard that passes because every document is empty is the vacuous shape
+  // this repository keeps producing. This asserts the documents still discuss
+  // the surface at all.
+  for (const file of ADVERTISING) {
+    const mentions = read(file).match(routePattern) ?? [];
+    assert.ok(mentions.length > 0, `${file} names no API routes at all`);
   }
 });

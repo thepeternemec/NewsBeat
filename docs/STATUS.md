@@ -89,9 +89,14 @@ Ordered by what unblocks the most. Each is scoped to one pull request.
   expected to find in the docs; no doc named one, so the loop never ran and the check could not
   fail. It is two-way now, but the shape is worth remembering: a guard that cannot fail is worse
   than no guard, because it reads as coverage.
-- **`docs.test.ts` covers markdown, not the site.** It checks `AGENTS.md`, `README.md` and
-  `STATUS.md`. A code sample on a page is outside it, which is how `/connect` advertised a deleted
-  package for weeks without anything failing.
+- **Code samples are now guarded, and the guard needed three fixes to be honest.** A sample could
+  name a route the API does not serve, or import a package that does not exist — which is how
+  `/connect` advertised `@newsgraph/sdk` for weeks after it was deleted. `routes.test.ts` now
+  derives the documented routes from the documents themselves, checks the site's samples against
+  the mounted app, and verifies every import resolves against the workspace. Note what the first
+  version got wrong: it kept a hand-maintained copy of the route list and called it "exactly what
+  AGENTS.md says", which made it a second source of truth rather than a check; and it read only the
+  root `package.json`, so it flagged `react` and `lucide-react` as missing packages.
 - **The 68 topics without coverage** may be genuine quiet or an over-strict headline filter. Worth
   watching across a few cycles before changing either.
 
