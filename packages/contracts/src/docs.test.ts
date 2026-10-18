@@ -42,6 +42,43 @@ test("every stated catalog size matches the catalog", () => {
   }
 });
 
+test("every command the contributor guide gives exists", () => {
+  // CONTRIBUTING.md described "contracts -> db -> sdk -> realtime -> api -> worker
+  // -> bots -> web", an app/(app) route group, a treasury, deposit verification and
+  // /v1/catalog. None of it existed. A new contributor following it would have
+  // concluded the repository was broken rather than the document.
+  const guide = read(`${ROOT}CONTRIBUTING.md`);
+  const pkg = JSON.parse(read(`${ROOT}package.json`)) as { scripts: Record<string, string> };
+  const scripts = new Set(Object.keys(pkg.scripts));
+
+  // "npm run x" resolves against the root; "npm run x -w pkg" against that
+  // workspace. Checking only the root would reject correct workspace commands,
+  // which is how this guard first failed on its own guide.
+  const commands = [...guide.matchAll(/npm run ([a-z:]+)(?:\s+-w\s+([a-z@/.-]+))?/g)];
+  assert.ok(commands.length > 0, "the guide should tell someone how to run something");
+
+  for (const [, script, workspace] of commands) {
+    if (!workspace) {
+      assert.ok(scripts.has(script!), `CONTRIBUTING.md says \`npm run ${script}\`, which does not exist`);
+      continue;
+    }
+    const known: Record<string, string> = {
+      "newsgraph-worker": "apps/worker",
+      "@newsgraph/api": "apps/api",
+      "newsgraph-web": "apps/web",
+      "@newsgraph/contracts": "packages/contracts",
+      "@newsgraph/db": "packages/db",
+    };
+    const dir = known[workspace!];
+    assert.ok(dir, `CONTRIBUTING.md references unknown workspace \`${workspace}\``);
+    const pkgJson = JSON.parse(read(`${ROOT}${dir}/package.json`)) as { scripts: Record<string, string> };
+    assert.ok(
+      script! in pkgJson.scripts,
+      `CONTRIBUTING.md says \`npm run ${script} -w ${workspace}\`, which does not exist`,
+    );
+  }
+});
+
 test("the published floor is a floor", () => {
   // Marketing copy says "+1000 topics covered" rather than naming the exact
   // count, because a number printed on a landing page is a number that goes

@@ -1,128 +1,181 @@
 # Contributing to NewsGraph
 
-Thanks for looking. This repo is small enough that a good pull request usually lands quickly, and
-opinionated enough that there are a few rules worth reading first.
-
 ## The one rule that matters
 
-**Never let the site claim more than the code does.**
+**Do not claim more than the code does.** This is not a style preference. It is the
+failure this repository keeps producing, and it is always the same shape: a thing
+that looks true and is not.
 
-NewsGraph markets itself on being honest about what is live. The landing page, the README and the
-docs all carry status labels — `Live`, `Built`, `Not built`, `next`, `planned`. Those labels are
-part of the product.
+Found and fixed in one week:
 
-If you ship a capability, update every place that describes it **in the same pull request**:
+- the landing claimed **"150,000 publishers"**; nothing counted publishers, and the
+  real number was 23,303
+- `/connect` told developers to `import { NewsGraphClient } from "@newsgraph/sdk"`;
+  that package had been deleted
+- the quickstart described a catalog of **twenty topics**, three catalogs after it
+  grew past a thousand
+- the FAQ promised card, invoice and **stablecoin** payments; no payment code has
+  ever existed
+- `newsgraph_stories` was advertised in `tools/list` **with no handler**, so an
+  agent that chose it got `unknown_tool`
+- `/v2/news` ordered by an **id cast to text**, so it served month-old stories
+  while current ones sat behind them
 
-- `README.md` — the **Endpoints** and **What You Get** tables
-- `apps/web/app/(site)/docs/page.tsx` — the **What is live today** table
-- `apps/web/app/(site)/page.tsx` — any teaser or claim that changes
-- `docs/BILLING-RAIL.md` — the status table, if it is payment work
+None of those broke a test. All of them were found by someone looking. If your
+change makes a claim — in a doc, a comment, a commit message, a tool description —
+check it against the running system before you write it down.
 
-A PR that makes a claim true is welcome. A PR that leaves a stale claim behind will be asked to
-fix it before merge.
+---
 
 ## Getting set up
 
 ```bash
 git clone https://github.com/thepeternemec/NewsGraph.git
 cd newsgraph
-npm install
-npm run build     # contracts -> db -> sdk -> realtime -> api -> worker -> bots -> web
-npm test          # contract, worker and realtime tests
-npm run dev       # API on http://localhost:8787
-npm run dev:web   # site on http://localhost:3000
+npm install          # also installs the git hooks, see "Guard rails"
+npm run build        # contracts -> db -> api -> worker -> web
+npm test             # 44 tests, no database required
+npm run dev          # the site on http://localhost:3000
 ```
 
-Node 20 or newer. The repo is an npm workspace; `apps/*` and `packages/*` are the units.
+Node 20 or newer. The repo is an npm workspace with `apps/*` and `packages/*`.
 
-## Generated code
+**Most of it runs with no infrastructure.** `npm test` needs no database, no
+network and no credentials. There is no separate API process to start: the API is
+mounted inside the Next app at `/api/*`, so `npm run dev` gives you both.
 
-There is no generated code and no second runtime. Edit the source under `apps/` or `packages/`
-and it is what ships.
+To work against a real database, copy `.env.example` to `.env` and set
+`DATABASE_URL`. Then:
 
-CI fails on drift, so a stale `_shared` will not merge. The mapping is the `COPIES` array in the
-script — nothing is generated now, so there is no entry to add.
+```bash
+npm run db:setup     # apply db/schema.sql — idempotent, safe to re-run
+npm run ingest -w newsgraph-worker   # fetch news for every topic (free, no key)
+npm run key:issue -- "my key"        # mint an API key
+```
+
+Ingestion uses Google News RSS, which is key-less and free. `NEWSGRAPH_PROVIDER=newsapi`
+switches to the paid provider; it is not the default and it costs money.
 
 ## Where things live
 
 | Path | What it is |
 | --- | --- |
-| `packages/contracts` | Every wire shape, as zod schemas. The single source of truth. |
-| `packages/db` | Typed database access and the ledger. |
-| `apps/api` | The Hono API, mounted at `/api/*` by the Next app. |
-| `apps/worker` | Ingestion: query, filter to English, dedupe, pack, persist. |
-| `apps/web` | The site. Two route groups, each with its own root layout. |
+| `packages/contracts` | Every wire shape as a zod schema, and the topic catalog in `seed.ts`. The source of truth. |
+| `packages/db` | Typed database access, rate limiting, the usage ledger. |
+| `apps/api` | The Hono app, mounted at `/api/*` by the Next app. Routes, cursors, clustering, billing costs. |
+| `apps/worker` | Ingestion: query, filter on the headline, normalise, persist. |
+| `apps/web` | The site and the terminal. **One** route group, `(site)`, and one root layout. |
 | `db/schema.sql` | The schema, idempotent. Apply with `npm run db:setup`. |
+| `docs/` | `STATUS.md` is the state of the project. Read it first. |
 
-## Conventions
-
-- **Contracts first.** If a shape appears on the wire, it belongs in `packages/contracts` as a
-  schema. Do not hand-roll a response object in a route.
-- **Errors are codes.** Return a stable `error` code from `packages/contracts/src/errors.ts` so
-  clients can branch on it. Never make a caller match on a message string.
-- **Money is integer micros.** `1000000` micros is one dollar. Never use a float for a balance.
-- **Database invariants belong in the database.** Caps, uniqueness and the duplicate-credit guard
-  live in SQL, not in application code that could race.
-- **Two designs, two route groups.** `app/(site)` is the NewsGraph site; `app/(app)` is the news app.
-  Do not import one group's stylesheet into the other — that is exactly what the split exists to
-  prevent.
-- **No article bodies, ever.** A pack carries a lede and a publisher URL. There is no `body` field
-  at any price, and adding one is out of scope for this repo.
+There is no SDK, no realtime package and no bots process. If you find a directory
+suggesting otherwise, it is empty and should be deleted.
 
 ## Tests
 
 ```bash
-npm test                              # everything
-npm run build -w @newsgraph/contracts  # then:
-node --test packages/contracts/dist/*.test.js
+npm test                                  # everything
+npm run build -w @newsgraph/contracts && node --test packages/contracts/dist/*.test.js
 ```
 
-The billing logic is deliberately pure so it can be tested without a database or a payment
-provider: the payment-request builder, the deposit verification rules, base58 round-trips, amount
-conversion and the credit maths all have direct unit tests. Please keep it that way — a rule that only exists
-inside a Postgres function cannot be tested here, so anything that *can* be pure, should be.
+The suite runs **without a database**. That is deliberate — it is why CI works
+from a clean checkout — but it has a cost: a guard that needs a database is
+skipped, and a skipped guard is not a guard. Where a rule can be pure, make it
+pure; `cluster.ts` and the cursor signing are both testable without Postgres for
+that reason.
 
-## Adding a beat
+**Prove a guard fails before you trust it.** Every guard in this repo was verified
+by breaking the thing it protects and watching it catch. Three of them were
+written, watched passing, and then found to be validating nothing: one looped over
+an empty list, one read a file that did not exist and caught its own error, one
+built the wrong workspace. A guard that cannot fail reads as coverage and is
+worse than nothing.
 
-Beats live in `packages/contracts/src/seed.ts`. A beat needs a stable ID, a label, concept URIs,
-languages and refresh settings. Add it, run `npm test`, and it appears in `/v1/catalog`.
+## How to fix something
 
-Two agents describing the same task must resolve to the same beat ID, so do not renumber or
-reuse an existing ID — cursors in the wild depend on them.
+The order that works here:
+
+1. **Reproduce it against the running system**, not against the code. Nine of the
+   ten bugs above were invisible in the source.
+2. **Check the docs for the same claim.** `grep` for the sentence, not the concept —
+   the stale copy is usually in five files.
+3. **Fix the cause, not the symptom.** The metric that read `1000` was a page
+   length in four places; patching one would have left three.
+4. **Write the guard**, then break the code and watch the guard fail.
+5. **Update `docs/STATUS.md`.** It is the project's memory and its most valuable
+   document.
+
+### Prefer assertions over substitutions
+
+Editing by string replacement has failed here more than any other technique.
+A replacement that matches nothing reports success; an assertion that is wrong
+fails loudly. When a substitution is fiddly — JSX nesting, multi-line blocks —
+read the line numbers and assert the structure instead.
+
+## Conventions
+
+- **Contracts first.** If a shape appears on the wire it belongs in
+  `packages/contracts` as a schema. Do not hand-roll a response object in a route.
+- **One error shape.** `{ "error": { "code", "message" } }`, always. Codes are
+  stable and come from `NewsError`; never make a caller match on a message string.
+- **Money is integer micros.** `1000000` micros is one dollar. Never a float.
+- **The database is not a cache.** Counts that a client reads per page belong in
+  the schema with an index behind them, or they will be added later at 1.9s per call.
+- **No article bodies, ever.** An item carries a headline, a link, the publisher's
+  name and a timestamp. Google News returns no excerpt and no publisher URL; do not
+  document either as present.
+- **Do not paraphrase.** A brief quotes the publisher's own headlines. Grouping
+  near-identical coverage is fine; rewriting it is not.
+
+## Adding a topic
+
+Topics live in `packages/contracts/src/seed.ts`. Append an entry with a `beat_id`
+(md5 of `asset:ticker`), `label`, `ticker`, `keywords` and, for crypto, `asset`.
+
+```bash
+# the fastest way to get one right
+npm run build:packages && npm test
+```
+
+Keywords must appear in a headline to match, so the **company or asset name matters
+more than the ticker** — a serious story names the company. Never add a one- or
+two-character keyword that is a common word.
+
+`beat_id` must never change: clients store cursors against it.
+
+## Adding an endpoint or a tool
+
+A tool has to agree in **three** places, and the guards only cover two unless you
+add the third:
+
+1. `packages/contracts/src/news.ts` — `NEWS_TOOLS`, the schema an agent reads
+2. `AGENTS.md` — the prose an agent reads *(the two-way guard checks both ways)*
+3. `apps/api/src/lib/news-routes.ts` — `callNewsTool` *(the handler guard calls
+   every advertised tool and fails on `unknown_tool`)*
+
+Forgetting the third is how `newsgraph_stories` shipped broken.
+
+## Guard rails
+
+Two hooks install with `npm install`, and each exists because the thing it prevents
+happened.
+
+**`pre-push` refuses to force-push `main`.** A pushed commit was amended once and
+came within one command of erasing a contributor's work. Branch protection enforces
+the same rule server-side.
+
+**`pre-commit` refuses code that does not compile.** Twice a build was run with its
+output sent to `/dev/null`, both times it failed, and the next command tested a
+stale artefact. It now builds `packages` *and* `apps/api`, because a version that
+built only `packages` let a broken route onto `main`.
+
+Both can be skipped with `--no-verify` when you have a reason. Not to tidy up.
 
 ## Reporting a security issue
 
-Please do not open a public issue for anything involving keys, the treasury, deposit verification
-or the ledger. Email the maintainer instead, and give us a chance to fix it before it is public.
+Do not open a public issue for anything exploitable. Email the maintainer. There is
+no bounty; there is a fix and a thank-you.
 
 ## License
 
 Contributions are accepted under the MIT license in [LICENSE](LICENSE).
-
-## A note on history and builds
-
-Two guard rails are installed by `npm install`, and they are not style
-preferences — each exists because the thing it prevents happened.
-
-**`pre-push` refuses to force-push `main`.** A commit was amended after it had
-been pushed, which rewrites history for everyone. Nothing was lost that time and
-the window was one command wide, but the repository has a contributor now and
-their commit sat directly above the one being rewritten. Branch protection
-enforces the same rule on GitHub; the hook catches it before the push leaves
-your machine, which also covers forks and anyone working offline.
-
-**`pre-commit` refuses to commit code that does not compile.** Twice a build was
-run with its output sent to `/dev/null`, which is a way of not finding out that
-it failed. Both times the next thing run was tested against a stale compiled
-artifact. A build's output is the only signal that it failed; the hook puts it
-where you cannot miss it.
-
-Both can be bypassed with `--no-verify` when you have a reason. Neither should
-be bypassed to tidy something up.
-
-If you work in a fresh clone and `git config core.hooksPath` is not set — for
-instance if you installed with `--ignore-scripts` — set it once:
-
-```bash
-git config core.hooksPath .githooks
-```

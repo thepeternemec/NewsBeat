@@ -7,8 +7,6 @@
     "dev": "tsx watch src/index.ts",
     "start": "node dist/index.js",
     "build": "tsc -p tsconfig.json",
-    "watch:deposits": "tsx src/watch-deposits.ts",
-    "watch:deposits:loop": "tsx src/watch-deposits.ts --loop",
     "ingest": "tsx src/cli.ts"
   },
   "dependencies": {

@@ -43,7 +43,7 @@ export function freshness(last: string | null, minutes: number) { return { statu
 /** Bounds on the catalog page. A default of 100 keeps a naive client honest;
  *  a high ceiling lets one that genuinely needs the whole catalog ask once. */
 export const TOPIC_PAGE_DEFAULT = 100;
-export const TOPIC_PAGE_MAX = 1000;
+export const TOPIC_PAGE_MAX = 2000;
 
 export async function topics(query = "", limit = TOPIC_PAGE_DEFAULT, offset = 0) {
     type StatusRow = { beat_id: string; last_success_at: string | null; last_checked_at: string | null };

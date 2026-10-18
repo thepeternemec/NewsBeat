@@ -61,6 +61,8 @@ export default function Dashboard() {
   // One entry per rendered cluster. Bounded on purpose: the catalog holds ~150
   // topics and one request each would be 150 calls from the browser.
   const [clusters, setClusters] = useState<Array<{ topic: Topic; articles: Article[] }>>([]);
+  /** How many clusters to show. Grows when the reader asks for more. */
+  const [clusterCount, setClusterCount] = useState(CLUSTER_LIMIT);
   const [view, setView] = useState<View>("signals");
   const [stamp, setStamp] = useState("");
   /** The ticker the signal field is showing. Defaults to the first with news. */
@@ -76,7 +78,7 @@ export default function Dashboard() {
       try {
         // One request for the whole catalog: the metrics sum across it and the
         // search filters it locally. A paging client would use the default 100.
-        const res = await fetch(`${API_BASE}/v2/topics?limit=1000`, { cache: "no-store" });
+        const res = await fetch(`${API_BASE}/v2/topics?limit=2000`, { cache: "no-store" });
         if (!res.ok || cancelled) return;
         const data = (await res.json()) as { topics?: Topic[]; total?: number };
         const list = data.topics ?? [];
@@ -99,15 +101,22 @@ export default function Dashboard() {
     };
   }, []);
 
-  // Clusters are ten requests. Fetch them once, when that tab is first opened —
-  // polling them every 15s spent most of an anonymous caller's whole budget.
+  // Clusters are one request each. Loaded in pages rather than all at once, and
+  // fetched once when the tab opens rather than polled — polling them spent most
+  // of an anonymous caller's budget on a list nobody was watching.
   useEffect(() => {
-    if (view !== "clusters" || clusters.length > 0 || topics.length === 0) return;
+    if (view !== "clusters" || topics.length === 0) return;
+    const withData = topics.filter((t) => t.status !== "unavailable").slice(0, clusterCount);
+    // Only fetch the topics not already loaded, so "show more" costs ten requests
+    // rather than re-fetching the ten already on screen.
+    const have = new Set(clusters.map((c) => c.topic.beat_id));
+    const missing = withData.filter((t) => !have.has(t.beat_id));
+    if (missing.length === 0) return;
+
     let cancelled = false;
     (async () => {
-      const withData = topics.filter((t) => t.status !== "unavailable").slice(0, CLUSTER_LIMIT);
       const loaded = await Promise.all(
-        withData.map(async (topic) => {
+        missing.map(async (topic) => {
           try {
             const res = await fetch(`${API_BASE}/v2/news?beat_id=${topic.beat_id}`, { cache: "no-store" });
             if (!res.ok) return { topic, articles: [] };
@@ -118,12 +127,18 @@ export default function Dashboard() {
           }
         }),
       );
-      if (!cancelled) setClusters(loaded);
+      if (cancelled) return;
+      // Keep list order: topics is sorted, and appending would reorder on click.
+      setClusters((prev) => {
+        const merged = [...prev, ...loaded];
+        const order = new Map(withData.map((t, i) => [t.beat_id, i]));
+        return merged.sort((a, b) => (order.get(a.topic.beat_id) ?? 0) - (order.get(b.topic.beat_id) ?? 0));
+      });
     })();
     return () => {
       cancelled = true;
     };
-  }, [view, topics, clusters.length]);
+  }, [view, topics, clusterCount, clusters]);
 
   const funded = topics.filter((t) => t.status !== "unavailable");
   const active = selected ?? funded[0]?.beat_id ?? null;
@@ -412,6 +427,21 @@ export default function Dashboard() {
                 </AccordionItem>
               ))}
             </AccordionRoot>
+
+            {clusters.length > 0 && clusters.length < catalogTotal && (
+              <div className="cluster-more">
+                <button
+                  type="button"
+                  className="btn-ghost"
+                  onClick={() => setClusterCount((n) => n + CLUSTER_LIMIT)}
+                >
+                  Show {Math.min(CLUSTER_LIMIT, catalogTotal - clusters.length)} more
+                  <span className="cluster-more-hint">
+                    {catalogTotal - clusters.length} of {catalogTotal} still to load
+                  </span>
+                </button>
+              </div>
+            )}
             {clusters.length === 0 && (
               <div className="mock-feed">
                 <div className="mock-row">

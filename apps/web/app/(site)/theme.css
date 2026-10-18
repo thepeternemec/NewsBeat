@@ -1204,3 +1204,21 @@
 .cluster-accordion [class*="animated"] {
   --_margin-gap: 0rem;
 }
+
+/* ── Cluster paging ───────────────────────────────────────────────────
+   The list is one request per topic, so it loads ten at a time rather than all
+   1035. This is the affordance that makes the cap usable instead of a wall. */
+.cluster-more {
+  display: flex;
+  justify-content: center;
+  padding: 4px 16px 18px;
+}
+.cluster-more .btn-ghost {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.cluster-more-hint {
+  color: var(--text-muted);
+  font: 10px var(--font-mono), monospace;
+}
