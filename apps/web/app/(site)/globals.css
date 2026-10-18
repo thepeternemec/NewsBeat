@@ -981,7 +981,11 @@ body { font-size: 15px; line-height: 1.55; color: var(--text-secondary); overflo
 .wrap-tight { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
 
 /* ── NAV: pill, floating, blurred ───────────────────────────────── */
-.nav { position: fixed; top: 16px; left: 0; right: 0; z-index: 50; display: flex; justify-content: center; pointer-events: none; }
+/* The fixed variant must reset the padding from the rule above it. Both
+   selectors are `.nav`, so `padding: 28px 0` survived the override and gave the
+   floating pill 56px of phantom height — 174px instead of 117 — which pushed its
+   bottom edge over the top of every page's content. */
+.nav { position: fixed; top: 16px; left: 0; right: 0; z-index: 50; display: flex; justify-content: center; align-items: flex-start; padding: 0; border-bottom: 0; pointer-events: none; }
 .nav-pill {
   pointer-events: auto; display: inline-flex; align-items: center; gap: 2px;
   padding: 5px 5px 5px 14px;

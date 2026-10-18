@@ -226,7 +226,7 @@ export default function Dashboard() {
         </div>
       </nav>
 
-      <main className="wrap" style={{ paddingTop: 132, paddingBottom: 96 }}>
+      <main className="wrap dash-main">
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 24, marginBottom: 28 }}>
           <div>
             <span className="sec-eyebrow">Live graph · English only · one cluster per beat</span>

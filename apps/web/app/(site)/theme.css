@@ -1222,3 +1222,20 @@
   color: var(--text-muted);
   font: 10px var(--font-mono), monospace;
 }
+
+/* ── Dashboard shell spacing ──────────────────────────────────────────
+   The nav is a fixed floating pill, so the page has to reserve its height.
+   This was `paddingTop: 132` inline, which is the desktop pill plus room and
+   about one pixel short of the mobile one: at ≤700px the pill wraps to three
+   rows and is 117px tall from top:16, so it ended at 133 and covered the
+   eyebrow. A class, because an inline value cannot answer a media query. */
+.dash-main {
+  padding-top: 132px;
+  padding-bottom: 96px;
+}
+@media (max-width: 700px) {
+  .dash-main {
+    padding-top: 172px;
+    padding-bottom: 72px;
+  }
+}
