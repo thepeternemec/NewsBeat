@@ -1239,3 +1239,21 @@
     padding-bottom: 72px;
   }
 }
+
+/* ── Code blocks on a phone ───────────────────────────────────────────
+   The hero's command is 579px of text in a 348px box, so it was clipped at
+   `api/v2/s` — a truncated command looks like a bug rather than a long line.
+   It wraps now, and shrinks a little so it usually does not have to. */
+@media (max-width: 700px) {
+  .code pre,
+  .hero-curl pre {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    font-size: 11px;
+    line-height: 1.6;
+  }
+  .code-bar {
+    font-size: 10px;
+  }
+}

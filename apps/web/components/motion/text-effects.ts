@@ -164,13 +164,27 @@ export function decryptedText(selector: string, duration = 1200): () => void {
         })
         .join("");
 
+    const restore = () => {
+      el.classList.remove("decrypting");
+      el.textContent = final;
+    };
+
     let raf = 0;
     el.classList.add("decrypting");
-    el.textContent = scramble(0);
+
+    // The scramble used to run here, before the observer below had fired. An
+    // element that never reached the intersection threshold therefore showed
+    // shuffled glyphs permanently — the landing's `.mock-bar` title sat as
+    // "=J81RTONX G 8%74 %PES" on every load for exactly that reason. The
+    // animation is decoration; the words are the content. So: scramble only once
+    // the animation is committed, and restore on a timer regardless.
+    const fallback = window.setTimeout(restore, 2500);
 
     const stop = inView(
       el,
       () => {
+        window.clearTimeout(fallback);
+        el.textContent = scramble(0);
         const start = performance.now();
         const tick = (now: number) => {
           const t = Math.min(1, (now - start) / duration);
@@ -178,8 +192,7 @@ export function decryptedText(selector: string, duration = 1200): () => void {
           if (t < 1) {
             raf = requestAnimationFrame(tick);
           } else {
-            el.textContent = final;
-            el.classList.remove("decrypting");
+            restore();
           }
         };
         raf = requestAnimationFrame(tick);
@@ -189,9 +202,9 @@ export function decryptedText(selector: string, duration = 1200): () => void {
 
     cleanups.push(() => {
       stop();
+      window.clearTimeout(fallback);
       if (raf) cancelAnimationFrame(raf);
-      el.classList.remove("decrypting");
-      el.textContent = final;
+      restore();
     });
   });
   return () => cleanups.forEach((fn) => fn());
