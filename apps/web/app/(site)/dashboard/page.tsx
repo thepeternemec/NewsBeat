@@ -56,6 +56,7 @@ const TABS: Array<{ value: View; title: string }> = [
 
 export default function Dashboard() {
   const [topics, setTopics] = useState<Topic[]>([]);
+  const [catalogTotal, setCatalogTotal] = useState(0);
   const [articles, setArticles] = useState<Article[]>([]);
   // One entry per rendered cluster. Bounded on purpose: the catalog holds ~150
   // topics and one request each would be 150 calls from the browser.
@@ -77,9 +78,11 @@ export default function Dashboard() {
         // search filters it locally. A paging client would use the default 100.
         const res = await fetch(`${API_BASE}/v2/topics?limit=1000`, { cache: "no-store" });
         if (!res.ok || cancelled) return;
-        const data = (await res.json()) as { topics?: Topic[] };
+        const data = (await res.json()) as { topics?: Topic[]; total?: number };
         const list = data.topics ?? [];
         setTopics(list);
+        // Paginated at 1000, so the array length is a page, not the catalog.
+        setCatalogTotal(data.total ?? list.length);
 
         setStamp(new Date().toLocaleTimeString());
 
@@ -152,6 +155,11 @@ export default function Dashboard() {
 
   const live = topics.filter((t) => t.status !== "unavailable").length;
   /** Everything published in the last 12 hours, across the whole catalog. */
+  // `status` says whether the last check succeeded; a topic can be `fresh` and
+  // still carry nothing. The label promised "carrying articles", so this counts
+  // articles — the number and the words now measure the same thing.
+  const carrying = topics.filter((t) => (t.article_count ?? 0) > 0).length;
+  const carryingPct = catalogTotal ? Math.round((carrying / catalogTotal) * 100) : 0;
   const movedRecently = topics.reduce((sum, t) => sum + (t.recent_12h ?? 0), 0);
 
   const term = query.trim().toLowerCase();
@@ -168,7 +176,7 @@ export default function Dashboard() {
   const labelOf = new Map(topics.map((t) => [t.beat_id, t.label]));
   const counts: Record<View, number | undefined> = {
     signals: articles.length || undefined,
-    clusters: topics.length || undefined,
+    clusters: catalogTotal || undefined,
   };
 
   return (
@@ -219,20 +227,22 @@ export default function Dashboard() {
         <div className="metrics" style={{ borderTop: 0, paddingTop: 0 }}>
           <div className="metrics-grid">
             <div>
-              <div className="metric-num">{topics.length || "…"}</div>
+              <div className="metric-num">{catalogTotal || "\u2026"}</div>
               <div className="metric-label">Topics in the catalog</div>
             </div>
             <div>
-              <div className="metric-num">{topics.length ? movedRecently.toLocaleString() : "…"}</div>
+              <div className="metric-num">{catalogTotal ? carrying : "\u2026"}</div>
+              <div className="metric-label">
+                Carrying articles{carrying ? ` \u00b7 ${carryingPct}% of the catalog` : ""}
+              </div>
+            </div>
+            <div>
+              <div className="metric-num">{topics.length ? movedRecently.toLocaleString() : "\u2026"}</div>
               <div className="metric-label">Articles moved in the last 12h</div>
             </div>
             <div>
-              <div className="metric-num">{live || "…"}</div>
-              <div className="metric-label">Topics currently carrying articles</div>
-            </div>
-            <div>
               <div className="metric-num" style={{ fontFamily: "var(--font-mono)", fontSize: 22 }}>
-                {stamp || "—"}
+                {stamp || "\u2014"}
               </div>
               <div className="metric-label">Last ingest</div>
             </div>
@@ -252,7 +262,7 @@ export default function Dashboard() {
                   type="search"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  placeholder={`Search ${topics.length} tickers or companies…`}
+                  placeholder={`Search ${catalogTotal || topics.length} tickers or companies…`}
                   aria-label="Search tickers"
                 />
                 {query.trim().length > 0 && (
