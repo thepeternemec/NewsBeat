@@ -65,6 +65,7 @@ Returns the four calls in OpenAI function-call shape:
 | `newsgraph_news` | Read a topic and take a baseline cursor |
 | `newsgraph_changes` | Ask what is new since that cursor |
 | `newsgraph_brief` | The top headlines verbatim, with source and UTC time |
+| `newsgraph_stories` | The events behind a topic, not the coverage — near-identical headlines grouped |
 
 `GET /v2/topics?q=` searches by ticker or company name across +1000 topics —
 US-listed equities and the largest crypto assets. A coin and a company can share a ticker

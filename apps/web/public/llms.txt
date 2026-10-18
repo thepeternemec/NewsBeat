@@ -9,6 +9,7 @@ minutes on a 24-hour window. Ask whether a topic moved; get nothing, or the head
 - News: https://newsgraph.vercel.app/api/v2/news?beat_id=b_bb964843350e
 - Changes since a cursor: https://newsgraph.vercel.app/api/v2/changes?beat_id=…&cursor=…
 - Brief: https://newsgraph.vercel.app/api/v2/brief?beat_id=b_bb964843350e
+- Stories (events, not coverage): https://newsgraph.vercel.app/api/v2/stories?beat_id=b_bb964843350e
 - Tool definitions: https://newsgraph.vercel.app/api/v2/tools
 - MCP: https://newsgraph.vercel.app/api/mcp
 - Agent instructions: https://newsgraph.vercel.app/skill.md

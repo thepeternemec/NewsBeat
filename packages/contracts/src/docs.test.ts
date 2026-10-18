@@ -23,6 +23,11 @@ const ROOT = "../../../";
 const agents = read(`${ROOT}AGENTS.md`);
 const status = read(`${ROOT}docs/STATUS.md`);
 const readme = read(`${ROOT}README.md`);
+// Files an agent is expected to fetch and act on. `auth.md` is the registration
+// protocol's own front door and `skill.md` is the integration guide — both listed
+// four of five tools while AGENTS.md listed five, and nothing compared them.
+const authMd = read(`${ROOT}apps/web/public/auth.md`);
+const skillMd = read(`${ROOT}apps/web/public/skill.md`);
 
 /** Every doc that states the size of the catalog. */
 const COUNT_SOURCES: Array<[string, string, RegExp]> = [
@@ -96,6 +101,19 @@ test("sample responses quote the real catalog size", () => {
   }
 });
 
+test("the tool table in auth.md lists every tool", () => {
+  // A union check cannot catch a file being incomplete — `auth.md` listed four of
+  // five tools while `skill.md` happened to mention the fifth, so "every tool is
+  // named somewhere" passed. `auth.md` carries a table of the tools, which is a
+  // promise that the table is the complete set.
+  for (const tool of NEWS_TOOLS) {
+    assert.ok(
+      authMd.includes(tool.name),
+      `apps/web/public/auth.md does not list ${tool.name}; agents read this file first`,
+    );
+  }
+});
+
 test("the published floor is a floor", () => {
   // Marketing copy says "+1000 topics covered" rather than naming the exact
   // count, because a number printed on a landing page is a number that goes
@@ -120,7 +138,13 @@ test("the docs name the tools, and every tool they name exists", () => {
   // names a tool the server does not have.
   const defined = new Set<string>(NEWS_TOOLS.map((t) => t.name));
   const seen = new Set<string>();
-  for (const [name, text] of [["AGENTS.md", agents], ["README.md", readme], ["docs/STATUS.md", status]] as const) {
+  for (const [name, text] of [
+    ["AGENTS.md", agents],
+    ["README.md", readme],
+    ["docs/STATUS.md", status],
+    ["apps/web/public/auth.md", authMd],
+    ["apps/web/public/skill.md", skillMd],
+  ] as const) {
     for (const mentioned of text.match(/newsgraph_[a-z_]+/g) ?? []) {
       seen.add(mentioned);
       assert.ok(defined.has(mentioned), `${name} mentions ${mentioned}, which is not a defined tool`);
