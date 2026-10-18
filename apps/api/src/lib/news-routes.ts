@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { z } from "zod";
 import { NEWS_TOOLS } from "@newsgraph/contracts";
-import { NewsError, topics, newsPage, brief, stories, TOPIC_PAGE_DEFAULT, TOPIC_PAGE_MAX } from "./news.js";
+import { NewsError, topics, newsPage, brief, stories, watchMany, WATCH_LIMIT, TOPIC_PAGE_DEFAULT, TOPIC_PAGE_MAX } from "./news.js";
 export const newsRoutes = new Hono();
 newsRoutes.onError((error, c) => { if (error instanceof NewsError)
     return c.json({ error: { code: error.code, message: error.message } }, error.status as 400 | 404 | 410 | 503); console.error("news request failed", error.name); return c.json({ error: { code: "service_unavailable", message: "News is temporarily unavailable." } }, 503); });
@@ -9,6 +9,25 @@ const clamp = (raw: string | undefined, fallback: number, max: number) => {
     const n = Number.parseInt(raw ?? "", 10);
     return Number.isFinite(n) && n >= 0 ? Math.min(n, max) : fallback;
 };
+newsRoutes.post("/watch", async (c) => {
+    let body: unknown;
+    try {
+        body = await c.req.json();
+    } catch {
+        throw new NewsError("invalid_request", "Expected a JSON body with a watches array.", 400);
+    }
+    const parsed = z.object({
+        watches: z.array(z.object({ beat_id: z.string(), cursor: z.string().max(2048).optional() })).min(1).max(WATCH_LIMIT),
+    }).strict().safeParse(body);
+    if (!parsed.success) {
+        throw new NewsError(
+            "invalid_request",
+            `Expected { watches: [{ beat_id, cursor }] } with 1 to ${WATCH_LIMIT} entries.`,
+            400,
+        );
+    }
+    return c.json(await watchMany(parsed.data.watches.map((w) => ({ beat_id: w.beat_id, cursor: w.cursor ?? "" }))));
+});
 newsRoutes.get("/stories", async (c) => {
     const beatId = (c.req.query("beat_id") ?? "").trim();
     if (!beatId)
@@ -49,6 +68,12 @@ export async function callNewsTool(name: string, args: unknown) {
     if (name === "newsgraph_stories") {
         const input = z.object({ beat_id: z.string() }).strict().parse(args);
         return stories(input.beat_id);
+    }
+    if (name === "newsgraph_watch") {
+        const input = z.object({
+            watches: z.array(z.object({ beat_id: z.string(), cursor: z.string().max(2048).optional() })).min(1).max(WATCH_LIMIT),
+        }).strict().parse(args);
+        return watchMany(input.watches.map((w) => ({ beat_id: w.beat_id, cursor: w.cursor ?? "" })));
     }
     if (name === "newsgraph_changes") {
         const input = z.object({ beat_id: z.string(), cursor: z.string().max(2048) }).strict().parse(args);

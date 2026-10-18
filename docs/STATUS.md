@@ -37,6 +37,9 @@ Vercel deployment. There is no generated code and no second runtime.
 - `/v2/stories` — **the events behind a topic rather than the coverage of it.** Groups
   near-identical headlines and orders by how many publishers carried each, so eleven reports of one
   court ruling appear as one story with `source_count: 36`
+- **`POST /v2/watch`** — up to 50 topics in one call. The product's loop is a question asked on a
+  schedule; asking it about fifty topics was fifty round trips per cycle, 4,800 a day. Each watch
+  is independent, so one expired cursor fails only its own result
 - `/v2/tools` and `/mcp` — the same handlers, in OpenAI and MCP shape
 - **Rate limits** — 120 requests/minute anonymous, 1200 with a key. Keys are optional and unlock no
   data; they raise a ceiling

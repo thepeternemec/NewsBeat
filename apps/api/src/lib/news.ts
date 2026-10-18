@@ -299,3 +299,70 @@ export async function stories(beatId: string, limit = 200) {
         })),
     };
 }
+
+/**
+ * Many topics, one request.
+ *
+ * The product's loop is "has anything moved?" asked on a schedule. Asked about
+ * fifty topics it is fifty round trips per cycle — 4,800 a day for a fifteen
+ * minute watch — which is fine against the rate limit and absurd as an
+ * integration. This answers the same question for a set of watched topics in one
+ * call.
+ *
+ * Each watch is independent: a bad cursor or an unknown topic fails its own
+ * result and leaves the rest alone. A batch that fails wholesale because one
+ * entry in it was stale would be unusable for the thing batches are for.
+ */
+export const WATCH_LIMIT = 50;
+
+export interface Watch {
+    beat_id: string;
+    cursor: string;
+}
+
+export async function watchMany(watches: Watch[]) {
+    const results = await Promise.all(
+        watches.slice(0, WATCH_LIMIT).map(async (watch) => {
+            try {
+                // newsPage already signs a fresh cursor and reports freshness, and
+                // its page is bounded, so a watch result is the same shape a client
+                // already parses.
+                const page = await newsPage(watch.beat_id, watch.cursor || undefined);
+                return {
+                    beat_id: watch.beat_id,
+                    moved: page.items.length > 0,
+                    items: page.items,
+                    cursor: page.cursor,
+                    freshness: page.freshness,
+                    error: null,
+                };
+            } catch (error) {
+                // An expired cursor is the normal case here, not an exception: the
+                // client keeps the cursor and the server may have rotated. It is
+                // reported per watch so the caller can re-baseline just that topic.
+                const known = error instanceof NewsError ? error : null;
+                return {
+                    beat_id: watch.beat_id,
+                    moved: false,
+                    items: [] as unknown[],
+                    cursor: null,
+                    freshness: null,
+                    error: {
+                        code: known?.code ?? "service_unavailable",
+                        message: known?.message ?? "This topic could not be checked.",
+                    },
+                };
+            }
+        }),
+    );
+
+    return {
+        generated_at: new Date().toISOString(),
+        checked: results.length,
+        // The number that makes the call worth making: how much of the watch list
+        // actually needed the caller's attention.
+        moved: results.filter((r) => r.moved).length,
+        failed: results.filter((r) => r.error).length,
+        results,
+    };
+}

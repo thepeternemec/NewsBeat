@@ -180,13 +180,21 @@ test("every public route is mentioned in the docs", () => {
   );
 });
 
-test("the catalog routes are read-only GETs", () => {
-  // The public contract is read-only. A mutating verb appearing here would be a
-  // product change, not a refactor.
+/** POST is allowed only where a request body is the whole point, and writes nothing. */
+const POST_READS = new Set(["/v2/watch"]);
+
+test("the public routes write nothing", () => {
+  // The contract is read-only. A mutating verb appearing here would be a product
+  // change, not a refactor. `/v2/watch` is a POST because fifty cursors do not fit
+  // in a URL — it reads, and the allowlist is explicit so the next one has to be
+  // argued for rather than assumed.
   for (const route of served()) {
-    if (route.path.startsWith("/v2/")) {
-      assert.equal(route.method, "GET", `${route.path} is served as ${route.method}`);
+    if (!route.path.startsWith("/v2/")) continue;
+    if (POST_READS.has(route.path)) {
+      assert.equal(route.method, "POST", `${route.path} is in the POST allowlist but served as ${route.method}`);
+      continue;
     }
+    assert.equal(route.method, "GET", `${route.path} is served as ${route.method}`);
   }
 });
 

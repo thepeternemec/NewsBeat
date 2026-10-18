@@ -88,6 +88,15 @@ export default function DocsOverview() {
           </tr>
           <tr>
             <td>
+              <code>POST /v2/watch</code>
+            </td>
+            <td>
+              Many topics in one call — send the cursors you hold and get back, per topic, nothing
+              new or what appeared since
+            </td>
+          </tr>
+          <tr>
+            <td>
               <code>GET /v2/tools</code>
             </td>
             <td>The same capabilities in OpenAI function-call shape</td>

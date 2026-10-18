@@ -51,13 +51,14 @@ Base: `https://newsgraph.vercel.app/api`
 | `GET /v2/changes?beat_id=&cursor=` | Only what is new since that cursor |
 | `GET /v2/brief?beat_id=` | The top three headlines verbatim, each with source and UTC time |
 | `GET /v2/stories?beat_id=` | The events behind a topic, not the coverage — near-identical headlines grouped |
+| `POST /v2/watch` | Up to 50 topics in one call, each with its own cursor |
 | `GET /v2/tools` | The same tools in OpenAI function-call shape |
 | `POST /mcp` | MCP, Streamable HTTP |
 | `GET /health` | Liveness |
 
 The same calls are published as tools, for frameworks that would rather be handed a schema than a
 URL: `newsgraph_topics`, `newsgraph_news`, `newsgraph_changes`, `newsgraph_brief`,
-`newsgraph_stories`. They appear in `GET /v2/tools` and over MCP.
+`newsgraph_stories`, `newsgraph_watch`. They appear in `GET /v2/tools` and over MCP.
 
 **No credential is required.** A key is optional and only raises the rate limit — anonymous
 callers get 120 requests a minute, a key gets 1200. There is no billing.
@@ -110,3 +111,22 @@ every hour:
   if page.items is empty:
       log("nothing new")
 ```
+
+### Watching more than one topic
+
+Polling fifty topics is fifty requests an hour. `POST /v2/watch` takes all the
+cursors you hold and answers the same question for all of them in one call:
+
+```http
+POST /api/v2/watch
+Content-Type: application/json
+
+{ "watches": [ { "beat_id": "b_bb964843350e", "cursor": "…" },
+               { "beat_id": "b_7883c6d63df4", "cursor": "…" } ] }
+```
+
+The response has a `results` array in the same order, each entry carrying `moved`,
+`items`, a fresh `cursor` and `freshness` — plus top-level `checked`, `moved` and
+`failed` counts. **Each entry is independent**: an expired cursor or an unknown
+topic fails only its own result, so re-baseline just that one with
+`newsgraph_news` and keep the others.
