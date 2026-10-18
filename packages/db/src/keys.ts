@@ -6,6 +6,7 @@
  * and the plaintext is shown once at issue time and never again.
  */
 import type { Sql } from "./client.js";
+import { openBalance } from "./balance.js";
 
 const KEY_PREFIX = "ng_";
 
@@ -24,20 +25,22 @@ export async function hashKey(secret: string): Promise<string> {
 export interface ResolvedKey {
   keyHash: string;
   label: string;
+  /** Null for a hand-issued key, which is the operator's own and unmetered. */
+  accountId: string | null;
 }
 
 /** Null for an unknown or revoked key — the caller is treated as anonymous. */
 export async function resolveKey(sql: Sql, secret: string): Promise<ResolvedKey | null> {
   const keyHash = await hashKey(secret);
-  const rows = await sql<Array<{ key_hash: string; label: string }>>`
-    select key_hash, label from public.api_keys
+  const rows = await sql<Array<{ key_hash: string; label: string; account_id: string | null }>>`
+    select key_hash, label, account_id from public.api_keys
     where key_hash = ${keyHash} and revoked_at is null
     limit 1`;
   const row = rows[0];
   if (!row) return null;
   // Fire-and-forget: a failed touch must never fail the request it rode in on.
   sql`update public.api_keys set last_used_at = now() where key_hash = ${keyHash}`.catch(() => {});
-  return { keyHash: row.key_hash, label: row.label };
+  return { keyHash: row.key_hash, label: row.label, accountId: row.account_id };
 }
 
 export async function createKey(sql: Sql, label: string, accountId?: string): Promise<string> {
@@ -119,6 +122,9 @@ export async function findOrCreateAccount(sql: Sql, identity: GithubIdentity): P
           display_name = coalesce(excluded.display_name, public.accounts.display_name)
     returning account_id, github_login, email`;
   const row = rows[0]!;
+  // A new account gets the trial grant. Creating the balance here as well as in
+  // the callback means the grant exists for any account however it was made.
+  await openBalance(sql, row.account_id);
   return { accountId: row.account_id, login: row.github_login, email: row.email };
 }
 

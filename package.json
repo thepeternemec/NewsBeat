@@ -22,7 +22,8 @@
     "db:prune": "node db/prune-mismatched.mjs",
     "check": "npm run build && npm test",
     "prepare": "git config core.hooksPath .githooks || true",
-    "db:retain": "node db/retain.mjs"
+    "db:retain": "node db/retain.mjs",
+    "balance:grant": "node db/grant.mjs"
   },
   "allowScripts": {
     "esbuild@0.28.2": true

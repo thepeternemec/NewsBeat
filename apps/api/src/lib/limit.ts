@@ -13,12 +13,14 @@ import type { Context, Next } from "hono";
 import {
   consumeRateLimit,
   costFor,
+  openBalance,
   db,
   env,
   hasDatabaseEnv,
   hashKey,
   recordUsage,
   resolveKey,
+  spend,
 } from "@newsgraph/db";
 
 const ANON_LIMIT = Math.max(1, Number(env("NEWSGRAPH_RATE_ANON") ?? 120));
@@ -53,12 +55,14 @@ export async function rateLimit(c: Context, next: Next): Promise<Response | void
   let bucket = "";
   let limit = ANON_LIMIT;
   let identified = false;
+  let accountId: string | null = null;
   try {
     const key = secret ? await resolveKey(sql, secret) : null;
     if (key) {
       bucket = `key:${key.keyHash}`;
       limit = KEYED_LIMIT;
       identified = true;
+      accountId = key.accountId;
       c.header("X-RateLimit-Tier", "keyed");
     } else {
       // The address is hashed, never stored: a limiter does not need to know who.
@@ -89,27 +93,80 @@ export async function rateLimit(c: Context, next: Next): Promise<Response | void
     // Counter unavailable — serve the request.
   }
 
-  // Phase 1: record what this call costs, and do not act on it. The prices need
-  // to be checked against real traffic before anything is refused; a cost model
-  // nobody has measured is a guess with a decimal point.
+  // A key that belongs to an account is metered; a hand-issued key is the
+  // operator's own and is not. Checked **before** the work: a 402 after the query
+  // has run is a refusal that already cost us the thing being refused.
+  if (accountId) {
+    try {
+      // `openBalance` rather than `balanceFor`, because it is idempotent and
+      // creates the trial grant when the row is missing. An account that
+      // predates this code has no row, and "no row" must not mean "no money" —
+      // that would refuse every existing key the first time it was used.
+      const balance = await openBalance(sql, accountId);
+      c.header("X-Newsgraph-Credits-Micro", String(balance.availableMicro));
+      if (balance.availableMicro <= 0) {
+        // 402, not 429: this is not "you are going too fast", it is "there is
+        // nothing left to spend". A 429 would tell them to retry, which would
+        // fail identically forever.
+        return c.json(
+          {
+            error: {
+              code: "payment_required",
+              message:
+                "This key's balance is empty. Top up, or use the anonymous tier, which is free at 120 requests a minute.",
+            },
+            balance_micro: 0,
+            top_up: "/pricing",
+          },
+          402,
+        );
+      }
+    } catch {
+      // Failing open, for the same reason the rate limiter does: an outage in our
+      // billing is not the caller's problem.
+    }
+  }
+
   const started = Date.now();
   await next();
   // Hono returns void from next(); the response it produced is on the context.
   const response = c.res;
   const costMicro = costFor(c.req.path, await peekJson(response));
   c.header("X-Newsgraph-Cost-Micro", String(costMicro));
-  // Awaited, not fired and forgotten. This is a serverless function: the moment
-  // the response returns the instance can be frozen, and a floating promise
-  // never lands. The first version of this recorded exactly zero rows for
-  // exactly that reason — the write looked correct and silently never happened.
-  await recordUsage(sql, {
-    accountId: null,
-    keyHash: bucket.startsWith("key:") ? bucket.slice(4) : null,
-    route: c.req.path,
-    beatId: c.req.query("beat_id") ?? null,
-    costMicro,
-    creditsAfter: null,
-  });
+
+  const keyHash = bucket.startsWith("key:") ? bucket.slice(4) : null;
+  if (accountId && costMicro > 0) {
+    // Awaited, not fired and forgotten. This is a serverless function: the moment
+    // the response returns the instance can be frozen and a floating promise never
+    // lands. The first version recorded exactly zero rows for exactly that reason.
+    //
+    // The decrement and the ledger row are one transaction, so the balance can
+    // never drift from the history that explains it.
+    try {
+      const { balance, charged } = await spend(sql, {
+        accountId,
+        keyHash,
+        route: c.req.path,
+        beatId: c.req.query("beat_id") ?? null,
+        costMicro,
+      });
+      c.header("X-Newsgraph-Credits-Micro", String(balance.availableMicro));
+      c.header("X-Newsgraph-Charged-Micro", String(charged));
+    } catch (error) {
+      console.error("spend failed:", error);
+    }
+  } else {
+    // Anonymous and hand-issued keys: recorded so the prices can be checked
+    // against traffic, but there is no balance to spend.
+    await recordUsage(sql, {
+      accountId: null,
+      keyHash,
+      route: c.req.path,
+      beatId: c.req.query("beat_id") ?? null,
+      costMicro,
+      creditsAfter: null,
+    });
+  }
   c.header("X-Newsgraph-Ms", String(Date.now() - started));
   return response;
 }

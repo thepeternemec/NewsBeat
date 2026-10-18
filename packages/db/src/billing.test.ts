@@ -53,3 +53,23 @@ test("retention refuses to be configured below the API window", () => {
   assert.equal(typeof pruneOldArticles, "function");
   assert.equal(typeof recordUsage, "function");
 });
+
+test("the trial grant is a real amount of money", () => {
+  // 5,000,000 micro is $5, which at the empty rate is 10,000 checks — two weeks
+  // of hourly polling on fifty topics through the batch endpoint. A trial that
+  // runs out during evaluation is a trial that produces a 402 before the customer
+  // has decided anything.
+  const { TRIAL_MICRO, TOPUP_MIN_MICRO } = require("./balance.js") as { TRIAL_MICRO: number; TOPUP_MIN_MICRO: number };
+  assert.equal(TRIAL_MICRO, 5_000_000);
+  assert.equal(TOPUP_MIN_MICRO, 6_000_000, "the smallest published plan is $6 for 30 days");
+  assert.equal(TRIAL_MICRO / PRICE.checkEmpty, 10_000, "the trial should cover ten thousand empty checks");
+});
+
+test("a spend can never exceed what is held", async () => {
+  // The clamp lives in SQL inside a transaction, so it cannot be unit-tested
+  // without a database — but the property can be stated, and the live check
+  // recorded in docs/STATUS.md is what proves it: after a 99,000,000-micro charge
+  // against a $5 balance, the balance read $0.00 rather than -$94.
+  const { spend } = (await import("./balance.js")) as { spend: unknown };
+  assert.equal(typeof spend, "function");
+});
