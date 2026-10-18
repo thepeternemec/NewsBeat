@@ -46,6 +46,16 @@ export function costFor(path: string, body: unknown): number {
   if (path.includes("/v2/changes")) return items ? PRICE.checkMoved : PRICE.checkEmpty;
   if (path.includes("/v2/news")) return items ? PRICE.checkMoved : PRICE.checkEmpty;
   if (path.includes("/v2/brief")) return PRICE.brief;
+
+  // A batch is one row per watch, priced exactly as the single-topic calls it
+  // replaces. It records 0 without this, which would have made the cheapest way
+  // to use the product also the only free one — and a fifty-topic watch does
+  // fifty queries regardless of how many HTTP round trips it saves.
+  if (path.includes("/v2/watch")) {
+    const results = (body as { results?: Array<{ moved?: boolean }> } | null)?.results;
+    if (!Array.isArray(results)) return 0;
+    return results.reduce((sum, r) => sum + (r?.moved ? PRICE.checkMoved : PRICE.checkEmpty), 0);
+  }
   // Catalog, tool definitions, health and MCP framing are all discovery.
   // Tool calls *through* MCP are not billed yet; that is a known gap.
   return 0;
