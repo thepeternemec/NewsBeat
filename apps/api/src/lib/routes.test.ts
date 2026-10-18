@@ -147,6 +147,39 @@ test("no sample imports a package that does not exist", () => {
   );
 });
 
+test("every public route is mentioned in the docs", () => {
+  // The reverse direction, and the one that was missing. The guards above check
+  // that a route someone wrote down exists; nothing checked that a route that
+  // exists was written down. `/v2/stories` — the story clustering, the thing
+  // that makes a 118-article topic readable — appeared in no docs page at all.
+  // SITE only, not ADVERTISING. `/v2/stories` was in AGENTS.md and therefore
+  // "documented" while appearing in no page a human reads — so a developer
+  // browsing the docs would never find the story clustering at all. The agent
+  // guide is not the human documentation.
+  const onSite = new Set<string>();
+  for (const file of SITE) {
+    try {
+      for (const mention of read(file).match(routePattern) ?? []) onSite.add(mention);
+    } catch {
+      /* absent file is another test's problem */
+    }
+  }
+
+  const undocumented: string[] = [];
+  for (const route of served()) {
+    if (!route.path.startsWith("/v2/")) continue;
+    // `/api/v2/x` and `/v2/x` are the same public route written two ways.
+    const bare = route.path.replace(/^\/api/, "");
+    if (!onSite.has(bare)) undocumented.push(route.path);
+  }
+
+  assert.deepEqual(
+    undocumented,
+    [],
+    `these routes are served but appear on no docs page: ${undocumented.join(", ")}`,
+  );
+});
+
 test("the catalog routes are read-only GETs", () => {
   // The public contract is read-only. A mutating verb appearing here would be a
   // product change, not a refactor.

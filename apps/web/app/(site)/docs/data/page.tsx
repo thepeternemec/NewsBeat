@@ -56,6 +56,28 @@ export default function DocsData() {
         rail is where other languages belong.
       </p>
 
+      <h2>Events, not coverage</h2>
+      <p>
+        A topic with 118 articles in a day is rarely 118 things happening. It is a handful of things
+        reported 118 times. <code>GET /v2/stories?beat_id=</code> groups near-identical headlines and
+        reports how many distinct publishers carried each, so one court ruling appears once with{" "}
+        <code>source_count: 36</code> rather than thirty-six times.
+      </p>
+      <ul>
+        <li>Grouping is token overlap, not a model — deterministic, free, and testable</li>
+        <li>Ordered by <code>source_count</code>: the most corroborated story first</li>
+        <li>
+          The <code>lead</code> is a publisher&rsquo;s own headline, chosen because it was first.
+          Nothing is rewritten
+        </li>
+        <li>
+          It is a known limitation that an outcome word does not separate two stories —{" "}
+          <em>&ldquo;launch succeeds&rdquo;</em> and <em>&ldquo;launch aborted&rdquo;</em> share every token
+          but the verb. The threshold is set to prefer a missed merge over a false one, because a
+          false merge loses a story
+        </li>
+      </ul>
+
       <h2>Lead time</h2>
       <p>
         Every item carries <code>first_indexed_at</code> next to <code>published_at</code>. The gap

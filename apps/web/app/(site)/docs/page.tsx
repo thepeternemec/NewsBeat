@@ -79,6 +79,15 @@ export default function DocsOverview() {
           </tr>
           <tr>
             <td>
+              <code>GET /v2/stories?beat_id=</code>
+            </td>
+            <td>
+              The <em>events</em> behind a topic rather than the coverage of them — near-identical
+              headlines grouped, ordered by how many publishers carried each
+            </td>
+          </tr>
+          <tr>
+            <td>
               <code>GET /v2/tools</code>
             </td>
             <td>The same capabilities in OpenAI function-call shape</td>
