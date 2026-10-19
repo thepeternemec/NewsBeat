@@ -60,6 +60,8 @@ export default function Connect() {
   const [copied, setCopied] = useState(false);
   const [checking, setChecking] = useState(false);
   const [result, setResult] = useState("");
+  /** One entry per round trip, in milliseconds. Drawn as bars, tallest = slowest. */
+  const [bars, setBars] = useState<number[]>([]);
 
   async function copy() {
     try {
@@ -71,10 +73,20 @@ export default function Connect() {
     }
   }
 
-  /** A real request, so "connected" means connected. */
+  /**
+   * A real request, so "connected" means connected — then eight more, drawn as they
+   * land.
+   *
+   * The handshake alone answers "reachable?" with a sentence. Eight timed round trips
+   * answer "how does it feel?", which is what someone about to point an agent at this
+   * actually wants to know. Each bar is one request and its height is the latency, so
+   * a slow tail is visible rather than averaged away.
+   */
   async function verify() {
     setChecking(true);
     setResult("");
+    setBars([]);
+    const timings: number[] = [];
     try {
       const response = await fetch(`${API_BASE}/mcp`, {
         method: "POST",
@@ -92,7 +104,29 @@ export default function Connect() {
       });
       const data = await response.json();
       if (!response.ok || !data.result?.serverInfo) throw new Error();
-      setResult(`Reached ${data.result.serverInfo.name}. Now ask it about a ticker.`);
+
+      // Eight more, sequentially: concurrent requests would all inherit whichever one
+      // was slowest and the bars would be a flat line.
+      for (let i = 0; i < 8; i += 1) {
+        const started = performance.now();
+        try {
+          await fetch(`${API_BASE}/health`, { cache: "no-store" });
+          timings.push(Math.round(performance.now() - started));
+        } catch {
+          timings.push(0);
+        }
+        setBars([...timings]);
+        await new Promise((resolve) => setTimeout(resolve, 70));
+      }
+
+      const good = timings.filter((ms) => ms > 0);
+      const avg = good.length ? Math.round(good.reduce((a, b) => a + b, 0) / good.length) : 0;
+      const worst = good.length ? Math.max(...good) : 0;
+      setResult(
+        good.length === 8
+          ? `Reached ${data.result.serverInfo.name} · 8 of 8 round trips · ${avg} ms average, ${worst} ms worst. Now ask it about a ticker.`
+          : `Reached ${data.result.serverInfo.name}, but ${8 - good.length} of 8 round trips failed. Try again shortly.`,
+      );
     } catch {
       setResult("Could not reach the endpoint. Try again shortly.");
     } finally {
@@ -176,6 +210,27 @@ export default function Connect() {
                 {!checking && <ArrowRight size={14} />}
               </button>
             </div>
+            {(bars.length > 0 || checking) && (
+              <div className="conn-bars" role="img" aria-label="Round trip latency">
+                {/* Scaled to the slowest trip in this run, so the spread is visible.
+                    Against a fixed 260 ms ceiling every bar landed between 55% and
+                    67% and the chart showed eight identical rectangles. */}
+                {Array.from({ length: 8 }, (_, i) => {
+                  const ms = bars[i];
+                  const slowest = Math.max(...bars.filter((value) => value > 0), 1);
+                  const height =
+                    ms === undefined ? 6 : ms === 0 ? 10 : Math.min(100, Math.max(22, (ms / slowest) * 100));
+                  return (
+                    <span
+                      key={i}
+                      className={`conn-bar${ms === undefined ? " is-pending" : ms === 0 ? " is-failed" : ""}`}
+                      style={{ height: `${height}%` }}
+                      title={ms === undefined ? "waiting" : ms === 0 ? "failed" : `${ms} ms`}
+                    />
+                  );
+                })}
+              </div>
+            )}
             {result && <p className="hero-tiny" style={{ textAlign: "left" }}>{result}</p>}
           </div>
         </section>

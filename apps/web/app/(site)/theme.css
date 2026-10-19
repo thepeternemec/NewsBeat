@@ -1500,3 +1500,60 @@
     gap: 22px;
   }
 }
+
+/* ── Connection bars ──────────────────────────────────────────────────
+   One bar per round trip, height by latency, filled in as each request lands.
+   Monochrome on purpose: the rest of the page is black and white, and a coloured
+   chart here would read as a different product. */
+.conn-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 56px;
+  /* Fixed width, not `1 1 0`: stretching each bar across an eighth of a 1280px page
+     turned eight thin bars into eight wide blocks, which reads as a bar chart of
+     nothing. A compact strip says "eight round trips" at a glance. */
+  width: max-content;
+  margin: 18px 0 14px;
+}
+
+.conn-bar {
+  flex: 0 0 15px;
+  width: 15px;
+  border-radius: 3px 3px 1px 1px;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.92));
+  transition: height 0.22s ease, background 0.22s ease;
+  animation: conn-bar-in 0.26s ease both;
+}
+
+.conn-bar.is-pending {
+  background: rgba(255, 255, 255, 0.07);
+  animation: none;
+}
+
+.conn-bar.is-failed {
+  background: rgba(255, 255, 255, 0.16);
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.16) 0 3px,
+    transparent 3px 6px
+  );
+}
+
+@keyframes conn-bar-in {
+  from {
+    transform: scaleY(0.2);
+    opacity: 0.4;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .conn-bar {
+    animation: none;
+    transition: none;
+  }
+}
