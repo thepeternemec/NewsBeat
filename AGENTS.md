@@ -7,10 +7,9 @@ The integration guide for coding agents. For humans: one read-only API, two poss
 You send a topic and a cursor, and receive either **"nothing moved"** or **a small pack of cited
 stories** that appeared since that cursor.
 
-## What it is not
+General headline search complements this topic-and-cursor monitoring loop.
 
-- **Not a search engine.** You do not send a query and get ranked results. You send a topic you
-  already chose.
+## What it is not
 - **Not a feed.** You do not read everything. You ask whether there is anything new.
 - **Not a source of article text.** Items carry a headline, a link and the publisher's name.
   There is no `body` field at any price. The link goes to the article; the story is not ours to
@@ -52,23 +51,25 @@ Base: `https://newsgraph.vercel.app/api`
 | `GET /v2/brief?beat_id=` | The top three headlines verbatim, each with source and UTC time |
 | `GET /v2/stories?beat_id=` | The events behind a topic, not the coverage — near-identical headlines grouped |
 | `POST /v2/watch` | Up to 50 topics in one call, each with its own cursor |
+| `GET /v2/search?query=` | General headline search, filters and query-bound cursors |
+| `GET /v2/story?id=` | One source record returned by search |
 | `GET /v2/tools` | The same tools in OpenAI function-call shape |
 | `POST /mcp` | MCP, Streamable HTTP |
 | `GET /health` | Liveness |
 
 The same calls are published as tools, for frameworks that would rather be handed a schema than a
 URL: `newsgraph_topics`, `newsgraph_news`, `newsgraph_changes`, `newsgraph_brief`,
-`newsgraph_stories`, `newsgraph_watch`. They appear in `GET /v2/tools` and over MCP.
+`newsgraph_stories`, `newsgraph_watch`, `newsgraph_search`, `newsgraph_story`. They appear in `GET /v2/tools` and over MCP.
 
-**No credential is required.** A key is optional and only raises the rate limit — anonymous
-callers get 120 requests a minute, a key gets 1200. There is no billing.
+**No credential is required.** A key is optional and identifies an account for metered usage — anonymous
+callers get 120 requests a minute, a key gets 1200. Account reads are usage-metered across REST and MCP; discovery and anonymous reads are free.
 
 ## Errors you should handle
 
 | Code | Meaning | What to do |
 | --- | --- | --- |
 | empty `items` | Not an error | Report nothing new |
-| `400` | Bad or expired cursor | Restart with `GET /v2/news` to re-baseline |
+| `400` | Bad cursor | Restart with `GET /v2/news` to re-baseline |
 | `404` | Unknown `beat_id` | Re-read `/v2/topics` |
 | `503` | Upstream unavailable | Back off. Never retry a 4xx in a tight loop |
 | `429` | Rate limited | Read `Retry-After`. A key raises the ceiling |
@@ -79,7 +80,9 @@ callers get 120 requests a minute, a key gets 1200. There is no billing.
 | --- | --- |
 | Machine summary | `https://newsgraph.vercel.app/llms.txt` |
 | This guide | `https://newsgraph.vercel.app/skill.md` |
-| Tool definitions | `GET /v2/tools` |
+| Tool definitions | `GET /v2/search?query=` | General headline search, filters and query-bound cursors |
+| `GET /v2/story?id=` | One source record returned by search |
+| `GET /v2/tools` |
 | Status and roadmap | `https://newsgraph.vercel.app/docs` |
 | Source | `https://github.com/thepeternemec/NewsGraph` |
 
@@ -130,3 +133,13 @@ The response has a `results` array in the same order, each entry carrying `moved
 `failed` counts. **Each entry is independent**: an expired cursor or an unknown
 topic fails only its own result, so re-baseline just that one with
 `newsgraph_news` and keep the others.
+
+## General news and saved watches
+
+Use `newsgraph_search` (GET /v2/search) for general news queries and filters. Use `newsgraph_story`
+(GET /v2/story) for a source record by the stable ID from search. Results are provider-limited,
+not exhaustive coverage. Read freshness and citations. See docs/INTEGRATIONS.md for OAuth,
+POST /v2/subscriptions, signed webhooks, Telegram and Discord examples.
+
+401 means the supplied credential is invalid; 402 means insufficient credit; 410 means the
+cursor expired and a new baseline is required. Discovery never requires a positive balance.

@@ -1,3 +1,4 @@
+import KeyManager from "@/components/site/key-manager";
 import { ArrowRight } from "lucide-react";
 import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
@@ -14,9 +15,9 @@ export default function Keys() {
             <span className="sec-eyebrow">API keys</span>
             <h1 className="sec-title">A key, if you want one.</h1>
             <p className="sec-sub">
-              The API needs no credential. A key raises your limit from 120 requests a minute to
-              1200 and gives us someone to attribute usage to. It unlocks no data — everything the
-              API serves is already public.
+              Public news reads work without a key. Create named connections for
+              your agents, share one usage balance, and revoke a connection
+              without interrupting the others.
             </p>
             <div className="hero-cta">
               <a className="btn-primary" href="/api/keys/authorize">
@@ -30,6 +31,7 @@ export default function Keys() {
           </div>
         </div>
 
+        <KeyManager />
         <section className="scaffold">
           <div className="wrap">
             <div className="sec-head">
@@ -39,32 +41,50 @@ export default function Keys() {
 
             <div className="features grid-3">
               <div className="feature" style={{ minHeight: 170 }}>
-                <span className="feature-tag" style={{ marginTop: 0, paddingTop: 0 }}>shown once</span>
+                <span
+                  className="feature-tag"
+                  style={{ marginTop: 0, paddingTop: 0 }}
+                >
+                  shown once
+                </span>
                 <p className="feature-desc" style={{ marginTop: 14 }}>
-                  Only a SHA-256 hash is stored, so the key cannot be recovered or shown again. Sign
-                  in a second time and it rotates — the old one is revoked in the same transaction.
+                  Only a SHA-256 hash is stored, so the key cannot be recovered
+                  or shown again. Create separate keys for each agent. Existing
+                  keys stay active until you explicitly revoke them.
                 </p>
               </div>
               <div className="feature" style={{ minHeight: 170 }}>
-                <span className="feature-tag" style={{ marginTop: 0, paddingTop: 0 }}>why GitHub</span>
+                <span
+                  className="feature-tag"
+                  style={{ marginTop: 0, paddingTop: 0 }}
+                >
+                  why GitHub
+                </span>
                 <p className="feature-desc" style={{ marginTop: 14 }}>
-                  Because keys need an owner. Without some identity, minting keys is free and the
-                  limit stops meaning anything — one person could hold a thousand. GitHub is the
-                  identity a developer already has.
+                  Because keys need an owner. Without some identity, minting
+                  keys is free and the limit stops meaning anything — one person
+                  could hold a thousand. GitHub is the identity a developer
+                  already has.
                 </p>
               </div>
               <div className="feature" style={{ minHeight: 170 }}>
-                <span className="feature-tag" style={{ marginTop: 0, paddingTop: 0 }}>what we store</span>
+                <span
+                  className="feature-tag"
+                  style={{ marginTop: 0, paddingTop: 0 }}
+                >
+                  what we store
+                </span>
                 <p className="feature-desc" style={{ marginTop: 14 }}>
-                  Your GitHub id, login and the key hash. Not your email, not your repositories, not
-                  your followers. The requested scope is <code>read:user</code>.
+                  Your GitHub id, login, optional profile email, connection
+                  hashes, and usage records. We do not request repository
+                  access. The requested scope is <code>read:user</code>.
                 </p>
               </div>
             </div>
 
             <p className="hero-tiny" style={{ marginTop: 28 }}>
-              Prefer not to? Ask, and a key is issued by hand — <code>npm run key:issue</code>. The
-              API works either way.
+              Prefer not to? Ask, and a key is issued by hand —{" "}
+              <code>npm run key:issue</code>. The API works either way.
             </p>
           </div>
         </section>

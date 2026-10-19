@@ -1,5 +1,8 @@
 # Going live
 
+For the agent connector release, follow [INTEGRATIONS.md](INTEGRATIONS.md#release-prerequisites).
+Run `npm run db:migrate:agents` before activating the new build; `/api/ready` checks schema readiness.
+
 What has to be true before the site is serving real news, and how to check each one.
 
 ## The three things it needs
@@ -44,7 +47,8 @@ Vercel → Project → Settings → Environment Variables (Production and Previe
 DATABASE_URL              (usually injected by the Storage integration)
 NEWSAPI_API_KEY           your full-access key
 NEWSGRAPH_CURSOR_SECRET   32 random bytes, hex
-NEWSGRAPH_CRON_SECRET     optional; only for manual ingestion runs
+CRON_SECRET              required for authenticated Vercel Cron
+NEWSGRAPH_CRON_SECRET     optional legacy/manual ingestion secret
 ```
 
 ## 4. Put the topics in
@@ -105,8 +109,8 @@ A topic that ingested successfully reads `fresh` or `stale`; one that has never 
 
 ## 6. The schedule
 
-`vercel.json` runs `/api/cron/ingest` every 15 minutes. Vercel signs its own cron requests, so no
-secret is needed for those; `NEWSGRAPH_CRON_SECRET` only guards manual runs.
+`vercel.json` runs `/api/cron/ingest` every 15 minutes. Set `CRON_SECRET`; Vercel sends it in the Authorization header.
+`NEWSGRAPH_CRON_SECRET` remains an optional legacy/manual secret. Never trust User-Agent as authentication.
 
 > **Hobby plan crons run once per day.** A 15-minute cadence needs Pro. If you are on Hobby,
 > either change the schedule in `vercel.json` or drive it from GitHub Actions instead.

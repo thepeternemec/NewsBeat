@@ -38,13 +38,17 @@ export const TRIAL_MICRO = 5 * MICRO_PER_DOLLAR;
  * `/v2/topics` is free on purpose. It is the call that tells a customer what
  * exists, and metering it puts a toll booth in front of the shop window.
  */
+/** Legacy route estimator. Live requests are billed by the shared operation executor. */
 export function costFor(path: string, body: unknown): number {
+  if ((body as { error?: unknown } | null)?.error) return 0;
   const items = Array.isArray((body as { items?: unknown[] } | null)?.items)
-    ? ((body as { items: unknown[] }).items.length)
+    ? (body as { items: unknown[] }).items.length
     : null;
 
-  if (path.includes("/v2/changes")) return items ? PRICE.checkMoved : PRICE.checkEmpty;
-  if (path.includes("/v2/news")) return items ? PRICE.checkMoved : PRICE.checkEmpty;
+  if (path.includes("/v2/changes"))
+    return items ? PRICE.checkMoved : PRICE.checkEmpty;
+  if (path.includes("/v2/news"))
+    return items ? PRICE.checkMoved : PRICE.checkEmpty;
   if (path.includes("/v2/brief")) return PRICE.brief;
 
   // A batch is one row per watch, priced exactly as the single-topic calls it
@@ -52,12 +56,18 @@ export function costFor(path: string, body: unknown): number {
   // to use the product also the only free one — and a fifty-topic watch does
   // fifty queries regardless of how many HTTP round trips it saves.
   if (path.includes("/v2/watch")) {
-    const results = (body as { results?: Array<{ moved?: boolean }> } | null)?.results;
+    const results = (
+      body as { results?: Array<{ moved?: boolean; error?: unknown }> } | null
+    )?.results;
     if (!Array.isArray(results)) return 0;
-    return results.reduce((sum, r) => sum + (r?.moved ? PRICE.checkMoved : PRICE.checkEmpty), 0);
+    return results.reduce(
+      (sum, r) =>
+        sum + (r?.error ? 0 : r?.moved ? PRICE.checkMoved : PRICE.checkEmpty),
+      0,
+    );
   }
   // Catalog, tool definitions, health and MCP framing are all discovery.
-  // Tool calls *through* MCP are not billed yet; that is a known gap.
+  // MCP operation billing lives in executeOperation; framing itself is free.
   return 0;
 }
 
@@ -93,7 +103,10 @@ export interface UsageSummary {
 }
 
 /** What has been recorded, for checking the prices against reality. */
-export async function usageSummary(sql: Sql, sinceHours = 24): Promise<UsageSummary> {
+export async function usageSummary(
+  sql: Sql,
+  sinceHours = 24,
+): Promise<UsageSummary> {
   const rows = await sql<
     Array<{ calls: number; cost: number; empty: number; moved: number }>
   >`

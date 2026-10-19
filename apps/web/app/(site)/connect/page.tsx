@@ -16,7 +16,7 @@ const OPTIONS = [
   {
     id: "http",
     title: "HTTP",
-    blurb: "Four GET routes. Works in any language.",
+    blurb: "A documented API. Works in any language.",
   },
   {
     id: "tools",
@@ -50,8 +50,7 @@ curl -s "${API_BASE}/v2/brief?beat_id=b_bb964843350e"`,
 const { tools } = await fetch("${API_BASE}/v2/tools").then((r) => r.json());
 
 // Pass them to your model, execute what it calls, send the results back.
-// Four tools: newsgraph_topics, newsgraph_news, newsgraph_changes,
-// newsgraph_brief.`,
+// Eight tools, including general news search and change monitoring.`,
 };
 
 export default function Connect() {
@@ -66,7 +65,9 @@ export default function Connect() {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      setResult("Copy is unavailable in this browser. Select the text below instead.");
+      setResult(
+        "Copy is unavailable in this browser. Select the text below instead.",
+      );
     }
   }
 
@@ -75,25 +76,65 @@ export default function Connect() {
     setChecking(true);
     setResult("");
     try {
-      const response = await fetch(`${API_BASE}/mcp`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json, text/event-stream" },
-        body: JSON.stringify({
-          jsonrpc: "2.0",
-          id: 1,
-          method: "initialize",
-          params: {
+      const base = "/api";
+      if (selected === "mcp") {
+        async function rpc(method: string, params: unknown, id: number) {
+          const response = await fetch(`${base}/mcp`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json, text/event-stream",
+              "MCP-Protocol-Version": "2025-06-18",
+            },
+            body: JSON.stringify({ jsonrpc: "2.0", id, method, params }),
+          });
+          const data = await response.json();
+          if (!response.ok || data.error || data.result?.isError)
+            throw new Error();
+          return data.result;
+        }
+        await rpc(
+          "initialize",
+          {
             protocolVersion: "2025-06-18",
             capabilities: {},
             clientInfo: { name: "newsgraph-connect-check", version: "1.0.0" },
           },
-        }),
-      });
-      const data = await response.json();
-      if (!response.ok || !data.result?.serverInfo) throw new Error();
-      setResult(`Reached ${data.result.serverInfo.name}. Now ask it about a ticker.`);
+          1,
+        );
+        const listed = await rpc("tools/list", {}, 2);
+        if (
+          !listed.tools.some(
+            (t: { name: string }) => t.name === "newsgraph_news",
+          )
+        )
+          throw new Error();
+        const data = await rpc(
+          "tools/call",
+          { name: "newsgraph_news", arguments: { beat_id: "b_bb964843350e" } },
+          3,
+        );
+        const result =
+          data.structuredContent ?? JSON.parse(data.content[0].text);
+        setResult(
+          `MCP verified: ${listed.tools.length} tools, ${result.items.length} headlines. Feed status: ${result.freshness.status}.`,
+        );
+      } else {
+        if (selected === "tools") {
+          const schemas = await fetch(`${base}/v2/tools`).then((r) => r.json());
+          if (!schemas.tools?.length) throw new Error();
+        }
+        const response = await fetch(`${base}/v2/news?beat_id=b_bb964843350e`);
+        const result = await response.json();
+        if (!response.ok || !Array.isArray(result.items)) throw new Error();
+        setResult(
+          `${selected === "tools" ? "Tool schemas and HTTP" : "HTTP"} verified: ${result.items.length} headlines. Feed status: ${result.freshness.status}.`,
+        );
+      }
     } catch {
-      setResult("Could not reach the endpoint. Try again shortly.");
+      setResult(
+        "Could not complete a news read. The service may require account authorization or be temporarily unavailable.",
+      );
     } finally {
       setChecking(false);
     }
@@ -110,19 +151,26 @@ export default function Connect() {
             <span className="sec-eyebrow">Connect</span>
             <h1 className="sec-title">Start in one request.</h1>
             <p className="sec-sub">
-              No key, no signup, no billing. Point your agent at the endpoint below and ask it about
-              a ticker — +2000 topics covered, refreshed every fifteen minutes.
+              Connect your agent to cited news. Search a question, follow a
+              ticker, or track what changed. Try public reads without signup;
+              account connections share usage-based billing.
             </p>
             <div className="hero-cta">
               <a className="btn-primary" href="/docs/quickstart">
                 Read the quickstart <ArrowRight size={14} />
               </a>
-              <a className="btn-ghost" href="/api/v2/topics?limit=5" target="_blank" rel="noreferrer">
+              <a
+                className="btn-ghost"
+                href="/api/v2/topics?limit=5"
+                target="_blank"
+                rel="noreferrer"
+              >
                 See a live response
               </a>
             </div>
             <p className="hero-tiny">
-              anonymous callers get 120 requests a minute · a key raises it to 1200
+              anonymous callers get 120 requests a minute · a key raises it to
+              1200
             </p>
           </div>
         </div>
@@ -133,8 +181,8 @@ export default function Connect() {
               <span className="sec-eyebrow">Three ways in</span>
               <h2 className="sec-title">Pick the one that fits.</h2>
               <p className="sec-sub">
-                All three reach the same four calls. Nothing here is a client library —
-                there is no SDK to install, and no version to keep in step.
+                All three use the same news tools, validation, and account
+                billing. Choose the connection your agent supports.
               </p>
             </div>
 
@@ -150,7 +198,10 @@ export default function Connect() {
                   }}
                   style={{ minHeight: 150, textAlign: "left" }}
                 >
-                  <span className="feature-tag" style={{ marginTop: 0, paddingTop: 0 }}>
+                  <span
+                    className="feature-tag"
+                    style={{ marginTop: 0, paddingTop: 0 }}
+                  >
                     {option.id === selected ? "selected" : " "}
                   </span>
                   <h3 className="feature-title">{option.title}</h3>
@@ -162,7 +213,12 @@ export default function Connect() {
             <div className="code" style={{ marginTop: 28 }}>
               <div className="code-bar">
                 {active.title}
-                <button type="button" className="copy-btn" onClick={copy} aria-label="Copy">
+                <button
+                  type="button"
+                  className="copy-btn"
+                  onClick={copy}
+                  aria-label="Copy"
+                >
                   {copied ? <Check size={13} /> : <Copy size={13} />}
                   {copied ? "copied" : "copy"}
                 </button>
@@ -171,12 +227,81 @@ export default function Connect() {
             </div>
 
             <div className="oss-row">
-              <button type="button" className="btn-primary" onClick={verify} disabled={checking}>
+              <button
+                type="button"
+                className="btn-primary"
+                onClick={verify}
+                disabled={checking}
+              >
                 {checking ? "Checking…" : "Check the connection"}
                 {!checking && <ArrowRight size={14} />}
               </button>
             </div>
-            {result && <p className="hero-tiny" style={{ textAlign: "left" }}>{result}</p>}
+            {result && (
+              <p className="hero-tiny" style={{ textAlign: "left" }}>
+                {result}
+              </p>
+            )}
+          </div>
+        </section>
+
+        <section className="scaffold" id="platforms">
+          <div className="wrap">
+            <div className="sec-head">
+              <span className="sec-eyebrow">Your agent</span>
+              <h2 className="sec-title">Connect where you work.</h2>
+              <p className="sec-sub">
+                Use the remote MCP URL above, or follow a platform guide.
+                Directory availability depends on each platform’s review.
+              </p>
+            </div>
+            <div className="features grid-3">
+              {[
+                [
+                  "ChatGPT",
+                  "Add a custom MCP connection where available. Account linking uses OAuth when configured.",
+                  "https://developers.openai.com/plugins/build/app-quickstart",
+                ],
+                [
+                  "Claude",
+                  "Add NewsGraph as a custom remote connector using the MCP URL.",
+                  "https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp",
+                ],
+                [
+                  "Grok",
+                  "Use the remote MCP URL with xAI’s Responses API. A runnable example is in the repository.",
+                  "https://docs.x.ai/developers/tools/remote-mcp",
+                ],
+                [
+                  "Muse",
+                  "NewsGraph can be submitted through the Muse Connector Platform. Directory approval is required.",
+                  "https://platform.muse.ai/",
+                ],
+                [
+                  "Other agents",
+                  "Use MCP, the function schemas, or the OpenAPI specification to connect your framework.",
+                  "/api/openapi.json",
+                ],
+                [
+                  "Telegram / Discord",
+                  "Send signed watch webhooks to your bot or automation workflow. Setup examples are in the integration guide.",
+                  "/docs/connect",
+                ],
+              ].map(([title, body, url]) => (
+                <div className="feature" key={title}>
+                  <h3 className="feature-title">{title}</h3>
+                  <p className="feature-desc">{body}</p>
+                  <a
+                    className="btn-ghost"
+                    href={url}
+                    target={url!.startsWith("https") ? "_blank" : undefined}
+                    rel="noreferrer"
+                  >
+                    Connection guide <ArrowRight size={14} />
+                  </a>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -184,14 +309,17 @@ export default function Connect() {
           <div className="wrap">
             <h2 className="cta-title">Then ask it something.</h2>
             <p className="cta-sub">
-              The first useful call is the smallest one: has this ticker moved since I last looked?
-              An empty answer is a real answer, and it is the cheap one.
+              The first useful call is the smallest one: has this ticker moved
+              since I last looked? An empty answer is a real answer, and it is
+              the cheap one.
             </p>
             <div className="cta-row">
               <a className="btn-primary" href="/docs/quickstart">
-                The four-call loop <ArrowRight size={14} />
+                Start monitoring <ArrowRight size={14} />
               </a>
-              <a className="btn-ghost" href="/docs">All the docs</a>
+              <a className="btn-ghost" href="/docs">
+                All the docs
+              </a>
             </div>
           </div>
         </section>

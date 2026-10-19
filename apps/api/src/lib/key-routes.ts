@@ -1,16 +1,29 @@
 /**
- * Self-serve API keys, gated on GitHub.
- *
- *   GET /api/keys/authorize  -> GitHub, asking for read:user and nothing else
- *   GET /api/keys/callback   -> exchange, upsert the account, issue a key
- *
- * The key is rendered into the callback's HTML rather than passed in a redirect
- * query string. A secret in a URL ends up in browser history, in referrer headers
- * and in any proxy log on the way — and this is the one value that must not leak.
+ * GitHub sign-in establishes a browser-bound account session.
+ * Named connection keys are created explicitly and shown once in the account UI.
+ * Credentials never travel in redirect URLs.
  */
 import { Hono } from "hono";
-import { db, describeKeyForAccount, findOrCreateAccount, hasDatabaseEnv, issueKeyForAccount } from "@newsgraph/db";
-import { authorizeUrl, exchangeCodeForUser, oauthConfig, signState, verifyState } from "./github.js";
+import { getCookie, setCookie, deleteCookie } from "hono/cookie";
+import {
+  sessionAccount,
+  startSession,
+  sameOrigin,
+  sameValue,
+} from "./sessions.js";
+import {
+  db,
+  findOrCreateAccount,
+  hasDatabaseEnv,
+  issueKeyForAccount,
+} from "@newsgraph/db";
+import {
+  authorizeUrl,
+  exchangeCodeForUser,
+  oauthConfig,
+  signState,
+  verifyState,
+} from "./github.js";
 
 export const keyRoutes = new Hono();
 
@@ -23,7 +36,15 @@ keyRoutes.get("/authorize", (c) => {
   if (!config) {
     return c.html(unconfigured(), 503);
   }
-  return c.redirect(authorizeUrl(originOf(c.req.url), signState()), 302);
+  const state = signState();
+  setCookie(c, "newsgraph_oauth_state", state, {
+    httpOnly: true,
+    secure: new URL(c.req.url).protocol === "https:",
+    sameSite: "Lax",
+    path: "/api/keys",
+    maxAge: 600,
+  });
+  return c.redirect(authorizeUrl(originOf(c.req.url), state), 302);
 });
 
 keyRoutes.get("/callback", async (c) => {
@@ -33,43 +54,139 @@ keyRoutes.get("/callback", async (c) => {
   const code = c.req.query("code");
   // GitHub reports a declined authorisation here rather than at the token exchange.
   const denied = c.req.query("error");
-  if (denied) return c.html(page("Not authorised", `<p>GitHub said: <code>${escapeHtml(denied)}</code>.</p>`), 400);
+  if (denied)
+    return c.html(
+      page(
+        "Not authorised",
+        `<p>GitHub said: <code>${escapeHtml(denied)}</code>.</p>`,
+      ),
+      400,
+    );
 
-  if (!code) return c.html(page("Missing code", "<p>GitHub did not send an authorisation code.</p>"), 400);
-  if (!verifyState(c.req.query("state"))) {
+  if (!code)
+    return c.html(
+      page("Missing code", "<p>GitHub did not send an authorisation code.</p>"),
+      400,
+    );
+  const browserState = getCookie(c, "newsgraph_oauth_state");
+  deleteCookie(c, "newsgraph_oauth_state", { path: "/api/keys" });
+  if (
+    !verifyState(c.req.query("state")) ||
+    !sameValue(browserState, c.req.query("state"))
+  ) {
     // The signed state exists to stop a flow the user never started from being
     // completed against their browser.
-    return c.html(page("Expired", "<p>That sign-in link is older than ten minutes or was not issued here. Start again.</p>"), 400);
+    return c.html(
+      page(
+        "Expired",
+        "<p>That sign-in link is older than ten minutes or was not issued here. Start again.</p>",
+      ),
+      400,
+    );
   }
   if (!hasDatabaseEnv()) {
-    return c.html(page("Unavailable", "<p>Storage is not configured, so a key cannot be issued.</p>"), 503);
+    return c.html(
+      page(
+        "Unavailable",
+        "<p>Storage is not configured, so a key cannot be issued.</p>",
+      ),
+      503,
+    );
   }
 
   try {
     const user = await exchangeCodeForUser(originOf(c.req.url), code);
     const sql = db();
     const account = await findOrCreateAccount(sql, user);
-    const secret = await issueKeyForAccount(sql, account.accountId, `github:${user.login}`);
-    return c.html(issued(user.login, secret));
+    await startSession(c, account.accountId);
+    return c.redirect("/keys", 303);
   } catch (error) {
     console.error("key issuance failed:", error);
-    return c.html(page("Could not issue a key", `<p>${escapeHtml((error as Error).message)}</p><p>Try again, or open an issue.</p>`), 500);
+    return c.html(
+      page(
+        "Could not issue a key",
+        `<p>${escapeHtml((error as Error).message)}</p><p>Try again, or open an issue.</p>`,
+      ),
+      500,
+    );
   }
 });
 
-/** What the account already holds, without revealing the secret. */
+keyRoutes.use("*", async (c, next) => {
+  c.header("Cache-Control", "no-store");
+  await next();
+});
 keyRoutes.get("/status", async (c) => {
-  const login = c.req.query("login");
-  if (!login || !hasDatabaseEnv()) return c.json({ key: null });
+  const account = await sessionAccount(c);
+  if (!account) return c.json({ authenticated: false, keys: [] });
   const sql = db();
-  const rows = await sql<Array<{ account_id: string }>>`
-    select account_id from public.accounts where github_login = ${login} limit 1`;
-  if (!rows[0]) return c.json({ key: null });
-  return c.json({ key: await describeKeyForAccount(sql, rows[0].account_id) });
+  const keys =
+    await sql`select key_hash as id,label,created_at,last_used_at from api_keys where account_id=${account} and revoked_at is null order by created_at desc`;
+  const [balance] =
+    await sql`select credits_micro,topped_up_micro from account_balance where account_id=${account}`;
+  return c.json({
+    authenticated: true,
+    keys,
+    balance_micro:
+      Number(balance?.credits_micro ?? 0) +
+      Number(balance?.topped_up_micro ?? 0),
+  });
+});
+keyRoutes.post("/logout", async (c) => {
+  if (!sameOrigin(c)) return c.json({ error: "Origin not allowed" }, 403);
+  const account = await sessionAccount(c);
+  if (account) {
+    const sql = db();
+    await sql`delete from account_sessions where account_id=${account}`;
+  }
+  deleteCookie(c, "newsgraph_session", { path: "/api/keys" });
+  return c.json({ ok: true });
+});
+keyRoutes.post("/create", async (c) => {
+  if (!sameOrigin(c)) return c.json({ error: "Origin not allowed" }, 403);
+  const account = await sessionAccount(c);
+  if (!account) return c.json({ error: "Sign in first" }, 401);
+  const body = await c.req.json().catch(() => null);
+  if (
+    typeof body?.label !== "string" ||
+    !body.label.trim() ||
+    body.label.length > 80
+  )
+    return c.json({ error: "Use a connection name of 1–80 characters" }, 400);
+  try {
+    return c.json({
+      key: await issueKeyForAccount(db(), account, body.label.trim()),
+    });
+  } catch {
+    return c.json(
+      {
+        error:
+          "Could not create a connection. Check your connection limit and try again.",
+      },
+      409,
+    );
+  }
+});
+keyRoutes.post("/revoke", async (c) => {
+  if (!sameOrigin(c)) return c.json({ error: "Origin not allowed" }, 403);
+  const account = await sessionAccount(c);
+  if (!account) return c.json({ error: "Sign in first" }, 401);
+  const body = await c.req.json().catch(() => null);
+  if (typeof body?.id !== "string")
+    return c.json({ error: "Connection id required" }, 400);
+  const sql = db();
+  await sql`update api_keys set revoked_at=now() where account_id=${account} and key_hash=${body.id}`;
+  return c.json({ ok: true });
 });
 
 function escapeHtml(value: string): string {
-  return value.replace(/[&<>"']/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[ch]!);
+  return value.replace(
+    /[&<>"']/g,
+    (ch) =>
+      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[
+        ch
+      ]!,
+  );
 }
 
 const SHELL = (title: string, body: string) => `<!doctype html>
@@ -88,7 +205,8 @@ const SHELL = (title: string, body: string) => `<!doctype html>
   .note { border-left:2px solid #3d3d3d; padding-left:14px; margin-top:22px; }
 </style></head><body><main>${body}</main></body></html>`;
 
-const page = (title: string, body: string) => SHELL(title, `<h1>${escapeHtml(title)}</h1>${body}`);
+const page = (title: string, body: string) =>
+  SHELL(title, `<h1>${escapeHtml(title)}</h1>${body}`);
 
 function unconfigured(): string {
   return page(
@@ -99,18 +217,5 @@ function unconfigured(): string {
      set the callback URL to <code>/api/keys/callback</code> on this origin, and set
      <code>GITHUB_CLIENT_ID</code> and <code>GITHUB_CLIENT_SECRET</code>.</p>
      <p>Keys can still be issued by hand: <code>npm run key:issue -- "label"</code>.</p></div>`,
-  );
-}
-
-function issued(login: string, secret: string): string {
-  return page(
-    `Signed in as ${login}`,
-    `<p>This is your API key. <strong>It is shown once</strong> — only a hash is stored, so it cannot be recovered. Signing in again rotates it and revokes this one.</p>
-     <pre>${escapeHtml(secret)}</pre>
-     <p>Send it as a header:</p>
-     <pre>Authorization: Bearer ${escapeHtml(secret)}</pre>
-     <p>It raises your limit from 120 requests a minute to 1200. It unlocks no data — everything the API serves is already public.</p>
-     <div class="note"><p>Next: <a href="/docs/quickstart">the quickstart</a> ·
-     <a href="/docs/connect">connecting</a> · <a href="/connect">MCP and tool calling</a></p></div>`,
   );
 }

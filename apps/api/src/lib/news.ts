@@ -2,44 +2,118 @@ import { clusterStories } from "./cluster.js";
 import { db as connect, env, hasDatabaseEnv } from "@newsgraph/db";
 import { SEED_BEATS, type NewsArticle } from "@newsgraph/contracts";
 export class NewsError extends Error {
-    constructor(public code: string, message: string, public status = 400) { super(message); }
+  constructor(
+    public code: string,
+    message: string,
+    public status = 400,
+  ) {
+    super(message);
+  }
 }
 const encoder = new TextEncoder();
-const encode = (value: string) => btoa(value).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
-const decode = (value: string) => atob(value.replace(/-/g, "+").replace(/_/g, "/"));
-async function key() { const secret = env("NEWSGRAPH_CURSOR_SECRET"); if (!secret)
-    throw new NewsError("service_unavailable", "News storage is not configured.", 503); return crypto.subtle.importKey("raw", encoder.encode(`newsgraph:news-cursor:v2:${secret}`), { name: "HMAC", hash: "SHA-256" }, false, ["sign", "verify"]); }
-export async function signCursor(beat: string, seq: string, mode: "changes" | "history" = "changes", now = Date.now()) {
-    const payload = encode(JSON.stringify({ v: 2, b: beat, s: seq, m: mode, e: now + 30 * 86400000 }));
-    const bytes = new Uint8Array(await crypto.subtle.sign("HMAC", await key(), encoder.encode(payload)));
-    return `${payload}.${encode(String.fromCharCode(...bytes))}`;
+const encode = (value: string) =>
+  btoa(value).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+const decode = (value: string) =>
+  atob(value.replace(/-/g, "+").replace(/_/g, "/"));
+async function key() {
+  const secret = env("NEWSGRAPH_CURSOR_SECRET");
+  if (!secret)
+    throw new NewsError(
+      "service_unavailable",
+      "News storage is not configured.",
+      503,
+    );
+  return crypto.subtle.importKey(
+    "raw",
+    encoder.encode(`newsgraph:news-cursor:v2:${secret}`),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["sign", "verify"],
+  );
 }
-export async function readCursor(cursor: string, beat: string, mode: "changes" | "history", now = Date.now()) {
-    try {
-        const [payload, signature, extra] = cursor.split(".");
-        if (!payload || !signature || extra)
-            throw 0;
-        const valid = await crypto.subtle.verify("HMAC", await key(), Uint8Array.from(decode(signature), c => c.charCodeAt(0)), encoder.encode(payload));
-        if (!valid)
-            throw 0;
-        const data = JSON.parse(decode(payload));
-        if (data.v !== 2 || data.b !== beat || data.m !== mode || !/^\d+$/.test(data.s) || !Number.isFinite(data.e))
-            throw 0;
-        if (data.e <= now)
-            throw new NewsError("cursor_expired", "This cursor expired after 30 days. Read latest news to establish a new baseline.", 410);
-        return data.s as string;
-    }
-    catch (error) {
-        if (error instanceof NewsError)
-            throw error;
-        throw new NewsError("invalid_cursor", "Cursor is invalid or belongs to another topic or operation.");
-    }
+export async function signCursor(
+  beat: string,
+  seq: string,
+  mode: "changes" | "history" = "changes",
+  now = Date.now(),
+) {
+  const payload = encode(
+    JSON.stringify({ v: 2, b: beat, s: seq, m: mode, e: now + 30 * 86400000 }),
+  );
+  const bytes = new Uint8Array(
+    await crypto.subtle.sign("HMAC", await key(), encoder.encode(payload)),
+  );
+  return `${payload}.${encode(String.fromCharCode(...bytes))}`;
 }
-export function db() { if (!hasDatabaseEnv())
-    throw new NewsError("service_unavailable", "News storage is not configured.", 503); return connect(); }
-export function topicById(id: string) { const topic = SEED_BEATS.find(t => t.beat_id === id); if (!topic)
-    throw new NewsError("unknown_topic", "Choose a supported topic from newsgraph_topics.", 404); return topic; }
-export function freshness(last: string | null, minutes: number) { return { status: !last ? "unavailable" : Date.now() - Date.parse(last) > minutes * 60000 ? "stale" : "fresh", last_success_at: last }; }
+export async function readCursor(
+  cursor: string,
+  beat: string,
+  mode: "changes" | "history",
+  now = Date.now(),
+) {
+  try {
+    const [payload, signature, extra] = cursor.split(".");
+    if (!payload || !signature || extra) throw 0;
+    const valid = await crypto.subtle.verify(
+      "HMAC",
+      await key(),
+      Uint8Array.from(decode(signature), (c) => c.charCodeAt(0)),
+      encoder.encode(payload),
+    );
+    if (!valid) throw 0;
+    const data = JSON.parse(decode(payload));
+    if (
+      data.v !== 2 ||
+      data.b !== beat ||
+      data.m !== mode ||
+      !/^\d+$/.test(data.s) ||
+      !Number.isFinite(data.e)
+    )
+      throw 0;
+    if (data.e <= now)
+      throw new NewsError(
+        "cursor_expired",
+        "This cursor expired after 30 days. Read latest news to establish a new baseline.",
+        410,
+      );
+    return data.s as string;
+  } catch (error) {
+    if (error instanceof NewsError) throw error;
+    throw new NewsError(
+      "invalid_cursor",
+      "Cursor is invalid or belongs to another topic or operation.",
+    );
+  }
+}
+export function db() {
+  if (!hasDatabaseEnv())
+    throw new NewsError(
+      "service_unavailable",
+      "News storage is not configured.",
+      503,
+    );
+  return connect();
+}
+export function topicById(id: string) {
+  const topic = SEED_BEATS.find((t) => t.beat_id === id);
+  if (!topic)
+    throw new NewsError(
+      "unknown_topic",
+      "Choose a supported topic from newsgraph_topics.",
+      404,
+    );
+  return topic;
+}
+export function freshness(last: string | null, minutes: number) {
+  return {
+    status: !last
+      ? "unavailable"
+      : Date.now() - Date.parse(last) > minutes * 60000
+        ? "stale"
+        : "fresh",
+    last_success_at: last,
+  };
+}
 /** Bounds on the catalog page. A default of 100 keeps a naive client honest;
  *  a high ceiling lets one that genuinely needs the whole catalog ask once. */
 export const TOPIC_PAGE_DEFAULT = 100;
@@ -54,70 +128,149 @@ export const TOPIC_PAGE_DEFAULT = 100;
  */
 export const TOPIC_PAGE_MAX = Math.max(2000, SEED_BEATS.length);
 
-export async function topics(query = "", limit = TOPIC_PAGE_DEFAULT, offset = 0) {
-    type StatusRow = { beat_id: string; last_success_at: string | null; last_checked_at: string | null };
-    type CountRow = { beat_id: string; total: number; recent: number };
-    let statusRows: StatusRow[];
-    let countRows: CountRow[];
-    try {
-        // Counts belong on the catalog: `status` says whether a check succeeded,
-        // not whether there is anything behind it. Without these a topic with 400
-        // stored articles and one with none are indistinguishable.
-        [statusRows, countRows] = await Promise.all([
-            db()`select beat_id, last_success_at, last_checked_at from news_ingestion_status` as unknown as Promise<StatusRow[]>,
-            db()`select beat_id,
+export async function topics(
+  query = "",
+  limit = TOPIC_PAGE_DEFAULT,
+  offset = 0,
+) {
+  type StatusRow = {
+    beat_id: string;
+    last_success_at: string | null;
+    last_checked_at: string | null;
+  };
+  type CountRow = { beat_id: string; total: number; recent: number };
+  const terms = query
+    .toLowerCase()
+    .split(/[^\p{L}\p{N}]+/u)
+    .filter(
+      (w) =>
+        w.length >= 2 &&
+        !new Set([
+          "the",
+          "and",
+          "news",
+          "about",
+          "latest",
+          "follow",
+          "keep",
+          "with",
+          "what",
+          "changes",
+          "tell",
+        ]).has(w),
+    );
+  // Matches the ticker as well as the name, which is what the docs, `auth.md`
+  // and the dashboard's own search all promise. It matched the label only, so
+  // `?q=spcx` found nothing while `?q=space` found SpaceX — and the failure was
+  // invisible because every ticker I happened to test shared its letters with
+  // its own company name (nvid/NVIDIA, jpmorgan/JPMorgan).
+  const matched = SEED_BEATS.filter(
+    (t) =>
+      !terms.length ||
+      terms.some(
+        (word) =>
+          t.label.toLowerCase().includes(word) ||
+          t.ticker.toLowerCase() === word ||
+          t.ticker
+            .toLowerCase()
+            .replace(/\.[a-z]$/, "")
+            .includes(word),
+      ),
+  );
+  const page = matched.slice(offset, offset + limit);
+  const ids = page.map((t) => t.beat_id);
+  let statusRows: StatusRow[];
+  let countRows: CountRow[];
+  try {
+    // Counts belong on the catalog: `status` says whether a check succeeded,
+    // not whether there is anything behind it. Without these a topic with 400
+    // stored articles and one with none are indistinguishable.
+    [statusRows, countRows] = await Promise.all([
+      db()`select beat_id, last_success_at, last_checked_at from news_ingestion_status where beat_id = any(${ids}::text[])` as unknown as Promise<
+        StatusRow[]
+      >,
+      db()`select beat_id,
                         count(*)::int as total,
                         count(*) filter (where published_at > now() - interval '12 hours')::int as recent
-                 from news_articles group by beat_id` as unknown as Promise<CountRow[]>,
-        ]);
-    }
-    catch (error) {
-        console.error("topics failed:", error);
-        throw new NewsError("service_unavailable", "News storage is not ready.", 503);
-    }
-    const terms = query.toLowerCase().split(/[^\p{L}\p{N}]+/u).filter(w => w.length >= 2 && !new Set(["the", "and", "news", "about", "latest", "follow", "keep", "with", "what", "changes", "tell"]).has(w));
-    // Matches the ticker as well as the name, which is what the docs, `auth.md`
-    // and the dashboard's own search all promise. It matched the label only, so
-    // `?q=spcx` found nothing while `?q=space` found SpaceX — and the failure was
-    // invisible because every ticker I happened to test shared its letters with
-    // its own company name (nvid/NVIDIA, jpmorgan/JPMorgan).
-    const matched = SEED_BEATS.filter(t => !terms.length || terms.some(word =>
-        t.label.toLowerCase().includes(word) || t.ticker.toLowerCase() === word
-        || t.ticker.toLowerCase().replace(/\.[a-z]$/, "").includes(word)));
-    const page = matched.slice(offset, offset + limit);
-    const rows = page.map(t => { const state = statusRows.find(s => s.beat_id === t.beat_id); const counts = countRows.find((c) => c.beat_id === t.beat_id);
-        return { beat_id: t.beat_id, label: t.label, ticker: t.ticker, asset: t.asset ?? "equity",
-            article_count: counts?.total ?? 0,
-            recent_12h: counts?.recent ?? 0, ...freshness(state?.last_success_at ?? null, t.freshness_slo_minutes), last_checked_at: state?.last_checked_at ?? null }; });
-    const consumed = offset + rows.length;
-    // `total` is the size of the match, not of the page: a client should be able
-    // to report "540 topics" without walking every page to count them.
-    return { topics: rows, total: matched.length, limit, offset, has_more: consumed < matched.length,
-        next_offset: consumed < matched.length ? consumed : null };
+                 from news_articles where beat_id = any(${ids}::text[]) group by beat_id` as unknown as Promise<
+        CountRow[]
+      >,
+    ]);
+  } catch (error) {
+    console.error("topics failed:", error);
+    throw new NewsError(
+      "service_unavailable",
+      "News storage is not ready.",
+      503,
+    );
+  }
+  const rows = page.map((t) => {
+    const state = statusRows.find((s) => s.beat_id === t.beat_id);
+    const counts = countRows.find((c) => c.beat_id === t.beat_id);
+    return {
+      beat_id: t.beat_id,
+      label: t.label,
+      ticker: t.ticker,
+      asset: t.asset ?? "equity",
+      article_count: counts?.total ?? 0,
+      recent_12h: counts?.recent ?? 0,
+      ...freshness(state?.last_success_at ?? null, t.freshness_slo_minutes),
+      last_checked_at: state?.last_checked_at ?? null,
+    };
+  });
+  const consumed = offset + rows.length;
+  // `total` is the size of the match, not of the page: a client should be able
+  // to report "540 topics" without walking every page to count them.
+  return {
+    topics: rows,
+    total: matched.length,
+    limit,
+    offset,
+    has_more: consumed < matched.length,
+    next_offset: consumed < matched.length ? consumed : null,
+  };
 }
-export function boundedPage<T>(rows: T[], budget = 1800) { const items: T[] = []; let tokens = 0; for (const row of rows.slice(0, 8)) {
-    const size = Math.ceil(new TextEncoder().encode(JSON.stringify(row)).length / 3);
-    if (items.length && tokens + size > budget)
-        break;
+export function boundedPage<T>(rows: T[], budget = 1800) {
+  const items: T[] = [];
+  let tokens = 0;
+  for (const row of rows.slice(0, 8)) {
+    const size = Math.ceil(
+      new TextEncoder().encode(JSON.stringify(row)).length / 3,
+    );
+    if (items.length && tokens + size > budget) break;
     items.push(row);
     tokens += size;
-} return { items, estimated_tokens: tokens, has_more: rows.length > items.length }; }
-export async function newsPage(beatId: string, cursor?: string, history = false) {
-    topicById(beatId);
-    const sql = db();
-    const sequence = cursor ? await readCursor(cursor, beatId, history ? "history" : "changes") : null;
-    const since = new Date(Date.now() - 30 * 86400000).toISOString();
-    // Reading backwards for history, forwards for changes and for the baseline.
-    const ascending = !!cursor && !history;
-    const direction = ascending ? sql`asc` : sql`desc`;
-    const boundary = sequence
-        ? history ? sql`and id < ${sequence}::bigint` : sql`and id > ${sequence}::bigint`
-        : sql``;
-    let data: NewsArticle[];
-    let state: { last_success_at: string | null } | undefined;
-    try {
-        const results = await Promise.all([
-            sql`select id::text, beat_id, title, excerpt, url, source, published_at, first_indexed_at
+  }
+  return {
+    items,
+    estimated_tokens: tokens,
+    has_more: rows.length > items.length,
+  };
+}
+export async function newsPage(
+  beatId: string,
+  cursor?: string,
+  history = false,
+) {
+  topicById(beatId);
+  const sql = db();
+  const sequence = cursor
+    ? await readCursor(cursor, beatId, history ? "history" : "changes")
+    : null;
+  const since = new Date(Date.now() - 30 * 86400000).toISOString();
+  // Reading backwards for history, forwards for changes and for the baseline.
+  const ascending = !!cursor && !history;
+  const direction = ascending ? sql`asc` : sql`desc`;
+  const boundary = sequence
+    ? history
+      ? sql`and id < ${sequence}::bigint`
+      : sql`and id > ${sequence}::bigint`
+    : sql``;
+  let data: NewsArticle[];
+  let state: { last_success_at: string | null } | undefined;
+  try {
+    const results = await Promise.all([
+      sql`select id::text, beat_id, title, excerpt, url, source, published_at, first_indexed_at
                 from news_articles
                 where beat_id = ${beatId} and published_at >= ${since}
                 ${boundary}
@@ -129,34 +282,60 @@ export async function newsPage(beatId: string, cursor?: string, history = false)
                 -- them. Invisible while all ids had the same digit count.
                 order by news_articles.id ${direction}
                 limit 9`,
-            sql`select last_success_at from news_ingestion_status where beat_id = ${beatId} limit 1`,
-        ]);
-        data = results[0] as unknown as NewsArticle[];
-        state = (results[1] as unknown as Array<{ last_success_at: string | null }>)[0];
-    }
-    catch (error) {
-        // Log it: the client is told only that it failed, so without this the
-        // cause is invisible in production and every bug looks identical.
-        console.error("newsPage failed:", error);
-        throw new NewsError("service_unavailable", "Coverage could not be loaded. Please try again shortly.", 503);
-    }
-    const rows = (data ?? []).map((row: NewsArticle) => ({ ...row, id: String(row.id) })) as NewsArticle[];
-    const bounded = boundedPage(rows);
-    const isChange = !!cursor && !history;
-    // Initial latest view establishes a baseline at the newest ingested ID. History uses a separate signed cursor.
-    const nextSeq = isChange ? bounded.items.at(-1)?.id ?? sequence ?? "0" : rows[0]?.id ?? "0";
-    return { ...bounded, cursor: await signCursor(beatId, history ? (bounded.items.at(-1)?.id ?? sequence ?? "0") : nextSeq, history ? "history" : "changes"), history_cursor: await signCursor(beatId, bounded.items.at(-1)?.id ?? sequence ?? "0", "history"), freshness: freshness(state?.last_success_at ?? null, topicById(beatId).freshness_slo_minutes) };
+      sql`select last_success_at from news_ingestion_status where beat_id = ${beatId} limit 1`,
+    ]);
+    data = results[0] as unknown as NewsArticle[];
+    state = (
+      results[1] as unknown as Array<{ last_success_at: string | null }>
+    )[0];
+  } catch (error) {
+    // Log it: the client is told only that it failed, so without this the
+    // cause is invisible in production and every bug looks identical.
+    console.error("newsPage failed:", error);
+    throw new NewsError(
+      "service_unavailable",
+      "Coverage could not be loaded. Please try again shortly.",
+      503,
+    );
+  }
+  const rows = (data ?? []).map((row: NewsArticle) => ({
+    ...row,
+    id: String(row.id),
+  })) as NewsArticle[];
+  const bounded = boundedPage(rows);
+  const isChange = !!cursor && !history;
+  // Initial latest view establishes a baseline at the newest ingested ID. History uses a separate signed cursor.
+  const nextSeq = isChange
+    ? (bounded.items.at(-1)?.id ?? sequence ?? "0")
+    : (rows[0]?.id ?? "0");
+  return {
+    ...bounded,
+    cursor: await signCursor(
+      beatId,
+      history ? (bounded.items.at(-1)?.id ?? sequence ?? "0") : nextSeq,
+      history ? "history" : "changes",
+    ),
+    history_cursor: await signCursor(
+      beatId,
+      bounded.items.at(-1)?.id ?? sequence ?? "0",
+      "history",
+    ),
+    freshness: freshness(
+      state?.last_success_at ?? null,
+      topicById(beatId).freshness_slo_minutes,
+    ),
+  };
 }
 
 /** How many headlines a brief carries. Three is a sentence's worth of news. */
 export const BRIEF_ITEMS = 3;
 
 export interface BriefItem {
-    lede: string;
-    source: string;
-    url: string;
-    published_at: string;
-    first_indexed_at: string;
+  lede: string;
+  source: string;
+  url: string;
+  published_at: string;
+  first_indexed_at: string;
 }
 
 /**
@@ -168,9 +347,12 @@ export interface BriefItem {
  * the point, because a synthesised brief can be wrong while reading well.
  */
 export function renderBrief(label: string, items: BriefItem[]): string {
-    if (!items.length) return `${label} — nothing moved.`;
-    const lines = items.map((item, i) => `${i + 1}. ${item.lede} (${item.source}, ${item.published_at.slice(11, 16)}Z)`);
-    return `${label} — ${items.length} ${items.length === 1 ? "story" : "stories"}\n${lines.join("\n")}`;
+  if (!items.length) return `${label} — nothing moved.`;
+  const lines = items.map(
+    (item, i) =>
+      `${i + 1}. ${item.lede} (${item.source}, ${item.published_at.slice(11, 16)}Z)`,
+  );
+  return `${label} — ${items.length} ${items.length === 1 ? "story" : "stories"}\n${lines.join("\n")}`;
 }
 
 /**
@@ -185,65 +367,87 @@ export function renderBrief(label: string, items: BriefItem[]): string {
  * a synthesis: if you diff it against `items` you will find nothing extra.
  */
 export async function brief(beatId: string, cursor?: string, history = false) {
-    const topic = topicById(beatId);
-    const sql = db();
-    const sequence = cursor ? await readCursor(cursor, beatId, history ? "history" : "changes") : null;
-    const since = new Date(Date.now() - 30 * 86400000).toISOString();
-    const ascending = !!cursor && !history;
-    const direction = ascending ? sql`asc` : sql`desc`;
-    const boundary = sequence
-        ? history ? sql`and id < ${sequence}::bigint` : sql`and id > ${sequence}::bigint`
-        : sql``;
-    let rows: NewsArticle[];
-    let state: { last_success_at: string | null } | undefined;
-    try {
-        const results = await Promise.all([
-            sql`select id::text, beat_id, title, excerpt, url, source, published_at, first_indexed_at
+  const topic = topicById(beatId);
+  const sql = db();
+  const sequence = cursor
+    ? await readCursor(cursor, beatId, history ? "history" : "changes")
+    : null;
+  const since = new Date(Date.now() - 30 * 86400000).toISOString();
+  const ascending = !!cursor && !history;
+  const direction = ascending ? sql`asc` : sql`desc`;
+  const boundary = sequence
+    ? history
+      ? sql`and id < ${sequence}::bigint`
+      : sql`and id > ${sequence}::bigint`
+    : sql``;
+  let rows: NewsArticle[];
+  let state: { last_success_at: string | null } | undefined;
+  try {
+    const results = await Promise.all([
+      sql`select id::text, beat_id, title, excerpt, url, source, published_at, first_indexed_at
                 from news_articles
                 where beat_id = ${beatId} and published_at >= ${since}
                 ${boundary}
                 order by news_articles.id ${direction}
                 limit ${BRIEF_ITEMS + 1}`,
-            sql`select last_success_at from news_ingestion_status where beat_id = ${beatId} limit 1`,
-        ]);
-        rows = ((results[0] ?? []) as unknown as NewsArticle[]).slice(0, BRIEF_ITEMS);
-        state = (results[1] as unknown as Array<{ last_success_at: string | null }>)[0];
-    }
-    catch (error) {
-        // Log it: the client is told only that it failed, so without this the
-        // cause is invisible in production and every bug looks identical.
-        console.error("newsPage failed:", error);
-        throw new NewsError("service_unavailable", "Coverage could not be loaded. Please try again shortly.", 503);
-    }
+      sql`select last_success_at from news_ingestion_status where beat_id = ${beatId} limit 1`,
+    ]);
+    rows = ((results[0] ?? []) as unknown as NewsArticle[]).slice(
+      0,
+      BRIEF_ITEMS,
+    );
+    state = (
+      results[1] as unknown as Array<{ last_success_at: string | null }>
+    )[0];
+  } catch (error) {
+    // Log it: the client is told only that it failed, so without this the
+    // cause is invisible in production and every bug looks identical.
+    console.error("newsPage failed:", error);
+    throw new NewsError(
+      "service_unavailable",
+      "Coverage could not be loaded. Please try again shortly.",
+      503,
+    );
+  }
 
-    // `published_at` is timestamptz, so the driver hands back a Date, not the
-    // string the row type claims. Normalise here rather than trusting the type —
-    // every consumer downstream expects ISO.
-    const iso = (value: unknown): string => value instanceof Date ? value.toISOString() : String(value ?? "");
-    const items: BriefItem[] = (rows ?? []).map((row: NewsArticle) => ({
-        lede: row.title,
-        source: row.source,
-        url: row.url,
-        published_at: iso(row.published_at),
-        // Lead time as a field, so "before the mainstream" stays measurable.
-        first_indexed_at: iso(row.first_indexed_at),
-    }));
-    const isChange = !!cursor && !history;
-    const nextSeq = isChange ? (rows.at(-1)?.id ?? sequence ?? "0") : (rows[0]?.id ?? "0");
+  // `published_at` is timestamptz, so the driver hands back a Date, not the
+  // string the row type claims. Normalise here rather than trusting the type —
+  // every consumer downstream expects ISO.
+  const iso = (value: unknown): string =>
+    value instanceof Date ? value.toISOString() : String(value ?? "");
+  const items: BriefItem[] = (rows ?? []).map((row: NewsArticle) => ({
+    lede: row.title,
+    source: row.source,
+    url: row.url,
+    published_at: iso(row.published_at),
+    // Lead time as a field, so "before the mainstream" stays measurable.
+    first_indexed_at: iso(row.first_indexed_at),
+  }));
+  const isChange = !!cursor && !history;
+  const nextSeq = isChange
+    ? (rows.at(-1)?.id ?? sequence ?? "0")
+    : (rows[0]?.id ?? "0");
 
-    return {
-        beat_id: beatId,
-        ticker: topic.ticker,
-        label: topic.label,
-        generated_at: new Date().toISOString(),
-        freshness: freshness(state?.last_success_at ?? null, topic.freshness_slo_minutes),
-        count: items.length,
-        items,
-        // Assembled, never written. See the note above.
-        text: renderBrief(topic.label, items),
-        cursor: await signCursor(beatId, String(nextSeq), "changes"),
-        history_cursor: await signCursor(beatId, String(rows.at(-1)?.id ?? sequence ?? "0"), "history"),
-    };
+  return {
+    beat_id: beatId,
+    ticker: topic.ticker,
+    label: topic.label,
+    generated_at: new Date().toISOString(),
+    freshness: freshness(
+      state?.last_success_at ?? null,
+      topic.freshness_slo_minutes,
+    ),
+    count: items.length,
+    items,
+    // Assembled, never written. See the note above.
+    text: renderBrief(topic.label, items),
+    cursor: await signCursor(beatId, String(nextSeq), "changes"),
+    history_cursor: await signCursor(
+      beatId,
+      String(rows.at(-1)?.id ?? sequence ?? "0"),
+      "history",
+    ),
+  };
 }
 
 /**
@@ -254,59 +458,75 @@ export async function brief(beatId: string, cursor?: string, history = false) {
  * headlines, and orders by how many publishers carried each — which is the
  * closest thing to "what actually happened" available without a model.
  */
-export async function stories(beatId: string, limit = 200) {
-    const topic = topicById(beatId);
-    const sql = db();
-    const since = new Date(Date.now() - 24 * 3600_000).toISOString();
-    let rows: NewsArticle[];
-    let state: { last_success_at: string | null } | undefined;
-    try {
-        const results = await Promise.all([
-            sql`select id::text, beat_id, title, excerpt, url, source, published_at, first_indexed_at
+export async function stories(
+  beatId: string,
+  limit = 200,
+  offset = 0,
+  pageSize = 8,
+) {
+  const topic = topicById(beatId);
+  const sql = db();
+  const since = new Date(Date.now() - 24 * 3600_000).toISOString();
+  let rows: NewsArticle[];
+  let state: { last_success_at: string | null } | undefined;
+  try {
+    const results = await Promise.all([
+      sql`select id::text, beat_id, title, excerpt, url, source, published_at, first_indexed_at
                 from news_articles
                 where beat_id = ${beatId} and published_at >= ${since}
                 order by published_at desc
                 limit ${limit}`,
-            sql`select last_success_at from news_ingestion_status where beat_id = ${beatId} limit 1`,
-        ]);
-        rows = ((results[0] ?? []) as unknown as NewsArticle[]);
-        state = (results[1] as unknown as Array<{ last_success_at: string | null }>)[0];
-    }
-    catch (error) {
-        console.error("stories failed:", error);
-        throw new NewsError("service_unavailable", "Coverage could not be loaded. Please try again shortly.", 503);
-    }
+      sql`select last_success_at from news_ingestion_status where beat_id = ${beatId} limit 1`,
+    ]);
+    rows = (results[0] ?? []) as unknown as NewsArticle[];
+    state = (
+      results[1] as unknown as Array<{ last_success_at: string | null }>
+    )[0];
+  } catch (error) {
+    console.error("stories failed:", error);
+    throw new NewsError(
+      "service_unavailable",
+      "Coverage could not be loaded. Please try again shortly.",
+      503,
+    );
+  }
 
-    const iso = (value: unknown): string => value instanceof Date ? value.toISOString() : String(value ?? "");
-    const articles = (rows ?? []).map((row: NewsArticle) => ({
-        id: String(row.id),
-        title: row.title,
-        url: row.url,
-        source: row.source,
-        published_at: iso(row.published_at),
-    }));
-    const found = clusterStories(articles);
+  const iso = (value: unknown): string =>
+    value instanceof Date ? value.toISOString() : String(value ?? "");
+  const articles = (rows ?? []).map((row: NewsArticle) => ({
+    id: String(row.id),
+    title: row.title,
+    url: row.url,
+    source: row.source,
+    published_at: iso(row.published_at),
+  }));
+  const found = clusterStories(articles);
 
-    return {
-        beat_id: beatId,
-        ticker: topic.ticker,
-        label: topic.label,
-        asset: topic.asset ?? "equity",
-        generated_at: new Date().toISOString(),
-        freshness: freshness(state?.last_success_at ?? null, topic.freshness_slo_minutes),
-        window_hours: 24,
-        articles_read: articles.length,
-        story_count: found.length,
-        stories: found.map((story) => ({
-            lead: story.lead,
-            source_count: story.source_count,
-            sources: story.sources.slice(0, 12),
-            first_seen: story.first_seen,
-            last_seen: story.last_seen,
-            url: story.articles[0]?.url ?? "",
-            articles: story.articles.length,
-        })),
-    };
+  return {
+    beat_id: beatId,
+    ticker: topic.ticker,
+    label: topic.label,
+    asset: topic.asset ?? "equity",
+    generated_at: new Date().toISOString(),
+    freshness: freshness(
+      state?.last_success_at ?? null,
+      topic.freshness_slo_minutes,
+    ),
+    window_hours: 24,
+    articles_read: articles.length,
+    story_count: found.length,
+    has_more: offset + pageSize < found.length,
+    next_offset: offset + pageSize < found.length ? offset + pageSize : null,
+    stories: found.slice(offset, offset + pageSize).map((story) => ({
+      lead: story.lead,
+      source_count: story.source_count,
+      sources: story.sources.slice(0, 12),
+      first_seen: story.first_seen,
+      last_seen: story.last_seen,
+      url: story.articles[0]?.url ?? "",
+      articles: story.articles.length,
+    })),
+  };
 }
 
 /**
@@ -325,53 +545,55 @@ export async function stories(beatId: string, limit = 200) {
 export const WATCH_LIMIT = 50;
 
 export interface Watch {
-    beat_id: string;
-    cursor: string;
+  beat_id: string;
+  cursor: string;
 }
 
 export async function watchMany(watches: Watch[]) {
-    const results = await Promise.all(
-        watches.slice(0, WATCH_LIMIT).map(async (watch) => {
-            try {
-                // newsPage already signs a fresh cursor and reports freshness, and
-                // its page is bounded, so a watch result is the same shape a client
-                // already parses.
-                const page = await newsPage(watch.beat_id, watch.cursor || undefined);
-                return {
-                    beat_id: watch.beat_id,
-                    moved: page.items.length > 0,
-                    items: page.items,
-                    cursor: page.cursor,
-                    freshness: page.freshness,
-                    error: null,
-                };
-            } catch (error) {
-                // An expired cursor is the normal case here, not an exception: the
-                // client keeps the cursor and the server may have rotated. It is
-                // reported per watch so the caller can re-baseline just that topic.
-                const known = error instanceof NewsError ? error : null;
-                return {
-                    beat_id: watch.beat_id,
-                    moved: false,
-                    items: [] as unknown[],
-                    cursor: null,
-                    freshness: null,
-                    error: {
-                        code: known?.code ?? "service_unavailable",
-                        message: known?.message ?? "This topic could not be checked.",
-                    },
-                };
-            }
-        }),
-    );
+  const results = await Promise.all(
+    watches.slice(0, WATCH_LIMIT).map(async (watch) => {
+      try {
+        // newsPage already signs a fresh cursor and reports freshness, and
+        // its page is bounded, so a watch result is the same shape a client
+        // already parses.
+        const page = await newsPage(watch.beat_id, watch.cursor || undefined);
+        return {
+          beat_id: watch.beat_id,
+          moved: page.items.length > 0,
+          items: page.items,
+          has_more: page.has_more,
+          estimated_tokens: page.estimated_tokens,
+          cursor: page.cursor,
+          freshness: page.freshness,
+          error: null,
+        };
+      } catch (error) {
+        // An expired cursor is the normal case here, not an exception: the
+        // client keeps the cursor and the server may have rotated. It is
+        // reported per watch so the caller can re-baseline just that topic.
+        const known = error instanceof NewsError ? error : null;
+        return {
+          beat_id: watch.beat_id,
+          moved: false,
+          items: [] as unknown[],
+          cursor: null,
+          freshness: null,
+          error: {
+            code: known?.code ?? "service_unavailable",
+            message: known?.message ?? "This topic could not be checked.",
+          },
+        };
+      }
+    }),
+  );
 
-    return {
-        generated_at: new Date().toISOString(),
-        checked: results.length,
-        // The number that makes the call worth making: how much of the watch list
-        // actually needed the caller's attention.
-        moved: results.filter((r) => r.moved).length,
-        failed: results.filter((r) => r.error).length,
-        results,
-    };
+  return {
+    generated_at: new Date().toISOString(),
+    checked: results.length,
+    // The number that makes the call worth making: how much of the watch list
+    // actually needed the caller's attention.
+    moved: results.filter((r) => r.moved).length,
+    failed: results.filter((r) => r.error).length,
+    results,
+  };
 }

@@ -19,3 +19,8 @@ minutes on a 24-hour window. Ask whether a topic moved; get nothing, or the head
 
 Items carry a headline, a link that resolves to the article, and the publisher's name. There is no
 article body at any price. Cite the link returned, and name the source.
+
+General news: GET /api/v2/search?query=... and GET /api/v2/story?id=...
+OpenAPI: /api/openapi.json
+Saved watches: POST /api/v2/subscriptions (account required).
+Integration guide: https://github.com/thepeternemec/NewsGraph/blob/main/docs/INTEGRATIONS.md

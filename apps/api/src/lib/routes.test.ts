@@ -24,13 +24,22 @@ import app from "../index.js";
 const ROOT = fileURLToPath(new URL("../../../../", import.meta.url));
 const read = (rel: string) => readFileSync(join(ROOT, rel), "utf8");
 
-const served = () => app.routes.map((r) => ({ method: r.method, path: r.path }));
+const served = () =>
+  app.routes
+    .filter((r) => r.method !== "ALL" || r.path === "/mcp")
+    .map((r) => ({ method: r.method, path: r.path }));
 
 /** Any `/v2/foo` or `/mcp` or `/health` an author wrote down. */
-const routePattern = /\/(?:v\d\/[a-z]+|mcp|health)\b/g;
+const routePattern =
+  /\/(?:v\d\/[a-z]+(?:\/:id\/(?:pause|resume))?|mcp|health)\b/g;
 
 /** Documents a client is expected to read and act on. */
-const ADVERTISING = ["AGENTS.md", "README.md", "apps/web/public/llms.txt", "apps/web/public/skill.md"];
+const ADVERTISING = [
+  "AGENTS.md",
+  "README.md",
+  "apps/web/public/llms.txt",
+  "apps/web/public/skill.md",
+];
 
 /** Pages whose prose and samples tell a developer what to call. */
 const SITE = [
@@ -76,11 +85,16 @@ test("every route the site's samples call is served", () => {
       continue; // a page that does not exist is caught elsewhere
     }
     for (const mention of text.match(routePattern) ?? []) {
-      if (!paths.has(mention) && !paths.has(`/api${mention}`)) missing.add(`${mention} (${file})`);
+      if (!paths.has(mention) && !paths.has(`/api${mention}`))
+        missing.add(`${mention} (${file})`);
     }
   }
 
-  assert.deepEqual([...missing], [], `the site calls routes that do not exist: ${[...missing].join(", ")}`);
+  assert.deepEqual(
+    [...missing],
+    [],
+    `the site calls routes that do not exist: ${[...missing].join(", ")}`,
+  );
 });
 
 test("no sample imports a package that does not exist", () => {
@@ -91,7 +105,13 @@ test("no sample imports a package that does not exist", () => {
   // Dependencies live per workspace, not at the root — `react` and
   // `lucide-react` are installed by apps/web. Checking only the root package
   // reported them as missing, which is a guard failing on working code.
-  const WORKSPACES = ["apps/api", "apps/web", "apps/worker", "packages/contracts", "packages/db"];
+  const WORKSPACES = [
+    "apps/api",
+    "apps/web",
+    "apps/worker",
+    "packages/contracts",
+    "packages/db",
+  ];
   const installed = new Set<string>();
   for (const dir of [".", ...WORKSPACES]) {
     try {
@@ -99,7 +119,10 @@ test("no sample imports a package that does not exist", () => {
         dependencies?: Record<string, string>;
         devDependencies?: Record<string, string>;
       };
-      for (const name of [...Object.keys(pkg.dependencies ?? {}), ...Object.keys(pkg.devDependencies ?? {})]) {
+      for (const name of [
+        ...Object.keys(pkg.dependencies ?? {}),
+        ...Object.keys(pkg.devDependencies ?? {}),
+      ]) {
         installed.add(name);
       }
     } catch {
@@ -112,7 +135,9 @@ test("no sample imports a package that does not exist", () => {
     const names = new Set<string>();
     for (const dir of dirs) {
       try {
-        names.add((JSON.parse(read(`${dir}/package.json`)) as { name: string }).name);
+        names.add(
+          (JSON.parse(read(`${dir}/package.json`)) as { name: string }).name,
+        );
       } catch {
         /* not a package */
       }
@@ -122,7 +147,9 @@ test("no sample imports a package that does not exist", () => {
   const local = workspacePkg(WORKSPACES);
 
   const bare = (spec: string) =>
-    !spec.startsWith(".") && !spec.startsWith("@/") && !spec.startsWith("node:");
+    !spec.startsWith(".") &&
+    !spec.startsWith("@/") &&
+    !spec.startsWith("node:");
 
   const offenders = new Set<string>();
   for (const file of [...SITE, ...ADVERTISING]) {
@@ -136,8 +163,11 @@ test("no sample imports a package that does not exist", () => {
       const spec = match[1]!;
       if (!bare(spec)) continue;
       // "@scope/pkg/sub" resolves against the package, so trim to two segments.
-      const name = spec.startsWith("@") ? spec.split("/").slice(0, 2).join("/") : spec.split("/")[0]!;
-      if (!installed.has(name) && !local.has(name)) offenders.add(`${name} (${file})`);
+      const name = spec.startsWith("@")
+        ? spec.split("/").slice(0, 2).join("/")
+        : spec.split("/")[0]!;
+      if (!installed.has(name) && !local.has(name))
+        offenders.add(`${name} (${file})`);
     }
   }
 
@@ -160,7 +190,8 @@ test("every public route is mentioned in the docs", () => {
   const onSite = new Set<string>();
   for (const file of SITE) {
     try {
-      for (const mention of read(file).match(routePattern) ?? []) onSite.add(mention);
+      for (const mention of read(file).match(routePattern) ?? [])
+        onSite.add(mention);
     } catch {
       /* absent file is another test's problem */
     }
@@ -184,18 +215,30 @@ test("every public route is mentioned in the docs", () => {
 /** POST is allowed only where a request body is the whole point, and writes nothing. */
 const POST_READS = new Set(["/v2/watch"]);
 
-test("the public routes write nothing", () => {
+test("news reads remain read-only; subscription mutations are explicit", () => {
   // The contract is read-only. A mutating verb appearing here would be a product
   // change, not a refactor. `/v2/watch` is a POST because fifty cursors do not fit
   // in a URL — it reads, and the allowlist is explicit so the next one has to be
   // argued for rather than assumed.
   for (const route of served()) {
     if (!route.path.startsWith("/v2/")) continue;
-    if (POST_READS.has(route.path)) {
-      assert.equal(route.method, "POST", `${route.path} is in the POST allowlist but served as ${route.method}`);
+    if (route.path.startsWith("/v2/subscriptions")) {
+      assert.ok(["GET", "POST"].includes(route.method));
       continue;
     }
-    assert.equal(route.method, "GET", `${route.path} is served as ${route.method}`);
+    if (POST_READS.has(route.path)) {
+      assert.equal(
+        route.method,
+        "POST",
+        `${route.path} is in the POST allowlist but served as ${route.method}`,
+      );
+      continue;
+    }
+    assert.equal(
+      route.method,
+      "GET",
+      `${route.path} is served as ${route.method}`,
+    );
   }
 });
 

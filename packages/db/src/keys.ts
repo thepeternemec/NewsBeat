@@ -14,12 +14,20 @@ const KEY_PREFIX = "ng_";
 export function newSecret(): string {
   const bytes = new Uint8Array(32);
   crypto.getRandomValues(bytes);
-  return KEY_PREFIX + Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("");
+  return (
+    KEY_PREFIX +
+    Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("")
+  );
 }
 
 export async function hashKey(secret: string): Promise<string> {
-  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(secret));
-  return Array.from(new Uint8Array(digest), (b) => b.toString(16).padStart(2, "0")).join("");
+  const digest = await crypto.subtle.digest(
+    "SHA-256",
+    new TextEncoder().encode(secret),
+  );
+  return Array.from(new Uint8Array(digest), (b) =>
+    b.toString(16).padStart(2, "0"),
+  ).join("");
 }
 
 export interface ResolvedKey {
@@ -30,20 +38,31 @@ export interface ResolvedKey {
 }
 
 /** Null for an unknown or revoked key — the caller is treated as anonymous. */
-export async function resolveKey(sql: Sql, secret: string): Promise<ResolvedKey | null> {
+export async function resolveKey(
+  sql: Sql,
+  secret: string,
+): Promise<ResolvedKey | null> {
   const keyHash = await hashKey(secret);
-  const rows = await sql<Array<{ key_hash: string; label: string; account_id: string | null }>>`
+  const rows = await sql<
+    Array<{ key_hash: string; label: string; account_id: string | null }>
+  >`
     select key_hash, label, account_id from public.api_keys
     where key_hash = ${keyHash} and revoked_at is null
     limit 1`;
   const row = rows[0];
   if (!row) return null;
   // Fire-and-forget: a failed touch must never fail the request it rode in on.
-  sql`update public.api_keys set last_used_at = now() where key_hash = ${keyHash}`.catch(() => {});
+  sql`update public.api_keys set last_used_at = now() where key_hash = ${keyHash}`.catch(
+    () => {},
+  );
   return { keyHash: row.key_hash, label: row.label, accountId: row.account_id };
 }
 
-export async function createKey(sql: Sql, label: string, accountId?: string): Promise<string> {
+export async function createKey(
+  sql: Sql,
+  label: string,
+  accountId?: string,
+): Promise<string> {
   const secret = newSecret();
   await sql`insert into public.api_keys (key_hash, label, account_id) values (${await hashKey(secret)}, ${label}, ${accountId ?? null})`;
   return secret;
@@ -63,7 +82,11 @@ export interface RateLimitResult {
  * The upsert does the increment and the read in one round trip, so concurrent
  * requests serialise on the primary key rather than racing on a select-then-set.
  */
-export async function consumeRateLimit(sql: Sql, bucket: string, limit: number): Promise<RateLimitResult> {
+export async function consumeRateLimit(
+  sql: Sql,
+  bucket: string,
+  limit: number,
+): Promise<RateLimitResult> {
   const rows = await sql<Array<{ count: number; window_start: Date }>>`
     insert into public.api_usage (bucket, window_start, count)
     values (${bucket}, date_trunc('minute', now()), 1)
@@ -71,9 +94,19 @@ export async function consumeRateLimit(sql: Sql, bucket: string, limit: number):
     returning count, window_start`;
   const row = rows[0];
   const count = row?.count ?? 1;
-  const started = row?.window_start ? new Date(row.window_start).getTime() : Date.now();
-  const resetSeconds = Math.max(1, Math.ceil((started + 60_000 - Date.now()) / 1000));
-  return { allowed: count <= limit, limit, remaining: Math.max(0, limit - count), resetSeconds };
+  const started = row?.window_start
+    ? new Date(row.window_start).getTime()
+    : Date.now();
+  const resetSeconds = Math.max(
+    1,
+    Math.ceil((started + 60_000 - Date.now()) / 1000),
+  );
+  return {
+    allowed: count <= limit,
+    limit,
+    remaining: Math.max(0, limit - count),
+    resetSeconds,
+  };
 }
 
 /** Drop windows that can no longer be counted against. Run from the cron. */
@@ -112,9 +145,18 @@ export interface Account {
  * duplicate account would issue a duplicate key with a separate rate-limit
  * allowance.
  */
-export async function findOrCreateAccount(sql: Sql, identity: GithubIdentity): Promise<Account> {
+export async function findOrCreateAccount(
+  sql: Sql,
+  identity: GithubIdentity,
+): Promise<Account> {
   const githubId = String(identity.id);
-  const rows = await sql<Array<{ account_id: string; github_login: string | null; email: string | null }>>`
+  const rows = await sql<
+    Array<{
+      account_id: string;
+      github_login: string | null;
+      email: string | null;
+    }>
+  >`
     insert into public.accounts (github_user_id, github_login, email, display_name)
     values (${githubId}, ${identity.login}, ${identity.email}, ${identity.name ?? identity.login})
     on conflict (github_user_id) do update
@@ -125,23 +167,36 @@ export async function findOrCreateAccount(sql: Sql, identity: GithubIdentity): P
   // A new account gets the trial grant. Creating the balance here as well as in
   // the callback means the grant exists for any account however it was made.
   await openBalance(sql, row.account_id);
-  return { accountId: row.account_id, login: row.github_login, email: row.email };
+  return {
+    accountId: row.account_id,
+    login: row.github_login,
+    email: row.email,
+  };
 }
 
 /**
  * Issue a key belonging to an account.
  *
- * A second call **revokes the account's previous key** in the same transaction.
+ * Existing connections remain valid. Revoke individual keys explicitly.
  * Rotating silently is friendlier than accumulating: an account with five live
  * keys has five times the allowance whether it needs it or not, and the earlier
  * ones are the ones nobody remembers holding.
  */
-export async function issueKeyForAccount(sql: Sql, accountId: string, label = "self-serve"): Promise<string> {
+export async function issueKeyForAccount(
+  sql: Sql,
+  accountId: string,
+  label = "self-serve",
+): Promise<string> {
   const secret = newSecret();
   const keyHash = await hashKey(secret);
   await sql.begin(async (tx) => {
-    await tx`update public.api_keys set revoked_at = now()
-             where account_id = ${accountId} and revoked_at is null`;
+    await tx`select account_id from public.accounts where account_id=${accountId} for update`;
+    const [count] =
+      await tx`select count(*)::int as n from public.api_keys where account_id=${accountId} and revoked_at is null`;
+    if (Number(count?.n) >= 20)
+      throw new Error(
+        "Revoke an unused connection before creating another (maximum 20).",
+      );
     await tx`insert into public.api_keys (key_hash, label, account_id)
              values (${keyHash}, ${label}, ${accountId})`;
   });
@@ -150,12 +205,20 @@ export async function issueKeyForAccount(sql: Sql, accountId: string, label = "s
 
 /** The account's live key, described without ever revealing the secret. */
 export async function describeKeyForAccount(sql: Sql, accountId: string) {
-  const rows = await sql<Array<{ label: string; created_at: Date; last_used_at: Date | null }>>`
+  const rows = await sql<
+    Array<{ label: string; created_at: Date; last_used_at: Date | null }>
+  >`
     select label, created_at, last_used_at
     from public.api_keys
     where account_id = ${accountId} and revoked_at is null
     order by created_at desc limit 1`;
   const row = rows[0];
   if (!row) return null;
-  return { label: row.label, createdAt: new Date(row.created_at).toISOString(), lastUsedAt: row.last_used_at ? new Date(row.last_used_at).toISOString() : null };
+  return {
+    label: row.label,
+    createdAt: new Date(row.created_at).toISOString(),
+    lastUsedAt: row.last_used_at
+      ? new Date(row.last_used_at).toISOString()
+      : null,
+  };
 }

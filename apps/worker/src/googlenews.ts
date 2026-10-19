@@ -19,7 +19,8 @@ import type { ProviderArticle } from "./newsapi.js";
 import { scoreHeadline } from "./sentiment.js";
 
 const ENDPOINT = "https://news.google.com/rss/search";
-const USER_AGENT = "Mozilla/5.0 (compatible; NewsGraph/0.1; +https://newsgraph.vercel.app)";
+const USER_AGENT =
+  "Mozilla/5.0 (compatible; NewsGraph/0.1; +https://newsgraph.vercel.app)";
 
 /** Google's article ids are base64 of a protobuf that usually contains the URL. */
 function publisherUrlFromId(id: string): string | null {
@@ -39,7 +40,15 @@ function publisherUrlFromId(id: string): string | null {
   }
 }
 
-const decode = (s: string) => s.replace(/<!\[CDATA\[|\]\]>/g, "").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">").trim();
+const decode = (s: string) =>
+  s
+    .replace(/<!\[CDATA\[|\]\]>/g, "")
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .trim();
 
 function tag(block: string, name: string): string {
   const m = block.match(new RegExp(`<${name}[^>]*>([\\s\\S]*?)</${name}>`));
@@ -58,6 +67,7 @@ function stripPublisherSuffix(title: string, publisher: string): string {
 export interface GoogleNewsOptions {
   /** Google's relative window operator, e.g. `1d`, `7d`. */
   when?: string;
+  queryText?: string;
   hl?: string;
   gl?: string;
   ceid?: string;
@@ -74,7 +84,7 @@ export async function searchGoogleNews(
 ): Promise<ProviderArticle[]> {
   const when = options.when ?? "1d";
   // Quoted so a multi-word name is matched as a phrase.
-  const query = `${keywords.map((k) => `"${k}"`).join(" OR ")} when:${when}`;
+  const query = `${options.queryText ?? keywords.map((k) => `"${k}"`).join(" OR ")} when:${when}`;
   const url = `${ENDPOINT}?q=${encodeURIComponent(query)}&hl=${options.hl ?? "en-US"}&gl=${options.gl ?? "US"}&ceid=${options.ceid ?? "US:en"}`;
 
   // Google rate-limits (429) under load, and a 5xx is usually transient. Retry
@@ -84,10 +94,14 @@ export async function searchGoogleNews(
   let response: Response | undefined;
   let lastError = "";
   for (let attempt = 0; attempt < attempts; attempt += 1) {
-    if (attempt > 0) await new Promise((r) => setTimeout(r, 400 * 2 ** attempt));
+    if (attempt > 0)
+      await new Promise((r) => setTimeout(r, 400 * 2 ** attempt));
     try {
       const res = await fetchImpl(url, {
-        headers: { "user-agent": USER_AGENT, accept: "application/rss+xml, application/xml" },
+        headers: {
+          "user-agent": USER_AGENT,
+          accept: "application/rss+xml, application/xml",
+        },
         signal: AbortSignal.timeout(20000),
       });
       if (res.ok) {
@@ -102,6 +116,8 @@ export async function searchGoogleNews(
   }
   if (!response) throw new Error(`google news failed: ${lastError}`);
   const xml = await response.text();
+  if (!/<rss[\s>]/i.test(xml) || !/<channel[\s>]/i.test(xml))
+    throw new Error("Provider returned an invalid RSS feed");
 
   return [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].flatMap((match) => {
     const block = match[1] ?? "";
@@ -125,7 +141,8 @@ export async function searchGoogleNews(
         /* Google returns no sentiment; the paid provider does. The schema has
            the field, so leaving it undefined made Google-sourced rows a special
            case for every consumer. */
-        sentiment: scoreHeadline(stripPublisherSuffix(rawTitle, publisher)).sentiment,
+        sentiment: scoreHeadline(stripPublisherSuffix(rawTitle, publisher))
+          .sentiment,
         // The feed carries no prose, only a link. Better an empty excerpt than
         // a duplicated headline pretending to be one.
         body: "",

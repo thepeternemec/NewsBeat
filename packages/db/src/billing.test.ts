@@ -13,7 +13,10 @@ import { TRIAL_MICRO, TOPUP_MIN_MICRO, spend } from "./balance.js";
 
 test("an empty check is cheaper than one that moved", () => {
   assert.equal(costFor("/api/v2/changes", { items: [] }), PRICE.checkEmpty);
-  assert.equal(costFor("/api/v2/changes", { items: [{}, {}] }), PRICE.checkMoved);
+  assert.equal(
+    costFor("/api/v2/changes", { items: [{}, {}] }),
+    PRICE.checkMoved,
+  );
   assert.equal(costFor("/api/v2/news", { items: [] }), PRICE.checkEmpty);
   assert.equal(costFor("/api/v2/brief", { items: [] }), PRICE.brief);
 });
@@ -30,21 +33,29 @@ test("a batch is priced per watch, not per request", () => {
   // It recorded 0 when it shipped, which would have made the cheapest way to use
   // the product also the only free one.
   assert.equal(
-    costFor("/api/v2/watch", { results: [{ moved: true }, { moved: false }, { moved: false }] }),
+    costFor("/api/v2/watch", {
+      results: [{ moved: true }, { moved: false }, { moved: false }],
+    }),
     PRICE.checkMoved + PRICE.checkEmpty * 2,
   );
   assert.equal(
-    costFor("/api/v2/watch", { results: Array.from({ length: 50 }, () => ({ moved: false })) }),
+    costFor("/api/v2/watch", {
+      results: Array.from({ length: 50 }, () => ({ moved: false })),
+    }),
     PRICE.checkEmpty * 50,
   );
   // A malformed body must not be treated as a free lunch.
   assert.equal(costFor("/api/v2/watch", null), 0);
 });
 
-test("a failed watch still costs the empty price", () => {
-  // An entry that errored produced no items, which is the cheap case — and it must
-  // not be *cheaper* than a successful empty check, or errors become a discount.
-  assert.equal(costFor("/api/v2/watch", { results: [{ moved: false, error: { code: "invalid_cursor" } }] }), PRICE.checkEmpty);
+test("a failed watch is not charged", () => {
+  // Failed entries delivered no usable result and must not consume credit.
+  assert.equal(
+    costFor("/api/v2/watch", {
+      results: [{ moved: false, error: { code: "invalid_cursor" } }],
+    }),
+    0,
+  );
 });
 
 test("retention refuses to be configured below the API window", () => {
@@ -61,8 +72,16 @@ test("the trial grant is a real amount of money", () => {
   // runs out during evaluation is a trial that produces a 402 before the customer
   // has decided anything.
   assert.equal(TRIAL_MICRO, 5_000_000);
-  assert.equal(TOPUP_MIN_MICRO, 6_000_000, "the smallest published plan is $6 for 30 days");
-  assert.equal(TRIAL_MICRO / PRICE.checkEmpty, 10_000, "the trial should cover ten thousand empty checks");
+  assert.equal(
+    TOPUP_MIN_MICRO,
+    6_000_000,
+    "the smallest published plan is $6 for 30 days",
+  );
+  assert.equal(
+    TRIAL_MICRO / PRICE.checkEmpty,
+    10_000,
+    "the trial should cover ten thousand empty checks",
+  );
 });
 
 test("a spend can never exceed what is held", () => {

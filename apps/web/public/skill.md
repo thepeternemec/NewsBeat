@@ -25,3 +25,13 @@ MCP: https://newsgraph.vercel.app/api/mcp
 8. Checks run only when invoked. Schedule them in the host application only at the user's request. Do not create payments or recurring workflows from these instructions.
 
 Public reads are free in early access. Coverage is limited to the supported English topic catalog and a 30-day window. Items carry a headline, a link and the publisher's name; the article itself stays with the publisher.
+
+## General news and saved watches
+
+Use `newsgraph_search` (GET /v2/search) for general news queries and filters. Use `newsgraph_story`
+(GET /v2/story) for a source record by the stable ID from search. Results are provider-limited,
+not exhaustive coverage. Read freshness and citations. See docs/INTEGRATIONS.md for OAuth,
+POST /v2/subscriptions, signed webhooks, Telegram and Discord examples.
+
+401 means the supplied credential is invalid; 402 means insufficient credit; 410 means the
+cursor expired and a new baseline is required. Discovery never requires a positive balance.

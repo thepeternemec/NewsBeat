@@ -14,7 +14,7 @@
  * is a settings form. Two environment variables are required and the flow refuses
  * to start without them rather than redirecting somewhere broken.
  */
-import { createHmac, timingSafeEqual } from "node:crypto";
+import { createHmac, timingSafeEqual, randomBytes } from "node:crypto";
 import { env } from "@newsgraph/db";
 
 const AUTHORIZE = "https://github.com/login/oauth/authorize";
@@ -50,23 +50,39 @@ const STATE_TTL_MS = 10 * 60_000;
 
 function stateKey(): string {
   const secret = env("NEWSGRAPH_CURSOR_SECRET");
-  if (!secret) throw new Error("NEWSGRAPH_CURSOR_SECRET is required to sign OAuth state");
+  if (!secret)
+    throw new Error("NEWSGRAPH_CURSOR_SECRET is required to sign OAuth state");
   return secret;
 }
 
 export function signState(now = Date.now()): string {
-  const stamp = String(now);
-  const mac = createHmac("sha256", stateKey()).update(`oauth:${stamp}`).digest("hex").slice(0, 32);
+  const stamp = `${now}-${randomBytes(24).toString("hex")}`;
+  const mac = createHmac("sha256", stateKey())
+    .update(`oauth:${stamp}`)
+    .digest("hex")
+    .slice(0, 32);
   return `${stamp}.${mac}`;
 }
 
-export function verifyState(state: string | undefined, now = Date.now()): boolean {
+export function verifyState(
+  state: string | undefined,
+  now = Date.now(),
+): boolean {
   if (!state) return false;
-  const [stamp, mac] = state.split(".");
+  const [stamp, mac, extra] = state.split(".");
+  if (extra) return false;
   if (!stamp || !mac) return false;
-  const issued = Number(stamp);
-  if (!Number.isFinite(issued) || now - issued > STATE_TTL_MS || issued > now + 60_000) return false;
-  const expected = createHmac("sha256", stateKey()).update(`oauth:${stamp}`).digest("hex").slice(0, 32);
+  const issued = Number(stamp.split("-")[0]);
+  if (
+    !Number.isFinite(issued) ||
+    now - issued > STATE_TTL_MS ||
+    issued > now + 60_000
+  )
+    return false;
+  const expected = createHmac("sha256", stateKey())
+    .update(`oauth:${stamp}`)
+    .digest("hex")
+    .slice(0, 32);
   const a = Buffer.from(mac);
   const b = Buffer.from(expected);
   return a.length === b.length && timingSafeEqual(a, b);
@@ -111,9 +127,17 @@ export async function exchangeCodeForUser(
     }),
     signal: AbortSignal.timeout(15_000),
   });
-  const token = (await tokenResponse.json()) as { access_token?: string; error?: string; error_description?: string };
+  const token = (await tokenResponse.json()) as {
+    access_token?: string;
+    error?: string;
+    error_description?: string;
+  };
   if (!token.access_token) {
-    throw new Error(token.error_description ?? token.error ?? "GitHub did not return an access token");
+    throw new Error(
+      token.error_description ??
+        token.error ??
+        "GitHub did not return an access token",
+    );
   }
 
   const userResponse = await fetchImpl(USER, {
@@ -124,11 +148,17 @@ export async function exchangeCodeForUser(
     },
     signal: AbortSignal.timeout(15_000),
   });
-  if (!userResponse.ok) throw new Error(`GitHub user lookup failed: ${userResponse.status}`);
+  if (!userResponse.ok)
+    throw new Error(`GitHub user lookup failed: ${userResponse.status}`);
 
   const user = (await userResponse.json()) as GithubUser;
   if (typeof user.id !== "number" || typeof user.login !== "string") {
     throw new Error("GitHub returned an unexpected user payload");
   }
-  return { id: user.id, login: user.login, name: user.name ?? null, email: user.email ?? null };
+  return {
+    id: user.id,
+    login: user.login,
+    name: user.name ?? null,
+    email: user.email ?? null,
+  };
 }

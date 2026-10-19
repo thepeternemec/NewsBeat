@@ -1,0 +1,16 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.thepeternemec/newsgraph",
+  "description": "Cited news search and change monitoring for AI agents. Usage-based account connections.",
+  "repository": {
+    "url": "https://github.com/thepeternemec/NewsGraph",
+    "source": "github"
+  },
+  "version": "0.4.0",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://newsgraph.vercel.app/api/mcp"
+    }
+  ]
+}
