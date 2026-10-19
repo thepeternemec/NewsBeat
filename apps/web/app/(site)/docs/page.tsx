@@ -36,9 +36,9 @@ export default function DocsOverview() {
 
       <h2>Access</h2>
       <p>
-        There is no key to obtain and nothing to sign up for. Every route is read-only and public,
-        so you can build against it immediately. Anonymous callers get 120 requests a minute;
-        an optional key raises that to 1200.
+          There is nothing you must sign up for. Every route is read-only and public, so you can
+          build against it immediately. Anonymous callers get 120 requests a minute; an optional key
+          raises that to 1200 and is metered, starting from a $5.00 trial.
       </p>
       <table>
         <thead>

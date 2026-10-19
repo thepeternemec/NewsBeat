@@ -60,6 +60,30 @@ The live presentation was stopped with it, because motion is a claim that someth
 the landing's `STREAMING` badge reads `sample`, its scrolling headline tickers are static rows,
 and the dashboard no longer polls on a timer.
 
+## What the site claims, and the numbers behind it
+
+Two statements were true when written and stopped being true when keys were metered:
+
+- **"A key raises it to 1200"** — and is charged. A visitor read that as "faster, free",
+  then hit a 402 after burning the trial. Every surface that described a key now says
+  it is metered from a $5.00 trial and returns 402 when empty.
+- **`AGENTS.md` said "There is no billing."** The guide an agent reads first. It now
+  describes the trial, the per-call prices and the 402.
+- **`auth.md` said keys were "issued by hand today — there is no self-serve endpoint."**
+  Untrue since `/api/keys/authorize` shipped.
+
+The landing's refresh metric was a claim with a disclaimer bolted on —
+*"Scheduled refresh interval; check topic freshness"* — which reads defensively and says
+two things. It is one claim now: **"15m · How often every topic is re-checked"**.
+
+Measured before asserting it: 2,030 of 2,030 topics re-checked within 15 minutes, newest
+10 minutes old, oldest 13. The cron reports `deferred: 0`. If the catalog ever outgrows
+the ingestion budget, `deferred` becomes non-zero and this claim stops being true — it is
+a measurement, not a promise.
+
+**117 orphan rows** in `news_ingestion_status` were also removed: status for topics that
+left the catalog, the oldest checked 31 days ago. Row count now equals the catalog.
+
 ## Data growth
 
 Articles accumulate at roughly **24,000 a day** and the table reached **1.27 GB**. The API serves a

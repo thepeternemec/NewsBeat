@@ -148,8 +148,9 @@ X-RateLimit-Tier: anonymous`}</pre>
 
       <h2>Getting a key</h2>
       <p>
-        <strong>You do not need one.</strong> The API is public. A key raises the limit from 120
-        requests a minute to 1200 and gives usage an owner; it unlocks no data.
+          <strong>You do not need one.</strong> The API is public. A key raises the limit from 120
+          requests a minute to 1200 and gives usage an owner. It is metered from a $5.00 trial, and
+          when the balance is empty it returns <code>402</code> — the anonymous tier stays free.
       </p>
       <div className="code">
         <div className="code-bar">self-serve</div>

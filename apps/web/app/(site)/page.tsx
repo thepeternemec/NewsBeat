@@ -283,7 +283,7 @@ export default function Home() {
               </div>
               <div>
                 <div className="metric-num">15m</div>
-                <div className="metric-label">Scheduled refresh interval; check topic freshness</div>
+                  <div className="metric-label">How often every topic is re-checked</div>
               </div>
             </div>
             <p className="hero-tiny" style={{ marginTop: 34 }}>

@@ -122,7 +122,8 @@ export default function Connect() {
               </a>
             </div>
             <p className="hero-tiny">
-              anonymous callers get 120 requests a minute · a key raises it to 1200
+                anonymous callers get 120 requests a minute · a key raises it to 1200 and is
+                metered from a $5.00 trial
             </p>
           </div>
         </div>

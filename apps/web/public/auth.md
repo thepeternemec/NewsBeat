@@ -1,8 +1,9 @@
 # auth.md
 
-This service requires **no registration and no credential**. There is nothing to
-obtain, nothing to exchange, and no session to establish. This file exists so an
-agent does not spend a turn looking for an auth flow that does not exist.
+This service requires **no registration and no credential to use**. There is no
+session to establish and no token to refresh. This file exists so an agent does not
+spend a turn looking for an auth flow that does not exist — and so that the one
+optional flow that does exist is not a surprise.
 
 Host: `newsgraph.vercel.app` · API base: `https://newsgraph.vercel.app/api`
 
@@ -33,12 +34,26 @@ Anonymous callers get **120 requests a minute**, identified by calling address �
 hashed, never stored. That ceiling is high enough for the intended loop: one
 `changes` call per topic per schedule, not a poll.
 
-A key raises it to **1200 requests a minute**. A key unlocks no data; it is not a
-credential in the sense this protocol usually means, and your user does not need
-an account for you to hold one.
+A key raises it to **1200 requests a minute** and is **metered**. Each call is
+charged against a balance — a check that found nothing is $0.0005, one that moved is
+$0.004, a brief is $0.002. A new account starts with a **$5.00 trial**, which is
+roughly ten thousand empty checks.
 
-Keys are issued by hand today — there is no self-serve endpoint, so this file
-cannot tell you how to fetch one programmatically. Ask the operator.
+When the balance reaches zero the key returns:
+
+```
+402  { "error": { "code": "payment_required" }, "top_up": "/pricing" }
+```
+
+That is not a rate limit. Falling back to the anonymous tier is free and always
+works, so an agent with an empty balance should degrade rather than fail.
+
+A key unlocks no data. Everything the API serves is public without one.
+
+**Self-serve is available** at `https://newsgraph.vercel.app/keys` — GitHub, scope
+`read:user`, the key shown once. That is a browser flow: it needs a human to
+authorise it, so an agent cannot complete it alone. The key is then a bearer token
+in a header.
 
 ```http
 GET /v2/topics?limit=1 HTTP/1.1

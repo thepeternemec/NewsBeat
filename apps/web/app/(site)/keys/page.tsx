@@ -14,9 +14,11 @@ export default function Keys() {
             <span className="sec-eyebrow">API keys</span>
             <h1 className="sec-title">A key, if you want one.</h1>
             <p className="sec-sub">
-              The API needs no credential. A key raises your limit from 120 requests a minute to
-              1200 and gives us someone to attribute usage to. It unlocks no data — everything the
-              API serves is already public.
+                The API needs no credential. A key raises your limit from 120 requests a minute to
+                1200, gives usage an owner, and is metered: each call is charged against a balance
+                that starts with a $5.00 trial. When it runs out the key returns 402 and the free
+                anonymous tier still works. It unlocks no data — everything the API serves is
+                already public.
             </p>
             <div className="hero-cta">
               <a className="btn-primary" href="/api/keys/authorize">

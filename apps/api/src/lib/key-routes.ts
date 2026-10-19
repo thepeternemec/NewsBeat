@@ -109,7 +109,7 @@ function issued(login: string, secret: string): string {
      <pre>${escapeHtml(secret)}</pre>
      <p>Send it as a header:</p>
      <pre>Authorization: Bearer ${escapeHtml(secret)}</pre>
-     <p>It raises your limit from 120 requests a minute to 1200. It unlocks no data — everything the API serves is already public.</p>
+     <p>It raises your limit from 120 requests a minute to 1200. It is metered from a $5.00 trial; when the balance reaches zero it returns <code>402</code>, and the free anonymous tier still works. It unlocks no data — everything the API serves is already public.</p>
      <div class="note"><p>Next: <a href="/docs/quickstart">the quickstart</a> ·
      <a href="/docs/connect">connecting</a> · <a href="/connect">MCP and tool calling</a></p></div>`,
   );

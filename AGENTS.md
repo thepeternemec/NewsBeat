@@ -60,8 +60,10 @@ The same calls are published as tools, for frameworks that would rather be hande
 URL: `newsgraph_topics`, `newsgraph_news`, `newsgraph_changes`, `newsgraph_brief`,
 `newsgraph_stories`, `newsgraph_watch`. They appear in `GET /v2/tools` and over MCP.
 
-**No credential is required.** A key is optional and only raises the rate limit — anonymous
-callers get 120 requests a minute, a key gets 1200. There is no billing.
+**No credential is required.** Anonymous callers get 120 requests a minute, identified by calling
+address and never stored. A key raises that to 1200 and is **metered**: every check is charged
+against a balance, the first $5 of which is a trial grant. When the balance reaches zero the key
+gets `402 payment_required` and you fall back to the anonymous tier, which stays free.
 
 ## Errors you should handle
 
