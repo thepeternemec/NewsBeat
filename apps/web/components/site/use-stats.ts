@@ -47,7 +47,7 @@ export function useNewsGraphStats(intervalMs = 20000) {
 
     async function load() {
       try {
-        const res = await fetch(`${API_BASE}/v2/topics?limit=1000`, { cache: "no-store" });
+        const res = await fetch(`${API_BASE}/v2/topics?limit=5000`, { cache: "no-store" });
         if (cancelled || !res.ok) return;
         const data = (await res.json()) as { topics?: Topic[]; total?: number };
         const list = data.topics ?? [];

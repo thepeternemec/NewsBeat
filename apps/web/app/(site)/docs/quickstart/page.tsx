@@ -52,7 +52,7 @@ curl "/api/v2/topics?q=nvidia"     # search a ticker or a company name`}</pre>
       <p>
         Keep the <code>beat_id</code>. It is stable, and it is the only argument the other routes
         need. The catalog is paginated — follow <code>next_offset</code> while <code>has_more</code>{" "}
-        is true, or ask for <code>limit=1000</code> to take the lot in one request.
+        is true, or ask for <code>limit=5000</code> to take the lot in one request.
       </p>
       <p>
         <code>status</code> says whether the last <em>check</em> succeeded, which is not the same as

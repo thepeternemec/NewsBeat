@@ -30,9 +30,14 @@ const authMd = read(`${ROOT}apps/web/public/auth.md`);
 const skillMd = read(`${ROOT}apps/web/public/skill.md`);
 
 /** Every doc that states the size of the catalog. */
+// `llms.txt` is the file an agent fetches first, and it said "+1000 topics" until
+// someone read it — a round number that had been wrong for three catalog changes.
+// It is a count source now, so it cannot drift again.
+const llms = read(`${ROOT}apps/web/public/llms.txt`);
 const COUNT_SOURCES: Array<[string, string, RegExp]> = [
   ["AGENTS.md", agents, /\*\*([\d,]+) topics\*\*/],
   ["docs/STATUS.md", status, /\*\*([\d,]+) topics\*\*/],
+  ["apps/web/public/llms.txt", llms, /([\d,]+) assets covered/],
 ];
 
 test("every stated catalog size matches the catalog", () => {

@@ -25,7 +25,7 @@ const COLUMNS = [
     links: [
       { href: "/docs/quickstart", label: "Quickstart" },
       { href: "/docs", label: "Docs" },
-      { href: "/llms.txt", label: "llms.txt" },
+      { href: "/llms", label: "llms.txt" },
     ],
   },
   {
