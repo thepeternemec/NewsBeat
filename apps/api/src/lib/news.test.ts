@@ -1,5 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
+import { SEED_BEATS } from "@newsgraph/contracts";
+import { TOPIC_PAGE_MAX } from "./news.js";
 import { boundedPage, readCursor, signCursor } from "./news.js";
 import { mcpResponse } from "./mcp.js";
 process.env.NEWSGRAPH_CURSOR_SECRET = "unit-test-key-never-for-production";
@@ -40,4 +42,15 @@ test("MCP rejects cross-origin requests and negotiates with standard client head
     };
     assert.equal(body.result.serverInfo.name, "newsgraph");
     assert(body.result.capabilities.tools);
+});
+
+test("one page can reach every topic", () => {
+  // This has been wrong twice: 1000 against a 1035 catalog, then 2000 against
+  // 2030. Both times the topics past the cap were served by `q`, so nothing looked
+  // broken — you simply could not page to them. The cap must never be the reason
+  // a topic is unreachable.
+  assert.ok(
+    TOPIC_PAGE_MAX >= SEED_BEATS.length,
+    `TOPIC_PAGE_MAX is ${TOPIC_PAGE_MAX} but the catalog is ${SEED_BEATS.length}; ${SEED_BEATS.length - TOPIC_PAGE_MAX} topics cannot be paged to`,
+  );
 });

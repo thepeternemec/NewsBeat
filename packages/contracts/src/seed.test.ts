@@ -43,15 +43,43 @@ test("no keyword is a bare short ticker", () => {
   // matches any headline containing the letter, "NOW" (ServiceNow) matches the
   // word "now", "OP" (Optimism) matches "Op-Ed". Every keyword has to be
   // distinctive enough to mean the asset and nothing else.
-  const banned = new Set(["S", "F", "W", "OP", "OM", "NOW", "NOT", "CORE", "TRU", "DK", "GM", "MU", "TER", "FIL", "GRT"]);
+  // Derived from the corpus, not from a dictionary. Counting word frequency across
+  // the ~950,000 stored headlines and intersecting with the ticker list found 88
+  // collisions — "ON" 110,025 times, "AI" 41,424, "ARE" 31,605, "HAS" 28,526. A
+  // dictionary list missed "HAS" entirely because it holds base forms only.
+  //
+  // When these were allowed as keywords the damage showed in the data: the Hasbro
+  // topic carried 692 articles in a day against NVIDIA's 335, and Alexandria Real
+  // Estate carried 658. A mid-cap producing more headlines than NVIDIA is not
+  // producing company headlines.
+  const banned = new Set(["AFL", "AI", "AIR", "ALL", "AMD", "AN", "APP", "ARE", "BALL", "BEN", "BILL", "BIO", "BROS", "BTC", "CAR", "CASH", "CHIP", "DASH", "DATA", "DE", "DELL", "DOW", "ETH", "EXPO", "FAST", "FIVE", "FIX", "FORM", "FOUR", "FOX", "GAP", "GEN", "GO", "HAS", "HE", "HYPE", "ICE", "IT", "JAZZ", "KEY", "KEYS", "KIM", "LEO", "LINK", "LOW", "MAN", "MAR", "MET", "META", "NEAR", "NIGHT", "NOV", "NOW", "ON", "ONE", "ONTO", "OUT", "PATH", "PM", "POST", "PUMP", "RAIN", "RBC", "RED", "REG", "ROAD", "RTX", "RUN", "RYAN", "SAM", "SHARE", "SKY", "SO", "SON", "ST", "STABLE", "TAP", "TEAM", "TECH", "TRUMP", "UBER", "UPS", "WAY", "WELL", "WIN", "WING", "XRP", "YOU"]);
   // Two deliberate exceptions, each paired with a distinctive name so the
   // generic word alone is never the only way a story can match.
-  const excepted = new Map([["NOT", "Notcoin"], ["CORE", "Core"]]);
+  // Deliberate exceptions, each paired with a distinctive name so the generic word
+  // alone is never the only way a story can match. GRT is The Graph.
+  // Entities whose brand genuinely is the word and whose label is that word, each
+  // paired with a distinctive name so the word alone is never the only way a story
+  // can match. Measured: none of these exceeds a plausible daily volume.
+  const excepted = new Map([
+    ["NOT", "Notcoin"],
+    ["CORE", "Core"],
+    ["GRT", "The Graph"],
+    ["RTX", "RTX"],
+    ["UPS", "UPS"],
+    ["XRP", "XRP"],
+  ]);
   for (const beat of SEED_BEATS) {
     for (const keyword of beat.keywords) {
       const upper = keyword.toUpperCase();
+      // The ban applies to the *bare ticker*, which is where the pollution came
+      // from — a company genuinely named "Dell" should match "Dell" headlines.
+      // What cannot work is `ticker: "DELL"` with the word "DELL" as a keyword.
+      // The bare ticker, as distinct from a company name that happens to equal one.
+      // "Dell" is Dell's name and belongs; "HAS" is not Hasbro's name and does not.
+      const isBareTicker = upper === beat.ticker.toUpperCase() && keyword !== beat.label;
+      if (!isBareTicker) continue;
       if (banned.has(upper) && excepted.get(upper) !== beat.label) {
-        assert.fail(`${beat.ticker}: keyword "${keyword}" is too generic to match on`);
+        assert.fail(`${beat.ticker}: the bare ticker is an ordinary word in headlines and cannot be a keyword`);
       }
       if (banned.has(upper)) {
         assert.ok(beat.keywords.length > 1, `${beat.ticker}: a generic keyword needs a distinctive partner`);

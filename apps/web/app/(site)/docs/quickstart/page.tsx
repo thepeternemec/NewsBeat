@@ -13,7 +13,7 @@ export default function DocsQuickstart() {
 
       <h2>1. Pick a topic</h2>
       <p>
-        A topic is a saved subject with a stable ID. The catalog holds <strong>+1000 topics</strong>{" "}
+        A topic is a saved subject with a stable ID. The catalog holds <strong>+2000 topics</strong>{" "}
         — US-listed equities and the largest crypto assets — and almost all of them carry articles.
         A topic reports <code>unavailable</code> only until its first successful check.
       </p>
@@ -38,7 +38,7 @@ curl "/api/v2/topics?q=nvidia"     # search a ticker or a company name`}</pre>
       "last_checked_at": "2026-09-19T10:15:31.920Z"
     }
   ],
-  "total": 1035,
+  "total": 2030,
   "limit": 1,
   "offset": 0,
   "has_more": true,

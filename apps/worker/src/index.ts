@@ -74,6 +74,8 @@ export interface IngestionResult {
   calls: number;
   inserted: number;
   results: BeatResult[];
+  /** Topics left for the next run because this one ran out of time. */
+  deferred?: number;
 }
 
 const iso = (d: Date) => d.toISOString().slice(0, 10);
@@ -166,15 +168,48 @@ export async function runIngestion(): Promise<IngestionResult> {
  * keyword. An article about Nvidia's supplier is correctly an Nvidia story even
  * when the headline never says "Nvidia".
  */
+/**
+ * How long one ingestion run may use.
+ *
+ * The function's ceiling is 300 seconds. This leaves a margin: a run that is
+ * killed mid-flight loses whatever it had not written and, worse, leaves the
+ * same topics at the front of the queue next time.
+ *
+ * It mattered as soon as the catalog grew. At 1,035 topics one pass fitted
+ * inside the ceiling; at twice that it would not, and the later topics — by
+ * definition the ones that had waited longest — would never refresh while every
+ * run looked successful.
+ */
+const INGEST_BUDGET_MS = Math.max(10_000, Number(env("NEWSGRAPH_INGEST_BUDGET_MS") ?? 240_000));
+
 async function runGoogle(beats: Beat[], now: Date): Promise<IngestionResult> {
   const results: BeatResult[] = [];
   let inserted = 0;
   let calls = 0;
 
+  // Most overdue first, so a run that cannot finish everything still rotates the
+  // whole catalog instead of starving the tail forever. Topics never checked sort
+  // first — they have waited longest.
+  const lastSeen = await lastChecks().catch(() => new Map<string, number>());
+  const ordered = [...beats].sort((a, b) => {
+    const at = lastSeen.get(a.beat_id) ?? 0;
+    const bt = lastSeen.get(b.beat_id) ?? 0;
+    return at - bt;
+  });
+
+  const deadline = Date.now() + INGEST_BUDGET_MS;
   let cursor = 0;
+  let deferred = 0;
+
   async function worker(): Promise<void> {
-    while (cursor < beats.length) {
-      const beat = beats[cursor++];
+    while (cursor < ordered.length) {
+      // Checked before claiming a topic, so a run stops between topics rather than
+      // abandoning one halfway through its write.
+      if (Date.now() > deadline) {
+        deferred = ordered.length - cursor;
+        return;
+      }
+      const beat = ordered[cursor++];
       if (!beat) return;
       try {
         calls += 1;
@@ -198,6 +233,21 @@ async function runGoogle(beats: Beat[], now: Date): Promise<IngestionResult> {
     }
   }
 
-  await Promise.all(Array.from({ length: Math.min(GOOGLE_CONCURRENCY, beats.length) }, worker));
-  return { beats: beats.length, calls, inserted, results };
+  await Promise.all(Array.from({ length: Math.min(GOOGLE_CONCURRENCY, ordered.length) }, worker));
+  // Reported, not silent: a run that could not cover the catalog should say so,
+  // because "ok: true" covering 60% of topics is how a stale product looks healthy.
+  return { beats: results.length, calls, inserted, results, deferred };
 }
+
+/** When each topic was last checked, for ordering. */
+async function lastChecks(): Promise<Map<string, number>> {
+  const sql = db();
+  const rows = await sql<Array<{ beat_id: string; last_success_at: Date | null }>>`
+    select beat_id, last_success_at from public.news_ingestion_status`;
+  const map = new Map<string, number>();
+  for (const row of rows) {
+    map.set(row.beat_id, row.last_success_at ? new Date(row.last_success_at).getTime() : 0);
+  }
+  return map;
+}
+

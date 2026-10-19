@@ -25,9 +25,9 @@ Vercel deployment. There is no generated code and no second runtime.
 
 ## Verified working
 
-- `/v2/topics` — **1035 topics**: 934 US-listed equities (the S&P 500, the S&P 400, and earlier
-  additions) and the top 100 crypto assets. Paginated, and each carries `beat_id`, `label`,
-  `ticker`, `asset`, `status`, `article_count` and `recent_12h`
+- `/v2/topics` — **2,030 topics**: 1,528 US-listed equities (the S&P 500, the S&P 400, the S&P 600,
+  and IPOs the indices have not caught up with) plus 502 crypto assets by market cap. Paginated, and
+  each carries `beat_id`, `label`, `ticker`, `asset`, `status`, `article_count` and `recent_12h`
 - `/v2/news` — **~57,600 articles** from **Google News RSS**, free and key-less, 24-hour window
 - Ingestion is **free**: no API key, no quota. `NEWSGRAPH_PROVIDER=newsapi` switches back to the
   paid provider, which is no longer the default precisely so it stops burning credits

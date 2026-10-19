@@ -43,7 +43,16 @@ export function freshness(last: string | null, minutes: number) { return { statu
 /** Bounds on the catalog page. A default of 100 keeps a naive client honest;
  *  a high ceiling lets one that genuinely needs the whole catalog ask once. */
 export const TOPIC_PAGE_DEFAULT = 100;
-export const TOPIC_PAGE_MAX = 2000;
+/**
+ * How many topics one page may return.
+ *
+ * Derived from the catalog, not chosen. It has now been too small twice — 1000
+ * against a 1035 catalog, then 2000 against 2030 — and both times the effect was
+ * the same: the last N topics existed, were served by `q`, and could not be
+ * reached by anyone paging through. A cap that is smaller than the thing it caps
+ * is a silent truncation with a `has_more` that lies about where the end is.
+ */
+export const TOPIC_PAGE_MAX = Math.max(2000, SEED_BEATS.length);
 
 export async function topics(query = "", limit = TOPIC_PAGE_DEFAULT, offset = 0) {
     type StatusRow = { beat_id: string; last_success_at: string | null; last_checked_at: string | null };

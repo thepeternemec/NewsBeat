@@ -130,8 +130,8 @@ const STEPS = [
   {
     n: "1",
     title: "Pick your topics",
-    desc: "Choose from 1,000+ equity and crypto topics. Each has a stable ID your agent can keep in its watchlist.",
-    tag: "1,000+ topics",
+    desc: "Choose from 2,000+ equity and crypto topics. Each has a stable ID your agent can keep in its watchlist.",
+    tag: "2,000+ topics",
   },
   {
     n: "2",
@@ -270,7 +270,7 @@ export default function Home() {
           <div className="wrap">
             <div className="metrics-grid">
               <div>
-                <div className="metric-num">1,000+</div>
+                <div className="metric-num">2,000+</div>
                 <div className="metric-label">Equity and crypto topics to follow</div>
               </div>
               <div>
@@ -289,7 +289,7 @@ export default function Home() {
             <p className="hero-tiny" style={{ marginTop: 34 }}>
               {stats?.live
                 ? `live · ${stats.beats} topics · ${stats.live} with articles · updated ${stamp || "\u2026"}`
-                : "1,000+ equity and crypto topics · loading live status"}
+                : "2,000+ equity and crypto topics · loading live status"}
             </p>
           </div>
         </section>
@@ -508,7 +508,7 @@ export default function Home() {
               <div className="feature" style={{ minHeight: 200 }}>
                 <span className="feature-tag" style={{ marginTop: 0, paddingTop: 0 }}>Shipped</span>
                 <p className="feature-desc" style={{ marginTop: 14 }}>
-                  1,000+ equity and crypto topics, refreshed every fifteen minutes. REST API,
+                  2,000+ equity and crypto topics, refreshed every fifteen minutes. REST API,
                   OpenAI-compatible tools, and hosted MCP, with cursors, briefs, and topic freshness status.
                 </p>
               </div>
@@ -596,7 +596,7 @@ export default function Home() {
               <div className="feature" style={{ minHeight: 210 }}>
                 <h3 className="feature-title">The catalog is open</h3>
                 <p className="feature-desc">
-                  +1000 topics covered today, all with coverage, and the list is
+                  +2000 topics covered today, all with coverage, and the list is
                   deliberately open. Proposing a ticker takes an issue and no code at all, which
                   makes it the cheapest real contribution here.
                 </p>

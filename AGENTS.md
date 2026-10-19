@@ -85,8 +85,8 @@ callers get 120 requests a minute, a key gets 1200. There is no billing.
 
 ## Current service state
 
-**1035 topics**: 934 US-listed equities — the S&P 500, the S&P 400, and earlier additions — plus
-the top 100 crypto assets by market cap. Every one has articles. Coverage is English-language
+**2,030 topics**: 1,528 US-listed equities — the S&P 500, the S&P 400 and the S&P 600, plus IPOs
+the indices have not caught up with — and 502 crypto assets by market cap. Every one has articles. Coverage is English-language
 financial news from Google News RSS, refreshed every fifteen minutes on a 24-hour window.
 
 A coin and a company can share a ticker: Sui and Sun Communities are both `SUI`. Match on

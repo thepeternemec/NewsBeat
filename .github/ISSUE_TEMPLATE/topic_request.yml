@@ -5,7 +5,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        The catalog holds over 1000 topics and the list is open. A good topic is
+        The catalog holds over 2000 topics and the list is open. A good topic is
         something a machine would poll on a schedule and act on — not something a
         human would browse. Ingestion matches on the name in the headline, so the
         company or asset name matters more than the ticker: a serious story names it.

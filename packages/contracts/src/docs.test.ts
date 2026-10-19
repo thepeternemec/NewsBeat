@@ -31,8 +31,8 @@ const skillMd = read(`${ROOT}apps/web/public/skill.md`);
 
 /** Every doc that states the size of the catalog. */
 const COUNT_SOURCES: Array<[string, string, RegExp]> = [
-  ["AGENTS.md", agents, /\*\*(\d+) topics\*\*/],
-  ["docs/STATUS.md", status, /\*\*(\d+) topics\*\*/],
+  ["AGENTS.md", agents, /\*\*([\d,]+) topics\*\*/],
+  ["docs/STATUS.md", status, /\*\*([\d,]+) topics\*\*/],
 ];
 
 test("every stated catalog size matches the catalog", () => {
@@ -40,7 +40,7 @@ test("every stated catalog size matches the catalog", () => {
     const match = text.match(pattern);
     assert.ok(match, `${name} no longer states a catalog size — update this test if that is deliberate`);
     assert.equal(
-      Number(match[1]),
+      Number(String(match[1]).replace(/,/g, "")),
       SEED_BEATS.length,
       `${name} says ${match[1]} topics, the catalog has ${SEED_BEATS.length}`,
     );
@@ -93,7 +93,7 @@ test("sample responses quote the real catalog size", () => {
     const text = read(`${ROOT}${file}`);
     for (const match of text.matchAll(/"total":\s*(\d+)/g)) {
       assert.equal(
-        Number(match[1]),
+        Number(match[1]!.replace(/,/g, "")),
         SEED_BEATS.length,
         `${file} shows "total": ${match[1]} in a sample; the catalog has ${SEED_BEATS.length}`,
       );
@@ -125,7 +125,7 @@ test("the published floor is a floor", () => {
     const text = readFileSync(fileURLToPath(new URL(`${ROOT}${file}`, import.meta.url)), "utf8");
     if (!text.includes("+1000 topics")) continue;
     assert.ok(
-      SEED_BEATS.length > 1000,
+      SEED_BEATS.length > 2000,
       `${file} advertises "+1000 topics" but the catalog holds ${SEED_BEATS.length}`,
     );
   }
@@ -200,7 +200,7 @@ test("the docs and the catalog agree about what is in it", () => {
   // either direction — which is exactly what the four-topic guard caught.
   assert.ok(equity.length > 500, `expected a full equity catalog, found ${equity.length}`);
   assert.ok(crypto.length >= 90, `expected ~100 crypto topics, found ${crypto.length}`);
-  assert.ok(SEED_BEATS.length > 1000, `expected past 1000 topics, found ${SEED_BEATS.length}`);
+  assert.ok(SEED_BEATS.length > 2000, `expected past 2000 topics, found ${SEED_BEATS.length}`);
 
   for (const [name, text] of [["AGENTS.md", agents], ["docs/STATUS.md", status], ["README.md", readme]] as const) {
     if (!/\b\d{3,4} topics\b/.test(text)) continue;

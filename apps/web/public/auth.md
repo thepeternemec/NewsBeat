@@ -68,7 +68,7 @@ Returns the four calls in OpenAI function-call shape:
 | `newsgraph_stories` | The events behind a topic, not the coverage — near-identical headlines grouped |
 | `newsgraph_watch` | Many topics in one call — the batch form of `changes` |
 
-`GET /v2/topics?q=` searches by ticker or company name across +1000 topics —
+`GET /v2/topics?q=` searches by ticker or company name across +2000 topics —
 US-listed equities and the largest crypto assets. A coin and a company can share a ticker
 (Sui and Sun Communities are both `SUI`), so read `asset` to tell them apart.
 
