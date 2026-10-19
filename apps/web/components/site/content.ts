@@ -32,7 +32,7 @@ export const PRICES = [
 export const ROADMAP = [
   {
     "when": "Shipped",
-    "what": "2,000+ equity and crypto topics, fifteen-minute ingestion, a public REST API, OpenAI-compatible tools, hosted MCP, cursors, briefs, and story grouping."
+    "what": "2,000+ equities and cryptos, fifteen-minute ingestion, a public REST API, OpenAI-compatible tools, hosted MCP, cursors, briefs, and story grouping."
   },
   {
     "when": "In progress",
@@ -51,7 +51,7 @@ export const ROADMAP = [
 export const FAQ = [
   {
     "q": "What is live today?",
-    "a": "NewsGraph covers 2,000+ equity and crypto topics using English-language financial news from Google News RSS, refreshed every fifteen minutes. The public REST API, OpenAI-compatible tools, and hosted MCP support topic discovery, headlines, changes since a cursor, briefs, and story grouping."
+    "a": "NewsGraph covers 2,000+ equities and cryptos using English-language financial news from Google News RSS, refreshed every fifteen minutes. The public REST API, OpenAI-compatible tools, and hosted MCP support topic discovery, headlines, changes since a cursor, briefs, and story grouping."
   },
   {
     "q": "How does NewsGraph track what changed?",

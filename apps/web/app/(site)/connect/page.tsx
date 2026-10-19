@@ -112,7 +112,7 @@ export default function Connect() {
             <h1 className="sec-title">Start in one request.</h1>
             <p className="sec-sub">
               No key, no signup, and the anonymous tier is free. Point your agent at the endpoint below and ask it about
-              a ticker — +2000 topics covered, refreshed every fifteen minutes.
+              a ticker — 2,000+ equities and cryptos covered, refreshed every fifteen minutes.
             </p>
             <div className="hero-cta">
               <a className="btn-primary" href="/docs/quickstart">

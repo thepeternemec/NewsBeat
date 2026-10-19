@@ -310,7 +310,7 @@ export default function Dashboard() {
           <div className="metrics-grid">
             <div>
               <div className="metric-num">{catalogTotal || "\u2026"}</div>
-              <div className="metric-label">Topics in the catalog</div>
+              <div className="metric-label">Equities and cryptos tracked</div>
             </div>
             <div>
               <div className="metric-num">{catalogTotal ? carrying : "\u2026"}</div>
