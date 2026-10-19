@@ -153,7 +153,10 @@ export default function Dashboard() {
   const pickTopic = useCallback(
     async (beatId: string) => {
       setSelected(beatId);
-      setQuery("");
+      // In clusters the query stays, because it is what narrows the list to this
+      // topic — clearing it would put the other clusters straight back. Deleting
+      // the search is how you get them back. Signals has nothing to filter.
+      if (view !== "clusters") setQuery("");
       if (view !== "clusters") return;
       const topic = topics.find((t) => t.beat_id === beatId);
       if (!topic) return;
