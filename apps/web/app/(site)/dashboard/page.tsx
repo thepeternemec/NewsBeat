@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 /** Clusters to load articles for. One request each, so this stays small. */
 const CLUSTER_LIMIT = 10;
@@ -139,6 +139,37 @@ export default function Dashboard() {
       cancelled = true;
     };
   }, [view, topics, clusterCount, clusters]);
+
+  /**
+   * A pick from the search.
+   *
+   * In Signals it selects the field. In Article clusters it has to do more: the view
+   * only holds the first N topics, so searching "AAPL" found the ticker but had
+   * nothing to filter — the panel came back empty and the search looked broken. A pick
+   * now fetches that topic's articles and puts it at the top of the list.
+   */
+  const pickTopic = useCallback(
+    async (beatId: string) => {
+      setSelected(beatId);
+      setQuery("");
+      if (view !== "clusters") return;
+      const topic = topics.find((t) => t.beat_id === beatId);
+      if (!topic) return;
+      if (clusters.some((c) => c.topic.beat_id === beatId)) return;
+      try {
+        const res = await fetch(`${API_BASE}/v2/news?beat_id=${beatId}`, { cache: "no-store" });
+        const page = res.ok ? ((await res.json()) as { items?: Article[] }) : { items: [] };
+        const entry = { topic, articles: page.items ?? [] };
+        setClusters((prev) =>
+          prev.some((c) => c.topic.beat_id === beatId) ? prev : [entry, ...prev],
+        );
+      } catch {
+        /* leave the list as it was — the suggestion is still in the dropdown */
+      }
+    },
+    [view, topics, clusters],
+  );
+
 
   const funded = topics.filter((t) => t.status !== "unavailable");
   const active = selected ?? funded[0]?.beat_id ?? null;
@@ -297,10 +328,7 @@ export default function Dashboard() {
                       key={t.beat_id}
                       type="button"
                       className="ticker-suggest-row"
-                      onClick={() => {
-                        setSelected(t.beat_id);
-                        setQuery("");
-                      }}
+                      onClick={() => void pickTopic(t.beat_id)}
                     >
                       <span className="s-tick">{t.ticker}</span>
                       <span className="s-name">{t.label}</span>
