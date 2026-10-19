@@ -206,16 +206,30 @@
   padding: 0;
   list-style: none;
   display: grid;
+  /* A grid with no explicit columns sizes its implicit track to max-content, so one
+     long sentence made a 497px track inside a 350px column. The page then measured
+     517px on a 390px phone and the browser zoomed out to fit it — which is what "it
+     fits out of the screen" looked like. `minmax(0, 1fr)` bounds the track. */
+  grid-template-columns: minmax(0, 1fr);
   gap: 9px;
 }
+/* A list item is a paragraph with a dash beside it, not a row of boxes.
+   `display: flex` made every inline child a flex item — the sentence, the <code>
+   word, the next sentence, the next <code> word — all laid out across one line. A
+   short bullet looked fine; the long one measured 497px inside a 350px column and
+   took the whole page to 517px on a 390px phone, which the browser then zoomed out
+   to fit. That is what "it fits out of the screen" was. */
 .docs-body li {
-  display: flex;
-  gap: 10px;
+  position: relative;
+  padding-left: 24px;
   font-size: 14px;
+  line-height: 1.62;
   color: var(--text-secondary);
 }
 .docs-body li::before {
   content: "—";
+  position: absolute;
+  left: 0;
   color: var(--text-ghost);
 }
 .docs-body code {

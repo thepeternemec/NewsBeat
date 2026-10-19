@@ -176,9 +176,8 @@ curl "/api/v2/topics?q=nvidia"     # search a ticker or a company name`}</pre>
       <h2>What there is not</h2>
       <ul>
         <li>
-            No key to obtain. One is optional: it raises the limit from 120 requests a minute to
-            1200 and is metered from a $5.00 trial
-          minute to 1200
+          No key to obtain. One is optional: it raises the limit from 120 requests a minute to
+          1200 and is metered from a $5.00 trial
         </li>
         <li>
           No article bodies, at any price — and with the current provider, no excerpt or publisher
