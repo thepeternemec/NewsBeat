@@ -46,13 +46,51 @@ function tag(block: string, name: string): string {
   return m?.[1] ? decode(m[1]) : "";
 }
 
-/** Google appends " - Publisher" to every headline. */
+/**
+ * Google appends " - Publisher" to every headline.
+ *
+ * The separator is not always spaced. One topic stored the same row 599 times with
+ * the title "| Benalla Ensign": the separator had no space before it, so none of the
+ * spaced suffixes matched and what remained was the publisher's name dressed as a
+ * headline. It was re-fetched every fifteen minutes for a week because Google mints
+ * a new URL for the same item each cycle — which is why URL-level dedupe never saw it.
+ */
 function stripPublisherSuffix(title: string, publisher: string): string {
-  const suffixes = [` - ${publisher}`, ` – ${publisher}`, ` | ${publisher}`];
+  const suffixes = [
+    ` - ${publisher}`, ` – ${publisher}`, ` | ${publisher}`, ` — ${publisher}`,
+    `-${publisher}`, `|${publisher}`, `–${publisher}`,
+  ];
+  let out = title.trim();
   for (const suffix of suffixes) {
-    if (title.endsWith(suffix)) return title.slice(0, -suffix.length).trim();
+    if (out.toLowerCase().endsWith(suffix.toLowerCase())) {
+      out = out.slice(0, -suffix.length).trim();
+      break;
+    }
   }
-  return title;
+  // Separators left dangling by a partial strip.
+  return out.replace(/^[\s|–—-]+/, "").replace(/[\s|–—-]+$/, "").trim();
+}
+
+/**
+ * A headline with no words is not a headline.
+ *
+ * True for the residue that survives a strip: empty, punctuation only, or the
+ * publisher's own name. Storing those produces rows that render as a blank line and
+ * cluster with each other, which is what "duplicates in the feed" looked like.
+ */
+export function isDegenerateTitle(title: string, publisher = ""): boolean {
+  const trimmed = title.trim();
+  if (!/[A-Za-z]{2}/.test(trimmed)) return true;
+  if (trimmed.length < 12) return true;
+  if (publisher) {
+    // Compared with punctuation removed, so "| Benalla Ensign" is recognised as the
+    // publisher's name and not as a headline that happens to contain a pipe.
+    const bare = (value: string) => value.toLowerCase().replace(/[^a-z0-9]/g, "");
+    if (bare(trimmed) === bare(publisher)) return true;
+    // A headline that is the publisher's name plus nothing else is also residue.
+    if (bare(publisher).length > 4 && bare(trimmed) === bare(publisher)) return true;
+  }
+  return false;
 }
 
 export interface GoogleNewsOptions {
@@ -117,15 +155,19 @@ export async function searchGoogleNews(
     const url = publisherUrlFromId(id) ?? link;
     const date = new Date(published);
 
+    // A headline that is only the publisher's name is not a headline.
+    const headline = stripPublisherSuffix(rawTitle, publisher);
+    if (isDegenerateTitle(headline, publisher)) return [];
+
     return [
       {
         uri: id,
         url,
-        title: stripPublisherSuffix(rawTitle, publisher),
+        title: headline,
         /* Google returns no sentiment; the paid provider does. The schema has
            the field, so leaving it undefined made Google-sourced rows a special
            case for every consumer. */
-        sentiment: scoreHeadline(stripPublisherSuffix(rawTitle, publisher)).sentiment,
+        sentiment: scoreHeadline(headline).sentiment,
         // The feed carries no prose, only a link. Better an empty excerpt than
         // a duplicated headline pretending to be one.
         body: "",

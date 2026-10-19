@@ -14,7 +14,7 @@
   "scripts": {
     "build": "npm run build:packages && npm run build -w @newsgraph/api && npm run build -w newsgraph-worker && npm run build -w newsgraph-web",
     "build:packages": "npm run build -w @newsgraph/contracts && npm run build -w @newsgraph/db",
-    "test": "npm run build:packages && npm run build -w newsgraph-worker && npm run build -w @newsgraph/api && node --test packages/contracts/dist/*.test.js packages/db/dist/*.test.js apps/worker/dist/*.test.js apps/api/dist/lib/*.test.js",
+    "test": "npm run build:packages && npm run build -w newsgraph-worker && npm run build -w @newsgraph/api && node --test packages/contracts/dist/*.test.js packages/db/dist/*.test.js apps/worker/dist/*.test.js apps/worker/dist/*.test.js apps/api/dist/lib/*.test.js",
     "dev": "npm run dev:web",
     "dev:web": "npm run dev -w newsgraph-web",
     "db:setup": "node db/migrate.mjs",
@@ -23,7 +23,8 @@
     "check": "npm run build && npm test",
     "prepare": "git config core.hooksPath .githooks || true",
     "db:retain": "node db/retain.mjs",
-    "balance:grant": "node db/grant.mjs"
+    "balance:grant": "node db/grant.mjs",
+    "db:dedupe": "node db/dedupe.mjs"
   },
   "allowScripts": {
     "esbuild@0.28.2": true

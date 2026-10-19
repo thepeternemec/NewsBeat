@@ -60,6 +60,34 @@ The live presentation was stopped with it, because motion is a claim that someth
 the landing's `STREAMING` badge reads `sample`, its scrolling headline tickers are static rows,
 and the dashboard no longer polls on a timer.
 
+## Duplicates
+
+The feed was producing duplicates and the cause was not what it looked like. Two
+defects wore one symptom:
+
+1. **Google mints a fresh URL for the same item on every cycle.** Deduplication was
+   `on conflict (beat_id, url)`, so it never fired. One topic accumulated 599 identical
+   rows — `| Benalla Ensign`, re-fetched every fifteen minutes for a week.
+2. **The headline was the publisher's name.** `stripPublisherSuffix` only knew separators
+   with a space before them (`" | Publisher"`), and Google had written `"|Publisher"`. What
+   survived the strip was the publisher, dressed as a headline.
+
+Both fixed at the source:
+
+- `append_news_articles` collapses repeats inside a batch (`distinct on`) and refuses a
+  headline it already holds for the topic from the same publisher, whatever URL Google
+  gave it this time. Indexed on `(beat_id, lower(trim(title)), lower(trim(source)))`.
+- The parser handles spaced and unspaced separators, and `isDegenerateTitle` drops a
+  headline that is empty, under twelve characters, or the publisher's name with
+  punctuation removed.
+
+Backfill removed **57,067 redundant rows** (8.6% of the table). After it and a full
+ingest: **0 duplicate sets inside the 30-day window**. 45 sets remain that span 32 days
+— the check is window-scoped, so a headline repeating after a month is permitted, and
+retention deletes those rows at 35 days anyway.
+
+`npm run db:dedupe` reports; `-- --apply` deletes. Dry by default, because it deletes.
+
 ## What the site claims, and the numbers behind it
 
 Two statements were true when written and stopped being true when keys were metered:

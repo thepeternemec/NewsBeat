@@ -63,6 +63,18 @@ create index if not exists news_articles_beat_published_idx
 -- is bounded so a malformed provider response cannot become an unbounded write.
 -- The 30-day floor and 5-minute ceiling are the depth window and a guard
 -- against a provider timestamped in the future.
+-- ── content dedupe ─────────────────────────────────────────────────────
+-- `on conflict (beat_id, url)` dedupes by URL, and Google mints a fresh URL for the
+-- same item on every cycle. So the same story arrived 96 times a day and each copy
+-- looked new. One topic accumulated 599 identical rows — a single headline reading
+-- "| Benalla Ensign", re-fetched every fifteen minutes for a week.
+--
+-- The index makes the lookup cheap; it is not UNIQUE because rows stored before
+-- this existed already contain duplicates, and a failing migration would be a
+-- worse outcome than a duplicate. `db/dedupe.mjs` removes those.
+create index if not exists news_articles_content_idx
+  on public.news_articles (beat_id, lower(trim(title)), lower(trim(source)));
+
 create or replace function public.append_news_articles(p_beat_id text, p_articles jsonb)
 returns integer
 language plpgsql
@@ -76,15 +88,31 @@ begin
   end if;
   insert into public.news_articles(beat_id, provider_uri, title, excerpt, url, source, published_at)
   select p_beat_id,
-         item->>'provider_uri',
-         left(item->>'title', 240),
-         left(coalesce(item->>'excerpt', ''), 320),
-         item->>'url',
-         left(item->>'source', 120),
-         (item->>'published_at')::timestamptz
-  from jsonb_array_elements(p_articles) item
-  where (item->>'published_at')::timestamptz >= now() - interval '30 days'
-    and (item->>'published_at')::timestamptz <= now() + interval '5 minutes'
+         batch.item->>'provider_uri',
+         left(batch.item->>'title', 240),
+         left(coalesce(batch.item->>'excerpt', ''), 320),
+         batch.item->>'url',
+         left(batch.item->>'source', 120),
+         (batch.item->>'published_at')::timestamptz
+  from (
+    -- Collapse repeats *inside* one batch first: Google often returns the same
+    -- headline twice in a single response, and a `not exists` cannot see a row its
+    -- own statement has not written yet.
+    select distinct on (lower(trim(item->>'title')), lower(trim(coalesce(item->>'source', '')))) item
+    from jsonb_array_elements(p_articles) item
+    order by lower(trim(item->>'title')), lower(trim(coalesce(item->>'source', ''))), item->>'published_at'
+  ) batch
+  where (batch.item->>'published_at')::timestamptz >= now() - interval '30 days'
+    and (batch.item->>'published_at')::timestamptz <= now() + interval '5 minutes'
+    -- ...then against what is already stored for this topic. The same headline from
+    -- the same publisher is the same story, whatever URL Google gave it this time.
+    and not exists (
+      select 1 from public.news_articles existing
+      where existing.beat_id = p_beat_id
+        and lower(trim(existing.title)) = lower(trim(batch.item->>'title'))
+        and lower(trim(existing.source)) = lower(trim(coalesce(batch.item->>'source', '')))
+        and existing.published_at >= now() - interval '30 days'
+    )
   on conflict (beat_id, url) do nothing;
   get diagnostics inserted_count = row_count;
 
