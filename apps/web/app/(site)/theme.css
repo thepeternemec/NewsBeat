@@ -1257,3 +1257,60 @@
     font-size: 10px;
   }
 }
+
+/* ── Catalog search ───────────────────────────────────────────────────
+   The search answers "which ticker?" and both views ask that question, so it
+   belongs above them rather than inside one. Centred and larger than the field it
+   replaces: it is the first thing a reader reaches for on a dashboard of 2,030
+   topics, and at 420px it read as a secondary control beside the chips. */
+.catalog-search {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.catalog-search .ticker-search {
+  width: 100%;
+  max-width: 620px;
+}
+
+.catalog-search .ticker-search input {
+  padding: 16px 20px;
+  border-radius: 14px;
+  font-size: 15px;
+  text-align: center;
+  border-color: var(--border-strong);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.catalog-search .ticker-search input::placeholder {
+  color: rgba(255, 255, 255, 0.44);
+}
+
+.catalog-search .ticker-search input:focus {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* The suggestion list is left-aligned even though the field is centred: a list of
+   two-column rows reads badly centred. */
+.catalog-search .ticker-suggest-row {
+  text-align: left;
+}
+
+/* In the clusters view the search filters rather than navigates, so it says so. */
+.catalog-search-note {
+  text-align: center;
+  margin: 12px auto 0;
+  max-width: 620px;
+  font: 12px var(--font-mono), monospace;
+  color: var(--text-ghost);
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 700px) {
+  .catalog-search .ticker-search input {
+    padding: 14px 16px;
+    font-size: 14px;
+  }
+}

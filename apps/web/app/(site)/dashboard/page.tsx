@@ -191,6 +191,13 @@ export default function Dashboard() {
     ? matches.slice(0, 12)
     : [...POPULAR.map((k) => topics.find((t) => t.ticker === k)).filter((t): t is Topic => Boolean(t)),
        ...(activeTopic && !POPULAR.includes(activeTopic.ticker) ? [activeTopic] : [])];
+  /** Clusters narrowed by the search. Filtering happens over what is loaded, so it
+   *  cannot promise a topic that has not been fetched — the note above the list says
+   *  so rather than silently returning nothing. */
+  const filteredClusters = term
+    ? clusters.filter(({ topic }) =>
+        `${topic.ticker} ${topic.label}`.toLowerCase().includes(term))
+    : clusters;
   const labelOf = new Map(topics.map((t) => [t.beat_id, t.label]));
   const counts: Record<View, number | undefined> = {
     signals: articles.length || undefined,
@@ -270,42 +277,54 @@ export default function Dashboard() {
           </p>
         </div>
 
+        {/* Both views answer "which ticker?", so the search belongs to neither of
+            them. Centred and larger: it is the first control a reader reaches for
+            on a dashboard of 2,030 topics. In Signals a pick selects the field;
+            in Clusters it opens that topic's cluster. */}
+        <div className="catalog-search">
+            <div className="ticker-search">
+              <input
+                type="search"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder={`Search ${catalogTotal || topics.length} tickers or companies…`}
+                aria-label="Search tickers"
+              />
+              {query.trim().length > 0 && (
+                <div className="ticker-suggest">
+                  {suggestions.map((t) => (
+                    <button
+                      key={t.beat_id}
+                      type="button"
+                      className="ticker-suggest-row"
+                      onClick={() => {
+                        setSelected(t.beat_id);
+                        setQuery("");
+                      }}
+                    >
+                      <span className="s-tick">{t.ticker}</span>
+                      <span className="s-name">{t.label}</span>
+                      <span className="s-status">{t.status}</span>
+                    </button>
+                  ))}
+                  {suggestions.length === 0 && (
+                    <div className="ticker-suggest-row is-empty">No ticker matches “{query.trim()}”</div>
+                  )}
+                </div>
+              )}
+            </div>
+        </div>
+        {query.trim().length > 0 && view === "clusters" && filteredClusters.length === 0 && (
+          <p className="catalog-search-note">
+            no loaded cluster matches “{query.trim()}” — show more, or open Signals for it
+          </p>
+        )}
+
         {view === "signals" ? (
           <>
             {/* Ten recognisable tickers, plus a search over all of them — a wall
                 of 165 chips is not navigable. */}
             <div className="ticker-picker">
-              <div className="ticker-search">
-                <input
-                  type="search"
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  placeholder={`Search ${catalogTotal || topics.length} tickers or companies…`}
-                  aria-label="Search tickers"
-                />
-                {query.trim().length > 0 && (
-                  <div className="ticker-suggest">
-                    {suggestions.map((t) => (
-                      <button
-                        key={t.beat_id}
-                        type="button"
-                        className="ticker-suggest-row"
-                        onClick={() => {
-                          setSelected(t.beat_id);
-                          setQuery("");
-                        }}
-                      >
-                        <span className="s-tick">{t.ticker}</span>
-                        <span className="s-name">{t.label}</span>
-                        <span className="s-status">{t.status}</span>
-                      </button>
-                    ))}
-                    {suggestions.length === 0 && (
-                      <div className="ticker-suggest-row is-empty">No ticker matches “{query.trim()}”</div>
-                    )}
-                  </div>
-                )}
-              </div>
 
               <div className="ticker-bar">
                 {visible.map((t) => (
@@ -375,7 +394,7 @@ export default function Dashboard() {
               <span className="mock-dots"><span /><span /><span /></span>
               <span className="mock-title">article clusters · every article by title</span>
               <span className="mock-live">
-                {clusters.length} of {catalogTotal || "…"}
+                  {term ? `${filteredClusters.length} match` : `${clusters.length} of ${catalogTotal || "…"}`}
               </span>
             </div>
             {/* Sona UI's Accordion, already vendored and unused. Ten clusters were
@@ -385,12 +404,20 @@ export default function Dashboard() {
             <AccordionRoot
               // Clusters load after this mounts, and `defaultValue` is read once —
               // without the key the first panel was always closed on a first visit.
-              key={`${view}-${clusters.length}`}
+                key={`${view}-${clusters.length}-${active ?? ""}`}
               className="cluster-accordion"
               variant="animated"
-              defaultValue={clusters[0] ? [clusters[0].topic.beat_id] : []}
+                // Picking a ticker from the search re-mounts the accordion with that
+                // panel open — the only way to drive an uncontrolled item.
+                defaultValue={
+                  active && clusters.some((c) => c.topic.beat_id === active)
+                    ? [active]
+                    : clusters[0]
+                      ? [clusters[0].topic.beat_id]
+                      : []
+                }
             >
-              {clusters.map(({ topic, articles: items }) => (
+              {filteredClusters.map(({ topic, articles: items }) => (
                 <AccordionItem key={topic.beat_id} value={topic.beat_id}>
                   <AccordionItemTrigger className="cluster-trigger">
                     <span className="cluster-line">
