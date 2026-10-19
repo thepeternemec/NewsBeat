@@ -6,7 +6,7 @@ export default function DocsQuickstart() {
       <div className="docs-head">
         <h1>Quickstart</h1>
         <p className="docs-lead">
-          No key, no signup, no billing. Every route below is read-only and open, so you can go from
+          No key, no signup, and the anonymous tier is free. Every route below is read-only and open, so you can go from
           this page to a working loop in a couple of minutes.
         </p>
       </div>

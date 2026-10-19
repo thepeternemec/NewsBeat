@@ -78,7 +78,8 @@ a field the API cannot return — which is the mechanism behind the project's on
 - **No article bodies.** Items carry a headline, a link and the publisher's name. There is no
   `body` column at any price.
 - **No writes in the API.** Every route is read-only.
-- **No sessions, no keys, no billing.** Read-only and public.
+- **No sessions, no required keys.** Read-only and public. A key is optional, raises the rate
+  limit and is metered.
 - **No queue.** Ingestion is one pass over the catalog; the advisory lock in the SQL makes
   concurrent runs safe rather than a scheduler's problem.
 

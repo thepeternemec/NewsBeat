@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ArrowRight, Check, Copy } from "lucide-react";
 import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
+import LiveResponse from "@/components/site/live-response";
 
 const API_BASE = "https://newsgraph.vercel.app/api";
 
@@ -110,16 +111,14 @@ export default function Connect() {
             <span className="sec-eyebrow">Connect</span>
             <h1 className="sec-title">Start in one request.</h1>
             <p className="sec-sub">
-              No key, no signup, no billing. Point your agent at the endpoint below and ask it about
+              No key, no signup, and the anonymous tier is free. Point your agent at the endpoint below and ask it about
               a ticker — +2000 topics covered, refreshed every fifteen minutes.
             </p>
             <div className="hero-cta">
               <a className="btn-primary" href="/docs/quickstart">
                 Read the quickstart <ArrowRight size={14} />
               </a>
-              <a className="btn-ghost" href="/api/v2/topics?limit=5" target="_blank" rel="noreferrer">
-                See a live response
-              </a>
+              <LiveResponse />
             </div>
             <p className="hero-tiny">
                 anonymous callers get 120 requests a minute · a key raises it to 1200 and is

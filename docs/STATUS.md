@@ -5,7 +5,7 @@ Last verified: **2026-09-14** against production. Every number was read from the
 ## What this is
 
 An agent asks a topic and a cursor, and gets back either **"nothing moved"** or **a small pack of
-cited stories**. Read-only. No credential, no billing.
+cited stories**. Read-only. No credential required; a key is optional and metered.
 
 ## What exists
 

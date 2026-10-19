@@ -1314,3 +1314,80 @@
     font-size: 14px;
   }
 }
+
+/* ── Live response popover ────────────────────────────────────────────
+   The button used to open raw JSON in a tab. This shows the response in the page's
+   own code styling, anchored to the button, on hover or focus. Sized to sit inside
+   the hero column without moving anything: it is positioned, not inserted. */
+.live-response {
+  position: relative;
+  display: inline-flex;
+}
+
+.live-response-panel {
+  position: absolute;
+  z-index: 60;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(540px, calc(100vw - 32px));
+  border: 1px solid var(--border-strong);
+  border-radius: 14px;
+  background: #060606;
+  box-shadow: 0 24px 60px -18px rgba(0, 0, 0, 0.9);
+  padding: 10px;
+  text-align: left;
+}
+
+.live-response-code {
+  border-radius: 9px;
+}
+
+.live-response-code pre {
+  max-height: 268px;
+  overflow: auto;
+  /* The lede wraps rather than scrolling sideways — a headline cut off mid-word
+     defeats the point of showing it. */
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.live-response-lede {
+  color: #e8e8e8;
+}
+
+.live-response-status {
+  margin-left: auto;
+  color: var(--text-ghost);
+}
+
+.live-response-skeleton {
+  color: var(--text-ghost);
+  min-height: 96px;
+}
+
+.live-response-foot {
+  margin: 10px 4px 2px;
+  font: 11.5px/1.6 var(--font-sans), sans-serif;
+  color: var(--text-muted);
+}
+
+.live-response-foot a {
+  color: #d8d8d8;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* On a narrow screen the popover would hang off the right edge when the button is
+   near it, so it pins to the viewport instead of the button. */
+@media (max-width: 620px) {
+  .live-response-panel {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    top: auto;
+    bottom: 16px;
+    transform: none;
+    width: auto;
+  }
+}
