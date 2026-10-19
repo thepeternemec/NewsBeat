@@ -78,7 +78,9 @@ export default function Dashboard() {
       try {
         // One request for the whole catalog: the metrics sum across it and the
         // search filters it locally. A paging client would use the default 100.
-        const res = await fetch(`${API_BASE}/v2/topics?limit=2000`, { cache: "no-store" });
+        // 2000 was a round number below a 2,030 catalog: thirty topics never loaded,
+        // so the search could not find them. The server clamps to the catalog.
+        const res = await fetch(`${API_BASE}/v2/topics?limit=5000`, { cache: "no-store" });
         if (!res.ok || cancelled) return;
         const data = (await res.json()) as { topics?: Topic[]; total?: number };
         const list = data.topics ?? [];
@@ -169,6 +171,27 @@ export default function Dashboard() {
     },
     [view, topics, clusters],
   );
+
+  /**
+   * Typing a ticker or a company name pins it, without waiting for a click.
+   *
+   * "apple" is not ambiguous, and asking the reader to move to the dropdown and click
+   * the only sensible result is a step for no reason. It fires only on an exact
+   * match — a full ticker, or a full label — and only when exactly one topic matches,
+   * so partial typing never jumps the list around.
+   */
+  useEffect(() => {
+    if (view !== "clusters") return;
+    const text = query.trim().toLowerCase();
+    if (text.length < 3) return;
+    const exact = topics.filter(
+      (t) => t.ticker.toLowerCase() === text || t.label.toLowerCase() === text,
+    );
+    if (exact.length !== 1) return;
+    const id = setTimeout(() => void pickTopic(exact[0]!.beat_id), 420);
+    return () => clearTimeout(id);
+  }, [query, view, topics, pickTopic]);
+
 
 
   const funded = topics.filter((t) => t.status !== "unavailable");
@@ -320,6 +343,12 @@ export default function Dashboard() {
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder={`Search ${catalogTotal || topics.length} tickers or companies…`}
                 aria-label="Search tickers"
+                onKeyDown={(event) => {
+                  if (event.key !== "Enter") return;
+                  event.preventDefault();
+                  const first = suggestions[0];
+                  if (first) void pickTopic(first.beat_id);
+                }}
               />
               {query.trim().length > 0 && (
                 <div className="ticker-suggest">
