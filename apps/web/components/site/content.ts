@@ -71,7 +71,7 @@ export const FAQ = [
   },
   {
     "q": "How does pricing work?",
-    "a": "Usage-based pricing, with no seat licences. Published prepaid plans start at $0.20 a day for up to fifty tickers: $6 for 30 days, $18 for 90 days, or $60 for 300 days. The API is free during early access; Stripe checkout and paid access are coming soon."
+    "a": "Public reads are free during early access, with no API key or credit card required. Anonymous requests are rate limited. Optional API keys use trial credits for metered REST calls. The published prepaid plans describe future paid access; Stripe checkout is not live."
   },
   {
     "q": "Can I use NewsBeat for trading or Polymarket research?",

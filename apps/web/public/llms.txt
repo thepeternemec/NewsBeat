@@ -20,14 +20,14 @@ An empty page is a success. Report "nothing new" and do not retry it.
 
 ## Endpoints
 
-- Catalog — https://newsgraph.vercel.app/api/v2/topics
-- News — https://newsgraph.vercel.app/api/v2/news?beat_id=b_bb964843350e
-- Changes since a cursor — https://newsgraph.vercel.app/api/v2/changes?beat_id=…&cursor=…
-- Brief, top three headlines verbatim — https://newsgraph.vercel.app/api/v2/brief?beat_id=b_bb964843350e
-- Stories, the events behind a topic — https://newsgraph.vercel.app/api/v2/stories?beat_id=b_bb964843350e
-- Watch, up to 50 topics in one call — https://newsgraph.vercel.app/api/v2/watch
-- Tool definitions — https://newsgraph.vercel.app/api/v2/tools
-- MCP, Streamable HTTP — https://newsgraph.vercel.app/api/mcp
+- Catalog — https://www.newsbeat.dev/api/v2/topics
+- News — https://www.newsbeat.dev/api/v2/news?beat_id=b_bb964843350e
+- Changes since a cursor — https://www.newsbeat.dev/api/v2/changes?beat_id=…&cursor=…
+- Brief, top three headlines verbatim — https://www.newsbeat.dev/api/v2/brief?beat_id=b_bb964843350e
+- Stories, the events behind a topic — https://www.newsbeat.dev/api/v2/stories?beat_id=b_bb964843350e
+- Watch, up to 50 topics in one call — https://www.newsbeat.dev/api/v2/watch
+- Tool definitions — https://www.newsbeat.dev/api/v2/tools
+- MCP, Streamable HTTP — https://www.newsbeat.dev/api/mcp
 
 Tools, for frameworks that would rather be handed a schema than a URL:
 `newsbeat_topics`, `newsbeat_news`, `newsbeat_changes`, `newsbeat_brief`,
@@ -40,7 +40,7 @@ A key raises that to 1,200 and is metered — each check costs $0.0005 when noth
 moved and $0.004 when it did, against a $5.00 trial. At zero the key returns
 `402 payment_required`; the anonymous tier stays free.
 
-Keys are self-serve at https://newsgraph.vercel.app/keys — GitHub, scope `read:user`,
+Keys are self-serve at https://www.newsbeat.dev/keys — GitHub, scope `read:user`,
 shown once. That is a browser flow and needs a human.
 
 ## Constraints
@@ -55,7 +55,7 @@ shown once. That is a browser flow and needs a human.
 
 ## Elsewhere
 
-- Agent instructions — https://newsgraph.vercel.app/skill.md
-- Auth and registration — https://newsgraph.vercel.app/auth.md (none is required)
-- Docs — https://newsgraph.vercel.app/docs
+- Agent instructions — https://www.newsbeat.dev/skill.md
+- Auth and registration — https://www.newsbeat.dev/auth.md (none is required)
+- Docs — https://www.newsbeat.dev/docs
 - Source — https://github.com/thepeternemec/NewsBeat

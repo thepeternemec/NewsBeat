@@ -42,7 +42,7 @@ Every response carries a new cursor. Use the newest one, always for the same top
 
 ## Endpoints
 
-Base: `https://newsgraph.vercel.app/api`
+Base: `https://www.newsbeat.dev/api`
 
 | Route | Returns |
 | --- | --- |
@@ -79,10 +79,10 @@ gets `402 payment_required` and you fall back to the anonymous tier, which stays
 
 | Surface | Where |
 | --- | --- |
-| Machine summary | `https://newsgraph.vercel.app/llms.txt` |
-| This guide | `https://newsgraph.vercel.app/skill.md` |
+| Machine summary | `https://www.newsbeat.dev/llms.txt` |
+| This guide | `https://www.newsbeat.dev/skill.md` |
 | Tool definitions | `GET /v2/tools` |
-| Status and roadmap | `https://newsgraph.vercel.app/docs` |
+| Status and roadmap | `https://www.newsbeat.dev/docs` |
 | Source | `https://github.com/thepeternemec/NewsBeat` |
 
 ## Current service state

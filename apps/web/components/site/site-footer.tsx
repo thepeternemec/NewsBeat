@@ -75,7 +75,7 @@ export default function SiteFooter() {
           </div>
 
           <div className="footer-base">
-            <span>spec v1 · usage-based pricing</span>
+            <span>MCP + REST · free early access</span>
             <span>no seat licence · no lock-in</span>
           </div>
         </SpotlightCard>

@@ -6,7 +6,7 @@ import { PRICES } from "@/components/site/content";
 export const metadata = {
   title: "Pricing",
   description:
-    "Usage-based news access for AI agents. Published prepaid plans from $0.20 a day, with no seat licences. Free during early access.",
+    "Free public news access for AI agents during early access. No API key or credit card required. Future paid plans are listed separately.",
 };
 
 const ROUTES: Array<[string, string]> = [
@@ -31,10 +31,10 @@ export default function Pricing() {
         <div className="page-head">
           <div className="wrap">
             <span className="sec-eyebrow">Pricing</span>
-            <h1 className="sec-title">Pay for usage. No seat licences.</h1>
+            <h1 className="sec-title">Free to start. Ready for your agent.</h1>
             <p className="sec-sub">
-              Published prepaid plans start at $0.20 a day for up to fifty tickers on the
-              fifteen-minute refresh schedule. Choose the plan that fits your agent workflow.
+              Public news reads are free during early access. Connect through MCP or REST
+              without an API key or credit card.
             </p>
             <div className="hero-cta">
               <a className="btn-primary" href="/connect">
@@ -54,7 +54,7 @@ export default function Pricing() {
               <span className="sec-eyebrow">Today</span>
               <h2 className="sec-title">Start building today.</h2>
               <p className="sec-sub">
-                Connect your agent and explore the API for free during early access.
+                Connect your agent and explore public reads for free during early access.
                 Stripe checkout for prepaid access is coming soon. Current request limits are below.
               </p>
             </div>
@@ -79,8 +79,8 @@ export default function Pricing() {
             </table>
             </div>
             <p className="hero-tiny" style={{ marginTop: 16 }}>
-              Public access needs no key. Optional keys raise the request limit and are currently
-              issued by the operator.
+              Public access needs no key. Optional keys are available through GitHub sign-in. Keyed REST
+              calls are metered against $5 in trial credit and return 402 when the balance is exhausted.
             </p>
           </div>
         </section>
@@ -88,7 +88,7 @@ export default function Pricing() {
         <section className="scaffold" id="later">
           <div className="wrap">
             <div className="sec-head">
-              <span className="sec-eyebrow">Published prepaid plans</span>
+              <span className="sec-eyebrow">Future paid plans</span>
               <h2 className="sec-title">One daily rate. Choose your balance.</h2>
               <p className="sec-sub">
                 The planned prepaid balance is drawn down one day at a time. Every option uses
@@ -110,7 +110,7 @@ export default function Pricing() {
             </div>
             <p className="hero-tiny" style={{ marginTop: 16 }}>
               No seat licences or annual commitment. These are the published plans for paid access;
-              the API remains free until billing launches.
+              public reads remain free during early access.
             </p>
           </div>
         </section>

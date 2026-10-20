@@ -14,7 +14,7 @@ import GridField from "@/components/site/grid-field";
 export const metadata: Metadata = {
   title: "NewsBeat — The news layer for AI agents",
   description:
-    "The news layer for AI agents. Track equities and crypto with source-linked news for trading and prediction-market research. Connect through MCP or API. Usage-based pricing. No seat licences.",
+    "The news layer for AI agents. Track equities and crypto with source-linked news for trading and prediction-market research. Connect through MCP or API. Free public access during early access. No API key required.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

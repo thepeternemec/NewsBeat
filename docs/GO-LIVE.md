@@ -76,7 +76,7 @@ orphans every cursor already in the wild — so add, never renumber.
 
 ```bash
 curl -H "Authorization: Bearer $NEWSBEAT_CRON_SECRET" \
-     https://newsgraph.vercel.app/api/cron/ingest
+     https://www.newsbeat.dev/api/cron/ingest
 ```
 
 It returns one line per topic:
@@ -96,7 +96,7 @@ per topic. The response says how many it made:
 Then check the topics:
 
 ```bash
-curl https://newsgraph.vercel.app/api/v2/topics
+curl https://www.newsbeat.dev/api/v2/topics
 ```
 
 A topic that ingested successfully reads `fresh` or `stale`; one that has never run reads
@@ -127,8 +127,8 @@ Keys are issued by hand until this is configured. Two values, from an OAuth app
 that **cannot be created by an API** — GitHub only exposes it as a settings form:
 
 1. Open <https://github.com/settings/developers> → **New OAuth App**.
-2. Name: anything. Homepage: `https://newsgraph.vercel.app`.
-3. **Authorization callback URL**: `https://newsgraph.vercel.app/api/keys/callback`
+2. Name: anything. Homepage: `https://www.newsbeat.dev`.
+3. **Authorization callback URL**: `https://www.newsbeat.dev/api/keys/callback`
    — it must match exactly, including the scheme and the path.
 4. Copy the Client ID, generate a Client Secret.
 5. Set both on Vercel as `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET`, then redeploy.
@@ -148,14 +148,15 @@ For preview deployments, the callback is derived from the request origin, so eac
 deployment serves its own `/api/keys/callback`. GitHub allows one callback URL per
 OAuth app, so a preview will refuse the redirect unless you register a second app.
 
-## NewsBeat domain cutover
+## NewsBeat production domain
 
-The repository is https://github.com/thepeternemec/NewsBeat and the destination domain is `newsbeat.dev`.
-The existing Vercel project and its current hostname remain in place until the owner connects the domain.
+The repository is https://github.com/thepeternemec/NewsBeat. The live primary domain is **https://www.newsbeat.dev**; `https://news-beat.vercel.app` remains an alternate host.
 
-1. Add `newsbeat.dev` to the existing Vercel project and configure the DNS records Vercel specifies.
-2. Wait for domain verification and TLS, then verify the website, `/api/health`, MCP and a real news read on the new origin.
-3. Update the GitHub OAuth app homepage and callback to `https://newsbeat.dev` and `https://newsbeat.dev/api/keys/callback` before using sign-in there.
-4. Update clients and the documented deployment URLs to the new origin. Retain the existing host during migration; do not redirect API POST requests until clients are verified.
+- REST base: `https://www.newsbeat.dev/api`
+- MCP: `https://www.newsbeat.dev/api/mcp`
+- GitHub OAuth homepage: `https://www.newsbeat.dev`
+- GitHub OAuth callback: `https://www.newsbeat.dev/api/keys/callback`
+
+The domain is connected. Keep the OAuth app callback aligned with the primary origin before using sign-in there. Verify `/api/health`, MCP and a real news read after deployments. Retain alternate API hosts for existing clients; do not introduce redirects for API POST requests without testing clients.
 
 New configuration uses `NEWSBEAT_*`. Existing `NEWSGRAPH_*` variables remain supported as fallbacks so a branding deployment does not invalidate credentials. Existing cursor signatures and cached MCP tool names also remain valid. No database migration is needed for this rename.

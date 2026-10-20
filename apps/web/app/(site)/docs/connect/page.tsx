@@ -1,6 +1,6 @@
 export const metadata = { title: "Connecting" };
 
-const API = "https://newsgraph.vercel.app/api";
+const API = "https://www.newsbeat.dev/api";
 
 export default function DocsConnect() {
   return (
@@ -154,7 +154,7 @@ X-RateLimit-Tier: anonymous`}</pre>
       </p>
       <div className="code">
         <div className="code-bar">self-serve</div>
-        <pre>{`open https://newsgraph.vercel.app/keys
+        <pre>{`open https://www.newsbeat.dev/keys
 # sign in with GitHub, read:user only
 # the key is shown once, then only its hash exists`}</pre>
       </div>

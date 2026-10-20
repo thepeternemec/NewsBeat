@@ -4,8 +4,8 @@ description: Find current news coverage, cite publishers, and retrieve changes s
 ---
 Use the NewsBeat MCP connection or its public HTTPS API. This instruction file alone does not connect an account or install an MCP server.
 
-Base: https://newsgraph.vercel.app/api
-MCP: https://newsgraph.vercel.app/api/mcp
+Base: https://www.newsbeat.dev/api
+MCP: https://www.newsbeat.dev/api/mcp
 
 1. Find a supported topic with newsbeat_topics (GET /v2/topics?q=...). Never invent a beat ID.
 2. Read latest articles with newsbeat_news (GET /v2/news?beat_id=...). This establishes a baseline.

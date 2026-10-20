@@ -4,7 +4,7 @@
  * Called by Vercel Cron (see vercel.json). Vercel signs cron requests, so this
  * also accepts the shared secret for a manual run:
  *
- *   curl -H "Authorization: Bearer $CRON_SECRET" https://newsgraph.vercel.app/api/cron/ingest
+ *   curl -H "Authorization: Bearer $CRON_SECRET" https://www.newsbeat.dev/api/cron/ingest
  */
 import { runIngestion } from "newsbeat-worker";
 import { db, hasDatabaseEnv, pruneOldArticles } from "@newsbeat/db";
