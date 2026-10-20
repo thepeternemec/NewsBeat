@@ -6,7 +6,7 @@ import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
 import LiveResponse from "@/components/site/live-response";
 
-const API_BASE = "https://newsgraph.vercel.app/api";
+const API_BASE = "https://www.newsbeat.dev/api";
 
 const OPTIONS = [
   {
@@ -172,7 +172,7 @@ export default function Connect() {
               <span className="sec-eyebrow">Three ways in</span>
               <h2 className="sec-title">Pick the one that fits.</h2>
               <p className="sec-sub">
-                All three reach the same four calls. Nothing here is a client library —
+                All three reach the same six tools. Nothing here is a client library —
                 there is no SDK to install, and no version to keep in step.
               </p>
             </div>
@@ -245,11 +245,11 @@ export default function Connect() {
             <h2 className="cta-title">Then ask it something.</h2>
             <p className="cta-sub">
               The first useful call is the smallest one: has this ticker moved since I last looked?
-              An empty answer is a real answer, and it is the cheap one.
+              An empty answer is a useful answer: nothing new was indexed in that window.
             </p>
             <div className="cta-row">
               <a className="btn-primary" href="/docs/quickstart">
-                The four-call loop <ArrowRight size={14} />
+                Follow the quickstart <ArrowRight size={14} />
               </a>
               <a className="btn-ghost" href="/docs">All the docs</a>
             </div>

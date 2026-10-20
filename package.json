@@ -38,7 +38,7 @@
     "news-api",
     "change-monitoring"
   ],
-  "homepage": "https://newsbeat.dev",
+  "homepage": "https://www.newsbeat.dev",
   "repository": {
     "type": "git",
     "url": "https://github.com/thepeternemec/NewsBeat.git"

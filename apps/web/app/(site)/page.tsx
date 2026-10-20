@@ -67,14 +67,14 @@ const FEATURES = [
   },
   {
     icon: Bell,
-    title: "Pay for usage",
-    desc: "Usage-based pricing with no seat licences. Choose the plan that fits the way your agents work.",
-    tag: "no seat licences",
+    title: "Start building for free",
+    desc: "Public news reads are free during early access. Connect your agent without an API key or credit card.",
+    tag: "free early access",
     viz: (
       <>
-        <div className="viz-line"><span className="viz-key">pricing</span><span className="viz-val">usage-based</span></div>
+        <div className="viz-line"><span className="viz-key">pricing</span><span className="viz-val">free early access</span></div>
         <div className="viz-bar"><i style={{ width: "97%" }} /></div>
-        <div className="viz-line"><span>published plans</span><span className="viz-val">no seat licences</span></div>
+        <div className="viz-line"><span>public reads</span><span className="viz-val">no key required</span></div>
       </>
     ),
   },
@@ -176,15 +176,15 @@ export default function Home() {
               answer when nothing changed.
             </p>
             <p className="hero-tiny">
-              <strong>Usage-based pricing. No seat licences.</strong> Open source.
+              <strong>Free public access. No API key required.</strong> Open source.
             </p>
 
             <div className="code hero-curl">
               <div className="code-bar">
                 one request, right now
-                <CopyButton text={`curl -s "https://newsgraph.vercel.app/api/v2/stories?beat_id=b_7883c6d63df4"`} />
+                <CopyButton text={`curl -s "https://www.newsbeat.dev/api/v2/stories?beat_id=b_7883c6d63df4"`} />
               </div>
-              <pre>{`curl -s "https://newsgraph.vercel.app/api/v2/stories?beat_id=b_7883c6d63df4"`}</pre>
+              <pre>{`curl -s "https://www.newsbeat.dev/api/v2/stories?beat_id=b_7883c6d63df4"`}</pre>
             </div>
 
             <div className="hero-cta">
@@ -433,11 +433,11 @@ export default function Home() {
         <section className="scaffold" id="pricing">
           <div className="wrap">
             <div className="sec-head">
-              <span className="sec-eyebrow">Usage-based pricing</span>
-              <h2 className="sec-title">Pay for usage. No seat licences.</h2>
+              <span className="sec-eyebrow">Free early access</span>
+              <h2 className="sec-title">Start free. Build with your agent.</h2>
               <p className="sec-sub">
-                Choose the plan that fits your agents. Published prepaid plans start at $0.20 a day
-                for up to fifty tickers. The API is free during early access; Stripe checkout is coming soon.
+                Public reads are free during early access, with no API key or credit card required.
+                The plans below describe future paid access; Stripe checkout is not live.
               </p>
             </div>
             <div className="features grid-4">
@@ -631,7 +631,7 @@ export default function Home() {
               <a className="btn-ghost" href="/dashboard">Explore live news</a>
             </div>
             <p className="cta-tiny">
-              The news layer for AI agents · Usage-based pricing · No seat licences
+              The news layer for AI agents · Free public access · Open source
             </p>
           </div>
         </section>

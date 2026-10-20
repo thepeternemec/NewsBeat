@@ -36,7 +36,7 @@ app.get("/health", (c) => c.json({ ok: true, service: "newsbeat", version: "0.3.
 app.get("/", (c) =>
   c.json({
     service: "NewsBeat",
-    docs: "https://newsgraph.vercel.app/docs",
+    docs: "https://www.newsbeat.dev/docs",
     repo: "https://github.com/thepeternemec/NewsBeat",
     routes: ["/v2/topics", "/v2/news", "/v2/changes", "/v2/watch", "/v2/brief", "/v2/stories", "/v2/tools", "/mcp", "/health", "/keys/authorize"],
     rate_limits: rateLimits,

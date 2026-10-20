@@ -167,7 +167,7 @@ curl "/api/v2/topics?q=nvidia"     # search a ticker or a company name`}</pre>
         <pre>{`{
   "mcpServers": {
     "newsbeat": {
-      "url": "https://newsgraph.vercel.app/api/mcp"
+      "url": "https://www.newsbeat.dev/api/mcp"
     }
   }
 }`}</pre>

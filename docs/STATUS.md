@@ -24,7 +24,7 @@ The scheduled worker uses a time budget and prioritizes overdue assets. A schedu
 
 ## Brand and domain
 
-The product and repository are **NewsBeat**. The destination domain is **newsbeat.dev**; connecting it in Vercel is a separate step. The existing `newsgraph.vercel.app` deployment remains the working endpoint during the transition.
+The product and repository are **NewsBeat**, live at **https://www.newsbeat.dev**. Use `https://www.newsbeat.dev/api` for REST and `https://www.newsbeat.dev/api/mcp` for MCP. The `news-beat.vercel.app` host remains an alternate service address. Public reads are free during early access; no API key or credit card is needed. Optional keyed REST usage retains its trial-credit metering.
 
 New discovery uses `newsbeat_*` tool names. Old tool names, deployed environment-variable names and existing signed cursors retain compatibility. Workspace package names use `@newsbeat/*` and `newsbeat-*`.
 
@@ -32,7 +32,7 @@ New discovery uses `newsbeat_*` tool names. Old tool names, deployed environment
 
 [PR #11](https://github.com/thepeternemec/NewsBeat/pull/11) implements eight shared MCP/REST operations, general news search and source-record lookup, named independent keys, atomic account metering, OAuth resource-server verification, saved watches and signed webhooks. It also includes Telegram/Discord relay and Grok API examples.
 
-That work passed its preview checks but still needs its additive database migration, environment configuration and end-to-end activation. It is not merged into this branding release. An external OAuth authorization server and platform-specific consent/client registration must be configured separately.
+That work passed its preview checks but still needs its additive database migration, environment configuration and end-to-end activation. It is not merged into main. An external OAuth authorization server and platform-specific consent/client registration must be configured separately.
 
 ## Remaining limits
 
