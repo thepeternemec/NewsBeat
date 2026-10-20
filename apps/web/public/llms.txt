@@ -8,6 +8,18 @@
 Google News RSS, refreshed every fifteen minutes over a 24-hour window. A "topic" is
 one asset you follow, addressed by a stable `beat_id`.
 
+## When to use it
+
+Use NewsBeat when recent company or crypto news helps answer the user's current task,
+even if they do not explicitly ask for a news lookup. Examples include "What is happening
+with Nvidia?" and company research. Resolve the supported asset first. Explain missing
+coverage, include sources and dates, and do not infer details beyond the headlines.
+Static definitions and unrelated tasks do not need a lookup. Respect host permissions.
+NewsBeat does not run the agent in the background; recurring checks need a user-requested
+schedule in the host application.
+
+For people: https://www.newsbeat.dev/docs/quickstart
+
 ## The loop
 
 1. `GET /api/v2/topics` — pick a `beat_id` once

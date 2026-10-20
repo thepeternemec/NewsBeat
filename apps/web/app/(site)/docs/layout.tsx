@@ -5,7 +5,7 @@ import DocsSide from "@/components/site/docs-side";
 export const metadata = {
   title: "Documentation",
   description:
-    "Integrate NewsBeat: find a topic, read it, and ask what changed since your cursor."
+    "Ask your assistant about company and crypto news. Plain-language setup, example questions, and a technical reference for developers."
 };
 
 export default function DocsLayout({ children }: { children: React.ReactNode }) {

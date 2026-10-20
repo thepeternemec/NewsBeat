@@ -1,203 +1,98 @@
-export const metadata = { title: "Quickstart" };
+import CopyButton from "@/components/site/copy-button";
+import AgentInstructions from "@/components/site/agent-instructions";
+
+export const metadata = { title: "Use NewsBeat with your assistant", description: "Connect NewsBeat, ask your first question, and help your assistant know when to look up recent company news." };
+const MCP_URL = "https://www.newsbeat.dev/api/mcp";
 
 export default function DocsQuickstart() {
   return (
     <>
       <div className="docs-head">
-        <h1>Quickstart</h1>
+        <h1>Connect once. Ask naturally.</h1>
         <p className="docs-lead">
-          No key, no signup, and the anonymous tier is free. Every route below is read-only and open, so you can go from
-          this page to a working loop in a couple of minutes.
+          Start with “What is happening with Nvidia?” Your assistant can handle the news lookup
+          and bring the sources into your conversation.
         </p>
       </div>
 
-      <h2>1. Pick a topic</h2>
+      <h2>1. Check your assistant’s connection options</h2>
       <p>
-        A topic is a saved subject with a stable ID. The catalog holds <strong>+2000 topics</strong>{" "}
-        — US-listed equities and the largest crypto assets — and almost all of them carry articles.
-        A topic reports <code>unavailable</code> only until its first successful check.
-      </p>
-      <div className="code">
-        <div className="code-bar">GET /v2/topics · no credential</div>
-        <pre>{`curl /api/v2/topics?limit=1
-curl "/api/v2/topics?q=nvidia"     # search a ticker or a company name`}</pre>
-      </div>
-      <div className="code">
-        <div className="code-bar">200 OK</div>
-        <pre>{`{
-  "topics": [
-    {
-      "beat_id": "b_bb964843350e",
-      "label": "NVIDIA",
-      "ticker": "NVDA",
-      "asset": "equity",
-      "article_count": 6427,
-      "recent_12h": 87,
-      "status": "fresh",
-      "last_success_at": "2026-09-19T10:15:31.920Z",
-      "last_checked_at": "2026-09-19T10:15:31.920Z"
-    }
-  ],
-  "total": 2030,
-  "limit": 1,
-  "offset": 0,
-  "has_more": true,
-  "next_offset": 1
-}`}</pre>
-      </div>
-      <p>
-        These numbers move — <code>article_count</code> grows every fifteen minutes, so yours will
-        not match this sample and that is expected. What does not move is the shape.
+        Look for a way to add a <strong>custom remote MCP server</strong> in your assistant’s
+        settings. MCP is a standard that lets an AI assistant use services such as NewsBeat.
+        The option may be under tools, connectors or integrations; names and availability vary by app and account.
       </p>
       <p>
-        Keep the <code>beat_id</code>. It is stable, and it is the only argument the other routes
-        need. The catalog is paginated — follow <code>next_offset</code> while <code>has_more</code>{" "}
-        is true, or ask for <code>limit=5000</code> to take the lot in one request.
-      </p>
-      <p>
-        <code>status</code> says whether the last <em>check</em> succeeded, which is not the same as
-        whether there is news. <code>article_count</code> and <code>recent_12h</code> say what is
-        actually behind a topic. A coin and a company can share a ticker — Sui and Sun Communities
-        are both <code>SUI</code> — so read <code>asset</code> to tell them apart.
+        If your app does not offer that option, you can still <a href="/dashboard">browse NewsBeat
+        directly</a>. Developers can use the <a href="/docs/connect">API integration guide</a>.
+        A link pasted into a normal chat does not, by itself, give the assistant access to NewsBeat.
       </p>
 
-      <h2>2. Read the baseline</h2>
+      <h2>2. Add the NewsBeat address</h2>
       <p>
-        Fetch the current articles for your topic and keep the <code>cursor</code> from the
-        response. That cursor is your position — it is signed and bound to this topic.
+        Name the connection <strong>NewsBeat</strong> and use this address. Public reads need no
+        NewsBeat login or API key. Follow your app’s prompts to enable the connection and its news tools.
       </p>
       <div className="code">
-        <div className="code-bar">GET /v2/news?beat_id=b_bb964843350e</div>
-        <pre>{`{
-  "items": [
-    {
-      "id": "9942",
-      "beat_id": "b_bb964843350e",
-      "title": "China's Homegrown AI Chip Push Just Got Faster. Is This a Real Threat to Nvidia?",
-      "url": "https://news.google.com/rss/articles/CBMi...",
-      "source": "The Motley Fool",
-      "published_at": "2026-09-17T22:42:49.000Z",
-      "first_indexed_at": "2026-09-17T22:45:32.798Z",
-      "excerpt": ""
-    }
-  ],
-  "estimated_tokens": 1484,
-  "has_more": true,
-  "cursor": "eyJ2IjoyLCJiIjoiYl9iYjk2NDg0MzM1MGUi…",
-  "history_cursor": "eyJ2IjoyLCJiIjoiYl9iYjk2NDg0MzM1MGUi…",
-  "freshness": {
-    "status": "fresh",
-    "last_success_at": "2026-09-19T10:15:31.920Z"
-  }
-}`}</pre>
+        <div className="code-bar">NewsBeat connection address <CopyButton text={MCP_URL} label="address" /></div>
+        <pre>{MCP_URL}</pre>
       </div>
       <p>
-        A page is bounded — eight items, with <code>estimated_tokens</code> so you can budget before
-        you spend. <code>first_indexed_at</code> sits beside <code>published_at</code> on purpose:
-        lead time is a field you can measure, not a claim you have to trust.
-      </p>
-      <p>
-        <strong>The link is a Google News link</strong>, not the publisher&rsquo;s own, and{" "}
-        <code>excerpt</code> is empty — the current provider returns a headline and a publisher, not
-        prose. Some older items, ingested before the provider changed, still carry a real publisher
-        URL and an excerpt; do not depend on either being present.
+        If your app asks you to edit a configuration file, use the
+        <a href="/docs/connect#mcp"> developer setup example</a>. If it requires a sign-in flow
+        that the public connection does not support, that connection method may not work yet.
       </p>
 
-      <h2>3. Ask what changed</h2>
+      <h2>3. Ask your first question</h2>
+      <p><strong>“Use NewsBeat to find the latest news about Nvidia. Include sources and dates.”</strong></p>
       <p>
-        This is the product. Send the cursor back and you get only what appeared since — and
-        &ldquo;nothing&rdquo; is a normal, successful answer.
-      </p>
-      <div className="code">
-        <div className="code-bar">GET /v2/changes?beat_id=b_bb964843350e&cursor=eyJ2IjoyLCJiIjoi…</div>
-        <pre>{`{
-  "items": [],
-  "estimated_tokens": 0,
-  "has_more": false,
-  "cursor": "eyJ2IjoyLCJiIjoiYl9iYjk2NDg0MzM1MGUi…",
-  "freshness": {
-    "status": "fresh",
-    "last_success_at": "2026-09-19T10:15:31.920Z"
-  }
-}`}</pre>
-      </div>
-      <p>
-        An empty <code>items</code> is not an error and should not be retried. Report it plainly and
-        store the new cursor.
+        Look for a NewsBeat tool call in your assistant, followed by headlines with links and dates.
+        If it answers without a lookup, ask it to use the connected NewsBeat tools explicitly.
+        <a href="/connect"> Check the connection here</a> to confirm the service is responding;
+        this does not test the settings inside your assistant.
       </p>
 
-      <h2>4. Or skip straight to headlines</h2>
+      <h2 id="agent-instruction">4. Let your agent decide when news is useful</h2>
       <p>
-        <code>/v2/brief</code> returns the top three headlines <strong>verbatim</strong>, each with
-        its source and UTC time, plus a <code>text</code> field that concatenates the same facts.
-        Nothing is rewritten — a brief that paraphrases can be wrong while reading well.
+        Add this to your assistant’s instructions or your current conversation. It gives the agent
+        a clear reason to check news while working on your request, even when you do not say “use NewsBeat.”
       </p>
-      <div className="code">
-        <div className="code-bar">GET /v2/brief?beat_id=b_bb964843350e</div>
-        <pre>{`{
-  "ticker": "NVDA",
-  "label": "NVIDIA",
-  "count": 3,
-  "items": [
-    {
-      "lede": "China's Homegrown AI Chip Push Just Got Faster. Is This a Real Threat to Nvidia?",
-      "source": "The Motley Fool",
-      "published_at": "2026-09-17T22:42:49.000Z",
-      "first_indexed_at": "2026-09-17T22:45:32.798Z",
-      "url": "https://news.google.com/rss/articles/CBMi..."
-    }
-  ],
-  "text": "NVIDIA — 3 stories\\n1. China's Homegrown AI Chip Push… (The Motley Fool, 22:42Z)\\n…"
-}`}</pre>
-      </div>
+      <AgentInstructions />
       <p>
-        It takes the same <code>cursor</code> argument, so a brief can be asked for on a schedule and
-        return only what is new. An empty brief reads{" "}
-        <code>NVIDIA — nothing moved.</code> rather than inventing a story about quiet.
+        For example, “Help me research Microsoft” may call for a news check. “Explain what a stock
+        is” usually does not. Tool selection depends on your assistant, its settings and the task;
+        this instruction is guidance, not a guarantee that it will call NewsBeat on every turn.
       </p>
 
-      <h2>5. Use it from an agent</h2>
-      <p>
-        The same capabilities are published as tool definitions, so an agent framework can call them
-        without you writing a client. <code>GET /v2/tools</code> returns OpenAI function-call shape;{" "}
-        <code>POST /mcp</code> speaks MCP.
-      </p>
-      <div className="code">
-        <div className="code-bar">MCP client config</div>
-        <pre>{`{
-  "mcpServers": {
-    "newsbeat": {
-      "url": "https://www.newsbeat.dev/api/mcp"
-    }
-  }
-}`}</pre>
-      </div>
-
-      <h2>What there is not</h2>
+      <h2>Questions to try next</h2>
       <ul>
-        <li>
-          No key to obtain. One is optional: it raises the limit from 120 requests a minute to
-          1200 and is metered from a $5.00 trial
-        </li>
-        <li>
-          No article bodies, at any price — and with the current provider, no excerpt or publisher
-          URL either
-        </li>
-        <li>No writes: every route is read-only</li>
-        <li>
-          No summary. A brief quotes the publisher&rsquo;s own headlines — nothing is rewritten,
-          because a brief that paraphrases is a brief that can be wrong
-        </li>
-        <li>
-          No promise that every topic is current. Ingestion runs every fifteen minutes, but a check
-          can fail — so read the <code>freshness</code> field rather than assuming, and report{" "}
-          <code>stale</code> or <code>unavailable</code> as exactly that rather than as an outage
-        </li>
+        <li>“What are the latest headlines about Apple?”</li>
+        <li>“Compare recent news about Nvidia and AMD. Keep each company’s sources separate.”</li>
+        <li>“Give me a short Bitcoin briefing and tell me how recent the coverage is.”</li>
+        <li>“What is new since our previous Nvidia check?”</li>
       </ul>
+      <p>
+        For “since last time,” your assistant needs to retain the earlier check. If that information
+        is missing or expired, it should start with the latest news and explain the gap.
+      </p>
 
+      <h2>Want a regular briefing?</h2>
+      <p>
+        Ask your assistant to set up a recurring check only if it supports scheduled tasks.
+        NewsBeat itself does not run your agent in the background or send notifications.
+        A schedule and a delivery channel must be configured in the host app or another workflow.
+      </p>
+
+      <h2>If something does not work</h2>
+      <ul>
+        <li><strong>No NewsBeat tool appears:</strong> check that the connection is saved and enabled in your app.</li>
+        <li><strong>The company is missing:</strong> try its full name or ticker. It may be outside the supported catalog.</li>
+        <li><strong>The answer has no sources:</strong> ask whether a NewsBeat lookup succeeded and request the returned links.</li>
+        <li><strong>The news is old or unavailable:</strong> ask for the last successful check time. Retry later instead of treating it as current.</li>
+        <li><strong>Too many requests:</strong> pause and follow the retry time. Public access has a request limit.</li>
+      </ul>
       <div className="docs-nav-foot">
-        <a href="/docs">← Overview</a>
-        <a href="/docs/connect">Connecting →</a>
+        <a href="/docs">← How it works</a>
+        <a href="/docs/data">Understand the news →</a>
       </div>
     </>
   );
