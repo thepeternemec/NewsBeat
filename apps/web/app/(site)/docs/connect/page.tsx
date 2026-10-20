@@ -9,7 +9,7 @@ const TOOLS = [
   ["newsbeat_news", "Read latest headlines and establish a baseline cursor.", "GET /v2/news?beat_id=…"],
   ["newsbeat_changes", "Read newly indexed items after a saved cursor.", "GET /v2/changes?beat_id=…&cursor=…"],
   ["newsbeat_brief", "Get the top three headlines verbatim with sources and times.", "GET /v2/brief?beat_id=…"],
-  ["newsbeat_stories", "Group similar headlines approximately.", "GET /v2/stories?beat_id=…"],
+  ["newsbeat_stories", "Read grouped headlines with every report’s source link.", "GET /v2/stories?beat_id=…"],
   ["newsbeat_watch", "Check up to 50 assets in one request; does not create a schedule.", "POST /v2/watch"],
 ];
 const FIRST_REQUEST = `curl -s "${API}/v2/topics?q=nvidia"\n\ncurl -s "${API}/v2/news?beat_id=b_bb964843350e"`;
@@ -70,6 +70,22 @@ export default function DocsConnect() {
         the asset type when names overlap. Catalog requests support <code>q</code>, <code>limit</code>
         and <code>offset</code>. Follow <code>next_offset</code> while <code>has_more</code> is true.
         The MCP topic tool uses a <code>query</code> argument instead of <code>q</code>.
+      </p>
+
+      <h2>Grouped feed</h2>
+      <p>
+        Use <code>/v2/stories?beat_id=…</code> or <code>newsbeat_stories</code> for one lead per
+        group of similar headlines. Groups include <code>lead_article</code> and <code>reports</code>:
+        each report keeps its original headline, publisher, URL, publication time and indexing time.
+        Groups are ordered by latest coverage, and all stored articles are retained.
+      </p>
+      <p>
+        This is an approximate 24-hour snapshot. REST scans up to 200 articles by default
+        (<code>limit</code> accepts 1–500); MCP scans up to 40 to keep responses manageable.
+        <code>coverage_truncated</code> tells you when more articles exist beyond the scan.
+        Group IDs identify the first indexed report in the snapshot and may change as its window
+        changes. They are not event subscription IDs. Use article cursors below to track arrivals,
+        then refresh the grouped snapshot for presentation. Publisher counts do not imply independent verification.
       </p>
 
       <h2>Follow-up checks and history</h2>

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { API_BASE } from "./content";
+import { loadStoryFeed } from "./story-feed";
 
 /**
  * One live poll of the public news API, shared by the pages that show real
@@ -56,13 +57,9 @@ export function useNewsBeatStats(intervalMs = 20000) {
 
         const fundable = list.find((t) => t.status !== "unavailable");
         if (fundable) {
-          const news = await fetch(`${API_BASE}/v2/news?beat_id=${fundable.beat_id}`, {
-            cache: "no-store",
-          });
-          if (!cancelled && news.ok) {
-            const page = (await news.json()) as { items?: NewsItem[] };
-            setItems(page.items ?? []);
-          }
+          const page = await loadStoryFeed(API_BASE, fundable.beat_id, 40);
+          if (!cancelled) setItems(page.items);
+
         }
         setStamp(new Date().toLocaleTimeString());
       } catch {

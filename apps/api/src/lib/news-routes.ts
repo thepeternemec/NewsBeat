@@ -69,7 +69,7 @@ export async function callNewsTool(name: string, args: unknown) {
     }
     if (name === "newsbeat_stories") {
         const input = z.object({ beat_id: z.string() }).strict().parse(args);
-        return stories(input.beat_id);
+        return stories(input.beat_id, 40);
     }
     if (name === "newsbeat_watch") {
         const input = z.object({

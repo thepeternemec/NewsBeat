@@ -141,3 +141,9 @@ The response has a `results` array in the same order, each entry carrying `moved
 `failed` counts. **Each entry is independent**: an expired cursor or an unknown
 topic fails only its own result, so re-baseline just that one with
 `newsbeat_news` and keep the others.
+
+## Grouped overview
+
+Use `newsbeat_stories` for a feed grouped by similar headlines, latest coverage first. Each group includes a verbatim `lead_article` and `reports` with original source links and timestamps. No stored articles are deleted. Matching is conservative and approximate; source counts measure coverage, not independent verification.
+
+The snapshot covers up to 40 articles over MCP or 200 by default over REST (`limit` 1–500), published within the last 24 hours. Check `coverage_truncated`. Group IDs can change as the snapshot window changes. Continue using the existing topic-bound article cursors for follow-up arrivals, then refresh the grouped overview for presentation.
