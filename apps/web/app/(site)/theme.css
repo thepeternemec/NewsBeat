@@ -1420,8 +1420,8 @@
 
 .footer-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr));
-  gap: 32px;
+  grid-template-columns: minmax(0, 1.6fr) repeat(4, minmax(0, 1fr));
+  gap: 24px;
 }
 
 .footer-brand .footer-co {
@@ -1459,6 +1459,7 @@
 }
 
 .footer-col a {
+  overflow-wrap: anywhere;
   font-size: 13px;
   color: var(--text-secondary);
   transition: color 0.15s;
