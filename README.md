@@ -2,7 +2,7 @@
 
 **The news layer for AI agents.** Track equities and crypto, see what changed, and bring source-linked headlines into your agent’s research. Connect through MCP or REST. Usage-based pricing, no seat licence.
 
-[Website: newsbeat.dev](https://newsbeat.dev) · [Current live deployment](https://newsgraph.vercel.app) · [Connect](https://newsgraph.vercel.app/connect) · [Project status](docs/STATUS.md)
+[Website: newsbeat.dev](https://newsbeat.dev) · [Current live deployment](news-beat.vercel.app) · [Connect](news-beat.vercel.app) · [Project status](docs/STATUS.md)
 
 > **Domain transition:** newsbeat.dev is the new domain and will be connected to Vercel separately. The current deployment and API address remain available during the move.
 
