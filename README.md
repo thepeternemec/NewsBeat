@@ -10,6 +10,8 @@ Source-linked market news. Only what changed. Ready for your agent.
 
 [Connect your agent](https://www.newsbeat.dev/connect) · [Explore live news](https://www.newsbeat.dev/dashboard) · [Read the docs](https://www.newsbeat.dev/docs)
 
+Contact: [contact@newsbeat.dev](mailto:contact@newsbeat.dev)
+
 [![CI](https://github.com/thepeternemec/NewsBeat/actions/workflows/ci.yml/badge.svg)](https://github.com/thepeternemec/NewsBeat/actions/workflows/ci.yml)
 [![MIT license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![Early access](https://img.shields.io/badge/status-free_early_access-brightgreen)](https://www.newsbeat.dev)
