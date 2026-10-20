@@ -121,6 +121,18 @@ export async function newsPage(beatId: string, cursor?: string, history = false)
                 from news_articles
                 where beat_id = ${beatId} and published_at >= ${since}
                 ${boundary}
+                -- Keep the first indexed copy of an identical headline across
+                -- publishers. Older copies remain available to /stories, which
+                -- reports the sources behind an event. The time window prevents
+                -- a recurring headline from hiding a genuinely later update.
+                and not exists (
+                    select 1 from news_articles earlier
+                    where earlier.beat_id = news_articles.beat_id
+                      and earlier.id < news_articles.id
+                      and lower(trim(earlier.title)) = lower(trim(news_articles.title))
+                      and earlier.published_at between news_articles.published_at - interval '24 hours'
+                                                   and news_articles.published_at + interval '24 hours'
+                )
                 -- Qualified on purpose: select id::text names the output column
                 -- "id", so an unqualified ordering clause sorts that TEXT, not the
                 -- bigint column. '9984466' > '39276235'. Every list was ordered
@@ -202,6 +214,14 @@ export async function brief(beatId: string, cursor?: string, history = false) {
                 from news_articles
                 where beat_id = ${beatId} and published_at >= ${since}
                 ${boundary}
+                and not exists (
+                    select 1 from news_articles earlier
+                    where earlier.beat_id = news_articles.beat_id
+                      and earlier.id < news_articles.id
+                      and lower(trim(earlier.title)) = lower(trim(news_articles.title))
+                      and earlier.published_at between news_articles.published_at - interval '24 hours'
+                                                   and news_articles.published_at + interval '24 hours'
+                )
                 order by news_articles.id ${direction}
                 limit ${BRIEF_ITEMS + 1}`,
             sql`select last_success_at from news_ingestion_status where beat_id = ${beatId} limit 1`,
