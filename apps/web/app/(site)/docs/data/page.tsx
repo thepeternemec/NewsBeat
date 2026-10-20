@@ -71,9 +71,15 @@ export default function DocsData() {
 
       <h2>Why are similar headlines grouped?</h2>
       <p>
-        Several publishers may cover the same development. The stories view groups similar
-        headlines to make that coverage easier to scan. This is approximate: different events
-        can look similar, and multiple reports do not independently prove a claim is true.
+        Several publishers may cover the same development. The feed shows one original headline
+        for similar reports, with a “view sources” link underneath. Open it to see each report’s
+        headline, publisher, publication time and link. No reporting is deleted.
+      </p>
+      <p>
+        Grouping uses headline similarity within a 24-hour window. It keeps obvious differences
+        in figures, outcomes and uncertainty separate, but it is approximate and can still miss
+        a match or group unrelated reporting. A publisher count describes coverage, not proof.
+        The feed reads up to 200 recent reports per asset; it is not a complete archive.
       </p>
 
       <h2>Can I ask for older news?</h2>

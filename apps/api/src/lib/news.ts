@@ -1,4 +1,4 @@
-import { clusterStories } from "./cluster.js";
+import { clusterStories, storyView } from "./cluster.js";
 import { db as connect, env, hasDatabaseEnv } from "@newsbeat/db";
 import { SEED_BEATS, type NewsArticle } from "@newsbeat/contracts";
 export class NewsError extends Error {
@@ -271,8 +271,8 @@ export async function brief(beatId: string, cursor?: string, history = false) {
  *
  * A topic with 96 articles in a day is not 96 things happening; it is a handful
  * of things, reported many times. This reads the window, groups near-identical
- * headlines, and orders by how many publishers carried each — which is the
- * closest thing to "what actually happened" available without a model.
+ * headlines, and orders by latest coverage. Every report remains accessible;
+ * a shared group is a reading aid, not proof that reports agree.
  */
 export async function stories(beatId: string, limit = 200) {
     const topic = topicById(beatId);
@@ -285,8 +285,8 @@ export async function stories(beatId: string, limit = 200) {
             sql`select id::text, beat_id, title, excerpt, url, source, published_at, first_indexed_at
                 from news_articles
                 where beat_id = ${beatId} and published_at >= ${since}
-                order by published_at desc
-                limit ${limit}`,
+                order by published_at desc, news_articles.id desc
+                limit ${limit + 1}`,
             sql`select last_success_at from news_ingestion_status where beat_id = ${beatId} limit 1`,
         ]);
         rows = ((results[0] ?? []) as unknown as NewsArticle[]);
@@ -298,12 +298,13 @@ export async function stories(beatId: string, limit = 200) {
     }
 
     const iso = (value: unknown): string => value instanceof Date ? value.toISOString() : String(value ?? "");
-    const articles = (rows ?? []).map((row: NewsArticle) => ({
+    const articles = (rows ?? []).slice(0, limit).map((row: NewsArticle) => ({
         id: String(row.id),
         title: row.title,
         url: row.url,
         source: row.source,
         published_at: iso(row.published_at),
+        first_indexed_at: iso(row.first_indexed_at),
     }));
     const found = clusterStories(articles);
 
@@ -316,16 +317,11 @@ export async function stories(beatId: string, limit = 200) {
         freshness: freshness(state?.last_success_at ?? null, topic.freshness_slo_minutes),
         window_hours: 24,
         articles_read: articles.length,
+        coverage_truncated: rows.length > limit,
+        grouping: "conservative-headline-v1",
+        order: "latest_coverage_first",
         story_count: found.length,
-        stories: found.map((story) => ({
-            lead: story.lead,
-            source_count: story.source_count,
-            sources: story.sources.slice(0, 12),
-            first_seen: story.first_seen,
-            last_seen: story.last_seen,
-            url: story.articles[0]?.url ?? "",
-            articles: story.articles.length,
-        })),
+        stories: found.map(storyView),
     };
 }
 

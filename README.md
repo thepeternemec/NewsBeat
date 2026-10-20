@@ -145,3 +145,11 @@ The site runs at `http://localhost:3000`. News reads require a PostgreSQL databa
 - [Security](SECURITY.md)
 
 MIT licensed. See [LICENSE](LICENSE).
+
+### Grouped news feed
+
+The terminal and `GET /api/v2/stories?beat_id=…` show one original lead per group of similar headlines, ordered by latest coverage. Expand a story in the terminal to see each report’s publisher, link and publication time. The API returns these in `lead_article` and `reports`; stored articles are retained.
+
+Matching is conservative and approximate: it uses a 24-hour window, headline overlap, and guards for changed numbers, outcomes and uncertainty. It can miss paraphrases or group unrelated reports. Publisher counts measure coverage, not independent verification.
+
+REST scans up to 200 articles by default (`limit` 1–500); `newsbeat_stories` over MCP scans up to 40. Check `coverage_truncated`. Groups are snapshot views; use `/v2/news` and `/v2/changes` cursors for article arrivals rather than treating group IDs as stable subscriptions.

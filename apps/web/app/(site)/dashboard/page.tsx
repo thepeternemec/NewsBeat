@@ -18,7 +18,8 @@ import {
   AccordionItemTrigger,
   AccordionItemContent,
 } from "@/components/ui/accordion/accordion";
-import { hhmm } from "@/components/site/content";
+import StoryRow from "@/components/site/story-row";
+import { loadStoryFeed, type FeedItem } from "@/components/site/story-feed";
 
 const API_BASE =
   process.env.NEXT_PUBLIC_API_BASE_URL ??
@@ -36,28 +37,20 @@ interface Topic {
   last_checked_at: string | null;
 }
 
-interface Article {
-  id: string;
-  beat_id: string;
-  title: string;
-  excerpt: string;
-  url: string;
-  source: string;
-  published_at: string;
-  first_indexed_at: string;
-}
+type Article = FeedItem;
 
 type View = "signals" | "clusters";
 
 const TABS: Array<{ value: View; title: string }> = [
   { value: "signals", title: "Signals" },
-  { value: "clusters", title: "Article clusters" },
+  { value: "clusters", title: "Stories by asset" },
 ];
 
 export default function Dashboard() {
   const [topics, setTopics] = useState<Topic[]>([]);
   const [catalogTotal, setCatalogTotal] = useState(0);
   const [articles, setArticles] = useState<Article[]>([]);
+  const [feedNotice, setFeedNotice] = useState("Loading news…");
   // One entry per rendered cluster. Bounded on purpose: the catalog holds ~150
   // topics and one request each would be 150 calls from the browser.
   const [clusters, setClusters] = useState<Array<{ topic: Topic; articles: Article[] }>>([]);
@@ -120,9 +113,7 @@ export default function Dashboard() {
       const loaded = await Promise.all(
         missing.map(async (topic) => {
           try {
-            const res = await fetch(`${API_BASE}/v2/news?beat_id=${topic.beat_id}`, { cache: "no-store" });
-            if (!res.ok) return { topic, articles: [] };
-            const page = (await res.json()) as { items?: Article[] };
+            const page = await loadStoryFeed(API_BASE, topic.beat_id);
             return { topic, articles: page.items ?? [] };
           } catch {
             return { topic, articles: [] };
@@ -162,8 +153,7 @@ export default function Dashboard() {
       if (!topic) return;
       if (clusters.some((c) => c.topic.beat_id === beatId)) return;
       try {
-        const res = await fetch(`${API_BASE}/v2/news?beat_id=${beatId}`, { cache: "no-store" });
-        const page = res.ok ? ((await res.json()) as { items?: Article[] }) : { items: [] };
+        const page = await loadStoryFeed(API_BASE, beatId);
         const entry = { topic, articles: page.items ?? [] };
         setClusters((prev) =>
           prev.some((c) => c.topic.beat_id === beatId) ? prev : [entry, ...prev],
@@ -204,11 +194,11 @@ export default function Dashboard() {
   useEffect(() => {
     if (!active) return;
     let cancelled = false;
+    setArticles([]);
+    setFeedNotice("Loading news…");
     (async () => {
       try {
-        const res = await fetch(`${API_BASE}/v2/news?beat_id=${active}`, { cache: "no-store" });
-        if (cancelled) return;
-        const page = res.ok ? ((await res.json()) as { items?: Article[] }) : {};
+        const page = await loadStoryFeed(API_BASE, active);
         if (cancelled) return;
         const items = page.items ?? [];
         const fresh = new Set(items.filter((i) => !seen.current.has(i.id)).map((i) => i.id));
@@ -216,8 +206,11 @@ export default function Dashboard() {
         setArrived(seen.current.size ? fresh : new Set());
         items.forEach((i) => seen.current.add(i.id));
         setArticles(items);
+        setFeedNotice(page.coverage_truncated
+          ? "Grouped from the latest 200 reports in the last 24 hours. More coverage is available through the API."
+          : `Grouped coverage from the last 24 hours · ${page.freshness.status}.`);
       } catch {
-        if (!cancelled) setArticles([]);
+        if (!cancelled) { setArticles([]); setFeedNotice("News coverage could not be loaded. Please try again."); }
       }
     })();
     return () => {
@@ -269,6 +262,7 @@ export default function Dashboard() {
             NEWSBEAT
           </a>
           <span className="nav-links">
+            <p className="story-feed-note">Grouped from up to 200 reports per asset in the last 24 hours. Expand a story to read its sources.</p>
             {/* Sona UI's FluidTabs: the active surface slides between tabs rather
                 than switching instantly, which makes the relation between the two
                 views legible. It was already vendored and unused. */}
@@ -408,7 +402,7 @@ export default function Dashboard() {
                   signal field · {activeTopic?.label ?? "no ticker selected"}
                   <span className="tz">all times UTC</span>
                 </span>
-                <span className="mock-live">{articles.length} items</span>
+                <span className="mock-live">{articles.length} stories</span>
               </div>
               <SignalField
                 items={articles.map((a) => ({
@@ -424,24 +418,18 @@ export default function Dashboard() {
             <div className="mock" style={{ marginTop: 24 }}>
               <div className="mock-bar">
                 <span className="mock-dots"><span /><span /><span /></span>
-                <span className="mock-title">latest items · {activeTopic?.ticker ?? "—"}<span className="tz">all times UTC</span></span>
+                <span className="mock-title">grouped stories · {activeTopic?.ticker ?? "—"}<span className="tz">all times UTC</span></span>
                 <span className="mock-live">{activeTopic?.article_count ?? "…"} stored</span>
               </div>
+              <p className="story-feed-note" role="status">{feedNotice}</p>
               <div className="mock-feed">
-                {articles.slice(0, 24).map((it) => (
-                  <a key={it.id} className="mock-row" href={it.url} target="_blank" rel="noreferrer">
-                    <span className="k">{labelOf.get(it.beat_id) ?? "—"}</span>
-                    <span className="v">{it.title}</span>
-                    <span className="s">
-                      <span className="s-pub">{it.source}</span>
-                      {it.published_at ? <span className="s-time">{hhmm(it.published_at)}</span> : null}
-                    </span>
-                  </a>
+                {articles.map((it) => (
+                  <StoryRow key={it.id} item={it} label={labelOf.get(it.beat_id) ?? "—"} />
                 ))}
                 {articles.length === 0 && (
                   <div className="mock-row">
                     <span className="k">awaiting</span>
-                    <span className="v">Ingestion paused while the topic catalog is rebuilt for 100 beats.</span>
+                    <span className="v">No stories to show for this asset in the current window.</span>
                     <span className="s">system</span>
                   </div>
                 )}
@@ -452,11 +440,12 @@ export default function Dashboard() {
           <div className="mock" style={{ marginTop: 40 }}>
             <div className="mock-bar">
               <span className="mock-dots"><span /><span /><span /></span>
-              <span className="mock-title">article clusters · every article by title</span>
+              <span className="mock-title">stories by asset · last 24 hours</span>
               <span className="mock-live">
                   {term ? `${filteredClusters.length} match` : `${clusters.length} of ${catalogTotal || "…"}`}
               </span>
             </div>
+            <p className="story-feed-note">Grouped from up to 200 reports per asset in the last 24 hours. Expand a story to read its sources.</p>
             {/* Sona UI's Accordion, already vendored and unused. Ten clusters were
                 rendered fully expanded, which is why the view was capped at ten —
                 collapsed, the list is scannable and the cap is about requests
@@ -487,7 +476,7 @@ export default function Dashboard() {
                           Showing only the page size made MU read "8 articles"
                           when it has 459. */}
                       <span className="c-count">
-                        {items.length} of {topic.article_count}
+                        {items.length} stories
                       </span>
                       <span className="c-status">{topic.status}</span>
                     </span>
@@ -495,22 +484,7 @@ export default function Dashboard() {
                   <AccordionItemContent>
                     <div className="cluster-body">
                       {items.map((it) => (
-                        <a
-                          key={it.id}
-                          className="mock-row cluster-item"
-                          href={it.url}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          <span className="k" />
-                          <span className="v">{it.title}</span>
-                          <span className="s">
-                            <span className="s-pub">{it.source}</span>
-                            {it.published_at ? (
-                              <span className="s-time">{hhmm(it.published_at)}</span>
-                            ) : null}
-                          </span>
-                        </a>
+                        <StoryRow key={it.id} item={it} />
                       ))}
                     </div>
                   </AccordionItemContent>

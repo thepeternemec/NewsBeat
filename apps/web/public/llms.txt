@@ -45,6 +45,14 @@ Tools, for frameworks that would rather be handed a schema than a URL:
 `newsbeat_topics`, `newsbeat_news`, `newsbeat_changes`, `newsbeat_brief`,
 `newsbeat_stories`, `newsbeat_watch`.
 
+## Grouped overview
+
+Use `newsbeat_stories` for one lead per group of similar headlines, latest coverage first.
+Each group includes `lead_article` and `reports`, preserving publishers, links and timestamps.
+Grouping is approximate and never deletes reporting. Source counts are not independent verification.
+MCP scans up to 40 articles in the last 24 hours; REST defaults to 200 (`limit` 1–500).
+Check `coverage_truncated`. Groups are snapshots; use article cursors to track new arrivals.
+
 ## Rate limits and keys
 
 Anonymous: 120 requests a minute, identified by calling address and never stored.

@@ -1,126 +1,102 @@
+import { NewsStorySchema } from "@newsbeat/contracts";
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { clusterStories, containment, tokens, type Clusterable } from "./cluster.js";
-
-const a = (title: string, source = "Reuters", published_at = "2026-09-22T10:00:00.000Z"): Clusterable => ({
-  id: title.slice(0, 8),
-  title,
-  source,
-  published_at,
-  url: "https://example.com",
+import { clusterStories, sameStory, storyView, tokens, type Clusterable } from "./cluster.js";
+let seq = 0;
+const a = (title: string, source = "Reuters", published_at = "2026-10-20T10:00:00.000Z", id = String(++seq)): Clusterable => ({
+  id, title, source, published_at, url: `https://example.com/report/${id}`,
 });
 
-test("the same ruling from different outlets is one story", () => {
-  // Verbatim near-duplicates from the real feed, including the apostrophe
-  // variation that copy-paste produces — which is what clustering is for.
-  const articles = [
+test("the Apple syndication seen in production groups across publishers", () => {
+  const reports = [a("Prediction: Apple’s Stock Is Due for a Reality Check on Nov. 2", "The Motley Fool"),
+    a("Prediction: Apple's Stock Is Due for a Reality Check on Nov. 2", "AOL.com")];
+  const groups = clusterStories(reports);
+  assert.equal(groups.length, 1);
+  assert.equal(groups[0]!.source_count, 2);
+  assert.deepEqual(groups[0]!.articles, reports, "keep every original link and publication time");
+});
+
+test("reordered wording and simple verb inflections group", () => {
+  assert(sameStory(a("Apple invests $100 million in Pennsylvania titanium factory"),
+    a("Pennsylvania titanium factory gets $100 million Apple investment")));
+});
+
+test("the same ruling with apostrophe variations groups", () => {
+  const groups = clusterStories([
     a("Judge won't block Trump administration from giving SpaceX acres of wildlife refuge in launch site deal", "AP"),
-    a("Judge won't block Trump administration from giving SpaceX acres of wildlife refuge in launch site deal", "Reuters"),
     a("Judge wont block Trump administration from giving SpaceX acres of wildlife refuge in launch site deal", "The Hill"),
+  ]);
+  assert.equal(groups.length, 1);
+});
+
+test("contradictory outcomes, figures and speculation remain separate", () => {
+  const pairs = [
+    ["SpaceX Starship orbital launch succeeds", "SpaceX Starship orbital launch aborted"],
+    ["Apple revenue rises 12% in third quarter", "Apple revenue falls 12% in third quarter"],
+    ["Apple quarterly revenue change is +10%", "Apple quarterly revenue change is -10%"],
+    ["Apple revenue reaches $1 billion in third quarter", "Apple revenue reaches $1 million in third quarter"],
+    ["Apple quarterly revenue reaches 10 billion", "Apple quarterly revenue reaches 10%"],
+    ["Apple revenue rises 12% in third quarter", "Apple revenue rises 21% in third quarter"],
+    ["Apple revenue rises $1.8 billion in third quarter", "Apple revenue rises $18 billion in third quarter"],
+    ["Apple profit rises 12% in third quarter", "Apple revenue rises 12% in third quarter"],
+    ["Judge will block Apple app store payment rule changes", "Judge will not block Apple app store payment rule changes"],
+    ["Apple reportedly acquires startup to expand artificial intelligence team", "Apple acquires startup to expand artificial intelligence team"],
+    ["Apple launches new iPhone stores in China", "Apple launches new iPhone stores in India"],
   ];
-  const stories = clusterStories(articles);
-  assert.equal(stories.length, 1, `expected one story, got ${stories.length}`);
-  assert.equal(stories[0]!.source_count, 3);
+  for (const [x,y] of pairs) assert.equal(clusterStories([a(x!),a(y!)]).length, 2, `${x} / ${y}`);
 });
 
-test("a reworded report of the same event stays separate, on purpose", () => {
-  // A real limitation, asserted so it is visible rather than discovered. Sharing
-  // four content words out of ten scores 0.4 and does not merge. Lowering the
-  // threshold to catch it also merges unrelated stories, and a false merge *loses*
-  // a story while a missed merge only repeats one. See STORY_THRESHOLD.
-  const stories = clusterStories([
-    a("Judge won't block Trump administration from giving SpaceX acres of wildlife refuge in launch site deal", "AP"),
-    a("Federal judge allows SpaceX-wildlife refuge land exchange to move forward", "Bloomberg"),
-  ]);
-  assert.equal(stories.length, 2, "reworded coverage is not merged at this threshold");
+test("recurring headlines outside 24 hours stay separate, as do invalid dates", () => {
+  const title = "Apple shares rise following analyst upgrade";
+  assert.equal(clusterStories([a(title), a(title, "AOL", "2026-10-22T10:00:00.000Z")]).length, 2);
+  assert.equal(sameStory(a(title), a(title,"AOL","bad-date")), false);
 });
 
-test("different events about the same company stay apart", () => {
-  const stories = clusterStories([
-    a("SpaceX Raptor rocket engines roll down Main Street for McGregor Founders Day parade"),
-    a("SpaceX prepares Starship for first ever orbital launch"),
-    a("SpaceX is giving away the Starlink Mini to cheaper subscribers"),
-    a("Destiny Tech100 jumps 35% as traders chase a backdoor bet on a rumored SpaceX listing"),
-  ]);
-  assert.equal(stories.length, 4, "four unrelated headlines are four stories");
+test("short generic company headlines do not absorb unrelated coverage", () => {
+  assert.equal(sameStory(a("Apple news today"), a("Apple news today as suppliers announce earnings")), false);
 });
 
-test("a short breaking headline joins a longer report of the same event", () => {
-  // Jaccard would never merge these; dividing by the shorter set does.
-  const stories = clusterStories([
-    a("SpaceX Starship orbital launch succeeds"),
-    a("SpaceX Starship orbital launch succeeds after years of delays and a federal review"),
-  ]);
-  assert.equal(stories.length, 1);
+test("a group cannot grow by a chain of partially matching reports", () => {
+  const title = "Apple announces factory expansion in Pennsylvania for titanium smartphone components";
+  const reports = [a(title,"A","2026-10-20T00:00:00.000Z"),
+    a(title,"B","2026-10-20T20:00:00.000Z"), a(title,"C","2026-10-21T16:00:00.000Z")];
+  const groups = clusterStories(reports);
+  assert.equal(groups.length,2);
+  assert.equal(groups.flatMap(g=>g.articles).length,3);
 });
 
-test("the lead is the earliest headline, not ours", () => {
-  const stories = clusterStories([
-    a("Judge won't block Trump administration from giving SpaceX acres of wildlife refuge", "AP", "2026-09-22T12:00:00.000Z"),
-    a("Judge won't block Trump administration from giving SpaceX acres of wildlife refuge", "Reuters", "2026-09-22T09:00:00.000Z"),
-  ]);
-  assert.equal(stories[0]!.lead, "Judge won't block Trump administration from giving SpaceX acres of wildlife refuge");
-  // The lead is the first article *given*, but first_seen tracks the earliest
-  // timestamp among them — a story's start is when it was published, not when
-  // this code happened to see it.
-  assert.equal(stories[0]!.first_seen, "2026-09-22T09:00:00.000Z");
+test("lead and grouping are deterministic for reverse input and numeric IDs", () => {
+  const x=a("Apple invests $100 million in Pennsylvania titanium factory","Reuters",undefined,"9984466");
+  const y=a(x.title,"AOL",undefined,"39276235");
+  assert.deepEqual(clusterStories([y,x]),clusterStories([x,y]));
+  assert.equal(clusterStories([y,x])[0]!.articles[0]!.id,"9984466");
 });
 
-test("stories are ordered by how many publishers carried them", () => {
-  const stories = clusterStories([
-    a("A quiet thing happened at SpaceX once", "Blog"),
-    a("SpaceX Falcon 9 grounded by the FAA pending an investigation", "AP"),
-    a("SpaceX Falcon 9 grounded by the FAA pending an investigation", "Reuters"),
-    a("SpaceX Falcon 9 grounded by the FAA pending an investigation", "CNBC"),
-  ]);
-  assert.equal(stories[0]!.source_count, 3);
-  assert.ok(stories[0]!.lead.includes("Falcon 9"));
+test("latest coverage sorts first, not the most publishers", () => {
+  const older = "Apple invests $100 million in Pennsylvania titanium factory";
+  const latest = "Apple announces quarterly earnings release date";
+  const groups = clusterStories([a(older,"Reuters"),a(older,"AOL"),a(latest,"Apple","2026-10-20T12:00:00.000Z")]);
+  assert.equal(groups[0]!.lead,latest);
 });
 
-test("a publisher counted once however many times it appears", () => {
-  const stories = clusterStories([
-    a("SpaceX Falcon 9 grounded by the FAA pending an investigation", "Reuters"),
-    a("SpaceX Falcon 9 grounded by the FAA pending an investigation", "Reuters"),
-  ]);
-  assert.equal(stories[0]!.source_count, 1, "the same outlet twice is not corroboration");
-  assert.equal(stories[0]!.articles.length, 2);
+test("publisher count ignores casing; no reports disappear or inputs mutate", () => {
+  const reports=[a("Apple announces quarterly earnings release date","Reuters"),a("Apple announces quarterly earnings release date"," reuters ")];
+  const before=structuredClone(reports);
+  const groups=clusterStories(reports);
+  assert.equal(groups[0]!.source_count,1);
+  assert.equal(groups[0]!.articles.length,2);
+  assert.deepEqual(reports,before);
+  assert.deepEqual(clusterStories([]),[]);
+  assert(tokens("Apple profits rise $1.8 billion").has("1.8"));
 });
 
-test("empty input is empty output", () => {
-  assert.deepEqual(clusterStories([]), []);
-});
-
-test("tokens drop stopwords and punctuation but keep numbers", () => {
-  const t = tokens("SpaceX IPO'd at $1.8 Trillion, Crashed 32%");
-  assert.ok(t.has("spacex"));
-  assert.ok(t.has("trillion"));
-  assert.ok(t.has("32"), "a percentage distinguishes one earnings story from another");
-  assert.ok(!t.has("at"));
-});
-
-test("containment is a share of the shorter headline", () => {
-  const short = tokens("SpaceX Starship launch");
-  const long = tokens("SpaceX Starship launch happens today after a long federal review");
-  assert.equal(containment(short, long), 1, "everything the short one said is in the long one");
-  // Symmetric when one set contains the other, which is the point: dividing by
-  // the smaller set is exactly what makes a six-word breaking line merge with a
-  // twenty-word report of the same event.
-  assert.equal(containment(long, short), 1);
-});
-
-test("known limitation: an outcome word does not separate two stories", () => {
-  // Asserted rather than hidden. "launch succeeds" and "launch aborted" share
-  // every token but the verb, so containment scores 0.75 and they merge — the
-  // story that was aborted is lost behind the one that succeeded.
-  //
-  // This is why the metric cannot be the whole answer. The fix is to weight rare
-  // tokens above common ones — "spacex" appears in nearly every headline about
-  // SpaceX and distinguishes nothing, while "aborted" appears in almost none.
-  // Until then the threshold stays where it is, because the failure this metric
-  // has in practice is missing merges rather than wrong ones.
-  const stories = clusterStories([
-    a("SpaceX Starship launch succeeds"),
-    a("SpaceX Starship launch aborted at the pad"),
-  ]);
-  assert.equal(stories.length, 1, "the limitation, stated as a test");
+test("public grouped response preserves every report and parses the shared contract", () => {
+  const reports = [a("Apple announces quarterly earnings release date","Reuters"), a("Apple announces quarterly earnings release date","AOL")]
+    .map(report => ({...report, first_indexed_at: "2026-10-20T10:15:00.000Z"}));
+  const views = clusterStories(reports).map(storyView);
+  assert.equal(views.length,1);
+  const view = NewsStorySchema.parse(views[0]);
+  assert.equal(view.articles,2);
+  assert.deepEqual(view.reports,reports);
+  assert.deepEqual(view.lead_article,reports[0]);
 });
