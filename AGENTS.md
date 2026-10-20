@@ -1,6 +1,14 @@
 # NewsBeat for agents
 
-The integration guide for coding agents. For humans: one read-only API, two possible answers.
+The integration guide for agents. For people: [connect your assistant](https://www.newsbeat.dev/docs/quickstart) and ask a company-news question in your own words.
+
+## When to check the news
+
+Use NewsBeat when recent company or crypto developments would help answer the user's current task. The user does not need to name NewsBeat: "What is happening with Nvidia?", company research and market briefings are reasons to look up news. Static definitions and unrelated questions do not require a lookup.
+
+Resolve the supported asset first. Ask for clarification when the name is ambiguous and explain when there is no supported match. Answer in plain language with sources, dates and freshness, staying within what the headlines support. NewsBeat provides headline metadata, not full article text.
+
+Tool selection and permission belong to the host. A lookup during an authorized task is different from background monitoring: only create recurring checks or notifications when the user requests them and the host supports them.
 
 ## What this is, in one sentence
 
@@ -70,7 +78,8 @@ gets `402 payment_required` and you fall back to the anonymous tier, which stays
 | Code | Meaning | What to do |
 | --- | --- | --- |
 | empty `items` | Not an error | Report nothing new |
-| `400` | Bad or expired cursor | Restart with `GET /v2/news` to re-baseline |
+| `400` | Bad or mismatched cursor | Restart with `GET /v2/news` to re-baseline |
+| `410` | Cursor expired after 30 days | Explain the gap and start a new baseline |
 | `404` | Unknown `beat_id` | Re-read `/v2/topics` |
 | `503` | Upstream unavailable | Back off. Never retry a 4xx in a tight loop |
 | `429` | Rate limited | Read `Retry-After`. A key raises the ceiling |
@@ -88,7 +97,7 @@ gets `402 payment_required` and you fall back to the anonymous tier, which stays
 ## Current service state
 
 **2,030 topics**: 1,528 US-listed equities — the S&P 500, the S&P 400 and the S&P 600, plus IPOs
-the indices have not caught up with — and 502 crypto assets by market cap. Every one has articles. Coverage is English-language
+the indices have not caught up with — and 502 crypto assets by market cap. Coverage varies by asset. Coverage is English-language
 financial news from Google News RSS, refreshed every fifteen minutes on a 24-hour window.
 
 A coin and a company can share a ticker: Sui and Sun Communities are both `SUI`. Match on
@@ -98,13 +107,13 @@ A topic's `status` is `fresh`, `stale` or `unavailable`, and it reflects whether
 succeeded, not whether there is news. Read `article_count` and `recent_12h` from `/v2/topics` to
 see what is actually behind a topic.
 
-## A minimal loop
+## A scheduled loop (only when requested)
 
 ```
 topic  = GET /v2/topics -> first where status != "unavailable"
 cursor = GET /v2/news?beat_id=… .cursor
 
-every hour:
+on each user-requested scheduled check:
   page = GET /v2/changes?beat_id=…&cursor=…
   if page.error: handle it          # back off, never tight-loop
   cursor = page.cursor

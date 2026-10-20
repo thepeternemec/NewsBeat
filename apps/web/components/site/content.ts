@@ -31,55 +31,79 @@ export const PRICES = [
 
 export const ROADMAP = [
   {
-    "when": "Shipped",
-    "what": "2,000+ equities and cryptos, fifteen-minute ingestion, a public REST API, OpenAI-compatible tools, hosted MCP, cursors, briefs, and story grouping."
+    "when": "Available now",
+    "what": "Ask a connected agent for company and crypto headlines, source links, short briefings and updates since a previous check. Explore the same news in the web terminal."
   },
   {
-    "when": "In progress",
-    "what": "Stripe checkout for prepaid access, direct publisher URLs, and short descriptions for items that currently carry only a headline."
+    "when": "In development",
+    "what": "Broader news search, easier account connections and saved watches. These features still need setup and testing before release."
   },
   {
-    "when": "Next",
-    "what": "Telegram, Discord, and more service integrations, plus scheduled watches and push updates."
+    "when": "Coming next",
+    "what": "Ready-to-use Telegram and Discord integrations, notifications and paid access. Public reads are free during early access."
   },
   {
-    "when": "Open",
-    "what": "MIT-licensed source, public schemas and documentation, and an open topic catalog. Suggest a topic or contribute an integration."
+    "when": "Built in the open",
+    "what": "The source code and roadmap are public. Tell us which companies, questions or integrations would make NewsBeat more useful to you."
   }
 ];
 
 export const FAQ = [
   {
-    "q": "What is live today?",
-    "a": "NewsBeat covers 2,000+ equities and cryptos using English-language financial news from Google News RSS, refreshed every fifteen minutes. The public REST API, OpenAI-compatible tools, and hosted MCP support topic discovery, headlines, changes since a cursor, briefs, and story grouping."
+    "q": "What does NewsBeat do?",
+    "a": "NewsBeat gives your AI assistant access to recent company and crypto news. Once connected, you can ask “What is happening with Nvidia?” in your own words. Your assistant looks up the coverage and answers with sources you can open."
   },
   {
-    "q": "How does NewsBeat track what changed?",
-    "a": "Choose a topic and keep the cursor returned by the API. On the next check, send that cursor to receive stories that appeared since. An empty result means nothing new was found in that window; always check the topic's freshness status too."
+    "q": "Do I need to know how to code?",
+    "a": "No coding is needed if your assistant lets you add a remote MCP connection. MCP is a way for an AI assistant to use an outside service. Add the NewsBeat address once, then ask questions normally. If your assistant does not offer this connection, you can explore news directly in the NewsBeat terminal."
   },
   {
-    "q": "Do I get full articles?",
-    "a": "Each news page contains up to eight items with a headline, publisher, publication time, and a link that resolves to the article. NewsBeat does not supply full article bodies. Current links may redirect through Google News."
+    "q": "What can I ask?",
+    "a": "Try “What is happening with Nvidia?”, “Give me the latest headlines about Apple”, or “What changed with Bitcoin since our last check?” You can ask about supported US-listed companies and crypto assets. Follow-up checks depend on your assistant retaining the previous check."
   },
   {
-    "q": "How fresh is the news?",
-    "a": "Ingestion runs on a fifteen-minute schedule. Availability also depends on the upstream source and each topic's last successful check. Responses report freshness, and items include publication and indexing timestamps, so your agent can assess the update before using it."
+    "q": "Will my agent know when to check the news?",
+    "a": "A connected agent can choose NewsBeat when current news would help answer your question, even if you do not mention NewsBeat by name. For example, it can check recent company headlines while researching a business. Add the suggested instruction in our getting-started guide to make that preference clear. Your assistant controls tool selection and may ask you to approve a lookup."
   },
   {
-    "q": "How do I connect my agent?",
-    "a": "Use the hosted MCP endpoint, OpenAI-compatible tool definitions, or the REST API. Public access currently needs no API key. The Connect page includes setup instructions and the quickstart shows your first request."
+    "q": "Will it keep watching when I close the chat?",
+    "a": "NewsBeat answers when your assistant calls it. It does not keep your chat running or send alerts by itself. Recurring checks need a scheduling feature in your assistant or another workflow that you set up. Dedicated notifications and messaging integrations are still in development."
   },
   {
-    "q": "How does pricing work?",
-    "a": "Public reads are free during early access, with no API key or credit card required. Anonymous requests are rate limited. Optional API keys use trial credits for metered REST calls. The published prepaid plans describe future paid access; Stripe checkout is not live."
+    "q": "How do I connect it to my assistant?",
+    "a": "Open the getting-started guide and copy https://www.newsbeat.dev/api/mcp into your assistant’s remote MCP connection settings. The exact steps depend on the app. Test the connection, enable its news tools, and ask your first question. Pasting the address into an ordinary chat does not necessarily connect it."
   },
   {
-    "q": "Can I use NewsBeat for trading or Polymarket research?",
-    "a": "Yes. Bring relevant equity and crypto headlines into your research alongside your own market data and probability models. NewsBeat supplies news context; it does not execute trades, provide Polymarket prices, or connect directly to your Polymarket account."
+    "q": "Does it work with ChatGPT, Claude, Grok or other assistants?",
+    "a": "The connection depends on the features available in your assistant and account. If it supports custom remote MCP servers, you can try the NewsBeat connection. Developers can also connect agents through the API. NewsBeat is not yet listed or approved in every assistant’s connector directory; the name of the app alone does not guarantee support."
   },
   {
-    "q": "Are Telegram and Discord integrations available?",
-    "a": "MCP and the REST API are available today. Dedicated Telegram, Discord, and other service integrations are planned. You can already use the API in your own bots and workflows."
+    "q": "Is NewsBeat free?",
+    "a": "Public news reads are free during early access. You do not need a NewsBeat account, API key or credit card to start. Request limits apply, and your AI assistant may have its own subscription or usage fees. Optional API keys have separate trial-credit limits for metered API requests; Stripe checkout is not live."
+  },
+  {
+    "q": "Which companies and topics can I follow?",
+    "a": "The current catalog includes 1,528 US-listed equities and 502 crypto assets. Search by company name or ticker. NewsBeat does not yet cover every company, private business or general news topic. If there is no match, your assistant should tell you rather than substitute a different company."
+  },
+  {
+    "q": "How recent is the news?",
+    "a": "NewsBeat checks sources on a fifteen-minute schedule. Some topics may update later if a source is delayed or a check fails. Your assistant can see when a topic was last checked successfully and should tell you if the coverage is out of date. It is not a second-by-second breaking-news feed."
+  },
+  {
+    "q": "Where do the answers come from?",
+    "a": "NewsBeat supplies English-language headlines, publisher names, dates and article links collected through Google News RSS. Your assistant uses that material to answer your question. Full article text is not included, so detailed claims may need the original reporting. Open the linked sources to read further; some publishers require a subscription."
+  },
+  {
+    "q": "What does “nothing new” mean?",
+    "a": "No new items were found in the checked window. That does not prove nothing happened to the company. Coverage may be quiet, delayed or unavailable, so your assistant should also check when the source was last refreshed."
+  },
+  {
+    "q": "Can it help with trading or Polymarket research?",
+    "a": "Yes, it can add relevant company and crypto news to your research. NewsBeat does not provide live market prices, place trades, predict outcomes or connect to your Polymarket account. Your assistant needs other sources for prices and market data."
+  },
+  {
+    "q": "Can I use it in Telegram or Discord?",
+    "a": "Developers can use the API in their own bots today. Ready-to-use Telegram and Discord integrations are planned. Connecting NewsBeat to an assistant does not automatically create a messaging bot."
   }
 ];
 

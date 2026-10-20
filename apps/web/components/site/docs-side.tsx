@@ -6,19 +6,20 @@ const GROUPS: Array<{ title: string; links: Array<{ href: string; label: string 
   {
     title: "Get started",
     links: [
-      { href: "/docs", label: "Overview" },
-      { href: "/docs/quickstart", label: "Quickstart" },
-      { href: "/docs/connect", label: "Connecting" },
+      { href: "/docs", label: "How it works" },
+      { href: "/docs/quickstart", label: "Use with your assistant" },
+      { href: "/docs/data", label: "Understand the news" },
+      { href: "/faq", label: "Common questions" },
     ],
   },
   {
-    title: "Build",
+    title: "For developers",
     links: [
-      { href: "/docs/data", label: "Topics and articles" },
+      { href: "/docs/connect", label: "MCP & API reference" },
     ],
   },
   {
-    title: "Operate",
+    title: "Project",
     links: [
       { href: "https://github.com/thepeternemec/NewsBeat", label: "GitHub ↗" },
     ],

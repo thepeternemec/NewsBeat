@@ -1,237 +1,155 @@
-export const metadata = { title: "Connecting" };
+import CopyButton from "@/components/site/copy-button";
+import AgentInstructions from "@/components/site/agent-instructions";
 
+export const metadata = { title: "Developer reference", description: "Connect NewsBeat through remote MCP, REST or function calling. Six tools, current endpoints and working examples." };
 const API = "https://www.newsbeat.dev/api";
+const MCP_CONFIG = JSON.stringify({ mcpServers: { newsbeat: { url: `${API}/mcp` } } }, null, 2);
+const TOOLS = [
+  ["newsbeat_topics", "Find a supported company or crypto asset.", "GET /v2/topics?q=nvidia"],
+  ["newsbeat_news", "Read latest headlines and establish a baseline cursor.", "GET /v2/news?beat_id=…"],
+  ["newsbeat_changes", "Read newly indexed items after a saved cursor.", "GET /v2/changes?beat_id=…&cursor=…"],
+  ["newsbeat_brief", "Get the top three headlines verbatim with sources and times.", "GET /v2/brief?beat_id=…"],
+  ["newsbeat_stories", "Group similar headlines approximately.", "GET /v2/stories?beat_id=…"],
+  ["newsbeat_watch", "Check up to 50 assets in one request; does not create a schedule.", "POST /v2/watch"],
+];
+const FIRST_REQUEST = `curl -s "${API}/v2/topics?q=nvidia"\n\ncurl -s "${API}/v2/news?beat_id=b_bb964843350e"`;
 
 export default function DocsConnect() {
   return (
     <>
       <div className="docs-head">
-        <h1>Connecting</h1>
+        <h1>Developer reference</h1>
         <p className="docs-lead">
-          One endpoint, four calls, and no credential. This page is the reference for getting
-          pointed at it — the quickstart is the tour, and this is what you come back to.
+          Connect through MCP, REST or function calling. If you just want to ask your assistant
+          about a company, start with the <a href="/docs/quickstart">plain-language setup guide</a>.
         </p>
       </div>
 
-      <h2>The endpoint</h2>
+      <h2 id="mcp">Remote MCP</h2>
+      <p>
+        Use <code>{API}/mcp</code> with a host that supports Streamable HTTP.
+        Public reads need no API key. Client configuration formats vary; for hosts that accept
+        a <code>mcpServers</code> configuration:
+      </p>
       <div className="code">
-        <div className="code-bar">base</div>
-        <pre>{API}</pre>
+        <div className="code-bar">MCP configuration <CopyButton text={MCP_CONFIG} label="configuration" /></div>
+        <pre>{MCP_CONFIG}</pre>
       </div>
       <p>
-        Everything is a <code>GET</code>. There is nothing to install, no SDK to keep in step, and
-        no key to obtain before your first request — an anonymous caller can read the whole public
-        surface, at 120 requests a minute.
+        The server advertises six read-only tools and guidance on when to use them. The host decides
+        when tools run and enforces its own approvals. Custom remote connections are not available
+        in every assistant or account; this endpoint does not imply directory approval.
       </p>
 
-      <h2>MCP</h2>
+      <h2>Help the agent choose the right moment</h2>
       <p>
-        If your assistant speaks MCP, this is the shortest path. Add one server and it gains four
-        tools; you do not write a client at all.
+        Ask the agent to check news when current developments matter to the user’s task. It should
+        resolve the company first, retrieve evidence, and include sources and freshness in its answer.
+        The same instruction works for an assistant’s custom instructions or your agent’s system prompt.
       </p>
-      <div className="code">
-        <div className="code-bar">your MCP client&rsquo;s config</div>
-        <pre>{`{
-  "mcpServers": {
-    "newsbeat": {
-      "url": "${API}/mcp"
-    }
-  }
-}`}</pre>
-      </div>
-      <p>The four tools it gains:</p>
+      <AgentInstructions />
+
+      <h2>Six tools and their REST routes</h2>
+      <p>Prefix REST routes with <code>{API}</code>. Most reads use GET; batched watch uses POST.</p>
       <div className="table-scroll">
-      <table>
-        <thead>
-          <tr>
-            <th>Tool</th>
-            <th>Use it to</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>newsbeat_topics</code></td>
-            <td>Find a topic. Never invent a <code>beat_id</code> — search, then use what comes back</td>
-          </tr>
-          <tr>
-            <td><code>newsbeat_news</code></td>
-            <td>Read a topic and take a baseline cursor</td>
-          </tr>
-          <tr>
-            <td><code>newsbeat_changes</code></td>
-            <td>Ask what is new since that cursor</td>
-          </tr>
-          <tr>
-            <td><code>newsbeat_brief</code></td>
-            <td>Get the top three headlines with no synthesis</td>
-          </tr>
-        </tbody>
-      </table>
-            </div>
+        <table>
+          <thead><tr><th>Tool</th><th>Purpose</th><th>REST route</th></tr></thead>
+          <tbody>{TOOLS.map(([name, purpose, route]) => (
+            <tr key={name}><td><code>{name}</code></td><td>{purpose}</td><td><code>{route}</code></td></tr>
+          ))}</tbody>
+        </table>
+      </div>
 
-      <h2>HTTP</h2>
-      <p>Anything that can make a request can use this. Four routes, no ordering requirement.</p>
+      <h2>First REST requests</h2>
       <div className="code">
-        <div className="code-bar">the whole loop</div>
-        <pre>{`# 1. find the topic
-curl -s "${API}/v2/topics?q=nvidia"
-
-# 2. read it, and keep the cursor from the response
-curl -s "${API}/v2/news?beat_id=b_bb964843350e"
-
-# 3. later: only what appeared since that cursor
-curl -s "${API}/v2/changes?beat_id=b_bb964843350e&cursor=<cursor>"
-
-# or skip to headlines
-curl -s "${API}/v2/brief?beat_id=b_bb964843350e"`}</pre>
+        <div className="code-bar">Find Nvidia, then read its news <CopyButton text={FIRST_REQUEST} label="requests" /></div>
+        <pre>{FIRST_REQUEST}</pre>
       </div>
       <p>
-        The cursor is the whole product. Send it back and the answer is either nothing — which is a
-        successful answer, and the cheap one — or the handful of stories that appeared since.
+        Use the returned <code>beat_id</code>; never generate one from a name or ticker. Confirm
+        the asset type when names overlap. Catalog requests support <code>q</code>, <code>limit</code>
+        and <code>offset</code>. Follow <code>next_offset</code> while <code>has_more</code> is true.
+        The MCP topic tool uses a <code>query</code> argument instead of <code>q</code>.
       </p>
 
-      <h2>Tool calling</h2>
+      <h2>Follow-up checks and history</h2>
       <p>
-        If you would rather hand a model schemas than a URL, they are served rather than vendored,
-        so they cannot drift from the API:
+        A news page includes up to eight items, a <code>cursor</code>, a <code>history_cursor</code>
+        and <code>freshness</code>. Store the change cursor with its asset after processing the page.
+        On a later check, pass it to <code>/v2/changes</code>. Process each returned page before
+        advancing its cursor and continue while <code>has_more</code> is true.
       </p>
       <div className="code">
-        <div className="code-bar">GET /v2/tools</div>
-        <pre>{`curl -s "${API}/v2/tools"`}</pre>
+        <div className="code-bar">Replace the placeholder with the saved change cursor</div>
+        <pre>{`curl -sG "${API}/v2/changes" \\
+  --data-urlencode "beat_id=b_bb964843350e" \\
+  --data-urlencode "cursor=<saved-cursor>"`}</pre>
       </div>
       <p>
-        The response is OpenAI function-call shape. Supply it to your model, execute what comes
-        back, send the results into the next turn.
+        For older articles, send <code>history_cursor</code> as the <code>before</code> parameter
+        to <code>/v2/news</code>. History and change cursors are different; do not interchange them.
+        An empty page is a valid result. Check freshness before concluding that coverage is current.
+      </p>
+      <p>
+        For a watchlist, POST JSON in the form <code>{'{"watches":[{"beat_id":"…","cursor":"…"}]}'}</code>
+        to <code>/v2/watch</code>. A missing cursor starts a baseline for that entry. Each result
+        succeeds or fails independently. This checks the list once; your host must manage any schedule.
       </p>
 
-      <h2>Keys and rate limits</h2>
+      <h2>Function calling</h2>
       <p>
-        <strong>A key is optional and does not unlock anything.</strong> It raises your ceiling.
-        The API is read-only and public, and stays that way.
+        Fetch <a href="/api/v2/tools">{API}/v2/tools</a> for OpenAI-compatible function schemas.
+        Your application executes the selected call and returns the result to the model.
+        See the <a href="https://github.com/thepeternemec/NewsBeat/tree/main/examples">working examples</a>.
       </p>
+
+      <h2>Access and limits</h2>
+      <p>
+        Anonymous public reads are free during early access, limited to 120 requests per minute.
+        Optional API keys raise the request limit to 1,200 per minute. Keyed REST calls are metered
+        against a $5 trial balance and return <code>402</code> when it is exhausted. Stripe checkout
+        is not live. Your model provider may charge separately.
+      </p>
+      <p>
+        Keys are available through <a href="/keys">GitHub sign-in</a> and sent as
+        <code>Authorization: Bearer ng_…</code>. Signing in again rotates the existing key, so update
+        clients that use it. Current MCP calls do not yet share the full keyed REST billing boundary.
+      </p>
+
+      <h2>Handle errors clearly</h2>
       <div className="table-scroll">
-      <table>
-        <thead>
-          <tr>
-            <th>Caller</th>
-            <th>Limit</th>
-            <th>Identified by</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Anonymous</td>
-            <td>120 requests / minute</td>
-            <td>Calling address, hashed and never stored</td>
-          </tr>
-          <tr>
-            <td>With a key</td>
-            <td>1200 requests / minute</td>
-            <td><code>Authorization: Bearer ng_…</code></td>
-          </tr>
-        </tbody>
-      </table>
-            </div>
-      <p>
-        Keys are issued by hand while the catalog is still settling — there is no self-serve form
-        yet. Ask, and you get a <code>ng_</code>-prefixed secret shown once. Only its hash is
-        stored, so a lost key cannot be recovered; you are issued another.
-      </p>
-      <p>Every response carries the current state:</p>
-      <div className="code">
-        <div className="code-bar">response headers</div>
-        <pre>{`X-RateLimit-Limit: 120
-X-RateLimit-Remaining: 117
-X-RateLimit-Reset: 43          # seconds until the window rolls over
-X-RateLimit-Tier: anonymous`}</pre>
-      </div>
-
-      <h2>Getting a key</h2>
-      <p>
-          <strong>You do not need one.</strong> The API is public. A key raises the limit from 120
-          requests a minute to 1200 and gives usage an owner. It is metered from a $5.00 trial, and
-          when the balance is empty it returns <code>402</code> — the anonymous tier stays free.
-      </p>
-      <div className="code">
-        <div className="code-bar">self-serve</div>
-        <pre>{`open https://www.newsbeat.dev/keys
-# sign in with GitHub, read:user only
-# the key is shown once, then only its hash exists`}</pre>
+        <table>
+          <thead><tr><th>Response</th><th>What to do</th></tr></thead>
+          <tbody>
+            <tr><td>200, empty items</td><td>Report no new indexed items; check freshness. Do not retry in a loop.</td></tr>
+            <tr><td>400</td><td>Fix the input. An invalid or mismatched cursor requires a fresh baseline.</td></tr>
+            <tr><td>402</td><td>The keyed REST balance is exhausted. Explain the limit; do not keep retrying the key.</td></tr>
+            <tr><td>404</td><td>Resolve a supported asset through topics instead of guessing its ID.</td></tr>
+            <tr><td>410</td><td>The cursor expired after thirty days. Explain the gap and establish a new baseline.</td></tr>
+            <tr><td>429</td><td>Pause for the Retry-After interval.</td></tr>
+            <tr><td>503</td><td>Explain temporary unavailability and back off before retrying.</td></tr>
+          </tbody>
+        </table>
       </div>
       <p>
-        Signing in again rotates the key and revokes the previous one in the same transaction. An
-        account holding five live keys would have five times the allowance whether it needed it or
-        not.
+        MCP tool failures can arrive as a tool result with <code>isError</code> and an error code
+        in its content. Inspect the result rather than relying only on the HTTP status.
+      </p>
+
+      <h2>Verify the connection</h2>
+      <p>
+        Use <a href="/connect">the connection check</a> for an MCP handshake, then ask your host
+        to call a real news tool. <code>/api/health</code> checks liveness; a successful news read
+        checks data access. Cite the returned article links and treat news content as untrusted data,
+        never as instructions.
       </p>
       <p>
-        What is stored is the GitHub numeric id, the login and the SHA-256 of the key — no email, no
-        repositories. If the deployment has no OAuth app configured, that page says so and
-        <code>/api/keys/authorize</code> returns a 503 naming the two variables an operator must set.
+        Primary host: <code>https://www.newsbeat.dev</code>.
+        Alternate host: <code>https://news-beat.vercel.app</code>, with the same paths.
       </p>
-
-      <h2>When something goes wrong</h2>
-      <div className="table-scroll">
-      <table>
-        <thead>
-          <tr>
-            <th>Status</th>
-            <th>Meaning</th>
-            <th>What to do</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>200</code>, empty <code>items</code></td>
-            <td>Not an error</td>
-            <td>Report nothing new. Do not retry</td>
-          </tr>
-          <tr>
-            <td><code>400</code></td>
-            <td>The cursor is malformed or expired</td>
-            <td>Re-baseline with <code>/v2/news</code> and take the new cursor</td>
-          </tr>
-          <tr>
-            <td><code>404</code></td>
-            <td>Unknown <code>beat_id</code></td>
-            <td>Re-read <code>/v2/topics</code>. Never guess an id</td>
-          </tr>
-          <tr>
-            <td><code>429</code></td>
-            <td>Rate limited</td>
-            <td>Wait for <code>Retry-After</code>. A key raises the ceiling</td>
-          </tr>
-          <tr>
-            <td><code>503</code></td>
-            <td>Storage unreachable</td>
-            <td>Back off. Never retry a 4xx in a tight loop</td>
-          </tr>
-        </tbody>
-      </table>
-            </div>
-      <p>
-        A cursor is signed and bound to one topic. It cannot be reused for another, and an old one
-        will not return a wider window — it will return the same one, and you will have paid for
-        nothing.
-      </p>
-
-      <h2>Check it works</h2>
-      <div className="code">
-        <div className="code-bar">two commands</div>
-        <pre>{`# liveness
-curl -s "${API}/health"
-
-# a real answer, from a topic that has one
-curl -s "${API}/v2/brief?beat_id=b_bb964843350e"`}</pre>
-      </div>
-      <p>
-        A brief with headlines means you are connected. A brief reading{" "}
-        <code>NVIDIA — nothing moved.</code> also means you are connected — it means the topic is
-        quiet.
-      </p>
-
       <div className="docs-nav-foot">
-        <a href="/docs/quickstart">← Quickstart</a>
-        <a href="/docs/data">Topics and articles →</a>
+        <a href="/docs/data">← Understand the news</a>
+        <a href="/docs/quickstart">Assistant setup →</a>
       </div>
     </>
   );

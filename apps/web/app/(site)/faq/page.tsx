@@ -2,6 +2,8 @@ import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
 import { FAQ, ROADMAP } from "@/components/site/content";
 
+export const metadata = { title: "NewsBeat FAQ", description: "How to ask your assistant about company news, connect NewsBeat, and let your agent check current information when it helps." };
+
 export default function Page() {
   return (
     <>
@@ -10,8 +12,12 @@ export default function Page() {
         <div className="page-head">
           <div className="wrap">
             <span className="sec-eyebrow">FAQ & status</span>
-            <h1 className="sec-title">Before you connect.</h1>
-            <p className="sec-sub">How NewsBeat works, what is available today, and what is coming next.</p>
+            <h1 className="sec-title">Ask naturally. Get the news.</h1>
+            <p className="sec-sub">Ask your AI assistant what is happening with a company. NewsBeat brings the latest available headlines and sources into the answer.</p>
+            <div className="hero-cta">
+              <a className="btn-primary" href="/docs/quickstart">Set up your assistant</a>
+              <a className="btn-ghost" href="/dashboard">Explore news first</a>
+            </div>
           </div>
         </div>
         {/* FAQ */}
@@ -39,7 +45,7 @@ export default function Page() {
               <span className="sec-eyebrow">Status</span>
               <h2 className="sec-title">Built today. Coming next.</h2>
               <p className="sec-sub">
-                Connect through MCP or API today, with more integrations on the way.
+                Company and crypto news for connected assistants today. More coverage and easier integrations are on the way.
               </p>
             </div>
             <div className="features grid-4">

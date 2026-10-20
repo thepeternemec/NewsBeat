@@ -16,6 +16,8 @@ Source-linked market news. Only what changed. Ready for your agent.
 
 </div>
 
+Ask your assistant “What is happening with Nvidia?” Or let it look up recent news whenever that would help with your task. [Start with the assistant guide](https://www.newsbeat.dev/docs/quickstart).
+
 Your agent should know what happened since its last check. NewsBeat turns equity and crypto headlines into compact, source-linked updates over **MCP and REST**. Give it an asset and a cursor; get new headlines, or a clear “nothing new.”
 
 Built for developers bringing news into trading research, prediction-market analysis, personal assistants and monitoring workflows.
