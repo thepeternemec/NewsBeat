@@ -4,6 +4,21 @@ These are generated from `apps/web/app/icon.svg`, the app's own mark. There was 
 logo file to pull: the brand on the site is a text wordmark, and the only graphic is
 that icon. So these are rendered from it rather than exported from a brand kit.
 
+## The mark
+
+Three rounded bars — the middle one is the event, the two beside it are the coverage
+around it.
+
+It replaced a constellation of eight dots joined by thin lines. That was a fair picture
+of a graph and unreadable at 16×16, where a favicon actually lives: eight dots and six
+hairsines collapse into a smudge. Three solid bars survive the reduction.
+
+The obvious reference for a mark this shape is Sona UI's white four-pointed star on a
+black disc, which reads beautifully small. Theirs cannot be used: it is their
+trademark, and NewsBeat would appear to be them in every browser tab. The *approach* is
+worth copying — one bold shape, solid background, nothing thin — and that is what this
+does.
+
 | File | Size | Use |
 | --- | --- | --- |
 | `newsbeat-mark-1024.png` | 1024×1024 | Profile picture. The glyph sits inside the circular-crop safe area, so it survives the round mask X, GitHub, LinkedIn and Discord apply. |
