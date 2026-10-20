@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowRight, Check, Copy } from "lucide-react";
 import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
@@ -17,7 +17,7 @@ const OPTIONS = [
   {
     id: "http",
     title: "HTTP",
-    blurb: "Four GET routes. Works in any language.",
+    blurb: "REST endpoints. Works in any language.",
   },
   {
     id: "tools",
@@ -63,9 +63,13 @@ export default function Connect() {
   /** One entry per round trip, in milliseconds. Drawn as bars, tallest = slowest. */
   const [bars, setBars] = useState<number[]>([]);
 
+  const [apiBase, setApiBase] = useState(API_BASE);
+  useEffect(() => { setApiBase(`${window.location.origin}/api`); }, []);
+  const snippet = SNIPPETS[selected].replaceAll(API_BASE, apiBase);
+
   async function copy() {
     try {
-      await navigator.clipboard.writeText(SNIPPETS[selected]);
+      await navigator.clipboard.writeText(snippet);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
@@ -88,7 +92,7 @@ export default function Connect() {
     setBars([]);
     const timings: number[] = [];
     try {
-      const response = await fetch(`${API_BASE}/mcp`, {
+      const response = await fetch(`/api/mcp`, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json, text/event-stream" },
         body: JSON.stringify({
@@ -110,7 +114,8 @@ export default function Connect() {
       for (let i = 0; i < 8; i += 1) {
         const started = performance.now();
         try {
-          await fetch(`${API_BASE}/health`, { cache: "no-store" });
+          const ping = await fetch(`/api/health`, { cache: "no-store" });
+          if (!ping.ok) throw new Error("Health check failed");
           timings.push(Math.round(performance.now() - started));
         } catch {
           timings.push(0);
@@ -201,7 +206,7 @@ export default function Connect() {
                   {copied ? "copied" : "copy"}
                 </button>
               </div>
-              <pre>{SNIPPETS[selected]}</pre>
+              <pre>{snippet}</pre>
             </div>
 
             <div className="oss-row">
