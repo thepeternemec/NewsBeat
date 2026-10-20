@@ -37,9 +37,13 @@ const COLUMNS = [
     ],
   },
   {
-    head: "Contact",
-    links: [
-      { href: "mailto:contact@newsbeat.dev", label: "contact@newsbeat.dev" },
+      head: "Legal",
+      links: [
+        { href: "/legal/terms", label: "Terms" },
+        { href: "/legal/cookies", label: "Cookies" },
+        { href: "mailto:contact@newsbeat.dev", label: "Contact" },
+      ],
+    },
     ],
   },
 ] as const;
