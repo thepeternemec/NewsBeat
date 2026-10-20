@@ -44,8 +44,6 @@ const COLUMNS = [
         { href: "mailto:contact@newsbeat.dev", label: "Contact" },
       ],
     },
-    ],
-  },
 ] as const;
 
 export default function SiteFooter() {
