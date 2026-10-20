@@ -34,6 +34,11 @@ const COLUMNS = [
       { href: "/faq", label: "FAQ" },
       { href: "/keys", label: "Get a key" },
       { href: "https://github.com/thepeternemec/NewsBeat", label: "GitHub" },
+    ],
+  },
+  {
+    head: "Contact",
+    links: [
       { href: "mailto:contact@newsbeat.dev", label: "contact@newsbeat.dev" },
     ],
   },
