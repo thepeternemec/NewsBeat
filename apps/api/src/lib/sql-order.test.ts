@@ -55,7 +55,7 @@ test("no SQL orders by an unqualified `id`", () => {
 });
 
 test("ordering by id is numeric, not lexicographic", async (t) => {
-  const { hasDatabaseEnv, db } = await import("@newsgraph/db");
+  const { hasDatabaseEnv, db } = await import("@newsbeat/db");
   if (!hasDatabaseEnv()) {
     // Skipped rather than silently passing. It is the static guard above that has
     // to carry the load when there is no database, which is why both exist.

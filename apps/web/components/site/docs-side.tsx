@@ -20,7 +20,7 @@ const GROUPS: Array<{ title: string; links: Array<{ href: string; label: string 
   {
     title: "Operate",
     links: [
-      { href: "https://github.com/thepeternemec/NewsGraph", label: "GitHub ↗" },
+      { href: "https://github.com/thepeternemec/NewsBeat", label: "GitHub ↗" },
     ],
   },
 ];

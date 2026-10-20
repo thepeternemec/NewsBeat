@@ -9,8 +9,8 @@
  */
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { hasDatabaseEnv } from "@newsgraph/db";
-import { NEWS_TOOLS } from "@newsgraph/contracts";
+import { hasDatabaseEnv } from "@newsbeat/db";
+import { NEWS_TOOLS } from "@newsbeat/contracts";
 import { WATCH_LIMIT, newsPage, watchMany } from "./news.js";
 
 const NVDA = "b_bb964843350e";
@@ -77,8 +77,8 @@ test("the advertised schema matches the enforced cap", () => {
   // skipped without one, and a file that skips entirely reads as coverage. This
   // asserts the number an agent is told and the number the server enforces are
   // the same number.
-  const tool = NEWS_TOOLS.find((t) => t.name === "newsgraph_watch");
-  assert.ok(tool, "newsgraph_watch must be in NEWS_TOOLS");
+  const tool = NEWS_TOOLS.find((t) => t.name === "newsbeat_watch");
+  assert.ok(tool, "newsbeat_watch must be in NEWS_TOOLS");
 
   const watches = (tool.inputSchema as { properties?: { watches?: { maxItems?: number } } })
     .properties?.watches;

@@ -9,7 +9,7 @@
  */
 import { Hono } from "hono";
 import { handle } from "hono/vercel";
-import app from "@newsgraph/api";
+import app from "@newsbeat/api";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

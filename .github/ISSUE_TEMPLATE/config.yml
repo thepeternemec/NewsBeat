@@ -1,7 +1,7 @@
 blank_issues_enabled: true
 contact_links:
   - name: Read the state of the project first
-    url: https://github.com/thepeternemec/NewsGraph/blob/main/docs/STATUS.md
+    url: https://github.com/thepeternemec/NewsBeat/blob/main/docs/STATUS.md
     about: What works today with verified numbers, what is not built, and what is worth building next.
   - name: API reference
     url: https://newsgraph.vercel.app/docs/connect

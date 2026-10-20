@@ -9,7 +9,7 @@
  * and in any proxy log on the way — and this is the one value that must not leak.
  */
 import { Hono } from "hono";
-import { db, describeKeyForAccount, findOrCreateAccount, hasDatabaseEnv, issueKeyForAccount } from "@newsgraph/db";
+import { db, describeKeyForAccount, findOrCreateAccount, hasDatabaseEnv, issueKeyForAccount } from "@newsbeat/db";
 import { authorizeUrl, exchangeCodeForUser, oauthConfig, signState, verifyState } from "./github.js";
 
 export const keyRoutes = new Hono();
@@ -74,7 +74,7 @@ function escapeHtml(value: string): string {
 
 const SHELL = (title: string, body: string) => `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${escapeHtml(title)} · NewsGraph</title>
+<title>${escapeHtml(title)} · NewsBeat</title>
 <style>
   :root { color-scheme: dark; }
   body { margin:0; min-height:100vh; display:grid; place-items:center; background:#050505; color:#ededed;

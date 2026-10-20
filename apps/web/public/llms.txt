@@ -1,4 +1,4 @@
-# NewsGraph
+# NewsBeat
 
 > The news layer for AI agents. Send a topic and a cursor; get either "nothing moved"
 > or a small pack of cited headlines that appeared since. Read-only. No credential
@@ -30,8 +30,8 @@ An empty page is a success. Report "nothing new" and do not retry it.
 - MCP, Streamable HTTP — https://newsgraph.vercel.app/api/mcp
 
 Tools, for frameworks that would rather be handed a schema than a URL:
-`newsgraph_topics`, `newsgraph_news`, `newsgraph_changes`, `newsgraph_brief`,
-`newsgraph_stories`, `newsgraph_watch`.
+`newsbeat_topics`, `newsbeat_news`, `newsbeat_changes`, `newsbeat_brief`,
+`newsbeat_stories`, `newsbeat_watch`.
 
 ## Rate limits and keys
 
@@ -58,4 +58,4 @@ shown once. That is a browser flow and needs a human.
 - Agent instructions — https://newsgraph.vercel.app/skill.md
 - Auth and registration — https://newsgraph.vercel.app/auth.md (none is required)
 - Docs — https://newsgraph.vercel.app/docs
-- Source — https://github.com/thepeternemec/NewsGraph
+- Source — https://github.com/thepeternemec/NewsBeat

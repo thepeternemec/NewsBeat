@@ -33,7 +33,7 @@ export default function DocsConnect() {
         <div className="code-bar">your MCP client&rsquo;s config</div>
         <pre>{`{
   "mcpServers": {
-    "newsgraph": {
+    "newsbeat": {
       "url": "${API}/mcp"
     }
   }
@@ -50,19 +50,19 @@ export default function DocsConnect() {
         </thead>
         <tbody>
           <tr>
-            <td><code>newsgraph_topics</code></td>
+            <td><code>newsbeat_topics</code></td>
             <td>Find a topic. Never invent a <code>beat_id</code> — search, then use what comes back</td>
           </tr>
           <tr>
-            <td><code>newsgraph_news</code></td>
+            <td><code>newsbeat_news</code></td>
             <td>Read a topic and take a baseline cursor</td>
           </tr>
           <tr>
-            <td><code>newsgraph_changes</code></td>
+            <td><code>newsbeat_changes</code></td>
             <td>Ask what is new since that cursor</td>
           </tr>
           <tr>
-            <td><code>newsgraph_brief</code></td>
+            <td><code>newsbeat_brief</code></td>
             <td>Get the top three headlines with no synthesis</td>
           </tr>
         </tbody>

@@ -1,7 +1,7 @@
 {
-  "name": "newsgraph-worker",
+  "name": "newsbeat-worker",
   "version": "0.2.0",
-  "description": "NewsGraph ingestion worker: newsapi.ai \u2192 dedupe \u2192 packs (Phase 1).",
+  "description": "NewsBeat ingestion worker: Google News RSS and optional NewsAPI.ai, filtering, normalization and storage.",
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/index.ts",
@@ -10,8 +10,8 @@
     "ingest": "tsx src/cli.ts"
   },
   "dependencies": {
-    "@newsgraph/contracts": "0.2.0",
-    "@newsgraph/db": "0.2.0",
+    "@newsbeat/contracts": "0.2.0",
+    "@newsbeat/db": "0.2.0",
     "zod": "^3.24.1",
     "postgres": "^3.4.5"
   },

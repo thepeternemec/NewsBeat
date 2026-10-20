@@ -1,30 +1,25 @@
-# NewsGraph connections
+# NewsBeat integration examples
 
-Build with `npm ci && npm run build:packages && npm run build -w newsgraph-api`.
+The examples use the public REST API and function schemas. No workspace SDK is published or required.
 
-Run `NEWSGRAPH_API_BASE_URL=https://newsgraph.vercel.app/api node examples/verify-integrations.mjs` to verify:
+## Function-calling adapter
 
-1. The TypeScript client: topic discovery, latest coverage, and changes.
-2. The OpenRouter-compatible adapter: schemas, execution, and a model-compatible tool result. This does not run paid model inference or certify an OpenRouter app.
-3. Hosted MCP using the official MCP client: initialization, tools/list, and tools/call.
+`openrouter-tools.mjs` loads the current schemas from `GET /api/v2/tools` and dispatches all six tools: `newsbeat_topics`, `newsbeat_news`, `newsbeat_changes`, `newsbeat_brief`, `newsbeat_stories` and `newsbeat_watch`. Watch uses POST; the others use GET. Cached tool names from before the rename are also accepted.
 
-For an actual model loop, set `OPENROUTER_API_KEY` and `OPENROUTER_MODEL` to a currently available tool-capable model, then run `node examples/openrouter-agent.mjs "What is new with Nvidia?"`. The loop is bounded to five model requests, with at most five tool calls per response. These model requests incur your normal provider charges.
+## OpenRouter model loop
 
-The workspace SDK is not yet published to npm. Use it from this repository. MCP clients can connect without installing this SDK; add the remote URL ending in `/mcp`.
+Set `OPENROUTER_API_KEY` and `OPENROUTER_MODEL` to your provider credentials and a tool-capable model, then run:
 
-Test each agent host separately before claiming host-specific compatibility. The protocol check is not evidence of an installation in Claude, Cursor, or Codex.
+```bash
+NEWSBEAT_API_BASE_URL=https://newsgraph.vercel.app/api node examples/openrouter-agent.mjs "What is new with Nvidia?"
+```
 
-The deployed `news-api` is currently protected. Set `NEWSGRAPH_API_TOKEN` to a valid project anonymous JWT when running the verification script against staging. Never use a service-role credential. All three interfaces passed against real articles on 2026-09-13; public access is pending release approval.
+The model loop is limited to five model requests and five tool calls per response. Model inference incurs your provider’s charges. Anonymous news reads remain subject to rate limits.
 
-## What is covered
+After newsbeat.dev is connected, set `NEWSBEAT_API_BASE_URL=https://newsbeat.dev/api`. The previous environment-variable name is accepted during migration.
 
-`openrouter-tools.mjs` handles **every tool the API advertises** — `newsgraph_topics`,
-`newsgraph_news`, `newsgraph_changes`, `newsgraph_brief`, `newsgraph_stories` and
-`newsgraph_watch`. It loads the schemas from `GET /v2/tools` rather than hard-coding
-them, so a tool added to the API is dispatched here the moment it is mapped.
+## Remote MCP
 
-Watch the method: everything is a `GET` except `newsgraph_watch`, which posts a body
-because fifty cursors do not fit in a URL.
+Connect your host directly to the current deployment’s `/api/mcp` URL; it does not need these example files. Use the connection screen to verify the transport. Test each assistant separately before claiming compatibility or directory availability.
 
-Verified against the live API: `loaded 6 tools`, and one call each returns topics,
-news, a brief, stories, zero changes on a fresh cursor, and a batched watch.
+General-search, Grok API and Telegram/Discord relay examples are part of the pending connector expansion in [PR #11](https://github.com/thepeternemec/NewsBeat/pull/11).

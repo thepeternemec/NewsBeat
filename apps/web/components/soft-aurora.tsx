@@ -6,7 +6,7 @@ import type { Renderer as OglRenderer } from "ogl";
 /**
  * Soft Aurora — ported from React Bits (reactbits.dev/backgrounds/soft-aurora).
  *
- * Adapted for NewsGraph:
+ * Adapted for NewsBeat:
  *  - monochrome by default (the palette is black and white, no magenta)
  *  - `ogl` is imported lazily so it never lands in the initial bundle or on the server
  *  - renders a single static frame when the visitor prefers reduced motion

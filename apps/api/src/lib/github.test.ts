@@ -8,7 +8,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-process.env.NEWSGRAPH_CURSOR_SECRET ??= "test-secret-for-state-signing";
+process.env.NEWSBEAT_CURSOR_SECRET ??= "test-secret-for-state-signing";
 
 const { signState, verifyState, redirectUri } = await import("./github.js");
 

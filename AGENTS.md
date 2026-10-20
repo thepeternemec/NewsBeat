@@ -1,4 +1,4 @@
-# NewsGraph for agents
+# NewsBeat for agents
 
 The integration guide for coding agents. For humans: one read-only API, two possible answers.
 
@@ -57,8 +57,8 @@ Base: `https://newsgraph.vercel.app/api`
 | `GET /health` | Liveness |
 
 The same calls are published as tools, for frameworks that would rather be handed a schema than a
-URL: `newsgraph_topics`, `newsgraph_news`, `newsgraph_changes`, `newsgraph_brief`,
-`newsgraph_stories`, `newsgraph_watch`. They appear in `GET /v2/tools` and over MCP.
+URL: `newsbeat_topics`, `newsbeat_news`, `newsbeat_changes`, `newsbeat_brief`,
+`newsbeat_stories`, `newsbeat_watch`. They appear in `GET /v2/tools` and over MCP.
 
 **No credential is required.** Anonymous callers get 120 requests a minute, identified by calling
 address and never stored. A key raises that to 1200 and is **metered**: every check is charged
@@ -83,7 +83,7 @@ gets `402 payment_required` and you fall back to the anonymous tier, which stays
 | This guide | `https://newsgraph.vercel.app/skill.md` |
 | Tool definitions | `GET /v2/tools` |
 | Status and roadmap | `https://newsgraph.vercel.app/docs` |
-| Source | `https://github.com/thepeternemec/NewsGraph` |
+| Source | `https://github.com/thepeternemec/NewsBeat` |
 
 ## Current service state
 
@@ -131,4 +131,4 @@ The response has a `results` array in the same order, each entry carrying `moved
 `items`, a fresh `cursor` and `freshness` — plus top-level `checked`, `moved` and
 `failed` counts. **Each entry is independent**: an expired cursor or an unknown
 topic fails only its own result, so re-baseline just that one with
-`newsgraph_news` and keep the others.
+`newsbeat_news` and keep the others.

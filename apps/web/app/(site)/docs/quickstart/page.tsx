@@ -166,7 +166,7 @@ curl "/api/v2/topics?q=nvidia"     # search a ticker or a company name`}</pre>
         <div className="code-bar">MCP client config</div>
         <pre>{`{
   "mcpServers": {
-    "newsgraph": {
+    "newsbeat": {
       "url": "https://newsgraph.vercel.app/api/mcp"
     }
   }

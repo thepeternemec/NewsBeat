@@ -31,7 +31,7 @@ type OptionId = (typeof OPTIONS)[number]["id"];
 const SNIPPETS: Record<OptionId, string> = {
   mcp: `{
   "mcpServers": {
-    "newsgraph": {
+    "newsbeat": {
       "url": "${API_BASE}/mcp"
     }
   }
@@ -51,8 +51,8 @@ curl -s "${API_BASE}/v2/brief?beat_id=b_bb964843350e"`,
 const { tools } = await fetch("${API_BASE}/v2/tools").then((r) => r.json());
 
 // Pass them to your model, execute what it calls, send the results back.
-// Four tools: newsgraph_topics, newsgraph_news, newsgraph_changes,
-// newsgraph_brief.`,
+// Six tools: newsbeat_topics, newsbeat_news, newsbeat_changes,
+// newsbeat_brief, newsbeat_stories, newsbeat_watch.`,
 };
 
 export default function Connect() {
@@ -98,7 +98,7 @@ export default function Connect() {
           params: {
             protocolVersion: "2025-06-18",
             capabilities: {},
-            clientInfo: { name: "newsgraph-connect-check", version: "1.0.0" },
+            clientInfo: { name: "newsbeat-connect-check", version: "1.0.0" },
           },
         }),
       });

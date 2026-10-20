@@ -11,7 +11,7 @@
 # the broken route shipped. A build's output is the only thing that tells you it
 # failed, and the thing that failed has to be the thing that is built.
 
-if ! out=$(npm run build:packages 2>&1 && npm run build -w @newsgraph/api 2>&1); then
+if ! out=$(npm run build:packages 2>&1 && npm run build -w @newsbeat/api 2>&1); then
   echo ""
   echo "$out" | grep -E "error TS|Error:" | head -10
   echo ""

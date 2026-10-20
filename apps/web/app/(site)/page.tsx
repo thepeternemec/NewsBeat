@@ -5,7 +5,7 @@ import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
 import Marquee from "@/components/ui/marquee/marquee";
 import CopyButton from "@/components/site/copy-button";
-import { useNewsGraphStats } from "@/components/site/use-stats";
+import { useNewsBeatStats } from "@/components/site/use-stats";
 import { FAQ, PRICES } from "@/components/site/content";
 
 /** Benefit-led, in the order a buyer cares about them. */
@@ -148,7 +148,7 @@ const STEPS = [
 ];
 
 export default function Home() {
-  const { stats, stamp, items, ticker } = useNewsGraphStats();
+  const { stats, stamp, items, ticker } = useNewsBeatStats();
 
   return (
     <>
@@ -194,7 +194,7 @@ export default function Home() {
               <a className="btn-ghost" href="/dashboard">
                 Explore live news
               </a>
-              <a className="btn-ghost" href="https://github.com/thepeternemec/NewsGraph">
+              <a className="btn-ghost" href="https://github.com/thepeternemec/NewsBeat">
                 Source
               </a>
             </div>
@@ -202,7 +202,7 @@ export default function Home() {
             <div className="mock" style={{ marginTop: 46 }}>
               <div className="mock-bar">
                 <span className="mock-dots"><span /><span /><span /></span>
-                <span className="mock-title">newsgraph — your agent asks, newsgraph answers</span>
+                <span className="mock-title">newsbeat — your agent asks, newsbeat answers</span>
                 <span className="mock-live">live headlines</span>
               </div>
               <div className="mock-body">
@@ -352,7 +352,7 @@ export default function Home() {
                 <h3>Follow the stories behind your watchlist.</h3>
                 <p>
                   Follow relevant companies and assets, collect new headlines, and carry the sources
-                  into your analysis. Combine NewsGraph with your market data and probability models
+                  into your analysis. Combine NewsBeat with your market data and probability models
                   to investigate what changed—and whether it changes your view.
                 </p>
                 <ul>
@@ -460,7 +460,7 @@ export default function Home() {
               <span className="sec-eyebrow">Why now</span>
               <h2 className="sec-title">Markets move. Keep your agent&rsquo;s context current.</h2>
               <p className="sec-sub">
-                Your agent needs a way to bring new developments into its analysis. NewsGraph adds
+                Your agent needs a way to bring new developments into its analysis. NewsBeat adds
                 repeatable news checks to the data and tools your strategy already uses.
               </p>
             </div>
@@ -604,10 +604,10 @@ export default function Home() {
               </div>
             </div>
             <div className="oss-row">
-              <a className="btn-primary" href="https://github.com/thepeternemec/NewsGraph">
+              <a className="btn-primary" href="https://github.com/thepeternemec/NewsBeat">
                 Star it on GitHub <ArrowRight size={14} />
               </a>
-              <a className="btn-ghost" href="https://github.com/thepeternemec/NewsGraph/blob/main/CONTRIBUTING-FIRST-PR.md">
+              <a className="btn-ghost" href="https://github.com/thepeternemec/NewsBeat/blob/main/CONTRIBUTING.md">
                 Your first pull request
               </a>
             </div>
