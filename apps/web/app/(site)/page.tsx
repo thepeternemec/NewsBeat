@@ -194,8 +194,8 @@ export default function Home() {
               <a className="btn-ghost" href="/dashboard">
                 Explore live news
               </a>
-              <a className="btn-ghost" href="https://github.com/thepeternemec/NewsBeat">
-                Source
+              <a className="btn-ghost" href="/docs">
+                Docs
               </a>
             </div>
 

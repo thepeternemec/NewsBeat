@@ -52,7 +52,11 @@ export default function MotionEnhance() {
         text.scrambledText("main .nav-link, main .footer-links a, main .rail-item"),
 
         // ── Hover / pointer ───────────────────────────────────────────
-        hover.magnet("main .nav-cta, main .hero-cta .btn-primary"),
+        // Only the nav call-to-action is magnetic. The hero primary used to be too,
+          // which made it drift toward the pointer while the ghost buttons beside it sat
+          // still — two buttons in one row behaving differently for no reason. It now
+          // shares their motion, which is the glare sweep both classes already carry.
+          hover.magnet("main .nav-cta"),
         hover.spotlightCard("main .feature, main .mock", "main #segmentation"),
         hover.tiltedCard("main .hero .mock"),
         hover.pixelTransition("main #segmentation .features .feature"),
