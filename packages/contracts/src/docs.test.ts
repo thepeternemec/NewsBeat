@@ -73,11 +73,11 @@ test("every command the contributor guide gives exists", () => {
       continue;
     }
     const known: Record<string, string> = {
-      "newsgraph-worker": "apps/worker",
-      "@newsgraph/api": "apps/api",
-      "newsgraph-web": "apps/web",
-      "@newsgraph/contracts": "packages/contracts",
-      "@newsgraph/db": "packages/db",
+      "newsbeat-worker": "apps/worker",
+      "@newsbeat/api": "apps/api",
+      "newsbeat-web": "apps/web",
+      "@newsbeat/contracts": "packages/contracts",
+      "@newsbeat/db": "packages/db",
     };
     const dir = known[workspace!];
     assert.ok(dir, `CONTRIBUTING.md references unknown workspace \`${workspace}\``);
@@ -150,7 +150,7 @@ test("the docs name the tools, and every tool they name exists", () => {
     ["apps/web/public/auth.md", authMd],
     ["apps/web/public/skill.md", skillMd],
   ] as const) {
-    for (const mentioned of text.match(/newsgraph_[a-z_]+/g) ?? []) {
+    for (const mentioned of text.match(/newsbeat_[a-z_]+/g) ?? []) {
       seen.add(mentioned);
       assert.ok(defined.has(mentioned), `${name} mentions ${mentioned}, which is not a defined tool`);
     }

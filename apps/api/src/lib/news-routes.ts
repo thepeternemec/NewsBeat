@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { z } from "zod";
-import { NEWS_TOOLS } from "@newsgraph/contracts";
+import { NEWS_TOOLS } from "@newsbeat/contracts";
 import { NewsError, topics, newsPage, brief, stories, watchMany, WATCH_LIMIT, TOPIC_PAGE_DEFAULT, TOPIC_PAGE_MAX } from "./news.js";
 export const newsRoutes = new Hono();
 newsRoutes.onError((error, c) => { if (error instanceof NewsError)
@@ -51,31 +51,33 @@ newsRoutes.get("/changes", async (c) => { const cursor = c.req.query("cursor"); 
     throw new NewsError("missing_cursor", "Read latest news first and save its cursor."); return c.json(await newsPage(c.req.query("beat_id") ?? "", cursor)); });
 newsRoutes.get("/tools", c => c.json({ tools: NEWS_TOOLS.map(t => ({ type: "function", function: { name: t.name, description: t.description, parameters: t.inputSchema } })) }));
 export async function callNewsTool(name: string, args: unknown) {
-    if (name === "newsgraph_topics") {
+    // Old clients can keep calling their cached tool names. Discovery uses NewsBeat.
+    name = name.replace(/^newsgraph_/, "newsbeat_");
+    if (name === "newsbeat_topics") {
         const input = z.object({ query: z.string().max(200).optional() }).strict().parse(args);
         // MCP callers have no way to page, so this surface asks for the whole
         // catalog. The REST route is where pagination belongs.
         return topics(input.query, TOPIC_PAGE_MAX, 0);
     }
-    if (name === "newsgraph_news") {
+    if (name === "newsbeat_news") {
         const input = z.object({ beat_id: z.string() }).strict().parse(args);
         return newsPage(input.beat_id);
     }
-    if (name === "newsgraph_brief") {
+    if (name === "newsbeat_brief") {
         const input = z.object({ beat_id: z.string() }).strict().parse(args);
         return brief(input.beat_id);
     }
-    if (name === "newsgraph_stories") {
+    if (name === "newsbeat_stories") {
         const input = z.object({ beat_id: z.string() }).strict().parse(args);
         return stories(input.beat_id);
     }
-    if (name === "newsgraph_watch") {
+    if (name === "newsbeat_watch") {
         const input = z.object({
             watches: z.array(z.object({ beat_id: z.string(), cursor: z.string().max(2048).optional() })).min(1).max(WATCH_LIMIT),
         }).strict().parse(args);
         return watchMany(input.watches.map((w) => ({ beat_id: w.beat_id, cursor: w.cursor ?? "" })));
     }
-    if (name === "newsgraph_changes") {
+    if (name === "newsbeat_changes") {
         const input = z.object({ beat_id: z.string(), cursor: z.string().max(2048) }).strict().parse(args);
         return newsPage(input.beat_id, input.cursor);
     }

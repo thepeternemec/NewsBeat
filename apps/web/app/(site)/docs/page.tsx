@@ -4,9 +4,9 @@ export default function DocsOverview() {
   return (
     <>
       <div className="docs-head">
-        <h1>NewsGraph documentation</h1>
+        <h1>NewsBeat documentation</h1>
         <p className="docs-lead">
-          NewsGraph watches 23,303 publishers and answers one question on a schedule: has this
+          NewsBeat watches 23,303 publishers and answers one question on a schedule: has this
           topic moved since I last looked? This is how to call it, and how to pay for it.
         </p>
       </div>

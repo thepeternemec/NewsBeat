@@ -1,7 +1,7 @@
 /**
  * Every advertised tool must be callable.
  *
- * `newsgraph_stories` shipped in `tools/list`, documented in AGENTS.md, and
+ * `newsbeat_stories` shipped in `tools/list`, documented in AGENTS.md, and
  * absent from the dispatcher — so an agent that chose it by its advertised
  * schema got `unknown_tool`. Three places have to agree about a tool (the
  * definition, the docs, the handler) and the guards covered only the first two.
@@ -12,16 +12,16 @@
  */
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { NEWS_TOOLS } from "@newsgraph/contracts";
+import { NEWS_TOOLS } from "@newsbeat/contracts";
 import { callNewsTool } from "./news-routes.js";
 
 /** The smallest arguments each tool will accept. */
 const MINIMAL: Record<string, unknown> = {
-  newsgraph_topics: {},
-  newsgraph_news: { beat_id: "b_bb964843350e" },
-  newsgraph_changes: { beat_id: "b_bb964843350e", cursor: "x" },
-  newsgraph_brief: { beat_id: "b_bb964843350e" },
-  newsgraph_stories: { beat_id: "b_bb964843350e" },
+  newsbeat_topics: {},
+  newsbeat_news: { beat_id: "b_bb964843350e" },
+  newsbeat_changes: { beat_id: "b_bb964843350e", cursor: "x" },
+  newsbeat_brief: { beat_id: "b_bb964843350e" },
+  newsbeat_stories: { beat_id: "b_bb964843350e" },
 };
 
 test("every advertised tool has a handler", async () => {
@@ -39,5 +39,15 @@ test("every advertised tool has a handler", async () => {
       "unknown_tool",
       `${tool.name} is advertised in tools/list but no handler answers it`,
     );
+  }
+});
+
+// Rebranding must not break clients that cached the old tool names.
+test("legacy tool names still reach a handler", async () => {
+  for (const tool of NEWS_TOOLS) {
+    await assert.doesNotReject(async () => {
+      try { await callNewsTool(tool.name.replace(/^newsbeat_/, "newsgraph_"), MINIMAL[tool.name] ?? {}); }
+      catch (error) { assert.notEqual((error as {code?: string}).code, "unknown_tool"); }
+    });
   }
 });

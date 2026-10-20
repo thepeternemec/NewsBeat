@@ -1,5 +1,5 @@
 /**
- * Shared pricing, roadmap, and FAQ copy for the NewsGraph site.
+ * Shared pricing, roadmap, and FAQ copy for the NewsBeat site.
  * Keep the current service state separate from planned paid access.
  */
 
@@ -51,15 +51,15 @@ export const ROADMAP = [
 export const FAQ = [
   {
     "q": "What is live today?",
-    "a": "NewsGraph covers 2,000+ equities and cryptos using English-language financial news from Google News RSS, refreshed every fifteen minutes. The public REST API, OpenAI-compatible tools, and hosted MCP support topic discovery, headlines, changes since a cursor, briefs, and story grouping."
+    "a": "NewsBeat covers 2,000+ equities and cryptos using English-language financial news from Google News RSS, refreshed every fifteen minutes. The public REST API, OpenAI-compatible tools, and hosted MCP support topic discovery, headlines, changes since a cursor, briefs, and story grouping."
   },
   {
-    "q": "How does NewsGraph track what changed?",
+    "q": "How does NewsBeat track what changed?",
     "a": "Choose a topic and keep the cursor returned by the API. On the next check, send that cursor to receive stories that appeared since. An empty result means nothing new was found in that window; always check the topic's freshness status too."
   },
   {
     "q": "Do I get full articles?",
-    "a": "Each news page contains up to eight items with a headline, publisher, publication time, and a link that resolves to the article. NewsGraph does not supply full article bodies. Current links may redirect through Google News."
+    "a": "Each news page contains up to eight items with a headline, publisher, publication time, and a link that resolves to the article. NewsBeat does not supply full article bodies. Current links may redirect through Google News."
   },
   {
     "q": "How fresh is the news?",
@@ -74,8 +74,8 @@ export const FAQ = [
     "a": "Usage-based pricing, with no seat licences. Published prepaid plans start at $0.20 a day for up to fifty tickers: $6 for 30 days, $18 for 90 days, or $60 for 300 days. The API is free during early access; Stripe checkout and paid access are coming soon."
   },
   {
-    "q": "Can I use NewsGraph for trading or Polymarket research?",
-    "a": "Yes. Bring relevant equity and crypto headlines into your research alongside your own market data and probability models. NewsGraph supplies news context; it does not execute trades, provide Polymarket prices, or connect directly to your Polymarket account."
+    "q": "Can I use NewsBeat for trading or Polymarket research?",
+    "a": "Yes. Bring relevant equity and crypto headlines into your research alongside your own market data and probability models. NewsBeat supplies news context; it does not execute trades, provide Polymarket prices, or connect directly to your Polymarket account."
   },
   {
     "q": "Are Telegram and Discord integrations available?",

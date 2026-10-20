@@ -43,7 +43,7 @@ Vercel Cron (*/15) → /api/cron/ingest → runIngestion()
         └ append_news_articles(topic, batch)  ← one transaction per topic
 
 **Google News is the default provider and it is free** — key-less, no quota.
-`NEWSGRAPH_PROVIDER=newsapi` switches to the paid provider, which also supports
+`NEWSBEAT_PROVIDER=newsapi` switches to the paid provider, which also supports
 batching five topics per call (five topics per request rather than one) and
 returns excerpts. The trade is real and deliberate: Google costs nothing but
 gives a redirect URL and no excerpt.

@@ -1,150 +1,97 @@
----
-name: NewsGraph
-type: api
-category: news context for AI agents
-auth: none (read-only, public)
-pricing: free while in early access
-topics: 1034
-articles: 57600
-languages: eng
-live: https://newsgraph.vercel.app
-api: https://newsgraph.vercel.app/api
-repo: https://github.com/thepeternemec/NewsGraph
-license: MIT
----
+# NewsBeat
 
-# NewsGraph
+**The news layer for AI agents.** Track equities and crypto, see what changed, and bring source-linked headlines into your agent’s research. Connect through MCP or REST. Usage-based pricing, no seat licence.
 
-<p align="center">
-  <a href="https://github.com/thepeternemec/NewsGraph/stargazers"><img src="https://img.shields.io/github/stars/thepeternemec/NewsGraph?style=for-the-badge&logo=github&color=yellow" alt="Stars"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge" alt="MIT"></a>
-  <a href="https://github.com/thepeternemec/NewsGraph/commits/main"><img src="https://img.shields.io/github/last-commit/thepeternemec/NewsGraph?style=flat-square" alt="Last commit"></a>
-  <a href="https://github.com/thepeternemec/NewsGraph/issues"><img src="https://img.shields.io/github/issues/thepeternemec/NewsGraph?style=for-the-badge&color=orange" alt="Issues"></a>
-</p>
+[Website: newsbeat.dev](https://newsbeat.dev) · [Current live deployment](https://newsgraph.vercel.app) · [Connect](https://newsgraph.vercel.app/connect) · [Project status](docs/STATUS.md)
 
-**News context for AI agents.** An agent asks a topic and a cursor, and gets back either
-**"nothing moved"** or **a small pack of cited stories**. Read-only, no credential, no billing.
+> **Domain transition:** newsbeat.dev is the new domain and will be connected to Vercel separately. The current deployment and API address remain available during the move.
 
-Live at **[newsgraph.vercel.app](https://newsgraph.vercel.app)** · API at
-`https://newsgraph.vercel.app/api`
+## Available now
 
-> ### Start with [docs/STATUS.md](docs/STATUS.md)
->
-> What works today with verified numbers, what is not built, and the six things worth building
-> next. It is one page and it is the honest state of this repository.
+- **2,030 assets:** 1,528 US-listed equities and 502 crypto assets in the catalog.
+- Source-linked headlines, publisher names, UTC timestamps and explicit freshness status.
+- Signed change cursors and history pagination; check what arrived since your last read.
+- Three-headline briefs, approximate story grouping, and batched checks for up to 50 assets.
+- Six tools exposed through hosted **MCP (Streamable HTTP)** and function-call schemas.
+- A web terminal with asset search, headline coverage and story clusters.
+- GitHub sign-in for self-serve API keys. Anonymous reads are free and rate limited; keyed REST calls use account credit with a $5 trial grant.
+- Ingestion scheduled every 15 minutes, with a bounded work queue and retention maintenance. Read per-asset freshness rather than assuming every source is current.
 
----
+NewsBeat supplies headline metadata, not full article bodies. Story grouping is approximate, not independent confirmation. It supplies research context; it does not place trades or provide prediction-market prices.
 
-## Quick start
+## Connect an agent
+
+Use this remote MCP URL while the custom domain is being connected:
+
+```text
+https://newsgraph.vercel.app/api/mcp
+```
+
+```json
+{
+  "mcpServers": {
+    "newsbeat": {
+      "url": "https://newsgraph.vercel.app/api/mcp"
+    }
+  }
+}
+```
+
+The advertised tools are `newsbeat_topics`, `newsbeat_news`, `newsbeat_changes`, `newsbeat_brief`, `newsbeat_stories` and `newsbeat_watch`. Existing clients using the previous tool-name prefix remain supported.
+
+For function calling, load schemas from `GET /api/v2/tools`. See [examples](examples/README.md) and [the agent guide](AGENTS.md). A working MCP endpoint does not imply approval or listing in every assistant’s connector directory.
+
+## Try the API
 
 ```bash
-git clone https://github.com/thepeternemec/NewsGraph.git
-cd NewsGraph
-npm install
-npm run build:packages     # contracts and db must exist before the apps compile
-npm test                   # no network, no database, no API key
-npm run dev                # the site and the API on http://localhost:3000
+NEWSBEAT_API=https://newsgraph.vercel.app/api
+curl "$NEWSBEAT_API/v2/topics?q=nvidia&limit=5"
+curl "$NEWSBEAT_API/v2/news?beat_id=b_bb964843350e"
+curl "$NEWSBEAT_API/v2/changes?beat_id=b_bb964843350e&cursor=<saved-cursor>"
 ```
 
-Then, against production — nothing below needs a credential:
+Choose an asset, read its baseline, save the returned cursor, then poll for changes. Process each page before advancing the cursor and continue while `has_more` is true. An empty response means no new indexed items in that window; check `freshness` before drawing conclusions.
+
+## Run locally
+
+Use Node.js 22 or 24 and npm workspaces.
 
 ```bash
-NEWS=https://newsgraph.vercel.app/api
-
-curl "$NEWS/v2/topics"                            # the catalog, with per-topic status
-curl "$NEWS/v2/news?beat_id=b_bb964843350e"       # articles for one topic
-curl "$NEWS/v2/changes?beat_id=b_bb964843350e&cursor=<cursor>"
-curl "$NEWS/v2/tools"                             # the same tools in OpenAI shape
+git clone https://github.com/thepeternemec/NewsBeat.git
+cd NewsBeat
+npm ci
+npm run build
+npm test
+npm run dev
 ```
 
----
+The site runs at `http://localhost:3000`. News reads require a PostgreSQL database and cursor-signing secret; copy `.env.example` and follow [GO-LIVE.md](docs/GO-LIVE.md). Do not use production credentials for local tests.
 
-## The canonical loop
+## Repository
 
-```
-1. GET  /v2/topics                          pick a beat_id (once)
-2. GET  /v2/news?beat_id=…                  read the baseline, keep the cursor
-3. later: GET /v2/changes?beat_id=…&cursor=…
-4. if moved: quote the headlines and cite the links
-5. store the new cursor
-```
-
-Step 3 is the product. It returns only what appeared since that cursor, and an empty page is a
-**success** — it means nothing happened.
-
-`docs/ARCHITECTURE.md` explains the design; `AGENTS.md` is the same loop written for a coding
-agent to follow.
-
----
-
-## How it runs
-
-**Everything is on Vercel.** One deployment serves the site and the API; the database is Postgres
-from the Vercel dashboard, and ingestion is a Vercel Cron.
-
-```
-apps/web             the site, and the API mounted at /api/*   → Vercel
-apps/api             the Hono app that serves /api/*           → @newsgraph/api
-apps/worker          ingestion: provider → normalise → store    → run by the cron route
-packages/contracts   every wire shape as a zod schema
-packages/db          a Postgres client, and nothing else
-db/schema.sql        three tables and one function
-```
-
-```
-client → /api/v2/news?beat_id=…&cursor=…
-       → apps/api  (one SQL query, signed cursor)
-       → Postgres
-       → ≤8 items, ~1800 tokens, plus a new cursor
-```
-
-`apps/api` is a Hono app mounted by `apps/web/app/api/[[...route]]/route.ts`, so there is no
-second host, no CORS and no generated copy to keep in sync. It still runs standalone on Node via
-`apps/api/src/server.ts` if you ever want that.
-
-> **Ingestion is switched off.** `apps/web/vercel.json` has `"crons": []`, so
-> nothing is being indexed. The API still answers, but only with whatever was
-> last ingested — at the time of writing that was 9 October, and the newest
-> article was from 24 September. The news crawler now runs locally in FomoX
-> (`fomox/tools/ingest-news.mjs`) instead, so this deployment should be treated
-> as a frozen archive rather than a live feed. Re-adding the cron resumes
-> indexing; do that deliberately, not by accident.
-
-Setup, environment and the first ingestion: **[docs/GO-LIVE.md](docs/GO-LIVE.md)**.
-
----
-
-## Rules that will come up in review
-
-1. **Never claim more than the code does.** Every capability carries a status in STATUS.md and the
-   README. Ship something, update those in the same PR.
-2. **Wire shapes live in `packages/contracts`.** Change the schema, not just the handler.
-3. **No article bodies, ever.** Items carry a headline, a link and the publisher's name. There is
-   no `body` field at any price, and adding one is out of scope.
-4. **The schema is in the repository.** Change `db/schema.sql` when you change the SQL — it is
-   idempotent, so `npm run db:setup` re-applies it safely.
-
----
-
-## Contributing
-
-**[CONTRIBUTING-FIRST-PR.md](CONTRIBUTING-FIRST-PR.md)** — fresh clone to merged change.
-
-The cheapest real contribution is a **topic**:
-[there is an issue template](https://github.com/thepeternemec/NewsGraph/issues/new?template=topic_request.yml)
-that needs no code at all. After that, self-serve API keys (#1 in STATUS.md) is the single
-highest-value change in the repository.
-
-MIT licensed. No CLA. [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) has the ground rules.
-
----
-
-## Docs
-
-| Document | What it covers |
+| Directory | Purpose |
 | --- | --- |
-| **[docs/STATUS.md](docs/STATUS.md)** | **Where the project is, and what to build next** |
-| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | How the pieces fit together |
-| [docs/GO-LIVE.md](docs/GO-LIVE.md) | Database, environment, first ingestion |
-| [AGENTS.md](AGENTS.md) | Integration guide for coding agents |
-| [newsgraph.vercel.app/docs](https://newsgraph.vercel.app/docs) | The docs site |
+| `apps/web` | Next.js website, terminal and API/cron routes |
+| `apps/api` | Hono REST API, MCP transport, GitHub sign-in and rate limiting |
+| `apps/worker` | Provider ingestion, filtering and normalization |
+| `packages/contracts` | Shared schemas, asset catalog and tool definitions |
+| `packages/db` | PostgreSQL access, keys, rate limits and account billing |
+| `db` | Schema and operator maintenance scripts |
+| `examples` | Function-calling adapter and OpenRouter example |
+
+## In development
+
+[PR #11](https://github.com/thepeternemec/NewsBeat/pull/11) contains general news search, source-record lookup, multiple agent keys, unified REST/MCP billing, OAuth resource-server support and signed saved-watch notifications. These are **preview work, not features activated by this branding release**. Database migration, environment setup and end-to-end activation remain required.
+
+Stripe checkout and public platform-directory submissions are separate work. The current main branch does not promise billing parity between REST and MCP; the shared executor in PR #11 addresses that gap.
+
+## Documentation
+
+- [Current capabilities and limitations](docs/STATUS.md)
+- [Agent integration guide](AGENTS.md)
+- [Architecture](docs/ARCHITECTURE.md)
+- [Deployment and domain cutover](docs/GO-LIVE.md)
+- [Contributing](CONTRIBUTING.md)
+- [Security](SECURITY.md)
+
+MIT licensed. See [LICENSE](LICENSE).

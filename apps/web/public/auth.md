@@ -12,7 +12,7 @@ Host: `newsgraph.vercel.app` · API base: `https://newsgraph.vercel.app/api`
 Skip this step. There is no `/agent/identity`, no `/oauth2/token`, and no claim
 ceremony. `POST` to any of them returns `404`.
 
-NewsGraph is a **public read-only news API**. Access is not gated, so there is no
+NewsBeat is a **public read-only news API**. Access is not gated, so there is no
 user to register and no scoped token to mint. An agent may call it on first use,
 with no setup and no operator involvement.
 
@@ -76,12 +76,12 @@ Returns the four calls in OpenAI function-call shape:
 
 | Tool | Use it to |
 | --- | --- |
-| `newsgraph_topics` | Find a topic. Never invent a `beat_id` |
-| `newsgraph_news` | Read a topic and take a baseline cursor |
-| `newsgraph_changes` | Ask what is new since that cursor |
-| `newsgraph_brief` | The top headlines verbatim, with source and UTC time |
-| `newsgraph_stories` | The events behind a topic, not the coverage — near-identical headlines grouped |
-| `newsgraph_watch` | Many topics in one call — the batch form of `changes` |
+| `newsbeat_topics` | Find a topic. Never invent a `beat_id` |
+| `newsbeat_news` | Read a topic and take a baseline cursor |
+| `newsbeat_changes` | Ask what is new since that cursor |
+| `newsbeat_brief` | The top headlines verbatim, with source and UTC time |
+| `newsbeat_stories` | The events behind a topic, not the coverage — near-identical headlines grouped |
+| `newsbeat_watch` | Many topics in one call — the batch form of `changes` |
 
 `GET /v2/topics?q=` searches by ticker or company name across +2000 topics —
 US-listed equities and the largest crypto assets. A coin and a company can share a ticker

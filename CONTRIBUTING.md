@@ -1,4 +1,4 @@
-# Contributing to NewsGraph
+# Contributing to NewsBeat
 
 ## The one rule that matters
 
@@ -10,13 +10,13 @@ Found and fixed in one week:
 
 - the landing claimed **"150,000 publishers"**; nothing counted publishers, and the
   real number was 23,303
-- `/connect` told developers to `import { NewsGraphClient } from "@newsgraph/sdk"`;
+- `/connect` told developers to `import { NewsBeatClient } from "@newsbeat/sdk"`;
   that package had been deleted
 - the quickstart described a catalog of **twenty topics**, three catalogs after it
   grew past a thousand
 - the FAQ promised card, invoice and **stablecoin** payments; no payment code has
   ever existed
-- `newsgraph_stories` was advertised in `tools/list` **with no handler**, so an
+- `newsbeat_stories` was advertised in `tools/list` **with no handler**, so an
   agent that chose it got `unknown_tool`
 - `/v2/news` ordered by an **id cast to text**, so it served month-old stories
   while current ones sat behind them
@@ -30,8 +30,8 @@ check it against the running system before you write it down.
 ## Getting set up
 
 ```bash
-git clone https://github.com/thepeternemec/NewsGraph.git
-cd newsgraph
+git clone https://github.com/thepeternemec/NewsBeat.git
+cd newsbeat
 npm install          # also installs the git hooks, see "Guard rails"
 npm run build        # contracts -> db -> api -> worker -> web
 npm test             # 44 tests, no database required
@@ -49,11 +49,11 @@ To work against a real database, copy `.env.example` to `.env` and set
 
 ```bash
 npm run db:setup     # apply db/schema.sql — idempotent, safe to re-run
-npm run ingest -w newsgraph-worker   # fetch news for every topic (free, no key)
+npm run ingest -w newsbeat-worker   # fetch news for every topic (free, no key)
 npm run key:issue -- "my key"        # mint an API key
 ```
 
-Ingestion uses Google News RSS, which is key-less and free. `NEWSGRAPH_PROVIDER=newsapi`
+Ingestion uses Google News RSS, which is key-less and free. `NEWSBEAT_PROVIDER=newsapi`
 switches to the paid provider; it is not the default and it costs money.
 
 ## Where things live
@@ -75,7 +75,7 @@ suggesting otherwise, it is empty and should be deleted.
 
 ```bash
 npm test                                  # everything
-npm run build -w @newsgraph/contracts && node --test packages/contracts/dist/*.test.js
+npm run build -w @newsbeat/contracts && node --test packages/contracts/dist/*.test.js
 ```
 
 The suite runs **without a database**. That is deliberate — it is why CI works
@@ -153,7 +153,7 @@ add the third:
 3. `apps/api/src/lib/news-routes.ts` — `callNewsTool` *(the handler guard calls
    every advertised tool and fails on `unknown_tool`)*
 
-Forgetting the third is how `newsgraph_stories` shipped broken.
+Forgetting the third is how `newsbeat_stories` shipped broken.
 
 ## Guard rails
 

@@ -1,5 +1,5 @@
 /**
- * NewsGraph API.
+ * NewsBeat API.
  *
  * Read-only news interfaces: topics, articles, changes since a cursor, and an
  * MCP server for agent frameworks. This is the canonical source for the
@@ -31,13 +31,13 @@ app.use("*", async (c, next) => {
 // Counting happens before routing, so refused requests cost one indexed upsert.
 app.use("*", rateLimit);
 
-app.get("/health", (c) => c.json({ ok: true, service: "newsgraph", version: "0.3.0" }));
+app.get("/health", (c) => c.json({ ok: true, service: "newsbeat", version: "0.3.0" }));
 
 app.get("/", (c) =>
   c.json({
-    service: "NewsGraph",
+    service: "NewsBeat",
     docs: "https://newsgraph.vercel.app/docs",
-    repo: "https://github.com/thepeternemec/NewsGraph",
+    repo: "https://github.com/thepeternemec/NewsBeat",
     routes: ["/v2/topics", "/v2/news", "/v2/changes", "/v2/watch", "/v2/brief", "/v2/stories", "/v2/tools", "/mcp", "/health", "/keys/authorize"],
     rate_limits: rateLimits,
   }),

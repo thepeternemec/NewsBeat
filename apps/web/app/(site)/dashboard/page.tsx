@@ -266,7 +266,7 @@ export default function Dashboard() {
       <nav className="nav">
         <div className="nav-pill">
           <a className="nav-logo" href="/">
-            NEWSGRAPH
+            NEWSBEAT
           </a>
           <span className="nav-links">
             {/* Sona UI's FluidTabs: the active surface slides between tabs rather
@@ -549,7 +549,7 @@ export default function Dashboard() {
         <div className="wrap">
           <div className="footer-row">
             <div className="footer-brand-line">
-              <span className="footer-co">NEWSGRAPH</span>
+              <span className="footer-co">NEWSBEAT</span>
               <span style={{ color: "var(--border-strong)" }}>/</span>
               <span className="footer-address">read-only · live graph</span>
             </div>

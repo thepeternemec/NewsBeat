@@ -1,10 +1,10 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { SEED_BEATS } from "@newsgraph/contracts";
+import { SEED_BEATS } from "@newsbeat/contracts";
 import { TOPIC_PAGE_MAX } from "./news.js";
 import { boundedPage, readCursor, signCursor } from "./news.js";
 import { mcpResponse } from "./mcp.js";
-process.env.NEWSGRAPH_CURSOR_SECRET = "unit-test-key-never-for-production";
+process.env.NEWSBEAT_CURSOR_SECRET = "unit-test-key-never-for-production";
 const beat = "b_bb964843350e";
 test("signed cursor is topic-bound, operation-bound, tamper resistant, and expires", async () => {
     const cursor = await signCursor(beat, "9007199254740999", "changes", 1000);
@@ -40,7 +40,7 @@ test("MCP rejects cross-origin requests and negotiates with standard client head
             };
         };
     };
-    assert.equal(body.result.serverInfo.name, "newsgraph");
+    assert.equal(body.result.serverInfo.name, "newsbeat");
     assert(body.result.capabilities.tools);
 });
 

@@ -33,7 +33,7 @@ const COLUMNS = [
     links: [
       { href: "/faq", label: "FAQ" },
       { href: "/keys", label: "Get a key" },
-      { href: "https://github.com/thepeternemec/NewsGraph", label: "GitHub" },
+      { href: "https://github.com/thepeternemec/NewsBeat", label: "GitHub" },
     ],
   },
 ] as const;
@@ -49,7 +49,7 @@ export default function SiteFooter() {
         >
           <div className="footer-grid">
             <div className="footer-brand">
-              <span className="footer-co">NEWSGRAPH</span>
+              <span className="footer-co">NEWSBEAT</span>
               <p className="footer-tag">The news layer for AI agents.</p>
               <p className="footer-address">
                 read-only · no credential required

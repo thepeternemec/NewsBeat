@@ -8,9 +8,9 @@ What has to be true before the site is serving real news, and how to check each 
 | --- | --- | --- |
 | 1 | A Postgres database | `DATABASE_URL` |
 | 2 | The schema | `npm run db:setup` once |
-| 3 | *(optional)* a newsapi.ai key | `NEWSAPI_API_KEY` — only for `NEWSGRAPH_PROVIDER=newsapi` |
+| 3 | *(optional)* a newsapi.ai key | `NEWSAPI_API_KEY` — only for `NEWSBEAT_PROVIDER=newsapi` |
 
-Plus `NEWSGRAPH_CURSOR_SECRET`, which signs cursors. Rotating it invalidates every cursor already
+Plus `NEWSBEAT_CURSOR_SECRET`, which signs cursors. Rotating it invalidates every cursor already
 issued, so treat it as long-lived.
 
 ## 1. Create the database
@@ -43,8 +43,8 @@ Vercel → Project → Settings → Environment Variables (Production and Previe
 ```
 DATABASE_URL              (usually injected by the Storage integration)
 NEWSAPI_API_KEY           your full-access key
-NEWSGRAPH_CURSOR_SECRET   32 random bytes, hex
-NEWSGRAPH_CRON_SECRET     optional; only for manual ingestion runs
+NEWSBEAT_CURSOR_SECRET   32 random bytes, hex
+NEWSBEAT_CRON_SECRET     optional; only for manual ingestion runs
 ```
 
 ## 4. Put the topics in
@@ -75,7 +75,7 @@ orphans every cursor already in the wild — so add, never renumber.
 ## 5. Run the first ingestion
 
 ```bash
-curl -H "Authorization: Bearer $NEWSGRAPH_CRON_SECRET" \
+curl -H "Authorization: Bearer $NEWSBEAT_CRON_SECRET" \
      https://newsgraph.vercel.app/api/cron/ingest
 ```
 
@@ -106,7 +106,7 @@ A topic that ingested successfully reads `fresh` or `stale`; one that has never 
 ## 6. The schedule
 
 `vercel.json` runs `/api/cron/ingest` every 15 minutes. Vercel signs its own cron requests, so no
-secret is needed for those; `NEWSGRAPH_CRON_SECRET` only guards manual runs.
+secret is needed for those; `NEWSBEAT_CRON_SECRET` only guards manual runs.
 
 > **Hobby plan crons run once per day.** A 15-minute cadence needs Pro. If you are on Hobby,
 > either change the schedule in `vercel.json` or drive it from GitHub Actions instead.
@@ -115,7 +115,7 @@ secret is needed for those; `NEWSGRAPH_CRON_SECRET` only guards manual runs.
 
 - [ ] `DATABASE_URL` set, and `npm run db:setup` has been run against it
 - [ ] `NEWSAPI_API_KEY` set
-- [ ] `NEWSGRAPH_CURSOR_SECRET` set
+- [ ] `NEWSBEAT_CURSOR_SECRET` set
 - [ ] Topics added to `packages/contracts/src/seed.ts`, and `npm test` passes
 - [ ] First ingestion returned `ok: true` with a non-zero `inserted`
 - [ ] `/api/v2/topics` shows `fresh` or `stale` rather than `unavailable`
@@ -147,3 +147,15 @@ it needs it or not, and the older ones are the ones nobody remembers holding.
 For preview deployments, the callback is derived from the request origin, so each
 deployment serves its own `/api/keys/callback`. GitHub allows one callback URL per
 OAuth app, so a preview will refuse the redirect unless you register a second app.
+
+## NewsBeat domain cutover
+
+The repository is https://github.com/thepeternemec/NewsBeat and the destination domain is `newsbeat.dev`.
+The existing Vercel project and its current hostname remain in place until the owner connects the domain.
+
+1. Add `newsbeat.dev` to the existing Vercel project and configure the DNS records Vercel specifies.
+2. Wait for domain verification and TLS, then verify the website, `/api/health`, MCP and a real news read on the new origin.
+3. Update the GitHub OAuth app homepage and callback to `https://newsbeat.dev` and `https://newsbeat.dev/api/keys/callback` before using sign-in there.
+4. Update clients and the documented deployment URLs to the new origin. Retain the existing host during migration; do not redirect API POST requests until clients are verified.
+
+New configuration uses `NEWSBEAT_*`. Existing `NEWSGRAPH_*` variables remain supported as fallbacks so a branding deployment does not invalidate credentials. Existing cursor signatures and cached MCP tool names also remain valid. No database migration is needed for this rename.

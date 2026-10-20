@@ -1,4 +1,4 @@
-import { db, hasDatabaseEnv } from "@newsgraph/db";
+import { db, hasDatabaseEnv } from "@newsbeat/db";
 import type { ProviderArticle } from "./newsapi.js";
 export function normalizeArticles(articles: ProviderArticle[], now = new Date()) {
     const seen = new Set<string>();

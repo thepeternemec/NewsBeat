@@ -9,7 +9,9 @@ import postgres, { type Sql } from "postgres";
  */
 
 export function env(name: string): string | undefined {
-  return process.env[name];
+  // Accept deployed legacy variable names during the brand migration.
+  return process.env[name] ?? (name.startsWith("NEWSBEAT_")
+    ? process.env[name.replace(/^NEWSBEAT_/, "NEWSGRAPH_")] : undefined);
 }
 
 export function hasDatabaseEnv(): boolean {
@@ -30,7 +32,7 @@ export function db(): Sql {
   if (!url) throw new Error("DATABASE_URL is not set");
   // The site asks for a dozen things at once (catalog, feed, ten clusters). With
   // a pool of one those serialise and the slowest query sets the page's latency.
-  const max = Math.max(1, Number(env("NEWSGRAPH_DB_POOL") ?? 5));
+  const max = Math.max(1, Number(env("NEWSBEAT_DB_POOL") ?? 5));
   client ??= postgres(url, { max, idle_timeout: 20, prepare: false });
   return client;
 }

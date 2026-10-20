@@ -11,7 +11,7 @@ export default function Page() {
           <div className="wrap">
             <span className="sec-eyebrow">FAQ & status</span>
             <h1 className="sec-title">Before you connect.</h1>
-            <p className="sec-sub">How NewsGraph works, what is available today, and what is coming next.</p>
+            <p className="sec-sub">How NewsBeat works, what is available today, and what is coming next.</p>
           </div>
         </div>
         {/* FAQ */}

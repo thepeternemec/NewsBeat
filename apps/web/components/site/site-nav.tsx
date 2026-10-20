@@ -16,7 +16,7 @@ export default function SiteNav({ active }: { active?: string }) {
     <nav className="nav">
       <div className="nav-pill">
         <a className="nav-logo" href="/">
-          NEWSGRAPH
+          NEWSBEAT
         </a>
         <span className="nav-links">
           {LINKS.map((link) => (
@@ -32,9 +32,9 @@ export default function SiteNav({ active }: { active?: string }) {
         </span>
         <a
           className="nav-gh"
-          href="https://github.com/thepeternemec/NewsGraph"
-          aria-label="NewsGraph on GitHub"
-          title="NewsGraph on GitHub"
+          href="https://github.com/thepeternemec/NewsBeat"
+          aria-label="NewsBeat on GitHub"
+          title="NewsBeat on GitHub"
         >
           {/* lucide dropped its brand icons, so the mark is inlined. */}
           <svg viewBox="0 0 16 16" width="15" height="15" fill="currentColor" aria-hidden="true">

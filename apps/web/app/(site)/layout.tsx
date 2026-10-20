@@ -12,7 +12,7 @@ import Noise from "@/components/motion/noise";
 import GridField from "@/components/site/grid-field";
 
 export const metadata: Metadata = {
-  title: "NewsGraph — The news layer for AI agents",
+  title: "NewsBeat — The news layer for AI agents",
   description:
     "The news layer for AI agents. Track equities and crypto with source-linked news for trading and prediction-market research. Connect through MCP or API. Usage-based pricing. No seat licences.",
 };

@@ -1,7 +1,7 @@
 {
-  "name": "@newsgraph/db",
+  "name": "@newsbeat/db",
   "version": "0.2.0",
-  "description": "Postgres access for NewsGraph.",
+  "description": "Postgres access for NewsBeat.",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -18,7 +18,7 @@
     "build": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@newsgraph/contracts": "0.2.0",
+    "@newsbeat/contracts": "0.2.0",
     "postgres": "^3.4.5"
   },
   "devDependencies": {

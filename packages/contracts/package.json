@@ -1,7 +1,7 @@
 {
-  "name": "@newsgraph/contracts",
+  "name": "@newsbeat/contracts",
   "version": "0.2.0",
-  "description": "Canonical NewsGraph schemas: beats, packs, receipts, errors, tools, seed catalog.",
+  "description": "Canonical NewsBeat schemas: beats, packs, receipts, errors, tools, seed catalog.",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

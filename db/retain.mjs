@@ -22,7 +22,7 @@ if (!url) {
   process.exit(2);
 }
 
-const days = Math.max(31, Number(process.env.NEWSGRAPH_RETENTION_DAYS ?? 35));
+const days = Math.max(31, Number((process.env.NEWSBEAT_RETENTION_DAYS ?? process.env.NEWSGRAPH_RETENTION_DAYS) ?? 35));
 const sql = postgres(url, { max: 1, prepare: false, onnotice: () => {} });
 
 try {
