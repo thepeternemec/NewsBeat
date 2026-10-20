@@ -39,9 +39,10 @@ export default function Terms() {
           <div className="wrap-tight docs-body">
             <h2>1. Who operates this</h2>
             <p>
-              NewsBeat is operated by <strong>[registered company name]</strong>, registered at{" "}
-              <strong>[registered address]</strong> (&ldquo;NewsBeat&rdquo;, &ldquo;we&rdquo;). You
-              can reach us at <a href="mailto:hello@newsbeat.dev">hello@newsbeat.dev</a>.
+              NewsBeat.dev is operated by founder Peter Nemec through <strong>Tephra d.o.o.</strong>,
+              a company registered in the court register of the Republic of Slovenia
+              (&ldquo;NewsBeat&rdquo;, &ldquo;we&rdquo;). You can reach us at{" "}
+              <a href="mailto:hello@newsbeat.dev">hello@newsbeat.dev</a>.
             </p>
 
             <h2>2. What the service is</h2>
@@ -82,10 +83,15 @@ export default function Terms() {
             <h2>5. Keys, trial and metering</h2>
             <p>
               A key is optional. It raises the limit to 1,200 requests a minute and is{" "}
-              <strong>metered</strong>: each call is charged against a balance, and a new key starts
-              with a $5.00 trial. Published prices are on <a href="/pricing">the pricing page</a>.
-              When the balance reaches zero the key returns <code>402</code> and you fall back to the
-              free anonymous tier.
+              <strong>metered</strong>: each call is charged against a balance. When the balance
+              reaches zero the key returns <code>402</code> and you fall back to the free anonymous
+              tier.
+            </p>
+            <p>
+              A new key starts with <strong>$5.00 of trial credit</strong>. That is a grant, not a
+              payment, and it is not a plan. <strong>Prepaid access starts at $6</strong> — 30 days at
+              $0.20 a day — with $18 for 90 days and $60 for 300 days. The schedule on{" "}
+              <a href="/pricing">the pricing page</a> prevails over this summary if the two differ.
             </p>
             <p>
               Keys are self-served through GitHub, requesting the <code>read:user</code> scope only.
@@ -151,9 +157,9 @@ export default function Terms() {
 
             <h2>11. Governing law</h2>
             <p>
-              These terms are governed by the laws of <strong>[jurisdiction]</strong>, and the courts
-              of <strong>[forum]</strong> have exclusive jurisdiction, without affecting any right you
-              have under mandatory consumer law where you live.
+              These terms are governed by the laws of the <strong>Republic of Slovenia</strong>, and
+              the courts of <strong>Ljubljana, Slovenia</strong> have exclusive jurisdiction, without
+              affecting any right you have under mandatory consumer law where you live.
             </p>
 
             <h2>12. Contact</h2>
