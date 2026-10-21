@@ -1,5 +1,7 @@
 "use client";
 
+import InteriorPage from "@/components/site/interior-page";
+
 import { useCallback, useEffect, useRef, useState } from "react";
 
 /** Clusters to load articles for. One request each, so this stays small. */
@@ -289,11 +291,11 @@ export default function Dashboard() {
         </div>
       </nav>
 
-      <main className="wrap dash-main">
-        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 24, marginBottom: 28 }}>
+      <InteriorPage className="wrap dash-main terminal-page">
+        <div className="terminal-heading">
           <div>
             <span className="sec-eyebrow">Live graph · English only · one cluster per beat</span>
-            <h1 style={{ margin: 0, fontSize: "clamp(30px, 4vw, 44px)", lineHeight: 1.05, letterSpacing: "-0.035em", color: "#fff", fontWeight: 600 }}>
+            <h1 style={{ margin: 0, fontSize: "clamp(30px, 4vw, 44px)", lineHeight: 1.05, letterSpacing: "-0.035em", color: "var(--text-primary)", fontWeight: 600 }}>
               {TABS.find((t) => t.value === view)?.title}
             </h1>
           </div>
@@ -531,7 +533,7 @@ export default function Dashboard() {
             )}
           </div>
         )}
-      </main>
+      </InteriorPage>
 
       <footer className="site">
         <div className="wrap">

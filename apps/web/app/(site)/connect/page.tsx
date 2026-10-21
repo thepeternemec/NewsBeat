@@ -1,5 +1,8 @@
 "use client";
 
+import InteriorPage from "@/components/site/interior-page";
+import PageVisual from "@/components/site/page-visual";
+
 import { useEffect, useState } from "react";
 import { ArrowRight, Check, Copy } from "lucide-react";
 import SiteNav from "@/components/site/site-nav";
@@ -51,8 +54,8 @@ curl -s "${API_BASE}/v2/brief?beat_id=b_bb964843350e"`,
 const { tools } = await fetch("${API_BASE}/v2/tools").then((r) => r.json());
 
 // Pass them to your model, execute what it calls, send the results back.
-// Six tools: newsbeat_topics, newsbeat_news, newsbeat_changes,
-// newsbeat_brief, newsbeat_stories, newsbeat_watch.`,
+// Seven tools: newsbeat_topics, newsbeat_news, newsbeat_changes,
+// newsbeat_brief, newsbeat_stories, newsbeat_summary, newsbeat_watch.`,
 };
 
 export default function Connect() {
@@ -144,9 +147,10 @@ export default function Connect() {
   return (
     <>
       <SiteNav active="/connect" />
-      <main>
+      <InteriorPage className="connect-page">
         <div className="page-head">
-          <div className="wrap">
+          <div className="wrap intro-grid">
+            <div className="intro-copy">
             <span className="sec-eyebrow">Connect</span>
             <h1 className="sec-title">Start in one request.</h1>
             <p className="sec-sub">
@@ -163,6 +167,8 @@ export default function Connect() {
                 anonymous callers get 120 requests a minute · a key raises it to 1200 and is
                 metered from a $5.00 trial
             </p>
+            </div>
+            <PageVisual kind="connect" />
           </div>
         </div>
 
@@ -172,17 +178,20 @@ export default function Connect() {
               <span className="sec-eyebrow">Three ways in</span>
               <h2 className="sec-title">Pick the one that fits.</h2>
               <p className="sec-sub">
-                All three reach the same six tools. Nothing here is a client library —
+                All three reach the same seven tools. Nothing here is a client library —
                 there is no SDK to install, and no version to keep in step.
               </p>
             </div>
 
-            <div className="features grid-3">
+            <div className="connect-workbench">
+            <div className="connect-methods" role="group" aria-label="Connection method">
               {OPTIONS.map((option) => (
                 <button
                   key={option.id}
                   type="button"
                   className={`feature connect-option${option.id === selected ? " is-active" : ""}`}
+                  aria-pressed={option.id === selected}
+                  aria-controls="connection-code"
                   onClick={() => {
                     setSelected(option.id);
                     setResult("");
@@ -190,7 +199,7 @@ export default function Connect() {
                   style={{ minHeight: 150, textAlign: "left" }}
                 >
                   <span className="feature-tag" style={{ marginTop: 0, paddingTop: 0 }}>
-                    {option.id === selected ? "selected" : " "}
+                    {option.id === selected ? "selected" : `0${OPTIONS.indexOf(option) + 1}`}
                   </span>
                   <h3 className="feature-title">{option.title}</h3>
                   <p className="feature-desc">{option.blurb}</p>
@@ -198,7 +207,8 @@ export default function Connect() {
               ))}
             </div>
 
-            <div className="code" style={{ marginTop: 28 }}>
+            <div className="connect-console">
+            <div className="code" id="connection-code">
               <div className="code-bar">
                 {active.title}
                 <button type="button" className="copy-btn" onClick={copy} aria-label="Copy">
@@ -206,7 +216,7 @@ export default function Connect() {
                   {copied ? "copied" : "copy"}
                 </button>
               </div>
-              <pre>{snippet}</pre>
+              <pre key={selected} className="snippet-content">{snippet}</pre>
             </div>
 
             <div className="oss-row">
@@ -236,7 +246,10 @@ export default function Connect() {
                 })}
               </div>
             )}
-            {result && <p className="hero-tiny" style={{ textAlign: "left" }}>{result}</p>}
+            {result && <p className="hero-tiny connection-result" role="status">{result}</p>}
+            <p className="connection-help">Need a walkthrough? <a href="/docs/quickstart">Follow the setup guide <ArrowRight size={12} /></a></p>
+            </div>
+            </div>
           </div>
         </section>
 
@@ -255,7 +268,7 @@ export default function Connect() {
             </div>
           </div>
         </section>
-      </main>
+      </InteriorPage>
       <SiteFooter />
     </>
   );

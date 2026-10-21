@@ -1,3 +1,5 @@
+import InteriorPage from "@/components/site/interior-page";
+import PageVisual from "@/components/site/page-visual";
 import fs from "node:fs/promises";
 import path from "node:path";
 import SiteNav from "@/components/site/site-nav";
@@ -24,9 +26,10 @@ export default async function Llms() {
   return (
     <>
       <SiteNav active="/docs" />
-      <main>
+      <InteriorPage className="llms-page">
         <div className="page-head">
-          <div className="wrap">
+          <div className="wrap intro-grid">
+            <div className="intro-copy">
             <span className="sec-eyebrow">For machines, readable by people</span>
             <h1 className="sec-title">llms.txt</h1>
             <p className="sec-sub">
@@ -34,6 +37,8 @@ export default async function Llms() {
               what it must not claim. It is served as plain text at{" "}
               <a href="/llms.txt">/llms.txt</a> — this is the same file, rendered.
             </p>
+            </div>
+            <PageVisual kind="reference" />
           </div>
         </div>
 
@@ -56,7 +61,7 @@ export default async function Llms() {
             </p>
           </div>
         </section>
-      </main>
+      </InteriorPage>
       <SiteFooter />
     </>
   );

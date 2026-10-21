@@ -1,3 +1,5 @@
+import InteriorPage from "@/components/site/interior-page";
+import PageVisual from "@/components/site/page-visual";
 import { ArrowRight } from "lucide-react";
 import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
@@ -14,6 +16,9 @@ const ROUTES: Array<[string, string]> = [
   ["GET /v2/news", "Articles for one topic, plus a cursor to check from"],
   ["GET /v2/changes", "Only what appeared since that cursor — usually nothing"],
   ["GET /v2/brief", "The top headlines verbatim, with source and UTC time"],
+  ["GET /v2/stories", "Similar headlines grouped and ranked by relevance"],
+  ["GET /v2/summary", "Short explanations based on headlines, with source links"],
+  ["POST /v2/watch", "Check up to 50 assets in one request"],
   ["GET /v2/tools", "The same capabilities in OpenAI function-call shape"],
   ["POST /mcp", "The same tools over MCP"],
 ];
@@ -27,9 +32,10 @@ export default function Pricing() {
   return (
     <>
       <SiteNav active="/pricing" />
-      <main>
+      <InteriorPage className="pricing-page">
         <div className="page-head">
-          <div className="wrap">
+          <div className="wrap intro-grid">
+            <div className="intro-copy">
             <span className="sec-eyebrow">Pricing</span>
             <h1 className="sec-title">Free to start. Ready for your agent.</h1>
             <p className="sec-sub">
@@ -45,6 +51,8 @@ export default function Pricing() {
               </a>
             </div>
             <p className="hero-tiny">Free during early access · Stripe checkout coming soon</p>
+            </div>
+            <PageVisual kind="pricing" />
           </div>
         </div>
 
@@ -58,6 +66,9 @@ export default function Pricing() {
                 Stripe checkout for prepaid access is coming soon. Current request limits are below.
               </p>
             </div>
+            <div className="access-plan">
+            <div className="access-plan-intro"><span className="sec-eyebrow">Public access</span><h3>All the news tools.<br />One place to start.</h3><p>Explore headlines, group coverage and ask for a summary. Your first request needs no account.</p><a className="quiet-link" href="/connect">Start with NewsBeat <ArrowRight size={14} /></a></div>
+            <div>
             <div className="table-scroll">
             <table className="docs-body" style={{ maxWidth: "100%" }}>
               <thead>
@@ -82,6 +93,8 @@ export default function Pricing() {
               Public access needs no key. Optional keys are available through GitHub sign-in. Keyed REST
               calls are metered against $5 in trial credit and return 402 when the balance is exhausted.
             </p>
+            </div>
+            </div>
           </div>
         </section>
 
@@ -169,7 +182,7 @@ export default function Pricing() {
             <p className="cta-tiny">The news layer for AI agents · Usage-based pricing · No seat licences</p>
           </div>
         </section>
-      </main>
+      </InteriorPage>
       <SiteFooter />
     </>
   );

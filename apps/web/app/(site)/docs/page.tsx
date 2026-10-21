@@ -7,6 +7,7 @@ export default function DocsOverview() {
   return (
     <>
       <div className="docs-head">
+        <span className="sec-eyebrow">The NewsBeat guide</span>
         <h1>Ask your agent what’s happening.</h1>
         <p className="docs-lead">
           NewsBeat brings recent company and crypto news into the AI assistant you already use.
@@ -15,7 +16,7 @@ export default function DocsOverview() {
       </div>
 
       <h2>Start with a question</h2>
-      <ul>
+      <ul className="question-grid">
         <li>“What is happening with Nvidia?”</li>
         <li>“Give me three recent headlines about Apple, with sources.”</li>
         <li>“I’m researching Microsoft. Check recent news before answering.”</li>

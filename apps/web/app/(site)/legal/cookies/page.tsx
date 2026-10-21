@@ -1,3 +1,5 @@
+import InteriorPage from "@/components/site/interior-page";
+import PageVisual from "@/components/site/page-visual";
 import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
 
@@ -17,9 +19,10 @@ export default function Cookies() {
   return (
     <>
       <SiteNav active="/legal/cookies" />
-      <main>
+      <InteriorPage className="legal-page">
         <div className="page-head">
-          <div className="wrap">
+          <div className="wrap intro-grid">
+            <div className="intro-copy">
             <span className="sec-eyebrow">Legal</span>
             <h1 className="sec-title">Cookie notice</h1>
             <p className="sec-sub">
@@ -27,6 +30,8 @@ export default function Cookies() {
               advertising. There is nothing to consent to, so there is no banner.
             </p>
             <p className="hero-tiny">Last updated 20 October 2026</p>
+            </div>
+            <PageVisual kind="legal" />
           </div>
         </div>
 
@@ -76,7 +81,7 @@ export default function Cookies() {
             </div>
           </div>
         </section>
-      </main>
+      </InteriorPage>
       <SiteFooter />
     </>
   );

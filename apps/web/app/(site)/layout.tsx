@@ -4,6 +4,7 @@ import "./globals.css";
 import "./motion.css";
 import "./motion-components.css";
 import "./theme.css";
+import "./interior.css";
 import SoftAurora from "@/components/soft-aurora";
 import ScrollReveal from "@/components/scroll-reveal";
 import SmoothScroll from "@/components/smooth-scroll";
@@ -25,7 +26,7 @@ const THEME_BOOTSTRAP = `(function(){try{var t=localStorage.getItem("newsbeat-th
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP }} />
       </head>
