@@ -59,6 +59,7 @@ Base: `https://www.newsbeat.dev/api`
 | `GET /v2/changes?beat_id=&cursor=` | Only what is new since that cursor |
 | `GET /v2/brief?beat_id=` | Three relevant recent headlines verbatim, each with source and UTC time |
 | `GET /v2/stories?beat_id=` | The events behind a topic, not the coverage — near-identical headlines grouped |
+| `GET /v2/summary?beat_id=` | Up to three short, source-linked explanations based on recent headlines |
 | `POST /v2/watch` | Up to 50 topics in one call, each with its own cursor |
 | `GET /v2/tools` | The same tools in OpenAI function-call shape |
 | `POST /mcp` | MCP, Streamable HTTP |
@@ -66,7 +67,7 @@ Base: `https://www.newsbeat.dev/api`
 
 The same calls are published as tools, for frameworks that would rather be handed a schema than a
 URL: `newsbeat_topics`, `newsbeat_news`, `newsbeat_changes`, `newsbeat_brief`,
-`newsbeat_stories`, `newsbeat_watch`. They appear in `GET /v2/tools` and over MCP.
+`newsbeat_stories`, `newsbeat_summary`, `newsbeat_watch`. They appear in `GET /v2/tools` and over MCP.
 
 **No credential is required.** Anonymous callers get 120 requests a minute, identified by calling
 address and never stored. A key raises that to 1200 and is **metered**: every check is charged
@@ -143,6 +144,8 @@ topic fails only its own result, so re-baseline just that one with
 `newsbeat_news` and keep the others.
 
 ## Grouped overview
+
+Use `newsbeat_summary` when someone asks what happened with an asset. It selects up to three distinct ranked story groups from the latest 200 reports in 24 hours, and returns short sentences with original report links and publication times. `basis` is `headlines_only`. `method` is `generated` when headline-based generation succeeds and `extractive` when the original headlines are shown instead. Read `freshness` and `coverage_truncated`, and never infer the contents of full articles or market effects.
 
 Use `newsbeat_stories` for a feed grouped by similar headlines and ranked by headline relevance. Each group includes a verbatim `lead_article` and `reports` with original source links and timestamps. No stored articles are deleted. Matching is conservative and approximate; source counts measure coverage, not independent verification.
 

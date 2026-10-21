@@ -67,7 +67,7 @@ Use the [connection guide](https://www.newsbeat.dev/connect) for setup and a liv
 
 NewsBeat supplies news context. It does not execute trades, provide prediction-market prices or connect to Polymarket accounts. Dedicated messaging integrations are on the roadmap.
 
-## One API, six tools
+## One API, seven tools
 
 | MCP tool | What it does |
 | --- | --- |
@@ -76,6 +76,7 @@ NewsBeat supplies news context. It does not execute trades, provide prediction-m
 | `newsbeat_changes` | Get newly indexed items since your last cursor |
 | `newsbeat_brief` | Return three ranked recent headlines verbatim |
 | `newsbeat_stories` | Group similar headlines into approximate story clusters |
+| `newsbeat_summary` | Explain up to three recent stories from headlines, with source links |
 | `newsbeat_watch` | Check up to 50 assets in one request |
 
 Choose an asset, read a baseline, save the cursor, then check for changes. Process each page before advancing its cursor and continue while `has_more` is true. An empty page is a valid result.
@@ -147,6 +148,8 @@ The site runs at `http://localhost:3000`. News reads require a PostgreSQL databa
 MIT licensed. See [LICENSE](LICENSE).
 
 ### Grouped news feed
+
+The terminal’s **Summarize headlines** button and `GET /api/v2/summary?beat_id=…` give a short, source-linked digest of up to three distinct ranked stories. Agents can call `newsbeat_summary` over MCP. The `basis` is always `headlines_only`; `method` is `generated` when generation is available or `extractive` when it displays original headlines. The original reports remain linked. Check `freshness` and `coverage_truncated` before describing the result as current or comprehensive.
 
 The terminal and `GET /api/v2/stories?beat_id=…` show one original lead per group of similar headlines, ranked by headline relevance. Expand a story in the terminal to see each report’s publisher, link and publication time. The API returns these in `lead_article` and `reports`; stored articles are retained.
 

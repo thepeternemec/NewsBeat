@@ -37,13 +37,14 @@ An empty page is a success. Report "nothing new" and do not retry it.
 - Changes since a cursor — https://www.newsbeat.dev/api/v2/changes?beat_id=…&cursor=…
 - Brief, three relevant recent headlines verbatim — https://www.newsbeat.dev/api/v2/brief?beat_id=b_bb964843350e
 - Stories, the events behind a topic — https://www.newsbeat.dev/api/v2/stories?beat_id=b_bb964843350e
+- Summary, short source-linked explanation from headlines — https://www.newsbeat.dev/api/v2/summary?beat_id=b_bb964843350e
 - Watch, up to 50 topics in one call — https://www.newsbeat.dev/api/v2/watch
 - Tool definitions — https://www.newsbeat.dev/api/v2/tools
 - MCP, Streamable HTTP — https://www.newsbeat.dev/api/mcp
 
 Tools, for frameworks that would rather be handed a schema than a URL:
 `newsbeat_topics`, `newsbeat_news`, `newsbeat_changes`, `newsbeat_brief`,
-`newsbeat_stories`, `newsbeat_watch`.
+`newsbeat_stories`, `newsbeat_summary`, `newsbeat_watch`.
 
 ## Grouped overview
 

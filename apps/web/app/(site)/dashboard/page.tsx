@@ -19,6 +19,7 @@ import {
   AccordionItemContent,
 } from "@/components/ui/accordion/accordion";
 import StoryRow from "@/components/site/story-row";
+import HeadlineSummary from "@/components/site/headline-summary";
 import { loadStoryFeed, type FeedItem } from "@/components/site/story-feed";
 
 const API_BASE =
@@ -415,6 +416,10 @@ export default function Dashboard() {
                 }))}
               />
             </div>
+
+            {active && articles.length > 0 && (
+              <HeadlineSummary key={active} beatId={active} label={activeTopic?.label ?? "this asset"} base={API_BASE} />
+            )}
 
             <div className="mock" style={{ marginTop: 24 }}>
               <div className="mock-bar">

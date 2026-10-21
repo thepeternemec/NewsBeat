@@ -22,6 +22,7 @@ const MINIMAL: Record<string, unknown> = {
   newsbeat_changes: { beat_id: "b_bb964843350e", cursor: "x" },
   newsbeat_brief: { beat_id: "b_bb964843350e" },
   newsbeat_stories: { beat_id: "b_bb964843350e" },
+  newsbeat_summary: { beat_id: "b_bb964843350e" },
 };
 
 test("every advertised tool has a handler", async () => {

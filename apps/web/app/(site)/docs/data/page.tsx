@@ -71,6 +71,12 @@ export default function DocsData() {
 
       <h2>Why are similar headlines grouped?</h2>
       <p>
+        In the terminal, select an asset and choose “Summarize headlines” for a short answer to
+        what the recent headlines report. Each point links to its publishers. When an automatic
+        summary is unavailable, NewsBeat shows original headlines and labels the result. These
+        sentences only reflect headlines, so open the reports for the full context.
+      </p>
+      <p>
         Several publishers may cover the same development. The feed shows one original headline
         for similar reports, with a “view sources” link underneath. Open it to see each report’s
         headline, publisher, publication time and link. No reporting is deleted.
