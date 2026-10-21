@@ -5,6 +5,7 @@ is a record of decisions, because the reasoning is the thing that gets lost.
 
 ## 2026-10-21
 
+- **$6 trial credit.** New API-key accounts receive $6 of trial credit. Website, API key onboarding, README and agent documentation now state the same amount. Existing account balances retain their recorded credits and usage.
 - **Guided assistant setup.** The quickstart now has three numbered setup cards, a prominent copyable MCP address, a first-question prompt and reusable question cards. Optional agent instructions and troubleshooting expand on demand. The layout works in both themes and on mobile, with entrance motion that respects reduced-motion preferences.
 - **Polished interior pages.** Connection, pricing, FAQ, key, reference and legal pages use balanced hero layouts and clearer sections. Documentation has a centered reading column and an active contents rail. The terminal has structured metric cards and theme-aware headings. Subtle entrance and hover motion respects reduced-motion preferences; layouts adapt to phone and tablet screens.
 - **“What happened?” summaries are live.** The terminal’s **Summarize headlines** button, `GET /api/v2/summary?beat_id=…`, and the `newsbeat_summary` MCP tool return up to three short explanations grounded in recent publisher headlines. Each item retains report links and publication times.

@@ -165,7 +165,7 @@ export default function Connect() {
             </div>
             <p className="hero-tiny">
                 anonymous callers get 120 requests a minute · a key raises it to 1200 and is
-                metered from a $5.00 trial
+                metered from a $6.00 trial
             </p>
             </div>
             <PageVisual kind="connect" />

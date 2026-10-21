@@ -91,7 +91,7 @@ export default function Pricing() {
             </div>
             <p className="hero-tiny" style={{ marginTop: 16 }}>
               Public access needs no key. Optional keys are available through GitHub sign-in. Keyed REST
-              calls are metered against $5 in trial credit and return 402 when the balance is exhausted.
+              calls are metered against $6 in trial credit and return 402 when the balance is exhausted.
             </p>
             </div>
             </div>

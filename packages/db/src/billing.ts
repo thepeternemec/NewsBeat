@@ -24,7 +24,7 @@ export const PRICE = {
   brief: 30_000,
 } as const;
 
-export const TRIAL_MICRO = 5 * MICRO_PER_DOLLAR;
+export const TRIAL_MICRO = 6 * MICRO_PER_DOLLAR;
 
 /**
  * What a response costs.

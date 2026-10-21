@@ -12,7 +12,7 @@ export const metadata = {
  * Terms of service.
  *
  * Every factual claim here is drawn from the codebase rather than from another
- * company's document: the metered key with its $5 trial and 402, the anonymous
+ * company's document: the metered key with its $6 trial and 402, the anonymous
  * 120-a-minute tier, headlines-only with links to publishers, the fifteen-minute
  * refresh, the absence of any account for readers. Terms that describe a service
  * other than the one being operated are worse than no terms, because they bind.
@@ -93,7 +93,7 @@ export default function Terms() {
               tier.
             </p>
             <p>
-              A new key starts with <strong>$5.00 of trial credit</strong>. That is a grant, not a
+              A new key starts with <strong>$6.00 of trial credit</strong>. That is a grant, not a
               payment, and it is not a plan. <strong>Prepaid access starts at $6</strong> — 30 days at
               $0.20 a day — with $18 for 90 days and $60 for 300 days. The schedule on{" "}
               <a href="/pricing">the pricing page</a> prevails over this summary if the two differ.

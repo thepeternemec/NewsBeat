@@ -104,7 +104,7 @@ Ingestion is scheduled every 15 minutes. Responses report per-asset `freshness`,
 
 **Public reads are currently free during early access.** No sign-up, API key or credit card is required. Anonymous requests are rate limited to 120 per minute. Start with the public endpoint above.
 
-Optional GitHub-issued API keys use a separate metered REST path with $5 in trial credit and a higher request limit. Stripe checkout is not live. See [current service status](docs/STATUS.md) for the exact limits and billing behavior.
+Optional GitHub-issued API keys use a separate metered REST path with $6 in trial credit and a higher request limit. Stripe checkout is not live. See [current service status](docs/STATUS.md) for the exact limits and billing behavior.
 
 The primary service is **[www.newsbeat.dev](https://www.newsbeat.dev)**:
 

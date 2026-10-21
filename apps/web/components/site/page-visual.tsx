@@ -19,7 +19,7 @@ export default function PageVisual({ kind }: { kind: Kind }) {
       <div className="key-token" aria-hidden="true">ng_<span>•••• •••• •••• ••••</span><ShieldCheck size={20} /></div>
       <div className="limit-comparison"><div><span>Public</span><strong>120</strong></div><ArrowRight size={20} /><div><span>With a key</span><strong>1,200</strong></div></div>
       <p className="visual-caption">Requests per minute</p>
-      <div className="visual-bottom"><Check size={14} /> $5 trial credit · Keyed requests are metered</div>
+      <div className="visual-bottom"><Check size={14} /> $6 trial credit · Keyed requests are metered</div>
     </aside>
   );
   if (kind === "reference" || kind === "legal") return (

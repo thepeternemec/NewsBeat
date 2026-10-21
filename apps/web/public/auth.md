@@ -36,8 +36,8 @@ hashed, never stored. That ceiling is high enough for the intended loop: one
 
 A key raises it to **1200 requests a minute** and is **metered**. Each call is
 charged against a balance — a check that found nothing is $0.0005, one that moved is
-$0.004, a brief is $0.002. A new account starts with a **$5.00 trial**, which is
-roughly ten thousand empty checks.
+$0.004, a brief is $0.002. A new account starts with a **$6.00 trial**, which is
+roughly twelve thousand empty checks.
 
 When the balance reaches zero the key returns:
 

@@ -37,7 +37,7 @@ REST story snapshots scan 200 reports by default (`limit` 1–500). MCP returns 
 
 ## Brand and domain
 
-The product and repository are **NewsBeat**, live at **https://www.newsbeat.dev**. Use `https://www.newsbeat.dev/api` for REST and `https://www.newsbeat.dev/api/mcp` for MCP. The `news-beat.vercel.app` host remains an alternate service address. Public reads are free during early access; no API key or credit card is needed. Optional keyed REST usage retains its trial-credit metering.
+The product and repository are **NewsBeat**, live at **https://www.newsbeat.dev**. Use `https://www.newsbeat.dev/api` for REST and `https://www.newsbeat.dev/api/mcp` for MCP. The `news-beat.vercel.app` host remains an alternate service address. Public reads are free during early access; no API key or credit card is needed. New API-key accounts receive **$6 in trial credit** for metered REST usage. Existing accounts retain their recorded balances; this change does not reset credits or usage.
 
 New discovery uses `newsbeat_*` tool names. Old tool names, deployed environment-variable names and existing signed cursors retain compatibility. Workspace package names use `@newsbeat/*` and `newsbeat-*`.
 
