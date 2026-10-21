@@ -28,6 +28,11 @@ Respect the host's permissions. Resolve the correct asset; if a name is ambiguou
     from a scan of 200 recent reports;
     REST defaults to 200 (limit 1–500) within 24 hours. Check coverage_truncated. Group IDs
     are snapshot identifiers, not stable subscriptions; use news/changes cursors for arrivals.
+3c2. For a plain-language answer to "what happened?", use newsbeat_summary
+    (GET /v2/summary?beat_id=...). It selects up to three distinct ranked stories and returns
+    short sentences with original report links and times. The basis is headlines only. The method
+    field is generated or extractive; extractive shows original headlines if generation is unavailable.
+    Check freshness and coverage_truncated. Never assume the complete articles were read.
 3d. Watching many topics? Use newsbeat_watch (POST /v2/watch) with the cursors you
     hold and get every topic's answer in one call, up to fifty. Each entry is
     independent — an expired cursor fails only its own result.

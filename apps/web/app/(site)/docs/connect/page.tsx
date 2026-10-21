@@ -1,7 +1,7 @@
 import CopyButton from "@/components/site/copy-button";
 import AgentInstructions from "@/components/site/agent-instructions";
 
-export const metadata = { title: "Developer reference", description: "Connect NewsBeat through remote MCP, REST or function calling. Six tools, current endpoints and working examples." };
+export const metadata = { title: "Developer reference", description: "Connect NewsBeat through remote MCP, REST or function calling. Seven tools, current endpoints and working examples." };
 const API = "https://www.newsbeat.dev/api";
 const MCP_CONFIG = JSON.stringify({ mcpServers: { newsbeat: { url: `${API}/mcp` } } }, null, 2);
 const TOOLS = [
@@ -10,6 +10,7 @@ const TOOLS = [
   ["newsbeat_changes", "Read newly indexed items after a saved cursor.", "GET /v2/changes?beat_id=…&cursor=…"],
   ["newsbeat_brief", "Get three relevant recent headlines verbatim with sources and times.", "GET /v2/brief?beat_id=…"],
   ["newsbeat_stories", "Read grouped headlines with every report’s source link.", "GET /v2/stories?beat_id=…"],
+  ["newsbeat_summary", "Get a short explanation from headlines with original source links.", "GET /v2/summary?beat_id=…"],
   ["newsbeat_watch", "Check up to 50 assets in one request; does not create a schedule.", "POST /v2/watch"],
 ];
 const FIRST_REQUEST = `curl -s "${API}/v2/topics?q=nvidia"\n\ncurl -s "${API}/v2/news?beat_id=b_bb964843350e"`;
@@ -36,7 +37,7 @@ export default function DocsConnect() {
         <pre>{MCP_CONFIG}</pre>
       </div>
       <p>
-        The server advertises six read-only tools and guidance on when to use them. The host decides
+        The server advertises seven read-only tools and guidance on when to use them. The host decides
         when tools run and enforces its own approvals. Custom remote connections are not available
         in every assistant or account; this endpoint does not imply directory approval.
       </p>
@@ -49,7 +50,7 @@ export default function DocsConnect() {
       </p>
       <AgentInstructions />
 
-      <h2>Six tools and their REST routes</h2>
+      <h2>Seven tools and their REST routes</h2>
       <p>Prefix REST routes with <code>{API}</code>. Most reads use GET; batched watch uses POST.</p>
       <div className="table-scroll">
         <table>
@@ -73,6 +74,15 @@ export default function DocsConnect() {
       </p>
 
       <h2>Grouped feed</h2>
+      <p>
+        For a quick answer to “What happened with Nvidia?”, use <code>/v2/summary?beat_id=…</code>
+        or <code>newsbeat_summary</code>. It selects up to three distinct ranked stories and gives
+        short sentences with links to the original reports. <code>basis</code> is always
+        <code>headlines_only</code>. <code>method</code> is <code>generated</code> when headline
+        summarization succeeds; <code>extractive</code> shows original headlines when it cannot.
+        Check <code>freshness</code> and <code>coverage_truncated</code>; the service has not read
+        the complete articles and does not infer market impact.
+      </p>
       <p>
         Use <code>/v2/stories?beat_id=…</code> or <code>newsbeat_stories</code> for one lead per
         group of similar headlines. Groups include <code>lead_article</code> and <code>reports</code>:

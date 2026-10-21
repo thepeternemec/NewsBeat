@@ -2020,3 +2020,15 @@
 [data-theme="light"] .nav-link:hover {
   background: rgba(20, 19, 15, 0.06);
 }
+
+.headline-summary { margin-top: 24px; border: 1px solid var(--border-subtle); border-radius: 8px; padding: 18px 20px; }
+.headline-summary-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.headline-summary-head h3 { margin: 5px 0 0; font-size: 18px; }
+.headline-summary-head .btn-ghost { flex: none; }
+.headline-summary-list { margin: 16px 0 0; padding-left: 24px; }
+.headline-summary-list li { padding: 8px 0; }
+.headline-summary-list li p { margin: 0 0 4px; line-height: 1.5; }
+.headline-summary-list li span { font-size: 12px; color: var(--text-muted); }
+.headline-summary-list li a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.headline-summary-note { margin: 16px 0 0; color: var(--text-muted); font-size: 12px; }
+@media (max-width: 600px) { .headline-summary-head { align-items: flex-start; flex-direction: column; } }

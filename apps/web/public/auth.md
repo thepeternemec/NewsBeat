@@ -72,7 +72,7 @@ GET /v2/tools HTTP/1.1
 Host: www.newsbeat.dev
 ```
 
-Returns the four calls in OpenAI function-call shape:
+Returns the seven calls in OpenAI function-call shape:
 
 | Tool | Use it to |
 | --- | --- |
@@ -81,6 +81,7 @@ Returns the four calls in OpenAI function-call shape:
 | `newsbeat_changes` | Ask what is new since that cursor |
 | `newsbeat_brief` | The top headlines verbatim, with source and UTC time |
 | `newsbeat_stories` | The events behind a topic, not the coverage — near-identical headlines grouped |
+| `newsbeat_summary` | Short explanations based on headlines, with source links; original headlines if generation is unavailable |
 | `newsbeat_watch` | Many topics in one call — the batch form of `changes` |
 
 `GET /v2/topics?q=` searches by ticker or company name across +2000 topics —

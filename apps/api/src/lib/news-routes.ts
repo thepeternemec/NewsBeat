@@ -2,6 +2,7 @@ import { Hono } from "hono";
 import { z } from "zod";
 import { NEWS_TOOLS } from "@newsbeat/contracts";
 import { NewsError, topics, newsPage, brief, stories, watchMany, WATCH_LIMIT, TOPIC_PAGE_DEFAULT, TOPIC_PAGE_MAX } from "./news.js";
+import { headlineSummary } from "./headline-summary.js";
 export const newsRoutes = new Hono();
 newsRoutes.onError((error, c) => { if (error instanceof NewsError)
     return c.json({ error: { code: error.code, message: error.message } }, error.status as 400 | 404 | 410 | 503); console.error("news request failed", error.name); return c.json({ error: { code: "service_unavailable", message: "News is temporarily unavailable." } }, 503); });
@@ -34,6 +35,11 @@ newsRoutes.get("/stories", async (c) => {
         throw new NewsError("invalid_request", "beat_id is required.", 400);
     const limit = clamp(c.req.query("limit"), 200, 500) || 200;
     return c.json(await stories(beatId, limit));
+});
+newsRoutes.get("/summary", async (c) => {
+    const beatId = (c.req.query("beat_id") ?? "").trim();
+    if (!beatId) throw new NewsError("invalid_request", "beat_id is required.", 400);
+    return c.json(await headlineSummary(beatId));
 });
 newsRoutes.get("/brief", async (c) => {
     const beatId = (c.req.query("beat_id") ?? "").trim();
@@ -70,6 +76,10 @@ export async function callNewsTool(name: string, args: unknown) {
     if (name === "newsbeat_stories") {
         const input = z.object({ beat_id: z.string() }).strict().parse(args);
         return stories(input.beat_id, 40, 200);
+    }
+    if (name === "newsbeat_summary") {
+        const input = z.object({ beat_id: z.string() }).strict().parse(args);
+        return headlineSummary(input.beat_id);
     }
     if (name === "newsbeat_watch") {
         const input = z.object({
