@@ -5,6 +5,7 @@ is a record of decisions, because the reasoning is the thing that gets lost.
 
 ## 2026-10-21
 
+- **Mobile navigation rebuilt.** A compact header keeps the terminal one tap away, with an accessible expandable menu for the rest of the site. Phone layouts have less empty space above content, larger touch targets and immediately readable hero text. The terminal uses the shared header and keeps its view tabs beside the page content.
 - **$6 trial credit.** New API-key accounts receive $6 of trial credit. Website, API key onboarding, README and agent documentation now state the same amount. Existing account balances retain their recorded credits and usage.
 - **Guided assistant setup.** The quickstart now has three numbered setup cards, a prominent copyable MCP address, a first-question prompt and reusable question cards. Optional agent instructions and troubleshooting expand on demand. The layout works in both themes and on mobile, with entrance motion that respects reduced-motion preferences.
 - **Polished interior pages.** Connection, pricing, FAQ, key, reference and legal pages use balanced hero layouts and clearer sections. Documentation has a centered reading column and an active contents rail. The terminal has structured metric cards and theme-aware headings. Subtle entrance and hover motion respects reduced-motion preferences; layouts adapt to phone and tablet screens.
