@@ -1,3 +1,5 @@
+import InteriorPage from "@/components/site/interior-page";
+import PageVisual from "@/components/site/page-visual";
 import { ArrowRight } from "lucide-react";
 import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
@@ -8,9 +10,10 @@ export default function Keys() {
   return (
     <>
       <SiteNav active="/keys" />
-      <main>
+      <InteriorPage className="keys-page">
         <div className="page-head">
-          <div className="wrap">
+          <div className="wrap intro-grid">
+            <div className="intro-copy">
             <span className="sec-eyebrow">API keys</span>
             <h1 className="sec-title">A key, if you want one.</h1>
             <p className="sec-sub">
@@ -29,6 +32,8 @@ export default function Keys() {
               </a>
             </div>
             <p className="hero-tiny">asks for read:user and nothing else</p>
+            </div>
+            <PageVisual kind="keys" />
           </div>
         </div>
 
@@ -70,7 +75,7 @@ export default function Keys() {
             </p>
           </div>
         </section>
-      </main>
+      </InteriorPage>
       <SiteFooter />
     </>
   );

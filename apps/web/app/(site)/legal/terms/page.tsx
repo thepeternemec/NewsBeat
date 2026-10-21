@@ -1,3 +1,5 @@
+import InteriorPage from "@/components/site/interior-page";
+import PageVisual from "@/components/site/page-visual";
 import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
 
@@ -22,9 +24,10 @@ export default function Terms() {
   return (
     <>
       <SiteNav active="/legal/terms" />
-      <main>
+      <InteriorPage className="legal-page">
         <div className="page-head">
-          <div className="wrap">
+          <div className="wrap intro-grid">
+            <div className="intro-copy">
             <span className="sec-eyebrow">Legal</span>
             <h1 className="sec-title">Terms of service</h1>
             <p className="sec-sub">
@@ -32,6 +35,8 @@ export default function Terms() {
               service is small and most of it is public.
             </p>
             <p className="hero-tiny">Last updated 20 October 2026</p>
+            </div>
+            <PageVisual kind="legal" />
           </div>
         </div>
 
@@ -174,7 +179,7 @@ export default function Terms() {
             </div>
           </div>
         </section>
-      </main>
+      </InteriorPage>
       <SiteFooter />
     </>
   );

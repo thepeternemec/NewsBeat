@@ -5,6 +5,7 @@ is a record of decisions, because the reasoning is the thing that gets lost.
 
 ## 2026-10-21
 
+- **Polished interior pages.** Connection, pricing, FAQ, key, reference and legal pages use balanced hero layouts and clearer sections. Documentation has a centered reading column and an active contents rail. The terminal has structured metric cards and theme-aware headings. Subtle entrance and hover motion respects reduced-motion preferences; layouts adapt to phone and tablet screens.
 - **“What happened?” summaries are live.** The terminal’s **Summarize headlines** button, `GET /api/v2/summary?beat_id=…`, and the `newsbeat_summary` MCP tool return up to three short explanations grounded in recent publisher headlines. Each item retains report links and publication times.
 - **Honest generation fallback.** Responses state `basis: "headlines_only"` and `method: "generated"` or `"extractive"`. Failed generation or rejected output returns original headlines. Story IDs keep sentences attached to their sources even when the model changes their order; output checks also reject new numeric figures and missing selected uncertainty cues.
 - **Relevance ranking and distinct stories.** Grouped coverage and briefs favor concrete developments, recent reports and publisher coverage, while downranking routine ownership notices and shopping headlines. Digests prioritize development headlines and avoid treating “looks back” or “send money back” as investment events. These are heuristics, not market-impact judgments.
