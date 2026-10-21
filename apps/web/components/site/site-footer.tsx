@@ -19,6 +19,7 @@ const COLUMNS = [
       { href: "/dashboard", label: "Terminal" },
       { href: "/connect", label: "Connect" },
       { href: "/pricing", label: "Pricing" },
+      { href: "/status", label: "Service status" },
     ],
   },
   {

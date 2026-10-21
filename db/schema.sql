@@ -233,3 +233,11 @@ create index if not exists accounts_github_idx
 -- cannot be the identity.
 alter table public.accounts
   add column if not exists github_login text;
+
+-- Scheduled operational checks. The authenticated monitor also bootstraps this
+-- additive table, so rollout does not need production credentials locally.
+create table if not exists public.newsbeat_operation_checks (
+  slot timestamptz primary key,
+  checked_at timestamptz not null,
+  report jsonb not null
+);

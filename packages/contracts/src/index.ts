@@ -7,3 +7,4 @@ export * from "./packs.js";
 export * from "./errors.js";
 export * from "./seed.js";
 export * from "./news.js";
+export * from "./operations.js";
