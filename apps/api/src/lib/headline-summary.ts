@@ -51,14 +51,16 @@ async function generateSummaries(items: HeadlineSummaryItem[], oidcToken?: strin
             headlines: item.reports.slice(0, 5).map(report => ({ title: report.title, publisher: report.source })) }))) },
         ],
       }),
-      signal: AbortSignal.timeout(8_000),
+      signal: AbortSignal.timeout(20_000),
     });
     if (!response.ok) { console.warn("headline summary generation unavailable:", response.status); return null; }
     const data = await response.json() as { choices?: Array<{ message?: { content?: string } }> };
     const content = data.choices?.[0]?.message?.content;
     if (!content) return null;
     const raw = content.trim().replace(/^```(?:json)?\s*|\s*```$/g, "");
-    return validateSummaries(JSON.parse(raw), items);
+    const checked = validateSummaries(JSON.parse(raw), items);
+    if (!checked) console.warn("headline summary output rejected:", raw.slice(0, 800));
+    return checked;
   } catch (error) {
     console.warn("headline summary generation failed:", error instanceof Error ? error.name : "unknown");
     return null;
