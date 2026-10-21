@@ -11,7 +11,7 @@ export default function CopyButton({ text, label = "copy" }: { text: string; lab
     <button
       type="button"
       className="copy-btn"
-      aria-label={`Copy ${label}`}
+      aria-label={/^copy\b/i.test(label) ? label : `Copy ${label}`}
       onClick={async () => {
         try {
           await navigator.clipboard.writeText(text);
