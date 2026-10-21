@@ -27,8 +27,19 @@ test("invented figures and mismatched citations trigger the original-headline fa
     { story_id: "1", text: "Nvidia may invest $500M in Firmus." },
     { story_id: "2", text: "Nokia and Nvidia completed an AI-RAN call." },
   ] }, items), null);
-  assert.equal(validateSummaries({ items: [
+  assert.deepEqual(validateSummaries({ items: [
     { story_id: "2", text: "Nvidia may invest $100M in Firmus." },
     { story_id: "1", text: "Nokia and Nvidia completed an AI-RAN call." },
+  ] }, items), null);
+});
+
+test("model order is normalized by story ID without changing feed ranking", () => {
+  assert.deepEqual(validateSummaries({ items: [
+    { story_id: "2", text: "Nokia and Nvidia completed an AI-RAN call." },
+    { story_id: "1", text: "Nvidia may invest $100M in Firmus." },
+  ] }, items), ["Nvidia may invest $100M in Firmus.", "Nokia and Nvidia completed an AI-RAN call."]);
+  assert.equal(validateSummaries({ items: [
+    { story_id: "1", text: "Nvidia may invest $100M in Firmus." },
+    { story_id: "1", text: "Nvidia may invest $100M in Firmus." },
   ] }, items), null);
 });
