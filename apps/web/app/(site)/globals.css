@@ -1046,7 +1046,7 @@ section.scaffold { padding: 100px 0; border-top: 1px solid var(--border-default)
 .mock-row { display: grid; grid-template-columns: 150px minmax(0, 1fr) 186px; gap: 16px; padding: 10px 16px; border-bottom: 1px solid var(--border-subtle); align-items: start; }
 .mock-row:last-child { border-bottom: 0; }
 .mock-row .k { color: var(--text-ghost); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-top: 2px; }
-.mock-row .v { color: #d0d0d0; font-size: 12px; min-width: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.mock-row .v { color: var(--text-secondary); font-size: 12px; min-width: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .mock-row .s { color: var(--text-muted); font-size: 10.5px; text-align: right; white-space: nowrap; padding-top: 2px; display: flex; justify-content: flex-end; gap: 6px; min-width: 0; }
 /* With a timestamp appended, the publisher gives way — a clipped time reads as
    broken in a way a clipped publisher name does not. */
@@ -1093,9 +1093,12 @@ section.scaffold { padding: 100px 0; border-top: 1px solid var(--border-default)
 .code { border: 1px solid var(--border-default); border-radius: 10px; background: #050505; overflow: hidden; }
 .code-bar { display: flex; align-items: center; gap: 8px; padding: 9px 13px; border-bottom: 1px solid var(--border-default); background: var(--bg-raised); color: var(--text-ghost); font: 10.5px var(--font-mono), monospace; }
 .code pre { margin: 0; padding: 16px; overflow-x: auto; font: 11.5px/1.65 var(--font-mono), monospace; color: #cfcfcf; }
-.code .c-key { color: #fff; }
-.code .c-str { color: #9a9a9a; }
-.code .c-dim { color: #4d4d4d; }
+/* Syntax colours are the theme's own ramp, not three greyes picked for a black
+   box. `.c-key` was #fff, so in light mode every JSON key was white on white —
+   the values rendered and the keys simply vanished. */
+.code .c-key { color: var(--text-primary); }
+.code .c-str { color: var(--text-tertiary); }
+.code .c-dim { color: var(--text-ghost); }
 
 /* ── RAILS rail (logo cloud) ────────────────────────────────────── */
 .rail { border-block: 1px solid var(--border-default); padding: 22px 0; overflow: hidden; }

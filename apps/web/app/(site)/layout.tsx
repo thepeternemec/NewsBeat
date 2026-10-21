@@ -17,9 +17,18 @@ export const metadata: Metadata = {
     "The news layer for AI agents. Track equities and crypto with source-linked news for trading and prediction-market research. Connect through MCP or API. Free public access during early access. No API key required.",
 };
 
+/**
+ * Runs during parse, before React. Without it the page paints dark and then flips,
+ * which is worse than not offering a choice.
+ */
+const THEME_BOOTSTRAP = `(function(){try{var t=localStorage.getItem("newsbeat-theme");document.documentElement.dataset.theme=t==="light"?"light":"dark"}catch(e){document.documentElement.dataset.theme="dark"}})();`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP }} />
+      </head>
       <body className="antialiased">
         <GridField />
         <div className="aurora-layer" aria-hidden="true">

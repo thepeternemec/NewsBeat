@@ -208,11 +208,14 @@ export default function Home() {
               <div className="mock-body">
                 <div className="mock-ticker">
                   <Marquee speed={55} gap="3.5rem" pauseOnHover>
-                    <div style={{ display: "flex", alignItems: "center" }}>
+                    {/* The gap belongs here, not on the Marquee: the Marquee separates its own
+                        children, and it has exactly one — this div. Every headline sat flush
+                        against the next item's ticker, so it read "…Spark SpeedupsNVIDIA ·". */}
+                      <div style={{ display: "flex", alignItems: "center", gap: "3.5rem" }}>
                       {ticker.map((it, i) => (
-                        <span key={i} style={{ whiteSpace: "nowrap", font: "11px var(--font-mono), monospace", color: "#bdbdbd" }}>
-                          <span style={{ color: "#fff", fontWeight: 600 }}>{it.beat_label}</span>
-                          <span style={{ margin: "0 12px", color: "#333" }}>·</span>
+                        <span key={i} style={{ whiteSpace: "nowrap", font: "11px var(--font-mono), monospace", color: "var(--text-tertiary)" }}>
+                          <span style={{ color: "var(--text-primary)", fontWeight: 600 }}>{it.beat_label}</span>
+                          <span style={{ margin: "0 12px", color: "var(--border-strong)" }}>·</span>
                           {it.lede}
                         </span>
                       ))}
@@ -547,7 +550,7 @@ export default function Home() {
               <h2 className="sec-title">Before you connect.</h2>
               <p className="sec-sub">
                 Five answers here, and the rest on{" "}
-                <a href="/faq" style={{ color: "#fff", borderBottom: "1px solid var(--border-strong)" }}>
+                <a href="/faq" style={{ color: "var(--text-primary)", borderBottom: "1px solid var(--border-strong)" }}>
                   the full FAQ
                 </a>
                 .

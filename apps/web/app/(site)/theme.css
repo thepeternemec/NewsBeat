@@ -11,21 +11,24 @@
   /* A white-to-grey ramp, used for emphasised figures. */
   --accent-gradient: linear-gradient(115deg, #ffffff 0%, #9c9c9c 100%);
   --accent-ink: #050505;
+  --accent-hover: #ffffff;
 }
 
 /* ── Accents ──────────────────────────────────────────────────────── */
 
-/* Buttons are solid, not gradient. */
+/* Buttons are solid, not gradient. They invert with the theme: near-white on ink,
+   ink on paper. Hardcoding #ededed here meant light mode kept a near-white button on
+   a near-white page, so the primary action stopped reading as primary. */
 .btn-primary,
 .nav-cta {
-  background: #ededed;
-  color: #050505;
+  background: var(--accent-primary);
+  color: var(--accent-ink);
   font-weight: 600;
 }
 .btn-primary:hover,
 .nav-cta:hover {
-  background: #ffffff;
-  color: #050505;
+  background: var(--accent-hover);
+  color: var(--accent-ink);
 }
 
 .eyebrow-tag {
@@ -58,10 +61,13 @@
   color: transparent;
 }
 
+/* Hover brightens to white in dark mode, which is invisible on paper — the link did
+   not dim, it disappeared. Reading from the theme means it brightens on ink and
+   darkens on paper, which is the same gesture in both. */
 .nav-link:hover,
 .footer-links a:hover,
 .showcase a:hover {
-  color: #ffffff;
+  color: var(--text-primary);
 }
 ::selection {
   background: rgba(255, 255, 255, 0.22);
@@ -174,7 +180,7 @@
   line-height: 1.06;
   letter-spacing: -0.032em;
   font-weight: 600;
-  color: #fff;
+  color: var(--text-primary);
 }
 .docs-lead {
   margin: 0;
@@ -187,13 +193,13 @@
   font-size: 23px;
   letter-spacing: -0.022em;
   font-weight: 600;
-  color: #fff;
+  color: var(--text-primary);
 }
 .docs-body h3 {
   margin: 34px 0 10px;
   font-size: 15.5px;
   font-weight: 600;
-  color: #fff;
+  color: var(--text-primary);
 }
 .docs-body p {
   margin: 0 0 16px;
@@ -625,10 +631,10 @@
   color: rgba(255, 255, 255, 0.56);
 }
 .sec-eyebrow {
-  color: rgba(255, 255, 255, 0.62);
+  color: var(--text-tertiary);
 }
 .metric-label {
-  color: rgba(255, 255, 255, 0.68);
+  color: var(--text-tertiary);
 }
 
 /* ── Pause decorative motion while the page is scrolling ──────────────
@@ -719,22 +725,6 @@
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 36px;
-}
-/* The GitHub mark sits with the nav links, not the CTA. */
-.nav-gh {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  margin-left: 4px;
-  border-radius: 999px;
-  color: var(--text-tertiary);
-  transition: color 0.15s, background 0.15s;
-}
-.nav-gh:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.06);
 }
 
 /* ── Dashboard: article clusters ──────────────────────────────────────
@@ -1570,3 +1560,468 @@
 .story-sources li a { display: block; color: var(--text-primary, #eee); text-decoration: underline; text-underline-offset: 3px; }
 .story-sources li span { display: block; margin-top: 4px; font-size: 11px; }
 .story-feed-note { margin: 0; padding: 12px 16px; color: var(--text-muted); font-size: 12px; }
+/* ══════════════════════════════════════════════════════════════════════
+   LIGHT THEME
+   ──────────────────────────────────────────────────────────────────────
+   The design is monochrome, so light mode is the same ramp inverted rather than a
+   second palette: paper instead of ink, and the accent that was white becomes the
+   ink itself. The primary button inverts with it — black on white, white on black —
+   which is the one place the two themes should agree about contrast.
+   ══════════════════════════════════════════════════════════════════════ */
+[data-theme="light"] {
+  color-scheme: light;
+
+  /* Surfaces: warm paper, not clinical white. #fff is reserved for cards so they
+     lift off the page instead of merging with it. */
+  --bg: #faf9f7;
+  --bg-base: #faf9f7;
+  --bg-soft: #f3f1ed;
+  --bg-raised: #ffffff;
+  --bg-input: #ffffff;
+  --panel: #ffffff;
+  --panel-raised: #ffffff;
+  --background: #faf9f7;
+  --foreground: #14130f;
+  --card: #ffffff;
+  --card-foreground: #14130f;
+  --popover: #ffffff;
+  --popover-foreground: #14130f;
+  --secondary: #f3f1ed;
+  --secondary-foreground: #14130f;
+  --muted: #f3f1ed;
+  --muted-foreground: #5f5c55;
+  --input: #d9d6cf;
+  --ring: #14130f;
+
+  /* Text */
+  --text: #14130f;
+  --text-primary: #14130f;
+  --text-secondary: rgba(20, 19, 15, 0.86);
+  --text-tertiary: rgba(20, 19, 15, 0.66);
+  --text-muted: rgba(20, 19, 15, 0.56);
+  --text-ghost: rgba(20, 19, 15, 0.4);
+
+  /* Lines */
+  --border: #e4e1da;
+  --border-default: #e4e1da;
+  --border-subtle: #efedE7;
+  --border-strong: #c8c4bb;
+  --soft-line: #d6d2c9;
+
+  /* Accent: the ink, so buttons and figures read on paper. */
+  --accent: #14130f;
+  --accent-primary: #14130f;
+  --accent-dim: rgba(20, 19, 15, 0.62);
+  --accent-ink: #faf9f7;
+  --accent-hover: #2c2a24;
+  --accent-gradient: linear-gradient(115deg, #14130f 0%, #6b675e 100%);
+  --primary: #14130f;
+  --primary-foreground: #faf9f7;
+
+  /* Charts and the vendored Sona components read these. */
+  --chart-1: #14130f;
+  --chart-2: #3d3a33;
+  --chart-3: #6b675e;
+  --chart-4: #97938a;
+  --chart-5: #c8c4bb;
+  --sidebar: #f3f1ed;
+  --sidebar-foreground: #14130f;
+  --sidebar-border: #e4e1da;
+}
+
+/* ── Surfaces that were hardcoded ──────────────────────────────────────
+   These carried #050505, #080808, #0b0b0b or #0c0c0c directly, so they ignore the
+   variables above and would stay black in light mode. */
+[data-theme="light"] html,
+[data-theme="light"] body {
+  background: #faf9f7;
+  color: #14130f;
+}
+
+[data-theme="light"] .mock,
+[data-theme="light"] .code,
+[data-theme="light"] .pillar-mock,
+[data-theme="light"] .signal-field {
+  background: #ffffff;
+  border-color: var(--border-default);
+}
+
+[data-theme="light"] .code pre {
+  color: #2a2823;
+}
+
+[data-theme="light"] .mock-row .v {
+  color: #2a2823;
+}
+
+[data-theme="light"] .footer-panel {
+  background: #ffffff;
+  border-color: var(--border-default);
+}
+
+[data-theme="light"] .nav-pill {
+  background: rgba(255, 255, 255, 0.82);
+  border-color: rgba(20, 19, 15, 0.1);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.9), 0 8px 24px -12px rgba(20, 19, 15, 0.18);
+}
+
+[data-theme="light"] .ticker-suggest {
+  background: #ffffff;
+  box-shadow: 0 18px 40px -12px rgba(20, 19, 15, 0.22);
+}
+
+[data-theme="light"] .cluster-more button,
+[data-theme="light"] .btn-ghost {
+  background: #ffffff;
+}
+
+/* ── Decoration ────────────────────────────────────────────────────────
+   The aurora and the film grain are effects for a dark screen. On paper the aurora
+   becomes a wash and the grain is turned off — noise at 2.8% on white reads as a
+   dirty screen, not as texture. */
+[data-theme="light"] .aurora-layer {
+  opacity: 0.5;
+  filter: grayscale(1) brightness(0.72);
+}
+
+[data-theme="light"] .noise-overlay {
+  opacity: 0.012;
+}
+
+[data-theme="light"] .grid-field line,
+[data-theme="light"] .grid-field path {
+  stroke: rgba(20, 19, 15, 0.09);
+}
+
+/* ── Shadows ───────────────────────────────────────────────────────────
+   A dark-theme shadow is a black glow; on paper it has to be a soft cast. */
+[data-theme="light"] .code:hover {
+  box-shadow: 0 18px 48px -26px rgba(20, 19, 15, 0.28);
+}
+
+[data-theme="light"] .live-response-panel {
+  background: #ffffff;
+  box-shadow: 0 24px 60px -18px rgba(20, 19, 15, 0.25);
+}
+
+/* ── The switcher ──────────────────────────────────────────────────────*/
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin-left: 4px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+}
+
+.theme-toggle:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+[data-theme="light"] .theme-toggle:hover {
+  background: rgba(20, 19, 15, 0.06);
+}
+
+.theme-toggle svg {
+  display: block;
+}
+
+/* Text that was written for a dark backdrop. Each of these was a literal
+   rgba(255,255,255,…), so on paper it rendered white on white. */
+[data-theme="light"] .hero-tiny,
+[data-theme="light"] .code-bar,
+[data-theme="light"] .mock-title,
+[data-theme="light"] .mock-live,
+[data-theme="light"] .mock-row .k,
+[data-theme="light"] .mock-row .s,
+[data-theme="light"] .mock-foot,
+[data-theme="light"] .rail-item,
+[data-theme="light"] .pillar-kicker,
+[data-theme="light"] .feature-tag,
+[data-theme="light"] .catalog-search-note,
+[data-theme="light"] .live-response-foot,
+[data-theme="light"] .footer-base,
+[data-theme="light"] .sec-eyebrow,
+[data-theme="light"] .docs-body li,
+[data-theme="light"] .docs-body p {
+  color: var(--text-tertiary);
+}
+
+[data-theme="light"] .mock-title {
+  color: #2a2823;
+}
+
+[data-theme="light"] .hero-tiny,
+[data-theme="light"] .mock-foot,
+[data-theme="light"] .footer-base {
+  color: var(--text-ghost);
+}
+
+/* The headline figure uses background-clip:text over a gradient, so its colour is
+   the gradient. The dark ramp becomes a light one, and `color:transparent` stays. */
+[data-theme="light"] .metric-num,
+[data-theme="light"] .footer-co,
+[data-theme="light"] .cta-title {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Sona's accordion and tabs ship dark defaults. */
+[data-theme="light"] .cluster-trigger,
+[data-theme="light"] .ticker-chip,
+[data-theme="light"] .cluster-more button {
+  background: #ffffff;
+  border-color: var(--border-default);
+  color: var(--text-secondary);
+}
+
+[data-theme="light"] .cluster-trigger:hover,
+[data-theme="light"] .ticker-chip:hover {
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+}
+
+/* The eyebrow's inner tag was `#ffffff` on `rgba(255,255,255,0.1)` — a white chip on
+   a white page, so the label vanished and the pill looked like a blank lozenge.
+   globals.css also sets it to #1e1e1e, which is why this needs the theme attribute
+   rather than the variable alone. */
+[data-theme="light"] .eyebrow-tag {
+  background: rgba(20, 19, 15, 0.06);
+  border-color: rgba(20, 19, 15, 0.14);
+  color: var(--text-primary);
+}
+
+/* The left navigation highlights the current page with plain white, which is
+   invisible on paper. */
+[data-theme="light"] .docs-link.active,
+[data-theme="light"] .docs-link[aria-current="page"] {
+  color: var(--text-primary);
+  border-left-color: var(--accent-primary);
+}
+
+[data-theme="light"] .cta-tiny {
+  color: var(--text-ghost);
+}
+
+/* Inputs: the search placeholder was rgba(255,255,255,0.44) — a faint white on
+   paper, so the field looked empty rather than empty-but-labelled. */
+[data-theme="light"] .catalog-search .ticker-search input,
+[data-theme="light"] .ticker-search input {
+  background: #ffffff;
+  color: var(--text-primary);
+  border-color: var(--border-default);
+}
+
+[data-theme="light"] .catalog-search .ticker-search input::placeholder,
+[data-theme="light"] .ticker-search input::placeholder {
+  color: rgba(20, 19, 15, 0.42);
+}
+
+[data-theme="light"] .catalog-search .ticker-search input:focus {
+  border-color: var(--border-strong);
+  background: #ffffff;
+}
+
+/* ── Cards and mini-visualisations ─────────────────────────────────────
+   The feature grid, the FAQ, the mock terminals and every little viz panel had
+   `background: #000` / `#050505` / `#0b0b0b` written into the rule. The text inside
+   them reads `var(--text-primary)`, which became ink in light mode — so the words
+   went dark on a black card and effectively disappeared. Overriding the surfaces is
+   what makes the type visible again. */
+[data-theme="light"] .feature,
+[data-theme="light"] .pillar,
+[data-theme="light"] .faq details,
+[data-theme="light"] .faq details[open],
+[data-theme="light"] .terminal-feed,
+[data-theme="light"] .feed-line,
+[data-theme="light"] .outcome-card,
+[data-theme="light"] .skill-cell,
+[data-theme="light"] .beam-box,
+[data-theme="light"] .stat-cell,
+[data-theme="light"] .proof-cell,
+[data-theme="light"] .app-proof > div,
+[data-theme="light"] .stat-band > div,
+[data-theme="light"] .panel-card,
+[data-theme="light"] .viz,
+[data-theme="light"] .calc-out > div,
+[data-theme="light"] .outcome-grid > *,
+[data-theme="light"] .skill-grid > * {
+  background: #ffffff;
+}
+
+/* These grids draw their 1px separators as a background showing through the gaps.
+   On paper that colour must be the border, or the whole grid stays dark. */
+[data-theme="light"] .features,
+[data-theme="light"] .outcome-grid,
+[data-theme="light"] .skill-grid,
+[data-theme="light"] .app-proof,
+[data-theme="light"] .stat-band,
+[data-theme="light"] .terminal-feed {
+  background: var(--border-default);
+  border-color: var(--border-default);
+}
+
+[data-theme="light"] .pillar:hover,
+[data-theme="light"] .feature:hover {
+  border-color: var(--border-strong);
+}
+
+/* Small chrome details that were bare hexes. */
+[data-theme="light"] .mock-dots span {
+  background: #d9d6cf;
+}
+
+[data-theme="light"] .mock-dots span:first-child {
+  background: #b9b5ac;
+}
+
+[data-theme="light"] .calc input[type="range"] {
+  background: #e4e1da;
+}
+
+/* Text inside the dark mock terminals was a literal light grey. */
+[data-theme="light"] .feed-line,
+[data-theme="light"] .beam-box,
+[data-theme="light"] .terminal-feed,
+[data-theme="light"] .pillar-mock {
+  color: #2a2823;
+}
+
+/* ── Mini-visualisations in the feature cards ──────────────────────────
+   Every line in them was a literal rgba(255,255,255,…), so on a white card the
+   labels vanished and only the dots and bars remained — a card of floating marks
+   with no words. The bar fill reads from --accent-gradient, which is ink on paper,
+   so a filled bar is black on a light track: correct for a progress bar. */
+[data-theme="light"] .viz-line {
+  color: rgba(20, 19, 15, 0.72);
+}
+
+[data-theme="light"] .viz-key {
+  color: rgba(20, 19, 15, 0.92);
+}
+
+[data-theme="light"] .viz-val,
+[data-theme="light"] .viz-chip {
+  color: rgba(20, 19, 15, 0.6);
+}
+
+[data-theme="light"] .viz-dot {
+  background: #cdc9c0;
+}
+
+[data-theme="light"] .viz-dot.on {
+  background: #14130f;
+}
+
+[data-theme="light"] .viz-dots i {
+  background: #e4e1da;
+}
+
+[data-theme="light"] .viz-bar {
+  background: #ecebe6;
+}
+
+[data-theme="light"] .viz-bar i {
+  background: linear-gradient(90deg, #14130f 0%, #4a473f 100%);
+}
+
+/* ── Signal field cards ────────────────────────────────────────────────
+   The floating headline cards were `rgba(8,8,8,0.72)` with light text — designed to
+   sit on the dark field, which became white. Dark tiles on paper read as a different
+   product layered on top. They are paper cards with an ink headline now, and the
+   blur survives so the field still shows through. */
+[data-theme="light"] .signal-label {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: #dcd8d0;
+  box-shadow: 0 8px 24px -14px rgba(20, 19, 15, 0.3);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+}
+
+[data-theme="light"] .signal-label:hover {
+  background: #ffffff;
+  border-color: #14130f;
+  z-index: 5;
+}
+
+[data-theme="light"] .signal-label .tag {
+  color: rgba(20, 19, 15, 0.46);
+}
+
+[data-theme="light"] .signal-label .headline {
+  color: #14130f;
+}
+
+[data-theme="light"] .signal-label .meta {
+  color: rgba(20, 19, 15, 0.54);
+  border-top-color: #ecebe6;
+}
+
+[data-theme="light"] .signal-empty {
+  color: rgba(20, 19, 15, 0.42);
+}
+
+/* The field's own gradient was near-black. */
+[data-theme="light"] .signal-field {
+  background: radial-gradient(120% 100% at 50% 0%, #ffffff 0%, #f7f6f2 70%);
+}
+
+/* Ticker labels and freshness stamps inside the cluster rows and the signal cards
+   were literal #fff / rgba(255,255,255,…) — the last white text on paper. */
+[data-theme="light"] .ticker-chip .c-tick,
+[data-theme="light"] .cluster-line .c-tick {
+  color: #14130f;
+}
+
+/* The active chip is an inverted pill: near-white on ink in dark mode, so it has to
+   become ink on paper in light mode. Inverting only the label left white text on a
+   white pill — visible as a chip with no name in it. */
+[data-theme="light"] .ticker-chip.active {
+  background: #14130f;
+  border-color: #14130f;
+}
+
+[data-theme="light"] .ticker-chip.active .c-tick,
+[data-theme="light"] .ticker-chip.active .c-name {
+  color: #faf9f7;
+}
+
+[data-theme="light"] .signal-field .meta .stamp {
+  color: rgba(20, 19, 15, 0.5);
+}
+
+[data-theme="light"] .signal-field .meta .stamp.is-fresh {
+  color: #14130f;
+}
+
+/* ── Selected option card ──────────────────────────────────────────────
+   The selected state is a 3% white wash and a 34% white border. On black that
+   reads as a raised card; on paper both are white on white, so the selected
+   option looked exactly like the two unselected ones and the only cue left was
+   the word "selected". Same treatment, inverted: an ink wash and an ink border. */
+[data-theme="light"] .connect-option.is-active {
+  background: rgba(20, 19, 15, 0.03);
+  border-color: rgba(20, 19, 15, 0.34);
+}
+
+[data-theme="light"] .connect-option.is-active .feature-title {
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .connect-option:hover {
+  border-color: var(--border-strong);
+}
+
+/* The nav hover wash was 5% white — also nothing on paper. */
+[data-theme="light"] .nav-link:hover {
+  background: rgba(20, 19, 15, 0.06);
+}

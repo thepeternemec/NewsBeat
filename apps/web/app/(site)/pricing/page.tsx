@@ -70,7 +70,7 @@ export default function Pricing() {
               <tbody>
                 {TIERS.map((tier) => (
                   <tr key={tier.name}>
-                    <td style={{ color: "#fff" }}>{tier.name}</td>
+                    <td style={{ color: "var(--text-primary)" }}>{tier.name}</td>
                     <td style={{ fontFamily: "var(--font-mono)", fontSize: 12.5 }}>{tier.limit}</td>
                     <td>{tier.how}</td>
                   </tr>
@@ -136,7 +136,7 @@ export default function Pricing() {
               <tbody>
                 {ROUTES.map(([route, what]) => (
                   <tr key={route}>
-                    <td style={{ color: "#fff", fontFamily: "var(--font-mono)", fontSize: 12.5 }}>
+                    <td style={{ color: "var(--text-primary)", fontFamily: "var(--font-mono)", fontSize: 12.5 }}>
                       {route}
                     </td>
                     <td>{what}</td>
