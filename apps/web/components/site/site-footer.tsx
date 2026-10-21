@@ -1,4 +1,5 @@
 import SpotlightCard from "@/components/ui/spotlight-card/spotlight-card";
+import "./site-footer.css";
 
 /**
  * The footer, on Sona UI's SpotlightCard.
@@ -57,7 +58,10 @@ export default function SiteFooter() {
         >
           <div className="footer-grid">
             <div className="footer-brand">
-              <span className="footer-co">NEWSBEAT</span>
+              <div className="footer-brand-line">
+                <span className="footer-co">NEWSBEAT</span>
+                <a className="footer-mobile-contact" href="mailto:contact@newsbeat.dev">Contact <span aria-hidden="true">↗</span></a>
+              </div>
               <p className="footer-tag">The news layer for AI agents.</p>
               <p className="footer-address">
                 read-only · no credential required
@@ -65,7 +69,7 @@ export default function SiteFooter() {
             </div>
 
             {COLUMNS.map((column) => (
-              <nav className="footer-col" key={column.head} aria-label={column.head}>
+              <nav className="footer-col footer-desktop-col" key={column.head} aria-label={column.head}>
                 <span className="footer-head">{column.head}</span>
                 {column.links.map((link) => (
                   <a
@@ -81,6 +85,19 @@ export default function SiteFooter() {
               </nav>
             ))}
           </div>
+
+          <nav className="footer-mobile-links" aria-label="Footer links">
+            {COLUMNS.map(column => (
+              <details key={column.head} name="newsbeat-footer-links">
+                <summary>{column.head}<span aria-hidden="true">+</span></summary>
+                <div className="footer-disclosure-links">
+                  {column.links.map(link => (
+                    <a key={link.href} href={link.href} {...(link.href.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})}>{link.label}</a>
+                  ))}
+                </div>
+              </details>
+            ))}
+          </nav>
 
           <div className="footer-base">
             <span>MCP + REST · free early access</span>
