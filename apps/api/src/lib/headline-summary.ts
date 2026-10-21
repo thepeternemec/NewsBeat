@@ -36,8 +36,8 @@ export function validateSummaries(value: unknown, items: HeadlineSummaryItem[]):
   return summaries;
 }
 
-async function generateSummaries(items: HeadlineSummaryItem[]): Promise<string[] | null> {
-  const credential = process.env.AI_GATEWAY_API_KEY || process.env.VERCEL_OIDC_TOKEN;
+async function generateSummaries(items: HeadlineSummaryItem[], oidcToken?: string | null): Promise<string[] | null> {
+  const credential = process.env.AI_GATEWAY_API_KEY || oidcToken || process.env.VERCEL_OIDC_TOKEN;
   if (!credential) return null;
   try {
     const response = await fetch("https://ai-gateway.vercel.sh/v1/chat/completions", {
@@ -66,7 +66,7 @@ async function generateSummaries(items: HeadlineSummaryItem[]): Promise<string[]
 }
 
 /** A bounded, on-demand summary. Citations always come from the original reports. */
-export async function headlineSummary(beatId: string): Promise<HeadlineSummary> {
+export async function headlineSummary(beatId: string, oidcToken?: string | null): Promise<HeadlineSummary> {
   const snapshot = await stories(beatId, 200);
   const selected = selectBriefStories(snapshot.stories.map(story => ({
     lead: story.lead, sources: story.sources, source_count: story.source_count,
@@ -82,7 +82,7 @@ export async function headlineSummary(beatId: string): Promise<HeadlineSummary> 
   const existing = cache.get(fingerprint);
   if (existing && existing.expires > Date.now()) return existing.pending;
   const pending = (async () => {
-    const summaries = items.length ? await generateSummaries(items) : null;
+    const summaries = items.length ? await generateSummaries(items, oidcToken) : null;
     return { beat_id: beatId, ticker: snapshot.ticker, label: snapshot.label,
       generated_at: new Date().toISOString(), freshness: snapshot.freshness,
       basis: "headlines_only" as const, method: summaries ? "generated" as const : "extractive" as const,

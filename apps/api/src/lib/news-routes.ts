@@ -39,7 +39,7 @@ newsRoutes.get("/stories", async (c) => {
 newsRoutes.get("/summary", async (c) => {
     const beatId = (c.req.query("beat_id") ?? "").trim();
     if (!beatId) throw new NewsError("invalid_request", "beat_id is required.", 400);
-    return c.json(await headlineSummary(beatId));
+    return c.json(await headlineSummary(beatId, c.req.header("x-vercel-oidc-token")));
 });
 newsRoutes.get("/brief", async (c) => {
     const beatId = (c.req.query("beat_id") ?? "").trim();
@@ -56,7 +56,7 @@ newsRoutes.get("/news", async (c) => c.json(await newsPage(c.req.query("beat_id"
 newsRoutes.get("/changes", async (c) => { const cursor = c.req.query("cursor"); if (!cursor)
     throw new NewsError("missing_cursor", "Read latest news first and save its cursor."); return c.json(await newsPage(c.req.query("beat_id") ?? "", cursor)); });
 newsRoutes.get("/tools", c => c.json({ tools: NEWS_TOOLS.map(t => ({ type: "function", function: { name: t.name, description: t.description, parameters: t.inputSchema } })) }));
-export async function callNewsTool(name: string, args: unknown) {
+export async function callNewsTool(name: string, args: unknown, oidcToken?: string | null) {
     // Old clients can keep calling their cached tool names. Discovery uses NewsBeat.
     name = name.replace(/^newsgraph_/, "newsbeat_");
     if (name === "newsbeat_topics") {
@@ -79,7 +79,7 @@ export async function callNewsTool(name: string, args: unknown) {
     }
     if (name === "newsbeat_summary") {
         const input = z.object({ beat_id: z.string() }).strict().parse(args);
-        return headlineSummary(input.beat_id);
+        return headlineSummary(input.beat_id, oidcToken);
     }
     if (name === "newsbeat_watch") {
         const input = z.object({
