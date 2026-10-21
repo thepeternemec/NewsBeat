@@ -55,7 +55,7 @@ Already published on the landing and `/pricing`, so they are not a new decision:
 | delta · cold | $0.02 | 20,000 |
 | brief | $0.03 | 30,000 |
 
-Trial: **$5.00**, no card.
+Trial: **$6.00**, no card.
 
 ## One design note against the decision
 

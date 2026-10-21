@@ -56,13 +56,11 @@ test("retention refuses to be configured below the API window", () => {
 });
 
 test("the trial grant is a real amount of money", () => {
-  // 5,000,000 micro is $5, which at the empty rate is 10,000 checks — two weeks
-  // of hourly polling on fifty topics through the batch endpoint. A trial that
-  // runs out during evaluation is a trial that produces a 402 before the customer
-  // has decided anything.
-  assert.equal(TRIAL_MICRO, 5_000_000);
+  // 6,000,000 micro is $6: 12,000 empty checks, or 240 batches of fifty topics.
+  // Keep the grant and its usable check allowance explicit.
+  assert.equal(TRIAL_MICRO, 6_000_000);
   assert.equal(TOPUP_MIN_MICRO, 6_000_000, "the smallest published plan is $6 for 30 days");
-  assert.equal(TRIAL_MICRO / PRICE.checkEmpty, 10_000, "the trial should cover ten thousand empty checks");
+  assert.equal(TRIAL_MICRO / PRICE.checkEmpty, 12_000, "the trial should cover twelve thousand empty checks");
 });
 
 test("a spend can never exceed what is held", () => {

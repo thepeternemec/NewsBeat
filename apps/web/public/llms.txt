@@ -59,7 +59,7 @@ Check `coverage_truncated`. Groups are snapshots; use article cursors to track n
 
 Anonymous: 120 requests a minute, identified by calling address and never stored.
 A key raises that to 1,200 and is metered — each check costs $0.0005 when nothing
-moved and $0.004 when it did, against a $5.00 trial. At zero the key returns
+moved and $0.004 when it did, against a $6.00 trial. At zero the key returns
 `402 payment_required`; the anonymous tier stays free.
 
 Keys are self-serve at https://www.newsbeat.dev/keys — GitHub, scope `read:user`,

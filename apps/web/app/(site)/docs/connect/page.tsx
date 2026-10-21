@@ -139,7 +139,7 @@ export default function DocsConnect() {
       <p>
         Anonymous public reads are free during early access, limited to 120 requests per minute.
         Optional API keys raise the request limit to 1,200 per minute. Keyed REST calls are metered
-        against a $5 trial balance and return <code>402</code> when it is exhausted. Stripe checkout
+        against a $6 trial balance and return <code>402</code> when it is exhausted. Stripe checkout
         is not live. Your model provider may charge separately.
       </p>
       <p>

@@ -71,7 +71,7 @@ URL: `newsbeat_topics`, `newsbeat_news`, `newsbeat_changes`, `newsbeat_brief`,
 
 **No credential is required.** Anonymous callers get 120 requests a minute, identified by calling
 address and never stored. A key raises that to 1200 and is **metered**: every check is charged
-against a balance, the first $5 of which is a trial grant. When the balance reaches zero the key
+against a balance, the first $6 of which is a trial grant. When the balance reaches zero the key
 gets `402 payment_required` and you fall back to the anonymous tier, which stays free.
 
 ## Errors you should handle

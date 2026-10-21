@@ -19,7 +19,7 @@ export default function Keys() {
             <p className="sec-sub">
                 The API needs no credential. A key raises your limit from 120 requests a minute to
                 1200, gives usage an owner, and is metered: each call is charged against a balance
-                that starts with a $5.00 trial. When it runs out the key returns 402 and the free
+                that starts with a $6.00 trial. When it runs out the key returns 402 and the free
                 anonymous tier still works. It unlocks no data — everything the API serves is
                 already public.
             </p>
