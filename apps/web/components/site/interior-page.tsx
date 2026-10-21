@@ -11,7 +11,7 @@ export default function InteriorPage({ children, className = "" }: { children: R
     if (preference.matches || !root.current) return;
     const animations = new Set<Animation>();
     const targets = root.current.querySelectorAll<HTMLElement>(
-      ".intro-copy > *, .intro-visual, .docs-head, .docs-body > h2, .docs-body > .code, .docs-body > .table-scroll, .scaffold .sec-head, .feature, .faq details, .section-aside, .access-plan, .terminal-heading, .metrics-grid > *"
+      ".intro-copy > *, .intro-visual, .docs-head, .docs-body > h2, .docs-body > .code, .docs-body > .table-scroll, .scaffold .sec-head, .feature, .faq details, .section-aside, .access-plan, .terminal-heading, .metrics-grid > *, .quickstart-step, .quickstart-autopilot, .quickstart-explore, .quickstart-help"
     );
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
