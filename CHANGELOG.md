@@ -3,6 +3,23 @@
 Not a version history — the project is one deployment, not a set of releases. This
 is a record of decisions, because the reasoning is the thing that gets lost.
 
+## 2026-10-21
+
+- **“What happened?” summaries are live.** The terminal’s **Summarize headlines** button, `GET /api/v2/summary?beat_id=…`, and the `newsbeat_summary` MCP tool return up to three short explanations grounded in recent publisher headlines. Each item retains report links and publication times.
+- **Honest generation fallback.** Responses state `basis: "headlines_only"` and `method: "generated"` or `"extractive"`. Failed generation or rejected output returns original headlines. Story IDs keep sentences attached to their sources even when the model changes their order; output checks also reject new numeric figures and missing selected uncertainty cues.
+- **Relevance ranking and distinct stories.** Grouped coverage and briefs favor concrete developments, recent reports and publisher coverage, while downranking routine ownership notices and shopping headlines. Digests prioritize development headlines and avoid treating “looks back” or “send money back” as investment events. These are heuristics, not market-impact judgments.
+- **Grouped feed with source expansion.** Similar headlines appear under one original lead; users can inspect each publisher, headline, link and time. Original reporting is retained. The terminal initially shows 24 stories and offers **Show more stories**.
+- **Snapshot limits are explicit.** Summaries and briefs select from up to 200 recent reports in 24 hours. MCP story reads return up to 40 ranked groups from 200 reports; REST supports scans of 1–500. Check `coverage_truncated` and `freshness`; keep using article cursors for newly indexed arrivals.
+- **Seven MCP tools.** Agent discovery and documentation now include summaries alongside topic lookup, news, changes, verbatim briefs, grouped stories and watchlist checks.
+- **Generation operations.** Vercel AI Gateway runs the headline model on demand using server-side OIDC or an environment API key, a 20-second timeout and a five-minute per-instance cache. Public reads remain free during early access; the project owner supplies model allowance or credits.
+- **Verified after deployment.** The website, REST endpoint and MCP tool returned generated summaries with source links. The full test run completed with 77 passing tests and four database-dependent skips.
+
+### Current service context
+
+- **NewsBeat is the current brand**, with `https://www.newsbeat.dev` as the primary site and API host, and `news-beat.vercel.app` as an alternate. The bundled catalog contains 2,030 assets: 1,528 US-listed equities and 502 crypto assets.
+- **Clearer onboarding and contact.** The README, FAQ and docs explain assistant setup and everyday company-news questions. Contact is [contact@newsbeat.dev](mailto:contact@newsbeat.dev).
+- **Early access stays public.** No API key or credit card is required for anonymous reads. Optional keyed REST metering remains separate; Stripe checkout and the expanded connectors in draft [PR #11](https://github.com/thepeternemec/NewsBeat/pull/11) are not live.
+
 ## 2026-09-22
 
 - **`/v2/stories`** — the events behind a topic, not the coverage of them.

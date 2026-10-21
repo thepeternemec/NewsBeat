@@ -26,7 +26,18 @@ Built for developers bringing news into trading research, prediction-market anal
 
 | Coverage | Agent tools | Change tracking | Source code |
 | --- | --- | --- | --- |
-| **2,030 assets** — 1,528 US equities + 502 crypto | **6 tools** over MCP and REST | Signed cursors + checks for up to **50 assets** per request | **MIT licensed** |
+| **2,030 assets** — 1,528 US equities + 502 crypto | **7 tools** over MCP and REST | Signed cursors + checks for up to **50 assets** per request | **MIT licensed** |
+
+## What’s new — October 21, 2026
+
+**Ask what happened, then open the reporting.** NewsBeat now turns recent headlines into a short digest your assistant can use directly.
+
+- **Headline summaries:** up to three short explanations with publisher links, publication times and freshness. Choose **Summarize headlines** in the terminal, call `newsbeat_summary` over MCP, or use [the summary API](https://www.newsbeat.dev/api/v2/summary?beat_id=b_bb964843350e).
+- **Grouped coverage:** similar reports appear as one story. Expand it to see the original headlines and sources; reporting is retained.
+- **Relevance ranking:** concrete developments appear ahead of routine ownership notices and shopping headlines. Summaries favor developments and select distinct stories.
+- **Clear evidence limits:** summaries use headlines only. If generation is unavailable or its output fails validation, original headlines are returned with `method: "extractive"`.
+
+[Read the changelog](CHANGELOG.md) · [Current capabilities and limitations](docs/STATUS.md)
 
 ## Try it in 30 seconds
 
@@ -34,6 +45,12 @@ No account required. Make your first request:
 
 ```bash
 curl "https://www.newsbeat.dev/api/v2/news?beat_id=b_bb964843350e"
+```
+
+For a short headline-based explanation of what happened with Nvidia:
+
+```bash
+curl "https://www.newsbeat.dev/api/v2/summary?beat_id=b_bb964843350e"
 ```
 
 Or add the hosted MCP endpoint to a client that supports remote Streamable HTTP:
@@ -54,7 +71,7 @@ For clients that accept this configuration format:
 }
 ```
 
-Then ask: **“Find Nvidia in NewsBeat and show me its latest headlines with sources.”**
+Then ask: **“What happened with Nvidia? Give me a short summary and link the sources.”**
 
 Use the [connection guide](https://www.newsbeat.dev/connect) for setup and a live transport check. For function-calling agents, load schemas from [`/api/v2/tools`](https://www.newsbeat.dev/api/v2/tools). See the [model-loop example](examples/README.md).
 
@@ -62,7 +79,7 @@ Use the [connection guide](https://www.newsbeat.dev/connect) for setup and a liv
 
 - **Market research agents:** bring equity and crypto headlines into analysis alongside your own price data and models.
 - **Prediction-market research:** follow relevant company and crypto developments as one input to your research.
-- **Personal briefings:** ask for three relevant recent headlines on an asset, with sources and timestamps.
+- **Personal briefings:** ask what happened with an asset and get a short headline-based summary with sources and timestamps.
 - **Watchlist bots:** check up to 50 assets at once and pass new items into your own Telegram, Discord or other workflow.
 
 NewsBeat supplies news context. It does not execute trades, provide prediction-market prices or connect to Polymarket accounts. Dedicated messaging integrations are on the roadmap.
@@ -101,7 +118,7 @@ The Vercel host remains available as an alternate: `https://news-beat.vercel.app
 
 ## Building in the open
 
-**Live today:** asset discovery, source-linked headlines, change cursors, briefs, story grouping, batched checks, hosted MCP and the web terminal.
+**Live today:** asset discovery, source-linked headlines, approximate story grouping, relevance ranking, headline-based summaries, change cursors, verbatim briefs, batched checks, seven hosted MCP tools and the web terminal.
 
 **In development:** broader news search, source-record lookup, multiple agent keys, OAuth connector support and saved-watch notifications. The work is tracked in [PR #11](https://github.com/thepeternemec/NewsBeat/pull/11) and still needs database migration, configuration and end-to-end activation before release.
 
@@ -138,6 +155,7 @@ The site runs at `http://localhost:3000`. News reads require a PostgreSQL databa
 
 ## Documentation
 
+- [What changed](CHANGELOG.md)
 - [Current capabilities and limitations](docs/STATUS.md)
 - [Agent integration guide](AGENTS.md)
 - [Architecture](docs/ARCHITECTURE.md)
@@ -147,7 +165,7 @@ The site runs at `http://localhost:3000`. News reads require a PostgreSQL databa
 
 MIT licensed. See [LICENSE](LICENSE).
 
-### Grouped news feed
+## How grouping, ranking and summaries work
 
 The terminal’s **Summarize headlines** button and `GET /api/v2/summary?beat_id=…` give a short, source-linked digest of up to three distinct ranked stories. Agents can call `newsbeat_summary` over MCP. The `basis` is always `headlines_only`; `method` is `generated` when generation is available or `extractive` when it displays original headlines. The original reports remain linked. Check `freshness` and `coverage_truncated` before describing the result as current or comprehensive.
 
@@ -155,4 +173,10 @@ The terminal and `GET /api/v2/stories?beat_id=…` show one original lead per gr
 
 Matching is conservative and approximate: it uses a 24-hour window, headline overlap, and guards for changed numbers, outcomes and uncertainty. It can miss paraphrases or group unrelated reports. Publisher counts measure coverage, not independent verification.
 
-REST scans up to 200 reports by default (`limit` 1–500); `newsbeat_stories` over MCP ranks up to 40 groups from a 200-report scan. The brief selects three distinct headlines from up to 200 recent reports. The model favors concrete developments and recency, and downranks routine ownership notices and shopping headlines. Ranking is an explainable heuristic, not a market impact prediction. Check `coverage_truncated`. Groups are snapshot views; use `/v2/news` and `/v2/changes` cursors for article arrivals rather than treating group IDs as stable subscriptions.
+REST scans up to 200 reports by default (`limit` 1–500); `newsbeat_stories` over MCP ranks up to 40 groups from a 200-report scan. The brief selects three distinct headlines from up to 200 recent reports. The ranking heuristic favors concrete developments and recency, and downranks routine ownership notices and shopping headlines. Ranking is an explainable heuristic, not a market impact prediction. Check `coverage_truncated`. Groups are snapshot views; use `/v2/news` and `/v2/changes` cursors for article arrivals rather than treating group IDs as stable subscriptions.
+
+### Running summary generation
+
+The summarizer calls `google/gemini-2.5-flash-lite` through Vercel AI Gateway on demand. On Vercel, it uses the Function request’s OIDC token; another runtime can supply `AI_GATEWAY_API_KEY`. Keep credentials server-side. Generation uses the project owner’s Gateway allowance or credits; public access remains free during early access.
+
+Results are cached in memory for up to five minutes for the same selected report IDs. The cache is per running instance, not shared across the deployment. Generation has a 20-second timeout and falls back to original headlines on failure. The checks enforce matching story IDs, reject new numeric figures, and preserve selected uncertainty cues; they do not guarantee factual correctness. Always keep the source links and headline-only label visible.
