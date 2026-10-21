@@ -376,7 +376,7 @@ h1 {
 .feed-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; white-space: nowrap; }
 .cluster {
   font-family: ui-monospace, monospace;
-  color: #ffffff;
+  color: var(--text-primary);
   font-size: 0.78rem;
 }
 .nocluster { color: var(--border); }
@@ -510,7 +510,7 @@ h1 {
 }
 .news-card .lede { margin: 6px 0; font-size: 0.86rem; line-height: 1.45; }
 .news-card .meta { display: flex; justify-content: space-between; color: var(--muted); font-size: 0.72rem; }
-.corr { color: #ffffff; }
+.corr { color: var(--text-primary); }
 
 /* skills / board sections */
 .skills-grid {

@@ -34,7 +34,7 @@
 .eyebrow-tag {
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.22);
-  color: #ffffff;
+  color: var(--text-primary);
 }
 
 /* Headline figures carry the white-to-grey ramp. */
@@ -124,7 +124,7 @@
   padding-bottom: 2px;
 }
 .more a:hover {
-  color: #fff;
+  color: var(--text-primary);
   border-bottom-color: #fff;
 }
 
@@ -158,12 +158,12 @@
   transition: color 0.15s, border-color 0.15s, background 0.15s;
 }
 .docs-link:hover {
-  color: #fff;
+  color: var(--text-primary);
   background: rgba(255, 255, 255, 0.035);
   border-left-color: var(--border-strong);
 }
 .docs-link.active {
-  color: #fff;
+  color: var(--text-primary);
   border-left-color: var(--accent);
   background: linear-gradient(90deg, rgba(20, 241, 149, 0.09), transparent 70%);
 }
@@ -285,7 +285,7 @@
   color: var(--accent);
 }
 .docs-nav-foot a:hover {
-  color: #fff;
+  color: var(--text-primary);
 }
 @media (max-width: 900px) {
   .docs {
@@ -477,7 +477,7 @@
   transition: color 0.15s;
 }
 .marquee-strip .rail-item:hover {
-  color: #fff;
+  color: var(--text-primary);
 }
 
 /* ── Cost calculator (the "try it out" element) ───────────────────── */
@@ -497,7 +497,7 @@
 }
 .calc-value {
   font: 12px var(--font-mono), monospace;
-  color: #fff;
+  color: var(--text-primary);
   text-align: right;
 }
 .calc input[type="range"] {
@@ -735,7 +735,7 @@
   background: var(--bg-raised);
 }
 .mock-row.cluster-head .k {
-  color: #fff;
+  color: var(--text-primary);
 }
 .mock-row.cluster-head .v {
   color: rgba(255, 255, 255, 0.5);
@@ -770,7 +770,7 @@
   border: 1px solid var(--border-default);
   border-radius: 10px;
   background: var(--bg-raised);
-  color: #fff;
+  color: var(--text-primary);
   font: 13px var(--font-sans), sans-serif;
   outline: none;
   transition: border-color 0.15s;
@@ -826,7 +826,7 @@
 }
 .ticker-suggest-row .s-tick {
   font: 600 12px var(--font-mono), monospace;
-  color: #fff;
+  color: var(--text-primary);
 }
 .ticker-suggest-row .s-name {
   font-size: 13px;
@@ -858,7 +858,7 @@
 }
 .ticker-chip .c-tick {
   font: 600 11.5px var(--font-mono), monospace;
-  color: #fff;
+  color: var(--text-primary);
   letter-spacing: 0.02em;
 }
 .ticker-chip .c-name {
@@ -876,12 +876,14 @@
   color: var(--text-secondary);
 }
 .ticker-chip.active {
-  background: #fff;
-  border-color: #fff;
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
 }
+/* The active pill's fill is the accent, so its label is the accent's ink — dark on a
+   white pill in dark mode, light on an ink pill in light mode. */
 .ticker-chip.active .c-tick,
 .ticker-chip.active .c-name {
-  color: #050505;
+  color: var(--accent-ink);
 }
 .ticker-chip.active .c-name {
   font-weight: 500;
@@ -951,7 +953,7 @@
   letter-spacing: 0.02em;
 }
 .signal-field .meta .stamp.is-fresh {
-  color: #fff;
+  color: var(--text-primary);
 }
 .signal-field .meta .stamp.is-fresh::before {
   content: "";
@@ -1015,7 +1017,7 @@
   transition: color 0.15s, border-color 0.15s;
 }
 .copy-btn:hover {
-  color: #fff;
+  color: var(--text-primary);
   border-color: var(--border-strong);
 }
 
@@ -1047,7 +1049,7 @@
 }
 .cluster-line .c-tick {
   font: 600 11.5px var(--font-mono), monospace;
-  color: #fff;
+  color: var(--text-primary);
 }
 .cluster-line .c-name {
   color: var(--text-secondary);
@@ -1456,7 +1458,7 @@
 }
 
 .footer-col a:hover {
-  color: #fff;
+  color: var(--text-primary);
 }
 
 .footer-base {
@@ -1973,13 +1975,6 @@
 /* The field's own gradient was near-black. */
 [data-theme="light"] .signal-field {
   background: radial-gradient(120% 100% at 50% 0%, #ffffff 0%, #f7f6f2 70%);
-}
-
-/* Ticker labels and freshness stamps inside the cluster rows and the signal cards
-   were literal #fff / rgba(255,255,255,…) — the last white text on paper. */
-[data-theme="light"] .ticker-chip .c-tick,
-[data-theme="light"] .cluster-line .c-tick {
-  color: #14130f;
 }
 
 /* The active chip is an inverted pill: near-white on ink in dark mode, so it has to
