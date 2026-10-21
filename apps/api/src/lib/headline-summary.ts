@@ -17,15 +17,23 @@ export function validateSummaries(value: unknown, items: HeadlineSummaryItem[]):
   if (!value || typeof value !== "object" || !Array.isArray((value as { items?: unknown }).items)) return null;
   const generated = (value as { items: unknown[] }).items;
   if (generated.length !== items.length) return null;
-  const summaries: string[] = [];
-  for (const [index, entry] of generated.entries()) {
+  const byId = new Map<string, unknown>();
+  for (const entry of generated) {
     if (!entry || typeof entry !== "object") return null;
+    const id = (entry as { story_id?: unknown }).story_id;
+    if (typeof id !== "string" || byId.has(id)) return null;
+    byId.set(id, entry);
+  }
+  const summaries: string[] = [];
+  for (const [index, item] of items.entries()) {
+    const entry = byId.get(item.story_id);
+    if (!entry) return null;
     const { story_id, text } = entry as { story_id?: unknown; text?: unknown };
-    if (story_id !== items[index]!.story_id || typeof text !== "string") return null;
+    if (story_id !== item.story_id || typeof text !== "string") return null;
     const sentence = text.trim();
     if (!sentence || sentence.length > 240 || /[\r\n<>]/.test(sentence)) return null;
     // A model cannot introduce a figure or date absent from every supplied headline.
-    const evidence = items[index]!.reports.slice(0, 5).map(report => report.title).join(" ");
+    const evidence = item.reports.slice(0, 5).map(report => report.title).join(" ");
     const figures = (s: string): string[] => s.match(/\d+(?:[.,]\d+)*/g) ?? [];
     if (figures(sentence).some(number => !figures(evidence).includes(number))) return null;
     if (/\b(?:may|might|could|reportedly|expected|weighs|in talks|plans?)\b/i.test(evidence)
@@ -58,9 +66,7 @@ async function generateSummaries(items: HeadlineSummaryItem[], oidcToken?: strin
     const content = data.choices?.[0]?.message?.content;
     if (!content) return null;
     const raw = content.trim().replace(/^```(?:json)?\s*|\s*```$/g, "");
-    const checked = validateSummaries(JSON.parse(raw), items);
-    if (!checked) console.warn("headline summary output rejected:", raw.slice(0, 800));
-    return checked;
+    return validateSummaries(JSON.parse(raw), items);
   } catch (error) {
     console.warn("headline summary generation failed:", error instanceof Error ? error.name : "unknown");
     return null;
