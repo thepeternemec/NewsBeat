@@ -14,6 +14,8 @@ import { newsRoutes } from "./lib/news-routes.js";
 import { rateLimit, rateLimits } from "./lib/limit.js";
 import { keyRoutes } from "./lib/key-routes.js";
 import { mcpResponse } from "./lib/mcp.js";
+import { operationRoutes } from "./lib/operations.js";
+export { runOperationalCheck } from "./lib/operations.js";
 
 const app = new Hono();
 
@@ -29,6 +31,8 @@ app.use("*", async (c, next) => {
 });
 
 // Counting happens before routing, so refused requests cost one indexed upsert.
+// Status reads remain available without rate-limit or account billing dependencies.
+app.route("/status", operationRoutes);
 app.use("*", rateLimit);
 
 app.get("/health", (c) => c.json({ ok: true, service: "newsbeat", version: "0.3.0" }));
@@ -38,7 +42,7 @@ app.get("/", (c) =>
     service: "NewsBeat",
     docs: "https://www.newsbeat.dev/docs",
     repo: "https://github.com/thepeternemec/NewsBeat",
-    routes: ["/v2/topics", "/v2/news", "/v2/changes", "/v2/watch", "/v2/brief", "/v2/stories", "/v2/summary", "/v2/tools", "/mcp", "/health", "/keys/authorize"],
+    routes: ["/v2/topics", "/v2/news", "/v2/changes", "/v2/watch", "/v2/brief", "/v2/stories", "/v2/summary", "/v2/tools", "/mcp", "/health", "/status", "/status/feed", "/keys/authorize"],
     rate_limits: rateLimits,
   }),
 );
