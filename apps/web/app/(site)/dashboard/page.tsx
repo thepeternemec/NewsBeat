@@ -51,6 +51,7 @@ export default function Dashboard() {
   const [catalogTotal, setCatalogTotal] = useState(0);
   const [articles, setArticles] = useState<Article[]>([]);
   const [feedNotice, setFeedNotice] = useState("Loading news…");
+  const [visibleStories, setVisibleStories] = useState(24);
   // One entry per rendered cluster. Bounded on purpose: the catalog holds ~150
   // topics and one request each would be 150 calls from the browser.
   const [clusters, setClusters] = useState<Array<{ topic: Topic; articles: Article[] }>>([]);
@@ -195,6 +196,7 @@ export default function Dashboard() {
     if (!active) return;
     let cancelled = false;
     setArticles([]);
+    setVisibleStories(24);
     setFeedNotice("Loading news…");
     (async () => {
       try {
@@ -207,7 +209,7 @@ export default function Dashboard() {
         items.forEach((i) => seen.current.add(i.id));
         setArticles(items);
         setFeedNotice(page.coverage_truncated
-          ? "Grouped from the latest 200 reports in the last 24 hours. More coverage is available through the API."
+          ? `Grouped from the latest 200 reports in the last 24 hours · ${page.freshness.status}. More coverage is available through the API.`
           : `Grouped coverage from the last 24 hours · ${page.freshness.status}.`);
       } catch {
         if (!cancelled) { setArticles([]); setFeedNotice("News coverage could not be loaded. Please try again."); }
@@ -262,7 +264,6 @@ export default function Dashboard() {
             NEWSBEAT
           </a>
           <span className="nav-links">
-            <p className="story-feed-note">Grouped from up to 200 reports per asset in the last 24 hours. Expand a story to read its sources.</p>
             {/* Sona UI's FluidTabs: the active surface slides between tabs rather
                 than switching instantly, which makes the relation between the two
                 views legible. It was already vendored and unused. */}
@@ -291,7 +292,7 @@ export default function Dashboard() {
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 24, marginBottom: 28 }}>
           <div>
             <span className="sec-eyebrow">Live graph · English only · one cluster per beat</span>
-            <h1 style={{ margin: 0, fontSize: "clamp(30px, 4vw, 44px)", lineHeight: 1.05, letterSpacing: "-0.035em", color: "var(--text-primary)", fontWeight: 600 }}>
+            <h1 style={{ margin: 0, fontSize: "clamp(30px, 4vw, 44px)", lineHeight: 1.05, letterSpacing: "-0.035em", color: "#fff", fontWeight: 600 }}>
               {TABS.find((t) => t.value === view)?.title}
             </h1>
           </div>
@@ -423,10 +424,10 @@ export default function Dashboard() {
               </div>
               <p className="story-feed-note" role="status">{feedNotice}</p>
               <div className="mock-feed">
-                {articles.map((it) => (
+                {articles.slice(0, visibleStories).map((it) => (
                   <StoryRow key={it.id} item={it} label={labelOf.get(it.beat_id) ?? "—"} />
                 ))}
-                {articles.length === 0 && (
+                {articles.length === 0 && !feedNotice.startsWith("Loading") && (
                   <div className="mock-row">
                     <span className="k">awaiting</span>
                     <span className="v">No stories to show for this asset in the current window.</span>
@@ -434,6 +435,14 @@ export default function Dashboard() {
                   </div>
                 )}
               </div>
+              {articles.length > visibleStories && (
+                <div className="cluster-more">
+                  <button type="button" className="btn-ghost" onClick={() => setVisibleStories(n => n + 24)}>
+                    Show more stories
+                    <span className="cluster-more-hint">{visibleStories} of {articles.length} shown</span>
+                  </button>
+                </div>
+              )}
             </div>
           </>
         ) : (
