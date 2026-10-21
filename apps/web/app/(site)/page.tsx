@@ -285,8 +285,8 @@ export default function Home() {
                 <div className="metric-label">Stories per answer, ready for your agent</div>
               </div>
               <div>
-                <div className="metric-num">15m</div>
-                  <div className="metric-label">How often every topic is re-checked</div>
+                <div className="metric-num">120</div>
+                <div className="metric-label">Free requests per minute · no API key</div>
               </div>
             </div>
             <p className="hero-tiny" style={{ marginTop: 34 }}>
