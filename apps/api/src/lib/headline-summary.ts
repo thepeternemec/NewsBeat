@@ -1,4 +1,4 @@
-import { selectBriefStories } from "./relevance.js";
+import { selectSummaryStories } from "./relevance.js";
 import { stories } from "./news.js";
 
 const MODEL = "google/gemini-2.5-flash-lite";
@@ -76,7 +76,7 @@ async function generateSummaries(items: HeadlineSummaryItem[], oidcToken?: strin
 /** A bounded, on-demand summary. Citations always come from the original reports. */
 export async function headlineSummary(beatId: string, oidcToken?: string | null): Promise<HeadlineSummary> {
   const snapshot = await stories(beatId, 200);
-  const selected = selectBriefStories(snapshot.stories.map(story => ({
+  const selected = selectSummaryStories(snapshot.stories.map(story => ({
     lead: story.lead, sources: story.sources, source_count: story.source_count,
     first_seen: story.first_seen, last_seen: story.last_seen, articles: story.reports,
   })), 3);

@@ -40,7 +40,7 @@ export function selectBriefStories<T extends Clusterable>(stories: Array<Story<T
   const selected: Array<Story<T>> = [];
   const frequency = new Map<string, number>();
   for (const story of stories) for (const word of tokens(story.lead)) frequency.set(word, (frequency.get(word) ?? 0) + 1);
-  const generic = new Set("million billion trillion invest investment partner announce launch stock market company business growth report support cloud data shares funds finance technology".split(" "));
+  const generic = new Set("million billion trillion invest investment partner announce launch stock market company business growth report support cloud data shares funds finance technology iphone iphones ipad ipads mac macs".split(" "));
   const similar = (a: string, b: string) => {
     const x = tokens(a), y = tokens(b);
     let shared = 0;
@@ -56,4 +56,11 @@ export function selectBriefStories<T extends Clusterable>(stories: Array<Story<T
     if (selected.length === count) return selected;
   }
   return selected;
+}
+
+/** Short digests prioritize concrete developments; the full feed stays intact. */
+export function selectSummaryStories<T extends Clusterable>(stories: Array<Story<T>>, count = 3, now = Date.now()): Array<Story<T>> {
+  const developments = stories.filter(story => !/\blooks? back\b/i.test(story.lead) && (EVENT.test(story.lead)
+    || /\b(?:upgrades?|downgrades?|rating cut|rating raise|beats? estimates|misses? estimates)\b/i.test(story.lead)));
+  return selectBriefStories(developments.length ? developments : stories, count, now);
 }
