@@ -1,6 +1,7 @@
 "use client";
 
 import InteriorPage from "@/components/site/interior-page";
+import SiteNav from "@/components/site/site-nav";
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -261,15 +262,22 @@ export default function Dashboard() {
 
   return (
     <>
-      <nav className="nav">
-        <div className="nav-pill">
-          <a className="nav-logo" href="/">
-            NEWSBEAT
-          </a>
-          <span className="nav-links">
-            {/* Sona UI's FluidTabs: the active surface slides between tabs rather
-                than switching instantly, which makes the relation between the two
-                views legible. It was already vendored and unused. */}
+      <SiteNav active="/dashboard" />
+
+      <InteriorPage className="wrap dash-main terminal-page">
+        <div className="terminal-heading">
+          <div>
+            <span className="sec-eyebrow">Live graph · English only · one cluster per beat</span>
+            <h1 style={{ margin: 0, fontSize: "clamp(30px, 4vw, 44px)", lineHeight: 1.05, letterSpacing: "-0.035em", color: "var(--text-primary)", fontWeight: 600 }}>
+              {TABS.find((t) => t.value === view)?.title}
+            </h1>
+          </div>
+          <span style={{ font: "11px var(--font-mono), monospace", color: "var(--text-ghost)" }}>
+            {stamp ? `updated ${stamp}` : "connecting…"}
+          </span>
+        </div>
+
+        <div className="terminal-view-tabs">
             <FluidTabs
               ariaLabel="Dashboard view"
               size="sm"
@@ -286,22 +294,6 @@ export default function Dashboard() {
                 ),
               }))}
             />
-          </span>
-          <a className="nav-cta" href="/">← Home</a>
-        </div>
-      </nav>
-
-      <InteriorPage className="wrap dash-main terminal-page">
-        <div className="terminal-heading">
-          <div>
-            <span className="sec-eyebrow">Live graph · English only · one cluster per beat</span>
-            <h1 style={{ margin: 0, fontSize: "clamp(30px, 4vw, 44px)", lineHeight: 1.05, letterSpacing: "-0.035em", color: "var(--text-primary)", fontWeight: 600 }}>
-              {TABS.find((t) => t.value === view)?.title}
-            </h1>
-          </div>
-          <span style={{ font: "11px var(--font-mono), monospace", color: "var(--text-ghost)" }}>
-            {stamp ? `updated ${stamp}` : "connecting…"}
-          </span>
         </div>
 
         <div className="metrics" style={{ borderTop: 0, paddingTop: 0 }}>
