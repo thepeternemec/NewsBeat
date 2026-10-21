@@ -8,7 +8,7 @@ const TOOLS = [
   ["newsbeat_topics", "Find a supported company or crypto asset.", "GET /v2/topics?q=nvidia"],
   ["newsbeat_news", "Read latest headlines and establish a baseline cursor.", "GET /v2/news?beat_id=…"],
   ["newsbeat_changes", "Read newly indexed items after a saved cursor.", "GET /v2/changes?beat_id=…&cursor=…"],
-  ["newsbeat_brief", "Get the top three headlines verbatim with sources and times.", "GET /v2/brief?beat_id=…"],
+  ["newsbeat_brief", "Get three relevant recent headlines verbatim with sources and times.", "GET /v2/brief?beat_id=…"],
   ["newsbeat_stories", "Read grouped headlines with every report’s source link.", "GET /v2/stories?beat_id=…"],
   ["newsbeat_watch", "Check up to 50 assets in one request; does not create a schedule.", "POST /v2/watch"],
 ];
@@ -77,15 +77,21 @@ export default function DocsConnect() {
         Use <code>/v2/stories?beat_id=…</code> or <code>newsbeat_stories</code> for one lead per
         group of similar headlines. Groups include <code>lead_article</code> and <code>reports</code>:
         each report keeps its original headline, publisher, URL, publication time and indexing time.
-        Groups are ordered by latest coverage, and all stored articles are retained.
+        Groups are ranked by headline relevance, and all stored articles are retained.
       </p>
       <p>
-        This is an approximate 24-hour snapshot. REST scans up to 200 articles by default
-        (<code>limit</code> accepts 1–500); MCP scans up to 40 to keep responses manageable.
-        <code>coverage_truncated</code> tells you when more articles exist beyond the scan.
+        This is an approximate 24-hour snapshot. REST scans up to 200 reports by default
+        (<code>limit</code> accepts 1–500); MCP returns up to 40 ranked groups from a 200-report scan.
+        <code>coverage_truncated</code> indicates more reports or groups beyond the returned set.
         Group IDs identify the first indexed report in the snapshot and may change as its window
         changes. They are not event subscription IDs. Use article cursors below to track arrivals,
         then refresh the grouped snapshot for presentation. Publisher counts do not imply independent verification.
+      </p>
+      <p>
+        Ranking favors concrete developments, recent coverage and multiple publishers, while downranking
+        routine ownership notices and shopping headlines. It judges headline metadata, not market impact.
+        The brief selects three distinct headlines from up to 200 recent reports; check its
+        <code>ranking</code>, <code>articles_scanned</code> and <code>coverage_truncated</code> fields.
       </p>
 
       <h2>Follow-up checks and history</h2>

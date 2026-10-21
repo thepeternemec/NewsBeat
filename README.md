@@ -62,7 +62,7 @@ Use the [connection guide](https://www.newsbeat.dev/connect) for setup and a liv
 
 - **Market research agents:** bring equity and crypto headlines into analysis alongside your own price data and models.
 - **Prediction-market research:** follow relevant company and crypto developments as one input to your research.
-- **Personal briefings:** ask for the top three headlines on an asset, with sources and timestamps.
+- **Personal briefings:** ask for three relevant recent headlines on an asset, with sources and timestamps.
 - **Watchlist bots:** check up to 50 assets at once and pass new items into your own Telegram, Discord or other workflow.
 
 NewsBeat supplies news context. It does not execute trades, provide prediction-market prices or connect to Polymarket accounts. Dedicated messaging integrations are on the roadmap.
@@ -74,7 +74,7 @@ NewsBeat supplies news context. It does not execute trades, provide prediction-m
 | `newsbeat_topics` | Find supported assets and inspect coverage |
 | `newsbeat_news` | Read headlines with sources, timestamps and a cursor |
 | `newsbeat_changes` | Get newly indexed items since your last cursor |
-| `newsbeat_brief` | Return the top three headlines verbatim |
+| `newsbeat_brief` | Return three ranked recent headlines verbatim |
 | `newsbeat_stories` | Group similar headlines into approximate story clusters |
 | `newsbeat_watch` | Check up to 50 assets in one request |
 
@@ -148,8 +148,8 @@ MIT licensed. See [LICENSE](LICENSE).
 
 ### Grouped news feed
 
-The terminal and `GET /api/v2/stories?beat_id=…` show one original lead per group of similar headlines, ordered by latest coverage. Expand a story in the terminal to see each report’s publisher, link and publication time. The API returns these in `lead_article` and `reports`; stored articles are retained.
+The terminal and `GET /api/v2/stories?beat_id=…` show one original lead per group of similar headlines, ranked by headline relevance. Expand a story in the terminal to see each report’s publisher, link and publication time. The API returns these in `lead_article` and `reports`; stored articles are retained.
 
 Matching is conservative and approximate: it uses a 24-hour window, headline overlap, and guards for changed numbers, outcomes and uncertainty. It can miss paraphrases or group unrelated reports. Publisher counts measure coverage, not independent verification.
 
-REST scans up to 200 articles by default (`limit` 1–500); `newsbeat_stories` over MCP scans up to 40. Check `coverage_truncated`. Groups are snapshot views; use `/v2/news` and `/v2/changes` cursors for article arrivals rather than treating group IDs as stable subscriptions.
+REST scans up to 200 reports by default (`limit` 1–500); `newsbeat_stories` over MCP ranks up to 40 groups from a 200-report scan. The brief selects three distinct headlines from up to 200 recent reports. The model favors concrete developments and recency, and downranks routine ownership notices and shopping headlines. Ranking is an explainable heuristic, not a market impact prediction. Check `coverage_truncated`. Groups are snapshot views; use `/v2/news` and `/v2/changes` cursors for article arrivals rather than treating group IDs as stable subscriptions.

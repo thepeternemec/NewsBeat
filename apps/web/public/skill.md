@@ -19,11 +19,13 @@ Respect the host's permissions. Resolve the correct asset; if a name is ambiguou
 2. Read latest articles with newsbeat_news (GET /v2/news?beat_id=...). This establishes a baseline.
 3. Save the returned cursor with the topic ID in the agent's permitted storage.
 3b. For a short answer instead of a list, use newsbeat_brief (GET /v2/brief?beat_id=...):
-    the top headlines verbatim, each with its publisher and UTC time. It is not a summary.
+    three distinct, relevant recent headlines verbatim, each with its publisher and UTC time.
+    The ranking is a headline heuristic, not a summary or market-impact judgment.
 3c. For a grouped overview, use newsbeat_stories (GET /v2/stories?beat_id=...).
-    Similar headlines appear once, latest coverage first. Each group includes lead_article
+    Similar headlines appear once, ranked by headline relevance. Each group includes lead_article
     and reports with every original headline, source, URL and timestamp. No reporting is deleted.
-    Grouping is approximate, not independent confirmation. MCP scans up to 40 recent articles;
+    Grouping is approximate, not independent confirmation. MCP returns up to 40 ranked groups
+    from a scan of 200 recent reports;
     REST defaults to 200 (limit 1–500) within 24 hours. Check coverage_truncated. Group IDs
     are snapshot identifiers, not stable subscriptions; use news/changes cursors for arrivals.
 3d. Watching many topics? Use newsbeat_watch (POST /v2/watch) with the cursors you

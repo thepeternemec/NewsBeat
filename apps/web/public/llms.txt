@@ -35,7 +35,7 @@ An empty page is a success. Report "nothing new" and do not retry it.
 - Catalog — https://www.newsbeat.dev/api/v2/topics
 - News — https://www.newsbeat.dev/api/v2/news?beat_id=b_bb964843350e
 - Changes since a cursor — https://www.newsbeat.dev/api/v2/changes?beat_id=…&cursor=…
-- Brief, top three headlines verbatim — https://www.newsbeat.dev/api/v2/brief?beat_id=b_bb964843350e
+- Brief, three relevant recent headlines verbatim — https://www.newsbeat.dev/api/v2/brief?beat_id=b_bb964843350e
 - Stories, the events behind a topic — https://www.newsbeat.dev/api/v2/stories?beat_id=b_bb964843350e
 - Watch, up to 50 topics in one call — https://www.newsbeat.dev/api/v2/watch
 - Tool definitions — https://www.newsbeat.dev/api/v2/tools
@@ -47,10 +47,11 @@ Tools, for frameworks that would rather be handed a schema than a URL:
 
 ## Grouped overview
 
-Use `newsbeat_stories` for one lead per group of similar headlines, latest coverage first.
+Use `newsbeat_stories` for one lead per group of similar headlines, ranked by headline relevance.
 Each group includes `lead_article` and `reports`, preserving publishers, links and timestamps.
 Grouping is approximate and never deletes reporting. Source counts are not independent verification.
-MCP scans up to 40 articles in the last 24 hours; REST defaults to 200 (`limit` 1–500).
+MCP returns up to 40 ranked groups from 200 reports in the last 24 hours; REST scans 200 by default (`limit` 1–500).
+The brief selects three distinct headlines from up to 200 recent reports. Ranking is a headline heuristic that downranks routine ownership notices; it is not a market-impact judgment.
 Check `coverage_truncated`. Groups are snapshots; use article cursors to track new arrivals.
 
 ## Rate limits and keys

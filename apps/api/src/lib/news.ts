@@ -1,4 +1,5 @@
 import { clusterStories, storyView } from "./cluster.js";
+import { rankStories, selectBriefStories } from "./relevance.js";
 import { db as connect, env, hasDatabaseEnv } from "@newsbeat/db";
 import { SEED_BEATS, type NewsArticle } from "@newsbeat/contracts";
 export class NewsError extends Error {
@@ -188,8 +189,8 @@ export function renderBrief(label: string, items: BriefItem[]): string {
 /**
  * A brief: the top few headlines, verbatim, with who published them and when.
  *
- * Deliberately **not** a summary. Nothing here is rewritten, reordered or
- * inferred — every word is the publisher's lede or a label we added. A brief
+ * Deliberately **not** a summary. Every word is the publisher's lede or a
+ * label we added. A brief
  * that paraphrases is a brief that can be wrong while looking authoritative,
  * and the rule in this repo is that we cite rather than summarise.
  *
@@ -200,7 +201,7 @@ export async function brief(beatId: string, cursor?: string, history = false) {
     const topic = topicById(beatId);
     const sql = db();
     const sequence = cursor ? await readCursor(cursor, beatId, history ? "history" : "changes") : null;
-    const since = new Date(Date.now() - 30 * 86400000).toISOString();
+    const since = new Date(Date.now() - (cursor ? 30 * 86400000 : 24 * 3600_000)).toISOString();
     const ascending = !!cursor && !history;
     const direction = ascending ? sql`asc` : sql`desc`;
     const boundary = sequence
@@ -223,10 +224,10 @@ export async function brief(beatId: string, cursor?: string, history = false) {
                                                    and news_articles.published_at + interval '24 hours'
                 )
                 order by news_articles.id ${direction}
-                limit ${BRIEF_ITEMS + 1}`,
+                limit ${cursor ? BRIEF_ITEMS + 1 : 201}`,
             sql`select last_success_at from news_ingestion_status where beat_id = ${beatId} limit 1`,
         ]);
-        rows = ((results[0] ?? []) as unknown as NewsArticle[]).slice(0, BRIEF_ITEMS);
+        rows = (results[0] ?? []) as unknown as NewsArticle[];
         state = (results[1] as unknown as Array<{ last_success_at: string | null }>)[0];
     }
     catch (error) {
@@ -240,7 +241,11 @@ export async function brief(beatId: string, cursor?: string, history = false) {
     // string the row type claims. Normalise here rather than trusting the type —
     // every consumer downstream expects ISO.
     const iso = (value: unknown): string => value instanceof Date ? value.toISOString() : String(value ?? "");
-    const items: BriefItem[] = (rows ?? []).map((row: NewsArticle) => ({
+    const candidates = cursor ? rows.slice(0, BRIEF_ITEMS) : selectBriefStories(clusterStories(rows.slice(0, 200).map(row => ({
+        id: String(row.id), title: row.title, source: row.source, url: row.url,
+        published_at: iso(row.published_at), first_indexed_at: iso(row.first_indexed_at),
+    })))).slice(0, BRIEF_ITEMS).map(story => story.articles[0]!);
+    const items: BriefItem[] = candidates.map((row) => ({
         lede: row.title,
         source: row.source,
         url: row.url,
@@ -249,7 +254,7 @@ export async function brief(beatId: string, cursor?: string, history = false) {
         first_indexed_at: iso(row.first_indexed_at),
     }));
     const isChange = !!cursor && !history;
-    const nextSeq = isChange ? (rows.at(-1)?.id ?? sequence ?? "0") : (rows[0]?.id ?? "0");
+    const nextSeq = isChange ? (rows.slice(0, BRIEF_ITEMS).at(-1)?.id ?? sequence ?? "0") : (rows[0]?.id ?? "0");
 
     return {
         beat_id: beatId,
@@ -258,11 +263,14 @@ export async function brief(beatId: string, cursor?: string, history = false) {
         generated_at: new Date().toISOString(),
         freshness: freshness(state?.last_success_at ?? null, topic.freshness_slo_minutes),
         count: items.length,
+        ranking: cursor ? "arrival_order" : "headline_relevance_v1",
+        articles_scanned: cursor ? Math.min(rows.length, BRIEF_ITEMS) : Math.min(rows.length, 200),
+        coverage_truncated: !cursor && rows.length > 200,
         items,
         // Assembled, never written. See the note above.
         text: renderBrief(topic.label, items),
         cursor: await signCursor(beatId, String(nextSeq), "changes"),
-        history_cursor: await signCursor(beatId, String(rows.at(-1)?.id ?? sequence ?? "0"), "history"),
+        history_cursor: await signCursor(beatId, String((cursor ? rows.slice(0, BRIEF_ITEMS) : rows.slice(0, 200)).at(-1)?.id ?? sequence ?? "0"), "history"),
     };
 }
 
@@ -274,7 +282,7 @@ export async function brief(beatId: string, cursor?: string, history = false) {
  * headlines, and orders by latest coverage. Every report remains accessible;
  * a shared group is a reading aid, not proof that reports agree.
  */
-export async function stories(beatId: string, limit = 200) {
+export async function stories(beatId: string, limit = 200, scanLimit = limit) {
     const topic = topicById(beatId);
     const sql = db();
     const since = new Date(Date.now() - 24 * 3600_000).toISOString();
@@ -286,7 +294,7 @@ export async function stories(beatId: string, limit = 200) {
                 from news_articles
                 where beat_id = ${beatId} and published_at >= ${since}
                 order by published_at desc, news_articles.id desc
-                limit ${limit + 1}`,
+                limit ${scanLimit + 1}`,
             sql`select last_success_at from news_ingestion_status where beat_id = ${beatId} limit 1`,
         ]);
         rows = ((results[0] ?? []) as unknown as NewsArticle[]);
@@ -298,7 +306,7 @@ export async function stories(beatId: string, limit = 200) {
     }
 
     const iso = (value: unknown): string => value instanceof Date ? value.toISOString() : String(value ?? "");
-    const articles = (rows ?? []).slice(0, limit).map((row: NewsArticle) => ({
+    const articles = (rows ?? []).slice(0, scanLimit).map((row: NewsArticle) => ({
         id: String(row.id),
         title: row.title,
         url: row.url,
@@ -306,7 +314,7 @@ export async function stories(beatId: string, limit = 200) {
         published_at: iso(row.published_at),
         first_indexed_at: iso(row.first_indexed_at),
     }));
-    const found = clusterStories(articles);
+    const found = rankStories(clusterStories(articles));
 
     return {
         beat_id: beatId,
@@ -317,11 +325,12 @@ export async function stories(beatId: string, limit = 200) {
         freshness: freshness(state?.last_success_at ?? null, topic.freshness_slo_minutes),
         window_hours: 24,
         articles_read: articles.length,
-        coverage_truncated: rows.length > limit,
+        coverage_truncated: rows.length > scanLimit || found.length > limit,
         grouping: "conservative-headline-v1",
-        order: "latest_coverage_first",
-        story_count: found.length,
-        stories: found.map(storyView),
+        order: "headline_relevance_v1",
+        story_count: Math.min(found.length, limit),
+        stories_scanned: found.length,
+        stories: found.slice(0, limit).map(storyView),
     };
 }
 

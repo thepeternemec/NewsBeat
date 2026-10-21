@@ -57,7 +57,7 @@ Base: `https://www.newsbeat.dev/api`
 | `GET /v2/topics` | The catalog: `beat_id`, `label`, `status`, `last_success_at` |
 | `GET /v2/news?beat_id=` | Articles for a topic, with a `cursor` and `history_cursor` |
 | `GET /v2/changes?beat_id=&cursor=` | Only what is new since that cursor |
-| `GET /v2/brief?beat_id=` | The top three headlines verbatim, each with source and UTC time |
+| `GET /v2/brief?beat_id=` | Three relevant recent headlines verbatim, each with source and UTC time |
 | `GET /v2/stories?beat_id=` | The events behind a topic, not the coverage — near-identical headlines grouped |
 | `POST /v2/watch` | Up to 50 topics in one call, each with its own cursor |
 | `GET /v2/tools` | The same tools in OpenAI function-call shape |
@@ -144,6 +144,6 @@ topic fails only its own result, so re-baseline just that one with
 
 ## Grouped overview
 
-Use `newsbeat_stories` for a feed grouped by similar headlines, latest coverage first. Each group includes a verbatim `lead_article` and `reports` with original source links and timestamps. No stored articles are deleted. Matching is conservative and approximate; source counts measure coverage, not independent verification.
+Use `newsbeat_stories` for a feed grouped by similar headlines and ranked by headline relevance. Each group includes a verbatim `lead_article` and `reports` with original source links and timestamps. No stored articles are deleted. Matching is conservative and approximate; source counts measure coverage, not independent verification.
 
-The snapshot covers up to 40 articles over MCP or 200 by default over REST (`limit` 1–500), published within the last 24 hours. Check `coverage_truncated`. Group IDs can change as the snapshot window changes. Continue using the existing topic-bound article cursors for follow-up arrivals, then refresh the grouped overview for presentation.
+MCP returns up to 40 ranked groups drawn from 200 recent reports; REST scans 200 by default (`limit` 1–500). The 24-hour snapshot favors concrete developments, recency and coverage from multiple publishers, while downranking routine ownership notices and shopping headlines. This is a headline heuristic, not a measure of market impact or verification. Check `coverage_truncated` and `stories_scanned`. The brief ranks up to 200 recent reports for three distinct headlines; its `ranking` and `articles_scanned` fields explain the selection. Group IDs can change as the window rolls. Continue using the existing topic-bound article cursors for follow-up arrivals, then refresh the ranked overview for presentation.
