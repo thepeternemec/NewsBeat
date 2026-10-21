@@ -1,5 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { decodeSnapshot } from "./operations-policy.js";
 import {
   atomFeed,
   ingestionComponent,
@@ -21,6 +22,19 @@ const good: OperationSnapshot = {
     },
   ],
 };
+test("persisted native JSON and early encoded rows both render safely", () => {
+  assert.deepEqual(decodeSnapshot(good), good);
+  assert.deepEqual(decodeSnapshot(JSON.stringify(good)), good);
+  assert.equal(decodeSnapshot("not json"), null);
+  assert.equal(
+    decodeSnapshot({ checked_at: good.checked_at, status: "operational" }),
+    null,
+  );
+  assert.equal(decodeSnapshot({ ...good, components: [null] }), null);
+  const decoded = decodeSnapshot(JSON.stringify(good))!;
+  assert.equal(statusDocument([decoded], now).monitoring, "current");
+  assert(atomFeed(statusDocument([decoded], now)).includes("<entry>"));
+});
 test("missing and delayed checks never imply current uptime", () => {
   assert.equal(statusDocument([], now).monitoring, "starting");
   assert.equal(statusDocument([], now).status, "unknown");

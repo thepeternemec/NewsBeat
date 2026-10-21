@@ -72,6 +72,17 @@ export default function StatusBoard() {
         const next = (await response.json()) as OperationStatus;
         if (
           !Array.isArray(next.history) ||
+          !Object.hasOwn(TITLES, next.status) ||
+          (next.latest !== null &&
+            (!next.latest ||
+              typeof next.latest !== "object" ||
+              !Array.isArray(next.latest.components))) ||
+          next.history.some(
+            (report) =>
+              !report ||
+              typeof report !== "object" ||
+              !Array.isArray(report.components),
+          ) ||
           !next.generated_at ||
           !["current", "delayed", "starting", "unavailable"].includes(
             next.monitoring,
