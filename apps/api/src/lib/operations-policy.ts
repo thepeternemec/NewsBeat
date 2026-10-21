@@ -7,6 +7,39 @@ import type {
 
 export const CHECK_INTERVAL_MINUTES = 5;
 export const MONITOR_STALE_MS = 12 * 60_000;
+/** Accept native JSON reports and the JSON-string rows from the initial rollout. */
+export function decodeSnapshot(value: unknown): OperationSnapshot | null {
+  try {
+    const parsed = (
+      typeof value === "string" ? JSON.parse(value) : value
+    ) as OperationSnapshot | null;
+    const states = ["operational", "degraded", "outage", "unknown"];
+    if (
+      !parsed ||
+      typeof parsed !== "object" ||
+      typeof parsed.checked_at !== "string" ||
+      !Number.isFinite(Date.parse(parsed.checked_at)) ||
+      !states.includes(parsed.status) ||
+      !Array.isArray(parsed.components) ||
+      !parsed.components.length
+    )
+      return null;
+    if (
+      !parsed.components.every(
+        (component) =>
+          component &&
+          ["api", "mcp", "ingestion"].includes(component.id) &&
+          typeof component.name === "string" &&
+          typeof component.detail === "string" &&
+          states.includes(component.status),
+      )
+    )
+      return null;
+    return parsed;
+  } catch {
+    return null;
+  }
+}
 export function overall(components: OperationComponent[]): OperationState {
   if (!components.length || components.some((c) => c.status === "unknown"))
     return "unknown";

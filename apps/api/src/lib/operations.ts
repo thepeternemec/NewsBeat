@@ -7,6 +7,7 @@ import {
 } from "@newsbeat/contracts";
 import {
   atomFeed,
+  decodeSnapshot,
   ingestionComponent,
   overall,
   statusDocument,
@@ -148,7 +149,8 @@ export async function runOperationalCheck(): Promise<OperationSnapshot> {
   const slot = new Date(
     Math.floor(Date.parse(report.checked_at) / 300_000) * 300_000,
   ).toISOString();
-  await sql`insert into public.newsbeat_operation_checks (slot, checked_at, report) values (${slot}, ${report.checked_at}, ${JSON.stringify(report)}::jsonb) on conflict (slot) do nothing`;
+  // Use the driver's JSON helper; a pre-stringified value cast to jsonb is encoded as a JSON string.
+  await sql`insert into public.newsbeat_operation_checks (slot, checked_at, report) values (${slot}, ${report.checked_at}, ${sql.json(JSON.parse(JSON.stringify(report)))}) on conflict (slot) do nothing`;
   await sql`delete from public.newsbeat_operation_checks where slot < now() - interval '45 days'`;
   return report;
 }
@@ -157,9 +159,17 @@ export async function readOperationStatus() {
   if (!hasDatabaseEnv()) return statusDocument([], Date.now(), false);
   try {
     const rows = await db()<
-      Array<{ report: OperationSnapshot }>
+      Array<{ report: unknown }>
     >`select report from public.newsbeat_operation_checks order by slot desc limit 48`;
-    return statusDocument(rows.map((row) => row.report));
+    const history = rows.flatMap((row) => {
+      const report = decodeSnapshot(row.report);
+      return report ? [report] : [];
+    });
+    return statusDocument(
+      history,
+      Date.now(),
+      !rows.length || decodeSnapshot(rows[0]!.report) !== null,
+    );
   } catch (error) {
     // Before the first scheduled run, the table has not been bootstrapped yet.
     return statusDocument(
