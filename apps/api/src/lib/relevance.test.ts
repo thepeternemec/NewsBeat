@@ -58,7 +58,7 @@ test("speculative and opposing developments are not merged or hidden", () => {
 test("Apple digest selects company developments ahead of incidental Big Apple and scam mentions", () => {
   const grouped = clusterStories([
     report(1, "Big Ben and the Big Apple: SWISS looks back on a successful autumn holiday season", "SWISS"),
-    report(2, "A $50 Apple Cash mistake centering child is suspected to be a scam", "Publisher A"),
+    report(2, "A $50 Apple Cash mistake is suspected to be a scam: Do not send the money back", "Publisher A"),
     report(3, "Apple signs $100M titanium supplier agreement for iPhone", "Publisher B"),
     report(4, "Loop Capital cuts Apple rating over iPhone sales outlook", "Publisher C"),
     report(5, "Apple expands DIY repairs to latest Macs", "Publisher D"),

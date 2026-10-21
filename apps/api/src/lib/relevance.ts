@@ -4,7 +4,7 @@ import { tokens, type Clusterable, type Story } from "./cluster.js";
 const OWNERSHIP = /\b(?:acquires? new (?:holdings|position)|buys? new position|buys? [\d,]+ shares? (?:of|in)|makes? new investment in|(?:grows?|reduces?) (?:its? )?stake|shares? (?:of|in) .{0,80} (?:bought|sold|acquired)|(?:stock|shares?) (?:purchased|sold|bought) by|(?:holdings|position|stake) in .{0,80} (?:llc|advisors|management|capital|partners))\b/i;
 const OPINION = /\b(?:should you (?:buy|pick)|is .{1,40} (?:a buy|stock (?:a buy|worth buying))|prediction:|price target|best stocks? to buy|what (?:buyers|investors) (?:should|need) (?:know|consider))\b/i;
 const SHOPPING = /\b(?:save \$\d+|discount|on sale|deal of the day|best price|shop now|coupon)\b/i;
-const EVENT = /\b(?:announces?|unveils?|launches?|releases?|introduces?|completes?|signs?|agrees?|partners?|selects?|approves?|rejects?|acquires?|invests?|backs?|commits?|sues?|settles?|raises?|cuts?|halts?|expands?|opens?|closes?|joins?|simulates?|reports? (?:earnings|revenue|results)|recalls?|files? for|in talks to|names? .{1,50} partners?)\b/i;
+const EVENT = /\b(?:announces?|unveils?|launches?|releases?|introduces?|completes?|signs?|agrees?|partners?|selects?|approves?|rejects?|acquires?|invests?|commits?|sues?|settles?|raises?|cuts?|halts?|expands?|opens?|closes?|joins?|simulates?|reports? (?:earnings|revenue|results)|recalls?|files? for|in talks to|names? .{1,50} partners?)\b/i;
 const SPECULATION = /\b(?:could|may|might|rumou?red|reportedly|expected|weighs|in talks|plans?)\b/i;
 const INSTITUTION = /\b(?:llc|advisors?|management|capital|partners|bank|investments?|wealth|financial group)\b/i;
 const HOLDING = /\b(?:shares?|stock|position|holdings|stake|investment)\b/i;
