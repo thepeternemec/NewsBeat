@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { clusterStories } from "./cluster.js";
-import { rankStories, selectBriefStories } from "./relevance.js";
+import { rankStories, selectBriefStories, selectSummaryStories } from "./relevance.js";
 
 const at = "2026-10-21T09:03:00.000Z";
 const report = (id: number, title: string, source: string, time = "2026-10-21T08:48:00.000Z") => ({
@@ -53,4 +53,18 @@ test("speculative and opposing developments are not merged or hidden", () => {
   ]);
   assert.equal(all.length, 3);
   assert.equal(rankStories(all, Date.parse(at)).length, 3);
+});
+
+test("Apple digest selects company developments ahead of incidental Big Apple and scam mentions", () => {
+  const grouped = clusterStories([
+    report(1, "Big Ben and the Big Apple: SWISS looks back on a successful autumn holiday season", "SWISS"),
+    report(2, "A $50 Apple Cash mistake centering child is suspected to be a scam", "Publisher A"),
+    report(3, "Apple signs $100M titanium supplier agreement for iPhone", "Publisher B"),
+    report(4, "Loop Capital cuts Apple rating over iPhone sales outlook", "Publisher C"),
+    report(5, "Apple expands DIY repairs to latest Macs", "Publisher D"),
+  ]);
+  const selected = selectSummaryStories(grouped, 3, Date.parse(at));
+  assert.equal(selected.length, 3);
+  assert(selected.every(story => !/Big Apple|scam/i.test(story.lead)));
+  assert(selected.some(story => /titanium/.test(story.lead)));
 });
