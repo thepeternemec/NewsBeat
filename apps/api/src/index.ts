@@ -14,6 +14,7 @@ import { newsRoutes } from "./lib/news-routes.js";
 import { rateLimit, rateLimits } from "./lib/limit.js";
 import { keyRoutes } from "./lib/key-routes.js";
 import { mcpResponse } from "./lib/mcp.js";
+import { marketplaceRoutes } from "./lib/marketplace.js";
 import { operationRoutes } from "./lib/operations.js";
 export { runOperationalCheck } from "./lib/operations.js";
 
@@ -33,6 +34,8 @@ app.use("*", async (c, next) => {
 // Counting happens before routing, so refused requests cost one indexed upsert.
 // Status reads remain available without rate-limit or account billing dependencies.
 app.route("/status", operationRoutes);
+// Authenticated GitHub deliveries must not depend on news quotas or account balances.
+app.route("/webhooks/github/marketplace", marketplaceRoutes);
 app.use("*", rateLimit);
 
 app.get("/health", (c) => c.json({ ok: true, service: "newsbeat", version: "0.3.0" }));

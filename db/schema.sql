@@ -241,3 +241,17 @@ create table if not exists public.newsbeat_operation_checks (
   checked_at timestamptz not null,
   report jsonb not null
 );
+
+-- Signed GitHub Marketplace delivery ledger; no raw payloads or contact details.
+create table if not exists public.newsbeat_marketplace_deliveries (
+  delivery_id text primary key,
+  event text not null,
+  body_hash text not null,
+  action text,
+  github_account_id text,
+  github_account_type text,
+  plan_id text,
+  previous_plan_id text,
+  effective_at timestamptz,
+  received_at timestamptz not null default now()
+);
