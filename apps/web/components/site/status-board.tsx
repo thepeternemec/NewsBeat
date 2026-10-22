@@ -1,9 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
-import { Activity, ArrowUpRight, RefreshCw, Rss } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Activity, RefreshCw, Rss } from "lucide-react";
 import type {
   ComponentId,
   OperationState,
+  OperationSnapshot,
   OperationStatus,
 } from "@newsbeat/contracts";
 import { API_BASE } from "./content";
@@ -25,13 +26,14 @@ const COMPONENTS = [
   { id: "mcp", name: "Agent connection (MCP)" },
   { id: "ingestion", name: "News collection" },
 ] as const;
-function stamp(value: string) {
+function stamp(value: string, precise = false) {
   return (
     new Date(value).toLocaleString("en-GB", {
       day: "2-digit",
       month: "short",
       hour: "2-digit",
       minute: "2-digit",
+      second: precise ? "2-digit" : undefined,
       timeZone: "UTC",
     }) + " UTC"
   );
@@ -45,14 +47,160 @@ function Badge({ state }: { state: OperationState }) {
   );
 }
 
+type TimelineSelection = { slot: number; source: "hover" | "focus" | "tap" };
+
+function ServiceTimeline({
+  component,
+  slots,
+  reports,
+}: {
+  component: { id: ComponentId; name: string };
+  slots: number[];
+  reports: Map<number, OperationSnapshot>;
+}) {
+  const [selection, setSelection] = useState<TimelineSelection | null>(null);
+  const [cursor, setCursor] = useState<number | null>(null);
+  const chart = useRef<HTMLDivElement>(null);
+  const dismissTimer = useRef<number | null>(null);
+  const tooltipId = "status-check-" + component.id;
+  const clearDismiss = () => {
+    if (dismissTimer.current !== null) window.clearTimeout(dismissTimer.current);
+  };
+
+  useEffect(() => {
+    const outside = (event: PointerEvent) => {
+      if (event.target instanceof Node && !chart.current?.contains(event.target)) {
+        setSelection(null);
+      }
+    };
+    document.addEventListener("pointerdown", outside);
+    return () => {
+      document.removeEventListener("pointerdown", outside);
+      if (dismissTimer.current !== null) window.clearTimeout(dismissTimer.current);
+    };
+  }, []);
+
+  const active = selection && slots.includes(selection.slot) ? selection : null;
+  const report = active ? reports.get(active.slot) : undefined;
+  const result = report?.components.find((item) => item.id === component.id);
+  const observed = result?.status ?? "unknown";
+  const cursorSlot = cursor !== null && slots.includes(cursor) ? cursor : slots.at(-1);
+  const count = slots.filter((slot) =>
+    reports.get(slot)?.components.some((item) => item.id === component.id),
+  ).length;
+  const position = active
+    ? (slots.indexOf(active.slot) / Math.max(1, slots.length - 1)) * 100
+    : 50;
+
+  return (
+    <div className="status-service-timeline">
+      <div
+        className="status-chart"
+        ref={chart}
+        onPointerEnter={clearDismiss}
+        onPointerLeave={() => {
+          clearDismiss();
+          dismissTimer.current = window.setTimeout(() => {
+            setSelection((previous) => previous?.source === "hover" ? null : previous);
+          }, 180);
+        }}
+      >
+        <div className="status-bars" role="group" aria-label={component.name + " check history"}>
+          {slots.length ? slots.map((slot, index) => {
+            const snapshot = reports.get(slot);
+            const check = snapshot?.components.find((item) => item.id === component.id);
+            const state = check?.status ?? "unknown";
+            const time = snapshot?.checked_at ?? new Date(slot).toISOString();
+            return (
+              <button
+                key={slot}
+                type="button"
+                className={"status-check-bar state-" + state}
+                data-slot={slot}
+                data-state={state}
+                data-checked-at={check ? snapshot!.checked_at : undefined}
+                data-active={active?.slot === slot || undefined}
+                tabIndex={slot === cursorSlot ? 0 : -1}
+                aria-label={component.name + ", " + stamp(time, Boolean(check)) + ": " + (check ? LABELS[state] : "No recorded check")}
+                aria-describedby={active?.slot === slot ? tooltipId : undefined}
+                onPointerEnter={(event) => {
+                  if (event.pointerType === "mouse") {
+                    clearDismiss();
+                    setSelection({ slot, source: "hover" });
+                  }
+                }}
+                onFocus={() => {
+                  setCursor(slot);
+                  setSelection({ slot, source: "focus" });
+                }}
+                onBlur={() => setSelection((previous) =>
+                  previous?.slot === slot && previous.source === "focus" ? null : previous,
+                )}
+                onClick={() => setSelection((previous) =>
+                  previous?.slot === slot && previous.source === "tap" ? null : { slot, source: "tap" },
+                )}
+                onKeyDown={(event) => {
+                  if (event.key === "Escape") {
+                    setSelection(null);
+                    return;
+                  }
+                  const next = event.key === "ArrowLeft" ? Math.max(0, index - 1)
+                    : event.key === "ArrowRight" ? Math.min(slots.length - 1, index + 1)
+                    : event.key === "Home" ? 0
+                    : event.key === "End" ? slots.length - 1 : null;
+                  if (next !== null) {
+                    event.preventDefault();
+                    chart.current?.querySelector<HTMLButtonElement>('[data-slot="' + slots[next] + '"]')?.focus();
+                  }
+                }}
+              />
+            );
+          }) : Array.from({ length: 48 }, (_, index) => (
+            <span key={index} className="status-check-placeholder" aria-hidden="true" />
+          ))}
+        </div>
+        {active ? (
+          <div
+            id={tooltipId}
+            role="tooltip"
+            className={"status-check-tooltip state-" + observed}
+            style={{ left: "clamp(min(140px, 50%), " + position + "%, max(50%, calc(100% - 140px)))" }}
+            onPointerEnter={clearDismiss}
+          >
+            <div className="status-tooltip-top">
+              <span>{component.name}</span>
+              <Badge state={observed} />
+            </div>
+            <span className="status-tooltip-caption">{result ? "Checked" : "Five-minute window starting"}</span>
+            <time dateTime={result ? report!.checked_at : new Date(active.slot).toISOString()}>
+              {stamp(result ? report!.checked_at : new Date(active.slot).toISOString(), Boolean(result))}
+            </time>
+            <p>{result?.detail ?? "No check was recorded for this service in this window."}</p>
+            {result?.latency_ms != null ? (
+              <span className="status-tooltip-metric">Completed in {(result.latency_ms / 1000).toFixed(2)}s</span>
+            ) : result?.coverage ? (
+              <span className="status-tooltip-metric">
+                {result.coverage.fresh.toLocaleString()} / {result.coverage.total.toLocaleString()} topics fresh
+              </span>
+            ) : null}
+          </div>
+        ) : null}
+      </div>
+      <div className="status-timeline-axis">
+        <span>4 hours ago</span>
+        <span>{slots.length ? count + " recorded checks" : "Loading checks…"}</span>
+        <span>Latest</span>
+      </div>
+    </div>
+  );
+}
+
 export default function StatusBoard() {
   const [data, setData] = useState<OperationStatus | null>(null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
   const [attempt, setAttempt] = useState(0);
   const [now, setNow] = useState(0);
-  const [filter, setFilter] = useState<ComponentId | "all">("all");
-  const [expanded, setExpanded] = useState(false);
   useEffect(() => {
     let active = true;
     let controller: AbortController | null = null;
@@ -199,185 +347,59 @@ export default function StatusBoard() {
           <Rss size={13} /> Atom feed
         </a>
       </div>
-      <section className="status-components" aria-label="Monitored services">
-        {COMPONENTS.map((component) => {
-          const result = data?.latest?.components.find(
-            (c) => c.id === component.id,
-          );
-          const observed: OperationState =
-            current && result ? result.status : "unknown";
-          return (
-            <article className="status-component" key={component.id}>
-              <div className="status-component-top">
-                <h2>{component.name}</h2>
-                <Badge state={observed} />
-              </div>
-              <p>
-                {result ? result.detail : "No check result is available yet."}
-              </p>
-              {result?.coverage ? (
-                <>
-                  <div className="status-coverage" aria-label="Topic coverage">
-                    <span>
-                      <strong>{result.coverage.fresh.toLocaleString()}</strong>{" "}
-                      fresh
-                    </span>
-                    <span>
-                      <strong>{result.coverage.stale.toLocaleString()}</strong>{" "}
-                      delayed
-                    </span>
-                    <span>
-                      <strong>
-                        {result.coverage.unavailable.toLocaleString()}
-                      </strong>{" "}
-                      unchecked
-                    </span>
-                  </div>
-                  <small>
-                    {result.coverage.failed_last_check} topics failed their most
-                    recent collection attempt.
-                  </small>
-                </>
-              ) : (
-                <div className="status-latency">
-                  <span>Complete check</span>
-                  <strong>
-                    {result?.latency_ms != null
-                      ? `${(result.latency_ms / 1000).toFixed(2)}s`
-                      : "—"}
-                  </strong>
-                </div>
-              )}
-              {!current && result ? (
-                <small>
-                  Historical result · {stamp(data!.latest!.checked_at)}
-                </small>
-              ) : null}
-            </article>
-          );
-        })}
-      </section>
-      <section
-        className="status-history"
-        aria-labelledby="status-history-title"
-      >
+
+      <section className="status-services" aria-labelledby="status-services-title">
         <div className="status-section-heading">
           <div>
-            <span className="status-kicker">Recorded observations</span>
-            <h2 id="status-history-title">The last four hours.</h2>
+            <span className="status-kicker">Last four hours</span>
+            <h2 id="status-services-title">Service checks.</h2>
           </div>
-          <span>Each bar represents a five-minute window</span>
+          <span>Each bar is 5 minutes · Hover, focus or tap for details</span>
         </div>
-        <div className="status-bars" aria-label="Recent check results">
-          {recentSlots.map((slot) => {
-            const report = bySlot.get(slot);
+        <div className="status-components">
+          {COMPONENTS.map((component) => {
+            const result = data?.latest?.components.find((item) => item.id === component.id);
+            const observed: OperationState = current && result ? result.status : "unknown";
             return (
-              <span
-                key={slot}
-                className={`state-${report?.status ?? "unknown"}`}
-                title={`${stamp(new Date(slot).toISOString())}: ${report ? LABELS[report.status] : "No recorded check"}`}
-              />
+              <article className="status-component" key={component.id} aria-label={component.name}>
+                <div className="status-component-top">
+                  <h2>{component.name}</h2>
+                  <Badge state={observed} />
+                </div>
+                <p>{result?.detail ?? "No check result is available yet."}</p>
+                <ServiceTimeline component={component} slots={recentSlots} reports={bySlot} />
+                <div className="status-service-meta">
+                  {result?.coverage ? (
+                    <>
+                      <span><strong>{result.coverage.fresh.toLocaleString()}</strong> fresh topics</span>
+                      <span><strong>{result.coverage.stale.toLocaleString()}</strong> delayed</span>
+                      <span><strong>{result.coverage.unavailable.toLocaleString()}</strong> unchecked</span>
+                      {result.coverage.failed_last_check > 0 ? (
+                        <span><strong>{result.coverage.failed_last_check}</strong> failed their last collection attempt</span>
+                      ) : null}
+                    </>
+                  ) : (
+                    <span>Latest check duration <strong>{result?.latency_ms != null ? (result.latency_ms / 1000).toFixed(2) + "s" : "—"}</strong></span>
+                  )}
+                  {!current && result ? <span>Historical result · {stamp(data!.latest!.checked_at)}</span> : null}
+                </div>
+              </article>
             );
           })}
         </div>
-        <div className="status-legend">
-          <span>
-            <i className="state-operational" /> Operational
-          </span>
-          <span>
-            <i className="state-degraded" /> Degraded
-          </span>
-          <span>
-            <i className="state-outage" /> Unavailable
-          </span>
-          <span>
-            <i className="state-unknown" /> No check / unknown
-          </span>
+        <div className="status-legend" aria-label="Check status legend">
+          <span><i className="state-operational" /> Operational</span>
+          <span><i className="state-degraded" /> Degraded</span>
+          <span><i className="state-outage" /> Unavailable</span>
+          <span><i className="state-unknown" /> No check / unknown</span>
         </div>
-      </section>
-      <section className="status-feed" aria-labelledby="status-feed-title">
-        <div className="status-section-heading">
-          <div>
-            <span className="status-kicker">Operation feed</span>
-            <h2 id="status-feed-title">Recent checks.</h2>
-          </div>
-          <a href="/api/status">
-            Read as JSON <ArrowUpRight size={13} />
-          </a>
-        </div>
-        <div
-          className="status-filters"
-          role="group"
-          aria-label="Filter check history"
-        >
-          {[{ id: "all", name: "All services" }, ...COMPONENTS].map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              aria-pressed={filter === item.id}
-              onClick={() => setFilter(item.id as ComponentId | "all")}
-            >
-              {item.name}
-            </button>
-          ))}
-        </div>
-        {history.length ? (
-          <ol>
-            {history.slice(0, expanded ? 20 : 6).map((report) => {
-              const component = report.components.find((c) => c.id === filter);
-              const observed =
-                filter === "all"
-                  ? report.status
-                  : (component?.status ?? "unknown");
-              return (
-                <li key={report.checked_at}>
-                  <time dateTime={report.checked_at}>
-                    {stamp(report.checked_at)}
-                  </time>
-                  <div>
-                    <Badge state={observed} />
-                    <p>
-                      {filter === "all"
-                        ? report.components
-                            .map(
-                              (c) =>
-                                `${c.name}: ${LABELS[c.status].toLowerCase()}`,
-                            )
-                            .join(" · ")
-                        : (component?.detail ??
-                          "This component was not checked.")}
-                    </p>
-                  </div>
-                </li>
-              );
-            })}
-          </ol>
-        ) : (
+        {!history.length && !loading ? (
           <div className="status-empty">
-            <Activity size={22} />
-            <h3>
-              {error
-                ? "Check history could not load."
-                : "History starts with the first check."}
-            </h3>
-            <p>
-              Only real observations appear here. Check back after the monitor’s
-              next run.
-            </p>
+            <h3>{error ? "Check history could not load." : "History starts with the first check."}</h3>
+            <p>Bars fill as real checks are recorded. Missing checks do not establish service availability.</p>
           </div>
-        )}
-        {history.length > 6 ? (
-          <button
-            className="status-refresh status-show-more"
-            type="button"
-            aria-expanded={expanded}
-            onClick={() => setExpanded((value) => !value)}
-          >
-            {expanded
-              ? "Show fewer checks"
-              : `Show ${Math.min(history.length, 20) - 6} more checks`}
-          </button>
         ) : null}
+        <p className="status-history-note">All check times are in UTC. Use the arrow keys to move between checks and Escape to close their details.</p>
       </section>
     </>
   );
