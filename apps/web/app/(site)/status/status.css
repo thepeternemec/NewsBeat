@@ -461,3 +461,190 @@
     animation: none;
   }
 }
+
+
+/* Each service exposes its own recorded checks directly on its timeline. */
+.status-components {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+}
+.status-component {
+  position: relative;
+}
+.status-component:hover,
+.status-component:focus-within {
+  z-index: 2;
+}
+.status-component p {
+  min-height: 0;
+  margin: 12px 0 22px;
+}
+.status-services {
+  margin-top: 8px;
+}
+.status-service-timeline {
+  min-width: 0;
+}
+.status-chart {
+  position: relative;
+}
+.status-bars {
+  align-items: center;
+  gap: 4px;
+}
+.status-check-bar,
+.status-bars > .status-check-placeholder {
+  display: block;
+  min-width: 0;
+  width: 100%;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+  background: var(--status-tone);
+  opacity: 0.84;
+}
+.status-check-bar {
+  appearance: none;
+  cursor: pointer;
+  transition: opacity 140ms ease, transform 140ms ease, box-shadow 140ms ease;
+}
+.status-check-bar.state-unknown,
+.status-bars > .status-check-placeholder {
+  background: var(--border-strong);
+  opacity: 0.72;
+}
+.status-check-bar:hover,
+.status-check-bar[data-active],
+.status-check-bar:focus-visible {
+  opacity: 1;
+  transform: scaleY(1.1);
+  box-shadow: 0 0 0 1px var(--text-secondary);
+}
+.status-page .status-check-bar:focus-visible {
+  outline-offset: 3px;
+}
+.status-timeline-axis {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 12px;
+  color: var(--text-tertiary);
+  font: 10px/1.6 var(--font-mono);
+}
+.status-timeline-axis > span:nth-child(2) {
+  color: var(--text-secondary);
+}
+.status-check-tooltip {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  width: min(280px, 100%);
+  transform: translateX(-50%);
+  z-index: 10;
+  padding: 16px;
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.18);
+  animation: status-tooltip-in 120ms ease-out;
+}
+.status-tooltip-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.status-tooltip-top > span:first-child {
+  font-size: 10px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+.status-tooltip-caption {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--text-tertiary);
+  font-size: 9px;
+}
+.status-check-tooltip time {
+  display: block;
+  color: var(--text-primary);
+  font: 11px/1.6 var(--font-mono);
+}
+.status-check-tooltip p {
+  margin: 10px 0 0;
+  font-size: 11px;
+  line-height: 1.7;
+}
+.status-tooltip-metric {
+  display: block;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-default);
+  color: var(--text-secondary);
+  font: 10px/1.6 var(--font-mono);
+}
+.status-service-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px 20px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-default);
+  color: var(--text-tertiary);
+  font-size: 10px;
+  line-height: 1.7;
+}
+.status-service-meta strong {
+  margin-right: 3px;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-weight: 500;
+}
+.status-history-note {
+  margin: 18px 0 0;
+  color: var(--text-tertiary);
+  font-size: 10px;
+  line-height: 1.8;
+}
+.status-services .status-empty {
+  margin-top: 24px;
+}
+@keyframes status-tooltip-in {
+  from { opacity: 0; translate: 0 4px; }
+  to { opacity: 1; translate: 0 0; }
+}
+@media (max-width: 600px) {
+  .status-component {
+    padding: 20px;
+  }
+  .status-bars {
+    gap: 2px;
+  }
+  .status-check-bar,
+  .status-bars > .status-check-placeholder {
+    border-radius: 2px;
+  }
+  .status-timeline-axis {
+    font-size: 8px;
+  }
+  .status-services .status-section-heading {
+    gap: 12px;
+  }
+  .status-services .status-section-heading > span {
+    font-size: 10px;
+    line-height: 1.8;
+  }
+  .status-service-meta {
+    gap: 8px 14px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .status-check-bar {
+    transition: none;
+  }
+  .status-check-tooltip {
+    animation: none;
+  }
+}
