@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ArrowRight, ArrowUpRight, Radio, RefreshCw } from "lucide-react";
+import RippleButton from "@/components/ui/ripple-button/ripple-button";
 import { API_BASE } from "./content";
 
 const ASSETS = [
@@ -94,14 +95,15 @@ export default function NewsPreview() {
         aria-label="Choose a preview topic"
       >
         {ASSETS.map((item, index) => (
-          <button
+          <RippleButton
             key={item.ticker}
             type="button"
             aria-pressed={selected === index}
             onClick={() => setSelected(index)}
+            rippleStyle="bg-foreground/20"
           >
             {item.label}
-          </button>
+          </RippleButton>
         ))}
       </div>
       <noscript>
