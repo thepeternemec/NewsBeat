@@ -34,21 +34,25 @@ Anonymous callers get **120 requests a minute**, identified by calling address �
 hashed, never stored. That ceiling is high enough for the intended loop: one
 `changes` call per topic per schedule, not a poll.
 
-A key raises it to **1200 requests a minute** and is **metered**. Each call is
-charged against a balance — a check that found nothing is $0.0005, one that moved is
-$0.004, a brief is $0.002. A new account starts with a **$6.00 trial**, which is
-roughly twelve thousand empty checks.
+A key lets you run a **seven-day trial** of NewsBeat in your agent, beginning
+with its first metered REST request. It includes **up to $6 in usage credit**
+and a ceiling of 1200 requests a minute. A check that found nothing is $0.0005,
+one that moved is $0.004, and a brief is $0.03. The credit covers up to twelve
+thousand empty checks; the clock may end first.
 
-When the balance reaches zero the key returns:
+When the credit runs out the key returns `402 payment_required`; when seven
+days elapse it returns `402 trial_expired`. For example:
 
 ```
-402  { "error": { "code": "payment_required" }, "top_up": "/pricing" }
+402  { "error": { "code": "trial_expired" }, "pricing": "/pricing" }
 ```
 
 That is not a rate limit. Falling back to the anonymous tier is free and always
 works, so an agent with an empty balance should degrade rather than fail.
 
-A key unlocks no data. Everything the API serves is public without one.
+To see your exact deadline and remaining credit, call `GET /api/keys/trial`
+with your bearer key. Creating another key for the same account does not restart
+the trial. Public news is still available without a key.
 
 **Self-serve is available** at `https://www.newsbeat.dev/keys` — GitHub, scope
 `read:user`, the key shown once. That is a browser flow: it needs a human to

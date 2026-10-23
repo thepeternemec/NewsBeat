@@ -90,8 +90,10 @@ export default function Pricing() {
             </table>
             </div>
             <p className="hero-tiny" style={{ marginTop: 16 }}>
-              Public access needs no key. Optional keys are available through GitHub sign-in. Keyed REST
-              calls are metered against $6 in trial credit and return 402 when the balance is exhausted.
+              Public access needs no key. A GitHub-issued key gives your agent a seven-day trial,
+              starting on its first metered REST request, with up to $6 in usage credit. Keyed
+              reads return 402 when either the time or credit ends. You can check both at
+              <code> GET /api/keys/trial</code>. Stripe checkout is coming soon.
             </p>
             </div>
             </div>

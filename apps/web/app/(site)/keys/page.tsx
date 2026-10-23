@@ -17,11 +17,10 @@ export default function Keys() {
             <span className="sec-eyebrow">API keys</span>
             <h1 className="sec-title">A key, if you want one.</h1>
             <p className="sec-sub">
-                The API needs no credential. A key raises your limit from 120 requests a minute to
-                1200, gives usage an owner, and is metered: each call is charged against a balance
-                that starts with a $6.00 trial. When it runs out the key returns 402 and the free
-                anonymous tier still works. It unlocks no data — everything the API serves is
-                already public.
+                Give your agent seven days to follow the companies and crypto you care about.
+                The trial begins with its first metered request and includes up to $6 in usage credit.
+                Check the time and credit left with your key. When either runs out, keyed requests
+                pause; news remains free without a key at 120 requests a minute.
             </p>
             <div className="hero-cta">
               <a className="btn-primary" href="/api/keys/authorize">
@@ -44,12 +43,20 @@ export default function Keys() {
               <h2 className="sec-title">Three things worth knowing.</h2>
             </div>
 
-            <div className="features grid-3">
+            <div className="features grid-4">
+              <div className="feature" style={{ minHeight: 170 }}>
+                <span className="feature-tag" style={{ marginTop: 0, paddingTop: 0 }}>your trial</span>
+                <p className="feature-desc" style={{ marginTop: 14 }}>
+                  Connect an agent, ask about a ticker, then let it check for new headlines.
+                  The seven-day clock starts on the first metered call. See the exact deadline and
+                  remaining credit at <code>GET /api/keys/trial</code>.
+                </p>
+              </div>
               <div className="feature" style={{ minHeight: 170 }}>
                 <span className="feature-tag" style={{ marginTop: 0, paddingTop: 0 }}>shown once</span>
                 <p className="feature-desc" style={{ marginTop: 14 }}>
                   Only a SHA-256 hash is stored, so the key cannot be recovered or shown again. Sign
-                  in a second time and it rotates — the old one is revoked in the same transaction.
+                  in a second time and it rotates — the old one is revoked, and your trial date stays the same.
                 </p>
               </div>
               <div className="feature" style={{ minHeight: 170 }}>

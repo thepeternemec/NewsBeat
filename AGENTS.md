@@ -70,9 +70,11 @@ URL: `newsbeat_topics`, `newsbeat_news`, `newsbeat_changes`, `newsbeat_brief`,
 `newsbeat_stories`, `newsbeat_summary`, `newsbeat_watch`. They appear in `GET /v2/tools` and over MCP.
 
 **No credential is required.** Anonymous callers get 120 requests a minute, identified by calling
-address and never stored. A key raises that to 1200 and is **metered**: every check is charged
-against a balance, the first $6 of which is a trial grant. When the balance reaches zero the key
-gets `402 payment_required` and you fall back to the anonymous tier, which stays free.
+address and never stored. An account key provides a seven-day agent trial starting on the first
+metered REST call, with up to $6 in usage credit and a 1200-per-minute limit. Query
+`GET /api/keys/trial` with the key for its deadline and credit left. Credit exhaustion returns
+`402 payment_required`; expiry returns `402 trial_expired`. A rotated key cannot restart the trial.
+Public access without a key stays free.
 
 ## Errors you should handle
 

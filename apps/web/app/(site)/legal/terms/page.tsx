@@ -89,19 +89,20 @@ export default function Terms() {
             <p>
               A key is optional. It raises the limit to 1,200 requests a minute and is{" "}
               <strong>metered</strong>: each call is charged against a balance. When the balance
-              reaches zero the key returns <code>402</code> and you fall back to the free anonymous
-              tier.
+              reaches zero or the seven-day trial ends, keyed requests return <code>402</code>.
+              The free anonymous tier remains available.
             </p>
             <p>
-              A new key starts with <strong>$6.00 of trial credit</strong>. That is a grant, not a
-              payment, and it is not a plan. <strong>Prepaid access starts at $6</strong> — 30 days at
+              An account receives <strong>up to $6.00 of trial credit for seven days</strong>,
+              starting with its first metered call. Unused trial credit expires at the end of that
+              period. That is a grant, not a payment or plan. <strong>Planned prepaid access starts at $6</strong> — 30 days at
               $0.20 a day — with $18 for 90 days and $60 for 300 days. The schedule on{" "}
               <a href="/pricing">the pricing page</a> prevails over this summary if the two differ.
             </p>
             <p>
               Keys are self-served through GitHub, requesting the <code>read:user</code> scope only.
               The key is shown once; only a hash is stored, so we cannot recover it. Signing in again
-              rotates it and revokes the previous one.
+              rotates it and revokes the previous one without resetting the trial.
             </p>
             <p>
               You are responsible for keeping your key secret and for activity under it. Tell us at

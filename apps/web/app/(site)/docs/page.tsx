@@ -56,7 +56,8 @@ export default function DocsOverview() {
       <p>
         Public reads are free during early access. No NewsBeat account, API key or credit card is
         required. Your assistant may charge for its own service, and request limits apply.
-        Optional API keys use separate trial credits for metered requests.
+        Optional API keys include a seven-day trial with up to $6 in usage credit;
+        the clock starts on the first metered request.
       </p>
       <p>
         Not ready to connect an assistant? <a href="/dashboard">Explore the news terminal</a> in

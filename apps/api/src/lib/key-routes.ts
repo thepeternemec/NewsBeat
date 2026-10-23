@@ -9,10 +9,38 @@
  * and in any proxy log on the way — and this is the one value that must not leak.
  */
 import { Hono } from "hono";
-import { db, describeKeyForAccount, findOrCreateAccount, hasDatabaseEnv, issueKeyForAccount } from "@newsbeat/db";
+import { db, describeKeyForAccount, findOrCreateAccount, hasDatabaseEnv, issueKeyForAccount, openBalance, resolveKey, trialFor, TRIAL_DAYS } from "@newsbeat/db";
 import { authorizeUrl, exchangeCodeForUser, oauthConfig, oauthOrigin, signState, verifyState } from "./github.js";
 
 export const keyRoutes = new Hono();
+
+/** A private, zero-cost check an agent can use to explain its trial deadline. */
+keyRoutes.get("/trial", async (c) => {
+  c.header("Cache-Control", "no-store");
+  const bearer = c.req.header("authorization") ?? "";
+  const secret = bearer.toLowerCase().startsWith("bearer ") ? bearer.slice(7).trim() : "";
+  if (!secret) return c.json({ error: "A bearer key is required." }, 401);
+  if (!hasDatabaseEnv()) return c.json({ error: "Trial status is unavailable." }, 503);
+  try {
+    const sql = db();
+    const key = await resolveKey(sql, secret);
+    if (!key?.accountId) return c.json({ error: "An account key is required." }, 401);
+    const [balance, trial] = await Promise.all([openBalance(sql, key.accountId), trialFor(sql, key.accountId)]);
+    const spendable = (trial.expired ? 0 : balance.creditsMicro) + balance.toppedUpMicro;
+    return c.json({
+      status: balance.toppedUpMicro > 0 ? "paid" : trial.expired ? "expired" : spendable <= 0 ? "credit_exhausted" : trial.startedAt ? "active" : "ready",
+      trial_days: TRIAL_DAYS,
+      started_at: trial.startedAt?.toISOString() ?? null,
+      expires_at: trial.expiresAt?.toISOString() ?? null,
+      trial_credit_micro: trial.expired ? 0 : balance.creditsMicro,
+      paid_balance_micro: balance.toppedUpMicro,
+      public_access: { requires_key: false, requests_per_minute: 120 },
+    });
+  } catch (error) {
+    console.error("trial status failed:", error);
+    return c.json({ error: "Trial status is temporarily unavailable." }, 503);
+  }
+});
 
 function originOf(requestUrl: string): string {
   return new URL(requestUrl).origin;
@@ -115,7 +143,7 @@ function issued(login: string, secret: string): string {
      <pre>${escapeHtml(secret)}</pre>
      <p>Send it as a header:</p>
      <pre>Authorization: Bearer ${escapeHtml(secret)}</pre>
-     <p>It raises your limit from 120 requests a minute to 1200. It is metered from a $6.00 trial; when the balance reaches zero it returns <code>402</code>, and the free anonymous tier still works. It unlocks no data — everything the API serves is already public.</p>
+     <p>Try NewsBeat in your agent for seven days, starting with its first metered request. You have up to $6 in trial credit to check the companies and crypto you follow; the key also allows up to 1200 requests a minute. See your deadline and remaining credit at <code>GET /api/keys/trial</code> using this key. When the seven days or credit ends, keyed reads return <code>402</code>. Public news remains free without a key at 120 requests a minute. Signing in again does not restart the trial.</p>
      <div class="note"><p>Next: <a href="/docs/quickstart">the quickstart</a> ·
      <a href="/docs/connect">connecting</a> · <a href="/connect">MCP and tool calling</a></p></div>`,
   );
