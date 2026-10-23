@@ -21,6 +21,7 @@ import {
   recordUsage,
   resolveKey,
   spend,
+  trialFor,
 } from "@newsbeat/db";
 
 const ANON_LIMIT = Math.max(1, Number(env("NEWSBEAT_RATE_ANON") ?? 120));
@@ -103,27 +104,35 @@ export async function rateLimit(c: Context, next: Next): Promise<Response | void
       // predates this code has no row, and "no row" must not mean "no money" —
       // that would refuse every existing key the first time it was used.
       const balance = await openBalance(sql, accountId);
-      c.header("X-Newsgraph-Credits-Micro", String(balance.availableMicro));
-      if (balance.availableMicro <= 0) {
+      const trial = await trialFor(sql, accountId);
+      const available = (trial.expired ? 0 : balance.creditsMicro) + balance.toppedUpMicro;
+      c.header("X-Newsgraph-Credits-Micro", String(available));
+      if (trial.expiresAt) c.header("X-Newsbeat-Trial-Expires-At", trial.expiresAt.toISOString());
+      // Let an expired account inspect its trial without minting another key.
+      if (available <= 0 && !c.req.path.endsWith("/keys/trial")) {
         // 402, not 429: this is not "you are going too fast", it is "there is
         // nothing left to spend". A 429 would tell them to retry, which would
         // fail identically forever.
         return c.json(
           {
             error: {
-              code: "payment_required",
-              message:
-                "This key's balance is empty. Top up, or use the anonymous tier, which is free at 120 requests a minute.",
+              code: trial.expired ? "trial_expired" : "payment_required",
+              message: trial.expired
+                ? "The seven-day key trial has ended. Public news remains free without a key at 120 requests a minute."
+                : "This key's trial credit is empty. Public news remains free without a key at 120 requests a minute.",
             },
-            balance_micro: 0,
-            top_up: "/pricing",
+            balance_micro: available,
+            trial_expires_at: trial.expiresAt?.toISOString() ?? null,
+            pricing: "/pricing",
           },
           402,
         );
       }
-    } catch {
-      // Failing open, for the same reason the rate limiter does: an outage in our
-      // billing is not the caller's problem.
+    } catch (error) {
+      // A metered account cannot bypass its deadline while the balance store is
+      // down. Anonymous reads still use the separate free path above.
+      console.error("trial lookup failed:", error);
+      return c.json({ error: { code: "trial_unavailable", message: "Keyed access is temporarily unavailable. Public access without a key remains free." } }, 503);
     }
   }
 

@@ -9,7 +9,17 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { PRICE, costFor, pruneOldArticles, recordUsage } from "./billing.js";
-import { TRIAL_MICRO, TOPUP_MIN_MICRO, spend } from "./balance.js";
+import { TRIAL_MICRO, TOPUP_MIN_MICRO, TRIAL_DAYS, spend, trialWindow } from "./balance.js";
+
+test("the seven-day trial starts on use and expires at its exact deadline", () => {
+  const start = new Date("2026-10-23T10:00:00.000Z");
+  assert.equal(TRIAL_DAYS, 7);
+  assert.deepEqual(trialWindow(null, start), { startedAt: null, expiresAt: null, expired: false });
+  const deadline = "2026-10-30T10:00:00.000Z";
+  assert.equal(trialWindow(start, new Date("2026-10-30T09:59:59.999Z")).expired, false);
+  assert.equal(trialWindow(start, new Date(deadline)).expiresAt?.toISOString(), deadline);
+  assert.equal(trialWindow(start, new Date(deadline)).expired, true);
+});
 
 test("an empty check is cheaper than one that moved", () => {
   assert.equal(costFor("/api/v2/changes", { items: [] }), PRICE.checkEmpty);

@@ -164,8 +164,7 @@ export default function Connect() {
               <LiveResponse />
             </div>
             <p className="hero-tiny">
-                anonymous callers get 120 requests a minute · a key raises it to 1200 and is
-                metered from a $6.00 trial
+                no key required · optional seven-day agent trial with up to $6 in usage credit
             </p>
             </div>
             <PageVisual kind="connect" />

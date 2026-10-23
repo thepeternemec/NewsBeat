@@ -139,13 +139,16 @@ export default function DocsConnect() {
       <p>
         Anonymous public reads are free during early access, limited to 120 requests per minute.
         Optional API keys raise the request limit to 1,200 per minute. Keyed REST calls are metered
-        against a $6 trial balance and return <code>402</code> when it is exhausted. Stripe checkout
-        is not live. Your model provider may charge separately.
+        against up to $6 in trial credit. The seven-day trial begins on the first metered
+        REST request. Keyed requests return <code>402</code> when the time or credit runs out.
+        Stripe checkout is not live. Your model provider may charge separately.
       </p>
       <p>
         Keys are available through <a href="/keys">GitHub sign-in</a> and sent as
         <code>Authorization: Bearer ng_…</code>. Signing in again rotates the existing key, so update
-        clients that use it. Current MCP calls do not yet share the full keyed REST billing boundary.
+        clients that use it; rotation does not restart the trial. Check the expiry and balance with
+        <code>GET /api/keys/trial</code> and your bearer key. Current MCP calls do not yet share the
+        full keyed REST billing boundary.
       </p>
 
       <h2>Handle errors clearly</h2>
@@ -155,7 +158,7 @@ export default function DocsConnect() {
           <tbody>
             <tr><td>200, empty items</td><td>Report no new indexed items; check freshness. Do not retry in a loop.</td></tr>
             <tr><td>400</td><td>Fix the input. An invalid or mismatched cursor requires a fresh baseline.</td></tr>
-            <tr><td>402</td><td>The keyed REST balance is exhausted. Explain the limit; do not keep retrying the key.</td></tr>
+            <tr><td>402</td><td>The keyed trial expired or its credit ran out. Explain the limit; public access without a key remains free.</td></tr>
             <tr><td>404</td><td>Resolve a supported asset through topics instead of guessing its ID.</td></tr>
             <tr><td>410</td><td>The cursor expired after thirty days. Explain the gap and establish a new baseline.</td></tr>
             <tr><td>429</td><td>Pause for the Retry-After interval.</td></tr>
