@@ -10,7 +10,7 @@
  */
 import { Hono } from "hono";
 import { db, describeKeyForAccount, findOrCreateAccount, hasDatabaseEnv, issueKeyForAccount } from "@newsbeat/db";
-import { authorizeUrl, exchangeCodeForUser, oauthConfig, signState, verifyState } from "./github.js";
+import { authorizeUrl, exchangeCodeForUser, oauthConfig, oauthOrigin, signState, verifyState } from "./github.js";
 
 export const keyRoutes = new Hono();
 
@@ -19,11 +19,17 @@ function originOf(requestUrl: string): string {
 }
 
 keyRoutes.get("/authorize", (c) => {
+  c.header("Cache-Control", "no-store");
+  const origin = originOf(c.req.url);
+  const canonical = oauthOrigin(origin);
+  // Start on the callback's deployment so credentials and signed state agree,
+  // even when a preview uses a different GitHub app or state-signing secret.
+  if (canonical !== origin) return c.redirect(`${canonical}/api/keys/authorize`, 302);
   const config = oauthConfig();
   if (!config) {
     return c.html(unconfigured(), 503);
   }
-  return c.redirect(authorizeUrl(originOf(c.req.url), signState()), 302);
+  return c.redirect(authorizeUrl(origin, signState()), 302);
 });
 
 keyRoutes.get("/callback", async (c) => {

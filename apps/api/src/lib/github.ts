@@ -21,9 +21,14 @@ const AUTHORIZE = "https://github.com/login/oauth/authorize";
 const TOKEN = "https://github.com/login/oauth/access_token";
 const USER = "https://api.github.com/user";
 
-/** Where GitHub sends the developer back. Must match the OAuth app exactly. */
+/** One registered callback for all hosted aliases and preview deployments. */
+export function oauthOrigin(origin: string): string {
+  return env("VERCEL") === "1" ? "https://www.newsbeat.dev" : new URL(origin).origin;
+}
+
+/** Used identically during authorization and the code exchange. */
 export function redirectUri(origin: string): string {
-  return `${origin}/api/keys/callback`;
+  return `${oauthOrigin(origin)}/api/keys/callback`;
 }
 
 export interface OAuthConfig {
