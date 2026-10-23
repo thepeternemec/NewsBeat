@@ -164,7 +164,7 @@ export default function Connect() {
               <LiveResponse />
             </div>
             <p className="hero-tiny">
-                no key required · optional seven-day agent trial with up to $6 in usage credit
+                public MCP and REST access is free · optional seven-day keyed REST trial
             </p>
             </div>
             <PageVisual kind="connect" />

@@ -7,7 +7,7 @@ import "./mobile-navigation.css";
 
 const LINKS = [
   { href: "/connect", label: "Connect", description: "Bring the news to your assistant" },
-  { href: "/keys", label: "Get a key", description: "Optional access for higher limits" },
+  { href: "/keys", label: "Get a key", description: "Try a seven-day REST workflow" },
   { href: "/docs", label: "Docs", description: "Get started, one step at a time" },
   { href: "/faq", label: "FAQ", description: "Answers to common questions" },
   { href: "/pricing", label: "Pricing", description: "Free public access and API limits" },

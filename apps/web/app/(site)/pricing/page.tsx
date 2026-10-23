@@ -8,7 +8,7 @@ import { PRICES } from "@/components/site/content";
 export const metadata = {
   title: "Pricing",
   description:
-    "Free public news access for AI agents during early access. No API key or credit card required. Future paid plans are listed separately.",
+    "NewsBeat is free to connect during early access. Try a seven-day metered REST workflow with up to $6 in trial credit. Paid checkout is not live yet.",
 };
 
 const ROUTES: Array<[string, string]> = [
@@ -24,8 +24,8 @@ const ROUTES: Array<[string, string]> = [
 ];
 
 const TIERS: Array<{ name: string; limit: string; how: string }> = [
-  { name: "Anonymous", limit: "120 requests / minute", how: "Nothing to send. The default." },
-  { name: "With a key", limit: "1200 requests / minute", how: "Authorization: Bearer ng_…" },
+  { name: "Public connection", limit: "120 requests / minute", how: "MCP or REST, no NewsBeat key" },
+  { name: "Seven-day REST trial", limit: "1200 requests / minute", how: "GitHub-issued bearer key" },
 ];
 
 export default function Pricing() {
@@ -37,10 +37,11 @@ export default function Pricing() {
           <div className="wrap intro-grid">
             <div className="intro-copy">
             <span className="sec-eyebrow">Pricing</span>
-            <h1 className="sec-title">Free to start. Ready for your agent.</h1>
+            <h1 className="sec-title">Start free. Test a real agent workflow.</h1>
             <p className="sec-sub">
-              Public news reads are free during early access. Connect through MCP or REST
-              without an API key or credit card.
+              Connect your assistant for free with MCP, or build on the public REST API.
+              If you need a keyed REST evaluation, try it for seven days with up to $6
+              in usage credit. No card needed.
             </p>
             <div className="hero-cta">
               <a className="btn-primary" href="/connect">
@@ -60,14 +61,15 @@ export default function Pricing() {
           <div className="wrap">
             <div className="sec-head">
               <span className="sec-eyebrow">Today</span>
-              <h2 className="sec-title">Start building today.</h2>
+              <h2 className="sec-title">Ask first. Add a key when it helps.</h2>
               <p className="sec-sub">
-                Connect your agent and explore public reads for free during early access.
-                Stripe checkout for prepaid access is coming soon. Current request limits are below.
+                Public news reads are free during early access. A key lets you measure
+                REST use in your own agent workflow for seven days. The limits are below;
+                paid checkout is still coming soon.
               </p>
             </div>
             <div className="access-plan">
-            <div className="access-plan-intro"><span className="sec-eyebrow">Public access</span><h3>All the news tools.<br />One place to start.</h3><p>Explore headlines, group coverage and ask for a summary. Your first request needs no account.</p><a className="quiet-link" href="/connect">Start with NewsBeat <ArrowRight size={14} /></a></div>
+            <div className="access-plan-intro"><span className="sec-eyebrow">Available now</span><h3>Ask about a company.<br />Keep up with what changes.</h3><p>Browse headlines, group repeated coverage and get a short update. The public connection needs no account.</p><a className="quiet-link" href="/connect">Connect NewsBeat <ArrowRight size={14} /></a></div>
             <div>
             <div className="table-scroll">
             <table className="docs-body" style={{ maxWidth: "100%" }}>
@@ -90,10 +92,11 @@ export default function Pricing() {
             </table>
             </div>
             <p className="hero-tiny" style={{ marginTop: 16 }}>
-              Public access needs no key. A GitHub-issued key gives your agent a seven-day trial,
-              starting on its first metered REST request, with up to $6 in usage credit. Keyed
-              reads return 402 when either the time or credit ends. You can check both at
-              <code> GET /api/keys/trial</code>. Stripe checkout is coming soon.
+              <a href="/keys">Start a REST trial</a> by signing in with GitHub.
+              Its seven days begin on the first metered REST request, with up to $6 in
+              usage credit. <code>GET /api/keys/trial</code> shows the remaining time and
+              credit. Keyed requests return 402 when either ends; the public connection
+              remains free. Stripe checkout is not live yet.
             </p>
             </div>
             </div>
@@ -104,7 +107,7 @@ export default function Pricing() {
           <div className="wrap">
             <div className="sec-head">
               <span className="sec-eyebrow">Future paid plans</span>
-              <h2 className="sec-title">One daily rate. Choose your balance.</h2>
+              <h2 className="sec-title">Paid access is planned, not on sale yet.</h2>
               <p className="sec-sub">
                 The planned prepaid balance is drawn down one day at a time. Every option uses
                 the same daily rate, so you can choose how much access to fund upfront.
@@ -124,8 +127,8 @@ export default function Pricing() {
               ))}
             </div>
             <p className="hero-tiny" style={{ marginTop: 16 }}>
-              No seat licences or annual commitment. These are the published plans for paid access;
-              public reads remain free during early access.
+              These are proposed prepaid options. Checkout is not live; public reads
+              remain free during early access.
             </p>
           </div>
         </section>
@@ -170,10 +173,10 @@ export default function Pricing() {
 
         <section className="cta-section">
           <div className="wrap">
-            <h2 className="cta-title">Give your agent a market to watch.</h2>
+            <h2 className="cta-title">Put company news in your agent’s next answer.</h2>
             <p className="cta-sub">
-              Choose your topics, connect through MCP or API, and start building with news
-              your agent can use.
+              Start with the free connection. When you want to measure a REST
+              workflow in your own agent, the seven-day key trial is ready.
             </p>
             <div className="cta-row">
               <a className="btn-primary" href="/connect">
@@ -181,7 +184,7 @@ export default function Pricing() {
               </a>
               <a className="btn-ghost" href="/docs">Read the docs</a>
             </div>
-            <p className="cta-tiny">The news layer for AI agents · Usage-based pricing · No seat licences</p>
+            <p className="cta-tiny">Free public news · Optional seven-day REST trial · Paid access planned</p>
           </div>
         </section>
       </InteriorPage>
