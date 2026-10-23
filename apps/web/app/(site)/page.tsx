@@ -36,19 +36,19 @@ const STEPS = [
   {
     number: "03",
     icon: Link2,
-    title: "Get context you can check",
-    text: "Your assistant uses recent headlines to answer, with publishers, dates and links to the reporting.",
+    title: "Understand the story",
+    text: "Your assistant uses recent headlines to explain the story, with dates and links when you need to dig deeper.",
   },
 ];
 const BENEFITS = [
   {
     icon: Sparkles,
-    title: "Understand what happened",
+    title: "See the story, not the repeats",
     text: "Short updates and grouped coverage help your assistant explain the main developments without repeating the same story.",
   },
   {
     icon: Clock3,
-    title: "Find out what changed",
+    title: "Catch up since your last check",
     text: "Ask what’s new since your last check. Your assistant can pick up from the previous update when it has saved that check.",
   },
   {
@@ -84,23 +84,23 @@ export default function Home() {
           <div className="wrap landing-hero-grid">
             <div className="landing-hero-copy">
               <span className="landing-eyebrow">
-                Company &amp; crypto news for your AI
+                Company &amp; crypto news for your agent
               </span>
               <h1>
-                <span>Ask your AI</span>
+                <span>Ask your agent</span>
                 <span>what’s happening.</span>
               </h1>
               <p className="lede">
-                Connect NewsBeat to your assistant and ask about the companies
-                and crypto you follow. Get recent headlines, short updates and
-                sources you can open.
+                Ask about Nvidia, Apple or Bitcoin in the assistant you already use.
+                NewsBeat brings in recent headlines and short updates so your agent
+                can explain what’s being reported.
               </p>
               <div className="hero-cta">
                 <a className="btn-primary" href="/docs/quickstart">
-                  Connect my assistant <ArrowRight size={15} />
+                  Connect NewsBeat <ArrowRight size={15} />
                 </a>
                 <a className="landing-secondary" href="/dashboard">
-                  Explore live news <ArrowUpRight size={15} />
+                  Explore the news <ArrowUpRight size={15} />
                 </a>
               </div>
               <div className="landing-reassurance">
@@ -140,10 +140,10 @@ export default function Home() {
           <div className="wrap">
             <div className="sec-head">
               <span className="sec-eyebrow">News in the conversation</span>
-              <h2 className="sec-title">Connect once. Then just ask.</h2>
+              <h2 className="sec-title">From your question to the latest headlines.</h2>
               <p className="sec-sub">
-                Stay in the assistant you already use. NewsBeat brings the news
-                into the conversation.
+                Stay in the assistant you already use. When it calls NewsBeat,
+                recent coverage is available in the conversation.
               </p>
             </div>
             <div className="features landing-steps">
@@ -188,7 +188,7 @@ export default function Home() {
               <span className="sec-eyebrow">
                 Less searching. More understanding.
               </span>
-              <h2 className="sec-title">The news behind a better answer.</h2>
+              <h2 className="sec-title">Keep up without the headline overload.</h2>
               <p className="sec-sub">
                 Bring recent developments into company research, trading and
                 prediction-market research, with the sources close at hand.
@@ -218,7 +218,7 @@ export default function Home() {
               <span className="sec-eyebrow">
                 Start with what you want to know
               </span>
-              <h2 className="sec-title">Three questions to try first.</h2>
+              <h2 className="sec-title">Start with a company you follow.</h2>
               <p className="sec-sub">
                 Once connected, copy a question into your assistant or simply
                 ask your own.
@@ -244,8 +244,8 @@ export default function Home() {
                 Your agent. Your stack. The same news.
               </h2>
               <p className="sec-sub">
-                Use hosted MCP, REST or OpenAI-compatible tools to bring news
-                into your own agent workflow.
+                Bring recent company and crypto news into your own agent with
+                hosted MCP, REST or OpenAI-compatible tools.
               </p>
               <div className="landing-developer-links">
                 <a href="/docs/connect">
@@ -277,8 +277,9 @@ export default function Home() {
                 </div>
               </details>
               <p className="landing-caption">
-                Public access is free during early access.{" "}
-                <a href="/pricing">See limits and optional API keys.</a>
+                Public MCP and REST reads are free during early access. For a
+                measured REST evaluation, <a href="/keys">start a seven-day key trial</a>
+                {" "}with up to $6 in usage credit. Paid checkout is coming soon.
               </p>
             </div>
           </div>
@@ -291,7 +292,13 @@ export default function Home() {
               <h2 className="sec-title">A few things worth knowing.</h2>
             </div>
             <div className="faq">
-              {FAQ.filter((_, index) => [0, 1, 5, 7, 10].includes(index)).map(
+              {FAQ.filter((item) => [
+                "What does NewsBeat do?",
+                "Do I need to know how to code?",
+                "How do I connect it to my assistant?",
+                "Is NewsBeat free?",
+                "What is the seven-day API key trial?",
+              ].includes(item.q)).map(
                 (item) => (
                   <details key={item.q}>
                     <summary>{item.q}</summary>
@@ -316,19 +323,19 @@ export default function Home() {
               Now with the news.
             </h2>
             <p className="cta-sub">
-              Connect NewsBeat to your assistant and ask about a company you
-              follow.
+              Connect NewsBeat to an assistant with custom MCP support. Ask about
+              the companies and crypto you follow, whenever current news matters.
             </p>
             <div className="cta-row">
               <a className="btn-primary" href="/docs/quickstart">
-                Connect my assistant <ArrowRight size={15} />
+                Connect NewsBeat <ArrowRight size={15} />
               </a>
               <a className="btn-ghost" href="/dashboard">
                 Explore live news
               </a>
             </div>
             <p className="cta-tiny">
-              Free early access · No account or API key required · Open source
+              Free public access · Optional seven-day REST trial · Open source
             </p>
           </div>
         </section>

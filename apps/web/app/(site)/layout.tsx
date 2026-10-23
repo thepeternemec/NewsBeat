@@ -15,7 +15,7 @@ import GridField from "@/components/site/grid-field";
 export const metadata: Metadata = {
   title: "NewsBeat — The news layer for AI agents",
   description:
-    "The news layer for AI agents. Track equities and crypto with source-linked news for trading and prediction-market research. Connect through MCP or API. Free public access during early access. No API key required.",
+    "Ask your agent what happened with the companies and crypto you follow. NewsBeat brings recent headlines and short updates into your assistant through MCP or API. Public access is free; a seven-day REST trial is optional.",
 };
 
 /**

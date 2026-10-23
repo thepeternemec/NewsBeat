@@ -51,7 +51,7 @@ export const ROADMAP = [
 export const FAQ = [
   {
     "q": "What does NewsBeat do?",
-    "a": "NewsBeat gives your AI assistant access to recent company and crypto news. Once connected, you can ask “What is happening with Nvidia?” in your own words. Your assistant looks up the coverage and answers with sources you can open."
+    "a": "NewsBeat brings recent company and crypto news into your AI assistant. Ask “What happened with Nvidia?” and your agent can use recent headlines, grouped coverage and brief updates to answer. The public connection is free during early access."
   },
   {
     "q": "Do I need to know how to code?",
@@ -79,7 +79,11 @@ export const FAQ = [
   },
   {
     "q": "Is NewsBeat free?",
-    "a": "Public news reads are free during early access. You do not need a NewsBeat account, API key or credit card to start. Request limits apply, and your AI assistant may have its own subscription or usage fees. Optional API keys have separate trial-credit limits for metered API requests; Stripe checkout is not live."
+    "a": "Yes. Public MCP and REST reads are free during early access, with no NewsBeat account, key or credit card. The public limit is 120 requests a minute. Your assistant may charge separately. A GitHub-issued key is optional for a seven-day metered REST trial; paid checkout is not live yet."
+  },
+  {
+    "q": "What is the seven-day API key trial?",
+    "a": "It lets you test a REST integration in your own agent for seven days with up to $6 in usage credit and a 1,200-per-minute limit. The clock starts on the first metered REST call, not when you sign in. You can see the deadline and credit left with the key. When either runs out, keyed requests stop with a 402 response; remove the key to keep using the free public connection. Rotating a key does not restart the trial. The key does not unlock different news."
   },
   {
     "q": "Which companies and topics can I follow?",

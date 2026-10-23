@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
 
-export const metadata = { title: "Get an API key" };
+export const metadata = { title: "Try NewsBeat with an API key", description: "Run a seven-day NewsBeat REST trial in your agent, starting with the first metered request. Up to $6 in usage credit; public news stays free." };
 
 export default function Keys() {
   return (
@@ -15,19 +15,19 @@ export default function Keys() {
           <div className="wrap intro-grid">
             <div className="intro-copy">
             <span className="sec-eyebrow">API keys</span>
-            <h1 className="sec-title">A key, if you want one.</h1>
+            <h1 className="sec-title">Seven days to try a real news workflow.</h1>
             <p className="sec-sub">
-                Give your agent seven days to follow the companies and crypto you care about.
-                The trial begins with its first metered request and includes up to $6 in usage credit.
-                Check the time and credit left with your key. When either runs out, keyed requests
-                pause; news remains free without a key at 120 requests a minute.
+                Add a key to your agent’s REST integration and try company and crypto lookups in
+                your own workflow. The seven-day clock starts with the first metered REST request,
+                with up to $6 in usage credit. When time or credit runs out, public news still
+                works without a key.
             </p>
             <div className="hero-cta">
               <a className="btn-primary" href="/api/keys/authorize">
                 Sign in with GitHub <ArrowRight size={14} />
               </a>
               <a className="btn-ghost" href="/docs/quickstart">
-                Or just start
+                Use the free connection
               </a>
             </div>
             <p className="hero-tiny">asks for read:user and nothing else</p>
@@ -40,16 +40,16 @@ export default function Keys() {
           <div className="wrap">
             <div className="sec-head">
               <span className="sec-eyebrow">How it works</span>
-              <h2 className="sec-title">Three things worth knowing.</h2>
+              <h2 className="sec-title">A trial you can see and control.</h2>
             </div>
 
             <div className="features grid-4">
               <div className="feature" style={{ minHeight: 170 }}>
                 <span className="feature-tag" style={{ marginTop: 0, paddingTop: 0 }}>your trial</span>
                 <p className="feature-desc" style={{ marginTop: 14 }}>
-                  Connect an agent, ask about a ticker, then let it check for new headlines.
-                  The seven-day clock starts on the first metered call. See the exact deadline and
-                  remaining credit at <code>GET /api/keys/trial</code>.
+                  Ask your agent about a company, then check for new headlines as part of its
+                  workflow. See the exact trial deadline and remaining credit at
+                  <code> GET /api/keys/trial</code>.
                 </p>
               </div>
               <div className="feature" style={{ minHeight: 170 }}>
@@ -62,23 +62,23 @@ export default function Keys() {
               <div className="feature" style={{ minHeight: 170 }}>
                 <span className="feature-tag" style={{ marginTop: 0, paddingTop: 0 }}>why GitHub</span>
                 <p className="feature-desc" style={{ marginTop: 14 }}>
-                  Because keys need an owner. Without some identity, minting keys is free and the
-                  limit stops meaning anything — one person could hold a thousand. GitHub is the
-                  identity a developer already has.
+                  GitHub sign-in links the key and trial to your account. You can rotate a lost
+                  key without resetting the seven-day clock. NewsBeat asks for
+                  <code> read:user</code> and no repository access.
                 </p>
               </div>
               <div className="feature" style={{ minHeight: 170 }}>
                 <span className="feature-tag" style={{ marginTop: 0, paddingTop: 0 }}>what we store</span>
                 <p className="feature-desc" style={{ marginTop: 14 }}>
-                  Your GitHub id, login and the key hash. Not your email, not your repositories, not
-                  your followers. The requested scope is <code>read:user</code>.
+                  We store your GitHub ID, login, key hash and any public profile details GitHub
+                  returns, such as a name or email. We do not request access to your repositories.
                 </p>
               </div>
             </div>
 
             <p className="hero-tiny" style={{ marginTop: 28 }}>
-              Prefer not to? Ask, and a key is issued by hand — <code>npm run key:issue</code>. The
-              API works either way.
+              Just connecting an assistant over MCP? <a href="/docs/quickstart">Start without a
+              key</a>. The key is optional for metered REST use and allows up to 1,200 requests a minute.
             </p>
           </div>
         </section>
