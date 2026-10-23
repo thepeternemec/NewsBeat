@@ -1,17 +1,7 @@
 import SpotlightCard from "@/components/ui/spotlight-card/spotlight-card";
 import "./site-footer.css";
 
-/**
- * The footer, on Sona UI's SpotlightCard.
- *
- * It was a single row of links with "Contribute" at the end — pointing at
- * `CONTRIBUTING-FIRST-PR.md`, which was deleted, so the last link in the footer of
- * every page was a 404. Removed rather than repointed: the contributing guide lives
- * in `CONTRIBUTING.md` and the footer is not where a reader goes to find it.
- *
- * The link set is grouped now. Nine links in one row is a row of words; grouped by
- * what they are for, it is a map of the product.
- */
+/** Desktop groups links; mobile keeps each destination visible in one tap. */
 const COLUMNS = [
   {
     head: "Product",
@@ -47,6 +37,11 @@ const COLUMNS = [
       ],
     },
 ] as const;
+
+// Contact already sits beside the brand on mobile, so keep it out of the grid.
+const MOBILE_LINKS = COLUMNS.flatMap(
+  (column): Array<{ href: string; label: string }> => [...column.links],
+).filter((link) => link.href !== "mailto:contact@newsbeat.dev");
 
 export default function SiteFooter() {
   return (
@@ -88,15 +83,16 @@ export default function SiteFooter() {
           </div>
 
           <nav className="footer-mobile-links" aria-label="Footer links">
-            {COLUMNS.map(column => (
-              <details key={column.head} name="newsbeat-footer-links">
-                <summary>{column.head}<span aria-hidden="true">+</span></summary>
-                <div className="footer-disclosure-links">
-                  {column.links.map(link => (
-                    <a key={link.href} href={link.href} {...(link.href.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})}>{link.label}</a>
-                  ))}
-                </div>
-              </details>
+            {MOBILE_LINKS.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                {...(link.href.startsWith("http")
+                  ? { target: "_blank", rel: "noreferrer" }
+                  : {})}
+              >
+                {link.href === "/status" ? "Status" : link.label}
+              </a>
             ))}
           </nav>
 
