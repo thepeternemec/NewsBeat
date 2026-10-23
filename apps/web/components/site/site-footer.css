@@ -10,20 +10,26 @@
   footer.site .footer-mobile-contact { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; color: var(--text-secondary); font-size: 12px; }
   footer.site .footer-tag { margin: 0; max-width: none; font-size: 12px; }
   footer.site .footer-brand .footer-address { display: none; }
-  footer.site .footer-mobile-links { display: block; margin-top: 18px; border-top: 1px solid var(--border-default); }
-  .footer-mobile-links details { border-bottom: 1px solid var(--border-default); }
-  .footer-mobile-links summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; padding: 10px 0; list-style: none; cursor: pointer; color: var(--text-secondary); font-size: 12px; }
-  .footer-mobile-links summary::-webkit-details-marker { display: none; }
-  .footer-mobile-links summary > span { color: var(--text-tertiary); font-size: 16px; line-height: 1; transition: transform .18s; }
-  .footer-mobile-links details[open] > summary > span { transform: rotate(45deg); }
-  .footer-disclosure-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; padding: 0 0 8px; }
-  .footer-disclosure-links > a { display: flex; align-items: center; min-height: 44px; color: var(--text-secondary); font-size: 12px; }
-  .footer-disclosure-links > a:hover, .footer-mobile-links summary:hover { color: var(--text-primary); }
-  footer.site .footer-base { margin-top: 14px; padding-top: 0; border-top: 0; gap: 0; font-size: 9px; line-height: 1.7; }
+  footer.site .footer-mobile-links {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2px 8px;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-default);
+  }
+  footer.site .footer-mobile-links > a {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    min-height: 44px;
+    font-size: 12px;
+    line-height: 1.3;
+    color: var(--text-secondary);
+    text-decoration: none;
+  }
+  footer.site .footer-mobile-links > a:hover { color: var(--text-primary); }
+  footer.site .footer-base { margin-top: 12px; padding-top: 8px; gap: 0; font-size: 9px; line-height: 1.7; }
   footer.site .footer-base > span:last-child { display: none; }
   footer.site :focus-visible { outline: 2px solid var(--text-primary); outline-offset: 3px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .footer-mobile-links summary > span { transition: none; }
 }
