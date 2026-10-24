@@ -85,13 +85,9 @@ footer.site {
 /* ── Scroll reveal ────────────────────────────────────────────────── */
 @keyframes reveal-scroll {
   from {
-    /* Not 0. This is scroll-linked, so it is not a brief entrance — the element can
-       sit at any point in the range while the reader is looking at it. At 0 a heading
-       was fully invisible until well into the scroll; at 0.35 it reads as a fade
-       rather than as missing text. Light mode made it obvious: 35% ink on paper is
-       far fainter than 35% white on black. */
-    opacity: 0.35;
-    transform: translate3d(0, 24px, 0);
+    /* Remain legible while the viewport carries the block into place. */
+    opacity: 0.68;
+    transform: translate3d(0, 18px, 0);
   }
   to {
     opacity: 1;
@@ -148,10 +144,9 @@ footer.site {
     main .cta-section > .wrap > * {
       animation: reveal-scroll linear both;
       animation-timeline: view();
-      /* 5%, not 10%. The cover range of a tall section is long, so a tenth of it
-         could still be on screen and half-faded — visible, but too faint to read.
-         A twentieth finishes the fade before the block is properly in view. */
-      animation-range: cover 0% cover 5%;
+      /* Give the block room to settle while it enters. A readable starting
+         opacity keeps long sections usable throughout the scroll. */
+      animation-range: entry 0% entry 100%;
     }
   }
 }
