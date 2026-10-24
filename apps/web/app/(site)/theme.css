@@ -1685,6 +1685,12 @@
   filter: none;
 }
 
+[data-theme="light"] .aurora-layer .soft-aurora::before {
+  background:
+    radial-gradient(ellipse 48% 24% at 24% 27%, rgba(20, 19, 15, 0.18), transparent 76%),
+    radial-gradient(ellipse 40% 27% at 76% 37%, rgba(20, 19, 15, 0.12), transparent 78%);
+}
+
 [data-theme="light"] .noise-overlay {
   opacity: 0.012;
 }
