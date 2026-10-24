@@ -11,6 +11,8 @@
 }
 .landing-hero-copy {
   min-width: 0;
+  align-self: start;
+  padding-top: 72px;
 }
 .landing-eyebrow {
   display: inline-flex;
@@ -739,6 +741,7 @@
     grid-template-columns: 1fr;
     gap: 38px;
   }
+  .landing-hero-copy { padding-top: 0; }
   .landing-home .hero h1 {
     font-size: clamp(40px, 7.5vw, 62px);
   }
