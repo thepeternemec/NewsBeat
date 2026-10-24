@@ -1,6 +1,6 @@
 export const metadata = {
   title: "How NewsBeat works",
-  description: "Ask your AI assistant what is happening with a company. Learn how NewsBeat brings recent news and sources into the conversation.",
+  description: "Try live company news for free, connect your assistant, or build with the API. Start with a question and follow the sources.",
 };
 
 export default function DocsOverview() {
@@ -8,14 +8,28 @@ export default function DocsOverview() {
     <>
       <div className="docs-head">
         <span className="sec-eyebrow">The NewsBeat guide</span>
-        <h1>Ask your agent what’s happening.</h1>
+        <h1>Start with the news you need.</h1>
         <p className="docs-lead">
-          NewsBeat brings recent company and crypto news into the AI assistant you already use.
-          Connect it once, then ask in your own words.
+          Try a real company or crypto lookup in your browser. Then connect NewsBeat to your
+          assistant so it can check the news when your question needs it.
         </p>
       </div>
 
-      <h2>Start with a question</h2>
+      <h2>Try it in a minute</h2>
+      <p>
+        Open the <a href="/docs/try">free live demo</a>, search by company name or ticker,
+        and select a match. You will see three recent headlines with publisher links and dates.
+        Choose <strong>Summarize what happened</strong> to request a short headline-based update.
+        No NewsBeat sign-in, key or card is needed.
+      </p>
+      <p>
+        This is a real read from the public API. The demo checks NewsBeat’s news data; connecting
+        an assistant is a separate step. If your assistant has no custom MCP setting, you can
+        still use the demo or the <a href="/dashboard">news terminal</a>.
+      </p>
+      <p><a href="/docs/try">Try NewsBeat for free →</a></p>
+
+      <h2>Ask your assistant</h2>
       <ul className="question-grid">
         <li>“What is happening with Nvidia?”</li>
         <li>“Give me three recent headlines about Apple, with sources.”</li>
@@ -54,15 +68,14 @@ export default function DocsOverview() {
 
       <h2>Try it for free</h2>
       <p>
-        Public reads are free during early access. No NewsBeat account, API key or credit card is
-        required. Your assistant may charge for its own service, and request limits apply.
-        If you build a REST workflow for your own agent, an optional key includes
-        seven days and up to $6 in usage credit. Its clock starts on the first
-        metered REST request; the public MCP connection needs no key.
+        The browser demo, public MCP connection and REST reads are free during early access.
+        They need no NewsBeat account, API key or card and allow up to 120 requests a minute.
+        Your assistant or model provider may charge separately.
       </p>
       <p>
-        Not ready to connect an assistant? <a href="/dashboard">Explore the news terminal</a> in
-        your browser. Search for a company and open its headlines directly.
+        An optional key gives developers a seven-day metered REST evaluation with up to $6 in
+        credit and a higher request limit. The clock starts on the first metered REST request.
+        The key unlocks no additional news; public access stays free without it.
       </p>
 
       <h2>What is available today?</h2>
@@ -79,6 +92,7 @@ export default function DocsOverview() {
 
       <h2>Choose your next step</h2>
       <ul>
+        <li><a href="/docs/try">Try a live lookup</a> — search, read and summarize news in the browser.</li>
         <li><a href="/docs/quickstart">Use it with your assistant</a> — setup, example questions and a reusable instruction.</li>
         <li><a href="/docs/data">Understand the news</a> — coverage, sources and what “nothing new” means.</li>
         <li><a href="/faq">Read the FAQ</a> — common questions in plain language.</li>
@@ -86,7 +100,7 @@ export default function DocsOverview() {
       </ul>
       <div className="docs-nav-foot">
         <span />
-        <a href="/docs/quickstart">Use it with your assistant →</a>
+        <a href="/docs/try">Try a live lookup →</a>
       </div>
     </>
   );

@@ -1,4 +1,9 @@
 .quickstart-guide { --quickstart-gap: 28px; }
+.quickstart-try { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin: 0 0 28px; padding: 17px 20px; border: 1px solid var(--border-default); border-radius: 10px; background: var(--interior-panel); }
+.quickstart-try > div { display: grid; gap: 5px; }
+.quickstart-try strong { font-size: 12px; }
+.quickstart-try span { color: var(--text-secondary); font-size: 11px; line-height: 1.55; }
+.quickstart-try a { display: inline-flex; flex: none; align-items: center; gap: 5px; color: var(--text-primary); font-size: 11px; }
 .documentation-page .quickstart-head { border: 0; padding-bottom: 0; margin-bottom: 30px; }
 .quickstart-eyebrow { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 24px; font: 9px var(--font-mono), monospace; letter-spacing: .1em; color: var(--text-tertiary); }
 .quickstart-eyebrow > span:last-child { border: 1px solid var(--border-default); border-radius: 20px; padding: 6px 10px; letter-spacing: 0; color: var(--text-secondary); }
@@ -79,6 +84,7 @@
 .quickstart-contact > a { display: inline-flex; align-items: center; gap: 6px; color: var(--text-secondary); }
 .quickstart-guide .docs-nav-foot { margin-top: 40px; }
 @media (max-width: 600px) {
+  .quickstart-try { flex-direction: column; align-items: flex-start; padding: 16px; }
   .quickstart-guide { --quickstart-gap: 20px; }
   .documentation-page .quickstart-head h1 { font-size: 46px; }
   .quickstart-eyebrow { margin-bottom: 20px; }

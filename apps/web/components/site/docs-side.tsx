@@ -7,6 +7,7 @@ const GROUPS: Array<{ title: string; links: Array<{ href: string; label: string 
     title: "Get started",
     links: [
       { href: "/docs", label: "How it works" },
+      { href: "/docs/try", label: "Try it for free" },
       { href: "/docs/quickstart", label: "Use with your assistant" },
       { href: "/docs/data", label: "Understand the news" },
       { href: "/faq", label: "Common questions" },
@@ -53,7 +54,7 @@ export default function DocsSide() {
           })}
         </div>
       ))}
-      <a className="docs-start" href="/connect">Connect NewsBeat <span aria-hidden="true">↗</span></a>
+      <a className="docs-start" href="/docs/try">Try a live lookup <span aria-hidden="true">↗</span></a>
     </aside>
   );
 }

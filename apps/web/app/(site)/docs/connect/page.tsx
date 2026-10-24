@@ -13,7 +13,9 @@ const TOOLS = [
   ["newsbeat_summary", "Get a short explanation from headlines with original source links.", "GET /v2/summary?beat_id=…"],
   ["newsbeat_watch", "Check up to 50 assets in one request; does not create a schedule.", "POST /v2/watch"],
 ];
-const FIRST_REQUEST = `curl -s "${API}/v2/topics?q=nvidia"\n\ncurl -s "${API}/v2/news?beat_id=b_bb964843350e"`;
+const FIRST_REQUEST = `curl -s "${API}/v2/topics?q=nvidia"
+
+curl -s "${API}/v2/summary?beat_id=b_bb964843350e"`;
 
 export default function DocsConnect() {
   return (
@@ -25,6 +27,8 @@ export default function DocsConnect() {
           about a company, start with the <a href="/docs/quickstart">plain-language setup guide</a>.
         </p>
       </div>
+
+      <p>Want to check the data first? <a href="/docs/try">Try a live lookup</a> with no account, key or client setup.</p>
 
       <h2 id="mcp">Remote MCP</h2>
       <p>
@@ -63,7 +67,7 @@ export default function DocsConnect() {
 
       <h2>First REST requests</h2>
       <div className="code">
-        <div className="code-bar">Find Nvidia, then read its news <CopyButton text={FIRST_REQUEST} label="requests" /></div>
+        <div className="code-bar">Find Nvidia, then request a short update <CopyButton text={FIRST_REQUEST} label="requests" /></div>
         <pre>{FIRST_REQUEST}</pre>
       </div>
       <p>

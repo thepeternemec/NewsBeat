@@ -1,0 +1,25 @@
+.try-guide { min-width: 0; }
+.try-guide > .news-preview { margin: 28px 0 38px; }
+.documentation-page .try-guide .news-preview li { padding-left: 0; }
+.documentation-page .try-guide .news-preview li::before { content: none; }
+.documentation-page .try-guide .news-preview-results ol,
+.documentation-page .try-guide .news-preview-summary ol { display: block; gap: 0; }
+.documentation-page .try-guide .news-preview-question p { margin: 9px 0 0; color: var(--text-primary); font-size: 20px; line-height: 1.45; }
+.documentation-page .try-guide .news-preview-summary li p { margin: 0 0 7px; font-size: 12px; line-height: 1.6; }
+.documentation-page .try-guide .news-preview-search label { font-size: 11px; }
+.documentation-page .try-guide .news-preview-footer p,
+.documentation-page .try-guide .news-preview-summary > p,
+.documentation-page .try-guide .news-preview-freshness { font-size: 11px; line-height: 1.6; }
+.documentation-page .try-guide .news-preview-matches p { font-size: 11px; line-height: 1.5; }
+.try-guide .try-steps { margin: 18px 0 30px; padding: 0; list-style: none; display: grid; gap: 12px; counter-reset: try-step; }
+.try-guide .try-steps li { counter-increment: try-step; padding: 18px 20px 18px 55px; border: 1px solid var(--border-default); border-radius: 10px; background: var(--interior-panel); }
+.try-guide .try-steps li::before { content: "0" counter(try-step); left: 18px; top: 18px; font: 11px var(--font-mono); color: var(--text-tertiary); }
+.try-guide .try-steps strong { color: var(--text-primary); }
+.try-guide .try-next { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 10px 15px; border-radius: 8px; background: var(--text-primary); color: var(--bg-base); font-size: 12px; }
+.documentation-page .try-guide .try-next:hover { color: var(--bg-base); opacity: .85; }
+.try-guide .docs-nav-foot { margin-top: 34px; }
+@media (max-width: 600px) {
+  .try-guide > .news-preview { margin-top: 22px; }
+  .try-guide .try-steps li { padding: 15px 15px 15px 48px; }
+  .try-guide .try-steps li::before { left: 15px; top: 16px; }
+}

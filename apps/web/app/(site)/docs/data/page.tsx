@@ -21,6 +21,7 @@ export default function DocsData() {
         overlap, so your agent should confirm it found the right asset. If there is no match,
         it should say the company is not covered. General news search and broader coverage are in development.
       </p>
+      <p><a href="/docs/try">Search the live catalog for free</a> to see whether your asset is supported and what coverage is available.</p>
 
       <h2>Where does the news come from?</h2>
       <p>
