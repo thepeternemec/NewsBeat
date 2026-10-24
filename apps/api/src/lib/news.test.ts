@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { SEED_BEATS } from "@newsbeat/contracts";
-import { TOPIC_PAGE_MAX } from "./news.js";
+import { TOPIC_PAGE_MAX, matchingTopics } from "./news.js";
 import { boundedPage, readCursor, signCursor } from "./news.js";
 import { mcpResponse } from "./mcp.js";
 process.env.NEWSBEAT_CURSOR_SECRET = "unit-test-key-never-for-production";
@@ -53,4 +53,11 @@ test("one page can reach every topic", () => {
     TOPIC_PAGE_MAX >= SEED_BEATS.length,
     `TOPIC_PAGE_MAX is ${TOPIC_PAGE_MAX} but the catalog is ${SEED_BEATS.length}; ${SEED_BEATS.length - TOPIC_PAGE_MAX} topics cannot be paged to`,
   );
+});
+
+test("search places an exact ticker or company ahead of partial matches", () => {
+  assert.equal(matchingTopics("NVDA")[0]?.ticker, "NVDA");
+  assert.equal(matchingTopics("Apple")[0]?.ticker, "AAPL");
+  assert.equal(matchingTopics("about Bitcoin news")[0]?.ticker, "BTC");
+  assert.equal(matchingTopics("").length, SEED_BEATS.length);
 });

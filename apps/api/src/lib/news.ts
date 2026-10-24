@@ -55,6 +55,23 @@ export const TOPIC_PAGE_DEFAULT = 100;
  */
 export const TOPIC_PAGE_MAX = Math.max(2000, SEED_BEATS.length);
 
+/** Put an exact company or ticker first so small search menus do not bury it. */
+export function matchingTopics(query: string) {
+    const terms = query.toLowerCase().split(/[^\p{L}\p{N}]+/u).filter(w => w.length >= 2 && !new Set(["the", "and", "news", "about", "latest", "follow", "keep", "with", "what", "changes", "tell"]).has(w));
+    if (!terms.length) return SEED_BEATS;
+    const score = (topic: (typeof SEED_BEATS)[number]) => {
+        const label = topic.label.toLowerCase();
+        const ticker = topic.ticker.toLowerCase().replace(/\.[a-z]$/, "");
+        return Math.min(...terms.map(term => ticker === term || label === term ? 0
+            : ticker.startsWith(term) || label.startsWith(term) ? 1
+            : ticker.includes(term) || label.includes(term) ? 2 : 3));
+    };
+    return SEED_BEATS.map((topic, index) => ({ topic, index, rank: score(topic) }))
+        .filter(entry => entry.rank < 3)
+        .sort((a, b) => a.rank - b.rank || a.index - b.index)
+        .map(entry => entry.topic);
+}
+
 export async function topics(query = "", limit = TOPIC_PAGE_DEFAULT, offset = 0) {
     type StatusRow = { beat_id: string; last_success_at: string | null; last_checked_at: string | null };
     type CountRow = { beat_id: string; total: number; recent: number };
@@ -76,15 +93,7 @@ export async function topics(query = "", limit = TOPIC_PAGE_DEFAULT, offset = 0)
         console.error("topics failed:", error);
         throw new NewsError("service_unavailable", "News storage is not ready.", 503);
     }
-    const terms = query.toLowerCase().split(/[^\p{L}\p{N}]+/u).filter(w => w.length >= 2 && !new Set(["the", "and", "news", "about", "latest", "follow", "keep", "with", "what", "changes", "tell"]).has(w));
-    // Matches the ticker as well as the name, which is what the docs, `auth.md`
-    // and the dashboard's own search all promise. It matched the label only, so
-    // `?q=spcx` found nothing while `?q=space` found SpaceX — and the failure was
-    // invisible because every ticker I happened to test shared its letters with
-    // its own company name (nvid/NVIDIA, jpmorgan/JPMorgan).
-    const matched = SEED_BEATS.filter(t => !terms.length || terms.some(word =>
-        t.label.toLowerCase().includes(word) || t.ticker.toLowerCase() === word
-        || t.ticker.toLowerCase().replace(/\.[a-z]$/, "").includes(word)));
+    const matched = matchingTopics(query);
     const page = matched.slice(offset, offset + limit);
     const rows = page.map(t => { const state = statusRows.find(s => s.beat_id === t.beat_id); const counts = countRows.find((c) => c.beat_id === t.beat_id);
         return { beat_id: t.beat_id, label: t.label, ticker: t.ticker, asset: t.asset ?? "equity",

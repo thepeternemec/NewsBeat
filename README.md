@@ -2,13 +2,13 @@
 
 # NewsBeat
 
-### The news layer for AI agents.
+### Ask what happened. Know what matters.
 
-Source-linked market news. Only what changed. Ready for your agent.
+Company and crypto headlines your agent can actually use: a short update, the original sources, and a clear check time.
 
 **Free during early access · No API key or credit card needed for public reads**
 
-[Connect your agent](https://www.newsbeat.dev/connect) · [Explore live news](https://www.newsbeat.dev/dashboard) · [Read the docs](https://www.newsbeat.dev/docs)
+[Try a live lookup](https://www.newsbeat.dev/) · [Connect your agent](https://www.newsbeat.dev/docs/quickstart) · [Read the docs](https://www.newsbeat.dev/docs)
 
 Contact: [contact@newsbeat.dev](mailto:contact@newsbeat.dev)
 
@@ -18,9 +18,9 @@ Contact: [contact@newsbeat.dev](mailto:contact@newsbeat.dev)
 
 </div>
 
-Ask your assistant “What is happening with Nvidia?” Or let it look up recent news whenever that would help with your task. [Start with the assistant guide](https://www.newsbeat.dev/docs/quickstart).
+Ask your assistant “What happened with Nvidia?” It can look up recent news whenever it needs context for your question. Try your own company or crypto on the [homepage](https://www.newsbeat.dev/): search by name or ticker, read the latest available headlines, and request a short headline summary. No account needed.
 
-Your agent should know what happened since its last check. NewsBeat turns equity and crypto headlines into compact, source-linked updates over **MCP and REST**. Give it an asset and a cursor; get new headlines, or a clear “nothing new.”
+NewsBeat gives agents equity and crypto news through **MCP and REST**. Resolve an asset, get a short source-linked update, and check freshness. For follow-up checks, save a cursor and get only newly indexed headlines or a clear “nothing new.”
 
 Built for developers bringing news into trading research, prediction-market analysis, personal assistants and monitoring workflows.
 
@@ -28,18 +28,19 @@ Built for developers bringing news into trading research, prediction-market anal
 | --- | --- | --- | --- |
 | **2,030 assets** — 1,528 US equities + 502 crypto | **7 tools** over MCP and REST | Signed cursors + checks for up to **50 assets** per request | **MIT licensed** |
 
-## What’s new — October 21, 2026
+## See it work before you connect
 
-**Ask what happened, then open the reporting.** NewsBeat now turns recent headlines into a short digest your assistant can use directly.
+**Start with your own question.** The homepage searches the supported catalog, shows a live headline preview, and lets you request an on-demand summary. The same news is available to your agent when connected.
 
 - **Headline summaries:** up to three short explanations with publisher links, publication times and freshness. Choose **Summarize headlines** in the terminal, call `newsbeat_summary` over MCP, or use [the summary API](https://www.newsbeat.dev/api/v2/summary?beat_id=b_bb964843350e).
 - **Grouped coverage:** similar reports appear as one story. Expand it to see the original headlines and sources; reporting is retained.
 - **Relevance ranking:** concrete developments appear ahead of routine ownership notices and shopping headlines. Summaries favor developments and select distinct stories.
 - **Clear evidence limits:** summaries use headlines only. If generation is unavailable or its output fails validation, original headlines are returned with `method: "extractive"`.
+- **Free early access:** public MCP and REST reads need no account, key or card. An optional seven-day keyed REST evaluation is available for higher limits.
 
 [Read the changelog](CHANGELOG.md) · [Current capabilities and limitations](docs/STATUS.md)
 
-## Try it in 30 seconds
+## Try the API in 30 seconds
 
 No account required. Make your first request:
 

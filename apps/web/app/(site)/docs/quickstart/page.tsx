@@ -41,7 +41,7 @@ export default function DocsQuickstart() {
           <div className="quickstart-step-body">
             <p>Open your assistant’s settings and look for <strong>tools, connectors or integrations</strong>. You need an option to add a custom remote MCP server.</p>
             <div className="quickstart-note"><CircleHelp size={16} /><p><strong>What is MCP?</strong> A standard way for an AI assistant to use a service like NewsBeat. Support depends on your app and account.</p></div>
-            <a className="quickstart-text-link" href="/dashboard">No connector option? Explore the news directly <ArrowUpRight size={14} /></a>
+            <a className="quickstart-text-link" href="/#top">No connector option? Try a company lookup on the homepage <ArrowUpRight size={14} /></a>
           </div>
         </section>
 
