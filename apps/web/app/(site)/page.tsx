@@ -92,8 +92,9 @@ export default function Home() {
               </h1>
               <p className="lede">
                 Give your AI agent the news behind the companies and crypto you
-                follow. Ask a question and get a short, source-linked update from
-                recent headlines. Try a live lookup here, then connect your agent.
+                follow. When a question needs current context, it can check
+                NewsBeat and bring back a short, source-linked update. Try a live
+                lookup here, then connect your agent.
               </p>
               <div className="hero-cta">
                 <a className="btn-primary" href="/docs/try">
@@ -209,6 +210,43 @@ export default function Home() {
               Updates are based on headlines, not full article text. Your
               assistant should flag missing or out-of-date coverage.
             </p>
+          </div>
+        </section>
+
+        <section className="scaffold landing-agent-economy" id="agent-economy">
+          <div className="wrap landing-agent-economy-grid">
+            <div className="sec-head">
+              <span className="sec-eyebrow">Built for agents that use the web</span>
+              <h2 className="sec-title">
+                Agents can pay for data. Give them the news behind it.
+              </h2>
+              <p className="sec-sub">
+                Agents are learning to use services as they work. NewsBeat gives
+                them a way to check what changed at a company or crypto asset,
+                get a short update from recent headlines, and bring the reporting
+                into the conversation. Available today through MCP and REST.
+              </p>
+              <a className="landing-economy-link" href="/docs/quickstart">
+                Connect your agent for free <ArrowRight size={14} />
+              </a>
+            </div>
+            <aside className="landing-economy-proof" aria-label="Agent economy context">
+              <span className="landing-economy-label">The shift is already underway</span>
+              <strong>138M+</strong>
+              <p>
+                x402 transactions on Base by the end of Chainalysis’s 2026
+                reporting period. As agents gain ways to buy digital services,
+                timely news becomes another useful tool to call.
+              </p>
+              <a
+                href="https://www.chainalysis.com/blog/north-america-crypto-adoption-2026/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Read the Chainalysis report <ArrowUpRight size={13} />
+              </a>
+              <small>Industry transactions, not NewsBeat usage.</small>
+            </aside>
           </div>
         </section>
 
