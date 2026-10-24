@@ -1678,12 +1678,11 @@
 }
 
 /* ── Decoration ────────────────────────────────────────────────────────
-   The aurora and the film grain are effects for a dark screen. On paper the aurora
-   becomes a wash and the grain is turned off — noise at 2.8% on white reads as a
-   dirty screen, not as texture. */
+   The light shader draws transparent charcoal ribbons over the real paper
+   colour. Keep its edges soft without turning the whole screen grey. */
 [data-theme="light"] .aurora-layer {
-  opacity: 0.5;
-  filter: grayscale(1) brightness(0.72);
+  opacity: calc(0.8 * var(--aurora-fade, 1));
+  filter: none;
 }
 
 [data-theme="light"] .noise-overlay {
