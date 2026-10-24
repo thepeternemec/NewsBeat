@@ -1,5 +1,12 @@
 .try-guide { min-width: 0; }
 .try-guide > .news-preview { margin: 28px 0 38px; }
+@keyframes try-summary-enter {
+  from { opacity: .55; transform: translate3d(0, 12px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .try-guide .news-preview-summary { animation: try-summary-enter .55s cubic-bezier(.22, 1, .36, 1) both; }
+}
 .documentation-page .try-guide .news-preview li { padding-left: 0; }
 .documentation-page .try-guide .news-preview li::before { content: none; }
 .documentation-page .try-guide .news-preview-results ol,
