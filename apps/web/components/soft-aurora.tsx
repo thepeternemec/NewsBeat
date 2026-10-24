@@ -342,7 +342,9 @@ export default function SoftAurora({
           program.uniforms.uMouse.value[1] = currentMouse[1];
         }
         renderer.render({ scene: mesh });
-        if (!container.dataset.webglReady) container.dataset.webglReady = "true";
+        if (container && !container.dataset.webglReady) {
+          container.dataset.webglReady = "true";
+        }
       }
 
       function loop(time: number) {
@@ -412,7 +414,7 @@ export default function SoftAurora({
           canvas.removeEventListener("mouseleave", handleMouseLeave);
         }
         canvas.remove();
-        delete container.dataset.webglReady;
+        if (container) delete container.dataset.webglReady;
         gl.getExtension("WEBGL_lose_context")?.loseContext();
       };
     })();
