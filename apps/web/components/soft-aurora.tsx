@@ -319,6 +319,7 @@ export default function SoftAurora({
         if (program) {
           program.uniforms.uLightMode.value =
             lightMode || document.documentElement.dataset.theme === "light" ? 1 : 0;
+          if (reduceMotion) render(0);
         }
       }
       const themeObserver = new MutationObserver(syncTheme);
@@ -382,9 +383,7 @@ export default function SoftAurora({
         }, 170);
       }
 
-      if (reduceMotion) {
-        render(0);
-      } else {
+      if (!reduceMotion) {
         start();
       }
 
