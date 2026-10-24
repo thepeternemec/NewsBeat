@@ -63,6 +63,30 @@ html.lenis body {
   will-change: transform;
 }
 
+/* A CSS atmosphere remains when WebGL is unavailable. Fade it out only after
+   the canvas has drawn its first frame, so slow GPUs never expose a blank hero. */
+.aurora-layer .soft-aurora::before {
+  content: "";
+  position: absolute;
+  inset: -12% -8%;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 46% 24% at 25% 26%, rgba(255, 255, 255, 0.22), transparent 75%),
+    radial-gradient(ellipse 42% 28% at 75% 35%, rgba(255, 255, 255, 0.12), transparent 78%);
+  animation: aurora-fallback-drift 16s ease-in-out infinite alternate;
+  transition: opacity 0.65s ease;
+}
+.aurora-layer .soft-aurora[data-webgl-ready]::before { opacity: 0; }
+
+@keyframes aurora-fallback-drift {
+  from { transform: translate3d(-3%, 0, 0) scale(1); }
+  to { transform: translate3d(3%, 3%, 0) scale(1.06); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-layer .soft-aurora::before { animation: none; }
+}
+
 /* Page content paints above the background layer. */
 main,
 footer.site {
