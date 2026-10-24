@@ -87,20 +87,20 @@ export default function Home() {
                 Company &amp; crypto news for your agent
               </span>
               <h1>
-                <span>Ask your agent</span>
-                <span>what’s happening.</span>
+                <span>Ask what happened.</span>
+                <span>Know what matters.</span>
               </h1>
               <p className="lede">
-                Ask about Nvidia, Apple or Bitcoin in the assistant you already use.
-                NewsBeat brings in recent headlines and short updates so your agent
-                can explain what’s being reported.
+                Give your AI agent the news behind the companies and crypto you
+                follow. Ask a question and get a short, source-linked update from
+                recent headlines. Try a live lookup here, then connect your agent.
               </p>
               <div className="hero-cta">
                 <a className="btn-primary" href="/docs/quickstart">
-                  Connect NewsBeat <ArrowRight size={15} />
+                  Connect your agent <ArrowRight size={15} />
                 </a>
                 <a className="landing-secondary" href="/dashboard">
-                  Explore the news <ArrowUpRight size={15} />
+                  Browse the news <ArrowUpRight size={15} />
                 </a>
               </div>
               <div className="landing-reassurance">
@@ -140,7 +140,7 @@ export default function Home() {
           <div className="wrap">
             <div className="sec-head">
               <span className="sec-eyebrow">News in the conversation</span>
-              <h2 className="sec-title">From your question to the latest headlines.</h2>
+              <h2 className="sec-title">News when your question needs it.</h2>
               <p className="sec-sub">
                 Stay in the assistant you already use. When it calls NewsBeat,
                 recent coverage is available in the conversation.
