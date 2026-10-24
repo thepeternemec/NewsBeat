@@ -254,6 +254,71 @@
   color: var(--text-tertiary);
   line-height: 1.8;
 }
+.landing-agent-economy-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  align-items: center;
+  gap: clamp(32px, 6vw, 96px);
+}
+.landing-agent-economy .sec-head {
+  margin: 0;
+}
+.landing-economy-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  margin-top: 24px;
+  color: var(--text-primary);
+  font-size: 12px;
+}
+.landing-economy-proof {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  padding: clamp(24px, 3vw, 40px);
+  border: 1px solid var(--border-default);
+  border-radius: 12px;
+  background: var(--bg-raised);
+}
+.landing-economy-label {
+  color: var(--text-tertiary);
+  font: 10px var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.landing-economy-proof strong {
+  margin-top: 26px;
+  color: var(--text-primary);
+  font-size: clamp(48px, 6vw, 76px);
+  font-weight: 550;
+  line-height: 1;
+  letter-spacing: -0.07em;
+}
+.landing-economy-proof p {
+  max-width: 38ch;
+  margin: 16px 0 18px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.8;
+}
+.landing-economy-proof a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  color: var(--text-primary);
+  font-size: 11px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.landing-economy-proof small {
+  margin-top: 10px;
+  color: var(--text-tertiary);
+  font-size: 10px;
+  line-height: 1.5;
+}
 .landing-question-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -772,6 +837,9 @@
   .landing-developer-grid {
     grid-template-columns: 1fr;
     gap: 28px;
+  }
+  .landing-agent-economy-grid {
+    grid-template-columns: 1fr;
   }
   .landing-question p {
     margin-top: 16px;
