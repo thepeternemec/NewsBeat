@@ -13,7 +13,7 @@ const questions = [
   { label: "Pick up where you left off", text: "What is new since our previous Nvidia check?" },
 ];
 const help = [
-  { question: "I can’t find a place to add NewsBeat", answer: <>Look in your assistant’s tools, connectors or integrations settings for a custom remote MCP connection. Availability varies by app and account. If your app does not support it, <a href="/dashboard">browse the news directly</a> or use the <a href="/docs/connect">developer integration guide</a>. Pasting the address into a chat does not enable the tools.</> },
+  { question: "I can’t find a place to add NewsBeat", answer: <>Look in your assistant’s tools, connectors or integrations settings for a custom remote MCP connection. Availability varies by app and account. If your app does not support it, <a href="/docs/try">try a live lookup in your browser</a> or use the <a href="/docs/connect">developer integration guide</a>. Pasting the address into a chat does not enable the tools.</> },
   { question: "My assistant isn’t using the connection", answer: <>Check that NewsBeat is saved and enabled, including its news tools. Then ask it to “use NewsBeat” explicitly. You can <a href="/connect">check that the service is responding</a> here; this checks NewsBeat, rather than the settings inside your assistant. If your app requires a sign-in flow that the public connection does not support, that connection method may not work yet.</> },
   { question: "The company or its news is missing", answer: <>Try the company’s full name or ticker. It may be outside the supported catalog. If news is old or unavailable, ask for the last successful check time and retry later. If you hit the public request limit, pause and follow the retry time.</> },
   { question: "The answer doesn’t include sources", answer: <>Ask whether the NewsBeat lookup succeeded, then request the links, publishers and dates returned by the tool. NewsBeat provides headlines and source links, so the answer should stay within what those headlines support.</> },
@@ -29,6 +29,11 @@ export default function DocsQuickstart() {
         <div className="quickstart-assurances"><span><Check size={13} /> No NewsBeat account</span><span><Check size={13} /> No API key</span></div>
       </header>
 
+      <div className="quickstart-try">
+        <div><strong>Want to see the answer first?</strong><span>Search a company and request a headline summary in the browser. It takes no setup.</span></div>
+        <a href="/docs/try">Try NewsBeat free <ArrowUpRight size={14} /></a>
+      </div>
+
       <nav className="quickstart-route" aria-label="Setup steps">
         <a href="#choose-assistant"><span>01</span> Choose your assistant <ArrowRight size={14} /></a>
         <a href="#add-newsbeat"><span>02</span> Add NewsBeat <ArrowRight size={14} /></a>
@@ -41,7 +46,7 @@ export default function DocsQuickstart() {
           <div className="quickstart-step-body">
             <p>Open your assistant’s settings and look for <strong>tools, connectors or integrations</strong>. You need an option to add a custom remote MCP server.</p>
             <div className="quickstart-note"><CircleHelp size={16} /><p><strong>What is MCP?</strong> A standard way for an AI assistant to use a service like NewsBeat. Support depends on your app and account.</p></div>
-            <a className="quickstart-text-link" href="/#top">No connector option? Try a company lookup on the homepage <ArrowUpRight size={14} /></a>
+            <a className="quickstart-text-link" href="/docs/try">No connector option? Try a company lookup in your browser <ArrowUpRight size={14} /></a>
           </div>
         </section>
 

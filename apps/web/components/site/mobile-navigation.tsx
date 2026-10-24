@@ -50,7 +50,7 @@ export default function MobileNavigation({ links, active }: { links: NavigationL
             ))}
           </nav>
           <div className="mobile-nav-bottom">
-            <a className="mobile-nav-primary" href={inTerminal ? "/docs/quickstart" : "/dashboard"} onClick={() => setOpen(false)}>{inTerminal ? "Connect your agent" : "Explore live news"}<ArrowRight size={16} aria-hidden="true" /></a>
+            <a className="mobile-nav-primary" href={inTerminal ? "/docs/quickstart" : "/docs/try"} onClick={() => setOpen(false)}>{inTerminal ? "Connect your agent" : "Try NewsBeat free"}<ArrowRight size={16} aria-hidden="true" /></a>
             <div className="mobile-nav-appearance"><span>Appearance</span><ThemeToggle /></div>
           </div>
         </div>

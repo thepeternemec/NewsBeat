@@ -50,6 +50,10 @@ export const ROADMAP = [
 
 export const FAQ = [
   {
+    "q": "Can I try NewsBeat before connecting an assistant?",
+    "a": "Yes. Open the free live lookup, search for a supported company or crypto asset, and read its headlines with publisher links and dates. You can request a short headline-based summary there too. It uses the public API and needs no NewsBeat account, key or card. This tests the news service in your browser; your assistant needs a separate MCP connection."
+  },
+  {
     "q": "What does NewsBeat do?",
     "a": "NewsBeat brings recent company and crypto news into your AI assistant. Ask “What happened with Nvidia?” and your agent can use recent headlines, grouped coverage and brief updates to answer. The public connection is free during early access."
   },

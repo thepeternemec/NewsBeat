@@ -8,7 +8,7 @@ Company and crypto headlines your agent can actually use: a short update, the or
 
 **Free during early access · No API key or credit card needed for public reads**
 
-[Try a live lookup](https://www.newsbeat.dev/) · [Connect your agent](https://www.newsbeat.dev/docs/quickstart) · [Read the docs](https://www.newsbeat.dev/docs)
+[Try a live lookup](https://www.newsbeat.dev/docs/try) · [Connect your agent](https://www.newsbeat.dev/docs/quickstart) · [Read the docs](https://www.newsbeat.dev/docs)
 
 Contact: [contact@newsbeat.dev](mailto:contact@newsbeat.dev)
 
@@ -18,7 +18,7 @@ Contact: [contact@newsbeat.dev](mailto:contact@newsbeat.dev)
 
 </div>
 
-Ask your assistant “What happened with Nvidia?” It can look up recent news whenever it needs context for your question. Try your own company or crypto on the [homepage](https://www.newsbeat.dev/): search by name or ticker, read the latest available headlines, and request a short headline summary. No account needed.
+Ask your assistant “What happened with Nvidia?” It can look up recent news whenever it needs context for your question. Start with the [free live lookup](https://www.newsbeat.dev/docs/try): search by company name or ticker, read available headlines, and request a short source-linked summary. No account needed.
 
 NewsBeat gives agents equity and crypto news through **MCP and REST**. Resolve an asset, get a short source-linked update, and check freshness. For follow-up checks, save a cursor and get only newly indexed headlines or a clear “nothing new.”
 
@@ -30,7 +30,7 @@ Built for developers bringing news into trading research, prediction-market anal
 
 ## See it work before you connect
 
-**Start with your own question.** The homepage searches the supported catalog, shows a live headline preview, and lets you request an on-demand summary. The same news is available to your agent when connected.
+**Start with your own question.** The free try page searches the supported catalog, shows live headlines, and lets you request an on-demand summary. The same news is available to your agent when connected. Follow the [assistant quickstart](https://www.newsbeat.dev/docs/quickstart) when you are ready.
 
 - **Headline summaries:** up to three short explanations with publisher links, publication times and freshness. Choose **Summarize headlines** in the terminal, call `newsbeat_summary` over MCP, or use [the summary API](https://www.newsbeat.dev/api/v2/summary?beat_id=b_bb964843350e).
 - **Grouped coverage:** similar reports appear as one story. Expand it to see the original headlines and sources; reporting is retained.

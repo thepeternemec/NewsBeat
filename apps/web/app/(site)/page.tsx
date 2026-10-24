@@ -96,11 +96,11 @@ export default function Home() {
                 recent headlines. Try a live lookup here, then connect your agent.
               </p>
               <div className="hero-cta">
-                <a className="btn-primary" href="/docs/quickstart">
-                  Connect your agent <ArrowRight size={15} />
+                <a className="btn-primary" href="/docs/try">
+                  Try NewsBeat free <ArrowRight size={15} />
                 </a>
-                <a className="landing-secondary" href="/dashboard">
-                  Browse the news <ArrowUpRight size={15} />
+                <a className="landing-secondary" href="/docs/quickstart">
+                  Connect your agent <ArrowUpRight size={15} />
                 </a>
               </div>
               <div className="landing-reassurance">
@@ -293,6 +293,7 @@ export default function Home() {
             </div>
             <div className="faq">
               {FAQ.filter((item) => [
+                "Can I try NewsBeat before connecting an assistant?",
                 "What does NewsBeat do?",
                 "Do I need to know how to code?",
                 "How do I connect it to my assistant?",
