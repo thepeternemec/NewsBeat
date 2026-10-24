@@ -160,20 +160,13 @@ void main() {
   col *= uBrightness;
   float alpha = clamp(length(col), 0.0, 1.0);
   if (uLightMode > 0.5) {
-    float phase1 = dot(gradient1, vec3(0.299, 0.587, 0.114));
-    float phase2 = dot(gradient2, vec3(0.299, 0.587, 0.114));
-    float weight1 = pow(max(glow1 * (0.62 + 0.38 * phase1), 0.0), 1.35);
-    float weight2 = pow(max(glow2 * (0.62 + 0.38 * phase2), 0.0), 1.35);
-    float weightSum = max(weight1 + weight2, 0.0001);
-
-    vec3 chroma = (weight1 * uColor1 + weight2 * uColor2) / weightSum;
-    float neutral = min(chroma.r, min(chroma.g, chroma.b));
-    chroma = max(chroma - vec3(neutral * 0.78), vec3(0.0));
-    float peak = max(chroma.r, max(chroma.g, chroma.b));
-    chroma = pow(clamp(chroma / max(peak, 0.0001), vec3(0.0), vec3(1.0)), vec3(1.08));
-
-    float ink = clamp((weight1 + weight2) * uBrightness * 1.55, 0.0, 0.82);
-    gl_FragColor = vec4(mix(vec3(1.0), chroma, ink), 1.0);
+    // On paper, draw translucent charcoal ribbons instead of compositing a
+    // darkened, opaque version of the dark-mode glow over the whole viewport.
+    // The transparent gaps leave the actual page colour intact.
+    float ribbons = max(glow1 * (0.7 + 0.3 * gradient1.r), 0.0)
+                  + max(glow2 * (0.7 + 0.3 * gradient2.r), 0.0);
+    float ink = min(pow(ribbons * uBrightness, 1.25) * 0.26, 0.22);
+    gl_FragColor = vec4(vec3(0.12), ink);
   } else {
     gl_FragColor = vec4(col, alpha);
   }
@@ -320,6 +313,24 @@ export default function SoftAurora({
       container.appendChild(canvas);
       resize();
 
+      // Theme changes should update the existing shader, without destroying
+      // and recreating the WebGL canvas in the middle of its animation.
+      function syncTheme() {
+        if (program) {
+          program.uniforms.uLightMode.value =
+            lightMode || document.documentElement.dataset.theme === "light" ? 1 : 0;
+        }
+      }
+      const themeObserver = new MutationObserver(syncTheme);
+      themeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ["data-theme"],
+      });
+      syncTheme();
+
+      let activeTime = 0;
+      let lastFrameTime = 0;
+
       function render(time: number) {
         if (!program) return;
         program.uniforms.uTime.value = time * 0.001;
@@ -334,7 +345,9 @@ export default function SoftAurora({
 
       function loop(time: number) {
         frame = requestAnimationFrame(loop);
-        render(time);
+        if (lastFrameTime) activeTime += Math.min(time - lastFrameTime, 50);
+        lastFrameTime = time;
+        render(activeTime);
       }
 
       function start() {
@@ -344,6 +357,7 @@ export default function SoftAurora({
       function stop() {
         if (frame) cancelAnimationFrame(frame);
         frame = 0;
+        lastFrameTime = 0;
       }
 
       function onVisibility() {
@@ -387,6 +401,7 @@ export default function SoftAurora({
 
       teardown = () => {
         stop();
+        themeObserver.disconnect();
         observer?.disconnect();
         window.removeEventListener("resize", resize);
         document.removeEventListener("visibilitychange", onVisibility);
