@@ -99,6 +99,19 @@ export default function SiteFooter() {
           <div className="footer-base">
             <span>MCP + REST · free early access</span>
             <span>no seat licence · no lock-in</span>
+            <nav className="footer-social" aria-label="Social media">
+              <a
+                href="https://x.com/newsbeat_"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="NewsBeat on X"
+                title="NewsBeat on X"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                  <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.847h-7.406l-5.8-7.584-6.635 7.584H.476l8.6-9.83L0 1.154h7.594l5.243 6.932 6.064-6.933Zm-1.29 19.493h2.039L6.486 3.24H4.298L17.61 20.646Z" />
+                </svg>
+              </a>
+            </nav>
           </div>
         </SpotlightCard>
       </div>
