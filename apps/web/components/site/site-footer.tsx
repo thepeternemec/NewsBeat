@@ -58,7 +58,7 @@ export default function SiteFooter() {
                 <span className="footer-co">NEWSBEAT</span>
                 <a className="footer-mobile-contact" href="mailto:contact@newsbeat.dev">Contact <span aria-hidden="true">↗</span></a>
               </div>
-              <p className="footer-tag">The news layer for AI agents.</p>
+              <p className="footer-tag">Market news for AI agents.</p>
               <p className="footer-address">
                 read-only · no credential required
               </p>

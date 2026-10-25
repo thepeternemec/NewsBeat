@@ -10,6 +10,12 @@ const ASSETS = [
   { label: "Apple", ticker: "AAPL", beatId: "b_7d5acdda6186" },
   { label: "Bitcoin", ticker: "BTC", beatId: "b_06c91290de1c" },
 ] as const;
+const CRYPTO_ASSETS = [
+  { label: "Bitcoin", ticker: "BTC", beatId: "b_06c91290de1c" },
+  { label: "Ethereum", ticker: "ETH", beatId: "b_edbc5b5af755" },
+  { label: "Solana", ticker: "SOL", beatId: "b_ea0efdf6c421" },
+  { label: "Nvidia", ticker: "NVDA", beatId: "b_bb964843350e" },
+] as const;
 type Asset = { label: string; ticker: string; beatId: string };
 type Topic = { label: string; ticker: string; beat_id: string; asset: string; article_count: number };
 type Summary = {
@@ -47,8 +53,9 @@ function dateLabel(value: string) {
 }
 
 /** A real, anonymous headline lookup; the host assistant still writes the answer. */
-export default function NewsPreview() {
-  const [asset, setAsset] = useState<Asset>(ASSETS[0]);
+export default function NewsPreview({ cryptoFirst = false }: { cryptoFirst?: boolean }) {
+  const assets = cryptoFirst ? CRYPTO_ASSETS : ASSETS;
+  const [asset, setAsset] = useState<Asset>(assets[0]);
   const [query, setQuery] = useState("");
   const [search, setSearch] = useState("");
   const [searchState, setSearchState] = useState<{ status: "idle" | "loading" | "ready" | "error"; topics: Topic[] }>({ status: "idle", topics: [] });
@@ -145,10 +152,10 @@ export default function NewsPreview() {
   }, [asset.beatId, attempt]);
 
   return (
-    <div className="news-preview" aria-label="Try a real news lookup">
+    <div className="news-preview" data-state={state.status} aria-label="Try a real news lookup">
       <div className="news-preview-heading">
         <span>
-          <Radio size={14} /> Try a real news lookup
+          <Radio size={14} aria-hidden="true" /> {cryptoFirst ? "Your crypto briefing" : "Try a real news lookup"}
         </span>
         <span>NO SIGN-UP</span>
       </div>
@@ -157,15 +164,16 @@ export default function NewsPreview() {
         role="group"
         aria-label="Choose a preview topic"
       >
-        {ASSETS.map((item) => (
+        {assets.map((item) => (
           <RippleButton
             key={item.ticker}
             type="button"
+            aria-label={item.label}
             aria-pressed={asset.beatId === item.beatId}
             onClick={() => chooseAsset(item)}
             rippleStyle="bg-foreground/20"
           >
-            {item.label}
+            {cryptoFirst ? item.ticker : item.label}
           </RippleButton>
         ))}
       </div>
@@ -179,7 +187,7 @@ export default function NewsPreview() {
       }}>
         <label htmlFor="news-preview-query">Or find your company or crypto</label>
         <div>
-          <input id="news-preview-query" type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Name or ticker, e.g. AMD" minLength={2} maxLength={80} />
+          <input id="news-preview-query" type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder={cryptoFirst ? "Search crypto or companies, e.g. ETH" : "Name or ticker, e.g. AMD"} minLength={2} maxLength={80} />
           <button type="submit" aria-label="Search supported assets"><Search size={16} /></button>
         </div>
       </form>
