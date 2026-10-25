@@ -1,6 +1,6 @@
-/* The crypto identity belongs to the landing page; docs keep their reading palette. */
-.crypto-home { --crypto-accent: #c6fb63; --crypto-ink: #131b08; --crypto-wash: rgba(198,251,99,.065); }
-[data-theme="light"] .crypto-home { --crypto-accent: #426710; --crypto-ink: #fff; --crypto-wash: rgba(88,130,22,.06); }
+/* NewsBeat uses black, white and grey in both themes, including crypto surfaces. */
+.crypto-home { --crypto-accent: #f4f4f4; --crypto-ink: #111111; --crypto-wash: rgba(255,255,255,.05); }
+[data-theme="light"] .crypto-home { --crypto-accent: #202020; --crypto-ink: #fff; --crypto-wash: rgba(0,0,0,.04); }
 .crypto-home .hero { background: radial-gradient(ellipse at 78% 32%, var(--crypto-wash), transparent 58%); }
 .crypto-home .landing-hero-copy { padding-top: 32px; }
 .crypto-home .landing-eyebrow { color: var(--crypto-accent); font-size: 10px; }

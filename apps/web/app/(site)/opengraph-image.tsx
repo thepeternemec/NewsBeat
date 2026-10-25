@@ -14,7 +14,7 @@ export default function OpenGraphImage() {
         height: "100%",
         padding: "62px 74px",
         color: "#f9f9f9",
-        backgroundColor: "#090b0c",
+        backgroundColor: "#0b0b0b",
         fontFamily: "sans-serif",
       }}
     >
@@ -28,18 +28,18 @@ export default function OpenGraphImage() {
             width: 52,
             height: 52,
             borderRadius: 26,
-            backgroundColor: "#c6fb63",
+            backgroundColor: "#f4f4f4",
           }}
         >
-          <span style={{ width: 7, height: 15, borderRadius: 4, backgroundColor: "#090b0c" }} />
-          <span style={{ width: 7, height: 27, borderRadius: 4, backgroundColor: "#090b0c" }} />
-          <span style={{ width: 7, height: 19, borderRadius: 4, backgroundColor: "#090b0c" }} />
+          <span style={{ width: 7, height: 15, borderRadius: 4, backgroundColor: "#0b0b0b" }} />
+          <span style={{ width: 7, height: 27, borderRadius: 4, backgroundColor: "#0b0b0b" }} />
+          <span style={{ width: 7, height: 19, borderRadius: 4, backgroundColor: "#0b0b0b" }} />
         </div>
         <span style={{ fontSize: 24, fontWeight: 700, letterSpacing: 5 }}>NEWSBEAT</span>
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", marginTop: 60 }}>
-        <span style={{ fontSize: 18, color: "#c6fb63", letterSpacing: 2 }}>
+        <span style={{ fontSize: 18, color: "#f4f4f4", letterSpacing: 2 }}>
           THE NEWS EDGE FOR CRYPTO AGENTS
         </span>
         <span style={{ marginTop: 22, fontSize: 56, fontWeight: 700, letterSpacing: -2, lineHeight: 1.09 }}>
@@ -48,7 +48,7 @@ export default function OpenGraphImage() {
         <span style={{ fontSize: 56, fontWeight: 700, letterSpacing: -2, lineHeight: 1.09 }}>
           Bring context to your next move.
         </span>
-        <span style={{ marginTop: 26, fontSize: 24, color: "#b7bbbd" }}>
+        <span style={{ marginTop: 26, fontSize: 24, color: "#bbbbbb" }}>
           Crypto briefings. Headline summaries. Context for your agent.
         </span>
       </div>
@@ -60,8 +60,8 @@ export default function OpenGraphImage() {
           justifyContent: "space-between",
           marginTop: "auto",
           paddingTop: 23,
-          borderTop: "1px solid #3b4042",
-          color: "#aeb3b5",
+          borderTop: "1px solid #404040",
+          color: "#b3b3b3",
           fontSize: 18,
         }}
       >
