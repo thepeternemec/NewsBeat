@@ -18,7 +18,14 @@ export default function SiteNav({ active }: { active?: string }) {
   return (
     <nav className="nav nav-site" aria-label="Main navigation">
       <div className="nav-pill">
-        <a className="nav-logo" href="/">NEWSBEAT</a>
+        <a className="nav-logo" href="/" aria-label="NewsBeat home">
+          <svg className="brand-beat" viewBox="0 0 32 32" aria-hidden="true">
+            <rect x="3" y="12" width="6" height="12" rx="3" />
+            <rect x="13" y="4" width="6" height="25" rx="3" />
+            <rect x="23" y="9" width="6" height="17" rx="3" />
+          </svg>
+          NEWSBEAT
+        </a>
         <span className="nav-links">
           {LINKS.map(link => (
             <a key={link.href} className="nav-link" href={link.href} aria-current={active === link.href ? "page" : undefined} style={active === link.href ? { color: "var(--text-primary)" } : undefined}>{link.label}</a>

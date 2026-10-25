@@ -195,6 +195,34 @@ export default function Home() {
                 prediction-market research, with the sources close at hand.
               </p>
             </div>
+            <div className="signal-workbench" aria-label="How NewsBeat turns recent coverage into an agent update">
+              <div className="signal-stage">
+                <span className="signal-label">01 / Recent coverage</span>
+                <div className="signal-reports" aria-hidden="true">
+                  <div><span>COMPANY NEWS</span><i /><i /></div>
+                  <div><span>CRYPTO UPDATES</span><i /><i /></div>
+                  <div><span>PUBLISHER REPORTS</span><i /><i /></div>
+                </div>
+                <p>Many reports. One place to check.</p>
+              </div>
+              <div className="signal-stage signal-engine">
+                <span className="signal-label">02 / NewsBeat</span>
+                <div className="signal-orbit" aria-hidden="true">
+                  <div className="signal-core"><span /><span /><span /></div>
+                </div>
+                <p>Group the repeats. Surface the story.</p>
+              </div>
+              <div className="signal-stage">
+                <span className="signal-label">03 / Your agent</span>
+                <div className="signal-answer">
+                  <MessageSquare size={18} strokeWidth={1.5} aria-hidden="true" />
+                  <strong>What changed?</strong>
+                  <span>A short headline-based update</span>
+                  <div><span>Sources</span><span>Dates</span><span>Freshness</span></div>
+                </div>
+                <p>Context for the next question.</p>
+              </div>
+            </div>
             <div className="features">
               {BENEFITS.map(({ icon: Icon, title, text }) => (
                 <div className="feature landing-benefit" key={title}>
