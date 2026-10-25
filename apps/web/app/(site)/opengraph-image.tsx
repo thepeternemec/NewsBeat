@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "NewsBeat — Ask what happened. Know what matters. Company and crypto news for AI agents.";
+export const alt = "NewsBeat — The news edge for crypto agents. Know what changed. Bring context to your next move.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -28,7 +28,7 @@ export default function OpenGraphImage() {
             width: 52,
             height: 52,
             borderRadius: 26,
-            backgroundColor: "#fff",
+            backgroundColor: "#c6fb63",
           }}
         >
           <span style={{ width: 7, height: 15, borderRadius: 4, backgroundColor: "#090b0c" }} />
@@ -38,18 +38,18 @@ export default function OpenGraphImage() {
         <span style={{ fontSize: 24, fontWeight: 700, letterSpacing: 5 }}>NEWSBEAT</span>
       </div>
 
-      <div style={{ display: "flex", flexDirection: "column", marginTop: 90 }}>
-        <span style={{ fontSize: 18, color: "#aaaeb0", letterSpacing: 2 }}>
-          COMPANY + CRYPTO NEWS FOR AI AGENTS
+      <div style={{ display: "flex", flexDirection: "column", marginTop: 60 }}>
+        <span style={{ fontSize: 18, color: "#c6fb63", letterSpacing: 2 }}>
+          THE NEWS EDGE FOR CRYPTO AGENTS
         </span>
-        <span style={{ marginTop: 22, fontSize: 72, fontWeight: 700, letterSpacing: -4, lineHeight: 1.09 }}>
-          Ask what happened.
+        <span style={{ marginTop: 22, fontSize: 56, fontWeight: 700, letterSpacing: -2, lineHeight: 1.09 }}>
+          Know what changed.
         </span>
-        <span style={{ fontSize: 72, fontWeight: 700, letterSpacing: -4, lineHeight: 1.09 }}>
-          Know what matters.
+        <span style={{ fontSize: 56, fontWeight: 700, letterSpacing: -2, lineHeight: 1.09 }}>
+          Bring context to your next move.
         </span>
         <span style={{ marginTop: 26, fontSize: 24, color: "#b7bbbd" }}>
-          Recent headlines. Short updates. Linked reporting.
+          Crypto briefings. Headline summaries. Context for your agent.
         </span>
       </div>
 
