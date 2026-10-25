@@ -95,8 +95,6 @@ export default function DocsQuickstart() {
         <div className="quickstart-help-list">{help.map(item => <details key={item.question}><summary>{item.question}<span aria-hidden="true">+</span></summary><p>{item.answer}</p></details>)}</div>
         <div className="quickstart-contact"><span>We’re here to help you get connected.</span><a href="mailto:contact@newsbeat.dev">Contact NewsBeat <ArrowUpRight size={14} /></a></div>
       </section>
-
-      <div className="docs-nav-foot"><a href="/docs">← How it works</a><a href="/docs/data">Understand the news →</a></div>
     </div>
   );
 }

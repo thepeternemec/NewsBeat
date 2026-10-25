@@ -21,7 +21,8 @@ export default function DocsConnect() {
   return (
     <>
       <div className="docs-head">
-        <h1>Developer reference</h1>
+        <span className="sec-eyebrow">Build with NewsBeat</span>
+        <h1>MCP &amp; API reference</h1>
         <p className="docs-lead">
           Connect through MCP, REST or function calling. If you just want to ask your assistant
           about a company, start with the <a href="/docs/quickstart">plain-language setup guide</a>.
@@ -46,7 +47,7 @@ export default function DocsConnect() {
         in every assistant or account; this endpoint does not imply directory approval.
       </p>
 
-      <h2>Help the agent choose the right moment</h2>
+      <h2 id="help-the-agent-choose-the-right-moment">Help the agent choose the right moment</h2>
       <p>
         Ask the agent to check news when current developments matter to the user’s task. It should
         resolve the company first, retrieve evidence, and include sources and freshness in its answer.
@@ -54,7 +55,7 @@ export default function DocsConnect() {
       </p>
       <AgentInstructions />
 
-      <h2>Seven tools and their REST routes</h2>
+      <h2 id="seven-tools-and-their-rest-routes">Seven tools and their REST routes</h2>
       <p>Prefix REST routes with <code>{API}</code>. Most reads use GET; batched watch uses POST.</p>
       <div className="table-scroll">
         <table>
@@ -65,7 +66,7 @@ export default function DocsConnect() {
         </table>
       </div>
 
-      <h2>First REST requests</h2>
+      <h2 id="first-rest-requests">First REST requests</h2>
       <div className="code">
         <div className="code-bar">Find Nvidia, then request a short update <CopyButton text={FIRST_REQUEST} label="requests" /></div>
         <pre>{FIRST_REQUEST}</pre>
@@ -77,7 +78,7 @@ export default function DocsConnect() {
         The MCP topic tool uses a <code>query</code> argument instead of <code>q</code>.
       </p>
 
-      <h2>Grouped feed</h2>
+      <h2 id="grouped-feed">Grouped feed</h2>
       <p>
         For a quick answer to “What happened with Nvidia?”, use <code>/v2/summary?beat_id=…</code>
         or <code>newsbeat_summary</code>. It selects up to three distinct ranked stories and gives
@@ -108,7 +109,7 @@ export default function DocsConnect() {
         <code>ranking</code>, <code>articles_scanned</code> and <code>coverage_truncated</code> fields.
       </p>
 
-      <h2>Follow-up checks and history</h2>
+      <h2 id="follow-up-checks-and-history">Follow-up checks and history</h2>
       <p>
         A news page includes up to eight items, a <code>cursor</code>, a <code>history_cursor</code>
         and <code>freshness</code>. Store the change cursor with its asset after processing the page.
@@ -132,14 +133,14 @@ export default function DocsConnect() {
         succeeds or fails independently. This checks the list once; your host must manage any schedule.
       </p>
 
-      <h2>Function calling</h2>
+      <h2 id="function-calling">Function calling</h2>
       <p>
         Fetch <a href="/api/v2/tools">{API}/v2/tools</a> for OpenAI-compatible function schemas.
         Your application executes the selected call and returns the result to the model.
         See the <a href="https://github.com/thepeternemec/NewsBeat/tree/main/examples">working examples</a>.
       </p>
 
-      <h2>Access and limits</h2>
+      <h2 id="access-and-limits">Access and limits</h2>
       <p>
         Anonymous public reads are free during early access, limited to 120 requests per minute.
         Optional API keys raise the request limit to 1,200 per minute. Keyed REST calls are metered
@@ -155,7 +156,7 @@ export default function DocsConnect() {
         full keyed REST billing boundary.
       </p>
 
-      <h2>Handle errors clearly</h2>
+      <h2 id="handle-errors-clearly">Handle errors clearly</h2>
       <div className="table-scroll">
         <table>
           <thead><tr><th>Response</th><th>What to do</th></tr></thead>
@@ -175,7 +176,7 @@ export default function DocsConnect() {
         in its content. Inspect the result rather than relying only on the HTTP status.
       </p>
 
-      <h2>Verify the connection</h2>
+      <h2 id="verify-the-connection">Verify the connection</h2>
       <p>
         Use <a href="/connect">the connection check</a> for an MCP handshake, then ask your host
         to call a real news tool. <code>/api/health</code> checks liveness; a successful news read
@@ -186,10 +187,6 @@ export default function DocsConnect() {
         Primary host: <code>https://www.newsbeat.dev</code>.
         Alternate host: <code>https://news-beat.vercel.app</code>, with the same paths.
       </p>
-      <div className="docs-nav-foot">
-        <a href="/docs/data">← Understand the news</a>
-        <a href="/docs/quickstart">Assistant setup →</a>
-      </div>
     </>
   );
 }

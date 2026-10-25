@@ -1,107 +1,90 @@
+import { ArrowRight, Check, Code2, Play, Plug } from "lucide-react";
+import CopyButton from "@/components/site/copy-button";
+
 export const metadata = {
-  title: "How NewsBeat works",
-  description: "Try live company news for free, connect your assistant, or build with the API. Start with a question and follow the sources.",
+  title: "Get started with NewsBeat",
+  description: "Try live company news for free, connect your agent, or build with the API. A simple guide to your first NewsBeat lookup.",
 };
+
+const QUESTIONS = [
+  { label: "Follow a company", text: "What is happening with Nvidia? Check NewsBeat for recent news." },
+  { label: "Catch up on crypto", text: "Give me a short Bitcoin update, with the dates of the reports." },
+  { label: "Research with context", text: "I’m researching Microsoft. Check the recent news before answering." },
+  { label: "Keep the conversation going", text: "What changed with Apple since our last NewsBeat check?" },
+];
 
 export default function DocsOverview() {
   return (
-    <>
-      <div className="docs-head">
-        <span className="sec-eyebrow">The NewsBeat guide</span>
-        <h1>Start with the news you need.</h1>
+    <div className="docs-overview">
+      <header className="docs-head">
+        <span className="sec-eyebrow">A little setup. A lot more context.</span>
+        <h1>Get started with NewsBeat.</h1>
         <p className="docs-lead">
-          Try a real company or crypto lookup in your browser. Then connect NewsBeat to your
-          assistant so it can check the news when your question needs it.
+          Ask about a company or crypto asset. NewsBeat gives your agent recent headlines and
+          short updates to help answer your question. Start with a free lookup, then bring it into your chat.
         </p>
-      </div>
+        <div className="docs-free-note"><Check size={14} aria-hidden="true" /> Free public access <span>·</span> No account, key or card</div>
+      </header>
 
-      <h2>Try it in a minute</h2>
-      <p>
-        Open the <a href="/docs/try">free live demo</a>, search by company name or ticker,
-        and select a match. You will see three recent headlines with publisher links and dates.
-        Choose <strong>Summarize what happened</strong> to request a short headline-based update.
-        No NewsBeat sign-in, key or card is needed.
-      </p>
-      <p>
-        This is a real read from the public API. The demo checks NewsBeat’s news data; connecting
-        an assistant is a separate step. If your assistant has no custom MCP setting, you can
-        still use the demo or the <a href="/dashboard">news terminal</a>.
-      </p>
-      <p><a href="/docs/try">Try NewsBeat for free →</a></p>
+      <section className="docs-section" aria-labelledby="choose-your-path">
+        <h2 id="choose-your-path">Choose where to start</h2>
+        <div className="docs-start-grid">
+          <a className="docs-path-card" href="/docs/try">
+            <span className="docs-path-icon"><Play size={20} aria-hidden="true" /></span>
+            <span className="docs-path-label">SEE IT WORK</span>
+            <h3>Try live news</h3>
+            <p>Search a company, read the headlines and get a short update. Right in your browser.</p>
+            <span className="docs-path-action">Make your first lookup <ArrowRight size={15} aria-hidden="true" /></span>
+          </a>
+          <a className="docs-path-card" href="/docs/quickstart">
+            <span className="docs-path-icon"><Plug size={20} aria-hidden="true" /></span>
+            <span className="docs-path-label">BRING IT INTO YOUR CHAT</span>
+            <h3>Connect your agent</h3>
+            <p>Add NewsBeat to an assistant that supports custom MCP connections. Then ask naturally.</p>
+            <span className="docs-path-action">Follow the setup guide <ArrowRight size={15} aria-hidden="true" /></span>
+          </a>
+        </div>
+        <a className="docs-developer-path" href="/docs/connect"><Code2 size={19} aria-hidden="true" /><span><strong>Building your own integration?</strong><span>Find the MCP endpoint, API tools and working requests.</span></span><ArrowRight size={16} aria-hidden="true" /></a>
+      </section>
 
-      <h2>Ask your assistant</h2>
-      <ul className="question-grid">
-        <li>“What is happening with Nvidia?”</li>
-        <li>“Give me three recent headlines about Apple, with sources.”</li>
-        <li>“I’m researching Microsoft. Check recent news before answering.”</li>
-        <li>“What changed with Bitcoin since our last check?”</li>
-      </ul>
-      <p>
-        Your agent finds the company or asset, looks up its news, and uses the results in its answer.
-        You do not need to know a ticker, write code or handle the data yourself.
-      </p>
-      <p><a href="/docs/quickstart">Connect your assistant and ask your first question →</a></p>
+      <section className="docs-section" aria-labelledby="how-it-works">
+        <h2 id="how-it-works">One question. Useful context.</h2>
+        <ol className="docs-flow">
+          <li><span>01</span><div><h3>You ask in your own words</h3><p>A company name is enough. Your agent finds the matching company or crypto asset.</p></div></li>
+          <li><span>02</span><div><h3>Your agent checks NewsBeat</h3><p>It retrieves headlines or a short headline-based summary, with publishers and dates.</p></div></li>
+          <li><span>03</span><div><h3>The news becomes part of your answer</h3><p>Your agent explains what was reported and how fresh the coverage is. Follow up when you need more.</p></div></li>
+        </ol>
+        <div className="docs-callout"><strong>Let your agent know when to check.</strong><p>Add our <a href="/docs/quickstart#agent-instruction">ready-to-use instruction</a> so it can choose NewsBeat when recent developments matter. Your assistant controls tool access and may ask for permission.</p></div>
+      </section>
 
-      <h2>News when the answer needs it</h2>
-      <p>
-        You should not have to remember to ask for a news lookup every time. A connected agent can
-        choose NewsBeat when recent developments matter to the task—for example, while researching
-        a company or preparing a market briefing.
-      </p>
-      <p>
-        Our <a href="/docs/quickstart#agent-instruction">suggested instruction</a> tells your
-        assistant when to check. The assistant decides which tools to call and may ask for permission.
-        NewsBeat cannot enable a connection or change those settings for you.
-      </p>
+      <section className="docs-section" aria-labelledby="questions-to-ask">
+        <h2 id="questions-to-ask">Start a conversation</h2>
+        <p>Once connected, try one of these in your assistant.</p>
+        <div className="docs-prompt-grid">
+          {QUESTIONS.map(question => <div className="docs-prompt-card" key={question.label}>
+            <span>{question.label}</span><p>“{question.text}”</p><CopyButton text={question.text} label="Copy question" />
+          </div>)}
+        </div>
+        <p className="docs-caption">For “since last time,” your agent needs to keep the previous check. If it has no saved context, it should start with the latest news.</p>
+      </section>
 
-      <h2>What happens behind your question?</h2>
-      <ul>
-        <li><strong>You ask.</strong> Use a company name, ticker or supported crypto asset.</li>
-        <li><strong>Your agent checks.</strong> NewsBeat returns headlines, dates, publishers and links.</li>
-        <li><strong>You get context.</strong> Your agent explains what it found and points you to the reporting.</li>
-        <li><strong>You can follow up.</strong> If your agent saves the previous check, it can ask for only the new items next time.</li>
-      </ul>
-      <p>
-        NewsBeat provides the news material; your assistant writes the response. Full article text
-        is not included, so the assistant should avoid adding details the headlines do not support.
-      </p>
+      <section className="docs-section" aria-labelledby="what-to-expect">
+        <h2 id="what-to-expect">Know what you’re getting</h2>
+        <div className="docs-facts">
+          <div><h3>Company and crypto coverage</h3><p>The catalog includes 1,528 US-listed equities and 502 crypto assets. <a href="/docs/try">Search the live catalog</a> to check your company.</p></div>
+          <div><h3>Headlines, with context</h3><p>NewsBeat uses English-language headline metadata. Summaries are based on headlines; full article text is not included.</p></div>
+          <div><h3>A clear freshness signal</h3><p>Source checks are scheduled every fifteen minutes. Check times and publication dates help your agent explain when coverage is delayed.</p></div>
+          <div><h3>News when you ask</h3><p>NewsBeat responds to lookups. Recurring briefings need scheduling in your assistant or workflow. Built-in alerts are still in development.</p></div>
+        </div>
+        <a className="docs-text-action" href="/docs/data">Understand coverage and freshness <ArrowRight size={14} aria-hidden="true" /></a>
+      </section>
 
-      <h2>Try it for free</h2>
-      <p>
-        The browser demo, public MCP connection and REST reads are free during early access.
-        They need no NewsBeat account, API key or card and allow up to 120 requests a minute.
-        Your assistant or model provider may charge separately.
-      </p>
-      <p>
-        An optional key gives developers a seven-day metered REST evaluation with up to $6 in
-        credit and a higher request limit. The clock starts on the first metered REST request.
-        The key unlocks no additional news; public access stays free without it.
-      </p>
-
-      <h2>What is available today?</h2>
-      <p>
-        The catalog contains 1,528 US-listed equities and 502 crypto assets. Coverage is
-        English-language and source checks are scheduled every fifteen minutes. Some topics
-        may be delayed; your agent should report when the news was last checked.
-      </p>
-      <p>
-        NewsBeat answers requests as they arrive. Background monitoring needs a scheduler in your
-        assistant or workflow. Dedicated alerts, broader news search and ready-to-use messaging
-        integrations are still in development.
-      </p>
-
-      <h2>Choose your next step</h2>
-      <ul>
-        <li><a href="/docs/try">Try a live lookup</a> — search, read and summarize news in the browser.</li>
-        <li><a href="/docs/quickstart">Use it with your assistant</a> — setup, example questions and a reusable instruction.</li>
-        <li><a href="/docs/data">Understand the news</a> — coverage, sources and what “nothing new” means.</li>
-        <li><a href="/faq">Read the FAQ</a> — common questions in plain language.</li>
-        <li><a href="/docs/connect">Build an integration</a> — MCP, API requests and technical details.</li>
-      </ul>
-      <div className="docs-nav-foot">
-        <span />
-        <a href="/docs/try">Try a live lookup →</a>
-      </div>
-    </>
+      <section className="docs-section" aria-labelledby="free-access">
+        <h2 id="free-access">Start free. Explore at your pace.</h2>
+        <p>The demo, public MCP connection and public REST reads are free during early access, with up to 120 requests a minute. No NewsBeat account, key or card is needed. Your assistant or model provider may charge separately.</p>
+        <p>Testing a higher-volume workflow? An optional key provides a seven-day REST trial with up to $6 in usage credit and a limit of 1,200 requests per minute. It starts on your first metered REST request and ends when the time or credit runs out. The news coverage is the same.</p>
+        <a className="docs-text-action" href="/docs/connect#access-and-limits">Read about access and limits <ArrowRight size={14} aria-hidden="true" /></a>
+      </section>
+    </div>
   );
 }
