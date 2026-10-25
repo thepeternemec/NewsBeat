@@ -131,8 +131,8 @@ export default function Home() {
               <span>Free requests per minute · no API key</span>
             </div>
             <div>
-              <strong>Source linked</strong>
-              <span>Publishers, dates and links with every headline</span>
+              <strong>1,200</strong>
+              <span>REST requests per minute · seven-day trial key</span>
             </div>
           </div>
         </section>
