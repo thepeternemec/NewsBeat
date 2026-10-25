@@ -1,0 +1,98 @@
+/* Shared finishing layer: theme-aware surfaces and consistent interaction states. */
+:root {
+  --surface-glint: color-mix(in srgb, var(--text-primary) 5%, transparent);
+  --surface-shadow: 0 20px 60px -32px rgba(0, 0, 0, .32);
+}
+.brand-beat { width: 23px; height: 23px; fill: currentColor; flex: none; }
+.nav.nav-site .nav-pill { border-color: var(--border-default); padding: 7px 7px 7px 18px; }
+.nav-site .nav-logo { letter-spacing: .11em; gap: 10px; }
+.nav-site .nav-link { min-height: 38px; display: inline-flex; align-items: center; }
+.nav-site .nav-link[aria-current="page"] { background: var(--surface-glint); }
+html :is(.btn-primary, .btn-ghost, .landing-secondary) { border-radius: 10px; transition: box-shadow .2s, background .2s, border-color .2s, transform .2s; }
+html .btn-primary { box-shadow: 0 1px 2px rgba(0,0,0,.12), inset 0 1px 0 rgba(255,255,255,.15); }
+html :is(a, button, summary, input):focus-visible { outline: 2px solid var(--text-primary); outline-offset: 4px; }
+.landing-home .landing-hero-grid { align-items: center; gap: clamp(36px, 5vw, 72px); }
+.landing-home .landing-hero-copy { padding-top: 30px; align-self: center; }
+.landing-home .hero .lede { max-width: 43ch; }
+.landing-home .landing-eyebrow { padding: 8px 12px; border: 1px solid var(--border-default); border-radius: 999px; background: var(--surface-glint); letter-spacing: .055em; }
+.landing-home .news-preview { border-radius: 20px; box-shadow: 0 32px 90px -42px rgba(0,0,0,.5), 0 0 0 7px var(--surface-glint); }
+.landing-home .landing-proof { background: color-mix(in srgb, var(--bg-raised) 62%, transparent); }
+.landing-home .landing-proof strong { font-variant-numeric: tabular-nums; }
+.landing-home .scaffold > .wrap > .sec-head { max-width: 740px; }
+.landing-home :is(.landing-steps .feature, .landing-question, .landing-benefit) { border-radius: 16px; background: linear-gradient(140deg, var(--surface-glint), transparent 65%), var(--bg-base); box-shadow: 0 1px 0 var(--surface-glint) inset; }
+.landing-home .landing-step-top { padding-bottom: 22px; border-bottom: 1px solid var(--border-default); }
+.landing-home .landing-step-top > span { font-size: 13px; color: var(--text-secondary); }
+.landing-home .landing-question { padding: 28px; }
+.landing-home .landing-question .copy-btn { width: 100%; justify-content: space-between; border-top: 1px solid var(--border-default); padding-top: 12px; border-radius: 0; }
+.landing-home .landing-economy-proof { border-radius: 20px; background: linear-gradient(150deg, var(--surface-glint), transparent 70%), var(--bg-raised); }
+.landing-home .landing-economy-proof strong { letter-spacing: -.06em; }
+.landing-home .landing-developer-console { padding: 8px; border: 1px solid var(--border-default); border-radius: 18px; background: var(--surface-glint); }
+.landing-home .landing-developer-console > .landing-caption { padding: 0 14px 10px; }
+.landing-home .faq { background: transparent; gap: 0; border: 0; border-radius: 0; }
+.landing-home .faq details { background: transparent; border-bottom: 1px solid var(--border-default); }
+.landing-home .faq details:first-child { border-top: 1px solid var(--border-default); }
+.landing-home .faq summary { padding: 24px 2px; }
+.landing-home .faq .a { padding: 0 32px 24px 2px; line-height: 1.8; }
+.landing-home .cta-section { position: relative; background: radial-gradient(ellipse at 50% 100%, var(--surface-glint), transparent 70%); padding: 100px 0; }
+.landing-home .cta-section .cta-title { max-width: 20ch; }
+.interior-page .intro-visual { box-shadow: var(--surface-shadow), 0 0 0 6px var(--surface-glint); }
+.documentation-page .docs-side { border: 1px solid var(--border-default); border-radius: 14px; padding: 14px; background: color-mix(in srgb, var(--bg-base) 94%, transparent); }
+.documentation-page .docs-link { border-radius: 7px; }
+.documentation-page .docs-link.active { background: var(--surface-glint); border-left-color: var(--text-primary); }
+.interior-page .code { border-color: var(--border-strong); }
+.interior-page .faq details[open] { background: var(--surface-glint); }
+footer.site .footer-panel { border-color: var(--border-default); background: linear-gradient(145deg, var(--surface-glint), transparent 60%), var(--bg-base); }
+
+/* A product diagram made from HTML: readable, responsive, no video or canvas cost. */
+.signal-workbench { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0 0 24px; border: 1px solid var(--border-strong); border-radius: 20px; background: linear-gradient(135deg, var(--surface-glint), transparent 65%), var(--bg-raised); overflow: hidden; box-shadow: var(--surface-shadow); }
+.signal-stage { position: relative; display: flex; flex-direction: column; align-items: center; min-width: 0; padding: 28px 24px 22px; }
+.signal-stage + .signal-stage { border-left: 1px solid var(--border-default); }
+.signal-label { align-self: flex-start; font: 10px var(--font-mono); letter-spacing: .07em; text-transform: uppercase; color: var(--text-secondary); }
+.signal-stage > p { margin: 22px 0 0; color: var(--text-secondary); font-size: 12px; text-align: center; }
+.signal-reports { width: 100%; max-width: 230px; height: 176px; position: relative; margin-top: 28px; }
+.signal-reports > div { position: absolute; left: 0; right: 0; padding: 17px 20px; height: 100px; border: 1px solid var(--border-strong); border-radius: 10px; background: var(--bg-base); box-shadow: 0 8px 20px rgba(0,0,0,.06); }
+.signal-reports > div:nth-child(1) { transform: translate(6px, 0) rotate(-5deg); }
+.signal-reports > div:nth-child(2) { transform: translate(-4px, 32px) rotate(3deg); }
+.signal-reports > div:nth-child(3) { transform: translateY(66px); }
+.signal-reports span { font: 8px var(--font-mono); letter-spacing: .08em; color: var(--text-secondary); }
+.signal-reports i { display: block; height: 4px; border-radius: 3px; margin-top: 13px; background: var(--border-strong); }
+.signal-reports i:last-child { width: 65%; margin-top: 9px; opacity: .6; }
+.signal-orbit { display: grid; place-items: center; height: 176px; width: 176px; margin-top: 28px; border: 1px solid var(--border-default); border-radius: 50%; position: relative; }
+.signal-orbit::before { content: ""; position: absolute; inset: 18px; border: 1px dashed var(--border-strong); border-radius: 50%; animation: signal-orbit 45s linear infinite; }
+.signal-core { display: flex; align-items: center; justify-content: center; gap: 8px; width: 85px; height: 85px; background: var(--text-primary); color: var(--bg-base); border-radius: 24px; box-shadow: 0 0 38px var(--surface-glint); }
+.signal-core span { width: 10px; border-radius: 8px; height: 25px; background: currentColor; }
+.signal-core span:nth-child(2) { height: 44px; }
+.signal-core span:last-child { height: 32px; }
+.signal-answer { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; width: 100%; max-width: 250px; height: 176px; margin-top: 28px; padding: 22px; border: 1px solid var(--border-strong); border-radius: 12px; background: var(--bg-base); }
+.signal-answer svg { color: var(--text-secondary); margin-bottom: 15px; }
+.signal-answer strong { font-size: 18px; color: var(--text-primary); font-weight: 500; letter-spacing: -.03em; }
+.signal-answer > span { font-size: 11px; color: var(--text-secondary); margin-top: 6px; }
+.signal-answer > div { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 16px; }
+.signal-answer > div > span { font: 8px var(--font-mono); color: var(--text-secondary); border: 1px solid var(--border-default); border-radius: 4px; padding: 4px 6px; }
+@keyframes signal-orbit { to { transform: rotate(360deg); } }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .landing-home :is(.landing-question, .landing-benefit) { transition: border-color .25s, box-shadow .25s, transform .25s; }
+  .landing-home :is(.landing-question, .landing-benefit):hover { border-color: var(--border-strong); box-shadow: var(--surface-shadow); transform: translateY(-3px); }
+  html :is(.btn-primary, .btn-ghost, .landing-secondary):hover { transform: translateY(-1px); }
+}
+@media (max-width: 800px) {
+  .landing-home .landing-hero-copy { padding-top: 0; }
+  .signal-workbench { grid-template-columns: 1fr; }
+  .signal-stage { padding: 24px; }
+  .signal-stage + .signal-stage { border-left: 0; border-top: 1px solid var(--border-default); }
+  .signal-reports, .signal-orbit, .signal-answer { margin-top: 20px; }
+  .documentation-page .docs-side { padding: 10px; }
+}
+@media (max-width: 700px) {
+  .nav.nav-site .nav-pill { padding: 8px 10px 8px 14px; }
+  .nav-site .brand-beat { width: 19px; height: 19px; }
+  .nav-site .nav-logo { gap: 7px; letter-spacing: .07em; }
+  .landing-home .landing-eyebrow { padding: 7px 10px; font-size: 9px; }
+  .landing-home .news-preview { box-shadow: 0 20px 45px -30px rgba(0,0,0,.35); border-radius: 16px; }
+  .landing-home .landing-question { padding: 22px; }
+  .landing-home .cta-section { padding: 64px 0; }
+  .signal-label { font-size: 9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .signal-orbit::before { animation: none; }
+}
