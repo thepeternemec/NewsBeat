@@ -12,7 +12,7 @@ export default function InteriorPage({ children, className = "" }: { children: R
     if (preference.matches || !root.current) return;
     const animations = new Set<Animation>();
     const targets = root.current.querySelectorAll<HTMLElement>(
-      ".intro-copy > *, .intro-visual, .docs-head, .docs-body > h2, .docs-body > p, .docs-body > ul, .docs-body > .code, .docs-body > .table-scroll, .docs-body > .docs-nav-foot, .try-guide > h2, .try-guide > p, .try-guide > .code, .try-guide > .try-steps > li, .try-guide > .news-preview, .try-guide > .docs-nav-foot, .scaffold .sec-head, .feature, .faq details, .section-aside, .access-plan, .terminal-heading, .metrics-grid > *, .quickstart-try, .quickstart-step, .quickstart-autopilot, .quickstart-explore, .quickstart-help"
+      ".intro-copy > *, .intro-visual, .docs-head, .docs-body > h2, .docs-body > p, .docs-body > ul, .docs-body > .code, .docs-body > .table-scroll, .docs-pagination, .docs-path-card, .docs-developer-path, .docs-section > h2, .docs-section > p, .docs-flow, .docs-callout, .docs-prompt-card, .docs-facts > *, .try-guide > h2, .try-guide > p, .try-guide > .code, .try-guide > .try-steps > li, .try-guide > .news-preview, .scaffold .sec-head, .feature, .faq details, .section-aside, .access-plan, .terminal-heading, .metrics-grid > *, .quickstart-try, .quickstart-step, .quickstart-autopilot, .quickstart-explore, .quickstart-help"
     );
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {

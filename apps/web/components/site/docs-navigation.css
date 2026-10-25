@@ -1,0 +1,64 @@
+.documentation-page .docs { grid-template-columns: 232px minmax(0, 760px) 180px; }
+.docs-navigation {
+  grid-column: 1;
+  grid-row: 1;
+  position: sticky;
+  top: 108px;
+  align-self: start;
+  min-width: 0;
+  border: 1px solid var(--border-default);
+  border-radius: 16px;
+  background: var(--bg-base);
+  box-shadow: 0 8px 28px -20px rgba(0, 0, 0, .3);
+  overflow: hidden;
+}
+.docs-nav-panel { max-height: calc(100dvh - 132px); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; padding: 18px 12px 10px; }
+.docs-nav-brand { display: flex; align-items: center; gap: 11px; padding: 0 8px 18px; border-bottom: 1px solid var(--border-default); }
+.docs-nav-mark { display: grid; place-items: center; width: 36px; height: 36px; flex: none; border: 1px solid var(--border-default); border-radius: 10px; background: var(--bg-raised); color: var(--text-primary); }
+.docs-nav-brand > span:last-child { display: flex; flex-direction: column; gap: 3px; }
+.docs-nav-brand small { font: 8px/1.4 var(--font-mono); letter-spacing: .14em; color: var(--text-tertiary); }
+.docs-nav-brand strong { font-size: 14px; font-weight: 550; color: var(--text-primary); letter-spacing: -.02em; }
+.docs-nav-groups { padding: 19px 0 16px; }
+.docs-nav-groups section + section { margin-top: 21px; }
+.docs-nav-groups h2 { margin: 0 10px 8px; padding: 0; color: var(--text-tertiary); font: 9px/1.5 var(--font-mono); letter-spacing: .09em; text-transform: uppercase; }
+.docs-nav-groups ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 3px; }
+.docs-nav-link { position: relative; display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 10px; border-radius: 8px; font-size: 12px; line-height: 1.5; color: var(--text-secondary); transition: color .18s, background .18s; }
+.docs-nav-link svg { flex: none; opacity: .7; }
+.docs-nav-link:hover { background: var(--bg-raised); color: var(--text-primary); }
+.docs-nav-link[aria-current="page"] { color: var(--text-primary); background: color-mix(in srgb, var(--text-primary) 7%, var(--bg-base)); font-weight: 550; }
+.docs-nav-link[aria-current="page"]::before { content: ""; position: absolute; top: 12px; bottom: 12px; left: 0; width: 2px; border-radius: 2px; background: var(--text-primary); }
+.docs-nav-link[aria-current="page"] svg { opacity: 1; }
+.docs-nav-resources { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; border-top: 1px solid var(--border-default); padding-top: 10px; }
+.docs-nav-resources a { display: flex; align-items: center; gap: 7px; min-height: 40px; padding: 8px; border-radius: 8px; font-size: 11px; color: var(--text-secondary); }
+.docs-nav-resources a:hover { background: var(--bg-raised); color: var(--text-primary); }
+.docs-nav-resources svg { flex: none; }
+.docs-nav-contact { display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 10px 8px; margin-top: 4px; font-size: 10px; color: var(--text-tertiary); }
+.docs-nav-contact > svg { flex: none; }
+.docs-nav-contact > svg:last-child { margin-left: auto; }
+.docs-nav-contact strong { color: var(--text-secondary); font-weight: 500; }
+.docs-nav-contact:hover strong { color: var(--text-primary); text-decoration: underline; text-underline-offset: 3px; }
+.docs-navigation :is(a, button):focus-visible { outline: 2px solid var(--text-primary); outline-offset: -2px; }
+.docs-nav-toggle { display: none; }
+@media (max-width: 1190px) and (min-width: 851px) {
+  .documentation-page .docs { grid-template-columns: 224px minmax(0, 760px); gap: 30px; }
+  .docs-navigation { grid-row: 1 / span 2; }
+}
+@media (max-width: 850px) {
+  .documentation-page .docs { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .docs-navigation { position: static; grid-column: 1; grid-row: 1; order: 0; border-radius: 12px; }
+  .docs-nav-toggle { display: flex; width: 100%; align-items: center; gap: 12px; padding: 14px 16px; border: 0; background: transparent; color: var(--text-primary); cursor: pointer; text-align: left; font: inherit; }
+  .docs-nav-toggle > svg { flex: none; }
+  .docs-nav-toggle > svg:last-child { margin-left: auto; transition: transform .2s; }
+  .docs-nav-toggle > span { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .docs-nav-toggle > span > span { font: 9px/1.4 var(--font-mono); color: var(--text-tertiary); }
+  .docs-nav-toggle strong { font-size: 12px; font-weight: 500; }
+  .docs-navigation[data-open="true"] .docs-nav-toggle > svg:last-child { transform: rotate(180deg); }
+  .docs-nav-panel { display: none; max-height: none; overflow: visible; padding: 0 12px 10px; }
+  .docs-navigation[data-open="true"] .docs-nav-panel { display: block; border-top: 1px solid var(--border-default); }
+  .docs-nav-brand { display: none; }
+  .docs-nav-groups { padding: 16px 0 12px; }
+  .docs-nav-link, .docs-nav-resources a { min-height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .docs-nav-link, .docs-nav-toggle > svg:last-child { transition: none; }
+}

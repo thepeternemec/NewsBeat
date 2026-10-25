@@ -26,14 +26,14 @@ export default function TryNewsBeat() {
 
       <NewsPreview />
 
-      <h2>Three things to try</h2>
+      <h2 id="three-things-to-try">Three things to try</h2>
       <ol className="try-steps">
         <li><strong>Choose a company.</strong> Try Apple, Bitcoin or a name or ticker you follow. Select the right match if several assets share a name or symbol.</li>
         <li><strong>Read the coverage.</strong> Each headline links to its source and shows its publisher and publication time. A recent source check does not mean every headline is new.</li>
         <li><strong>Summarize what happened.</strong> The summary is requested only when you click the button. It is based on headlines, so open the linked reporting for full context.</li>
       </ol>
 
-      <h2>Want to ask your own assistant?</h2>
+      <h2 id="want-to-ask-your-own-assistant">Want to ask your own assistant?</h2>
       <p>
         The lookup above shows NewsBeat’s data in your browser. To bring it into your chat, your
         assistant needs to support a custom remote MCP connection. Follow the guide, add the
@@ -41,7 +41,7 @@ export default function TryNewsBeat() {
       </p>
       <a className="try-next" href="/docs/quickstart">Connect your assistant <ArrowRight size={15} /></a>
 
-      <h2>Prefer to test the API?</h2>
+      <h2 id="prefer-to-test-the-api">Prefer to test the API?</h2>
       <p>Run this public REST request. It returns a short headline-based update and report links as JSON, without a key.</p>
       <div className="code">
         <div className="code-bar">Nvidia summary <CopyButton text={REQUEST} label="request" /></div>
@@ -53,11 +53,6 @@ export default function TryNewsBeat() {
         higher-limit agent workflow; it does not unlock different news. Your assistant or model
         provider may have its own charges.
       </p>
-
-      <div className="docs-nav-foot">
-        <a href="/docs">← How NewsBeat works</a>
-        <a href="/docs/quickstart">Assistant setup →</a>
-      </div>
     </div>
   );
 }
