@@ -1,14 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <!--
-    A beat: three bars, not an equaliser exactly — the middle one is the event and the
-    two beside it are the coverage around it.
-
-    It replaced a constellation of eight dots joined by thin lines, which was a fair
-    picture of a graph and unreadable at 16x16, where a favicon actually lives: eight
-    dots and six hairlines collapse into a smudge. Three solid rounded bars survive
-    the reduction, and they say "beat" without borrowing anyone else's mark.
-  -->
-  <circle cx="32" cy="32" r="32" fill="#050505"/>
+  <rect width="64" height="64" rx="10" fill="#000000"/>
   <g fill="#ffffff">
     <rect x="15" y="26" width="8" height="16" rx="4"/>
     <rect x="28" y="16" width="8" height="34" rx="4"/>

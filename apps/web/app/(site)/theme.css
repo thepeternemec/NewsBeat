@@ -48,10 +48,11 @@
 .rail-item i {
   background: var(--accent);
 }
+/* Icon tiles keep white artwork on black in both themes. */
 .feature-icon {
-  border-color: rgba(255, 255, 255, 0.18);
-  color: var(--accent);
-  background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  border-color: var(--border-default);
+  color: #ffffff;
+  background: #000000;
 }
 .footer-co,
 .footer-brand-line .footer-co {
