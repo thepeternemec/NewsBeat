@@ -3,7 +3,7 @@
   --surface-glint: color-mix(in srgb, var(--text-primary) 5%, transparent);
   --surface-shadow: 0 20px 60px -32px rgba(0, 0, 0, .32);
 }
-.brand-beat { width: 23px; height: 23px; fill: currentColor; flex: none; }
+.brand-beat { width: 28px; height: 28px; flex: none; }
 .nav.nav-site .nav-pill { border-color: var(--border-default); padding: 7px 7px 7px 18px; }
 .nav-site .nav-logo { letter-spacing: .11em; gap: 10px; }
 .nav-site .nav-link { min-height: 38px; display: inline-flex; align-items: center; }
@@ -85,7 +85,7 @@ footer.site .footer-panel { border-color: var(--border-default); background: lin
 }
 @media (max-width: 700px) {
   .nav.nav-site .nav-pill { padding: 8px 10px 8px 14px; }
-  .nav-site .brand-beat { width: 19px; height: 19px; }
+  .nav-site .brand-beat { width: 24px; height: 24px; }
   .nav-site .nav-logo { gap: 7px; letter-spacing: .07em; }
   .landing-home .landing-eyebrow { padding: 7px 10px; font-size: 9px; }
   .landing-home .news-preview { box-shadow: 0 20px 45px -30px rgba(0,0,0,.35); border-radius: 16px; }

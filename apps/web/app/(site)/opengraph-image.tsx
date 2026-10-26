@@ -27,13 +27,13 @@ export default function OpenGraphImage() {
             gap: 5,
             width: 52,
             height: 52,
-            borderRadius: 26,
-            backgroundColor: "#f4f4f4",
+            borderRadius: 8,
+            backgroundColor: "#000000",
           }}
         >
-          <span style={{ width: 7, height: 15, borderRadius: 4, backgroundColor: "#0b0b0b" }} />
-          <span style={{ width: 7, height: 27, borderRadius: 4, backgroundColor: "#0b0b0b" }} />
-          <span style={{ width: 7, height: 19, borderRadius: 4, backgroundColor: "#0b0b0b" }} />
+          <span style={{ width: 7, height: 15, borderRadius: 4, backgroundColor: "#ffffff" }} />
+          <span style={{ width: 7, height: 27, borderRadius: 4, backgroundColor: "#ffffff" }} />
+          <span style={{ width: 7, height: 19, borderRadius: 4, backgroundColor: "#ffffff" }} />
         </div>
         <span style={{ fontSize: 24, fontWeight: 700, letterSpacing: 5 }}>NEWSBEAT</span>
       </div>
