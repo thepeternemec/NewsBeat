@@ -11,6 +11,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import SiteNav from "@/components/site/site-nav";
+import BrandMark from "@/components/site/brand-mark";
 import SiteFooter from "@/components/site/site-footer";
 import CopyButton from "@/components/site/copy-button";
 import NewsPreview from "@/components/site/news-preview";
@@ -220,7 +221,7 @@ export default function Home() {
               <div className="signal-stage signal-engine">
                 <span className="signal-label">02 / NewsBeat</span>
                 <div className="signal-orbit" aria-hidden="true">
-                  <div className="signal-core"><span /><span /><span /></div>
+                  <BrandMark className="signal-core" size={85} />
                 </div>
                 <p>Group the repeats. Surface the story.</p>
               </div>
