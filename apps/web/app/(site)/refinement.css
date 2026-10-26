@@ -59,10 +59,7 @@ footer.site .footer-panel { border-color: var(--border-default); background: lin
 .signal-reports i:last-child { width: 65%; margin-top: 9px; opacity: .6; }
 .signal-orbit { display: grid; place-items: center; height: 176px; width: 176px; margin-top: 28px; border: 1px solid var(--border-default); border-radius: 50%; position: relative; }
 .signal-orbit::before { content: ""; position: absolute; inset: 18px; border: 1px dashed var(--border-strong); border-radius: 50%; animation: signal-orbit 45s linear infinite; }
-.signal-core { display: flex; align-items: center; justify-content: center; gap: 8px; width: 85px; height: 85px; background: var(--text-primary); color: var(--bg-base); border-radius: 24px; box-shadow: 0 0 38px var(--surface-glint); }
-.signal-core span { width: 10px; border-radius: 8px; height: 25px; background: currentColor; }
-.signal-core span:nth-child(2) { height: 44px; }
-.signal-core span:last-child { height: 32px; }
+.signal-core { display: block; flex: none; width: 85px; height: 85px; box-shadow: 0 0 38px var(--surface-glint); border-radius: 13.28125px; }
 .signal-answer { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; width: 100%; max-width: 250px; height: 176px; margin-top: 28px; padding: 22px; border: 1px solid var(--border-strong); border-radius: 12px; background: var(--bg-base); }
 .signal-answer svg { color: var(--text-secondary); margin-bottom: 15px; }
 .signal-answer strong { font-size: 18px; color: var(--text-primary); font-weight: 500; letter-spacing: -.03em; }

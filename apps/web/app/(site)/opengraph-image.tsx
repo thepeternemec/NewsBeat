@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import BrandMark from "@/components/site/brand-mark";
 
 export const alt = "NewsBeat — The news edge for crypto agents. Know what changed. Bring context to your next move.";
 export const size = { width: 1200, height: 630 };
@@ -19,22 +20,7 @@ export default function OpenGraphImage() {
       }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 5,
-            width: 52,
-            height: 52,
-            borderRadius: 8,
-            backgroundColor: "#000000",
-          }}
-        >
-          <span style={{ width: 7, height: 15, borderRadius: 4, backgroundColor: "#ffffff" }} />
-          <span style={{ width: 7, height: 27, borderRadius: 4, backgroundColor: "#ffffff" }} />
-          <span style={{ width: 7, height: 19, borderRadius: 4, backgroundColor: "#ffffff" }} />
-        </div>
+        <BrandMark size={52} />
         <span style={{ fontSize: 24, fontWeight: 700, letterSpacing: 5 }}>NEWSBEAT</span>
       </div>
 

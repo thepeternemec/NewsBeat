@@ -25,8 +25,6 @@
 .crypto-home .news-preview-search input { font-size: 16px; }
 .crypto-home .landing-proof { background: var(--crypto-wash); }
 .crypto-home .landing-step-top > span, .crypto-home .signal-label { color: var(--crypto-accent); }
-.crypto-home .signal-core { border-color: color-mix(in srgb, var(--crypto-accent) 35%, var(--border-default)); }
-.crypto-home .signal-core > span { background: var(--crypto-accent); }
 .crypto-community-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
 .crypto-home .crypto-community { background: linear-gradient(120deg, var(--crypto-wash), transparent 75%); }
 .crypto-home .crypto-community .sec-head { margin-bottom: 0; }
