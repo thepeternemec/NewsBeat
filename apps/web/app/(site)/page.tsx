@@ -267,7 +267,7 @@ export default function Home() {
             </div>
             <div className="crypto-roadmap" aria-label="Product direction">
               <div><span className="crypto-phase">AVAILABLE TODAY</span><h3>News your agent can use.</h3><p>Live lookups, headline summaries, grouped coverage and follow-up checks through MCP and REST.</p></div>
-              <div><span className="crypto-phase crypto-phase-future">EXPLORING NEXT</span><h3>Closer to your workflow.</h3><p>Broader coverage and delivery into messaging tools. These are development directions; availability and timing are not confirmed.</p><a href="mailto:contact@newsbeat.dev">Tell us what you need <ArrowRight size={13} /></a></div>
+              <div><span className="crypto-phase crypto-phase-future">COMING SOON</span><h3>NewsBeat agents. More connections.</h3><p>NewsBeat agents will soon connect to Codex, Claude, Grok, Muse, and other agent platforms.</p><a href="mailto:contact@newsbeat.dev">Tell us what you need <ArrowRight size={13} /></a></div>
             </div>
           </div>
         </section>
