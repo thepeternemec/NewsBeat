@@ -63,6 +63,12 @@ export default function Dashboard() {
   const [clusterCount, setClusterCount] = useState(CLUSTER_LIMIT);
   const [view, setView] = useState<View>("signals");
   const [stamp, setStamp] = useState("");
+  const [ingestClock, setIngestClock] = useState<{
+    dateTime: string;
+    time: string;
+    timeZone: string;
+    title: string;
+  } | null>(null);
   /** The ticker the signal field is showing. Defaults to the first with news. */
   const [selected, setSelected] = useState<string | null>(null);
   const [query, setQuery] = useState("");
@@ -86,7 +92,24 @@ export default function Dashboard() {
         // Paginated at 1000, so the array length is a page, not the catalog.
         setCatalogTotal(data.total ?? list.length);
 
-        setStamp(new Date().toLocaleTimeString());
+        // Format in the visitor's zone after hydration, never the server's zone.
+        const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        setStamp(new Date().toLocaleTimeString(undefined, { timeZoneName: "short" }));
+        // A page refresh is not an ingest. Use the latest successful collection
+        // timestamp reported by the catalog, ignoring missing or invalid values.
+        const lastIngest = list.reduce((latest, topic) => {
+          const value = Date.parse(topic.last_success_at ?? "");
+          return Number.isFinite(value) && value > latest ? value : latest;
+        }, -Infinity);
+        setIngestClock(Number.isFinite(lastIngest) ? {
+          dateTime: new Date(lastIngest).toISOString(),
+          time: new Date(lastIngest).toLocaleTimeString(undefined, { timeZone }),
+          timeZone,
+          title: new Date(lastIngest).toLocaleString(undefined, {
+            timeZone,
+            timeZoneName: "long",
+          }),
+        } : null);
 
 
       } catch {
@@ -314,9 +337,15 @@ export default function Dashboard() {
             </div>
             <div>
               <div className="metric-num" style={{ fontFamily: "var(--font-mono)", fontSize: 22 }}>
-                {stamp || "\u2014"}
+                {ingestClock ? (
+                  <time dateTime={ingestClock.dateTime} title={ingestClock.title}>
+                    {ingestClock.time}
+                  </time>
+                ) : "\u2014"}
               </div>
-              <div className="metric-label">Last ingest</div>
+              <div className="metric-label">
+                Last ingest{ingestClock ? ` · ${ingestClock.timeZone}` : ""}
+              </div>
             </div>
           </div>
           <p className="hero-tiny" style={{ marginTop: 30 }}>
