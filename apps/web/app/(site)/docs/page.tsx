@@ -79,6 +79,12 @@ export default function DocsOverview() {
         <a className="docs-text-action" href="/docs/data">Understand coverage and freshness <ArrowRight size={14} aria-hidden="true" /></a>
       </section>
 
+      <section className="docs-section" aria-labelledby="onchain-direction">
+        <h2 id="onchain-direction">Building toward Robinhood Chain</h2>
+        <p>Our next direction is to connect tokenized assets to the news about their underlying companies, then add corporate-action context. The chain integration is planned; the current news tools work today.</p>
+        <a className="docs-text-action" href="/docs/robinhood-chain">Read the integration plan <ArrowRight size={14} aria-hidden="true" /></a>
+      </section>
+
       <section className="docs-section" aria-labelledby="free-access">
         <h2 id="free-access">Start free. Explore at your pace.</h2>
         <p>The demo, public MCP connection and public REST reads are free during early access, with up to 120 requests a minute. No NewsBeat account, key or card is needed. Your assistant or model provider may charge separately.</p>

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { Activity, ArrowUpRight, BookOpen, ChevronDown, Code2, FileText, GitBranch, CircleHelp, Mail, Play, Plug } from "lucide-react";
 import { DOC_PAGES } from "./docs-links";
 
-const ICONS = [BookOpen, Play, Plug, FileText, Code2];
+const ICONS = [BookOpen, Play, Plug, FileText, Code2, GitBranch];
 const LINKS = DOC_PAGES.map((page, index) => ({ ...page, icon: ICONS[index] }));
 const GROUPS = [
   {

@@ -11,6 +11,7 @@ const PAGES = [
   "/docs/connect",
   "/docs/data",
   "/docs/quickstart",
+  "/docs/robinhood-chain",
   "/docs/try",
   "/faq",
   "/keys",

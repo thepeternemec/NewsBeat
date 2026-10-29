@@ -19,17 +19,17 @@ import { FAQ } from "@/components/site/content";
 import "./landing.css";
 import "./crypto-landing.css";
 
-const DESCRIPTION = "Give your agent recent crypto headlines, short briefings and updates since its last check. Connect through MCP or API. Free public access, with company news available too.";
+const DESCRIPTION = "Company and crypto news for agents researching onchain markets. Source-linked updates through MCP and REST, with a planned Robinhood Chain integration.";
 export const metadata = {
-  title: "NewsBeat — The news edge for crypto agents",
+  title: "NewsBeat — Market context for onchain agents",
   description: DESCRIPTION,
-  openGraph: { title: "NewsBeat — The news edge for crypto agents", description: DESCRIPTION, url: "https://www.newsbeat.dev", siteName: "NewsBeat", type: "website" },
-  twitter: { card: "summary_large_image", title: "NewsBeat — The news edge for crypto agents", description: DESCRIPTION },
+  openGraph: { title: "NewsBeat — Market context for onchain agents", description: DESCRIPTION, url: "https://www.newsbeat.dev", siteName: "NewsBeat", type: "website" },
+  twitter: { card: "summary_large_image", title: "NewsBeat — Market context for onchain agents", description: DESCRIPTION },
 };
 
 const MCP_URL = "https://www.newsbeat.dev/api/mcp";
 const REST_EXAMPLE =
-  'curl -s "https://www.newsbeat.dev/api/v2/brief?beat_id=b_06c91290de1c"';
+  'curl -s "https://www.newsbeat.dev/api/v2/brief?beat_id=b_bb964843350e"';
 const STEPS = [
   {
     number: "01",
@@ -41,7 +41,7 @@ const STEPS = [
     number: "02",
     icon: MessageSquare,
     title: "Ask in your own words",
-    text: "“Catch me up on Bitcoin” or “What changed with Solana?” No tickers or special commands to remember.",
+    text: "“What happened with Nvidia?” or “What changed with Ethereum?” No tickers or special commands to remember.",
   },
   {
     number: "03",
@@ -69,19 +69,19 @@ const BENEFITS = [
 ];
 const QUESTIONS = [
   {
-    label: "Catch up on Bitcoin",
+    label: "Research the underlying company",
     question:
-      "Use NewsBeat to give me a short Bitcoin briefing, with sources and dates.",
+      "Use NewsBeat to summarize recent Nvidia headlines, with sources, dates and coverage freshness.",
   },
   {
-    label: "Follow Ethereum",
+    label: "Follow crypto developments",
     question:
       "Summarize the recent Ethereum coverage. Tell me how fresh the news is.",
   },
   {
-    label: "Pick up where you left off",
+    label: "Keep a company in view",
     question:
-      "What changed with Solana since our last NewsBeat check? If you have no saved check, start with the latest news.",
+      "What changed with Apple since our last NewsBeat check? If you have no saved check, start with the latest news.",
   },
 ];
 
@@ -94,20 +94,20 @@ export default function Home() {
           <div className="wrap landing-hero-grid">
             <div className="landing-hero-copy">
               <span className="landing-eyebrow">
-                The news edge for crypto agents
+                Market context for onchain agents
               </span>
               <h1>
-                <span>Know what changed.</span>
-                <span>Bring context to<br />your next move.</span>
+                <span>Markets move onchain.</span>
+                <span>Bring the context<br />with you.</span>
               </h1>
               <p className="lede">
-                Give your agent recent crypto headlines, short briefings, and
-                updates since its last check. Built for market research.
-                Connected through MCP or API. Start free.
+                Give your agent the company and crypto news behind the assets
+                you research. Source-linked briefings through MCP or API.
+                Building toward tokenized-asset context on Robinhood Chain.
               </p>
               <div className="hero-cta">
                 <a className="btn-primary" href="#research-desk">
-                  Explore crypto news <ArrowRight size={15} />
+                  Explore live news <ArrowRight size={15} />
                 </a>
                 <a className="landing-secondary" href="/docs/quickstart">
                   Connect your agent <ArrowUpRight size={15} />
@@ -128,7 +128,7 @@ export default function Home() {
             </div>
             <div className="crypto-research-desk" id="research-desk" tabIndex={-1}>
               <div className="crypto-desk-label"><span>NEWSBEAT / RESEARCH DESK</span><span>MCP + API</span></div>
-              <NewsPreview cryptoFirst />
+              <NewsPreview />
             </div>
           </div>
         </section>
@@ -136,16 +136,16 @@ export default function Home() {
         <section className="landing-proof" aria-label="NewsBeat at a glance">
           <div className="wrap">
             <div>
-              <strong>500+</strong>
-              <span>Supported crypto assets · company coverage also available</span>
+              <strong>Company + crypto</strong>
+              <span>Research the businesses and digital assets behind your thesis</span>
             </div>
             <div>
-              <strong>120</strong>
-              <span>Free requests per minute · no API key</span>
+              <strong>MCP + REST</strong>
+              <span>Open interfaces for your assistant, wallet or research app</span>
             </div>
             <div>
-              <strong>1,200</strong>
-              <span>REST requests per minute · seven-day trial key</span>
+              <strong>Source-linked</strong>
+              <span>Headlines, dates and coverage freshness in every update</span>
             </div>
           </div>
         </section>
@@ -204,16 +204,16 @@ export default function Home() {
               </span>
               <h2 className="sec-title">Brief. Catch up. Check the story.</h2>
               <p className="sec-sub">
-                Bring recent coverage into crypto research, market briefings and
-                your next thesis. Keep the reporting behind each update close at hand.
+                Bring recent coverage into company research, crypto briefings and
+                your next onchain thesis. Keep the reporting behind each update close at hand.
               </p>
             </div>
             <div className="signal-workbench" aria-label="How NewsBeat turns recent coverage into an agent update">
               <div className="signal-stage">
                 <span className="signal-label">01 / Recent coverage</span>
                 <div className="signal-reports" aria-hidden="true">
-                  <div><span>CRYPTO COVERAGE</span><i /><i /></div>
-                  <div><span>COMPANY UPDATES</span><i /><i /></div>
+                  <div><span>COMPANY COVERAGE</span><i /><i /></div>
+                  <div><span>CRYPTO UPDATES</span><i /><i /></div>
                   <div><span>PUBLISHER REPORTS</span><i /><i /></div>
                 </div>
                 <p>Many reports. One place to check.</p>
@@ -257,17 +257,19 @@ export default function Home() {
         <section className="scaffold crypto-community" id="community">
           <div className="wrap crypto-community-grid">
             <div className="sec-head">
-              <span className="sec-eyebrow">Building in the open</span>
-              <h2 className="sec-title">Build your news edge with us.</h2>
-              <p className="sec-sub">For people researching crypto and builders giving agents better context. Try the product, share your workflow, and help shape what comes next.</p>
+              <span className="sec-eyebrow">Robinhood Chain / Product direction</span>
+              <h2 className="sec-title">Open markets need useful context.</h2>
+              <p className="sec-sub">Robinhood Chain brings traditional and digital assets onto an open network. We’re building toward a context layer that connects those assets to company news and corporate events, so agents and apps can explain what changed.</p>
+              <p className="landing-caption">The Robinhood Chain integration is planned. NewsBeat is an independent project, with no Robinhood affiliation or endorsement.</p>
               <div className="crypto-community-links">
-                <a className="btn-primary" href="https://x.com/newsbeat_" target="_blank" rel="noopener noreferrer">Follow NewsBeat on X <ArrowUpRight size={15} /></a>
+                <a className="btn-primary" href="/docs/robinhood-chain">Explore the integration plan <ArrowRight size={15} /></a>
                 <a href="https://github.com/thepeternemec/NewsBeat/commits/main" target="_blank" rel="noopener noreferrer">See what shipped <ArrowUpRight size={14} /></a>
               </div>
             </div>
             <div className="crypto-roadmap" aria-label="Product direction">
               <div><span className="crypto-phase">AVAILABLE TODAY</span><h3>News your agent can use.</h3><p>Live lookups, headline summaries, grouped coverage and follow-up checks through MCP and REST.</p></div>
-              <div><span className="crypto-phase crypto-phase-future">COMING SOON</span><h3>NewsBeat agents. More connections.</h3><p>NewsBeat agents will soon connect to Codex, Claude, Grok, Muse, and other agent platforms.</p><a href="mailto:contact@newsbeat.dev">Tell us what you need <ArrowRight size={13} /></a></div>
+              <div><span className="crypto-phase crypto-phase-future">PLANNED / ROBINHOOD CHAIN</span><h3>Connect the asset to the story.</h3><p>Map stock-token contracts to the underlying companies. Bring news, corporate actions and independently sourced market data into one research workflow, with provenance and freshness for each.</p><a href="/docs/robinhood-chain">See the build sequence <ArrowRight size={13} /></a></div>
+              <div><span className="crypto-phase crypto-phase-future">PLANNED / AGENT CONNECTIONS</span><h3>Reach agents where they work.</h3><p>Setup paths for Codex, Claude, Grok, Muse and other agent platforms are planned. Availability depends on each platform’s supported connection methods.</p></div>
             </div>
           </div>
         </section>
@@ -329,7 +331,7 @@ export default function Home() {
                 </summary>
                 <div className="code">
                   <div className="code-bar">
-                    A short Bitcoin briefing{" "}
+                    A short Nvidia briefing{" "}
                     <CopyButton text={REST_EXAMPLE} label="Copy command" />
                   </div>
                   <pre>{REST_EXAMPLE}</pre>
@@ -354,6 +356,7 @@ export default function Home() {
               {FAQ.filter((item) => [
                 "Can I try NewsBeat before connecting an assistant?",
                 "What does NewsBeat do?",
+                "How does NewsBeat fit Robinhood Chain?",
                 "Do I need to know how to code?",
                 "How do I connect it to my assistant?",
                 "Is NewsBeat free?",
@@ -384,7 +387,7 @@ export default function Home() {
             </h2>
             <p className="cta-sub">
               Connect NewsBeat to an assistant with custom MCP support. Ask about
-              the crypto assets and companies you follow, whenever current news matters.
+              the companies and crypto assets behind your onchain research.
             </p>
             <div className="cta-row">
               <a className="btn-primary" href="/docs/quickstart">

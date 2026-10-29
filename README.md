@@ -2,7 +2,7 @@
 
 # NewsBeat
 
-### Ask what happened. Know what matters.
+### Market context for onchain agents.
 
 Company and crypto headlines your agent can actually use: a short update, the original sources, and a clear check time.
 
@@ -75,6 +75,14 @@ For clients that accept this configuration format:
 Then ask: **“What happened with Nvidia? Give me a short summary and link the sources.”**
 
 Use the [connection guide](https://www.newsbeat.dev/connect) for setup and a live transport check. For function-calling agents, load schemas from [`/api/v2/tools`](https://www.newsbeat.dev/api/v2/tools). See the [model-loop example](examples/README.md).
+
+## Direction: context for Robinhood Chain
+
+We are building toward a read-only context layer for tokenized markets on **Robinhood Chain**: connect stock-token identities to news about the underlying companies, then add corporate-action context and separately sourced market data.
+
+**Planned, not released.** Today's MCP and REST news tools remain the foundation. Token-contract mapping, chain balances, token prices and transaction execution are not implemented. NewsBeat is an independent project with no Robinhood affiliation or endorsement.
+
+Read the [integration plan](docs/ROBINHOOD-CHAIN.md) or the [website guide](https://www.newsbeat.dev/docs/robinhood-chain). The name remains NewsBeat while this direction is validated.
 
 ## What you can build
 

@@ -39,6 +39,10 @@ export const ROADMAP = [
     "what": "Broader news search, easier account connections and saved watches. These features still need setup and testing before release."
   },
   {
+    "when": "Planned · Robinhood Chain",
+    "what": "Connect stock-token identities to underlying-company news, then add corporate-action context and independently sourced market data. Chain integration, wallet reads and execution are not live."
+  },
+  {
     "when": "Coming next",
     "what": "Ready-to-use Telegram and Discord integrations, notifications and paid access. Public reads are free during early access."
   },
@@ -56,6 +60,10 @@ export const FAQ = [
   {
     "q": "What does NewsBeat do?",
     "a": "NewsBeat brings recent company and crypto news into your AI assistant. Ask “What happened with Nvidia?” and your agent can use recent headlines, grouped coverage and brief updates to answer. The public connection is free during early access."
+  },
+  {
+    "q": "How does NewsBeat fit Robinhood Chain?",
+    "a": "Our planned integration connects Robinhood Chain stock-token identities to news about the underlying companies, then adds corporate-action context and separately sourced market data. Today NewsBeat provides company and crypto headlines through MCP and REST. It does not yet read chain balances, map token contracts, supply token prices or execute transactions. NewsBeat is an independent project with no Robinhood affiliation or endorsement."
   },
   {
     "q": "Do I need to know how to code?",

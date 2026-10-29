@@ -15,20 +15,20 @@ import GridField from "@/components/site/grid-field";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.newsbeat.dev"),
-  title: "NewsBeat — The news layer for AI agents",
+  title: "NewsBeat — Market context for onchain agents",
   description:
-    "Ask your agent what happened with the companies and crypto you follow. NewsBeat brings recent headlines and short updates into your assistant through MCP or API. Public access is free; a seven-day REST trial is optional.",
+    "Company and crypto news for agents researching onchain markets. Source-linked updates through MCP and REST, with a planned Robinhood Chain integration.",
   openGraph: {
     type: "website",
     url: "https://www.newsbeat.dev",
     siteName: "NewsBeat",
-    title: "NewsBeat — The news layer for AI agents",
+    title: "NewsBeat — Market context for onchain agents",
     description:
       "Ask what happened with the companies and crypto you follow. Recent headlines, short updates, and linked reporting for your AI agent.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "NewsBeat — The news layer for AI agents",
+    title: "NewsBeat — Market context for onchain agents",
     description:
       "Recent company and crypto news for your AI agent. Ask what happened and get a source-linked update.",
   },
