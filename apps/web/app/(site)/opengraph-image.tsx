@@ -25,14 +25,14 @@ export default function OpenGraphImage() {
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", marginTop: 60 }}>
-        <span style={{ fontSize: 18, color: "#f4f4f4", letterSpacing: 2 }}>
-          A DIFFERENT BREED OF INTELLIGENCE
+        <span style={{ fontSize: 18, color: "#ccff00", letterSpacing: 2 }}>
+          BLACK SHEEP / NEWS-AWARE INTELLIGENCE
         </span>
         <span style={{ marginTop: 22, fontSize: 56, fontWeight: 700, letterSpacing: -2, lineHeight: 1.09 }}>
-          Black Sheep.
+          Less baa.
         </span>
         <span style={{ fontSize: 56, fontWeight: 700, letterSpacing: -2, lineHeight: 1.09 }}>
-          Find your signal.
+          More brain.
         </span>
         <span style={{ marginTop: 26, fontSize: 24, color: "#bbbbbb" }}>
           News intelligence. Agent coordination. Meme culture.
@@ -58,3 +58,4 @@ export default function OpenGraphImage() {
     size,
   );
 }
+

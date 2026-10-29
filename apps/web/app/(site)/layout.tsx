@@ -6,6 +6,7 @@ import "./motion-components.css";
 import "./theme.css";
 import "./interior.css";
 import "./refinement.css";
+import "./black-sheep-brand.css";
 import SoftAurora from "@/components/soft-aurora";
 import ScrollReveal from "@/components/scroll-reveal";
 import SmoothScroll from "@/components/smooth-scroll";
@@ -64,3 +65,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+

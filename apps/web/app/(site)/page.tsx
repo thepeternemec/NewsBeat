@@ -29,22 +29,24 @@ export default function Home() {
         <section className="bs-hero" id="top">
           <div className="wrap bs-hero-grid">
             <div className="bs-hero-copy">
-              <span className="bs-kicker"><span /> A DIFFERENT BREED OF INTELLIGENCE</span>
-              <h1>Black Sheep.<br /><span>Find your signal.</span></h1>
-              <p className="bs-lede">Meme culture meets market intelligence. A meme coin concept for agents that follow the news behind tokenized assets—and share what matters.</p>
+              <span className="bs-kicker"><span /> BLACK SHEEP / NEWS-AWARE INTELLIGENCE</span>
+              <h1>Less baa.<br /><span>More brain.</span></h1>
+              <p className="bs-lede">A meme with a nose for news. Source-linked intelligence for agents following the companies behind tokenized assets. Curious by nature. Skeptical by design.</p>
               <div className="hero-cta">
                 <a className="btn-primary" href="#live-news">Try the news engine <ArrowRight size={15} /></a>
                 <a className="bs-text-link" href="#agent-network">Explore the agent network <ArrowUpRight size={15} /></a>
               </div>
               <div className="bs-status"><span><Check size={12} /> News tools live</span><span>Token + messaging planned</span></div>
+              <a className="bs-chain-note" href="/docs/robinhood-chain">Robinhood Chain <span>/ integration planned</span><ArrowUpRight size={12} /></a>
             </div>
-            <div className="bs-emblem" aria-label="Black Sheep token concept illustration">
-              <div className="bs-emblem-top"><span>BLACK SHEEP / CONCEPT 001</span><span>INDEPENDENT BY DESIGN</span></div>
-              <div className="bs-coin">
-                <span className="bs-coin-orbit" aria-hidden="true" />
-                <div className="bs-coin-face"><BrandMark size={210} /><span>BLACK SHEEP</span><small>NEWS · CONTEXT · AGENTS</small></div>
+            <div className="bs-emblem" aria-label="Black Sheep mascot: a curious black sheep with a raised eyebrow and a knowing smile">
+              <div className="bs-emblem-top"><span>MEET YOUR UNLIKELY ANALYST</span><span>EST. OUTSIDE THE HERD</span></div>
+              <div className="bs-mascot-stage">
+                <span className="bs-thought">Source?</span>
+                <BrandMark className="bs-mascot" size={320} variant="mascot" />
+                <span className="bs-mascot-caption">INDEPENDENT THINKER.<br />EXCELLENT WOOL.</span>
               </div>
-              <div className="bs-emblem-bottom"><span>MEME ON THE SURFACE.<br />INTELLIGENCE UNDERNEATH.</span><span className="bs-token-state">TOKEN CONCEPT<br />NOT LAUNCHED</span></div>
+              <div className="bs-emblem-bottom"><span>READS THE NEWS.<br />QUESTIONS THE NARRATIVE.</span><span className="bs-token-state">MEME COIN CONCEPT<br />NOT LAUNCHED</span></div>
             </div>
           </div>
         </section>
@@ -55,7 +57,7 @@ export default function Home() {
 
         <section className="scaffold" id="thesis">
           <div className="wrap bs-thesis">
-            <div><span className="bs-kicker">01 / THE THESIS</span><h2 className="bs-title">A meme with<br />something to say.</h2></div>
+            <div><span className="bs-kicker">01 / THE THESIS</span><h2 className="bs-title">Funny face.<br />Serious questions.</h2></div>
             <div><p className="bs-editorial">Tokenized markets need context. Black Sheep starts with the companies, events and reporting behind the assets.</p><p className="bs-body">The foundation is the working NewsBeat news engine. The direction is a shared context network where agents can discover developments, check the evidence and pass an observation to another agent.</p><p className="bs-fine">Stock Token mapping, agent messaging and a blockchain token are planned. Current coverage is company and crypto news.</p></div>
           </div>
         </section>
@@ -64,7 +66,7 @@ export default function Home() {
           <div className="wrap bs-live-grid">
             <div>
               <span className="bs-kicker"><Radio size={12} /> 02 / THE ENGINE IS LIVE</span>
-              <h2 className="bs-title">Real headlines.<br />A working product.</h2>
+              <h2 className="bs-title">Did your meme<br />bring sources?</h2>
               <p className="bs-body">Ask what happened with NVIDIA, Apple or another supported company. Get source-linked headlines, a short summary and a clear view of coverage freshness.</p>
               <p className="bs-body">Sources are checked on a fifteen-minute schedule. Summaries use headline metadata; full article text is not included.</p>
               <a className="bs-text-link" href="/dashboard">Open the research terminal <ArrowRight size={14} /></a>
@@ -83,7 +85,7 @@ export default function Home() {
 
         <section className="scaffold bs-network-section" id="agent-network">
           <div className="wrap">
-            <div className="bs-network-head"><div><span className="bs-kicker"><Network size={12} /> 04 / THE AGENT NETWORK</span><h2 className="bs-title">Give the signal<br />somewhere to go.</h2></div><p className="bs-body">A scout finds a development. An analyst adds context. A publisher prepares the update. Explore the proposed handoff below.</p></div>
+            <div className="bs-network-head"><div><span className="bs-kicker"><Network size={12} /> 04 / THE AGENT NETWORK</span><h2 className="bs-title">A flock of agents.<br />A mind of its own.</h2></div><p className="bs-body">A scout finds a development. An analyst adds context. A publisher prepares the update. Explore the proposed handoff below.</p></div>
             <AgentHandoff />
           </div>
         </section>
@@ -103,10 +105,11 @@ export default function Home() {
         </section>
 
         <section className="bs-closing">
-          <div className="wrap"><BrandMark size={60} /><span className="bs-kicker">STAY CURIOUS. STAY INDEPENDENT.</span><h2>A different breed<br />of market intelligence.</h2><div><a className="btn-primary" href="/docs/try">Find your first signal <ArrowRight size={15} /></a><a className="bs-text-link" href="/docs/black-sheep">Explore Black Sheep <ArrowUpRight size={15} /></a></div><p>Independent project. No Robinhood affiliation or endorsement.</p></div>
+          <div className="wrap"><BrandMark size={60} /><span className="bs-kicker">STAY CURIOUS. STAY INDEPENDENT.</span><h2>Stay curious.<br />Question the herd.</h2><div><a className="btn-primary" href="/docs/try">Find your first signal <ArrowRight size={15} /></a><a className="bs-text-link" href="/docs/black-sheep">Explore Black Sheep <ArrowUpRight size={15} /></a></div><p>Independent project. No Robinhood affiliation or endorsement.</p></div>
         </section>
       </main>
       <SiteFooter />
     </>
   );
 }
+
