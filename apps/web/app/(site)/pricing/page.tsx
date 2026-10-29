@@ -8,7 +8,7 @@ import { PRICES } from "@/components/site/content";
 export const metadata = {
   title: "Pricing",
   description:
-    "NewsBeat is free to connect during early access. Try a seven-day metered REST workflow with up to $6 in trial credit. Paid checkout is not live yet.",
+    "Black Sheep is free to connect during early access. Try a seven-day metered REST workflow with up to $6 in trial credit. Paid checkout is not live yet.",
 };
 
 const ROUTES: Array<[string, string]> = [
@@ -24,7 +24,7 @@ const ROUTES: Array<[string, string]> = [
 ];
 
 const TIERS: Array<{ name: string; limit: string; how: string }> = [
-  { name: "Public connection", limit: "120 requests / minute", how: "MCP or REST, no NewsBeat key" },
+  { name: "Public connection", limit: "120 requests / minute", how: "MCP or REST, no Black Sheep key" },
   { name: "Seven-day REST trial", limit: "1200 requests / minute", how: "GitHub-issued bearer key" },
 ];
 
@@ -69,7 +69,7 @@ export default function Pricing() {
               </p>
             </div>
             <div className="access-plan">
-            <div className="access-plan-intro"><span className="sec-eyebrow">Available now</span><h3>Ask about a company.<br />Keep up with what changes.</h3><p>Browse headlines, group repeated coverage and get a short update. The public connection needs no account.</p><a className="quiet-link" href="/connect">Connect NewsBeat <ArrowRight size={14} /></a></div>
+            <div className="access-plan-intro"><span className="sec-eyebrow">Available now</span><h3>Ask about a company.<br />Keep up with what changes.</h3><p>Browse headlines, group repeated coverage and get a short update. The public connection needs no account.</p><a className="quiet-link" href="/connect">Connect Black Sheep <ArrowRight size={14} /></a></div>
             <div>
             <div className="table-scroll">
             <table className="docs-body" style={{ maxWidth: "100%" }}>

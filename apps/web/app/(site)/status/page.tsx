@@ -4,9 +4,9 @@ import StatusBoard from "@/components/site/status-board";
 import "./status.css";
 
 export const metadata = {
-  title: "NewsBeat service status",
+  title: "Black Sheep service status",
   description:
-    "Operational checks for the NewsBeat news API, MCP connection and news collection, with a public status feed.",
+    "Operational checks for the Black Sheep news API, MCP connection and news collection, with a public status feed.",
   alternates: {
     types: {
       "application/atom+xml": "https://www.newsbeat.dev/api/status/feed",
@@ -22,10 +22,10 @@ export default function StatusPage() {
         <div className="wrap">
           <header className="status-heading">
             <div>
-              <span className="sec-eyebrow">NewsBeat operations</span>
+              <span className="sec-eyebrow">Black Sheep operations</span>
               <h1>Know where things stand.</h1>
               <p>
-                Service checks, news freshness and recent results in one place.
+                Checks for the working news engine. Agent messaging and the Black Sheep token are planned, not live.
               </p>
             </div>
             <a className="btn-ghost" href="/api/status/feed">
@@ -44,7 +44,7 @@ export default function StatusPage() {
             <div>
               <h2>What these checks mean</h2>
               <p>
-                Every five minutes, NewsBeat tests a news API request and an MCP
+                Every five minutes, Black Sheep tests a news API request and an MCP
                 news lookup, then checks the last successful collection time for
                 every supported topic.
               </p>
@@ -63,7 +63,7 @@ export default function StatusPage() {
               <p>
                 The feed contains automated check results, with up to four hours
                 shown here. Missing or old checks mean status is unknown.
-                Monitoring runs on NewsBeat’s infrastructure and cannot
+                Monitoring runs on Black Sheep’s infrastructure and cannot
                 independently verify a complete hosting outage.
               </p>
             </div>

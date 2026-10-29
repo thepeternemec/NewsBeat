@@ -7,11 +7,11 @@ import MobileNavigation from "./mobile-navigation";
 import "./mobile-navigation.css";
 
 const LINKS = [
-  { href: "/connect", label: "Connect", description: "Bring the news to your assistant" },
-  { href: "/docs/try", label: "Try free", description: "Run a real news lookup in your browser" },
-  { href: "/docs", label: "Docs", description: "Get started, one step at a time" },
-  { href: "/faq", label: "FAQ", description: "Answers to common questions" },
-  { href: "/pricing", label: "Pricing", description: "Free public access and API limits" },
+  { href: "/#live-news", label: "News", description: "Try the working company news engine" },
+  { href: "/#agent-network", label: "Agents", description: "Explore the proposed agent handoff" },
+  { href: "/docs/black-sheep", label: "Thesis", description: "Read the product and token concept" },
+  { href: "/docs", label: "Docs", description: "Connect to the existing news tools" },
+  { href: "/status", label: "Status", description: "Check the current news service" },
 ];
 
 export default function SiteNav({ active }: { active?: string }) {
@@ -19,9 +19,9 @@ export default function SiteNav({ active }: { active?: string }) {
   return (
     <nav className="nav nav-site" aria-label="Main navigation">
       <div className="nav-pill">
-        <a className="nav-logo" href="/" aria-label="NewsBeat home">
+        <a className="nav-logo" href="/" aria-label="Black Sheep home">
           <BrandMark className="brand-beat" />
-          NEWSBEAT
+          BLACK SHEEP
         </a>
         <span className="nav-links">
           {LINKS.map(link => (

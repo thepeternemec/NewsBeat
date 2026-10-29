@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { Activity, ArrowUpRight, BookOpen, ChevronDown, Code2, FileText, GitBranch, CircleHelp, Mail, Play, Plug } from "lucide-react";
 import { DOC_PAGES } from "./docs-links";
 
-const ICONS = [BookOpen, Play, Plug, FileText, Code2, GitBranch];
+const ICONS = [BookOpen, Play, Plug, FileText, Code2, GitBranch, GitBranch];
 const LINKS = DOC_PAGES.map((page, index) => ({ ...page, icon: ICONS[index] }));
 const GROUPS = [
   {
@@ -43,7 +43,7 @@ export default function DocsSide() {
       <div className="docs-nav-panel" id={id} data-lenis-prevent>
         <a className="docs-nav-brand" href="/docs">
           <span className="docs-nav-mark"><BookOpen size={19} strokeWidth={1.6} aria-hidden="true" /></span>
-          <span><small>NEWSBEAT</small><strong>Documentation</strong></span>
+          <span><small>BLACK SHEEP</small><strong>Documentation</strong></span>
         </a>
         <nav className="docs-nav-groups" aria-label="Documentation">
           {GROUPS.map(group => (

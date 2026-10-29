@@ -4,13 +4,13 @@ Status: product alignment and integration plan, 29 October 2026. No chain integr
 
 ## Positioning
 
-**NewsBeat — The intelligence layer for Stock Tokens.**
+**Black Sheep — The intelligence layer for Stock Tokens.**
 
 Give agents and applications source-linked company and crypto news, then connect that context to tokenized assets on Robinhood Chain. The initial audience is developers building research assistants, portfolio explanations and watchlist workflows.
 
 Robinhood Chain describes an open, EVM-compatible network for traditional markets, crypto and tokenized real-world assets. Our proposed role is the context around those assets. This is our product direction, not an announced Robinhood partnership.
 
-Keep the NewsBeat name and its black, white and grey identity while validating demand. A later rename should reflect an expanded product once the token-to-context workflow works.
+Black Sheep is the new product identity. Preserve the black, white and grey design and the existing NewsBeat connection identifiers. See BLACK-SHEEP.md for the proposed agent network and token thesis.
 
 ## Available versus planned
 
@@ -28,7 +28,7 @@ Existing news coverage does not imply coverage of every Robinhood Chain asset. N
 
 1. Resolve a selected stock token using the official asset catalog.
 2. Validate the asset UID and its chain-ID/contract deployment.
-3. Match its underlying company to a supported NewsBeat asset ID using verified entity mapping.
+3. Match its underlying company to a supported Black Sheep asset ID using verified entity mapping.
 4. Return existing news and summary results with publisher links, publication times and freshness.
 5. Retain the existing news cursor for follow-up article arrivals.
 6. Return explicit unsupported or stale results when the mapping or sources cannot support the request.
@@ -55,7 +55,7 @@ Use testnet for initial network verification and recheck official deployments be
 ## Evidence contract
 
 An eventual combined response should keep these separate:
-- Token identity: upstream asset UID, chain ID, contract, underlying company and NewsBeat asset ID.
+- Token identity: upstream asset UID, chain ID, contract, underlying company and Black Sheep asset ID.
 - News evidence: existing items, source links, publication times, freshness and coverage limits.
 - Corporate events: upstream IDs, status, effective time and provenance.
 - Market observations: origin, units, multiplier basis and source update time.
@@ -82,4 +82,4 @@ Stock Tokens provide economic exposure under their issuer’s terms, not direct 
 - [Oracle and feed checks](https://docs.robinhood.com/chain/oracles-and-price-feeds/)
 - [Brand guidelines](https://docs.robinhood.com/chain/brand-guidelines/)
 
-NewsBeat is an independent project with no Robinhood affiliation or endorsement. Use the full name “Robinhood Chain”; preserve NewsBeat’s own branding.
+Black Sheep is an independent project with no Robinhood affiliation or endorsement. Use the full name “Robinhood Chain”; preserve Black Sheep’s own branding.

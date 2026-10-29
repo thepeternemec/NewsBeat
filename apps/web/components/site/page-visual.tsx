@@ -34,7 +34,7 @@ export default function PageVisual({ kind }: { kind: Kind }) {
       <div className="visual-top"><Radio size={15} /> From question to context <span className="visual-tag">MCP + API</span></div>
       <div className="question-preview"><span>YOU ASK</span><p>“What happened<br />with Nvidia?”</p></div>
       <div className="preview-route" aria-hidden="true"><span /><ArrowDown size={16} /><span /></div>
-      <div className="answer-preview"><span>NEWSBEAT BRINGS</span><div><Check size={14} /> Recent headlines</div><div><Check size={14} /> Publisher links</div><div><Check size={14} /> Dates & freshness</div></div>
+      <div className="answer-preview"><span>BLACK SHEEP BRINGS</span><div><Check size={14} /> Recent headlines</div><div><Check size={14} /> Publisher links</div><div><Check size={14} /> Dates & freshness</div></div>
       {kind === "connect" ? <div className="visual-endpoint"><code>newsbeat.dev/api/mcp</code><CopyButton text="https://www.newsbeat.dev/api/mcp" label="MCP address" /></div> : <a className="visual-bottom visual-link" href="mailto:contact@newsbeat.dev">Still have a question? Contact us <ArrowRight size={14} /></a>}
     </aside>
   );

@@ -1,4 +1,4 @@
-export const metadata = { title: "Understand the news", description: "Learn what NewsBeat covers, where headlines come from, and how to interpret freshness and follow-up updates." };
+export const metadata = { title: "Understand the news", description: "Learn what Black Sheep covers, where headlines come from, and how to interpret freshness and follow-up updates." };
 
 export default function DocsData() {
   return (
@@ -8,13 +8,13 @@ export default function DocsData() {
         <h1>Understand the news.</h1>
         <p className="docs-lead">
           A useful news answer should tell you what was reported, who reported it, and how recent
-          the information is. Here is what NewsBeat gives your agent.
+          the information is. Here is what Black Sheep gives your agent.
         </p>
       </div>
 
       <h2 id="which-companies-can-i-ask-about">Which companies can I ask about?</h2>
       <p>
-        NewsBeat currently supports 1,528 US-listed equities and 502 crypto assets. Search by
+        Black Sheep currently supports 1,528 US-listed equities and 502 crypto assets. Search by
         company name or ticker. A ticker is a short market symbol, such as NVDA for Nvidia.
       </p>
       <p>
@@ -26,12 +26,12 @@ export default function DocsData() {
 
       <h2 id="where-does-the-news-come-from">Where does the news come from?</h2>
       <p>
-        NewsBeat collects English-language headline metadata through Google News RSS. Each item
+        Black Sheep collects English-language headline metadata through Google News RSS. Each item
         carries a headline, publisher, publication time and a link that leads to the reporting.
         Current links may redirect through Google News.
       </p>
       <p>
-        NewsBeat does not include the full article. Your assistant can explain the headlines it
+        Black Sheep does not include the full article. Your assistant can explain the headlines it
         receives, but it should not claim to have read the complete reporting. Open the sources
         for detail; publisher subscriptions may apply.
       </p>
@@ -39,7 +39,7 @@ export default function DocsData() {
       <h2 id="how-fresh-is-latest">How fresh is “latest”?</h2>
       <p>
         Source checks are scheduled every fifteen minutes. A check may be delayed or fail, and
-        some companies receive little coverage. NewsBeat reports the time of the last successful
+        some companies receive little coverage. Black Sheep reports the time of the last successful
         check alongside the news. This is different from the time a publisher released an article.
       </p>
       <div className="table-scroll">
@@ -62,7 +62,7 @@ export default function DocsData() {
       <h2 id="how-does-since-last-time-work">How does “since last time” work?</h2>
       <p>
         Think of it as a bookmark. After reading the news, your agent can save where it stopped.
-        On the next check, NewsBeat uses that bookmark to return newly indexed items. Developers
+        On the next check, Black Sheep uses that bookmark to return newly indexed items. Developers
         call the bookmark a <code>cursor</code>; you do not need to handle it yourself.
       </p>
       <p>
@@ -75,7 +75,7 @@ export default function DocsData() {
       <p>
         In the terminal, select an asset and choose “Summarize headlines” for a short answer to
         what the recent headlines report. Each point links to its publishers. When an automatic
-        summary is unavailable, NewsBeat shows original headlines and labels the result. These
+        summary is unavailable, Black Sheep shows original headlines and labels the result. These
         sentences only reflect headlines, so open the reports for the full context.
       </p>
       <p>

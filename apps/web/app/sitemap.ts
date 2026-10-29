@@ -9,6 +9,7 @@ const PAGES = [
   "/dashboard",
   "/docs",
   "/docs/connect",
+  "/docs/black-sheep",
   "/docs/data",
   "/docs/quickstart",
   "/docs/robinhood-chain",

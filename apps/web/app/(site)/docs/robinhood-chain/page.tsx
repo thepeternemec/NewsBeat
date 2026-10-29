@@ -1,8 +1,8 @@
 import { ArrowRight } from "lucide-react";
 
 export const metadata = {
-  title: "Robinhood Chain integration plan — NewsBeat",
-  description: "How NewsBeat plans to connect tokenized assets to company news, corporate actions and source-linked research. Integration is planned, not live.",
+  title: "Robinhood Chain integration plan — Black Sheep",
+  description: "How Black Sheep plans to connect tokenized assets to company news, corporate actions and source-linked research. Integration is planned, not live.",
 };
 
 export default function RobinhoodChainPlan() {
@@ -17,9 +17,9 @@ export default function RobinhoodChainPlan() {
         </p>
         <div className="docs-callout">
           <strong>Integration status: planned.</strong>
-          <p>NewsBeat currently supplies company and crypto headlines through MCP and REST.
+          <p>Black Sheep currently supplies company and crypto headlines through MCP and REST.
             Token-contract mapping, chain balances, token prices and transaction execution
-            are not implemented. NewsBeat is an independent project with no Robinhood
+            are not implemented. Black Sheep is an independent project with no Robinhood
             affiliation or endorsement.</p>
         </div>
       </header>
@@ -50,7 +50,7 @@ export default function RobinhoodChainPlan() {
       <section className="docs-section" aria-labelledby="build-sequence">
         <h2 id="build-sequence">The planned build sequence</h2>
         <ol className="docs-flow">
-          <li><span>01</span><div><h3>Resolve the token and the company</h3><p>Use the official asset catalog to connect an asset UID, chain ID and contract address to a supported NewsBeat company. Verify the mapping; shared ticker symbols alone are not enough. Return an explicit unsupported result when no mapping exists.</p></div></li>
+          <li><span>01</span><div><h3>Resolve the token and the company</h3><p>Use the official asset catalog to connect an asset UID, chain ID and contract address to a supported Black Sheep company. Verify the mapping; shared ticker symbols alone are not enough. Return an explicit unsupported result when no mapping exists.</p></div></li>
           <li><span>02</span><div><h3>Explain corporate events</h3><p>Combine news with the documented corporate-action API and onchain multiplier events. Keep a reported company event separate from a confirmed token adjustment, including its effective time and source.</p></div></li>
           <li><span>03</span><div><h3>Add separately sourced market context</h3><p>Bring in documented price feeds and, later, optional read-only wallet balances. Preserve source timestamps, stale-data checks and the distinction between underlying-equity quotes and token values.</p></div></li>
         </ol>
@@ -72,7 +72,7 @@ export default function RobinhoodChainPlan() {
       <section className="docs-section" aria-labelledby="integration-details">
         <h2 id="integration-details">Integration details to get right</h2>
         <ul>
-          <li>Keep a stable mapping from token identity to the existing NewsBeat asset ID. Preserve existing news tools and cursors.</li>
+          <li>Keep a stable mapping from token identity to the existing Black Sheep asset ID. Preserve existing news tools and cursors.</li>
           <li>Use the official per-chain deployments rather than assuming an equity ticker identifies a contract or supported token.</li>
           <li>Robinhood’s REST prices are underlying-equity bid/ask values; its documented onchain feeds include the corporate-action multiplier. Apply the multiplier once when converting REST prices, and never twice to onchain feed values.</li>
           <li>Respect each API’s cache window and rate limits. Track news freshness, quote time and chain observations independently.</li>

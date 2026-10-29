@@ -560,7 +560,7 @@ export default function Dashboard() {
         <div className="wrap">
           <div className="footer-row">
             <div className="footer-brand-line">
-              <span className="footer-co">NEWSBEAT</span>
+              <span className="footer-co">BLACK SHEEP</span>
               <span style={{ color: "var(--border-strong)" }}>/</span>
               <span className="footer-address">read-only · live graph</span>
             </div>

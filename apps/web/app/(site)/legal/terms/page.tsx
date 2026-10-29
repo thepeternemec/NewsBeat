@@ -5,7 +5,7 @@ import SiteFooter from "@/components/site/site-footer";
 
 export const metadata = {
   title: "Terms of service",
-  description: "The terms that apply to using NewsBeat, written to match what the service actually does.",
+  description: "The terms that apply to using Black Sheep, written to match what the service actually does.",
 };
 
 /**
@@ -31,7 +31,7 @@ export default function Terms() {
             <span className="sec-eyebrow">Legal</span>
             <h1 className="sec-title">Terms of service</h1>
             <p className="sec-sub">
-              What you agree to by using NewsBeat, and what we agree to. Short, because the
+              What you agree to by using Black Sheep, and what we agree to. Short, because the
               service is small and most of it is public.
             </p>
             <p className="hero-tiny">Last updated 20 October 2026</p>
@@ -44,9 +44,9 @@ export default function Terms() {
           <div className="wrap-tight docs-body">
             <h2>1. Who operates this</h2>
             <p>
-              NewsBeat.dev is operated by founder Peter Nemec through <strong>Tephra d.o.o.</strong>,
+              Black Sheep.dev is operated by founder Peter Nemec through <strong>Tephra d.o.o.</strong>,
               a company registered in the court register of the Republic of Slovenia
-              (&ldquo;NewsBeat&rdquo;, &ldquo;we&rdquo;). You can reach us at{" "}
+              (&ldquo;Black Sheep&rdquo;, &ldquo;we&rdquo;). You can reach us at{" "}
               <a href="mailto:hello@newsbeat.dev">hello@newsbeat.dev</a>.
             </p>
 

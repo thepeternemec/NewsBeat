@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
 
-export const metadata = { title: "Try NewsBeat with an API key", description: "Run a seven-day NewsBeat REST trial in your agent, starting with the first metered request. Up to $6 in usage credit; public news stays free." };
+export const metadata = { title: "Try Black Sheep with an API key", description: "Run a seven-day Black Sheep REST trial in your agent, starting with the first metered request. Up to $6 in usage credit; public news stays free." };
 
 export default function Keys() {
   return (
@@ -63,7 +63,7 @@ export default function Keys() {
                 <span className="feature-tag" style={{ marginTop: 0, paddingTop: 0 }}>why GitHub</span>
                 <p className="feature-desc" style={{ marginTop: 14 }}>
                   GitHub sign-in links the key and trial to your account. You can rotate a lost
-                  key without resetting the seven-day clock. NewsBeat asks for
+                  key without resetting the seven-day clock. Black Sheep asks for
                   <code> read:user</code> and no repository access.
                 </p>
               </div>

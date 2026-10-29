@@ -1,7 +1,7 @@
 import CopyButton from "@/components/site/copy-button";
 import AgentInstructions from "@/components/site/agent-instructions";
 
-export const metadata = { title: "Developer reference", description: "Connect NewsBeat through remote MCP, REST or function calling. Seven tools, current endpoints and working examples." };
+export const metadata = { title: "Developer reference", description: "Connect Black Sheep through remote MCP, REST or function calling. Seven tools, current endpoints and working examples." };
 const API = "https://www.newsbeat.dev/api";
 const MCP_CONFIG = JSON.stringify({ mcpServers: { newsbeat: { url: `${API}/mcp` } } }, null, 2);
 const TOOLS = [
@@ -21,7 +21,7 @@ export default function DocsConnect() {
   return (
     <>
       <div className="docs-head">
-        <span className="sec-eyebrow">Build with NewsBeat</span>
+        <span className="sec-eyebrow">Build with Black Sheep</span>
         <h1>MCP &amp; API reference</h1>
         <p className="docs-lead">
           Connect through MCP, REST or function calling. If you just want to ask your assistant
