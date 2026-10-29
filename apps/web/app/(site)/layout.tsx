@@ -25,13 +25,13 @@ export const metadata: Metadata = {
     siteName: "Black Sheep",
     title: "Black Sheep — Intelligence for tokenized assets",
     description:
-      "Ask what happened with the companies and crypto you follow. Recent headlines, short updates, and linked reporting for your AI agent.",
+      "Follow the news behind tokenized assets. Company headlines, linked sources and fresh context for your AI agent.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Black Sheep — Intelligence for tokenized assets",
     description:
-      "Recent company and crypto news for your AI agent. Ask what happened and get a source-linked update.",
+      "Company news and source-linked context for your AI agent. Follow the real-world stories behind tokenized assets.",
   },
 };
 
