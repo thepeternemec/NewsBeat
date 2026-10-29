@@ -2,7 +2,7 @@
 
 # NewsBeat
 
-### Market context for onchain agents.
+### The intelligence layer for Stock Tokens.
 
 Company and crypto headlines your agent can actually use: a short update, the original sources, and a clear check time.
 

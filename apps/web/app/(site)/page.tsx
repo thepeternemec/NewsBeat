@@ -19,12 +19,12 @@ import { FAQ } from "@/components/site/content";
 import "./landing.css";
 import "./crypto-landing.css";
 
-const DESCRIPTION = "Company and crypto news for agents researching onchain markets. Source-linked updates through MCP and REST, with a planned Robinhood Chain integration.";
+const DESCRIPTION = "Source-linked company news for Stock Token research, including NVIDIA, Alphabet (Google) and Apple. MCP and REST today; Robinhood Chain token integration planned.";
 export const metadata = {
-  title: "NewsBeat — Market context for onchain agents",
+  title: "NewsBeat — The intelligence layer for Stock Tokens",
   description: DESCRIPTION,
-  openGraph: { title: "NewsBeat — Market context for onchain agents", description: DESCRIPTION, url: "https://www.newsbeat.dev", siteName: "NewsBeat", type: "website" },
-  twitter: { card: "summary_large_image", title: "NewsBeat — Market context for onchain agents", description: DESCRIPTION },
+  openGraph: { title: "NewsBeat — The intelligence layer for Stock Tokens", description: DESCRIPTION, url: "https://www.newsbeat.dev", siteName: "NewsBeat", type: "website" },
+  twitter: { card: "summary_large_image", title: "NewsBeat — The intelligence layer for Stock Tokens", description: DESCRIPTION },
 };
 
 const MCP_URL = "https://www.newsbeat.dev/api/mcp";
@@ -94,17 +94,18 @@ export default function Home() {
           <div className="wrap landing-hero-grid">
             <div className="landing-hero-copy">
               <span className="landing-eyebrow">
-                Market context for onchain agents
+                The intelligence layer for Stock Tokens
               </span>
               <h1>
-                <span>Markets move onchain.</span>
-                <span>Bring the context<br />with you.</span>
+                <span>The intelligence layer</span>
+                <span>for Stock Tokens.</span>
               </h1>
               <p className="lede">
-                Give your agent the company and crypto news behind the assets
-                you research. Source-linked briefings through MCP or API.
-                Building toward tokenized-asset context on Robinhood Chain.
+                Research the companies behind Stock Tokens, including NVIDIA,
+                Alphabet (Google), Apple and more. Bring source-linked news
+                into your agent through MCP or API.
               </p>
+              <p className="landing-caption">Robinhood Chain token integration is planned. Company news is available today.</p>
               <div className="hero-cta">
                 <a className="btn-primary" href="#research-desk">
                   Explore live news <ArrowRight size={15} />
@@ -258,7 +259,7 @@ export default function Home() {
           <div className="wrap crypto-community-grid">
             <div className="sec-head">
               <span className="sec-eyebrow">Robinhood Chain / Product direction</span>
-              <h2 className="sec-title">Open markets need useful context.</h2>
+              <h2 className="sec-title">Stock Tokens. Real companies. Useful context.</h2>
               <p className="sec-sub">Robinhood Chain brings traditional and digital assets onto an open network. We’re building toward a context layer that connects those assets to company news and corporate events, so agents and apps can explain what changed.</p>
               <p className="landing-caption">The Robinhood Chain integration is planned. NewsBeat is an independent project, with no Robinhood affiliation or endorsement.</p>
               <div className="crypto-community-links">
@@ -387,7 +388,7 @@ export default function Home() {
             </h2>
             <p className="cta-sub">
               Connect NewsBeat to an assistant with custom MCP support. Ask about
-              the companies and crypto assets behind your onchain research.
+              the companies behind your Stock Token research.
             </p>
             <div className="cta-row">
               <a className="btn-primary" href="/docs/quickstart">

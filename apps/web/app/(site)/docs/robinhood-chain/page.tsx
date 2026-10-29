@@ -10,10 +10,10 @@ export default function RobinhoodChainPlan() {
     <div className="docs-overview">
       <header className="docs-head">
         <span className="sec-eyebrow">Product direction / Planned integration</span>
-        <h1>Market context for Robinhood Chain.</h1>
+        <h1>The intelligence layer for Stock Tokens.</h1>
         <p className="docs-lead">
-          Connect the asset onchain to the company and events behind it.
-          Give agents, wallets and research apps a source-linked answer to “what changed?”
+          Research the companies behind Stock Tokens, including NVIDIA, Alphabet (Google)
+          and Apple. Give agents, wallets and research apps a source-linked answer to “what changed?”
         </p>
         <div className="docs-callout">
           <strong>Integration status: planned.</strong>

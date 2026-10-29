@@ -4,7 +4,7 @@ Status: product alignment and integration plan, 29 October 2026. No chain integr
 
 ## Positioning
 
-**NewsBeat — Market context for onchain agents.**
+**NewsBeat — The intelligence layer for Stock Tokens.**
 
 Give agents and applications source-linked company and crypto news, then connect that context to tokenized assets on Robinhood Chain. The initial audience is developers building research assistants, portfolio explanations and watchlist workflows.
 
@@ -65,9 +65,9 @@ These are design requirements, not shipped fields or endpoints. News summaries r
 
 ## Product copy
 
-Hero: **Markets move onchain. Bring the context with you.**
+Hero: **The intelligence layer for Stock Tokens.**
 
-Description: Give your agent the company and crypto news behind the assets you research. Source-linked briefings through MCP or API. Building toward tokenized-asset context on Robinhood Chain.
+Description: Research the companies behind Stock Tokens, including NVIDIA, Alphabet (Google), Apple and more. Bring source-linked news into your agent through MCP or API. Robinhood Chain token integration is planned; company news is available today.
 
 Integration label: **Planned / Robinhood Chain** until verified code is released.
 
