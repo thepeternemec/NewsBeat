@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import BrandMark from "@/components/site/brand-mark";
 
-export const alt = "Black Sheep — A different breed of intelligence. News for tokenized assets. Agent network and token planned.";
+export const alt = "Black Sheep — Intelligence for tokenized assets. Source-linked news for AI agents.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -26,7 +26,7 @@ export default function OpenGraphImage() {
 
       <div style={{ display: "flex", flexDirection: "column", marginTop: 60 }}>
         <span style={{ fontSize: 18, color: "#ccff00", letterSpacing: 2 }}>
-          BLACK SHEEP / NEWS-AWARE INTELLIGENCE
+          BLACK SHEEP / TOKENIZED-ASSET INTELLIGENCE
         </span>
         <span style={{ marginTop: 22, fontSize: 56, fontWeight: 700, letterSpacing: -2, lineHeight: 1.09 }}>
           Less baa.
@@ -35,7 +35,7 @@ export default function OpenGraphImage() {
           More brain.
         </span>
         <span style={{ marginTop: 26, fontSize: 24, color: "#bbbbbb" }}>
-          News intelligence. Agent coordination. Meme culture.
+          Tokenized assets. Company news. Context for agents.
         </span>
       </div>
 

@@ -61,7 +61,7 @@ export default function SiteFooter() {
               </div>
               <p className="footer-tag">A different breed of intelligence.</p>
               <p className="footer-address">
-                news tools live · token not launched
+                news tools live · asset mapping planned
               </p>
             </div>
 

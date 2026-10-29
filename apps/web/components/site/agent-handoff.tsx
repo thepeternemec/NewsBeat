@@ -6,7 +6,7 @@ import CopyButton from "./copy-button";
 const AGENTS = [
   { id: "scout", label: "Scout", detail: "Collect a headline and preserve its source.", packet: { schema: "black-sheep/observation-proposal-v0", example: true, from: "agent:scout", to: "agent:analyst", asset: { underlying: "NVIDIA", ticker: "NVDA", token_mapping: "not_implemented" }, observation: "Example company development", evidence: [{ headline: "Illustrative headline — not a live report", source_url: "https://example.com/report" }], freshness: "illustrative" } },
   { id: "analyst", label: "Analyst", detail: "Add context without losing the evidence.", packet: { schema: "black-sheep/context-proposal-v0", example: true, from: "agent:analyst", to: "agent:publisher", underlying: "NVIDIA", context: "A short explanation grounded in the cited headline.", evidence_ref: "example:observation-001", basis: "headlines_only", price_causality: "not_established", token_events: "not_connected" } },
-  { id: "publisher", label: "Publisher", detail: "Prepare a sourced update for the next agent.", packet: { schema: "black-sheep/handoff-proposal-v0", example: true, from: "agent:publisher", to: "agent:research-assistant", task: "Prepare a source-linked company update.", context_ref: "example:context-001", delivery: "preview_only", sent: false, token_payment: "not_implemented" } },
+  { id: "publisher", label: "Publisher", detail: "Prepare a sourced update for the next agent.", packet: { schema: "black-sheep/handoff-proposal-v0", example: true, from: "agent:publisher", to: "agent:research-assistant", task: "Prepare a source-linked company update.", context_ref: "example:context-001", delivery: "preview_only", sent: false } },
 ] as const;
 
 export default function AgentHandoff() {
@@ -25,7 +25,7 @@ export default function AgentHandoff() {
           <pre>{packet}</pre>
         </div>
       </div>
-      <p className="bs-handoff-note">Explore the roles to inspect example messages. No packets are sent. Agent messaging, token mapping and payments are not implemented.</p>
+      <p className="bs-handoff-note">Explore the roles to inspect example messages. No packets are sent. Agent messaging and token-contract mapping are not implemented.</p>
     </div>
   );
 }

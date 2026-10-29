@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ArrowRight, ArrowUpRight, Check, Radio, Network, Code2, FileText } from "lucide-react";
 import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
@@ -8,12 +9,12 @@ import AgentHandoff from "@/components/site/agent-handoff";
 import "./landing.css";
 import "./black-sheep.css";
 
-const DESCRIPTION = "Black Sheep is a meme coin concept with a news intelligence engine for tokenized-asset research. Source-linked news today; agent coordination and token utility planned.";
+const DESCRIPTION = "Black Sheep follows the news behind tokenized assets. Source-linked company intelligence for AI agents, with Robinhood Chain asset mapping and agent coordination planned.";
 export const metadata = {
-  title: "Black Sheep — A different breed of intelligence",
+  title: "Black Sheep — Intelligence for tokenized assets",
   description: DESCRIPTION,
-  openGraph: { title: "Black Sheep — A different breed of intelligence", description: DESCRIPTION, url: "https://www.newsbeat.dev", siteName: "Black Sheep", type: "website" },
-  twitter: { card: "summary_large_image", title: "Black Sheep — A different breed of intelligence", description: DESCRIPTION },
+  openGraph: { title: "Black Sheep — Intelligence for tokenized assets", description: DESCRIPTION, url: "https://www.newsbeat.dev", siteName: "Black Sheep", type: "website" },
+  twitter: { card: "summary_large_image", title: "Black Sheep — Intelligence for tokenized assets", description: DESCRIPTION },
 };
 const MCP_URL = "https://www.newsbeat.dev/api/mcp";
 const STAGES = [
@@ -29,24 +30,23 @@ export default function Home() {
         <section className="bs-hero" id="top">
           <div className="wrap bs-hero-grid">
             <div className="bs-hero-copy">
-              <span className="bs-kicker"><span /> BLACK SHEEP / NEWS-AWARE INTELLIGENCE</span>
+              <span className="bs-kicker"><span /> BLACK SHEEP / TOKENIZED-ASSET INTELLIGENCE</span>
               <h1>Less baa.<br /><span>More brain.</span></h1>
-              <p className="bs-lede">A meme with a nose for news. Source-linked intelligence for agents following the companies behind tokenized assets. Curious by nature. Skeptical by design.</p>
+              <p className="bs-lede">The news intelligence layer for tokenized assets. Follow the underlying companies, understand what changed, and give your agents context they can verify.</p>
               <div className="hero-cta">
                 <a className="btn-primary" href="#live-news">Try the news engine <ArrowRight size={15} /></a>
                 <a className="bs-text-link" href="#agent-network">Explore the agent network <ArrowUpRight size={15} /></a>
               </div>
-              <div className="bs-status"><span><Check size={12} /> News tools live</span><span>Token + messaging planned</span></div>
+              <div className="bs-status"><span><Check size={12} /> News tools live</span><span>Chain mapping planned</span></div>
               <a className="bs-chain-note" href="/docs/robinhood-chain">Robinhood Chain <span>/ integration planned</span><ArrowUpRight size={12} /></a>
             </div>
             <div className="bs-emblem" aria-label="Black Sheep mascot: a curious black sheep with a raised eyebrow and a knowing smile">
               <div className="bs-emblem-top"><span>MEET YOUR UNLIKELY ANALYST</span><span>EST. OUTSIDE THE HERD</span></div>
               <div className="bs-mascot-stage">
                 <span className="bs-thought">Source?</span>
-                <BrandMark className="bs-mascot" size={320} variant="mascot" />
-                <span className="bs-mascot-caption">INDEPENDENT THINKER.<br />EXCELLENT WOOL.</span>
+                <Image className="bs-mascot-3d" src="/black-sheep-3d.jpg" width={1254} height={1254} sizes="(max-width: 760px) 100vw, 50vw" priority alt="Black Sheep, a curious 3D sheep with textured black wool, a raised eyebrow and a knowing smile" />
               </div>
-              <div className="bs-emblem-bottom"><span>READS THE NEWS.<br />QUESTIONS THE NARRATIVE.</span><span className="bs-token-state">MEME COIN CONCEPT<br />NOT LAUNCHED</span></div>
+              <div className="bs-emblem-bottom"><span>READS THE NEWS.<br />QUESTIONS THE NARRATIVE.</span><span className="bs-asset-state">FOLLOWS TOKENIZED ASSETS<br />KEEPS THE SOURCES</span></div>
             </div>
           </div>
         </section>
@@ -58,7 +58,7 @@ export default function Home() {
         <section className="scaffold" id="thesis">
           <div className="wrap bs-thesis">
             <div><span className="bs-kicker">01 / THE THESIS</span><h2 className="bs-title">Funny face.<br />Serious questions.</h2></div>
-            <div><p className="bs-editorial">Tokenized markets need context. Black Sheep starts with the companies, events and reporting behind the assets.</p><p className="bs-body">The foundation is the working NewsBeat news engine. The direction is a shared context network where agents can discover developments, check the evidence and pass an observation to another agent.</p><p className="bs-fine">Stock Token mapping, agent messaging and a blockchain token are planned. Current coverage is company and crypto news.</p></div>
+            <div><p className="bs-editorial">Tokenized markets need context. Black Sheep starts with the companies, events and reporting behind the assets.</p><p className="bs-body">The foundation is the working NewsBeat news engine. The direction is a shared context network where agents can discover developments, check the evidence and pass an observation to another agent.</p><p className="bs-fine">Stock Token mapping and agent messaging are planned. The current news engine covers the underlying companies and retains its existing crypto catalog.</p></div>
           </div>
         </section>
 
@@ -66,11 +66,11 @@ export default function Home() {
           <div className="wrap bs-live-grid">
             <div>
               <span className="bs-kicker"><Radio size={12} /> 02 / THE ENGINE IS LIVE</span>
-              <h2 className="bs-title">Did your meme<br />bring sources?</h2>
+              <h2 className="bs-title">Good intelligence.<br />Receipts included.</h2>
               <p className="bs-body">Ask what happened with NVIDIA, Apple or another supported company. Get source-linked headlines, a short summary and a clear view of coverage freshness.</p>
               <p className="bs-body">Sources are checked on a fifteen-minute schedule. Summaries use headline metadata; full article text is not included.</p>
               <a className="bs-text-link" href="/dashboard">Open the research terminal <ArrowRight size={14} /></a>
-              <div className="bs-engine-note"><Check size={15} /><p>Public MCP and REST news reads are free during early access. No wallet or token is required.</p></div>
+              <div className="bs-engine-note"><Check size={15} /><p>Public MCP and REST news reads are free during early access. No wallet is required.</p></div>
             </div>
             <NewsPreview />
           </div>
@@ -90,10 +90,10 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="scaffold" id="token">
-          <div className="wrap bs-token-grid">
-            <div><span className="bs-kicker">05 / THE TOKEN THESIS</span><h2 className="bs-title">Culture first.<br />Utility to prove.</h2><p className="bs-body">Black Sheep is the proposed meme coin identity for this network. Its utility would need to earn a place in how agents request, exchange and deliver context.</p></div>
-            <div className="bs-token-panel"><div className="bs-panel-heading"><BrandMark size={38} /><span>BLACK SHEEP / TOKEN CONCEPT</span></div><dl><div><dt>Status</dt><dd>Not launched</dd></div><div><dt>Proposed role</dt><dd>Agent request and delivery payments</dd></div><div><dt>Chain, ticker and supply</dt><dd>To be defined</dd></div><div><dt>Contract address</dt><dd>None published by this project</dd></div></dl><p>Token utility and economics are design proposals. The current news service runs without a token.</p><a className="bs-text-link" href="/docs/black-sheep">Read the product thesis <ArrowRight size={13} /></a></div>
+        <section className="scaffold" id="asset-context">
+          <div className="wrap bs-asset-grid">
+            <div><span className="bs-kicker">05 / FOLLOW THE UNDERLYING ASSET</span><h2 className="bs-title">Onchain asset.<br />Real-world story.</h2><p className="bs-body">A token tells you what you hold. The reporting helps explain what is happening around it. Black Sheep brings company developments, original sources and coverage freshness into your agent’s research.</p></div>
+            <div className="bs-asset-panel"><div className="bs-panel-heading"><BrandMark size={38} /><span>BLACK SHEEP / ASSET CONTEXT</span></div><dl><div><dt>Research focus</dt><dd>Tokenized real-world assets, starting with Stock Tokens</dd></div><div><dt>Available today</dt><dd>Underlying-company news through MCP and REST</dd></div><div><dt>Next integration</dt><dd>Verified token-to-company mapping on Robinhood Chain</dd></div><div><dt>Every observation</dt><dd>Source links, dates and coverage freshness</dd></div></dl><p>Token-contract mapping and corporate-action data are planned. Current lookups return news for supported underlying companies.</p><a className="bs-text-link" href="/docs/black-sheep">Read the product direction <ArrowRight size={13} /></a></div>
           </div>
         </section>
 

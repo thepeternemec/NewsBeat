@@ -83,4 +83,4 @@ shown once. That is a browser flow and needs a human.
 - Source — https://github.com/thepeternemec/NewsBeat
 
 # Black Sheep transition
-Black Sheep is the new product identity for the NewsBeat news service. Existing newsbeat_* tools and newsbeat.dev endpoints remain unchanged. Tokenized-asset mapping, agent-to-agent messaging and a blockchain token are planned, not live. No token contract is published by this project. Current capabilities are read-only news tools; the token is not required for news access.
+Black Sheep is the new product identity for the NewsBeat news service. Existing newsbeat_* tools and newsbeat.dev endpoints remain unchanged. Black Sheep focuses on news intelligence for tokenized real-world assets. Verified token-to-company mapping and agent-to-agent messaging are planned, not live. Current capabilities are read-only company and crypto news tools. Black Sheep does not issue its own token.

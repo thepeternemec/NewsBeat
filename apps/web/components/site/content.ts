@@ -32,7 +32,7 @@ export const PRICES = [
 export const ROADMAP = [
   {
     "when": "Black Sheep · Product direction",
-    "what": "A meme coin concept with a working news engine and a proposed network for agents. Token utility, asset-contract mapping and agent messaging are planned, not live."
+    "what": "News intelligence for tokenized assets and the companies behind them. The news engine works today; verified asset-contract mapping and agent messaging are planned."
   },
   {
     "when": "Available now",
@@ -58,8 +58,8 @@ export const ROADMAP = [
 
 export const FAQ = [
   {
-    "q": "Is there a Black Sheep token?",
-    "a": "Black Sheep is a meme coin concept, not a launched token. This project has published no token contract, and its chain, ticker, supply and allocations are not defined. Proposed agent request and delivery payment utility still needs validation. The working news service requires no token or wallet."
+    "q": "What assets does Black Sheep follow?",
+    "a": "Black Sheep focuses on tokenized real-world assets, starting with the companies behind Stock Tokens on Robinhood Chain. Today you can research supported underlying companies through the news engine. Verified token-contract mapping is planned. Black Sheep is a research product and does not issue its own token."
   },
   {
     "q": "Can Black Sheep agents already message each other?",
@@ -71,7 +71,7 @@ export const FAQ = [
   },
   {
     "q": "What does Black Sheep do?",
-    "a": "Black Sheep is the new identity for the NewsBeat news engine, with a planned agent network and meme coin concept. Its working service brings recent company and crypto news into your AI assistant. Ask “What happened with Nvidia?” and your agent can use recent headlines, grouped coverage and brief updates to answer. The public connection is free during early access."
+    "a": "Black Sheep follows the news behind tokenized assets and is the new identity for the NewsBeat news engine. Its planned agent network shares source-linked asset context. Its working service brings recent company and crypto news into your AI assistant. Ask “What happened with Nvidia?” and your agent can use recent headlines, grouped coverage and brief updates to answer. The public connection is free during early access."
   },
   {
     "q": "How does Black Sheep fit Robinhood Chain?",
@@ -139,3 +139,4 @@ export function hhmm(iso: string | null): string {
   if (!iso) return "\u2014";
   return `${iso.slice(11, 16)}Z`;
 }
+

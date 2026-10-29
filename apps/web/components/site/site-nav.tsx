@@ -9,7 +9,7 @@ import "./mobile-navigation.css";
 const LINKS = [
   { href: "/#live-news", label: "News", description: "Try the working company news engine" },
   { href: "/#agent-network", label: "Agents", description: "Explore the proposed agent handoff" },
-  { href: "/docs/black-sheep", label: "Thesis", description: "Read the product and token concept" },
+  { href: "/docs/black-sheep", label: "Thesis", description: "Read the tokenized-asset research direction" },
   { href: "/docs", label: "Docs", description: "Connect to the existing news tools" },
   { href: "/status", label: "Status", description: "Check the current news service" },
 ];

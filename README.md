@@ -4,7 +4,7 @@
 
 ### A different breed of intelligence.
 
-A meme coin concept with a working news intelligence engine for tokenized-asset research. Source-linked news today; agent coordination and token utility planned.
+News intelligence for tokenized assets and the companies behind them. Source-linked news today; verified asset mapping and agent coordination planned.
 
 **Free during early access · No API key or credit card needed for public reads**
 
@@ -80,9 +80,9 @@ Use the [connection guide](https://www.newsbeat.dev/connect) for setup and a liv
 
 Black Sheep is the new product identity for the NewsBeat news service. The current engine collects company and crypto headline metadata and serves source-linked news through MCP and REST. The proposed network would let agents exchange observations with provenance and freshness.
 
-**No blockchain token is launched by this project.** Agent-to-agent messaging, token mapping and token payments are planned. The chain, ticker, supply and allocations for a Black Sheep token have not been defined. Existing endpoints, tool names and package identifiers remain compatible.
+Black Sheep is a research product focused on tokenized real-world assets. Verified token-to-company mapping and agent-to-agent messaging are planned. Black Sheep does not issue its own token. Existing endpoints, tool names and package identifiers remain compatible.
 
-Read the [product and token thesis](docs/BLACK-SHEEP.md) and [website guide](https://www.newsbeat.dev/docs/black-sheep).
+Read the [product direction](docs/BLACK-SHEEP.md) and [website guide](https://www.newsbeat.dev/docs/black-sheep).
 
 ## Direction: context for Robinhood Chain
 
@@ -149,7 +149,7 @@ Use Node.js 22 or 24 and npm workspaces.
 
 ```bash
 git clone https://github.com/thepeternemec/NewsBeat.git
-cd Black Sheep
+cd NewsBeat
 npm ci
 npm run build
 npm test
@@ -197,3 +197,4 @@ REST scans up to 200 reports by default (`limit` 1–500); `newsbeat_stories` ov
 The summarizer calls `google/gemini-2.5-flash-lite` through Vercel AI Gateway on demand. On Vercel, it uses the Function request’s OIDC token; another runtime can supply `AI_GATEWAY_API_KEY`. Keep credentials server-side. Generation uses the project owner’s Gateway allowance or credits; public access remains free during early access.
 
 Results are cached in memory for up to five minutes for the same selected report IDs. The cache is per running instance, not shared across the deployment. Generation has a 20-second timeout and falls back to original headlines on failure. The checks enforce matching story IDs, reject new numeric figures, and preserve selected uncertainty cues; they do not guarantee factual correctness. Always keep the source links and headline-only label visible.
+

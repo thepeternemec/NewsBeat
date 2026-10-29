@@ -16,20 +16,20 @@ import GridField from "@/components/site/grid-field";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.newsbeat.dev"),
-  title: "Black Sheep — A different breed of intelligence",
+  title: "Black Sheep — Intelligence for tokenized assets",
   description:
-    "Black Sheep is a meme coin concept with a news intelligence engine for tokenized-asset research. Source-linked news today; agent coordination and token utility planned.",
+    "Black Sheep follows the news behind tokenized assets. Source-linked company intelligence for AI agents, with Robinhood Chain asset mapping and agent coordination planned.",
   openGraph: {
     type: "website",
     url: "https://www.newsbeat.dev",
     siteName: "Black Sheep",
-    title: "Black Sheep — A different breed of intelligence",
+    title: "Black Sheep — Intelligence for tokenized assets",
     description:
       "Ask what happened with the companies and crypto you follow. Recent headlines, short updates, and linked reporting for your AI agent.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Black Sheep — A different breed of intelligence",
+    title: "Black Sheep — Intelligence for tokenized assets",
     description:
       "Recent company and crypto news for your AI agent. Ask what happened and get a source-linked update.",
   },

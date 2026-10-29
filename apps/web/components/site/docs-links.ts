@@ -5,5 +5,6 @@ export const DOC_PAGES = [
   { href: "/docs/data", label: "Understand the news", group: "Go deeper", description: "Coverage, freshness and headline summaries." },
   { href: "/docs/connect", label: "MCP & API reference", group: "Go deeper", description: "Tools, requests and integration details." },
   { href: "/docs/robinhood-chain", label: "Robinhood Chain plan", group: "Go deeper", description: "Planned tokenized-asset context and integration sequence." },
-  { href: "/docs/black-sheep", label: "Black Sheep thesis", group: "Go deeper", description: "Product, proposed agent network and token concept." },
+  { href: "/docs/black-sheep", label: "Black Sheep thesis", group: "Go deeper", description: "Tokenized-asset intelligence and the proposed agent network." },
 ] as const;
+

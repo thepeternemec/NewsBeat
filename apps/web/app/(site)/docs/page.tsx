@@ -28,8 +28,8 @@ export default function DocsOverview() {
 
       <section className="docs-section" aria-labelledby="black-sheep-direction">
         <h2 id="black-sheep-direction">NewsBeat is becoming Black Sheep</h2>
-        <p>The existing news engine powers our new product direction: news for tokenized-asset research and a proposed network between agents. The blockchain token and agent messaging are planned. Existing newsbeat.dev endpoints and newsbeat_* tool names remain in use.</p>
-        <a className="docs-text-action" href="/docs/black-sheep">Explore the product and token thesis <ArrowRight size={14} aria-hidden="true" /></a>
+        <p>The existing news engine powers our new product direction: news for tokenized-asset research and a proposed network between agents. Verified asset-contract mapping and agent messaging are planned. Existing newsbeat.dev endpoints and newsbeat_* tool names remain in use.</p>
+        <a className="docs-text-action" href="/docs/black-sheep">Explore the tokenized-asset research direction <ArrowRight size={14} aria-hidden="true" /></a>
       </section>
 
       <section className="docs-section" aria-labelledby="choose-your-path">
@@ -100,3 +100,4 @@ export default function DocsOverview() {
     </div>
   );
 }
+
