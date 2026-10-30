@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import BrandMark from "@/components/site/brand-mark";
 
-export const alt = "NewsBeat — The news edge for crypto agents. Know what changed. Bring context to your next move.";
+export const alt = "Black Sheep — Intelligence for tokenized assets. Source-linked news for AI agents.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -21,21 +21,21 @@ export default function OpenGraphImage() {
     >
       <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
         <BrandMark size={52} />
-        <span style={{ fontSize: 24, fontWeight: 700, letterSpacing: 5 }}>NEWSBEAT</span>
+        <span style={{ fontSize: 24, fontWeight: 700, letterSpacing: 5 }}>BLACK SHEEP</span>
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", marginTop: 60 }}>
-        <span style={{ fontSize: 18, color: "#f4f4f4", letterSpacing: 2 }}>
-          THE NEWS EDGE FOR CRYPTO AGENTS
+        <span style={{ fontSize: 18, color: "#ccff00", letterSpacing: 2 }}>
+          BLACK SHEEP / TOKENIZED-ASSET INTELLIGENCE
         </span>
         <span style={{ marginTop: 22, fontSize: 56, fontWeight: 700, letterSpacing: -2, lineHeight: 1.09 }}>
-          Know what changed.
+          Less baa.
         </span>
         <span style={{ fontSize: 56, fontWeight: 700, letterSpacing: -2, lineHeight: 1.09 }}>
-          Bring context to your next move.
+          More brain.
         </span>
         <span style={{ marginTop: 26, fontSize: 24, color: "#bbbbbb" }}>
-          Crypto briefings. Headline summaries. Context for your agent.
+          Tokenized assets. Company news. Context for agents.
         </span>
       </div>
 
@@ -58,3 +58,4 @@ export default function OpenGraphImage() {
     size,
   );
 }
+

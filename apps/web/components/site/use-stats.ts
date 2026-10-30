@@ -85,7 +85,7 @@ export function useNewsBeatStats(intervalMs = 20000) {
   const mapped = items.map((i) => ({
     id: i.id,
     beat_id: i.beat_id,
-    beat_label: labelOf.get(i.beat_id) ?? "NEWSBEAT",
+    beat_label: labelOf.get(i.beat_id) ?? "BLACK SHEEP",
     lede: i.title,
     source: i.source,
     url: i.url,
@@ -97,7 +97,7 @@ export function useNewsBeatStats(intervalMs = 20000) {
     ? mapped.slice(0, 8)
     : [
         {
-          beat_label: "NEWSBEAT",
+          beat_label: "BLACK SHEEP",
           lede: "Awaiting the next ingestion cycle.",
           source: "system",
           url: "#",

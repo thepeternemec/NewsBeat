@@ -1,406 +1,109 @@
-import {
-  ArrowRight,
-  ArrowUpRight,
-  Check,
-  Clock3,
-  FileCheck,
-  GitBranch,
-  Link2,
-  MessageSquare,
-  Plug,
-  Sparkles,
-} from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, ArrowUpRight, Check, Radio, Network, Code2, FileText } from "lucide-react";
 import SiteNav from "@/components/site/site-nav";
-import BrandMark from "@/components/site/brand-mark";
 import SiteFooter from "@/components/site/site-footer";
-import CopyButton from "@/components/site/copy-button";
 import NewsPreview from "@/components/site/news-preview";
-import { FAQ } from "@/components/site/content";
+import CopyButton from "@/components/site/copy-button";
+import AgentHandoff from "@/components/site/agent-handoff";
 import "./landing.css";
-import "./crypto-landing.css";
+import "./black-sheep.css";
 
-const DESCRIPTION = "Give your agent recent crypto headlines, short briefings and updates since its last check. Connect through MCP or API. Free public access, with company news available too.";
+const DESCRIPTION = "Company intelligence for agents researching tokenized assets. Investigate developments, inspect sources and export research context through MCP, REST or the terminal.";
 export const metadata = {
-  title: "NewsBeat — The news edge for crypto agents",
+  title: "Black Sheep — Intelligence for tokenized markets",
   description: DESCRIPTION,
-  openGraph: { title: "NewsBeat — The news edge for crypto agents", description: DESCRIPTION, url: "https://www.newsbeat.dev", siteName: "NewsBeat", type: "website" },
-  twitter: { card: "summary_large_image", title: "NewsBeat — The news edge for crypto agents", description: DESCRIPTION },
+  openGraph: { title: "Black Sheep — Intelligence for tokenized markets", description: DESCRIPTION, url: "https://www.newsbeat.dev", siteName: "Black Sheep", type: "website" },
+  twitter: { card: "summary_large_image", title: "Black Sheep — Intelligence for tokenized markets", description: DESCRIPTION },
 };
-
 const MCP_URL = "https://www.newsbeat.dev/api/mcp";
-const REST_EXAMPLE =
-  'curl -s "https://www.newsbeat.dev/api/v2/brief?beat_id=b_06c91290de1c"';
-const STEPS = [
-  {
-    number: "01",
-    icon: Plug,
-    title: "Connect your agent",
-    text: "Add NewsBeat to your assistant’s tools. Our setup guide walks you through the connection.",
-  },
-  {
-    number: "02",
-    icon: MessageSquare,
-    title: "Ask in your own words",
-    text: "“Catch me up on Bitcoin” or “What changed with Solana?” No tickers or special commands to remember.",
-  },
-  {
-    number: "03",
-    icon: Link2,
-    title: "Understand the story",
-    text: "Your assistant uses recent headlines to explain the story, with dates and links when you need to dig deeper.",
-  },
-];
-const BENEFITS = [
-  {
-    icon: Sparkles,
-    title: "Brief me",
-    text: "Short updates and grouped coverage help your assistant explain the main developments without repeating the same story.",
-  },
-  {
-    icon: Clock3,
-    title: "What changed?",
-    text: "Ask what’s new since your last check. Your assistant can pick up from the previous update when it has saved that check.",
-  },
-  {
-    icon: FileCheck,
-    title: "Check the reporting",
-    text: "Every headline includes its publisher, publication date and a link. Open the reporting and form your own view.",
-  },
-];
-const QUESTIONS = [
-  {
-    label: "Catch up on Bitcoin",
-    question:
-      "Use NewsBeat to give me a short Bitcoin briefing, with sources and dates.",
-  },
-  {
-    label: "Follow Ethereum",
-    question:
-      "Summarize the recent Ethereum coverage. Tell me how fresh the news is.",
-  },
-  {
-    label: "Pick up where you left off",
-    question:
-      "What changed with Solana since our last NewsBeat check? If you have no saved check, start with the latest news.",
-  },
+const PRINCIPLES = [
+  { number: "01", title: "Discover what changed.", text: "Research the underlying company. Group related reports and track new headlines since your agent’s last check." },
+  { number: "02", title: "Interrogate the evidence.", text: "Inspect publishers, timestamps and coverage freshness. Separate reported developments from assumptions about price." },
+  { number: "03", title: "Put context to work.", text: "Export a research brief with evidence and open questions. Connect MCP or REST to bring the same context into your agent’s workflow." },
 ];
 
 export default function Home() {
   return (
     <>
       <SiteNav active="/" />
-      <main className="landing-home crypto-home">
-        <section className="hero" id="top">
-          <div className="wrap landing-hero-grid">
-            <div className="landing-hero-copy">
-              <span className="landing-eyebrow">
-                The news edge for crypto agents
-              </span>
-              <h1>
-                <span>Know what changed.</span>
-                <span>Bring context to<br />your next move.</span>
-              </h1>
-              <p className="lede">
-                Give your agent recent crypto headlines, short briefings, and
-                updates since its last check. Built for market research.
-                Connected through MCP or API. Start free.
-              </p>
+      <main className="landing-home bs-home">
+        <section className="bs-hero" id="top">
+          <div className="wrap bs-hero-grid">
+            <div className="bs-hero-copy">
+              <span className="bs-kicker"><span /> INTELLIGENCE FOR TOKENIZED MARKETS</span>
+              <h1>Context before<br /><span>the trade.</span></h1>
+              <p className="bs-lede">Give your trading agent a clearer view of the world behind the token.</p>
+              <p className="bs-hero-detail">Investigate company developments. Trace the evidence. Build a research brief your agent can use.</p>
               <div className="hero-cta">
-                <a className="btn-primary" href="#research-desk">
-                  Explore crypto news <ArrowRight size={15} />
-                </a>
-                <a className="landing-secondary" href="/docs/quickstart">
-                  Connect your agent <ArrowUpRight size={15} />
-                </a>
+                <a className="btn-primary" href="/dashboard">Open intelligence terminal <ArrowRight size={16} /></a>
+                <a className="bs-text-link" href="/docs/quickstart">Connect your agent <ArrowUpRight size={16} /></a>
               </div>
-              <div className="landing-reassurance">
-                <span>
-                  <Check size={13} /> Free during early access
-                </span>
-                <span>
-                  <Check size={13} /> No account or API key needed
-                </span>
+              <div className="bs-status"><span><Check size={14} /> News engine live</span><span>Free public access</span><span>No wallet needed</span></div>
+            </div>
+            <figure className="bs-emblem">
+              <div className="bs-mascot-stage">
+                <Image className="bs-mascot" src="/black-sheep-flat.png" width={1254} height={1254} sizes="(max-width: 760px) 88vw, (max-width: 1200px) 44vw, 480px" priority alt="A goofy cartoon black sheep waving, with floppy ears, a crooked grin and two little front teeth" />
               </div>
-              <a className="landing-how-link" href="#how">
-                See how it works <ArrowRight size={12} />
-              </a>
-              <a className="crypto-follow" href="https://x.com/newsbeat_" target="_blank" rel="noopener noreferrer">Follow the build on X <ArrowUpRight size={12} /></a>
-            </div>
-            <div className="crypto-research-desk" id="research-desk" tabIndex={-1}>
-              <div className="crypto-desk-label"><span>NEWSBEAT / RESEARCH DESK</span><span>MCP + API</span></div>
-              <NewsPreview cryptoFirst />
-            </div>
+              <figcaption>Funny sheep. Serious sources.</figcaption>
+            </figure>
+          </div>
+          <div className="wrap bs-hero-foot"><span>COMPANY RESEARCH LIVE · TOKEN MAPPING PLANNED</span><a href="#thesis">Explore the intelligence layer <span aria-hidden="true">↓</span></a></div>
+        </section>
+
+        <section className="bs-ticker" aria-label="Company research examples">
+          <div className="wrap"><span>START WITH THE UNDERLYING COMPANY</span><strong>NVIDIA</strong><strong>APPLE</strong><strong>ALPHABET</strong><a href="/dashboard">Find your company <ArrowUpRight size={14} /></a></div>
+        </section>
+
+        <section className="scaffold" id="thesis">
+          <div className="wrap">
+            <div className="bs-section-head"><span className="bs-kicker">01 / FROM NEWS TO RESEARCH</span><h2 className="bs-title">Know what changed.<br />Know what’s missing.</h2><p className="bs-body">A token ticker is only the starting point. Black Sheep gives agents source-linked company intelligence to support research before a trading decision.</p></div>
+            <div className="bs-principles">{PRINCIPLES.map(item => <article key={item.number}><span>{item.number}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
           </div>
         </section>
 
-        <section className="landing-proof" aria-label="NewsBeat at a glance">
-          <div className="wrap">
+        <section className="scaffold bs-news-section" id="live-news">
+          <div className="wrap bs-live-grid">
             <div>
-              <strong>500+</strong>
-              <span>Supported crypto assets · company coverage also available</span>
+              <span className="bs-kicker"><Radio size={13} /> 02 / LIVE COMPANY INTELLIGENCE</span>
+              <h2 className="bs-title">Find the story<br />behind the asset.</h2>
+              <p className="bs-body">Choose an underlying company. Review recent coverage, inspect headline summaries and take a sourced research snapshot into your agent.</p>
+              <a className="bs-text-link" href="/dashboard">Open the research terminal <ArrowRight size={15} /></a>
+              <div className="bs-engine-note"><Check size={16} /><p>Headlines are checked on a fifteen-minute schedule. Coverage freshness is shown with each lookup. Summaries use headlines, not full articles.</p></div>
             </div>
-            <div>
-              <strong>120</strong>
-              <span>Free requests per minute · no API key</span>
-            </div>
-            <div>
-              <strong>1,200</strong>
-              <span>REST requests per minute · seven-day trial key</span>
+            <NewsPreview />
+          </div>
+        </section>
+
+        <section className="scaffold" id="asset-context">
+          <div className="wrap bs-asset-grid">
+            <div><span className="bs-kicker">03 / REAL ASSETS. REAL STORIES.</span><h2 className="bs-title">The token is<br />only the beginning.</h2><p className="bs-body">An onchain asset still has a story in the real world. Black Sheep starts with company news and is building toward verified token-to-company context for Robinhood Chain.</p><a className="bs-text-link" href="/docs/robinhood-chain">Explore the integration plan <ArrowUpRight size={15} /></a></div>
+            <div className="bs-roadmap">
+              <article><span className="bs-state">AVAILABLE TODAY</span><h3>Company intelligence</h3><p>Source-linked headlines, grouped coverage, headline summaries and updates since your last check. Available through MCP and REST.</p></article>
+              <article><span className="bs-state bs-state-planned">PLANNED</span><h3>Tokenized-asset context</h3><p>Verified Stock Token mapping and corporate-action context. Current lookups cover supported underlying companies; they do not resolve token contracts.</p></article>
             </div>
           </div>
         </section>
 
-        <section className="scaffold" id="how">
+        <section className="scaffold bs-network-section" id="agent-network">
           <div className="wrap">
-            <div className="sec-head">
-              <span className="sec-eyebrow">Your research workflow</span>
-              <h2 className="sec-title">From a question to a market briefing.</h2>
-              <p className="sec-sub">
-                Stay in the assistant you already use. When it calls NewsBeat,
-                recent coverage is available in the conversation.
-              </p>
-            </div>
-            <div className="features landing-steps">
-              {STEPS.map(({ number, icon: Icon, title, text }) => (
-                <div className="feature" key={number}>
-                  <div className="landing-step-top">
-                    <span>{number}</span>
-                    <Icon size={20} strokeWidth={1.5} />
-                  </div>
-                  <h3 className="feature-title">{title}</h3>
-                  <p className="feature-desc">{text}</p>
-                </div>
-              ))}
-            </div>
-            <p className="landing-compatibility">
-              Your assistant needs to support custom remote MCP connections.
-              Setup options vary by app and account.{" "}
-              <a href="/docs/quickstart">
-                Find your setup path <ArrowRight size={12} />
-              </a>
-            </p>
-            <div className="landing-preference">
-              <Sparkles size={20} />
-              <div>
-                <h3>Let your assistant know when to check.</h3>
-                <p>
-                  Add a news preference to its instructions so it can look up
-                  recent developments whenever they help with your question.
-                  Tool choices depend on your assistant and its settings.
-                </p>
-              </div>
-              <a href="/docs/quickstart#agent-instruction">
-                Copy the instruction <ArrowRight size={14} />
-              </a>
-            </div>
+            <div className="bs-network-head"><div><span className="bs-kicker"><Network size={13} /> 04 / BUILT FOR AGENT WORKFLOWS</span><h2 className="bs-title">A sharper brief.<br />A better next question.</h2></div><div><p className="bs-body">Give your connected agent a specific research job. Start with these prompts, or export a brief built from live coverage in the terminal.</p><p className="bs-fine">MCP + REST available · Research stays grounded in cited evidence.</p></div></div>
+            <AgentHandoff />
           </div>
         </section>
 
-        <section className="scaffold" id="features">
-          <div className="wrap">
-            <div className="sec-head">
-              <span className="sec-eyebrow">
-                Your news research toolkit
-              </span>
-              <h2 className="sec-title">Brief. Catch up. Check the story.</h2>
-              <p className="sec-sub">
-                Bring recent coverage into crypto research, market briefings and
-                your next thesis. Keep the reporting behind each update close at hand.
-              </p>
-            </div>
-            <div className="signal-workbench" aria-label="How NewsBeat turns recent coverage into an agent update">
-              <div className="signal-stage">
-                <span className="signal-label">01 / Recent coverage</span>
-                <div className="signal-reports" aria-hidden="true">
-                  <div><span>CRYPTO COVERAGE</span><i /><i /></div>
-                  <div><span>COMPANY UPDATES</span><i /><i /></div>
-                  <div><span>PUBLISHER REPORTS</span><i /><i /></div>
-                </div>
-                <p>Many reports. One place to check.</p>
-              </div>
-              <div className="signal-stage signal-engine">
-                <span className="signal-label">02 / NewsBeat</span>
-                <div className="signal-orbit" aria-hidden="true">
-                  <BrandMark className="signal-core" size={85} />
-                </div>
-                <p>Group the repeats. Surface the story.</p>
-              </div>
-              <div className="signal-stage">
-                <span className="signal-label">03 / Your agent</span>
-                <div className="signal-answer">
-                  <MessageSquare size={18} strokeWidth={1.5} aria-hidden="true" />
-                  <strong>What changed?</strong>
-                  <span>A short headline-based update</span>
-                  <div><span>Sources</span><span>Dates</span><span>Freshness</span></div>
-                </div>
-                <p>Context for the next question.</p>
-              </div>
-            </div>
-            <div className="features">
-              {BENEFITS.map(({ icon: Icon, title, text }) => (
-                <div className="feature landing-benefit" key={title}>
-                  <span className="feature-icon">
-                    <Icon size={18} strokeWidth={1.5} />
-                  </span>
-                  <h3 className="feature-title">{title}</h3>
-                  <p className="feature-desc">{text}</p>
-                </div>
-              ))}
-            </div>
-            <p className="landing-caption">
-              Updates are based on headlines, not full article text. Your
-              assistant should flag missing or out-of-date coverage.
-            </p>
+        <section className="scaffold bs-build-section" id="build">
+          <div className="wrap bs-build-grid">
+            <div><span className="bs-kicker"><Code2 size={13} /> 05 / THE CONTEXT LAYER FOR YOUR STACK</span><h2 className="bs-title">Your agent.<br />Connected to context.</h2><p className="bs-body">Use MCP for tool calls or REST for your own pipeline. Retrieve a baseline, save the cursor and ask what changed. Keep sources and freshness attached at every step.</p><div className="bs-build-links"><a className="btn-primary" href="/docs/quickstart">Connect your agent <ArrowRight size={15} /></a><a className="bs-text-link" href="/docs/connect">Read the docs <ArrowUpRight size={15} /></a></div></div>
+            <div><div className="code"><div className="code-bar">MCP CONNECTION ADDRESS <CopyButton text={MCP_URL} label="Copy endpoint" /></div><pre>{MCP_URL}</pre></div><a className="bs-doc-link" href="/docs/black-sheep"><FileText size={17} /><span>Where Black Sheep is going<small>The product direction and what is available now.</small></span><ArrowUpRight size={15} /></a></div>
           </div>
         </section>
 
-        <section className="scaffold crypto-community" id="community">
-          <div className="wrap crypto-community-grid">
-            <div className="sec-head">
-              <span className="sec-eyebrow">Building in the open</span>
-              <h2 className="sec-title">Build your news edge with us.</h2>
-              <p className="sec-sub">For people researching crypto and builders giving agents better context. Try the product, share your workflow, and help shape what comes next.</p>
-              <div className="crypto-community-links">
-                <a className="btn-primary" href="https://x.com/newsbeat_" target="_blank" rel="noopener noreferrer">Follow NewsBeat on X <ArrowUpRight size={15} /></a>
-                <a href="https://github.com/thepeternemec/NewsBeat/commits/main" target="_blank" rel="noopener noreferrer">See what shipped <ArrowUpRight size={14} /></a>
-              </div>
-            </div>
-            <div className="crypto-roadmap" aria-label="Product direction">
-              <div><span className="crypto-phase">AVAILABLE TODAY</span><h3>News your agent can use.</h3><p>Live lookups, headline summaries, grouped coverage and follow-up checks through MCP and REST.</p></div>
-              <div><span className="crypto-phase crypto-phase-future">COMING SOON</span><h3>NewsBeat agents. More connections.</h3><p>NewsBeat agents will soon connect to Codex, Claude, Grok, Muse, and other agent platforms.</p><a href="mailto:contact@newsbeat.dev">Tell us what you need <ArrowRight size={13} /></a></div>
-            </div>
-          </div>
-        </section>
-
-        <section className="scaffold" id="questions">
-          <div className="wrap">
-            <div className="sec-head">
-              <span className="sec-eyebrow">
-                Start with what you want to know
-              </span>
-              <h2 className="sec-title">Start with the assets you follow.</h2>
-              <p className="sec-sub">
-                Once connected, copy a question into your agent or ask in your own words.
-              </p>
-            </div>
-            <div className="landing-question-grid">
-              {QUESTIONS.map((item) => (
-                <div className="landing-question" key={item.label}>
-                  <span>{item.label}</span>
-                  <p>“{item.question}”</p>
-                  <CopyButton text={item.question} label="Copy question" />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="scaffold" id="developers">
-          <div className="wrap landing-developer-grid">
-            <div className="sec-head">
-              <span className="sec-eyebrow">For builders, too</span>
-              <h2 className="sec-title">
-                Your agent. Your stack. The same news.
-              </h2>
-              <p className="sec-sub">
-                Bring recent company and crypto news into your own agent with
-                hosted MCP, REST or OpenAI-compatible tools.
-              </p>
-              <div className="landing-developer-links">
-                <a href="/docs/connect">
-                  Read the integration guide <ArrowRight size={14} />
-                </a>
-                <a href="https://github.com/thepeternemec/NewsBeat">
-                  <GitBranch size={14} /> Open source on GitHub
-                </a>
-              </div>
-            </div>
-            <div className="landing-developer-console">
-              <div className="code">
-                <div className="code-bar">
-                  MCP connection address{" "}
-                  <CopyButton text={MCP_URL} label="Copy address" />
-                </div>
-                <pre>{MCP_URL}</pre>
-              </div>
-              <details className="landing-rest">
-                <summary>
-                  See a REST example <span aria-hidden="true">+</span>
-                </summary>
-                <div className="code">
-                  <div className="code-bar">
-                    A short Bitcoin briefing{" "}
-                    <CopyButton text={REST_EXAMPLE} label="Copy command" />
-                  </div>
-                  <pre>{REST_EXAMPLE}</pre>
-                </div>
-              </details>
-              <p className="landing-caption">
-                Public MCP and REST reads are free during early access. For a
-                measured REST evaluation, <a href="/keys">start a seven-day key trial</a>
-                {" "}with up to $6 in usage credit. Paid checkout is coming soon.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="scaffold" id="faq">
-          <div className="wrap-tight">
-            <div className="sec-head">
-              <span className="sec-eyebrow">Before you start</span>
-              <h2 className="sec-title">A few things worth knowing.</h2>
-            </div>
-            <div className="faq">
-              {FAQ.filter((item) => [
-                "Can I try NewsBeat before connecting an assistant?",
-                "What does NewsBeat do?",
-                "Do I need to know how to code?",
-                "How do I connect it to my assistant?",
-                "Is NewsBeat free?",
-                "What is the seven-day API key trial?",
-              ].includes(item.q)).map(
-                (item) => (
-                  <details key={item.q}>
-                    <summary>{item.q}</summary>
-                    <div className="a">{item.a}</div>
-                  </details>
-                ),
-              )}
-            </div>
-            <p className="more">
-              <a href="/faq">
-                More questions? Read the full FAQ <ArrowRight size={13} />
-              </a>
-            </p>
-          </div>
-        </section>
-
-        <section className="cta-section">
-          <div className="wrap">
-            <h2 className="cta-title">
-              Your agent.
-              <br />
-              Now with market context.
-            </h2>
-            <p className="cta-sub">
-              Connect NewsBeat to an assistant with custom MCP support. Ask about
-              the crypto assets and companies you follow, whenever current news matters.
-            </p>
-            <div className="cta-row">
-              <a className="btn-primary" href="/docs/quickstart">
-                Connect NewsBeat <ArrowRight size={15} />
-              </a>
-              <a className="btn-ghost" href="/dashboard">
-                Explore live news
-              </a>
-            </div>
-            <p className="cta-tiny">
-              Free public access · Optional seven-day REST trial · Open source
-            </p>
-          </div>
+        <section className="bs-closing">
+          <div className="wrap"><span className="bs-kicker">LESS NOISE. MORE CONTEXT.</span><h2>Research the asset.<br />Then make your move.</h2><a className="btn-primary" href="/dashboard">Build your first research brief <ArrowRight size={16} /></a><p>Company research today. Token mapping, market data and execution are not connected.<br />Independent project. No Robinhood affiliation or endorsement.</p></div>
         </section>
       </main>
       <SiteFooter />
     </>
   );
 }
+

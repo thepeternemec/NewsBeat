@@ -2,7 +2,7 @@
   "name": "newsbeat",
   "version": "0.2.0",
   "private": true,
-  "description": "NewsBeat \u2014 the news layer for AI agents. Source-linked equity and crypto headlines, change monitoring, MCP and REST.",
+  "description": "NewsBeat — the news layer for AI agents. Source-linked equity and crypto headlines, change monitoring, MCP and REST.",
   "license": "MIT",
   "engines": {
     "node": ">=20"
@@ -14,7 +14,7 @@
   "scripts": {
     "build": "npm run build:packages && npm run build -w @newsbeat/api && npm run build -w newsbeat-worker && npm run build -w newsbeat-web",
     "build:packages": "npm run build -w @newsbeat/contracts && npm run build -w @newsbeat/db",
-    "test": "npm run build:packages && npm run build -w newsbeat-worker && npm run build -w @newsbeat/api && node --test packages/contracts/dist/*.test.js packages/db/dist/*.test.js apps/worker/dist/*.test.js apps/worker/dist/*.test.js apps/api/dist/lib/*.test.js",
+    "test": "npm run build:packages && npm run build -w newsbeat-worker && npm run build -w @newsbeat/api && node --test packages/contracts/dist/*.test.js packages/db/dist/*.test.js apps/worker/dist/*.test.js apps/worker/dist/*.test.js apps/api/dist/lib/*.test.js && node --test apps/web/tests/*.test.mjs",
     "dev": "npm run dev:web",
     "dev:web": "npm run dev -w newsbeat-web",
     "db:setup": "node db/migrate.mjs",

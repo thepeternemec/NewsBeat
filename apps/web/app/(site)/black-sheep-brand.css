@@ -1,0 +1,6 @@
+/* The shared identity follows the site's black, white and grey palette. */
+html .nav-site .nav-cta{background:var(--text-primary);border-color:var(--text-primary);color:var(--bg-base)}
+html .nav-site .nav-cta:hover{background:var(--text-secondary);border-color:var(--text-secondary);color:var(--bg-base)}
+.nav-site .brand-beat{width:34px;height:34px}
+html .documentation-page .docs-link.active{border-left-color:var(--text-primary)}
+@media(max-width:700px){.nav-site .brand-beat{width:30px;height:30px}}

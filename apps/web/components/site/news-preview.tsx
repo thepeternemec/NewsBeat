@@ -8,7 +8,6 @@ import { API_BASE } from "./content";
 const ASSETS = [
   { label: "Nvidia", ticker: "NVDA", beatId: "b_bb964843350e" },
   { label: "Apple", ticker: "AAPL", beatId: "b_7d5acdda6186" },
-  { label: "Bitcoin", ticker: "BTC", beatId: "b_06c91290de1c" },
 ] as const;
 const CRYPTO_ASSETS = [
   { label: "Bitcoin", ticker: "BTC", beatId: "b_06c91290de1c" },
@@ -216,7 +215,7 @@ export default function NewsPreview({ cryptoFirst = false }: { cryptoFirst?: boo
         aria-busy={state.status === "loading"}
       >
         <div className="news-preview-result-label">
-          <span>NEWSBEAT FINDS</span>
+          <span>BLACK SHEEP FINDS</span>
           <span>
             {state.status === "ready" && state.data.freshness.status === "fresh"
               ? "Recent headlines"

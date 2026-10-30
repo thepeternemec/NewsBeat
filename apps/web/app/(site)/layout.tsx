@@ -6,6 +6,7 @@ import "./motion-components.css";
 import "./theme.css";
 import "./interior.css";
 import "./refinement.css";
+import "./black-sheep-brand.css";
 import SoftAurora from "@/components/soft-aurora";
 import ScrollReveal from "@/components/scroll-reveal";
 import SmoothScroll from "@/components/smooth-scroll";
@@ -15,22 +16,22 @@ import GridField from "@/components/site/grid-field";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.newsbeat.dev"),
-  title: "NewsBeat — The news layer for AI agents",
+  title: "Black Sheep — Intelligence for tokenized assets",
   description:
-    "Ask your agent what happened with the companies and crypto you follow. NewsBeat brings recent headlines and short updates into your assistant through MCP or API. Public access is free; a seven-day REST trial is optional.",
+    "Black Sheep follows the news behind tokenized assets. Source-linked company intelligence for AI agents, with Robinhood Chain asset mapping and agent coordination planned.",
   openGraph: {
     type: "website",
     url: "https://www.newsbeat.dev",
-    siteName: "NewsBeat",
-    title: "NewsBeat — The news layer for AI agents",
+    siteName: "Black Sheep",
+    title: "Black Sheep — Intelligence for tokenized assets",
     description:
-      "Ask what happened with the companies and crypto you follow. Recent headlines, short updates, and linked reporting for your AI agent.",
+      "Follow the news behind tokenized assets. Company headlines, linked sources and fresh context for your AI agent.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "NewsBeat — The news layer for AI agents",
+    title: "Black Sheep — Intelligence for tokenized assets",
     description:
-      "Recent company and crypto news for your AI agent. Ask what happened and get a source-linked update.",
+      "Company news and source-linked context for your AI agent. Follow the real-world stories behind tokenized assets.",
   },
 };
 
@@ -64,3 +65,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+

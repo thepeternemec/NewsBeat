@@ -1,10 +1,10 @@
 <div align="center">
 
-# NewsBeat
+# Black Sheep
 
-### Ask what happened. Know what matters.
+### A different breed of intelligence.
 
-Company and crypto headlines your agent can actually use: a short update, the original sources, and a clear check time.
+News intelligence for tokenized assets and the companies behind them. Source-linked news today; verified asset mapping and agent coordination planned.
 
 **Free during early access · No API key or credit card needed for public reads**
 
@@ -20,7 +20,7 @@ Contact: [contact@newsbeat.dev](mailto:contact@newsbeat.dev)
 
 Ask your assistant “What happened with Nvidia?” It can look up recent news whenever it needs context for your question. Start with the [free live lookup](https://www.newsbeat.dev/docs/try): search by company name or ticker, read available headlines, and request a short source-linked summary. No account needed.
 
-NewsBeat gives agents equity and crypto news through **MCP and REST**. Resolve an asset, get a short source-linked update, and check freshness. For follow-up checks, save a cursor and get only newly indexed headlines or a clear “nothing new.”
+Black Sheep gives agents equity and crypto news through **MCP and REST**. Resolve an asset, get a short source-linked update, and check freshness. For follow-up checks, save a cursor and get only newly indexed headlines or a clear “nothing new.”
 
 Built for developers bringing news into trading research, prediction-market analysis, personal assistants and monitoring workflows.
 
@@ -76,6 +76,22 @@ Then ask: **“What happened with Nvidia? Give me a short summary and link the s
 
 Use the [connection guide](https://www.newsbeat.dev/connect) for setup and a live transport check. For function-calling agents, load schemas from [`/api/v2/tools`](https://www.newsbeat.dev/api/v2/tools). See the [model-loop example](examples/README.md).
 
+## Black Sheep direction
+
+Black Sheep is the new product identity for the NewsBeat news service. The current engine collects company and crypto headline metadata and serves source-linked news through MCP and REST. The proposed network would let agents exchange observations with provenance and freshness.
+
+Black Sheep is a research product focused on tokenized real-world assets. Verified token-to-company mapping and agent-to-agent messaging are planned. Black Sheep does not issue its own token. Existing endpoints, tool names and package identifiers remain compatible.
+
+Read the [product direction](docs/BLACK-SHEEP.md) and [website guide](https://www.newsbeat.dev/docs/black-sheep).
+
+## Direction: context for Robinhood Chain
+
+We are building toward a read-only context layer for tokenized markets on **Robinhood Chain**: connect stock-token identities to news about the underlying companies, then add corporate-action context and separately sourced market data.
+
+**Planned, not released.** Today's MCP and REST news tools remain the foundation. Token-contract mapping, chain balances, token prices and transaction execution are not implemented. Black Sheep is an independent project with no Robinhood affiliation or endorsement.
+
+Read the [integration plan](docs/ROBINHOOD-CHAIN.md) or the [website guide](https://www.newsbeat.dev/docs/robinhood-chain). Black Sheep retains the working NewsBeat interfaces during this transition.
+
 ## What you can build
 
 - **Market research agents:** bring equity and crypto headlines into analysis alongside your own price data and models.
@@ -83,7 +99,7 @@ Use the [connection guide](https://www.newsbeat.dev/connect) for setup and a liv
 - **Personal briefings:** ask what happened with an asset and get a short headline-based summary with sources and timestamps.
 - **Watchlist bots:** check up to 50 assets at once and pass new items into your own Telegram, Discord or other workflow.
 
-NewsBeat supplies news context. It does not execute trades, provide prediction-market prices or connect to Polymarket accounts. Dedicated messaging integrations are on the roadmap.
+Black Sheep supplies news context. It does not execute trades, provide prediction-market prices or connect to Polymarket accounts. Dedicated messaging integrations are on the roadmap.
 
 ## One API, seven tools
 
@@ -125,7 +141,7 @@ The Vercel host remains available as an alternate: `https://news-beat.vercel.app
 
 **Next:** Telegram and Discord relays, more service integrations, and paid access through Stripe. Platform-specific connector setup and directory submissions remain separate work; compatibility depends on each host's MCP or tool-calling support.
 
-Building something with NewsBeat? [Tell us what you need](https://github.com/thepeternemec/NewsBeat/issues/new), [suggest an integration](https://github.com/thepeternemec/NewsBeat/discussions), or [contribute](CONTRIBUTING.md). Star the repository to follow the project.
+Building something with Black Sheep? [Tell us what you need](https://github.com/thepeternemec/NewsBeat/issues/new), [suggest an integration](https://github.com/thepeternemec/NewsBeat/discussions), or [contribute](CONTRIBUTING.md). Star the repository to follow the project.
 
 ## Run locally
 
@@ -181,3 +197,4 @@ REST scans up to 200 reports by default (`limit` 1–500); `newsbeat_stories` ov
 The summarizer calls `google/gemini-2.5-flash-lite` through Vercel AI Gateway on demand. On Vercel, it uses the Function request’s OIDC token; another runtime can supply `AI_GATEWAY_API_KEY`. Keep credentials server-side. Generation uses the project owner’s Gateway allowance or credits; public access remains free during early access.
 
 Results are cached in memory for up to five minutes for the same selected report IDs. The cache is per running instance, not shared across the deployment. Generation has a 20-second timeout and falls back to original headlines on failure. The checks enforce matching story IDs, reject new numeric figures, and preserve selected uncertainty cues; they do not guarantee factual correctness. Always keep the source links and headline-only label visible.
+

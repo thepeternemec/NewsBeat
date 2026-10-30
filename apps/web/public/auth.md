@@ -12,7 +12,7 @@ Host: `www.newsbeat.dev` Â· API base: `https://www.newsbeat.dev/api`
 Skip this step. There is no `/agent/identity`, no `/oauth2/token`, and no claim
 ceremony. `POST` to any of them returns `404`.
 
-NewsBeat is a **public read-only news API**. Access is not gated, so there is no
+Black Sheep is a **public read-only news API**. Access is not gated, so there is no
 user to register and no scoped token to mint. An agent may call it on first use,
 with no setup and no operator involvement.
 
@@ -34,7 +34,7 @@ Anonymous callers get **120 requests a minute**, identified by calling address â
 hashed, never stored. That ceiling is high enough for the intended loop: one
 `changes` call per topic per schedule, not a poll.
 
-A key lets you run a **seven-day trial** of NewsBeat in your agent, beginning
+A key lets you run a **seven-day trial** of Black Sheep in your agent, beginning
 with its first metered REST request. It includes **up to $6 in usage credit**
 and a ceiling of 1200 requests a minute. A check that found nothing is $0.0005,
 one that moved is $0.004, and a brief is $0.03. The credit covers up to twelve

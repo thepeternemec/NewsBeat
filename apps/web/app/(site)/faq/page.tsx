@@ -4,7 +4,7 @@ import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
 import { FAQ, ROADMAP } from "@/components/site/content";
 
-export const metadata = { title: "NewsBeat FAQ", description: "How to ask your assistant about company news, connect NewsBeat, and let your agent check current information when it helps." };
+export const metadata = { title: "Black Sheep FAQ", description: "How to ask your assistant about company news, connect Black Sheep, and let your agent check current information when it helps." };
 
 export default function Page() {
   return (
@@ -16,7 +16,7 @@ export default function Page() {
             <div className="intro-copy">
             <span className="sec-eyebrow">FAQ & status</span>
             <h1 className="sec-title">Ask naturally. Get the news.</h1>
-            <p className="sec-sub">Ask your AI assistant what is happening with a company. NewsBeat brings the latest available headlines and sources into the answer.</p>
+            <p className="sec-sub">Ask your AI assistant what is happening with a company. Black Sheep brings the latest available headlines and sources into the answer.</p>
             <div className="hero-cta">
               <a className="btn-primary" href="/docs/quickstart">Set up your assistant</a>
               <a className="btn-ghost" href="/dashboard">Explore news first</a>
