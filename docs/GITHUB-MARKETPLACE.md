@@ -8,7 +8,7 @@ Under **GitHub Marketplace → Black Sheep Agent → Webhook**, use:
 
 | Field            | Value                                                                   |
 | ---------------- | ----------------------------------------------------------------------- |
-| Payload URL      | `https://blacksheep.vercel.app/api/webhooks/github/marketplace`              |
+| Payload URL      | `https://www.newsbeat.dev/api/webhooks/github/marketplace`              |
 | Content type     | `application/json`                                                      |
 | Secret           | The same random value as production `GITHUB_MARKETPLACE_WEBHOOK_SECRET` |
 | SSL verification | Enabled                                                                 |

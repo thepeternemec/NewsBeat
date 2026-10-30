@@ -93,7 +93,7 @@ export default function RobinhoodChainPlan() {
           <li><a href="https://docs.robinhood.com/chain/building-with-stock-tokens/">Building with Stock Tokens</a></li>
           <li><a href="https://docs.robinhood.com/chain/oracles-and-price-feeds/">Oracles and price-feed checks</a></li>
         </ul>
-        <a className="docs-text-action" href="https://x.com/blacksheep_">Help shape the integration <ArrowRight size={14} aria-hidden="true" /></a>
+        <a className="docs-text-action" href="mailto:contact@newsbeat.dev">Help shape the integration <ArrowRight size={14} aria-hidden="true" /></a>
       </section>
     </div>
   );

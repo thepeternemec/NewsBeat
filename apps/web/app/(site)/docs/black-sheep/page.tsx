@@ -45,7 +45,7 @@ export default function BlackSheepThesis() {
       </section>
       <section className="docs-section" aria-labelledby="transition">
         <h2 id="transition">Connect the news tools</h2>
-        <p>The working service remains at blacksheep.vercel.app. Existing blacksheep_* tool names, API paths, account settings and repository links retain their current identifiers. Public news reads require no wallet.</p>
+        <p>The working service remains at www.newsbeat.dev. Existing blacksheep_* tool names, API paths, account settings and repository links retain their current identifiers. Public news reads require no wallet.</p>
         <a className="docs-text-action" href="/docs/quickstart">Connect your agent <ArrowRight size={14} aria-hidden="true" /></a>
       </section>
     </div>

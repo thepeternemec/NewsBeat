@@ -1,9 +1,9 @@
 # Operational status
 
-Public page: https://blacksheep.vercel.app/status
+Public page: https://www.newsbeat.dev/status
 
-- JSON: `GET https://blacksheep.vercel.app/api/status`
-- Atom: `GET https://blacksheep.vercel.app/api/status/feed`
+- JSON: `GET https://www.newsbeat.dev/api/status`
+- Atom: `GET https://www.newsbeat.dev/api/status/feed`
 - Scheduled writer: `GET /api/cron/status`, every five minutes in production.
 
 The writer requires `Authorization: Bearer $CRON_SECRET`. A user-agent header is

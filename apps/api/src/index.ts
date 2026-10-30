@@ -43,7 +43,7 @@ app.get("/health", (c) => c.json({ ok: true, service: "blacksheep", version: "0.
 app.get("/", (c) =>
   c.json({
     service: "Black Sheep",
-    docs: "https://blacksheep.vercel.app/docs",
+    docs: "https://www.newsbeat.dev/docs",
     repo: "https://github.com/thepeternemec/black-sheep",
     routes: ["/v2/topics", "/v2/news", "/v2/changes", "/v2/watch", "/v2/brief", "/v2/stories", "/v2/summary", "/v2/tools", "/mcp", "/health", "/status", "/status/feed", "/keys/authorize"],
     rate_limits: rateLimits,

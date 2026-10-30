@@ -4,5 +4,5 @@ contact_links:
     url: https://github.com/thepeternemec/black-sheep/blob/main/docs/STATUS.md
     about: What works today with verified numbers, what is not built, and what is worth building next.
   - name: API reference
-    url: https://blacksheep.vercel.app/docs/connect
+    url: https://www.newsbeat.dev/docs/connect
     about: Endpoints, keys, rate limits and the error table.

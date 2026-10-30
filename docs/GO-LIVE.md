@@ -76,7 +76,7 @@ orphans every cursor already in the wild — so add, never renumber.
 
 ```bash
 curl -H "Authorization: Bearer $BLACKSHEEP_CRON_SECRET" \
-     https://blacksheep.vercel.app/api/cron/ingest
+     https://www.newsbeat.dev/api/cron/ingest
 ```
 
 It returns one line per topic:
@@ -96,7 +96,7 @@ per topic. The response says how many it made:
 Then check the topics:
 
 ```bash
-curl https://blacksheep.vercel.app/api/v2/topics
+curl https://www.newsbeat.dev/api/v2/topics
 ```
 
 A topic that ingested successfully reads `fresh` or `stale`; one that has never run reads
@@ -127,8 +127,8 @@ Keys are issued by hand until this is configured. Two values, from an OAuth app
 that **cannot be created by an API** — GitHub only exposes it as a settings form:
 
 1. Open <https://github.com/settings/developers> → **New OAuth App**.
-2. Name: anything. Homepage: `https://blacksheep.vercel.app`.
-3. **Authorization callback URL**: `https://blacksheep.vercel.app/api/keys/callback`
+2. Name: anything. Homepage: `https://www.newsbeat.dev`.
+3. **Authorization callback URL**: `https://www.newsbeat.dev/api/keys/callback`
    — it must match exactly, including the scheme and the path.
 4. Copy the Client ID, generate a Client Secret.
 5. Set both on Vercel as `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET`, then redeploy.
@@ -150,12 +150,12 @@ OAuth app, so a preview will refuse the redirect unless you register a second ap
 
 ## Black Sheep production domain
 
-The repository is https://github.com/thepeternemec/black-sheep. The live primary domain is **https://blacksheep.vercel.app**; `https://news-beat.vercel.app` remains an alternate host.
+The repository is https://github.com/thepeternemec/black-sheep. The live primary domain is **https://www.newsbeat.dev**; `https://news-beat.vercel.app` remains an alternate host.
 
-- REST base: `https://blacksheep.vercel.app/api`
-- MCP: `https://blacksheep.vercel.app/api/mcp`
-- GitHub OAuth homepage: `https://blacksheep.vercel.app`
-- GitHub OAuth callback: `https://blacksheep.vercel.app/api/keys/callback`
+- REST base: `https://www.newsbeat.dev/api`
+- MCP: `https://www.newsbeat.dev/api/mcp`
+- GitHub OAuth homepage: `https://www.newsbeat.dev`
+- GitHub OAuth callback: `https://www.newsbeat.dev/api/keys/callback`
 
 The domain is connected. Keep the OAuth app callback aligned with the primary origin before using sign-in there. Verify `/api/health`, MCP and a real news read after deployments. Retain alternate API hosts for existing clients; do not introduce redirects for API POST requests without testing clients.
 

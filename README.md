@@ -8,17 +8,17 @@ News intelligence for tokenized assets and the companies behind them. Source-lin
 
 **Free during early access · No API key or credit card needed for public reads**
 
-[Try a live lookup](https://blacksheep.vercel.app/docs/try) · [Connect your agent](https://blacksheep.vercel.app/docs/quickstart) · [Read the docs](https://blacksheep.vercel.app/docs)
+[Try a live lookup](https://www.newsbeat.dev/docs/try) · [Connect your agent](https://www.newsbeat.dev/docs/quickstart) · [Read the docs](https://www.newsbeat.dev/docs)
 
 Contact: [@blacksheep_ on X](https://x.com/blacksheep_)
 
 [![CI](https://github.com/thepeternemec/black-sheep/actions/workflows/ci.yml/badge.svg)](https://github.com/thepeternemec/black-sheep/actions/workflows/ci.yml)
 [![MIT license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
-[![Early access](https://img.shields.io/badge/status-free_early_access-brightgreen)](https://blacksheep.vercel.app)
+[![Early access](https://img.shields.io/badge/status-free_early_access-brightgreen)](https://www.newsbeat.dev)
 
 </div>
 
-Ask your assistant “What happened with Nvidia?” It can look up recent news whenever it needs context for your question. Start with the [free live lookup](https://blacksheep.vercel.app/docs/try): search by company name or ticker, read available headlines, and request a short source-linked summary. No account needed.
+Ask your assistant “What happened with Nvidia?” It can look up recent news whenever it needs context for your question. Start with the [free live lookup](https://www.newsbeat.dev/docs/try): search by company name or ticker, read available headlines, and request a short source-linked summary. No account needed.
 
 Black Sheep gives agents equity and crypto news through **MCP and REST**. Resolve an asset, get a short source-linked update, and check freshness. For follow-up checks, save a cursor and get only newly indexed headlines or a clear “nothing new.”
 
@@ -30,9 +30,9 @@ Built for developers bringing news into trading research, prediction-market anal
 
 ## See it work before you connect
 
-**Start with your own question.** The free try page searches the supported catalog, shows live headlines, and lets you request an on-demand summary. The same news is available to your agent when connected. Follow the [assistant quickstart](https://blacksheep.vercel.app/docs/quickstart) when you are ready.
+**Start with your own question.** The free try page searches the supported catalog, shows live headlines, and lets you request an on-demand summary. The same news is available to your agent when connected. Follow the [assistant quickstart](https://www.newsbeat.dev/docs/quickstart) when you are ready.
 
-- **Headline summaries:** up to three short explanations with publisher links, publication times and freshness. Choose **Summarize headlines** in the terminal, call `blacksheep_summary` over MCP, or use [the summary API](https://blacksheep.vercel.app/api/v2/summary?beat_id=b_bb964843350e).
+- **Headline summaries:** up to three short explanations with publisher links, publication times and freshness. Choose **Summarize headlines** in the terminal, call `blacksheep_summary` over MCP, or use [the summary API](https://www.newsbeat.dev/api/v2/summary?beat_id=b_bb964843350e).
 - **Grouped coverage:** similar reports appear as one story. Expand it to see the original headlines and sources; reporting is retained.
 - **Relevance ranking:** concrete developments appear ahead of routine ownership notices and shopping headlines. Summaries favor developments and select distinct stories.
 - **Clear evidence limits:** summaries use headlines only. If generation is unavailable or its output fails validation, original headlines are returned with `method: "extractive"`.
@@ -45,19 +45,19 @@ Built for developers bringing news into trading research, prediction-market anal
 No account required. Make your first request:
 
 ```bash
-curl "https://blacksheep.vercel.app/api/v2/news?beat_id=b_bb964843350e"
+curl "https://www.newsbeat.dev/api/v2/news?beat_id=b_bb964843350e"
 ```
 
 For a short headline-based explanation of what happened with Nvidia:
 
 ```bash
-curl "https://blacksheep.vercel.app/api/v2/summary?beat_id=b_bb964843350e"
+curl "https://www.newsbeat.dev/api/v2/summary?beat_id=b_bb964843350e"
 ```
 
 Or add the hosted MCP endpoint to a client that supports remote Streamable HTTP:
 
 ```text
-https://blacksheep.vercel.app/api/mcp
+https://www.newsbeat.dev/api/mcp
 ```
 
 For clients that accept this configuration format:
@@ -66,7 +66,7 @@ For clients that accept this configuration format:
 {
   "mcpServers": {
     "blacksheep": {
-      "url": "https://blacksheep.vercel.app/api/mcp"
+      "url": "https://www.newsbeat.dev/api/mcp"
     }
   }
 }
@@ -74,7 +74,7 @@ For clients that accept this configuration format:
 
 Then ask: **“What happened with Nvidia? Give me a short summary and link the sources.”**
 
-Use the [connection guide](https://blacksheep.vercel.app/connect) for setup and a live transport check. For function-calling agents, load schemas from [`/api/v2/tools`](https://blacksheep.vercel.app/api/v2/tools). See the [model-loop example](examples/README.md).
+Use the [connection guide](https://www.newsbeat.dev/connect) for setup and a live transport check. For function-calling agents, load schemas from [`/api/v2/tools`](https://www.newsbeat.dev/api/v2/tools). See the [model-loop example](examples/README.md).
 
 ## Black Sheep direction
 
@@ -82,7 +82,7 @@ Black Sheep is the new product identity for the Black Sheep news service. The cu
 
 Black Sheep is a research product focused on tokenized real-world assets. Verified token-to-company mapping and agent-to-agent messaging are planned. Black Sheep does not issue its own token. Existing endpoints, tool names and package identifiers remain compatible.
 
-Read the [product direction](docs/BLACK-SHEEP.md) and [website guide](https://blacksheep.vercel.app/docs/black-sheep).
+Read the [product direction](docs/BLACK-SHEEP.md) and [website guide](https://www.newsbeat.dev/docs/black-sheep).
 
 ## Direction: context for Robinhood Chain
 
@@ -90,7 +90,7 @@ We are building toward a read-only context layer for tokenized markets on **Robi
 
 **Planned, not released.** Today's MCP and REST news tools remain the foundation. Token-contract mapping, chain balances, token prices and transaction execution are not implemented. Black Sheep is an independent project with no Robinhood affiliation or endorsement.
 
-Read the [integration plan](docs/ROBINHOOD-CHAIN.md) or the [website guide](https://blacksheep.vercel.app/docs/robinhood-chain). Black Sheep retains the working Black Sheep interfaces during this transition.
+Read the [integration plan](docs/ROBINHOOD-CHAIN.md) or the [website guide](https://www.newsbeat.dev/docs/robinhood-chain). Black Sheep retains the working Black Sheep interfaces during this transition.
 
 ## What you can build
 
@@ -123,13 +123,13 @@ Ingestion is scheduled every 15 minutes. Responses report per-asset `freshness`,
 
 Optional GitHub-issued API keys give an agent a seven-day evaluation, beginning with its first metered REST request, with up to $6 in usage credit and a higher request limit. `GET /api/keys/trial` shows the exact deadline and credit left. Expired keys receive 402; public access remains free. Stripe checkout is not live. See [current service status](docs/STATUS.md) for the exact limits and billing behavior.
 
-The primary service is **[blacksheep.vercel.app](https://blacksheep.vercel.app)**:
+The primary service is **[www.newsbeat.dev](https://www.newsbeat.dev)**:
 
 | Interface | Primary URL |
 | --- | --- |
-| REST base | `https://blacksheep.vercel.app/api` |
-| MCP | `https://blacksheep.vercel.app/api/mcp` |
-| Agent instructions | `https://blacksheep.vercel.app/skill.md` |
+| REST base | `https://www.newsbeat.dev/api` |
+| MCP | `https://www.newsbeat.dev/api/mcp` |
+| Agent instructions | `https://www.newsbeat.dev/skill.md` |
 
 The Vercel host remains available as an alternate: `https://news-beat.vercel.app/api` for REST and `https://news-beat.vercel.app/api/mcp` for MCP. New integrations should use the primary domain.
 

@@ -18,7 +18,7 @@ Static definitions and unrelated tasks do not need a lookup. Respect host permis
 Black Sheep does not run the agent in the background; recurring checks need a user-requested
 schedule in the host application.
 
-For people: https://blacksheep.vercel.app/docs/quickstart
+For people: https://www.newsbeat.dev/docs/quickstart
 
 ## The loop
 
@@ -32,15 +32,15 @@ An empty page is a success. Report "nothing new" and do not retry it.
 
 ## Endpoints
 
-- Catalog — https://blacksheep.vercel.app/api/v2/topics
-- News — https://blacksheep.vercel.app/api/v2/news?beat_id=b_bb964843350e
-- Changes since a cursor — https://blacksheep.vercel.app/api/v2/changes?beat_id=…&cursor=…
-- Brief, three relevant recent headlines verbatim — https://blacksheep.vercel.app/api/v2/brief?beat_id=b_bb964843350e
-- Stories, the events behind a topic — https://blacksheep.vercel.app/api/v2/stories?beat_id=b_bb964843350e
-- Summary, short source-linked explanation from headlines — https://blacksheep.vercel.app/api/v2/summary?beat_id=b_bb964843350e
-- Watch, up to 50 topics in one call — https://blacksheep.vercel.app/api/v2/watch
-- Tool definitions — https://blacksheep.vercel.app/api/v2/tools
-- MCP, Streamable HTTP — https://blacksheep.vercel.app/api/mcp
+- Catalog — https://www.newsbeat.dev/api/v2/topics
+- News — https://www.newsbeat.dev/api/v2/news?beat_id=b_bb964843350e
+- Changes since a cursor — https://www.newsbeat.dev/api/v2/changes?beat_id=…&cursor=…
+- Brief, three relevant recent headlines verbatim — https://www.newsbeat.dev/api/v2/brief?beat_id=b_bb964843350e
+- Stories, the events behind a topic — https://www.newsbeat.dev/api/v2/stories?beat_id=b_bb964843350e
+- Summary, short source-linked explanation from headlines — https://www.newsbeat.dev/api/v2/summary?beat_id=b_bb964843350e
+- Watch, up to 50 topics in one call — https://www.newsbeat.dev/api/v2/watch
+- Tool definitions — https://www.newsbeat.dev/api/v2/tools
+- MCP, Streamable HTTP — https://www.newsbeat.dev/api/mcp
 
 Tools, for frameworks that would rather be handed a schema than a URL:
 `blacksheep_topics`, `blacksheep_news`, `blacksheep_changes`, `blacksheep_brief`,
@@ -62,7 +62,7 @@ A key raises that to 1,200 and is metered — each check costs $0.0005 when noth
 moved and $0.004 when it did, against a $6.00 trial. At zero the key returns
 `402 payment_required`; the anonymous tier stays free.
 
-Keys are self-serve at https://blacksheep.vercel.app/keys — GitHub, scope `read:user`,
+Keys are self-serve at https://www.newsbeat.dev/keys — GitHub, scope `read:user`,
 shown once. That is a browser flow and needs a human.
 
 ## Constraints
@@ -77,10 +77,10 @@ shown once. That is a browser flow and needs a human.
 
 ## Elsewhere
 
-- Agent instructions — https://blacksheep.vercel.app/skill.md
-- Auth and registration — https://blacksheep.vercel.app/auth.md (none is required)
-- Docs — https://blacksheep.vercel.app/docs
+- Agent instructions — https://www.newsbeat.dev/skill.md
+- Auth and registration — https://www.newsbeat.dev/auth.md (none is required)
+- Docs — https://www.newsbeat.dev/docs
 - Source — https://github.com/thepeternemec/black-sheep
 
 # Black Sheep transition
-Black Sheep is the new product identity for the Black Sheep news service. Existing blacksheep_* tools and blacksheep.vercel.app endpoints remain unchanged. Black Sheep focuses on news intelligence for tokenized real-world assets. Verified token-to-company mapping and agent-to-agent messaging are planned, not live. Current capabilities are read-only company and crypto news tools. Black Sheep does not issue its own token.
+Black Sheep is the new product identity for the Black Sheep news service. Existing blacksheep_* tools and www.newsbeat.dev endpoints remain unchanged. Black Sheep focuses on news intelligence for tokenized real-world assets. Verified token-to-company mapping and agent-to-agent messaging are planned, not live. Current capabilities are read-only company and crypto news tools. Black Sheep does not issue its own token.

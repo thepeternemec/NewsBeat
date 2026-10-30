@@ -14,7 +14,7 @@ import {
 } from "./operations-policy.js";
 
 // Fixed targets prevent callers from turning the monitor into a URL fetch proxy.
-const ORIGIN = "https://blacksheep.vercel.app";
+const ORIGIN = "https://www.newsbeat.dev";
 const NVIDIA = "b_bb964843350e";
 type Json = Record<string, unknown>;
 async function requestJson(path: string, init?: RequestInit): Promise<Json> {

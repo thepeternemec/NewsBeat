@@ -23,7 +23,7 @@ const USER = "https://api.github.com/user";
 
 /** One registered callback for all hosted aliases and preview deployments. */
 export function oauthOrigin(origin: string): string {
-  return env("VERCEL") === "1" ? "https://blacksheep.vercel.app" : new URL(origin).origin;
+  return env("VERCEL") === "1" ? "https://www.newsbeat.dev" : new URL(origin).origin;
 }
 
 /** Used identically during authorization and the code exchange. */

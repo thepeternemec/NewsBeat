@@ -20,7 +20,7 @@ is a record of decisions, because the reasoning is the thing that gets lost.
 
 ### Current service context
 
-- **Black Sheep is the current brand**, with `https://blacksheep.vercel.app` as the primary site and API host, and `news-beat.vercel.app` as an alternate. The bundled catalog contains 2,030 assets: 1,528 US-listed equities and 502 crypto assets.
+- **Black Sheep is the current brand**, with `https://www.newsbeat.dev` as the primary site and API host, and `news-beat.vercel.app` as an alternate. The bundled catalog contains 2,030 assets: 1,528 US-listed equities and 502 crypto assets.
 - **Clearer onboarding and contact.** The README, FAQ and docs explain assistant setup and everyday company-news questions. Contact is [@blacksheep_ on X](https://x.com/blacksheep_).
 - **Early access stays public.** No API key or credit card is required for anonymous reads. Optional keyed REST metering remains separate; Stripe checkout and the expanded connectors in draft [PR #11](https://github.com/thepeternemec/black-sheep/pull/11) are not live.
 

@@ -5,7 +5,7 @@ session to establish and no token to refresh. This file exists so an agent does 
 spend a turn looking for an auth flow that does not exist — and so that the one
 optional flow that does exist is not a surprise.
 
-Host: `blacksheep.vercel.app` · API base: `https://blacksheep.vercel.app/api`
+Host: `www.newsbeat.dev` · API base: `https://www.newsbeat.dev/api`
 
 ## 1. Register
 
@@ -22,7 +22,7 @@ Send no `Authorization` header. Every request succeeds without one.
 
 ```http
 GET /v2/brief?beat_id=b_bb964843350e HTTP/1.1
-Host: blacksheep.vercel.app
+Host: www.newsbeat.dev
 ```
 
 Responses carry `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`
@@ -54,14 +54,14 @@ To see your exact deadline and remaining credit, call `GET /api/keys/trial`
 with your bearer key. Creating another key for the same account does not restart
 the trial. Public news is still available without a key.
 
-**Self-serve is available** at `https://blacksheep.vercel.app/keys` — GitHub, scope
+**Self-serve is available** at `https://www.newsbeat.dev/keys` — GitHub, scope
 `read:user`, the key shown once. That is a browser flow: it needs a human to
 authorise it, so an agent cannot complete it alone. The key is then a bearer token
 in a header.
 
 ```http
 GET /v2/topics?limit=1 HTTP/1.1
-Host: blacksheep.vercel.app
+Host: www.newsbeat.dev
 Authorization: Bearer ng_...
 ```
 
@@ -73,7 +73,7 @@ for it to describe.
 
 ```http
 GET /v2/tools HTTP/1.1
-Host: blacksheep.vercel.app
+Host: www.newsbeat.dev
 ```
 
 Returns the seven calls in OpenAI function-call shape:

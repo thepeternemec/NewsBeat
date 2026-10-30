@@ -8,7 +8,7 @@ Status: 29 October 2026. Company news available; verified tokenized-asset mappin
 
 Black Sheep follows the companies and events behind tokenized real-world assets and gives agents source-linked context. The initial focus is Stock Tokens on Robinhood Chain. It is a research product and does not issue its own token.
 
-Brand voice: independent, curious, witty and technically clear. Use the black sheep mascot, black/white/grey base and restrained lime interface accents. Use Black Sheep as the display name. Preserve existing blacksheep.vercel.app addresses, blacksheep_* tools, package names and repository links until a separate infrastructure migration is specified.
+Brand voice: independent, curious, witty and technically clear. Use the black sheep mascot, black/white/grey base and restrained lime interface accents. Use Black Sheep as the display name. Preserve existing www.newsbeat.dev addresses, blacksheep_* tools, package names and repository links until a separate infrastructure migration is specified.
 
 ## Capability state
 

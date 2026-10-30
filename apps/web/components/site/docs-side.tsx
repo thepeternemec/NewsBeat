@@ -66,7 +66,7 @@ export default function DocsSide() {
           <a href="https://github.com/thepeternemec/black-sheep" target="_blank" rel="noopener noreferrer"><GitBranch size={15} aria-hidden="true" /> GitHub <ArrowUpRight size={12} aria-hidden="true" /></a>
           <a href="/status"><Activity size={15} aria-hidden="true" /> Status</a>
         </div>
-        <a className="docs-nav-contact" href="https://x.com/blacksheep_"><Mail size={15} aria-hidden="true" /><span>Need a hand? <strong>Contact us</strong></span><ArrowUpRight size={12} aria-hidden="true" /></a>
+        <a className="docs-nav-contact" href="mailto:contact@newsbeat.dev"><Mail size={15} aria-hidden="true" /><span>Need a hand? <strong>Contact us</strong></span><ArrowUpRight size={12} aria-hidden="true" /></a>
       </div>
       <noscript><style>{".docs-navigation .docs-nav-panel { display: block; } .docs-navigation .docs-nav-toggle { display: none; }"}</style></noscript>
     </aside>

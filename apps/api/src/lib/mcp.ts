@@ -8,7 +8,7 @@ import { NewsError } from "./news.js";
 export async function mcpResponse(request: Request) {
     const oidcToken = request.headers.get("x-vercel-oidc-token");
     const origin = request.headers.get("origin");
-    const allowed = ["https://blacksheep.vercel.app", "https://blacksheep.vercel.app", "https://news-beat.vercel.app", "https://newsgraph.vercel.app", "http://localhost:3000", "http://127.0.0.1:3000", "http://localhost:8787", ...[env("VERCEL_URL"), env("VERCEL_BRANCH_URL")].filter(Boolean).map(host => `https://${host}`), ...(env("BLACKSHEEP_MCP_ORIGINS") ?? "").split(",").filter(Boolean)];
+    const allowed = ["https://www.newsbeat.dev", "https://www.newsbeat.dev", "https://news-beat.vercel.app", "https://newsgraph.vercel.app", "http://localhost:3000", "http://127.0.0.1:3000", "http://localhost:8787", ...[env("VERCEL_URL"), env("VERCEL_BRANCH_URL")].filter(Boolean).map(host => `https://${host}`), ...(env("BLACKSHEEP_MCP_ORIGINS") ?? "").split(",").filter(Boolean)];
     if (origin && !allowed.includes(origin))
         return new Response("Origin not allowed", { status: 403 });
     if (Number(request.headers.get("content-length") ?? 0) > 16384)

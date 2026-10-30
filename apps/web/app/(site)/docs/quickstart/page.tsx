@@ -4,7 +4,7 @@ import AgentInstructions from "@/components/site/agent-instructions";
 import "./quickstart.css";
 
 export const metadata = { title: "Use Black Sheep with your assistant", description: "Connect Black Sheep in three steps. Add the connection address, ask a news question, and get sources and dates in your assistant." };
-const MCP_URL = "https://blacksheep.vercel.app/api/mcp";
+const MCP_URL = "https://www.newsbeat.dev/api/mcp";
 const FIRST_QUESTION = "Use Black Sheep to find the latest news about Nvidia. Include sources and dates.";
 const questions = [
   { label: "Follow a company", text: "What are the latest headlines about Apple?" },
@@ -93,7 +93,7 @@ export default function DocsQuickstart() {
         <div className="quickstart-section-label"><CircleHelp size={16} /><span>A LITTLE HELP, IF YOU NEED IT</span></div>
         <h2 id="setup-help">Something not clicking?</h2>
         <div className="quickstart-help-list">{help.map(item => <details key={item.question}><summary>{item.question}<span aria-hidden="true">+</span></summary><p>{item.answer}</p></details>)}</div>
-        <div className="quickstart-contact"><span>We’re here to help you get connected.</span><a href="https://x.com/blacksheep_">Contact Black Sheep <ArrowUpRight size={14} /></a></div>
+        <div className="quickstart-contact"><span>We’re here to help you get connected.</span><a href="mailto:contact@newsbeat.dev">Contact Black Sheep <ArrowUpRight size={14} /></a></div>
       </section>
     </div>
   );

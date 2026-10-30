@@ -4,8 +4,8 @@ description: Use recent company and crypto news when it helps answer the user’
 ---
 Use the Black Sheep MCP connection or its public HTTPS API. This instruction file alone does not connect an account or install an MCP server.
 
-Base: https://blacksheep.vercel.app/api
-MCP: https://blacksheep.vercel.app/api/mcp
+Base: https://www.newsbeat.dev/api
+MCP: https://www.newsbeat.dev/api/mcp
 
 ## When to use Black Sheep
 

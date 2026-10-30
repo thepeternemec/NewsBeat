@@ -55,8 +55,8 @@ test("local development retains its local callback", () => withOAuthEnv("", () =
 }));
 
 test("hosted aliases and previews use the registered production callback", () => withOAuthEnv("1", () => {
-  for (const origin of ["https://blacksheep.vercel.app", "https://news-beat.vercel.app", "https://newsgraph-preview.vercel.app"]) {
-    assert.equal(redirectUri(origin), "https://blacksheep.vercel.app/api/keys/callback");
+  for (const origin of ["https://www.newsbeat.dev", "https://news-beat.vercel.app", "https://newsgraph-preview.vercel.app"]) {
+    assert.equal(redirectUri(origin), "https://www.newsbeat.dev/api/keys/callback");
     assert.equal(new URL(authorizeUrl(origin, "test-state")).searchParams.get("redirect_uri"), redirectUri(origin));
   }
 }));
@@ -64,12 +64,12 @@ test("hosted aliases and previews use the registered production callback", () =>
 test("preview sign-in starts on production before state is issued", () => withOAuthEnv("1", async () => {
   const response = await keyRoutes.request("https://newsgraph-preview.vercel.app/authorize");
   assert.equal(response.status, 302);
-  assert.equal(response.headers.get("location"), "https://blacksheep.vercel.app/api/keys/authorize");
+  assert.equal(response.headers.get("location"), "https://www.newsbeat.dev/api/keys/authorize");
   assert.equal(response.headers.get("cache-control"), "no-store");
-  const canonical = await keyRoutes.request("https://blacksheep.vercel.app/authorize");
+  const canonical = await keyRoutes.request("https://www.newsbeat.dev/authorize");
   const location = new URL(canonical.headers.get("location")!);
   assert.equal(location.origin, "https://github.com");
-  assert.equal(location.searchParams.get("redirect_uri"), "https://blacksheep.vercel.app/api/keys/callback");
+  assert.equal(location.searchParams.get("redirect_uri"), "https://www.newsbeat.dev/api/keys/callback");
   assert.equal(verifyState(location.searchParams.get("state")!), true);
 }));
 
@@ -77,7 +77,7 @@ test("code exchange uses the same registered callback as authorization", () => w
   const mockFetch = (async (url: string | URL | Request, init?: RequestInit) => {
     if (String(url).endsWith("/access_token")) {
       const payload = JSON.parse(String(init?.body));
-      assert.equal(payload.redirect_uri, "https://blacksheep.vercel.app/api/keys/callback");
+      assert.equal(payload.redirect_uri, "https://www.newsbeat.dev/api/keys/callback");
       return Response.json({ access_token: "test-token" });
     }
     return Response.json({ id: 1, login: "test-user" });

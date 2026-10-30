@@ -15,10 +15,10 @@ const DESCRIPTION =
 export const metadata = {
   title: "Black Sheep — the news bot that cites or says nothing",
   description: DESCRIPTION,
-  openGraph: { title: "Black Sheep — the news bot that cites or says nothing", description: DESCRIPTION, url: "https://blacksheep.vercel.app", siteName: "Black Sheep", type: "website" },
+  openGraph: { title: "Black Sheep — the news bot that cites or says nothing", description: DESCRIPTION, url: "https://www.newsbeat.dev", siteName: "Black Sheep", type: "website" },
   twitter: { card: "summary_large_image", title: "Black Sheep — the news bot that cites or says nothing", description: DESCRIPTION },
 };
-const MCP_URL = "https://blacksheep.vercel.app/api/mcp";
+const MCP_URL = "https://www.newsbeat.dev/api/mcp";
 const PRINCIPLES = [
   { number: "01", title: "It knows what changed.", text: "Send a topic and a cursor. You get only the reports that appeared since your last check — not a fresh pile to read again." },
   { number: "02", title: "It shows its evidence.", text: "Every item carries a publisher, a timestamp and a link. Freshness is reported per lookup, and “unavailable” is a state, not an empty list." },

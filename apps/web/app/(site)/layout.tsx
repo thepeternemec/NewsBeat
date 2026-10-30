@@ -15,13 +15,13 @@ import Noise from "@/components/motion/noise";
 import GridField from "@/components/site/grid-field";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://blacksheep.vercel.app"),
+  metadataBase: new URL("https://www.newsbeat.dev"),
   title: "Black Sheep — Intelligence for tokenized assets",
   description:
     "Black Sheep follows the news behind tokenized assets. Source-linked company intelligence for AI agents, with Robinhood Chain asset mapping and agent coordination planned.",
   openGraph: {
     type: "website",
-    url: "https://blacksheep.vercel.app",
+    url: "https://www.newsbeat.dev",
     siteName: "Black Sheep",
     title: "Black Sheep — Intelligence for tokenized assets",
     description:

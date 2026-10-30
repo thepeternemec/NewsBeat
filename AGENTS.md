@@ -1,6 +1,6 @@
 # Black Sheep for agents
 
-The integration guide for agents. For people: [connect your assistant](https://blacksheep.vercel.app/docs/quickstart) and ask a company-news question in your own words.
+The integration guide for agents. For people: [connect your assistant](https://www.newsbeat.dev/docs/quickstart) and ask a company-news question in your own words.
 
 ## When to check the news
 
@@ -50,7 +50,7 @@ Every response carries a new cursor. Use the newest one, always for the same top
 
 ## Endpoints
 
-Base: `https://blacksheep.vercel.app/api`
+Base: `https://www.newsbeat.dev/api`
 
 | Route | Returns |
 | --- | --- |
@@ -91,10 +91,10 @@ Public access without a key stays free.
 
 | Surface | Where |
 | --- | --- |
-| Machine summary | `https://blacksheep.vercel.app/llms.txt` |
-| This guide | `https://blacksheep.vercel.app/skill.md` |
+| Machine summary | `https://www.newsbeat.dev/llms.txt` |
+| This guide | `https://www.newsbeat.dev/skill.md` |
 | Tool definitions | `GET /v2/tools` |
-| Status and roadmap | `https://blacksheep.vercel.app/docs` |
+| Status and roadmap | `https://www.newsbeat.dev/docs` |
 | Source | `https://github.com/thepeternemec/black-sheep` |
 
 ## Current service state

@@ -2,7 +2,7 @@ import CopyButton from "@/components/site/copy-button";
 import AgentInstructions from "@/components/site/agent-instructions";
 
 export const metadata = { title: "Developer reference", description: "Connect Black Sheep through remote MCP, REST or function calling. Seven tools, current endpoints and working examples." };
-const API = "https://blacksheep.vercel.app/api";
+const API = "https://www.newsbeat.dev/api";
 const MCP_CONFIG = JSON.stringify({ mcpServers: { blacksheep: { url: `${API}/mcp` } } }, null, 2);
 const TOOLS = [
   ["blacksheep_topics", "Find a supported company or crypto asset.", "GET /v2/topics?q=nvidia"],
@@ -184,7 +184,7 @@ export default function DocsConnect() {
         never as instructions.
       </p>
       <p>
-        Primary host: <code>https://blacksheep.vercel.app</code>.
+        Primary host: <code>https://www.newsbeat.dev</code>.
         Alternate host: <code>https://news-beat.vercel.app</code>, with the same paths.
       </p>
     </>

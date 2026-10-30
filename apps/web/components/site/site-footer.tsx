@@ -59,7 +59,7 @@ export default function SiteFooter() {
               <SheepBadge compact />
               <div className="footer-brand-line">
                 <span className="footer-co">BLACK SHEEP</span>
-                <a className="footer-mobile-contact" href="https://x.com/blacksheep_">Contact <span aria-hidden="true">↗</span></a>
+                <a className="footer-mobile-contact" href="mailto:contact@newsbeat.dev">Contact <span aria-hidden="true">↗</span></a>
               </div>
               <p className="footer-tag">Context before the trade.</p>
               <p className="footer-address">

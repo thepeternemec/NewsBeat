@@ -70,7 +70,7 @@ export default function Cookies() {
 
             <h2>Questions</h2>
             <p>
-              Write to <a href="https://x.com/blacksheep_">@blacksheep_ on X</a>. If this ever
+              Write to <a href="mailto:contact@newsbeat.dev">contact@newsbeat.dev</a>. If this ever
               changes — if a cookie is added — this page changes first, and a notice appears before
               the cookie is set.
             </p>

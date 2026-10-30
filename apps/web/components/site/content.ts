@@ -95,7 +95,7 @@ export const FAQ = [
   },
   {
     "q": "How do I connect it to my assistant?",
-    "a": "Open the getting-started guide and copy https://blacksheep.vercel.app/api/mcp into your assistant’s remote MCP connection settings. The exact steps depend on the app. Test the connection, enable its news tools, and ask your first question. Pasting the address into an ordinary chat does not necessarily connect it."
+    "a": "Open the getting-started guide and copy https://www.newsbeat.dev/api/mcp into your assistant’s remote MCP connection settings. The exact steps depend on the app. Test the connection, enable its news tools, and ask your first question. Pasting the address into an ordinary chat does not necessarily connect it."
   },
   {
     "q": "Does it work with ChatGPT, Claude, Grok or other assistants?",

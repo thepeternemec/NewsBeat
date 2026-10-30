@@ -25,7 +25,7 @@ The scheduled worker uses a time budget and prioritizes overdue assets. A schedu
 
 ## Headline summaries and ranked coverage
 
-Choose **Summarize headlines** in the [terminal](https://blacksheep.vercel.app/dashboard), call `blacksheep_summary` over MCP, or use `GET /api/v2/summary?beat_id=…`. Resolve a company or ticker with the topic catalog first.
+Choose **Summarize headlines** in the [terminal](https://www.newsbeat.dev/dashboard), call `blacksheep_summary` over MCP, or use `GET /api/v2/summary?beat_id=…`. Resolve a company or ticker with the topic catalog first.
 
 The digest selects up to three distinct stories from a snapshot of the latest 200 reports within 24 hours. It favors headlines describing concrete developments and uses the existing ranking and diversity heuristics. It can return fewer than three items. This is approximate selection, not a prediction of market impact or a guarantee of relevance.
 
@@ -37,7 +37,7 @@ REST story snapshots scan 200 reports by default (`limit` 1–500). MCP returns 
 
 ## Brand and domain
 
-The product and repository are **Black Sheep**, live at **https://blacksheep.vercel.app**. Use `https://blacksheep.vercel.app/api` for REST and `https://blacksheep.vercel.app/api/mcp` for MCP. The `news-beat.vercel.app` host remains an alternate service address. Public reads are free during early access; no API key or credit card is needed. Account keys have a **seven-day evaluation** from the first metered REST call, with up to **$6 in trial credit**. The start is recorded per account in the usage ledger, so rotating a key does not reset it. Existing accounts keep their balances and start their seven-day window on their next metered call after this release. `GET /api/keys/trial` reports the deadline and spendable credit. When the trial ends, unused trial credit becomes unavailable and keyed reads return `402 trial_expired`; public anonymous reads continue. Stripe checkout is not live.
+The product and repository are **Black Sheep**, live at **https://www.newsbeat.dev**. Use `https://www.newsbeat.dev/api` for REST and `https://www.newsbeat.dev/api/mcp` for MCP. The `news-beat.vercel.app` host remains an alternate service address. Public reads are free during early access; no API key or credit card is needed. Account keys have a **seven-day evaluation** from the first metered REST call, with up to **$6 in trial credit**. The start is recorded per account in the usage ledger, so rotating a key does not reset it. Existing accounts keep their balances and start their seven-day window on their next metered call after this release. `GET /api/keys/trial` reports the deadline and spendable credit. When the trial ends, unused trial credit becomes unavailable and keyed reads return `402 trial_expired`; public anonymous reads continue. Stripe checkout is not live.
 
 New discovery uses `blacksheep_*` tool names. Old tool names, deployed environment-variable names and existing signed cursors retain compatibility. Workspace package names use `@blacksheep/*` and `newsbeat-*`.
 

@@ -9,7 +9,7 @@ import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
 import LiveResponse from "@/components/site/live-response";
 
-const API_BASE = "https://blacksheep.vercel.app/api";
+const API_BASE = "https://www.newsbeat.dev/api";
 
 const OPTIONS = [
   {
