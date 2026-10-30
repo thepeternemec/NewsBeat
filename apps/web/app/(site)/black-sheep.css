@@ -79,3 +79,199 @@
 @media(max-width:760px){.bs-hero{padding-top:125px}.bs-hero-grid{padding-bottom:64px}.bs-hero h1{font-size:clamp(40px,10.4vw,70px);margin:25px 0}.bs-lede{font-size:17px;max-width:39ch}.bs-hero-detail{font-size:13px}.bs-hero-foot{flex-direction:column;align-items:flex-start;gap:5px}.bs-ticker>.wrap{justify-content:flex-start;gap:16px 24px}.bs-ticker span{max-width:none;width:100%}.bs-ticker strong{font-size:14px}.bs-ticker a{width:100%;min-height:32px}.bs-home .scaffold{padding:65px 0}.bs-live-grid,.bs-network-head,.bs-asset-grid,.bs-build-grid{grid-template-columns:minmax(0,1fr);gap:28px}.bs-section-head{margin-bottom:32px}.bs-principles{grid-template-columns:minmax(0,1fr);gap:28px}.bs-principles h3{margin-top:16px}.bs-body{font-size:14px}.bs-handoff-layout{grid-template-columns:minmax(0,1fr)}.bs-agent-selector{flex-direction:row;border-right:0;border-bottom:1px solid var(--border-default);padding:0}.bs-agent-selector button{flex:1;padding:20px 12px;gap:8px}.bs-agent-selector small{display:none}.bs-agent-selector strong{font-size:12px;margin:0}.bs-packet{padding:20px}.bs-handoff-bar{flex-direction:column;gap:4px;padding:15px 20px}.bs-roadmap article{padding:24px}.bs-closing{padding:65px 0}.bs-kicker{font-size:9px}}
 @media(prefers-reduced-motion:reduce){.bs-home *{scroll-behavior:auto!important}}
 
+
+/* ══════════════════════════════════════════════════════════════════════
+   BREATHING ROOM
+   ──────────────────────────────────────────────────────────────────────
+   The page ran to 6,379px and 507 words across nine sections: five repeated
+   two-column blocks, a numbered kicker and a small-print footnote on every one.
+   Nine sections became five, and the air is now in the spacing rather than in
+   explanation. A landing page should feel like a few confident statements, not
+   a document that happens to be vertical.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* Sections sit far apart so each one is a thought of its own. */
+.bs-home .scaffold {
+  padding: clamp(96px, 11vw, 176px) 0;
+}
+
+/* The heading block was max 650px with 48px under it — close enough that the
+   paragraph read as part of the title. */
+.bs-section-head {
+  max-width: 620px;
+  margin-bottom: clamp(48px, 5vw, 76px);
+}
+
+.bs-title {
+  font-size: clamp(34px, 4.1vw, 58px);
+  line-height: 1.06;
+  margin: 24px 0 26px;
+}
+
+.bs-body {
+  font-size: 15.5px;
+  line-height: 1.95;
+  max-width: 46ch;
+  margin: 0;
+}
+
+/* Three cards, further apart, with the rule and the label given room. */
+.bs-principles {
+  gap: clamp(28px, 4vw, 56px);
+}
+
+.bs-principles article {
+  padding-top: 28px;
+}
+
+.bs-principles h3 {
+  font-size: clamp(19px, 1.5vw, 23px);
+  margin: 30px 0 16px;
+  letter-spacing: -0.03em;
+}
+
+.bs-principles p {
+  font-size: 14px;
+  line-height: 1.9;
+  max-width: 34ch;
+}
+
+/* ── The proof strip ─────────────────────────────────────────────────────
+   Four numbers instead of a paragraph of claims. It replaces the ticker that
+   used to sit under the hero and say the same thing at greater length. */
+.bs-proof {
+  border-top: 1px solid var(--border-default);
+  border-bottom: 1px solid var(--border-default);
+  background: var(--bs-wash);
+}
+
+.bs-proof > .wrap {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  padding: clamp(28px, 3vw, 40px) 0;
+}
+
+.bs-proof > .wrap > div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: clamp(16px, 3vw, 40px);
+  border-left: 1px solid var(--border-default);
+}
+
+.bs-proof > .wrap > div:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.bs-proof strong {
+  font-size: clamp(24px, 2.4vw, 34px);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.bs-proof span {
+  font: 10px/1.6 var(--font-mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 760px) {
+  .bs-proof > .wrap {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 1px;
+  }
+  .bs-proof > .wrap > div:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
+  }
+}
+
+/* ── Closing ─────────────────────────────────────────────────────────────
+   One statement, one action, and the qualifiers in small print where they
+   belong rather than woven through the pitch. */
+.bs-closing {
+  padding: clamp(104px, 13vw, 190px) 0;
+}
+
+.bs-closing h2 {
+  margin: 28px 0 30px;
+  line-height: 1.02;
+}
+
+.bs-closing-note {
+  max-width: 44ch;
+  margin: 0 auto;
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--text-secondary);
+}
+
+.bs-closing .hero-cta {
+  margin-top: 38px;
+  justify-content: center;
+}
+
+.bs-closing-fine {
+  max-width: 52ch;
+  margin: 44px auto 0;
+  font-size: 11px;
+  line-height: 1.9;
+  color: var(--text-ghost);
+}
+
+/* The community heading used to be a whole section; it is now part of the
+   closing, so it does not need its own section rhythm. */
+.bs-closing .bs-kicker {
+  justify-content: center;
+}
+
+/* ── Polish ──────────────────────────────────────────────────────────────
+   Headings were `--text-primary`, which is 86% white — fine for body copy, but at
+   display sizes it reads grey next to a pure-white button. A heading token rather
+   than `#fff`, because the first version of this rule made the hero's top line
+   invisible in light mode: white on paper. */
+.bs-home {
+  --bs-heading: #fff;
+}
+
+[data-theme="light"] .bs-home {
+  --bs-heading: var(--text-primary);
+}
+
+.bs-home .bs-hero h1,
+.bs-home .bs-title,
+.bs-home .bs-closing h2 {
+  color: var(--bs-heading);
+}
+
+/* The body ran straight into the buttons: no margin, so "the same tools
+   either way" sat against "Connect your agent". */
+.bs-build-links {
+  margin-top: clamp(28px, 3vw, 40px);
+}
+
+/* The connect heading wrapped to three ragged lines in a half-width column. */
+.bs-build-grid > div:first-child .bs-title {
+  max-width: 15ch;
+}
+
+/* Same problem in the live section: the link sat against the paragraph. */
+.bs-live-grid .bs-text-link {
+  display: inline-block;
+  margin-top: 8px;
+}
+
+/* The hero's copy is short now, so centring it against a tall panel left it
+   floating in the middle of the viewport. */
+.bs-hero-grid {
+  align-items: start;
+}
+
+.bs-hero-copy {
+  padding-top: clamp(8px, 4vw, 56px);
+}
