@@ -8,7 +8,7 @@ import {
   statusDocument,
   MONITOR_STALE_MS,
 } from "./operations-policy.js";
-import type { OperationSnapshot } from "@newsbeat/contracts";
+import type { OperationSnapshot } from "@blacksheep/contracts";
 const now = Date.parse("2026-10-22T10:00:00Z");
 const good: OperationSnapshot = {
   checked_at: new Date(now).toISOString(),

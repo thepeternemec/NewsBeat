@@ -47,7 +47,7 @@ export default function Terms() {
               Black Sheep.dev is operated by founder Peter Nemec through <strong>Tephra d.o.o.</strong>,
               a company registered in the court register of the Republic of Slovenia
               (&ldquo;Black Sheep&rdquo;, &ldquo;we&rdquo;). You can reach us at{" "}
-              <a href="mailto:hello@newsbeat.dev">hello@newsbeat.dev</a>.
+              <a href="https://x.com/blacksheep_">@blacksheep_ on X</a>.
             </p>
 
             <h2>2. What the service is</h2>
@@ -171,7 +171,7 @@ export default function Terms() {
             <h2>12. Contact</h2>
             <p>
               Questions about these terms, or a deal that needs a different one:{" "}
-              <a href="mailto:hello@newsbeat.dev">hello@newsbeat.dev</a>.
+              <a href="https://x.com/blacksheep_">@blacksheep_ on X</a>.
             </p>
 
             <div className="docs-nav-foot">

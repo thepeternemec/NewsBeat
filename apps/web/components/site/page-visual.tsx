@@ -26,7 +26,7 @@ export default function PageVisual({ kind }: { kind: Kind }) {
     <aside className="intro-visual reference-preview" aria-label={kind === "legal" ? "Service information" : "Agent reference files"}>
       <div className="visual-top">{kind === "legal" ? <ShieldCheck size={15} /> : <FileText size={15} />}{kind === "legal" ? "Clarity at every step" : "The agent reading room"}</div>
       <div className="reference-mark" aria-hidden="true"><FileText size={38} strokeWidth={1} /><span /><span /><span /></div>
-      <div className="reference-links">{(kind === "legal" ? [["/legal/terms", "Terms of service"], ["/legal/cookies", "Cookies & storage"], ["mailto:contact@newsbeat.dev", "Contact us"]] : [["/llms.txt", "llms.txt"], ["/skill.md", "skill.md"], ["/auth.md", "auth.md"]]).map(([href, label]) => <a key={href} href={href}>{label}<ArrowRight size={14} /></a>)}</div>
+      <div className="reference-links">{(kind === "legal" ? [["/legal/terms", "Terms of service"], ["/legal/cookies", "Cookies & storage"], ["https://x.com/blacksheep_", "Contact us"]] : [["/llms.txt", "llms.txt"], ["/skill.md", "skill.md"], ["/auth.md", "auth.md"]]).map(([href, label]) => <a key={href} href={href}>{label}<ArrowRight size={14} /></a>)}</div>
     </aside>
   );
   return (
@@ -35,7 +35,7 @@ export default function PageVisual({ kind }: { kind: Kind }) {
       <div className="question-preview"><span>YOU ASK</span><p>“What happened<br />with Nvidia?”</p></div>
       <div className="preview-route" aria-hidden="true"><span /><ArrowDown size={16} /><span /></div>
       <div className="answer-preview"><span>BLACK SHEEP BRINGS</span><div><Check size={14} /> Recent headlines</div><div><Check size={14} /> Publisher links</div><div><Check size={14} /> Dates & freshness</div></div>
-      {kind === "connect" ? <div className="visual-endpoint"><code>newsbeat.dev/api/mcp</code><CopyButton text="https://www.newsbeat.dev/api/mcp" label="MCP address" /></div> : <a className="visual-bottom visual-link" href="mailto:contact@newsbeat.dev">Still have a question? Contact us <ArrowRight size={14} /></a>}
+      {kind === "connect" ? <div className="visual-endpoint"><code>blacksheep.vercel.app/api/mcp</code><CopyButton text="https://blacksheep.vercel.app/api/mcp" label="MCP address" /></div> : <a className="visual-bottom visual-link" href="https://x.com/blacksheep_">Still have a question? Contact us <ArrowRight size={14} /></a>}
     </aside>
   );
 }

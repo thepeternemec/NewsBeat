@@ -15,10 +15,10 @@ const DESCRIPTION =
 export const metadata = {
   title: "Black Sheep — the news bot that cites or says nothing",
   description: DESCRIPTION,
-  openGraph: { title: "Black Sheep — the news bot that cites or says nothing", description: DESCRIPTION, url: "https://www.newsbeat.dev", siteName: "Black Sheep", type: "website" },
+  openGraph: { title: "Black Sheep — the news bot that cites or says nothing", description: DESCRIPTION, url: "https://blacksheep.vercel.app", siteName: "Black Sheep", type: "website" },
   twitter: { card: "summary_large_image", title: "Black Sheep — the news bot that cites or says nothing", description: DESCRIPTION },
 };
-const MCP_URL = "https://www.newsbeat.dev/api/mcp";
+const MCP_URL = "https://blacksheep.vercel.app/api/mcp";
 const PRINCIPLES = [
   { number: "01", title: "It knows what changed.", text: "Send a topic and a cursor. You get only the reports that appeared since your last check — not a fresh pile to read again." },
   { number: "02", title: "It shows its evidence.", text: "Every item carries a publisher, a timestamp and a link. Freshness is reported per lookup, and “unavailable” is a state, not an empty list." },
@@ -104,7 +104,7 @@ export default function Home() {
               <span className="bs-kicker">THE BLACK SHEEP COMMUNITY</span>
               <h2 className="bs-title" id="sheep-community-title">Good instincts.<br />Better questions.</h2>
               <p className="bs-body">$SHEEP is the community token, and it is a separate thing from the news bot. You do not need it to use Black Sheep, and holding it is not a claim on the product, its data or its revenue. The token is planned for pump.fun. The bot is live today, free, with no wallet involved.</p>
-              <div className="sheep-community-links"><a className="btn-primary" href="https://x.com/newsbeat_" target="_blank" rel="noopener noreferrer">Follow the flock <ArrowUpRight size={15} /></a><a className="bs-text-link" href="/docs/robinhood-chain">Explore the project <ArrowRight size={15} /></a></div>
+              <div className="sheep-community-links"><a className="btn-primary" href="https://x.com/blacksheep_" target="_blank" rel="noopener noreferrer">Follow the flock <ArrowUpRight size={15} /></a><a className="bs-text-link" href="/docs/robinhood-chain">Explore the project <ArrowRight size={15} /></a></div>
               <p className="sheep-community-status">Coming to pump.fun · launch date and verified contract address to be announced.</p>
             </div>
           </div>

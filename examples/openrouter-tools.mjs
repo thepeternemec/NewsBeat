@@ -14,20 +14,20 @@ export async function loadNewsTools(baseUrl) {
 
 /** GET routes, keyed by tool name. `watch` is absent because it takes a body. */
 const GET_PATHS = {
-  newsbeat_topics: "topics",
-  newsbeat_news: "news",
-  newsbeat_changes: "changes",
-  newsbeat_brief: "brief",
-  newsbeat_stories: "stories",
+  blacksheep_topics: "topics",
+  blacksheep_news: "news",
+  blacksheep_changes: "changes",
+  blacksheep_brief: "brief",
+  blacksheep_stories: "stories",
 };
 
 export async function executeNewsTool(baseUrl, call) {
   const args = JSON.parse(call.function.arguments);
-  const name = call.function.name.replace(/^newsgraph_/, "newsbeat_");
+  const name = call.function.name.replace(/^newsgraph_/, "blacksheep_");
   const timeout = AbortSignal.timeout(20000);
 
   let response;
-  if (name === "newsbeat_watch") {
+  if (name === "blacksheep_watch") {
     // A batch carries up to fifty cursors, so it is a POST — fifty of them do not
     // fit in a URL. Everything else here is a GET.
     if (!Array.isArray(args.watches)) throw new Error("watches must be an array");
@@ -38,7 +38,7 @@ export async function executeNewsTool(baseUrl, call) {
       signal: timeout,
     });
   } else if (Object.hasOwn(GET_PATHS, name)) {
-    if (name === "newsbeat_topics") {
+    if (name === "blacksheep_topics") {
       const query = new URLSearchParams(args.query ? { q: args.query } : {});
       response = await fetch(`${baseUrl}/v2/${GET_PATHS[name]}?${query}`, { signal: timeout });
     } else {

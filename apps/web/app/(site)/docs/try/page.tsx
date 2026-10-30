@@ -9,9 +9,9 @@ export const metadata = {
   description: "Search a company or crypto asset, read live headlines and request a source-linked summary. No account, key or card needed.",
 };
 
-const REQUEST = 'curl "https://www.newsbeat.dev/api/v2/summary?beat_id=b_bb964843350e"';
+const REQUEST = 'curl "https://blacksheep.vercel.app/api/v2/summary?beat_id=b_bb964843350e"';
 
-export default function TryNewsBeat() {
+export default function TryBlackSheep() {
   return (
     <div className="try-guide">
       <header className="docs-head">

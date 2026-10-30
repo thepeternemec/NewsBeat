@@ -35,7 +35,7 @@ export interface Stats {
   live: number;
 }
 
-export function useNewsBeatStats(intervalMs = 20000) {
+export function useBlackSheepStats(intervalMs = 20000) {
   const [topics, setTopics] = useState<Topic[]>([]);
   // The catalog is paginated, so `topics.length` is the size of a page capped at
   // 1000 and the headline number stopped there. The API reports the real total.

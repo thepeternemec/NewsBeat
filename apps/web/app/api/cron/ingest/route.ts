@@ -4,17 +4,18 @@
  * Called by Vercel Cron (see vercel.json). Vercel signs cron requests, so this
  * also accepts the shared secret for a manual run:
  *
- *   curl -H "Authorization: Bearer $CRON_SECRET" https://www.newsbeat.dev/api/cron/ingest
+ *   curl -H "Authorization: Bearer $CRON_SECRET" https://blacksheep.vercel.app/api/cron/ingest
  */
-import { runIngestion } from "newsbeat-worker";
-import { db, hasDatabaseEnv, pruneOldArticles } from "@newsbeat/db";
+import { runIngestion } from "blacksheep-worker";
+import { db, env, hasDatabaseEnv, pruneOldArticles } from "@blacksheep/db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 300;
 
 export async function GET(request: Request) {
-  const secret = (process.env.NEWSBEAT_CRON_SECRET ?? process.env.NEWSGRAPH_CRON_SECRET);
+  // env() already falls back through the two legacy variable names.
+  const secret = env("BLACKSHEEP_CRON_SECRET");
   const isVercelCron = request.headers.get("user-agent")?.includes("vercel-cron");
   if (secret && !isVercelCron) {
     if (request.headers.get("authorization") !== `Bearer ${secret}`) {

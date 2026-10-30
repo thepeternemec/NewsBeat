@@ -1,14 +1,14 @@
 # GitHub Marketplace webhook
 
-NewsBeat currently offers free public news and MCP access. The Marketplace receiver records plan notifications; it does not bill customers, grant credits, restrict public access, or provision paid plans. Keep the listing free until paid-plan provisioning and reconciliation are implemented and tested.
+Black Sheep currently offers free public news and MCP access. The Marketplace receiver records plan notifications; it does not bill customers, grant credits, restrict public access, or provision paid plans. Keep the listing free until paid-plan provisioning and reconciliation are implemented and tested.
 
 ## Listing configuration
 
-Under **GitHub Marketplace → NewsBeat Agent → Webhook**, use:
+Under **GitHub Marketplace → Black Sheep Agent → Webhook**, use:
 
 | Field            | Value                                                                   |
 | ---------------- | ----------------------------------------------------------------------- |
-| Payload URL      | `https://www.newsbeat.dev/api/webhooks/github/marketplace`              |
+| Payload URL      | `https://blacksheep.vercel.app/api/webhooks/github/marketplace`              |
 | Content type     | `application/json`                                                      |
 | Secret           | The same random value as production `GITHUB_MARKETPLACE_WEBHOOK_SECRET` |
 | SSL verification | Enabled                                                                 |
@@ -27,7 +27,7 @@ After saving, check **Recent deliveries**. GitHub's signed `ping` should receive
 - A unique delivery ID prevents duplicate writes, including concurrent redeliveries. Reusing an ID for a different body or event returns `409`.
 - Saves only the delivery ID, event, body digest, action, numeric account/plan IDs, account type, previous plan ID, effective date and receipt time. It does not save the raw payload, sender details, billing email, OAuth tokens or secret.
 - Database failure returns `503`, never a successful acknowledgement. Missing server secret also returns `503`; missing or incorrect signatures return `401`.
-- Uses `public.newsbeat_marketplace_deliveries`. The signed receiver bootstraps this additive table; it is also included in `db/schema.sql`. No production database credentials need to be copied locally.
+- Uses `public.blacksheep_marketplace_deliveries`. The signed receiver bootstraps this additive table; it is also included in `db/schema.sql`. No production database credentials need to be copied locally.
 
 ## Check deliveries as an operator
 
@@ -36,12 +36,12 @@ Use the database's authenticated SQL console, never a public endpoint:
 ```sql
 select delivery_id, event, action, github_account_id, plan_id,
        effective_at, received_at
-from public.newsbeat_marketplace_deliveries
+from public.blacksheep_marketplace_deliveries
 order by received_at desc
 limit 50;
 ```
 
-The webhook completes this listing configuration step. It does not verify that a separately registered GitHub App's installation/OAuth setup is complete. Test the actual install and onboarding flow before submitting for review. NewsBeat's agent integration is MCP; a Marketplace listing does not itself add an `@newsbeat-agent` Copilot chat command.
+The webhook completes this listing configuration step. It does not verify that a separately registered GitHub App's installation/OAuth setup is complete. Test the actual install and onboarding flow before submitting for review. Black Sheep's agent integration is MCP; a Marketplace listing does not itself add an `@newsbeat-agent` Copilot chat command.
 
 ## Before offering paid Marketplace plans
 

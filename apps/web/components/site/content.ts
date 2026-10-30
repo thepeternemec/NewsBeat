@@ -71,7 +71,7 @@ export const FAQ = [
   },
   {
     "q": "What does Black Sheep do?",
-    "a": "Black Sheep follows the news behind tokenized assets and is the new identity for the NewsBeat news engine. Its planned agent network shares source-linked asset context. Its working service brings recent company and crypto news into your AI assistant. Ask “What happened with Nvidia?” and your agent can use recent headlines, grouped coverage and brief updates to answer. The public connection is free during early access."
+    "a": "Black Sheep follows the news behind tokenized assets and is the new identity for the Black Sheep news engine. Its planned agent network shares source-linked asset context. Its working service brings recent company and crypto news into your AI assistant. Ask “What happened with Nvidia?” and your agent can use recent headlines, grouped coverage and brief updates to answer. The public connection is free during early access."
   },
   {
     "q": "How does Black Sheep fit Robinhood Chain?",
@@ -95,7 +95,7 @@ export const FAQ = [
   },
   {
     "q": "How do I connect it to my assistant?",
-    "a": "Open the getting-started guide and copy https://www.newsbeat.dev/api/mcp into your assistant’s remote MCP connection settings. The exact steps depend on the app. Test the connection, enable its news tools, and ask your first question. Pasting the address into an ordinary chat does not necessarily connect it."
+    "a": "Open the getting-started guide and copy https://blacksheep.vercel.app/api/mcp into your assistant’s remote MCP connection settings. The exact steps depend on the app. Test the connection, enable its news tools, and ask your first question. Pasting the address into an ordinary chat does not necessarily connect it."
   },
   {
     "q": "Does it work with ChatGPT, Claude, Grok or other assistants?",

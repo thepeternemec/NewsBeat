@@ -9,9 +9,16 @@ import postgres, { type Sql } from "postgres";
  */
 
 export function env(name: string): string | undefined {
-  // Accept deployed legacy variable names during the brand migration.
-  return process.env[name] ?? (name.startsWith("NEWSBEAT_")
-    ? process.env[name.replace(/^NEWSBEAT_/, "NEWSGRAPH_")] : undefined);
+  // Variable names were NEWSGRAPH_*, then NEWSBEAT_*, and are now BLACKSHEEP_*. All
+  // three resolve so a deployment never depends on the rename landing at the same
+  // instant as the code. The current name wins.
+  const direct = process.env[name];
+  if (direct !== undefined) return direct;
+  if (name.startsWith("BLACKSHEEP_")) {
+    const suffix = name.slice("BLACKSHEEP_".length);
+    return process.env[`NEWSBEAT_${suffix}`] ?? process.env[`NEWSGRAPH_${suffix}`];
+  }
+  return undefined;
 }
 
 export function hasDatabaseEnv(): boolean {
@@ -32,7 +39,7 @@ export function db(): Sql {
   if (!url) throw new Error("DATABASE_URL is not set");
   // The site asks for a dozen things at once (catalog, feed, ten clusters). With
   // a pool of one those serialise and the slowest query sets the page's latency.
-  const max = Math.max(1, Number(env("NEWSBEAT_DB_POOL") ?? 5));
+  const max = Math.max(1, Number(env("BLACKSHEEP_DB_POOL") ?? 5));
   client ??= postgres(url, { max, idle_timeout: 20, prepare: false });
   return client;
 }

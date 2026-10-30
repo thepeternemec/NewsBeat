@@ -1,4 +1,4 @@
-# NewsBeat project status
+# Black Sheep project status
 
 Updated **2026-10-21** from the current main-branch implementation. Counts describe the bundled catalog, not a guarantee of live article coverage.
 
@@ -14,7 +14,7 @@ Updated **2026-10-21** from the current main-branch implementation. Counts descr
 | Summaries | Up to three short explanations based only on headlines; generated text or labeled original-headline fallback |
 | Batched watch | Up to 50 assets per request; each result can succeed or fail independently |
 | REST and function calling | Seven read operations and schemas at `/api/v2/tools` |
-| Hosted MCP | Seven tools over Streamable HTTP at `/api/mcp`, including `newsbeat_summary` |
+| Hosted MCP | Seven tools over Streamable HTTP at `/api/mcp`, including `blacksheep_summary` |
 | Web terminal | Asset search, grouped stories, source expansion, Show more controls and on-demand headline summaries |
 | Self-serve keys | GitHub sign-in; signing in again rotates the existing key |
 | Account billing | Keyed REST usage is metered; anonymous reads are free and rate limited |
@@ -25,7 +25,7 @@ The scheduled worker uses a time budget and prioritizes overdue assets. A schedu
 
 ## Headline summaries and ranked coverage
 
-Choose **Summarize headlines** in the [terminal](https://www.newsbeat.dev/dashboard), call `newsbeat_summary` over MCP, or use `GET /api/v2/summary?beat_id=…`. Resolve a company or ticker with the topic catalog first.
+Choose **Summarize headlines** in the [terminal](https://blacksheep.vercel.app/dashboard), call `blacksheep_summary` over MCP, or use `GET /api/v2/summary?beat_id=…`. Resolve a company or ticker with the topic catalog first.
 
 The digest selects up to three distinct stories from a snapshot of the latest 200 reports within 24 hours. It favors headlines describing concrete developments and uses the existing ranking and diversity heuristics. It can return fewer than three items. This is approximate selection, not a prediction of market impact or a guarantee of relevance.
 
@@ -37,13 +37,13 @@ REST story snapshots scan 200 reports by default (`limit` 1–500). MCP returns 
 
 ## Brand and domain
 
-The product and repository are **NewsBeat**, live at **https://www.newsbeat.dev**. Use `https://www.newsbeat.dev/api` for REST and `https://www.newsbeat.dev/api/mcp` for MCP. The `news-beat.vercel.app` host remains an alternate service address. Public reads are free during early access; no API key or credit card is needed. Account keys have a **seven-day evaluation** from the first metered REST call, with up to **$6 in trial credit**. The start is recorded per account in the usage ledger, so rotating a key does not reset it. Existing accounts keep their balances and start their seven-day window on their next metered call after this release. `GET /api/keys/trial` reports the deadline and spendable credit. When the trial ends, unused trial credit becomes unavailable and keyed reads return `402 trial_expired`; public anonymous reads continue. Stripe checkout is not live.
+The product and repository are **Black Sheep**, live at **https://blacksheep.vercel.app**. Use `https://blacksheep.vercel.app/api` for REST and `https://blacksheep.vercel.app/api/mcp` for MCP. The `news-beat.vercel.app` host remains an alternate service address. Public reads are free during early access; no API key or credit card is needed. Account keys have a **seven-day evaluation** from the first metered REST call, with up to **$6 in trial credit**. The start is recorded per account in the usage ledger, so rotating a key does not reset it. Existing accounts keep their balances and start their seven-day window on their next metered call after this release. `GET /api/keys/trial` reports the deadline and spendable credit. When the trial ends, unused trial credit becomes unavailable and keyed reads return `402 trial_expired`; public anonymous reads continue. Stripe checkout is not live.
 
-New discovery uses `newsbeat_*` tool names. Old tool names, deployed environment-variable names and existing signed cursors retain compatibility. Workspace package names use `@newsbeat/*` and `newsbeat-*`.
+New discovery uses `blacksheep_*` tool names. Old tool names, deployed environment-variable names and existing signed cursors retain compatibility. Workspace package names use `@blacksheep/*` and `newsbeat-*`.
 
 ## Connector expansion — preview, not production
 
-[PR #11](https://github.com/thepeternemec/NewsBeat/pull/11) implements eight shared MCP/REST operations, general news search and source-record lookup, named independent keys, atomic account metering, OAuth resource-server verification, saved watches and signed webhooks. It also includes Telegram/Discord relay and Grok API examples.
+[PR #11](https://github.com/thepeternemec/black-sheep/pull/11) implements eight shared MCP/REST operations, general news search and source-record lookup, named independent keys, atomic account metering, OAuth resource-server verification, saved watches and signed webhooks. It also includes Telegram/Discord relay and Grok API examples.
 
 That work passed its preview checks but still needs its additive database migration, environment configuration and end-to-end activation. It is not merged into main. An external OAuth authorization server and platform-specific consent/client registration must be configured separately.
 

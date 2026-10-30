@@ -1,14 +1,14 @@
 import { clusterStories, storyView } from "./cluster.js";
 import { rankStories, selectBriefStories } from "./relevance.js";
-import { db as connect, env, hasDatabaseEnv } from "@newsbeat/db";
-import { SEED_BEATS, type NewsArticle } from "@newsbeat/contracts";
+import { db as connect, env, hasDatabaseEnv } from "@blacksheep/db";
+import { SEED_BEATS, type NewsArticle } from "@blacksheep/contracts";
 export class NewsError extends Error {
     constructor(public code: string, message: string, public status = 400) { super(message); }
 }
 const encoder = new TextEncoder();
 const encode = (value: string) => btoa(value).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 const decode = (value: string) => atob(value.replace(/-/g, "+").replace(/_/g, "/"));
-async function key() { const secret = env("NEWSBEAT_CURSOR_SECRET"); if (!secret)
+async function key() { const secret = env("BLACKSHEEP_CURSOR_SECRET"); if (!secret)
     throw new NewsError("service_unavailable", "News storage is not configured.", 503); return crypto.subtle.importKey("raw", encoder.encode(`newsgraph:news-cursor:v2:${secret}`), { name: "HMAC", hash: "SHA-256" }, false, ["sign", "verify"]); }
 export async function signCursor(beat: string, seq: string, mode: "changes" | "history" = "changes", now = Date.now()) {
     const payload = encode(JSON.stringify({ v: 2, b: beat, s: seq, m: mode, e: now + 30 * 86400000 }));
@@ -39,7 +39,7 @@ export async function readCursor(cursor: string, beat: string, mode: "changes" |
 export function db() { if (!hasDatabaseEnv())
     throw new NewsError("service_unavailable", "News storage is not configured.", 503); return connect(); }
 export function topicById(id: string) { const topic = SEED_BEATS.find(t => t.beat_id === id); if (!topic)
-    throw new NewsError("unknown_topic", "Choose a supported topic from newsbeat_topics.", 404); return topic; }
+    throw new NewsError("unknown_topic", "Choose a supported topic from blacksheep_topics.", 404); return topic; }
 export function freshness(last: string | null, minutes: number) { return { status: !last ? "unavailable" : Date.now() - Date.parse(last) > minutes * 60000 ? "stale" : "fresh", last_success_at: last }; }
 /** Bounds on the catalog page. A default of 100 keeps a naive client honest;
  *  a high ceiling lets one that genuinely needs the whole catalog ask once. */

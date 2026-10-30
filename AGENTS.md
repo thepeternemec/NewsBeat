@@ -1,12 +1,12 @@
-# NewsBeat for agents
+# Black Sheep for agents
 
-The integration guide for agents. For people: [connect your assistant](https://www.newsbeat.dev/docs/quickstart) and ask a company-news question in your own words.
+The integration guide for agents. For people: [connect your assistant](https://blacksheep.vercel.app/docs/quickstart) and ask a company-news question in your own words.
 
 ## When to check the news
 
-Use NewsBeat when recent company or crypto developments would help answer the user's current task. The user does not need to name NewsBeat: "What is happening with Nvidia?", company research and market briefings are reasons to look up news. Static definitions and unrelated questions do not require a lookup.
+Use Black Sheep when recent company or crypto developments would help answer the user's current task. The user does not need to name Black Sheep: "What is happening with Nvidia?", company research and market briefings are reasons to look up news. Static definitions and unrelated questions do not require a lookup.
 
-Resolve the supported asset first. Ask for clarification when the name is ambiguous and explain when there is no supported match. Answer in plain language with sources, dates and freshness, staying within what the headlines support. NewsBeat provides headline metadata, not full article text.
+Resolve the supported asset first. Ask for clarification when the name is ambiguous and explain when there is no supported match. Answer in plain language with sources, dates and freshness, staying within what the headlines support. Black Sheep provides headline metadata, not full article text.
 
 Tool selection and permission belong to the host. A lookup during an authorized task is different from background monitoring: only create recurring checks or notifications when the user requests them and the host supports them.
 
@@ -50,7 +50,7 @@ Every response carries a new cursor. Use the newest one, always for the same top
 
 ## Endpoints
 
-Base: `https://www.newsbeat.dev/api`
+Base: `https://blacksheep.vercel.app/api`
 
 | Route | Returns |
 | --- | --- |
@@ -66,8 +66,8 @@ Base: `https://www.newsbeat.dev/api`
 | `GET /health` | Liveness |
 
 The same calls are published as tools, for frameworks that would rather be handed a schema than a
-URL: `newsbeat_topics`, `newsbeat_news`, `newsbeat_changes`, `newsbeat_brief`,
-`newsbeat_stories`, `newsbeat_summary`, `newsbeat_watch`. They appear in `GET /v2/tools` and over MCP.
+URL: `blacksheep_topics`, `blacksheep_news`, `blacksheep_changes`, `blacksheep_brief`,
+`blacksheep_stories`, `blacksheep_summary`, `blacksheep_watch`. They appear in `GET /v2/tools` and over MCP.
 
 **No credential is required.** Anonymous callers get 120 requests a minute, identified by calling
 address and never stored. An account key provides a seven-day agent trial starting on the first
@@ -91,11 +91,11 @@ Public access without a key stays free.
 
 | Surface | Where |
 | --- | --- |
-| Machine summary | `https://www.newsbeat.dev/llms.txt` |
-| This guide | `https://www.newsbeat.dev/skill.md` |
+| Machine summary | `https://blacksheep.vercel.app/llms.txt` |
+| This guide | `https://blacksheep.vercel.app/skill.md` |
 | Tool definitions | `GET /v2/tools` |
-| Status and roadmap | `https://www.newsbeat.dev/docs` |
-| Source | `https://github.com/thepeternemec/NewsBeat` |
+| Status and roadmap | `https://blacksheep.vercel.app/docs` |
+| Source | `https://github.com/thepeternemec/black-sheep` |
 
 ## Current service state
 
@@ -143,12 +143,12 @@ The response has a `results` array in the same order, each entry carrying `moved
 `items`, a fresh `cursor` and `freshness` — plus top-level `checked`, `moved` and
 `failed` counts. **Each entry is independent**: an expired cursor or an unknown
 topic fails only its own result, so re-baseline just that one with
-`newsbeat_news` and keep the others.
+`blacksheep_news` and keep the others.
 
 ## Grouped overview
 
-Use `newsbeat_summary` when someone asks what happened with an asset. It selects up to three distinct ranked story groups from the latest 200 reports in 24 hours, and returns short sentences with original report links and publication times. `basis` is `headlines_only`. `method` is `generated` when headline-based generation succeeds and `extractive` when the original headlines are shown instead. Read `freshness` and `coverage_truncated`, and never infer the contents of full articles or market effects.
+Use `blacksheep_summary` when someone asks what happened with an asset. It selects up to three distinct ranked story groups from the latest 200 reports in 24 hours, and returns short sentences with original report links and publication times. `basis` is `headlines_only`. `method` is `generated` when headline-based generation succeeds and `extractive` when the original headlines are shown instead. Read `freshness` and `coverage_truncated`, and never infer the contents of full articles or market effects.
 
-Use `newsbeat_stories` for a feed grouped by similar headlines and ranked by headline relevance. Each group includes a verbatim `lead_article` and `reports` with original source links and timestamps. No stored articles are deleted. Matching is conservative and approximate; source counts measure coverage, not independent verification.
+Use `blacksheep_stories` for a feed grouped by similar headlines and ranked by headline relevance. Each group includes a verbatim `lead_article` and `reports` with original source links and timestamps. No stored articles are deleted. Matching is conservative and approximate; source counts measure coverage, not independent verification.
 
 MCP returns up to 40 ranked groups drawn from 200 recent reports; REST scans 200 by default (`limit` 1–500). The 24-hour snapshot favors concrete developments, recency and coverage from multiple publishers, while downranking routine ownership notices and shopping headlines. This is a headline heuristic, not a measure of market impact or verification. Check `coverage_truncated` and `stories_scanned`. The brief ranks up to 200 recent reports for three distinct headlines; its `ranking` and `articles_scanned` fields explain the selection. Group IDs can change as the window rolls. Continue using the existing topic-bound article cursors for follow-up arrivals, then refresh the ranked overview for presentation.

@@ -52,7 +52,7 @@ export default function OpenGraphImage() {
         }}
       >
         <span>Connect your agent · Try it free</span>
-        <span>newsbeat.dev</span>
+        <span>blacksheep.vercel.app</span>
       </div>
     </div>,
     size,

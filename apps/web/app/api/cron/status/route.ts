@@ -1,5 +1,5 @@
 import { timingSafeEqual } from "node:crypto";
-import { runOperationalCheck } from "@newsbeat/api";
+import { runOperationalCheck } from "@blacksheep/api";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

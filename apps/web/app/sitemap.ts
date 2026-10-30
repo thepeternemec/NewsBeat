@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const ORIGIN = "https://www.newsbeat.dev";
+const ORIGIN = "https://blacksheep.vercel.app";
 
 // Only public, indexable pages. API endpoints and generated image routes are omitted.
 const PAGES = [

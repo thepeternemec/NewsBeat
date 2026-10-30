@@ -10,7 +10,7 @@ Give agents and applications source-linked company and crypto news, then connect
 
 Robinhood Chain describes an open, EVM-compatible network for traditional markets, crypto and tokenized real-world assets. Our proposed role is the context around those assets. This is our product direction, not an announced Robinhood partnership.
 
-Black Sheep is the new product identity. Preserve the black, white and grey design and the existing NewsBeat connection identifiers. See BLACK-SHEEP.md for the tokenized-asset research direction and proposed agent network.
+Black Sheep is the new product identity. Preserve the black, white and grey design and the existing Black Sheep connection identifiers. See BLACK-SHEEP.md for the tokenized-asset research direction and proposed agent network.
 
 ## Available versus planned
 

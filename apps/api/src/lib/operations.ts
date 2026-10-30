@@ -1,10 +1,10 @@
 import { Hono } from "hono";
-import { db, hasDatabaseEnv } from "@newsbeat/db";
+import { db, hasDatabaseEnv } from "@blacksheep/db";
 import {
   SEED_BEATS,
   type OperationComponent,
   type OperationSnapshot,
-} from "@newsbeat/contracts";
+} from "@blacksheep/contracts";
 import {
   atomFeed,
   decodeSnapshot,
@@ -14,7 +14,7 @@ import {
 } from "./operations-policy.js";
 
 // Fixed targets prevent callers from turning the monitor into a URL fetch proxy.
-const ORIGIN = "https://www.newsbeat.dev";
+const ORIGIN = "https://blacksheep.vercel.app";
 const NVIDIA = "b_bb964843350e";
 type Json = Record<string, unknown>;
 async function requestJson(path: string, init?: RequestInit): Promise<Json> {
@@ -60,7 +60,7 @@ async function probe(
 /** Only the authenticated production cron calls this writer. Bootstrap is additive. */
 export async function runOperationalCheck(): Promise<OperationSnapshot> {
   const sql = db();
-  await sql`create table if not exists public.newsbeat_operation_checks (
+  await sql`create table if not exists public.blacksheep_operation_checks (
     slot timestamptz primary key,
     checked_at timestamptz not null,
     report jsonb not null
@@ -90,7 +90,7 @@ export async function runOperationalCheck(): Promise<OperationSnapshot> {
           params: {
             protocolVersion: "2025-03-26",
             capabilities: {},
-            clientInfo: { name: "newsbeat-status", version: "1.0" },
+            clientInfo: { name: "blacksheep-status", version: "1.0" },
           },
         }),
       });
@@ -104,7 +104,7 @@ export async function runOperationalCheck(): Promise<OperationSnapshot> {
           jsonrpc: "2.0",
           id: 2,
           method: "tools/call",
-          params: { name: "newsbeat_brief", arguments: { beat_id: NVIDIA } },
+          params: { name: "blacksheep_brief", arguments: { beat_id: NVIDIA } },
         }),
       });
       const result = called.result as Json | undefined;
@@ -150,8 +150,8 @@ export async function runOperationalCheck(): Promise<OperationSnapshot> {
     Math.floor(Date.parse(report.checked_at) / 300_000) * 300_000,
   ).toISOString();
   // Use the driver's JSON helper; a pre-stringified value cast to jsonb is encoded as a JSON string.
-  await sql`insert into public.newsbeat_operation_checks (slot, checked_at, report) values (${slot}, ${report.checked_at}, ${sql.json(JSON.parse(JSON.stringify(report)))}) on conflict (slot) do nothing`;
-  await sql`delete from public.newsbeat_operation_checks where slot < now() - interval '45 days'`;
+  await sql`insert into public.blacksheep_operation_checks (slot, checked_at, report) values (${slot}, ${report.checked_at}, ${sql.json(JSON.parse(JSON.stringify(report)))}) on conflict (slot) do nothing`;
+  await sql`delete from public.blacksheep_operation_checks where slot < now() - interval '45 days'`;
   return report;
 }
 
@@ -160,7 +160,7 @@ export async function readOperationStatus() {
   try {
     const rows = await db()<
       Array<{ report: unknown }>
-    >`select report from public.newsbeat_operation_checks order by slot desc limit 48`;
+    >`select report from public.blacksheep_operation_checks order by slot desc limit 48`;
     const history = rows.flatMap((row) => {
       const report = decodeSnapshot(row.report);
       return report ? [report] : [];

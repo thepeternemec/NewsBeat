@@ -4,7 +4,7 @@ import AgentInstructions from "@/components/site/agent-instructions";
 import "./quickstart.css";
 
 export const metadata = { title: "Use Black Sheep with your assistant", description: "Connect Black Sheep in three steps. Add the connection address, ask a news question, and get sources and dates in your assistant." };
-const MCP_URL = "https://www.newsbeat.dev/api/mcp";
+const MCP_URL = "https://blacksheep.vercel.app/api/mcp";
 const FIRST_QUESTION = "Use Black Sheep to find the latest news about Nvidia. Include sources and dates.";
 const questions = [
   { label: "Follow a company", text: "What are the latest headlines about Apple?" },
@@ -36,7 +36,7 @@ export default function DocsQuickstart() {
 
       <nav className="quickstart-route" aria-label="Setup steps">
         <a href="#choose-assistant"><span>01</span> Choose your assistant <ArrowRight size={14} /></a>
-        <a href="#add-newsbeat"><span>02</span> Add Black Sheep <ArrowRight size={14} /></a>
+        <a href="#add-blacksheep"><span>02</span> Add Black Sheep <ArrowRight size={14} /></a>
         <a href="#first-question"><span>03</span> Ask a question <ArrowDown size={14} /></a>
       </nav>
 
@@ -50,8 +50,8 @@ export default function DocsQuickstart() {
           </div>
         </section>
 
-        <section className="quickstart-step quickstart-connection" aria-labelledby="add-newsbeat">
-          <div className="quickstart-step-heading"><span className="quickstart-number">02</span><div><span className="quickstart-kicker">ONE ADDRESS. YOUR NEWS CONNECTION.</span><h2 id="add-newsbeat">Add the Black Sheep address.</h2></div><Link2 className="quickstart-step-icon" size={22} /></div>
+        <section className="quickstart-step quickstart-connection" aria-labelledby="add-blacksheep">
+          <div className="quickstart-step-heading"><span className="quickstart-number">02</span><div><span className="quickstart-kicker">ONE ADDRESS. YOUR NEWS CONNECTION.</span><h2 id="add-blacksheep">Add the Black Sheep address.</h2></div><Link2 className="quickstart-step-icon" size={22} /></div>
           <div className="quickstart-step-body">
             <p>Add a new connection named <strong>Black Sheep</strong>. Paste this address, then follow your app’s prompts to enable its news tools.</p>
             <div className="quickstart-endpoint">
@@ -93,7 +93,7 @@ export default function DocsQuickstart() {
         <div className="quickstart-section-label"><CircleHelp size={16} /><span>A LITTLE HELP, IF YOU NEED IT</span></div>
         <h2 id="setup-help">Something not clicking?</h2>
         <div className="quickstart-help-list">{help.map(item => <details key={item.question}><summary>{item.question}<span aria-hidden="true">+</span></summary><p>{item.answer}</p></details>)}</div>
-        <div className="quickstart-contact"><span>We’re here to help you get connected.</span><a href="mailto:contact@newsbeat.dev">Contact Black Sheep <ArrowUpRight size={14} /></a></div>
+        <div className="quickstart-contact"><span>We’re here to help you get connected.</span><a href="https://x.com/blacksheep_">Contact Black Sheep <ArrowUpRight size={14} /></a></div>
       </section>
     </div>
   );

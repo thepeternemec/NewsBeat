@@ -5,7 +5,7 @@ import {
   createMarketplaceRoutes,
   validMarketplaceSignature,
 } from "./marketplace.js";
-import type { MarketplaceDelivery } from "@newsbeat/db";
+import type { MarketplaceDelivery } from "@blacksheep/db";
 
 const secret = "test-secret-not-a-production-credential";
 function request(body: string, overrides: Record<string, string> = {}) {

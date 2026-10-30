@@ -1,8 +1,8 @@
 {
-  "name": "newsbeat",
+  "name": "blacksheep",
   "version": "0.2.0",
   "private": true,
-  "description": "NewsBeat — the news layer for AI agents. Source-linked equity and crypto headlines, change monitoring, MCP and REST.",
+  "description": "Black Sheep \u2014 the news layer for AI agents. Source-linked equity and crypto headlines, change monitoring, MCP and REST.",
   "license": "MIT",
   "engines": {
     "node": ">=20"
@@ -12,11 +12,11 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "npm run build:packages && npm run build -w @newsbeat/api && npm run build -w newsbeat-worker && npm run build -w newsbeat-web",
-    "build:packages": "npm run build -w @newsbeat/contracts && npm run build -w @newsbeat/db",
-    "test": "npm run build:packages && npm run build -w newsbeat-worker && npm run build -w @newsbeat/api && node --test packages/contracts/dist/*.test.js packages/db/dist/*.test.js apps/worker/dist/*.test.js apps/worker/dist/*.test.js apps/api/dist/lib/*.test.js && node --test apps/web/tests/*.test.mjs",
+    "build": "npm run build:packages && npm run build -w @blacksheep/api && npm run build -w blacksheep-worker && npm run build -w blacksheep-web",
+    "build:packages": "npm run build -w @blacksheep/contracts && npm run build -w @blacksheep/db",
+    "test": "npm run build:packages && npm run build -w blacksheep-worker && npm run build -w @blacksheep/api && node --test packages/contracts/dist/*.test.js packages/db/dist/*.test.js apps/worker/dist/*.test.js apps/worker/dist/*.test.js apps/api/dist/lib/*.test.js && node --test apps/web/tests/*.test.mjs",
     "dev": "npm run dev:web",
-    "dev:web": "npm run dev -w newsbeat-web",
+    "dev:web": "npm run dev -w blacksheep-web",
     "db:setup": "node db/migrate.mjs",
     "key:issue": "node db/issue-key.mjs",
     "db:prune": "node db/prune-mismatched.mjs",
@@ -38,10 +38,10 @@
     "news-api",
     "change-monitoring"
   ],
-  "homepage": "https://www.newsbeat.dev",
+  "homepage": "https://blacksheep.vercel.app",
   "repository": {
     "type": "git",
-    "url": "https://github.com/thepeternemec/NewsBeat.git"
+    "url": "https://github.com/thepeternemec/black-sheep.git"
   },
   "dependencies": {
     "postgres": "^3.4.9"

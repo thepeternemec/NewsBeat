@@ -13,7 +13,7 @@ export interface MarketplaceDelivery {
   effectiveAt: string | null;
 }
 
-export const MARKETPLACE_SCHEMA = `create table if not exists public.newsbeat_marketplace_deliveries (
+export const MARKETPLACE_SCHEMA = `create table if not exists public.blacksheep_marketplace_deliveries (
   delivery_id text primary key,
   event text not null,
   body_hash text not null,
@@ -34,7 +34,7 @@ export async function recordMarketplaceDelivery(
   // Only invoked after signature and payload validation. Additive deployment bootstrap.
   await sql.unsafe(MARKETPLACE_SCHEMA);
   const inserted = await sql`
-    insert into public.newsbeat_marketplace_deliveries
+    insert into public.blacksheep_marketplace_deliveries
       (delivery_id, event, body_hash, action, github_account_id, github_account_type,
        plan_id, previous_plan_id, effective_at)
     values (${delivery.deliveryId}, ${delivery.event}, ${delivery.bodyHash}, ${delivery.action},
@@ -45,7 +45,7 @@ export async function recordMarketplaceDelivery(
   // The unique constraint serializes concurrent redeliveries. A conflicting reuse
   // of a delivery ID is not silently accepted as an already processed event.
   const [existing] = await sql<Array<{ body_hash: string; event: string }>>`
-    select body_hash, event from public.newsbeat_marketplace_deliveries
+    select body_hash, event from public.blacksheep_marketplace_deliveries
     where delivery_id = ${delivery.deliveryId}`;
   return existing?.body_hash === delivery.bodyHash &&
     existing.event === delivery.event

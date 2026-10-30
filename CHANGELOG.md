@@ -9,7 +9,7 @@ is a record of decisions, because the reasoning is the thing that gets lost.
 - **$6 trial credit.** New API-key accounts receive $6 of trial credit. Website, API key onboarding, README and agent documentation now state the same amount. Existing account balances retain their recorded credits and usage.
 - **Guided assistant setup.** The quickstart now has three numbered setup cards, a prominent copyable MCP address, a first-question prompt and reusable question cards. Optional agent instructions and troubleshooting expand on demand. The layout works in both themes and on mobile, with entrance motion that respects reduced-motion preferences.
 - **Polished interior pages.** Connection, pricing, FAQ, key, reference and legal pages use balanced hero layouts and clearer sections. Documentation has a centered reading column and an active contents rail. The terminal has structured metric cards and theme-aware headings. Subtle entrance and hover motion respects reduced-motion preferences; layouts adapt to phone and tablet screens.
-- **“What happened?” summaries are live.** The terminal’s **Summarize headlines** button, `GET /api/v2/summary?beat_id=…`, and the `newsbeat_summary` MCP tool return up to three short explanations grounded in recent publisher headlines. Each item retains report links and publication times.
+- **“What happened?” summaries are live.** The terminal’s **Summarize headlines** button, `GET /api/v2/summary?beat_id=…`, and the `blacksheep_summary` MCP tool return up to three short explanations grounded in recent publisher headlines. Each item retains report links and publication times.
 - **Honest generation fallback.** Responses state `basis: "headlines_only"` and `method: "generated"` or `"extractive"`. Failed generation or rejected output returns original headlines. Story IDs keep sentences attached to their sources even when the model changes their order; output checks also reject new numeric figures and missing selected uncertainty cues.
 - **Relevance ranking and distinct stories.** Grouped coverage and briefs favor concrete developments, recent reports and publisher coverage, while downranking routine ownership notices and shopping headlines. Digests prioritize development headlines and avoid treating “looks back” or “send money back” as investment events. These are heuristics, not market-impact judgments.
 - **Grouped feed with source expansion.** Similar headlines appear under one original lead; users can inspect each publisher, headline, link and time. Original reporting is retained. The terminal initially shows 24 stories and offers **Show more stories**.
@@ -20,9 +20,9 @@ is a record of decisions, because the reasoning is the thing that gets lost.
 
 ### Current service context
 
-- **NewsBeat is the current brand**, with `https://www.newsbeat.dev` as the primary site and API host, and `news-beat.vercel.app` as an alternate. The bundled catalog contains 2,030 assets: 1,528 US-listed equities and 502 crypto assets.
-- **Clearer onboarding and contact.** The README, FAQ and docs explain assistant setup and everyday company-news questions. Contact is [contact@newsbeat.dev](mailto:contact@newsbeat.dev).
-- **Early access stays public.** No API key or credit card is required for anonymous reads. Optional keyed REST metering remains separate; Stripe checkout and the expanded connectors in draft [PR #11](https://github.com/thepeternemec/NewsBeat/pull/11) are not live.
+- **Black Sheep is the current brand**, with `https://blacksheep.vercel.app` as the primary site and API host, and `news-beat.vercel.app` as an alternate. The bundled catalog contains 2,030 assets: 1,528 US-listed equities and 502 crypto assets.
+- **Clearer onboarding and contact.** The README, FAQ and docs explain assistant setup and everyday company-news questions. Contact is [@blacksheep_ on X](https://x.com/blacksheep_).
+- **Early access stays public.** No API key or credit card is required for anonymous reads. Optional keyed REST metering remains separate; Stripe checkout and the expanded connectors in draft [PR #11](https://github.com/thepeternemec/black-sheep/pull/11) are not live.
 
 ## 2026-09-22
 

@@ -1,5 +1,5 @@
 import type { Context } from "hono";
-import { errorStatus, type ErrorCode } from "@newsbeat/contracts";
+import { errorStatus, type ErrorCode } from "@blacksheep/contracts";
 
 /** Uniform application error response. */
 export function errorResponse(

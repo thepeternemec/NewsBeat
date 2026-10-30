@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
  */
 type Theme = "dark" | "light";
 
-const STORAGE_KEY = "newsbeat-theme";
+const STORAGE_KEY = "blacksheep-theme";
 
 function current(): Theme {
   if (typeof document === "undefined") return "dark";

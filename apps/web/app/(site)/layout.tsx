@@ -15,13 +15,13 @@ import Noise from "@/components/motion/noise";
 import GridField from "@/components/site/grid-field";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.newsbeat.dev"),
+  metadataBase: new URL("https://blacksheep.vercel.app"),
   title: "Black Sheep — Intelligence for tokenized assets",
   description:
     "Black Sheep follows the news behind tokenized assets. Source-linked company intelligence for AI agents, with Robinhood Chain asset mapping and agent coordination planned.",
   openGraph: {
     type: "website",
-    url: "https://www.newsbeat.dev",
+    url: "https://blacksheep.vercel.app",
     siteName: "Black Sheep",
     title: "Black Sheep — Intelligence for tokenized assets",
     description:
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
  * Runs during parse, before React. Without it the page paints dark and then flips,
  * which is worse than not offering a choice.
  */
-const THEME_BOOTSTRAP = `(function(){try{var t=localStorage.getItem("newsbeat-theme");document.documentElement.dataset.theme=t==="light"?"light":"dark"}catch(e){document.documentElement.dataset.theme="dark"}})();`;
+const THEME_BOOTSTRAP = `(function(){try{var t=localStorage.getItem("blacksheep-theme")||localStorage.getItem("newsbeat-theme");document.documentElement.dataset.theme=t==="light"?"light":"dark"}catch(e){document.documentElement.dataset.theme="dark"}})();`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

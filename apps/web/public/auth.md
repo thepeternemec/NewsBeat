@@ -5,7 +5,7 @@ session to establish and no token to refresh. This file exists so an agent does 
 spend a turn looking for an auth flow that does not exist — and so that the one
 optional flow that does exist is not a surprise.
 
-Host: `www.newsbeat.dev` · API base: `https://www.newsbeat.dev/api`
+Host: `blacksheep.vercel.app` · API base: `https://blacksheep.vercel.app/api`
 
 ## 1. Register
 
@@ -22,7 +22,7 @@ Send no `Authorization` header. Every request succeeds without one.
 
 ```http
 GET /v2/brief?beat_id=b_bb964843350e HTTP/1.1
-Host: www.newsbeat.dev
+Host: blacksheep.vercel.app
 ```
 
 Responses carry `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`
@@ -54,14 +54,14 @@ To see your exact deadline and remaining credit, call `GET /api/keys/trial`
 with your bearer key. Creating another key for the same account does not restart
 the trial. Public news is still available without a key.
 
-**Self-serve is available** at `https://www.newsbeat.dev/keys` — GitHub, scope
+**Self-serve is available** at `https://blacksheep.vercel.app/keys` — GitHub, scope
 `read:user`, the key shown once. That is a browser flow: it needs a human to
 authorise it, so an agent cannot complete it alone. The key is then a bearer token
 in a header.
 
 ```http
 GET /v2/topics?limit=1 HTTP/1.1
-Host: www.newsbeat.dev
+Host: blacksheep.vercel.app
 Authorization: Bearer ng_...
 ```
 
@@ -73,20 +73,20 @@ for it to describe.
 
 ```http
 GET /v2/tools HTTP/1.1
-Host: www.newsbeat.dev
+Host: blacksheep.vercel.app
 ```
 
 Returns the seven calls in OpenAI function-call shape:
 
 | Tool | Use it to |
 | --- | --- |
-| `newsbeat_topics` | Find a topic. Never invent a `beat_id` |
-| `newsbeat_news` | Read a topic and take a baseline cursor |
-| `newsbeat_changes` | Ask what is new since that cursor |
-| `newsbeat_brief` | The top headlines verbatim, with source and UTC time |
-| `newsbeat_stories` | The events behind a topic, not the coverage — near-identical headlines grouped |
-| `newsbeat_summary` | Short explanations based on headlines, with source links; original headlines if generation is unavailable |
-| `newsbeat_watch` | Many topics in one call — the batch form of `changes` |
+| `blacksheep_topics` | Find a topic. Never invent a `beat_id` |
+| `blacksheep_news` | Read a topic and take a baseline cursor |
+| `blacksheep_changes` | Ask what is new since that cursor |
+| `blacksheep_brief` | The top headlines verbatim, with source and UTC time |
+| `blacksheep_stories` | The events behind a topic, not the coverage — near-identical headlines grouped |
+| `blacksheep_summary` | Short explanations based on headlines, with source links; original headlines if generation is unavailable |
+| `blacksheep_watch` | Many topics in one call — the batch form of `changes` |
 
 `GET /v2/topics?q=` searches by ticker or company name across +2000 topics —
 US-listed equities and the largest crypto assets. A coin and a company can share a ticker

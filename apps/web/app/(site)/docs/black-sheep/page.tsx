@@ -12,7 +12,7 @@ export default function BlackSheepThesis() {
         <span className="sec-eyebrow">Black Sheep / Product direction</span>
         <h1>Context before the trade.</h1>
         <p className="docs-lead">Black Sheep is the company intelligence layer for agents researching tokenized assets. Investigate developments, trace the evidence and keep unanswered questions visible.</p>
-        <div className="docs-callout"><strong>Company news available today. Asset mapping comes next.</strong><p>The existing NewsBeat engine powers Black Sheep. News lookup, grouping and headline summaries work today. Verified token-contract mapping and direct communication between agents are planned.</p></div>
+        <div className="docs-callout"><strong>Company news available today. Asset mapping comes next.</strong><p>The existing Black Sheep engine powers Black Sheep. News lookup, grouping and headline summaries work today. Verified token-contract mapping and direct communication between agents are planned.</p></div>
       </header>
       <section className="docs-section" aria-labelledby="what-it-does">
         <h2 id="what-it-does">Start with the world behind the asset</h2>
@@ -45,7 +45,7 @@ export default function BlackSheepThesis() {
       </section>
       <section className="docs-section" aria-labelledby="transition">
         <h2 id="transition">Connect the news tools</h2>
-        <p>The working service remains at newsbeat.dev. Existing newsbeat_* tool names, API paths, account settings and repository links retain their current identifiers. Public news reads require no wallet.</p>
+        <p>The working service remains at blacksheep.vercel.app. Existing blacksheep_* tool names, API paths, account settings and repository links retain their current identifiers. Public news reads require no wallet.</p>
         <a className="docs-text-action" href="/docs/quickstart">Connect your agent <ArrowRight size={14} aria-hidden="true" /></a>
       </section>
     </div>

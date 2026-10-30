@@ -9,7 +9,7 @@
  * and in any proxy log on the way — and this is the one value that must not leak.
  */
 import { Hono } from "hono";
-import { db, describeKeyForAccount, findOrCreateAccount, hasDatabaseEnv, issueKeyForAccount, openBalance, resolveKey, trialFor, TRIAL_DAYS } from "@newsbeat/db";
+import { db, describeKeyForAccount, findOrCreateAccount, hasDatabaseEnv, issueKeyForAccount, openBalance, resolveKey, trialFor, TRIAL_DAYS } from "@blacksheep/db";
 import { authorizeUrl, exchangeCodeForUser, oauthConfig, oauthOrigin, signState, verifyState } from "./github.js";
 
 export const keyRoutes = new Hono();
@@ -108,7 +108,7 @@ function escapeHtml(value: string): string {
 
 const SHELL = (title: string, body: string) => `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${escapeHtml(title)} · NewsBeat</title>
+<title>${escapeHtml(title)} · Black Sheep</title>
 <style>
   :root { color-scheme: dark; }
   body { margin:0; min-height:100vh; display:grid; place-items:center; background:#050505; color:#ededed;
@@ -143,7 +143,7 @@ function issued(login: string, secret: string): string {
      <pre>${escapeHtml(secret)}</pre>
      <p>Send it as a header:</p>
      <pre>Authorization: Bearer ${escapeHtml(secret)}</pre>
-     <p>Try NewsBeat in your agent for seven days, starting with its first metered request. You have up to $6 in trial credit to check the companies and crypto you follow; the key also allows up to 1200 requests a minute. See your deadline and remaining credit at <code>GET /api/keys/trial</code> using this key. When the seven days or credit ends, keyed reads return <code>402</code>. Public news remains free without a key at 120 requests a minute. Signing in again does not restart the trial.</p>
+     <p>Try Black Sheep in your agent for seven days, starting with its first metered request. You have up to $6 in trial credit to check the companies and crypto you follow; the key also allows up to 1200 requests a minute. See your deadline and remaining credit at <code>GET /api/keys/trial</code> using this key. When the seven days or credit ends, keyed reads return <code>402</code>. Public news remains free without a key at 120 requests a minute. Signing in again does not restart the trial.</p>
      <div class="note"><p>Next: <a href="/docs/quickstart">the quickstart</a> ·
      <a href="/docs/connect">connecting</a> · <a href="/connect">MCP and tool calling</a></p></div>`,
   );

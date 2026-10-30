@@ -1,4 +1,4 @@
-import { NewsStorySchema } from "@newsbeat/contracts";
+import { NewsStorySchema } from "@blacksheep/contracts";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { clusterStories, sameStory, storyView, tokens, type Clusterable } from "./cluster.js";

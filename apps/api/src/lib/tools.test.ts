@@ -1,7 +1,7 @@
 /**
  * Every advertised tool must be callable.
  *
- * `newsbeat_stories` shipped in `tools/list`, documented in AGENTS.md, and
+ * `blacksheep_stories` shipped in `tools/list`, documented in AGENTS.md, and
  * absent from the dispatcher — so an agent that chose it by its advertised
  * schema got `unknown_tool`. Three places have to agree about a tool (the
  * definition, the docs, the handler) and the guards covered only the first two.
@@ -12,17 +12,17 @@
  */
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { NEWS_TOOLS } from "@newsbeat/contracts";
+import { NEWS_TOOLS } from "@blacksheep/contracts";
 import { callNewsTool } from "./news-routes.js";
 
 /** The smallest arguments each tool will accept. */
 const MINIMAL: Record<string, unknown> = {
-  newsbeat_topics: {},
-  newsbeat_news: { beat_id: "b_bb964843350e" },
-  newsbeat_changes: { beat_id: "b_bb964843350e", cursor: "x" },
-  newsbeat_brief: { beat_id: "b_bb964843350e" },
-  newsbeat_stories: { beat_id: "b_bb964843350e" },
-  newsbeat_summary: { beat_id: "b_bb964843350e" },
+  blacksheep_topics: {},
+  blacksheep_news: { beat_id: "b_bb964843350e" },
+  blacksheep_changes: { beat_id: "b_bb964843350e", cursor: "x" },
+  blacksheep_brief: { beat_id: "b_bb964843350e" },
+  blacksheep_stories: { beat_id: "b_bb964843350e" },
+  blacksheep_summary: { beat_id: "b_bb964843350e" },
 };
 
 test("every advertised tool has a handler", async () => {
@@ -47,7 +47,7 @@ test("every advertised tool has a handler", async () => {
 test("legacy tool names still reach a handler", async () => {
   for (const tool of NEWS_TOOLS) {
     await assert.doesNotReject(async () => {
-      try { await callNewsTool(tool.name.replace(/^newsbeat_/, "newsgraph_"), MINIMAL[tool.name] ?? {}); }
+      try { await callNewsTool(tool.name.replace(/^blacksheep_/, "newsgraph_"), MINIMAL[tool.name] ?? {}); }
       catch (error) { assert.notEqual((error as {code?: string}).code, "unknown_tool"); }
     });
   }

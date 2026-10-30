@@ -22,10 +22,10 @@ import {
   resolveKey,
   spend,
   trialFor,
-} from "@newsbeat/db";
+} from "@blacksheep/db";
 
-const ANON_LIMIT = Math.max(1, Number(env("NEWSBEAT_RATE_ANON") ?? 120));
-const KEYED_LIMIT = Math.max(1, Number(env("NEWSBEAT_RATE_KEYED") ?? 1200));
+const ANON_LIMIT = Math.max(1, Number(env("BLACKSHEEP_RATE_ANON") ?? 120));
+const KEYED_LIMIT = Math.max(1, Number(env("BLACKSHEEP_RATE_KEYED") ?? 1200));
 
 /** Advertised at the API root so clients can discover the ceiling. */
 export const rateLimits = { anonymous: `${ANON_LIMIT}/minute`, with_key: `${KEYED_LIMIT}/minute` };

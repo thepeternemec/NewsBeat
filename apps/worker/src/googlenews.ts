@@ -19,7 +19,7 @@ import type { ProviderArticle } from "./newsapi.js";
 import { scoreHeadline } from "./sentiment.js";
 
 const ENDPOINT = "https://news.google.com/rss/search";
-const USER_AGENT = "Mozilla/5.0 (compatible; NewsBeat/0.1; +https://www.newsbeat.dev)";
+const USER_AGENT = "Mozilla/5.0 (compatible; Black Sheep/0.1; +https://blacksheep.vercel.app)";
 
 /** Google's article ids are base64 of a protobuf that usually contains the URL. */
 function publisherUrlFromId(id: string): string | null {

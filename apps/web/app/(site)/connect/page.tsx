@@ -9,7 +9,7 @@ import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
 import LiveResponse from "@/components/site/live-response";
 
-const API_BASE = "https://www.newsbeat.dev/api";
+const API_BASE = "https://blacksheep.vercel.app/api";
 
 const OPTIONS = [
   {
@@ -34,7 +34,7 @@ type OptionId = (typeof OPTIONS)[number]["id"];
 const SNIPPETS: Record<OptionId, string> = {
   mcp: `{
   "mcpServers": {
-    "newsbeat": {
+    "blacksheep": {
       "url": "${API_BASE}/mcp"
     }
   }
@@ -54,8 +54,8 @@ curl -s "${API_BASE}/v2/brief?beat_id=b_bb964843350e"`,
 const { tools } = await fetch("${API_BASE}/v2/tools").then((r) => r.json());
 
 // Pass them to your model, execute what it calls, send the results back.
-// Seven tools: newsbeat_topics, newsbeat_news, newsbeat_changes,
-// newsbeat_brief, newsbeat_stories, newsbeat_summary, newsbeat_watch.`,
+// Seven tools: blacksheep_topics, blacksheep_news, blacksheep_changes,
+// blacksheep_brief, blacksheep_stories, blacksheep_summary, blacksheep_watch.`,
 };
 
 export default function Connect() {
@@ -105,7 +105,7 @@ export default function Connect() {
           params: {
             protocolVersion: "2025-06-18",
             capabilities: {},
-            clientInfo: { name: "newsbeat-connect-check", version: "1.0.0" },
+            clientInfo: { name: "blacksheep-connect-check", version: "1.0.0" },
           },
         }),
       });

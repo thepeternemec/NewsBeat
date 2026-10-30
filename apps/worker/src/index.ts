@@ -5,8 +5,8 @@
  * persist. Called by the Vercel Cron route in `apps/web`, and runnable
  * directly with `npm run ingest`.
  */
-import { SEED_BEATS, type Beat } from "@newsbeat/contracts";
-import { db, env, hasDatabaseEnv } from "@newsbeat/db";
+import { SEED_BEATS, type Beat } from "@blacksheep/contracts";
+import { db, env, hasDatabaseEnv } from "@blacksheep/db";
 import { NewsApiClient, type ProviderArticle } from "./newsapi.js";
 import { searchGoogleNews } from "./googlenews.js";
 import { persistNews } from "./ingest-news.js";
@@ -16,16 +16,16 @@ import { persistNews } from "./ingest-news.js";
  *
  * `google` is the default: Google News RSS is free and key-less, so a large
  * catalog costs nothing but time. `newsapi` is still implemented and selectable
- * with NEWSBEAT_PROVIDER=newsapi, but it burns provider credits — which is why
+ * with BLACKSHEEP_PROVIDER=newsapi, but it burns provider credits — which is why
  * it is no longer the default.
  */
-const PROVIDER = (env("NEWSBEAT_PROVIDER") ?? "google").toLowerCase();
+const PROVIDER = (env("BLACKSHEEP_PROVIDER") ?? "google").toLowerCase();
 
 /**
  * Google has no cross-topic batching, so its cost is one request per topic.
  * These bound how hard we hit it.
  */
-const GOOGLE_CONCURRENCY = Math.max(1, Number(env("NEWSBEAT_CONCURRENCY") ?? 4));
+const GOOGLE_CONCURRENCY = Math.max(1, Number(env("BLACKSHEEP_CONCURRENCY") ?? 4));
 
 /**
  * The window is the last day only, and every query is filtered to financial
@@ -44,7 +44,7 @@ const FINANCE_CATEGORY = "news/Business";
  * same batch. Smaller batches are fairer and more expensive; five is the
  * compromise, and it is tunable without a deploy.
  */
-const BATCH_SIZE = Math.max(1, Number(env("NEWSBEAT_BATCH_SIZE") ?? 5));
+const BATCH_SIZE = Math.max(1, Number(env("BLACKSHEEP_BATCH_SIZE") ?? 5));
 const ARTICLES_PER_BATCH = 100;
 
 /**
@@ -180,7 +180,7 @@ export async function runIngestion(): Promise<IngestionResult> {
  * definition the ones that had waited longest — would never refresh while every
  * run looked successful.
  */
-const INGEST_BUDGET_MS = Math.max(10_000, Number(env("NEWSBEAT_INGEST_BUDGET_MS") ?? 240_000));
+const INGEST_BUDGET_MS = Math.max(10_000, Number(env("BLACKSHEEP_INGEST_BUDGET_MS") ?? 240_000));
 
 async function runGoogle(beats: Beat[], now: Date): Promise<IngestionResult> {
   const results: BeatResult[] = [];

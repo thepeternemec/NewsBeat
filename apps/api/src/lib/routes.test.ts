@@ -1,7 +1,7 @@
 /**
  * The API must serve every route anything advertises.
  *
- * `/v2/brief` shipped without appearing in the agent guide; `newsbeat_stories`
+ * `/v2/brief` shipped without appearing in the agent guide; `blacksheep_stories`
  * shipped with no handler; `/connect` told developers to import a package that
  * had been deleted. All three are the same defect at different layers: a promise
  * made in prose that nothing verified.
@@ -84,7 +84,7 @@ test("every route the site's samples call is served", () => {
 });
 
 test("no sample imports a package that does not exist", () => {
-  // `/connect` told developers to `import { NewsBeatClient } from "@newsbeat/sdk"`
+  // `/connect` told developers to `import { Black SheepClient } from "@blacksheep/sdk"`
   // for weeks after that package was deleted. It is the most damaging kind of
   // stale doc: the reader copies it, gets a resolution error, and concludes the
   // project is broken rather than the sample.

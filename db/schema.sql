@@ -1,4 +1,4 @@
--- NewsBeat schema.
+-- Black Sheep schema.
 --
 -- The whole thing: three tables and one function. Apply to any empty Postgres:
 --
