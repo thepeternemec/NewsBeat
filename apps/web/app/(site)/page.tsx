@@ -2,6 +2,7 @@ import { ArrowRight, ArrowUpRight, Check, Radio, Network, Code2, FileText } from
 import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
 import NewsPreview from "@/components/site/news-preview";
+import MissionBuilder from "@/components/site/mission-builder";
 import CopyButton from "@/components/site/copy-button";
 import AgentHandoff from "@/components/site/agent-handoff";
 import "./landing.css";
@@ -39,6 +40,7 @@ export default function Home() {
               </div>
               <div className="bs-status"><span><Check size={14} /> News engine live</span><span>Free public access</span><span>No wallet needed</span></div>
             </div>
+            <MissionBuilder />
           </div>
           <div className="wrap bs-hero-foot"><span>COMPANY RESEARCH LIVE · TOKEN MAPPING PLANNED</span><a href="#thesis">Explore the intelligence layer <span aria-hidden="true">↓</span></a></div>
         </section>
