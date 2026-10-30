@@ -1,3 +1,4 @@
+import SheepBadge from "./sheep-badge";
 import SpotlightCard from "@/components/ui/spotlight-card/spotlight-card";
 import "./site-footer.css";
 
@@ -55,6 +56,7 @@ export default function SiteFooter() {
         >
           <div className="footer-grid">
             <div className="footer-brand">
+              <SheepBadge compact />
               <div className="footer-brand-line">
                 <span className="footer-co">BLACK SHEEP</span>
                 <a className="footer-mobile-contact" href="mailto:contact@newsbeat.dev">Contact <span aria-hidden="true">↗</span></a>
