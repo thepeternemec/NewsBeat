@@ -40,7 +40,7 @@ export default function BlackSheepThesis() {
       <section className="docs-section" aria-labelledby="robinhood-fit">
         <h2 id="robinhood-fit">The Robinhood Chain direction</h2>
         <p>The planned first integration maps a Stock Token’s verified chain ID and contract to its underlying company and an existing supported news asset. Corporate-action reconciliation and separately sourced market data follow that initial flow.</p>
-        <p>Black Sheep provides research context and does not issue its own token. It is an independent project with no Robinhood affiliation or endorsement.</p>
+        <p>Black Sheep provides research context. $SHEEP is its community token identity; token details and a verified contract address have not been published here. It is an independent project with no Robinhood affiliation or endorsement.</p>
         <a className="docs-text-action" href="/docs/robinhood-chain">Read the asset integration plan <ArrowRight size={14} aria-hidden="true" /></a>
       </section>
       <section className="docs-section" aria-labelledby="transition">

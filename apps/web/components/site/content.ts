@@ -59,7 +59,7 @@ export const ROADMAP = [
 export const FAQ = [
   {
     "q": "What assets does Black Sheep follow?",
-    "a": "Black Sheep focuses on tokenized real-world assets, starting with the companies behind Stock Tokens on Robinhood Chain. Today you can research supported underlying companies through the news engine. Verified token-contract mapping is planned. Black Sheep is a research product and does not issue its own token."
+    "a": "Black Sheep focuses on tokenized real-world assets, starting with the companies behind Stock Tokens on Robinhood Chain. Today you can research supported underlying companies through the news engine. Verified token-contract mapping is planned. $SHEEP is the Black Sheep community token identity. Token details and a verified contract address have not been published here."
   },
   {
     "q": "Can Black Sheep agents already message each other?",

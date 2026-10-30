@@ -4,3 +4,15 @@ html .nav-site .nav-cta:hover{background:var(--text-secondary);border-color:var(
 .nav-site .brand-beat{width:34px;height:34px}
 html .documentation-page .docs-link.active{border-left-color:var(--text-primary)}
 @media(max-width:700px){.nav-site .brand-beat{width:30px;height:30px}}
+
+.sheep-community-badge{display:inline-flex;align-items:center;gap:12px;max-width:100%;padding:8px 15px 8px 8px;border:1px solid var(--border-default);border-radius:999px;background:var(--bg-base);color:var(--text-primary);text-decoration:none}
+.sheep-community-badge svg{flex:none}.sheep-community-badge>span:nth-child(2){display:flex;flex-direction:column;gap:4px}.sheep-community-badge strong{font:600 18px/1 var(--font-mono);letter-spacing:.02em}.sheep-community-badge small{font:8px/1.4 var(--font-mono);letter-spacing:.08em;color:var(--text-secondary)}.sheep-badge-arrow{margin-left:10px;color:var(--text-secondary)}
+.sheep-community-badge:hover{border-color:var(--text-secondary)}.sheep-community-badge:focus-visible{outline:2px solid var(--text-primary);outline-offset:4px}
+.bs-hero-copy>.sheep-community-badge{margin-bottom:25px;display:flex;width:fit-content}
+.sheep-community-badge.is-compact{margin-bottom:20px;padding:5px 12px 5px 5px;gap:9px}.sheep-community-badge.is-compact strong{font-size:15px}.sheep-community-badge.is-compact small{font-size:7px}
+.sheep-community-section{padding:85px 0;border-top:1px solid var(--border-default);scroll-margin-top:100px}
+.sheep-community-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:center}
+.sheep-community-identity{display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid var(--border-default);border-radius:24px;min-height:340px;background:var(--bg-base)}
+.sheep-community-identity>span{font-size:52px;line-height:1.2;letter-spacing:-.04em;font-weight:600;margin-top:12px}.sheep-community-identity>small{font:9px/1.6 var(--font-mono);letter-spacing:.15em;color:var(--text-secondary);margin-top:10px}
+.sheep-community-links{display:flex;align-items:center;flex-wrap:wrap;gap:14px 24px}.sheep-community-status{font:11px/1.8 var(--font-mono);color:var(--text-secondary);margin:22px 0 0;max-width:55ch}
+@media(max-width:760px){.sheep-community-section{padding:60px 0}.sheep-community-grid{grid-template-columns:minmax(0,1fr);gap:30px}.sheep-community-identity{min-height:250px}.sheep-community-identity svg{width:110px;height:110px}.sheep-community-identity>span{font-size:40px}}

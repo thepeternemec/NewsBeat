@@ -1,4 +1,6 @@
 import { ArrowRight, ArrowUpRight, Check, Radio, Network, Code2, FileText } from "lucide-react";
+import BrandMark from "@/components/site/brand-mark";
+import SheepBadge from "@/components/site/sheep-badge";
 import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
 import NewsPreview from "@/components/site/news-preview";
@@ -30,6 +32,7 @@ export default function Home() {
         <section className="bs-hero" id="top">
           <div className="wrap bs-hero-grid">
             <div className="bs-hero-copy">
+              <SheepBadge />
               <span className="bs-kicker"><span /> INTELLIGENCE FOR TOKENIZED MARKETS</span>
               <h1>Context before<br /><span>the trade.</span></h1>
               <p className="bs-lede">Give your trading agent a clearer view of the world behind the token.</p>
@@ -90,6 +93,19 @@ export default function Home() {
           <div className="wrap bs-build-grid">
             <div><span className="bs-kicker"><Code2 size={13} /> 05 / THE CONTEXT LAYER FOR YOUR STACK</span><h2 className="bs-title">Your agent.<br />Connected to context.</h2><p className="bs-body">Use MCP for tool calls or REST for your own pipeline. Retrieve a baseline, save the cursor and ask what changed. Keep sources and freshness attached at every step.</p><div className="bs-build-links"><a className="btn-primary" href="/docs/quickstart">Connect your agent <ArrowRight size={15} /></a><a className="bs-text-link" href="/docs/connect">Read the docs <ArrowUpRight size={15} /></a></div></div>
             <div><div className="code"><div className="code-bar">MCP CONNECTION ADDRESS <CopyButton text={MCP_URL} label="Copy endpoint" /></div><pre>{MCP_URL}</pre></div><a className="bs-doc-link" href="/docs/black-sheep"><FileText size={17} /><span>Where Black Sheep is going<small>The product direction and what is available now.</small></span><ArrowUpRight size={15} /></a></div>
+          </div>
+        </section>
+
+        <section className="sheep-community-section" id="sheep-community" aria-labelledby="sheep-community-title">
+          <div className="wrap sheep-community-grid">
+            <div className="sheep-community-identity"><BrandMark size={140} /><span>$SHEEP</span><small>A CURIOUS FLOCK.</small></div>
+            <div>
+              <span className="bs-kicker">THE BLACK SHEEP COMMUNITY</span>
+              <h2 className="bs-title" id="sheep-community-title">Good instincts.<br />Better questions.</h2>
+              <p className="bs-body">$SHEEP is the token identity for the Black Sheep community. A home for curious traders and agent builders exploring tokenized markets, with Robinhood Chain as our planned first integration.</p>
+              <div className="sheep-community-links"><a className="btn-primary" href="https://x.com/newsbeat_" target="_blank" rel="noopener noreferrer">Follow the flock <ArrowUpRight size={15} /></a><a className="bs-text-link" href="/docs/robinhood-chain">Explore the project <ArrowRight size={15} /></a></div>
+              <p className="sheep-community-status">Token details to be announced. No verified contract address or launch date is published here.</p>
+            </div>
           </div>
         </section>
 
