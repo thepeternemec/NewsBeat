@@ -8,18 +8,18 @@ import AgentHandoff from "@/components/site/agent-handoff";
 import "./landing.css";
 import "./black-sheep.css";
 
-const DESCRIPTION = "Black Sheep follows the news behind tokenized assets. Company headlines, source links and fresh context for your AI agent. Built on the NewsBeat news engine.";
+const DESCRIPTION = "Company intelligence for agents researching tokenized assets. Investigate developments, inspect sources and export research context through MCP, REST or the terminal.";
 export const metadata = {
-  title: "Black Sheep — A different kind of market intelligence",
+  title: "Black Sheep — Intelligence for tokenized markets",
   description: DESCRIPTION,
-  openGraph: { title: "Black Sheep — A different kind of market intelligence", description: DESCRIPTION, url: "https://www.newsbeat.dev", siteName: "Black Sheep", type: "website" },
-  twitter: { card: "summary_large_image", title: "Black Sheep — A different kind of market intelligence", description: DESCRIPTION },
+  openGraph: { title: "Black Sheep — Intelligence for tokenized markets", description: DESCRIPTION, url: "https://www.newsbeat.dev", siteName: "Black Sheep", type: "website" },
+  twitter: { card: "summary_large_image", title: "Black Sheep — Intelligence for tokenized markets", description: DESCRIPTION },
 };
 const MCP_URL = "https://www.newsbeat.dev/api/mcp";
 const PRINCIPLES = [
-  { number: "01", title: "Follow the company.", text: "Start with the business behind an asset. Read recent company developments and keep track of what changed." },
-  { number: "02", title: "Keep the receipts.", text: "Every headline comes with a publisher, a date and a link. Check the reporting and form your own view." },
-  { number: "03", title: "Bring your agent.", text: "Connect through MCP or REST. Give your assistant the context for a briefing, a follow-up or a better question." },
+  { number: "01", title: "Discover what changed.", text: "Research the underlying company. Group related reports and track new headlines since your agent’s last check." },
+  { number: "02", title: "Interrogate the evidence.", text: "Inspect publishers, timestamps and coverage freshness. Separate reported developments from assumptions about price." },
+  { number: "03", title: "Put context to work.", text: "Export a research brief with evidence and open questions. Connect MCP or REST to bring the same context into your agent’s workflow." },
 ];
 
 export default function Home() {
@@ -30,12 +30,12 @@ export default function Home() {
         <section className="bs-hero" id="top">
           <div className="wrap bs-hero-grid">
             <div className="bs-hero-copy">
-              <span className="bs-kicker"><span /> A DIFFERENT KIND OF MARKET INTELLIGENCE</span>
-              <h1>Less baa.<br /><span>More brain.</span></h1>
-              <p className="bs-lede">Meet Black Sheep. A curious little character following the real-world stories behind tokenized assets.</p>
-              <p className="bs-hero-detail">Company news. Linked sources. Better context for your AI agent.</p>
+              <span className="bs-kicker"><span /> INTELLIGENCE FOR TOKENIZED MARKETS</span>
+              <h1>Context before<br /><span>the trade.</span></h1>
+              <p className="bs-lede">Give your trading agent a clearer view of the world behind the token.</p>
+              <p className="bs-hero-detail">Investigate company developments. Trace the evidence. Build a research brief your agent can use.</p>
               <div className="hero-cta">
-                <a className="btn-primary" href="#live-news">Explore the news <ArrowRight size={16} /></a>
+                <a className="btn-primary" href="/dashboard">Open intelligence terminal <ArrowRight size={16} /></a>
                 <a className="bs-text-link" href="/docs/quickstart">Connect your agent <ArrowUpRight size={16} /></a>
               </div>
               <div className="bs-status"><span><Check size={14} /> News engine live</span><span>Free public access</span><span>No wallet needed</span></div>
@@ -47,7 +47,7 @@ export default function Home() {
               <figcaption>Funny sheep. Serious sources.</figcaption>
             </figure>
           </div>
-          <div className="wrap bs-hero-foot"><span>POWERED BY THE NEWSBEAT NEWS ENGINE</span><a href="#thesis">Get to know Black Sheep <span aria-hidden="true">↓</span></a></div>
+          <div className="wrap bs-hero-foot"><span>COMPANY RESEARCH LIVE · TOKEN MAPPING PLANNED</span><a href="#thesis">Explore the intelligence layer <span aria-hidden="true">↓</span></a></div>
         </section>
 
         <section className="bs-ticker" aria-label="Company research examples">
@@ -56,7 +56,7 @@ export default function Home() {
 
         <section className="scaffold" id="thesis">
           <div className="wrap">
-            <div className="bs-section-head"><span className="bs-kicker">01 / CURIOUS BY NATURE</span><h2 className="bs-title">A funny face.<br />A useful point of view.</h2><p className="bs-body">Markets move. Stories pile up. Black Sheep helps your agent catch up with the companies behind the assets you follow.</p></div>
+            <div className="bs-section-head"><span className="bs-kicker">01 / FROM NEWS TO RESEARCH</span><h2 className="bs-title">Know what changed.<br />Know what’s missing.</h2><p className="bs-body">A token ticker is only the starting point. Black Sheep gives agents source-linked company intelligence to support research before a trading decision.</p></div>
             <div className="bs-principles">{PRINCIPLES.map(item => <article key={item.number}><span>{item.number}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
           </div>
         </section>
@@ -64,9 +64,9 @@ export default function Home() {
         <section className="scaffold bs-news-section" id="live-news">
           <div className="wrap bs-live-grid">
             <div>
-              <span className="bs-kicker"><Radio size={13} /> 02 / TRY IT FOR YOURSELF</span>
-              <h2 className="bs-title">What happened?<br />Start here.</h2>
-              <p className="bs-body">Choose a company and see the latest available reporting. Your agent can use the same news to prepare a short, source-linked briefing.</p>
+              <span className="bs-kicker"><Radio size={13} /> 02 / LIVE COMPANY INTELLIGENCE</span>
+              <h2 className="bs-title">Find the story<br />behind the asset.</h2>
+              <p className="bs-body">Choose an underlying company. Review recent coverage, inspect headline summaries and take a sourced research snapshot into your agent.</p>
               <a className="bs-text-link" href="/dashboard">Open the research terminal <ArrowRight size={15} /></a>
               <div className="bs-engine-note"><Check size={16} /><p>Headlines are checked on a fifteen-minute schedule. Coverage freshness is shown with each lookup. Summaries use headlines, not full articles.</p></div>
             </div>
@@ -86,23 +86,24 @@ export default function Home() {
 
         <section className="scaffold bs-network-section" id="agent-network">
           <div className="wrap">
-            <div className="bs-network-head"><div><span className="bs-kicker"><Network size={13} /> 04 / A MORE CURIOUS FLOCK</span><h2 className="bs-title">Good context<br />travels well.</h2></div><div><p className="bs-body">A scout finds a development. An analyst adds context. A publisher prepares an update. Here is how agents could pass the story along.</p><p className="bs-fine">Concept preview · Agent messaging is planned.</p></div></div>
+            <div className="bs-network-head"><div><span className="bs-kicker"><Network size={13} /> 04 / BUILT FOR AGENT WORKFLOWS</span><h2 className="bs-title">A sharper brief.<br />A better next question.</h2></div><div><p className="bs-body">Give your connected agent a specific research job. Start with these prompts, or export a brief built from live coverage in the terminal.</p><p className="bs-fine">MCP + REST available · Research stays grounded in cited evidence.</p></div></div>
             <AgentHandoff />
           </div>
         </section>
 
         <section className="scaffold bs-build-section" id="build">
           <div className="wrap bs-build-grid">
-            <div><span className="bs-kicker"><Code2 size={13} /> 05 / BRING YOUR OWN BRAIN</span><h2 className="bs-title">Your agent.<br />Our curiosity.</h2><p className="bs-body">Connect an assistant that supports remote MCP, or build with REST. Existing NewsBeat endpoints and tool names keep working.</p><div className="bs-build-links"><a className="btn-primary" href="/docs/quickstart">Connect your agent <ArrowRight size={15} /></a><a className="bs-text-link" href="/docs/connect">Read the docs <ArrowUpRight size={15} /></a></div></div>
+            <div><span className="bs-kicker"><Code2 size={13} /> 05 / THE CONTEXT LAYER FOR YOUR STACK</span><h2 className="bs-title">Your agent.<br />Connected to context.</h2><p className="bs-body">Use MCP for tool calls or REST for your own pipeline. Retrieve a baseline, save the cursor and ask what changed. Keep sources and freshness attached at every step.</p><div className="bs-build-links"><a className="btn-primary" href="/docs/quickstart">Connect your agent <ArrowRight size={15} /></a><a className="bs-text-link" href="/docs/connect">Read the docs <ArrowUpRight size={15} /></a></div></div>
             <div><div className="code"><div className="code-bar">MCP CONNECTION ADDRESS <CopyButton text={MCP_URL} label="Copy endpoint" /></div><pre>{MCP_URL}</pre></div><a className="bs-doc-link" href="/docs/black-sheep"><FileText size={17} /><span>Where Black Sheep is going<small>The product direction and what is available now.</small></span><ArrowUpRight size={15} /></a></div>
           </div>
         </section>
 
         <section className="bs-closing">
-          <div className="wrap"><span className="bs-kicker">STAY CURIOUS.</span><h2>Great questions<br />start somewhere.</h2><a className="btn-primary" href="/dashboard">Find your first story <ArrowRight size={16} /></a><p>Independent project. No Robinhood affiliation or endorsement.</p></div>
+          <div className="wrap"><span className="bs-kicker">LESS NOISE. MORE CONTEXT.</span><h2>Research the asset.<br />Then make your move.</h2><a className="btn-primary" href="/dashboard">Build your first research brief <ArrowRight size={16} /></a><p>Company research today. Token mapping, market data and execution are not connected.<br />Independent project. No Robinhood affiliation or endorsement.</p></div>
         </section>
       </main>
       <SiteFooter />
     </>
   );
 }
+

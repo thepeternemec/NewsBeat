@@ -23,6 +23,8 @@ import {
 } from "@/components/ui/accordion/accordion";
 import StoryRow from "@/components/site/story-row";
 import HeadlineSummary from "@/components/site/headline-summary";
+import AgentContextPanel from "@/components/site/agent-context-panel";
+import type { ResearchSnapshot } from "@/components/site/agent-context";
 import { loadStoryFeed, type FeedItem } from "@/components/site/story-feed";
 
 const API_BASE =
@@ -54,6 +56,8 @@ export default function Dashboard() {
   const [topics, setTopics] = useState<Topic[]>([]);
   const [catalogTotal, setCatalogTotal] = useState(0);
   const [articles, setArticles] = useState<Article[]>([]);
+  const [researchSnapshot, setResearchSnapshot] = useState<ResearchSnapshot | null>(null);
+  const [refreshNonce, setRefreshNonce] = useState(0);
   const [feedNotice, setFeedNotice] = useState("Loading news…");
   const [visibleStories, setVisibleStories] = useState(24);
   // One entry per rendered cluster. Bounded on purpose: the catalog holds ~150
@@ -216,13 +220,14 @@ export default function Dashboard() {
 
 
   const funded = topics.filter((t) => t.status !== "unavailable");
-  const active = selected ?? funded[0]?.beat_id ?? null;
+  const active = selected ?? funded.find(topic => topic.ticker === "NVDA")?.beat_id ?? funded[0]?.beat_id ?? null;
   const activeTopic = topics.find((t) => t.beat_id === active);
 
   useEffect(() => {
     if (!active) return;
     let cancelled = false;
     setArticles([]);
+    setResearchSnapshot(null);
     setVisibleStories(24);
     setFeedNotice("Loading news…");
     (async () => {
@@ -235,6 +240,7 @@ export default function Dashboard() {
         setArrived(seen.current.size ? fresh : new Set());
         items.forEach((i) => seen.current.add(i.id));
         setArticles(items);
+        setResearchSnapshot({ ...page, beatId: active, receivedAt: new Date().toISOString() });
         setFeedNotice(page.coverage_truncated
           ? `Grouped from the latest 200 reports in the last 24 hours · ${page.freshness.status}. More coverage is available through the API.`
           : `Grouped coverage from the last 24 hours · ${page.freshness.status}.`);
@@ -245,7 +251,7 @@ export default function Dashboard() {
     return () => {
       cancelled = true;
     };
-  }, [active]);
+  }, [active, refreshNonce]);
 
   const live = topics.filter((t) => t.status !== "unavailable").length;
   /** Everything published in the last 12 hours, across the whole catalog. */
@@ -290,9 +296,9 @@ export default function Dashboard() {
       <InteriorPage className="wrap dash-main terminal-page">
         <div className="terminal-heading">
           <div>
-            <span className="sec-eyebrow">Live graph · English only · one cluster per beat</span>
+            <span className="sec-eyebrow">Black Sheep / Intelligence terminal</span>
             <h1 style={{ margin: 0, fontSize: "clamp(30px, 4vw, 44px)", lineHeight: 1.05, letterSpacing: "-0.035em", color: "var(--text-primary)", fontWeight: 600 }}>
-              {TABS.find((t) => t.value === view)?.title}
+              Research the underlying asset.
             </h1>
           </div>
           <span style={{ font: "11px var(--font-mono), monospace", color: "var(--text-ghost)" }}>
@@ -349,7 +355,7 @@ export default function Dashboard() {
             </div>
           </div>
           <p className="hero-tiny" style={{ marginTop: 30 }}>
-            read-only · no credential · topics, news and changes since a cursor
+            Company and crypto news coverage · token contracts are not mapped · no wallet needed
           </p>
         </div>
 
@@ -419,6 +425,11 @@ export default function Dashboard() {
                 ))}
               </div>
             </div>
+
+            {activeTopic && <AgentContextPanel key={activeTopic.beat_id} topic={activeTopic}
+              snapshot={researchSnapshot} notice={feedNotice}
+              onRefresh={() => setRefreshNonce(value => value + 1)}
+              loading={feedNotice === "Loading news…"} />}
 
             <div className="mock" style={{ marginTop: 18 }}>
               <div className="mock-bar">
@@ -566,9 +577,9 @@ export default function Dashboard() {
             </div>
             <div className="footer-links">
               <a href="/">Home</a>
-              <a href="/#contract">Contract</a>
-              <a href="/#pricing">Pricing</a>
-              <a href="/#faq">FAQ</a>
+              <a href="/docs/connect">API contract</a>
+              <a href="/pricing">Pricing</a>
+              <a href="/faq">FAQ</a>
             </div>
           </div>
         </div>
@@ -576,3 +587,4 @@ export default function Dashboard() {
     </>
   );
 }
+

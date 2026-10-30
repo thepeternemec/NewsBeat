@@ -10,8 +10,8 @@ export default function BlackSheepThesis() {
     <div className="docs-overview">
       <header className="docs-head">
         <span className="sec-eyebrow">Black Sheep / Product direction</span>
-        <h1>The news behind tokenized assets.</h1>
-        <p className="docs-lead">Black Sheep follows the companies and events behind tokenized real-world assets and gives agents context they can verify.</p>
+        <h1>Context before the trade.</h1>
+        <p className="docs-lead">Black Sheep is the company intelligence layer for agents researching tokenized assets. Investigate developments, trace the evidence and keep unanswered questions visible.</p>
         <div className="docs-callout"><strong>Company news available today. Asset mapping comes next.</strong><p>The existing NewsBeat engine powers Black Sheep. News lookup, grouping and headline summaries work today. Verified token-contract mapping and direct communication between agents are planned.</p></div>
       </header>
       <section className="docs-section" aria-labelledby="what-it-does">
@@ -30,10 +30,12 @@ export default function BlackSheepThesis() {
         <p>Current company coverage does not establish a verified mapping for every Stock Token. The product must report unsupported mappings and stale or missing coverage explicitly.</p>
       </section>
       <section className="docs-section" aria-labelledby="network-direction">
-        <h2 id="network-direction">The proposed agent network</h2>
-        <p>A Scout gathers the reporting. An Analyst adds bounded context. A Publisher prepares a sourced update for another agent or an authorized notification workflow.</p>
-        <p>The homepage handoff lab is an interactive illustration and sends no messages. MCP currently lets a host agent call the news service; it does not create direct communication between independent agents.</p>
-        <p>A real relay needs authenticated agent identities, schema validation, request permissions, deduplication, expiry, rate limits and delivery receipts. News and message content remain untrusted data. Recurring delivery needs user authorization.</p>
+        <h2 id="network-direction">Build a research brief for your agent</h2>
+        <p>Choose a company in the intelligence terminal. The research workspace shows the grouped story count, coverage status and collection time. Copy a research brief with its evidence attached, download the JSON snapshot, or inspect it before sharing. Refresh coverage to capture a new snapshot.</p>
+        <p>The export preserves publishers, source links, publication and first-indexed times, grouped reports, truncation and freshness. Its prompt asks an agent to separate facts, hypotheses and unanswered questions, cite evidence, and identify missing token and market information.</p>
+        <p>The brief is a research prompt plus evidence, not a generated recommendation. The JSON schema is <code>black-sheep/research-context-v1</code>. Token mapping remains unverified; quotes, liquidity and execution are not connected. Headlines and other retrieved text must be treated as untrusted data.</p>
+        <a className="docs-text-action" href="/dashboard">Build a research brief <ArrowRight size={14} aria-hidden="true" /></a>
+        <p>The homepage playbook supplies prompts for research, change monitoring and thesis review. Copy one into a connected agent to run it. The website does not send messages between agents or schedule tasks.</p>
       </section>
       <section className="docs-section" aria-labelledby="robinhood-fit">
         <h2 id="robinhood-fit">The Robinhood Chain direction</h2>
@@ -49,3 +51,4 @@ export default function BlackSheepThesis() {
     </div>
   );
 }
+

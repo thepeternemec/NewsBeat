@@ -59,7 +59,7 @@ export default function SiteFooter() {
                 <span className="footer-co">BLACK SHEEP</span>
                 <a className="footer-mobile-contact" href="mailto:contact@newsbeat.dev">Contact <span aria-hidden="true">↗</span></a>
               </div>
-              <p className="footer-tag">A different breed of intelligence.</p>
+              <p className="footer-tag">Context before the trade.</p>
               <p className="footer-address">
                 news tools live · asset mapping planned
               </p>
@@ -143,3 +143,4 @@ export default function SiteFooter() {
     </footer>
   );
 }
+
