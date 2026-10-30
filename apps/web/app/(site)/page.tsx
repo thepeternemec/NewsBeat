@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { ArrowRight, ArrowUpRight, Check, Radio, Network, Code2, FileText } from "lucide-react";
 import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
@@ -40,12 +39,6 @@ export default function Home() {
               </div>
               <div className="bs-status"><span><Check size={14} /> News engine live</span><span>Free public access</span><span>No wallet needed</span></div>
             </div>
-            <figure className="bs-emblem">
-              <div className="bs-mascot-stage">
-                <Image className="bs-mascot" src="/black-sheep-flat.png" width={1254} height={1254} sizes="(max-width: 760px) 88vw, (max-width: 1200px) 44vw, 480px" priority alt="A goofy cartoon black sheep waving, with floppy ears, a crooked grin and two little front teeth" />
-              </div>
-              <figcaption>Funny sheep. Serious sources.</figcaption>
-            </figure>
           </div>
           <div className="wrap bs-hero-foot"><span>COMPANY RESEARCH LIVE · TOKEN MAPPING PLANNED</span><a href="#thesis">Explore the intelligence layer <span aria-hidden="true">↓</span></a></div>
         </section>
