@@ -32,9 +32,9 @@ export default function Home() {
           <div className="wrap bs-hero-grid">
             <div className="bs-hero-copy">
               <SheepBadge />
-              <span className="bs-kicker"><span /> A NEWS BOT FOR TOKENIZED MARKETS</span>
-              <h1>Other bots guess.<br /><span>This one cites.</span></h1>
-              <p className="bs-lede">Source-linked headlines for the company behind the asset — or a plain “nothing moved”.</p>
+              <span className="bs-kicker"><span /> NEWS FOR AGENTS · 2,030 ASSETS</span>
+              <h1>Your agent is guessing.<br /><span>Give it the news.</span></h1>
+              <p className="bs-lede">Source-linked headlines for 2,030 companies and coins — refreshed every fifteen minutes, wired into any agent over MCP.</p>
               <div className="hero-cta">
                 <a className="btn-primary" href="/dashboard">Open the terminal <ArrowRight size={16} /></a>
                 <a className="bs-text-link" href="/docs/quickstart">Connect your agent <ArrowUpRight size={16} /></a>
@@ -57,8 +57,8 @@ export default function Home() {
           <div className="wrap">
             <div className="bs-section-head">
               <span className="bs-kicker">THE CASE</span>
-              <h2 className="bs-title">Most tools always<br />have an answer.</h2>
-              <p className="bs-body">That is how a confident brief ends up resting on an article nobody read.</p>
+              <h2 className="bs-title">An agent that<br />always answers<br />is guessing.</h2>
+              <p className="bs-body">Confidence is cheap. A citation is not.</p>
             </div>
             <div className="bs-principles">{PRINCIPLES.map(item => <article key={item.number}><span>{item.number}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
           </div>
@@ -68,8 +68,8 @@ export default function Home() {
           <div className="wrap bs-live-grid">
             <div>
               <span className="bs-kicker"><Radio size={13} /> LIVE</span>
-              <h2 className="bs-title">Find the story<br />behind the asset.</h2>
-              <p className="bs-body">Pick a company. Read the coverage, check the sources, take a snapshot into your agent.</p>
+              <h2 className="bs-title">Every token<br />has a story.</h2>
+              <p className="bs-body">Read it before you act on it. Live coverage, original sources, freshness on every lookup.</p>
               <a className="bs-text-link" href="/dashboard">Open the terminal <ArrowRight size={15} /></a>
             </div>
             <NewsPreview />
@@ -80,8 +80,8 @@ export default function Home() {
           <div className="wrap bs-build-grid">
             <div>
               <span className="bs-kicker"><Code2 size={13} /> CONNECT</span>
-              <h2 className="bs-title">Your agent.<br />Connected to context.</h2>
-              <p className="bs-body">MCP for tool calls, REST for your own pipeline. The same tools either way.</p>
+              <h2 className="bs-title">One endpoint.<br />Any agent.</h2>
+              <p className="bs-body">Point it at Black Sheep and it can read the news. MCP for tool calls, REST for your own stack.</p>
               <div className="bs-build-links"><a className="btn-primary" href="/docs/quickstart">Connect your agent <ArrowRight size={15} /></a><a className="bs-text-link" href="/docs">Read the docs <ArrowUpRight size={15} /></a></div>
             </div>
             <div>
