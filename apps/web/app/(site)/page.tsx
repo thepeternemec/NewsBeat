@@ -10,18 +10,19 @@ import AgentHandoff from "@/components/site/agent-handoff";
 import "./landing.css";
 import "./black-sheep.css";
 
-const DESCRIPTION = "Company intelligence for agents researching tokenized assets. Investigate developments, inspect sources and export research context through MCP, REST or the terminal.";
+const DESCRIPTION =
+  "A news bot for agents researching tokenized assets. Source-linked company headlines, freshness and change cursors — or a plain \"nothing moved\". Company research is live; token mapping is planned.";
 export const metadata = {
-  title: "Black Sheep — Intelligence for tokenized markets",
+  title: "Black Sheep — the news bot that cites or says nothing",
   description: DESCRIPTION,
-  openGraph: { title: "Black Sheep — Intelligence for tokenized markets", description: DESCRIPTION, url: "https://www.newsbeat.dev", siteName: "Black Sheep", type: "website" },
-  twitter: { card: "summary_large_image", title: "Black Sheep — Intelligence for tokenized markets", description: DESCRIPTION },
+  openGraph: { title: "Black Sheep — the news bot that cites or says nothing", description: DESCRIPTION, url: "https://www.newsbeat.dev", siteName: "Black Sheep", type: "website" },
+  twitter: { card: "summary_large_image", title: "Black Sheep — the news bot that cites or says nothing", description: DESCRIPTION },
 };
 const MCP_URL = "https://www.newsbeat.dev/api/mcp";
 const PRINCIPLES = [
-  { number: "01", title: "Discover what changed.", text: "Research the underlying company. Group related reports and track new headlines since your agent’s last check." },
-  { number: "02", title: "Interrogate the evidence.", text: "Inspect publishers, timestamps and coverage freshness. Separate reported developments from assumptions about price." },
-  { number: "03", title: "Put context to work.", text: "Export a research brief with evidence and open questions. Connect MCP or REST to bring the same context into your agent’s workflow." },
+  { number: "01", title: "It knows what changed.", text: "Send a topic and a cursor. You get only the reports that appeared since your last check — not a fresh pile to read again." },
+  { number: "02", title: "It shows its evidence.", text: "Every item carries a publisher, a timestamp and a link. Freshness is reported per lookup, and “unavailable” is a state, not an empty list." },
+  { number: "03", title: "It will not invent the rest.", text: "No article bodies, no summaries passed off as reporting, no claims about price. What the headlines do not say, Black Sheep does not say." },
 ];
 
 export default function Home() {
@@ -33,10 +34,10 @@ export default function Home() {
           <div className="wrap bs-hero-grid">
             <div className="bs-hero-copy">
               <SheepBadge />
-              <span className="bs-kicker"><span /> INTELLIGENCE FOR TOKENIZED MARKETS</span>
-              <h1>Context before<br /><span>the trade.</span></h1>
-              <p className="bs-lede">Give your trading agent a clearer view of the world behind the token.</p>
-              <p className="bs-hero-detail">Investigate company developments. Trace the evidence. Build a research brief your agent can use.</p>
+              <span className="bs-kicker"><span /> A NEWS BOT FOR TOKENIZED MARKETS</span>
+              <h1>Other bots guess.<br /><span>This one cites.</span></h1>
+              <p className="bs-lede">Black Sheep is a news bot for agents researching tokenized assets. Ask what changed behind a company and get source-linked headlines — or a plain “nothing moved”.</p>
+              <p className="bs-hero-detail">No invented summaries. Headlines in the publisher’s own words, with the link, the timestamp and the freshness attached. Connect it with MCP, or read it in the terminal.</p>
               <div className="hero-cta">
                 <a className="btn-primary" href="/dashboard">Open intelligence terminal <ArrowRight size={16} /></a>
                 <a className="bs-text-link" href="/docs/quickstart">Connect your agent <ArrowUpRight size={16} /></a>
@@ -54,7 +55,7 @@ export default function Home() {
 
         <section className="scaffold" id="thesis">
           <div className="wrap">
-            <div className="bs-section-head"><span className="bs-kicker">01 / FROM NEWS TO RESEARCH</span><h2 className="bs-title">Know what changed.<br />Know what’s missing.</h2><p className="bs-body">A token ticker is only the starting point. Black Sheep gives agents source-linked company intelligence to support research before a trading decision.</p></div>
+            <div className="bs-section-head"><span className="bs-kicker">01 / THE CASE FOR A QUIETER BOT</span><h2 className="bs-title">Most tools always<br />have an answer.</h2><p className="bs-body">That is how a confident brief ends up resting on an article nobody read. Black Sheep is built the other way: it returns the evidence, or it tells you nothing changed. A black sheep will not follow the flock off a cliff.</p></div>
             <div className="bs-principles">{PRINCIPLES.map(item => <article key={item.number}><span>{item.number}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
           </div>
         </section>
@@ -74,7 +75,7 @@ export default function Home() {
 
         <section className="scaffold" id="asset-context">
           <div className="wrap bs-asset-grid">
-            <div><span className="bs-kicker">03 / REAL ASSETS. REAL STORIES.</span><h2 className="bs-title">The token is<br />only the beginning.</h2><p className="bs-body">An onchain asset still has a story in the real world. Black Sheep starts with company news and is building toward verified token-to-company context for Robinhood Chain.</p><a className="bs-text-link" href="/docs/robinhood-chain">Explore the integration plan <ArrowUpRight size={15} /></a></div>
+            <div><span className="bs-kicker">03 / REAL ASSETS. REAL STORIES.</span><h2 className="bs-title">The asset is<br />only the beginning.</h2><p className="bs-body">An onchain asset still has a story in the real world. Black Sheep starts with company news and is building toward verified token-to-company context for Robinhood Chain.</p><a className="bs-text-link" href="/docs/robinhood-chain">Explore the integration plan <ArrowUpRight size={15} /></a></div>
             <div className="bs-roadmap">
               <article><span className="bs-state">AVAILABLE TODAY</span><h3>Company intelligence</h3><p>Source-linked headlines, grouped coverage, headline summaries and updates since your last check. Available through MCP and REST.</p></article>
               <article><span className="bs-state bs-state-planned">PLANNED</span><h3>Tokenized-asset context</h3><p>Verified Stock Token mapping and corporate-action context. Current lookups cover supported underlying companies; they do not resolve token contracts.</p></article>
@@ -102,7 +103,7 @@ export default function Home() {
             <div>
               <span className="bs-kicker">THE BLACK SHEEP COMMUNITY</span>
               <h2 className="bs-title" id="sheep-community-title">Good instincts.<br />Better questions.</h2>
-              <p className="bs-body">$SHEEP is the token identity for the Black Sheep community. $SHEEP is planned for pump.fun. Our news intelligence project separately aims to connect tokenized assets with their underlying company context on Robinhood Chain.</p>
+              <p className="bs-body">$SHEEP is the community token, and it is a separate thing from the news bot. You do not need it to use Black Sheep, and holding it is not a claim on the product, its data or its revenue. The token is planned for pump.fun. The bot is live today, free, with no wallet involved.</p>
               <div className="sheep-community-links"><a className="btn-primary" href="https://x.com/newsbeat_" target="_blank" rel="noopener noreferrer">Follow the flock <ArrowUpRight size={15} /></a><a className="bs-text-link" href="/docs/robinhood-chain">Explore the project <ArrowRight size={15} /></a></div>
               <p className="sheep-community-status">Coming to pump.fun · launch date and verified contract address to be announced.</p>
             </div>
