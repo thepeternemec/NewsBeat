@@ -102,9 +102,9 @@ export default function Home() {
             <div>
               <span className="bs-kicker">THE BLACK SHEEP COMMUNITY</span>
               <h2 className="bs-title" id="sheep-community-title">Good instincts.<br />Better questions.</h2>
-              <p className="bs-body">$SHEEP is the token identity for the Black Sheep community. A home for curious traders and agent builders exploring tokenized markets, with Robinhood Chain as our planned first integration.</p>
+              <p className="bs-body">$SHEEP is the token identity for the Black Sheep community. $SHEEP is planned for pump.fun. Our news intelligence project separately aims to connect tokenized assets with their underlying company context on Robinhood Chain.</p>
               <div className="sheep-community-links"><a className="btn-primary" href="https://x.com/newsbeat_" target="_blank" rel="noopener noreferrer">Follow the flock <ArrowUpRight size={15} /></a><a className="bs-text-link" href="/docs/robinhood-chain">Explore the project <ArrowRight size={15} /></a></div>
-              <p className="sheep-community-status">Token details to be announced. No verified contract address or launch date is published here.</p>
+              <p className="sheep-community-status">Coming to pump.fun · launch date and verified contract address to be announced.</p>
             </div>
           </div>
         </section>
