@@ -260,10 +260,14 @@
   max-width: 15ch;
 }
 
-/* Same problem in the live section: the link sat against the paragraph. */
+/* Same problem in the live section: the link sat against the paragraph. It stays
+   inline-flex so the arrow cannot drop to a line of its own. */
 .bs-live-grid .bs-text-link {
-  display: inline-block;
-  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  margin-top: 12px;
 }
 
 /* The hero's copy is short now, so centring it against a tall panel left it
