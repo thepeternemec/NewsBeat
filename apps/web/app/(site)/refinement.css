@@ -93,3 +93,15 @@ footer.site .footer-panel { border-color: var(--border-default); background: lin
 @media (prefers-reduced-motion: reduce) {
   .signal-orbit::before { animation: none; }
 }
+
+/* Diagram labels must remain readable at laptop and phone widths. */
+.signal-label{font-size:12px;line-height:1.6}
+.signal-stage>p{font-size:14px;line-height:1.7}
+.signal-reports span{font-size:12px;letter-spacing:.03em}
+.signal-answer{height:auto;min-height:190px;padding:20px}
+.signal-answer>span{font-size:13px;line-height:1.6}
+.signal-answer>div>span{font-size:12px;line-height:1.5;padding:5px 8px}
+@media(max-width:700px){.signal-label{font-size:12px}}
+.intro-visual .visual-top,.intro-visual .visual-tag,.intro-visual .visual-bottom,.intro-visual .visual-endpoint,.intro-visual .visual-endpoint code,.intro-visual .visual-endpoint .copy-btn{font-size:12px;line-height:1.7}
+.intro-visual .question-preview>span,.intro-visual .answer-preview>span,.intro-visual .visual-stats span,.intro-visual .limit-comparison span{font-size:12px;line-height:1.6;letter-spacing:.035em}
+.visual-caption{font-size:12px;line-height:1.7}

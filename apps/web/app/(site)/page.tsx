@@ -4,17 +4,18 @@ import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
 import NewsPreview from "@/components/site/news-preview";
 import MissionBuilder from "@/components/site/mission-builder";
+import LandingMotion from "@/components/site/landing-motion";
 import CopyButton from "@/components/site/copy-button";
 import "./landing.css";
 import "./black-sheep.css";
 
 const DESCRIPTION =
-  "A news bot for agents researching tokenized assets. Source-linked company headlines, freshness and change cursors — or a plain \"nothing moved\". Company research is live; token mapping is planned.";
+  "Market news intelligence for agents researching companies, crypto and tokenized assets. Source-linked headlines, coverage freshness and updates since your last check. Checked on a fifteen-minute cycle.";
 export const metadata = {
-  title: "Black Sheep — the news bot that cites or says nothing",
+  title: "Black Sheep — Market intelligence for agents",
   description: DESCRIPTION,
-  openGraph: { title: "Black Sheep — the news bot that cites or says nothing", description: DESCRIPTION, url: "https://www.newsbeat.dev", siteName: "Black Sheep", type: "website" },
-  twitter: { card: "summary_large_image", title: "Black Sheep — the news bot that cites or says nothing", description: DESCRIPTION },
+  openGraph: { title: "Black Sheep — Market intelligence for agents", description: DESCRIPTION, url: "https://www.newsbeat.dev", siteName: "Black Sheep", type: "website" },
+  twitter: { card: "summary_large_image", title: "Black Sheep — Market intelligence for agents", description: DESCRIPTION },
 };
 const MCP_URL = "https://www.newsbeat.dev/api/mcp";
 const PRINCIPLES = [
@@ -28,17 +29,19 @@ export default function Home() {
     <>
       <SiteNav active="/" />
       <main className="landing-home bs-home">
+        <LandingMotion />
         <section className="bs-hero" id="top">
           <div className="wrap bs-hero-grid">
             <div className="bs-hero-copy">
               <SheepBadge />
-              <span className="bs-kicker"><span /> NEWS FOR AGENTS · 2,030 ASSETS</span>
-              <h1>Your agent is guessing.<br /><span>Give it the news.</span></h1>
-              <p className="bs-lede">Source-linked headlines for 2,030 companies and coins — refreshed every fifteen minutes, wired into any agent over MCP.</p>
+              <span className="bs-kicker"><span /> FINANCIAL NEWS / AGENT INTELLIGENCE</span>
+              <h1>Market intelligence.<br /><span>Built for your agent.</span></h1>
+              <p className="bs-lede">Give your agent the context behind companies, crypto and tokenized markets. Follow the reporting, check what changed, and trace every source.</p>
               <div className="hero-cta">
                 <a className="btn-primary" href="/dashboard">Open the terminal <ArrowRight size={16} /></a>
                 <a className="bs-text-link" href="/docs/quickstart">Connect your agent <ArrowUpRight size={16} /></a>
               </div>
+              <p className="bs-hero-cadence"><span aria-hidden="true" /> 15-minute collection cycle <span aria-hidden="true">·</span> MCP + REST</p>
             </div>
             <MissionBuilder />
           </div>
@@ -57,8 +60,8 @@ export default function Home() {
           <div className="wrap">
             <div className="bs-section-head">
               <span className="bs-kicker">THE CASE</span>
-              <h2 className="bs-title">An agent that<br />always answers<br />is guessing.</h2>
-              <p className="bs-body">Confidence is cheap. A citation is not.</p>
+              <h2 className="bs-title">From market noise<br />to useful context.</h2>
+              <p className="bs-body">A clear view of what was reported, what changed, and how fresh the evidence is.</p>
             </div>
             <div className="bs-principles">{PRINCIPLES.map(item => <article key={item.number}><span>{item.number}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
           </div>

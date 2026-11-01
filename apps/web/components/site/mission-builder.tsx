@@ -61,9 +61,13 @@ export default function MissionBuilder() {
           {MISSIONS.map(item => <button type="button" key={item.id} aria-pressed={mission === item.id} onClick={() => setMission(item.id)}><strong>{item.title}</strong><small>{item.short}</small></button>)}
         </div>
         {mission === "challenge" && <label className="mission-thesis">Your thesis <span>optional</span><textarea value={thesis} onChange={event => setThesis(event.target.value)} maxLength={360} rows={2} placeholder="e.g. This development changes the underlying business…" /></label>}
-        <div className="mission-output">
+        <div className="mission-output" key={ticker + mission}>
           <div className="mission-output-head"><span>03 / AGENT BRIEF</span><span>{asset.ticker} · {task.title.toUpperCase()}</span></div>
-          <div className="mission-path" aria-hidden="true"><span><Search size={14} /></span><b /><span><Shuffle size={14} /></span><b /><span><ShieldCheck size={14} /></span></div>
+          <div className="mission-path" aria-label="Research workflow: discover, verify, brief">
+            <span><Search size={20} aria-hidden="true" /><small>Discover</small></span><b aria-hidden="true" />
+            <span><Shuffle size={20} aria-hidden="true" /><small>Verify</small></span><b aria-hidden="true" />
+            <span><ShieldCheck size={20} aria-hidden="true" /><small>Brief</small></span>
+          </div>
           <ol>{STEPS[mission].map((step, index) => <li key={step}><span>0{index + 1}</span>{step}<Check size={13} aria-hidden="true" /></li>)}</ol>
           <details className="mission-prompt"><summary>Inspect the full prompt</summary><pre>{prompt}</pre></details>
         </div>
