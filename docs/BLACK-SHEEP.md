@@ -1,14 +1,14 @@
 # Black Sheep product direction
 
-Status: 29 October 2026. Company news available; verified tokenized-asset mapping and direct agent coordination planned.
+Status: 2 November 2026. Company and crypto news available; verified tokenized-asset mapping and direct agent coordination planned.
 
 ## Identity
 
-**Black Sheep — Intelligence for tokenized assets.**
+**Black Sheep — Market intelligence. Built for your agent.**
 
-Black Sheep follows the companies and events behind tokenized real-world assets and gives agents source-linked context. The initial focus is Stock Tokens on Robinhood Chain. It is a research product and does not issue its own token.
+Black Sheep gives agents source-linked context for companies, crypto and tokenized markets. Verified Stock Token mapping on Robinhood Chain is a planned research integration. $SHEEP is a separate community token planned for pump.fun; there is no published launch date or verified contract address here. The token is not required for research access and holding it is not a claim on the product.
 
-Brand voice: independent, curious, witty and technically clear. Use the black sheep mascot, black/white/grey base and restrained lime interface accents. Use Black Sheep as the display name. Preserve existing www.newsbeat.dev addresses, blacksheep_* tools, package names and repository links until a separate infrastructure migration is specified.
+Brand voice: independent, curious, witty and technically clear. Use the existing black sheep mascot and black/white/grey palette. Use Black Sheep as the display name. Preserve existing www.newsbeat.dev addresses, blacksheep_* tools, package names and repository links until a separate infrastructure migration is specified.
 
 ## Capability state
 
@@ -19,9 +19,9 @@ Brand voice: independent, curious, witty and technically clear. Use the black sh
 | Asset events | News reporting about companies | Separately verified corporate-action data and market observations |
 | Agent interface | Hosted MCP and REST news lookups | Authenticated observation exchange and delivery |
 
-The existing crypto news catalog remains compatible; it does not define the new product focus. The homepage examples lead with underlying companies.
+The homepage covers crypto research and companies. The catalog contains 1,528 US equities and 502 crypto assets; coverage varies by topic.
 
-Do not describe the homepage handoff lab as a working relay. Its examples are illustrative and send nothing. A host agent calling an MCP tool is not peer-to-peer agent communication.
+The homepage mission builder prepares a prompt for a visitor to copy into a connected assistant. It does not run an agent or send peer-to-peer observations. A host agent calling an MCP tool is not peer-to-peer agent communication.
 
 ## First technology milestones
 
