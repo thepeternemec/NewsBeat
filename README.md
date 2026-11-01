@@ -2,13 +2,13 @@
 
 # Black Sheep
 
-### A different breed of intelligence.
+### Market intelligence. Built for your agent.
 
-News intelligence for tokenized assets and the companies behind them. Source-linked news today; verified asset mapping and agent coordination planned.
+Source-linked news for agents researching companies, crypto and tokenized markets. Check what changed, inspect freshness and follow the reporting behind an asset.
 
 **Free during early access · No API key or credit card needed for public reads**
 
-[Try a live lookup](https://www.newsbeat.dev/docs/try) · [Connect your agent](https://www.newsbeat.dev/docs/quickstart) · [Read the docs](https://www.newsbeat.dev/docs)
+[Open the terminal](https://www.newsbeat.dev/dashboard) · [Explore crypto research](https://www.newsbeat.dev/#crypto-community) · [Connect your agent](https://www.newsbeat.dev/docs/quickstart) · [Read the docs](https://www.newsbeat.dev/docs)
 
 Contact: [@blacksheep_ on X](https://x.com/blacksheep_)
 
@@ -18,11 +18,11 @@ Contact: [@blacksheep_ on X](https://x.com/blacksheep_)
 
 </div>
 
-Ask your assistant “What happened with Nvidia?” It can look up recent news whenever it needs context for your question. Start with the [free live lookup](https://www.newsbeat.dev/docs/try): search by company name or ticker, read available headlines, and request a short source-linked summary. No account needed.
+Ask your assistant “What happened with Nvidia?” or “What changed with BTC since my last check?” It can look up supported news topics whenever it needs context for your question. Start with the [free terminal](https://www.newsbeat.dev/dashboard): search by name or ticker, read available headlines, and request a short source-linked summary. No account needed.
 
 Black Sheep gives agents equity and crypto news through **MCP and REST**. Resolve an asset, get a short source-linked update, and check freshness. For follow-up checks, save a cursor and get only newly indexed headlines or a clear “nothing new.”
 
-Built for developers bringing news into trading research, prediction-market analysis, personal assistants and monitoring workflows.
+Built for developers bringing news into trading research, prediction-market analysis, personal assistants and monitoring workflows. Headlines are collected on a **15-minute schedule**; this is news context, not a price feed or a trading signal.
 
 | Coverage | Agent tools | Change tracking | Source code |
 | --- | --- | --- | --- |
@@ -30,7 +30,7 @@ Built for developers bringing news into trading research, prediction-market anal
 
 ## See it work before you connect
 
-**Start with your own question.** The free try page searches the supported catalog, shows live headlines, and lets you request an on-demand summary. The same news is available to your agent when connected. Follow the [assistant quickstart](https://www.newsbeat.dev/docs/quickstart) when you are ready.
+**Start with your own question.** The [terminal](https://www.newsbeat.dev/dashboard) searches the supported catalog, shows recent headlines, and lets you request an on-demand summary. The [landing page](https://www.newsbeat.dev) has a mission builder that prepares a research prompt to copy into your own agent, plus a crypto community section illustrating the topic → change → source workflow. The mission builder does not execute an agent or place trades. Follow the [assistant quickstart](https://www.newsbeat.dev/docs/quickstart) when you are ready.
 
 - **Headline summaries:** up to three short explanations with publisher links, publication times and freshness. Choose **Summarize headlines** in the terminal, call `blacksheep_summary` over MCP, or use [the summary API](https://www.newsbeat.dev/api/v2/summary?beat_id=b_bb964843350e).
 - **Grouped coverage:** similar reports appear as one story. Expand it to see the original headlines and sources; reporting is retained.
@@ -76,11 +76,11 @@ Then ask: **“What happened with Nvidia? Give me a short summary and link the s
 
 Use the [connection guide](https://www.newsbeat.dev/connect) for setup and a live transport check. For function-calling agents, load schemas from [`/api/v2/tools`](https://www.newsbeat.dev/api/v2/tools). See the [model-loop example](examples/README.md).
 
-## Black Sheep direction
+## $SHEEP and the product direction
 
-Black Sheep is the new product identity for the Black Sheep news service. The current engine collects company and crypto headline metadata and serves source-linked news through MCP and REST. The proposed network would let agents exchange observations with provenance and freshness.
+The Black Sheep news engine collects company and crypto headline metadata and serves source-linked research through MCP and REST. The community identity is **$SHEEP**, a token **planned for pump.fun**. No launch date or verified contract address has been published here. The token is not required to use the research tools, and holding it is not a claim on the product.
 
-Black Sheep is a research product focused on tokenized real-world assets. Verified token-to-company mapping and agent-to-agent messaging are planned. Black Sheep does not issue its own token. Existing endpoints, tool names and package identifiers remain compatible.
+The product direction includes verified token-to-company mapping for tokenized assets and possible agent coordination. These are planned capabilities. $SHEEP's community launch is separate from that research integration. Existing endpoints, tool names and package identifiers remain compatible.
 
 Read the [product direction](docs/BLACK-SHEEP.md) and [website guide](https://www.newsbeat.dev/docs/black-sheep).
 
@@ -90,7 +90,7 @@ We are building toward a read-only context layer for tokenized markets on **Robi
 
 **Planned, not released.** Today's MCP and REST news tools remain the foundation. Token-contract mapping, chain balances, token prices and transaction execution are not implemented. Black Sheep is an independent project with no Robinhood affiliation or endorsement.
 
-Read the [integration plan](docs/ROBINHOOD-CHAIN.md) or the [website guide](https://www.newsbeat.dev/docs/robinhood-chain). Black Sheep retains the working Black Sheep interfaces during this transition.
+Read the [integration plan](docs/ROBINHOOD-CHAIN.md) or the [website guide](https://www.newsbeat.dev/docs/robinhood-chain). The current MCP and REST news interfaces remain in place.
 
 ## What you can build
 
@@ -149,7 +149,7 @@ Use Node.js 22 or 24 and npm workspaces.
 
 ```bash
 git clone https://github.com/thepeternemec/black-sheep.git
-cd Black Sheep
+cd black-sheep
 npm ci
 npm run build
 npm test
