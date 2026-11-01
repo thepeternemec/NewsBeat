@@ -1,5 +1,6 @@
 import { ArrowRight, ArrowUpRight, Radio, Code2 } from "lucide-react";
 import SheepBadge from "@/components/site/sheep-badge";
+import BrandMark from "@/components/site/brand-mark";
 import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
 import NewsPreview from "@/components/site/news-preview";
@@ -8,6 +9,7 @@ import LandingMotion from "@/components/site/landing-motion";
 import CopyButton from "@/components/site/copy-button";
 import "./landing.css";
 import "./black-sheep.css";
+import "./crypto-community.css";
 
 const DESCRIPTION =
   "Market news intelligence for agents researching companies, crypto and tokenized assets. Source-linked headlines, coverage freshness and updates since your last check. Checked on a fifteen-minute cycle.";
@@ -53,6 +55,50 @@ export default function Home() {
             <div><strong>15 min</strong><span>refresh cycle</span></div>
             <div><strong>7</strong><span>agent tools</span></div>
             <div><strong>$0</strong><span>to start</span></div>
+          </div>
+        </section>
+
+        <section className="bs-crypto" id="crypto-community" aria-labelledby="crypto-title">
+          <div className="wrap">
+            <div className="bs-crypto-head">
+              <div>
+                <span className="bs-kicker">THE FLOCK / CRYPTO RESEARCH</span>
+                <h2 id="crypto-title">Markets move fast.<br /><span>Bring receipts.</span></h2>
+              </div>
+              <div className="bs-crypto-intro">
+                <p>Follow reporting on 502 crypto assets. Ask what appeared since your agent last checked, then follow the source before forming a view.</p>
+                <a className="bs-text-link" href="/dashboard">Explore crypto coverage <ArrowUpRight size={17} /></a>
+              </div>
+            </div>
+
+            <div className="bs-crypto-stage">
+              <div className="bs-crypto-orbit" aria-hidden="true">
+                <div className="bs-crypto-rings" aria-hidden="true" />
+                <div className="bs-crypto-core">
+                  <BrandMark size={150} />
+                  <strong>$SHEEP</strong>
+                  <span>COMMUNITY · PLANNED</span>
+                </div>
+                <span className="bs-crypto-node bs-crypto-node-btc">BTC <small>RESEARCH TOPIC</small></span>
+                <span className="bs-crypto-node bs-crypto-node-eth">ETH <small>RESEARCH TOPIC</small></span>
+                <span className="bs-crypto-node bs-crypto-node-sol">SOL <small>RESEARCH TOPIC</small></span>
+                <span className="bs-crypto-orbit-note">ILLUSTRATIVE TOPICS · NO PRICE FEED</span>
+              </div>
+              <div className="bs-crypto-path">
+                <div className="bs-crypto-path-top"><span>THE RESEARCH LOOP</span><span>01 — 03</span></div>
+                <ol>
+                  <li><span>01 / DISCOVER</span><strong>Pick your beat.</strong><p>Start with a supported coin or company in the topic catalog.</p></li>
+                  <li><span>02 / DETECT</span><strong>Ask what changed.</strong><p>Save a cursor. On your next check, get the newly reported items.</p></li>
+                  <li><span>03 / VERIFY</span><strong>Keep the receipts.</strong><p>Each headline comes with its publisher, timestamp and source link.</p></li>
+                </ol>
+                <a href="/docs/quickstart">Put your agent on the beat <ArrowRight size={16} /></a>
+              </div>
+            </div>
+
+            <div className="bs-crypto-foot">
+              <p><strong>$SHEEP is for the community.</strong> Planned for pump.fun. Research access does not require the token.</p>
+              <a href="#sheep-community">Meet the flock <ArrowUpRight size={16} /></a>
+            </div>
           </div>
         </section>
 

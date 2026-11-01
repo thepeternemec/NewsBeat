@@ -26,7 +26,7 @@ export default function LandingMotion() {
         enter(entry.target, Number((entry.target as HTMLElement).dataset.motionDelay || 0));
       });
     }, { threshold: 0.12 });
-    root.querySelectorAll(".bs-proof .wrap > div, .bs-section-head, .bs-principles article, .bs-live-grid > div, .bs-build-grid > div, .bs-closing .wrap > *").forEach(node => {
+    root.querySelectorAll(".bs-proof .wrap > div, .bs-crypto-head > div, .bs-crypto-stage, .bs-crypto-foot, .bs-section-head, .bs-principles article, .bs-live-grid > div, .bs-build-grid > div, .bs-closing .wrap > *").forEach(node => {
       const index = Array.from(node.parentElement?.children ?? []).indexOf(node);
       (node as HTMLElement).dataset.motionDelay = String(Math.min(index, 3) * 70);
       observer.observe(node);
