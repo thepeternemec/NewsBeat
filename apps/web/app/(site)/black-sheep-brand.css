@@ -16,3 +16,6 @@ html .documentation-page .docs-link.active{border-left-color:var(--text-primary)
 .sheep-community-identity>span{font-size:52px;line-height:1.2;letter-spacing:-.04em;font-weight:600;margin-top:12px}.sheep-community-identity>small{font:9px/1.6 var(--font-mono);letter-spacing:.15em;color:var(--text-secondary);margin-top:10px}
 .sheep-community-links{display:flex;align-items:center;flex-wrap:wrap;gap:14px 24px}.sheep-community-status{font:11px/1.8 var(--font-mono);color:var(--text-secondary);margin:22px 0 0;max-width:55ch}
 @media(max-width:760px){.sheep-community-section{padding:60px 0}.sheep-community-grid{grid-template-columns:minmax(0,1fr);gap:30px}.sheep-community-identity{min-height:250px}.sheep-community-identity svg{width:110px;height:110px}.sheep-community-identity>span{font-size:40px}}
+/* The community badge stays legible outside the navigation. */
+.sheep-community-badge small{font-size:11px;letter-spacing:.04em}
+.sheep-community-badge.is-compact small{font-size:10px}

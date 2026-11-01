@@ -19,20 +19,11 @@ export interface SignalItem {
   corroboration?: number;
 }
 
-/** Scattered anchor points — kept off-centre so the particle ring stays visible. */
-const POSITIONS: Array<{ left: string; top: string }> = [
-  { left: "3%", top: "7%" },
-  { left: "35%", top: "2%" },
-  { left: "67%", top: "9%" },
-  { left: "4%", top: "40%" },
-  { left: "70%", top: "38%" },
-  { left: "14%", top: "69%" },
-  { left: "47%", top: "74%" },
-  { left: "71%", top: "67%" },
-];
+/** Keep the visual bounded while the complete feed remains below it. */
+const DISPLAY_LIMIT = 8;
 
 export default function SignalField({ items }: { items: SignalItem[] }) {
-  const shown = items.slice(0, POSITIONS.length);
+  const shown = items.slice(0, DISPLAY_LIMIT);
 
   return (
     <div className="signal-field">
@@ -63,8 +54,6 @@ export default function SignalField({ items }: { items: SignalItem[] }) {
             target="_blank"
             rel="noreferrer"
             style={{
-              left: POSITIONS[i].left,
-              top: POSITIONS[i].top,
               animationDelay: `${i * 110}ms`,
             }}
             title={`${item.source}${item.published_at ? ` · ${item.published_at}` : ""}`}
