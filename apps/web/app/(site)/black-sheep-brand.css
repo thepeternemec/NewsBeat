@@ -19,3 +19,10 @@ html .documentation-page .docs-link.active{border-left-color:var(--text-primary)
 /* The community badge stays legible outside the navigation. */
 .sheep-community-badge small{font-size:11px;letter-spacing:.04em}
 .sheep-community-badge.is-compact small{font-size:10px}
+
+/* Give the unchanged sheep SVG a small, occasional nod wherever it appears. */
+.nav-site .brand-beat,.sheep-community-badge>svg{transform-origin:52% 75%;animation:sheepNod 8s ease-in-out infinite}
+@keyframes sheepNod{0%,12%,27%,100%{transform:translateY(0) rotate(0)}17%{transform:translateY(-2px) rotate(-6deg)}22%{transform:translateY(1px) rotate(4deg)}}
+@keyframes sheepHello{0%,100%{transform:rotate(0)}35%{transform:rotate(-10deg)}70%{transform:rotate(6deg)}}
+@media(hover:hover){.nav-site .nav-logo:hover .brand-beat,.sheep-community-badge:hover>svg{animation:sheepHello .7s ease-in-out 1}}
+@media(prefers-reduced-motion:reduce){.nav-site .brand-beat,.sheep-community-badge>svg,.nav-site .nav-logo:hover .brand-beat,.sheep-community-badge:hover>svg{animation:none;transform:none}}
