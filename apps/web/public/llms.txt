@@ -102,3 +102,15 @@ shown once. That is a browser flow and needs a human.
 
 # Black Sheep transition
 Black Sheep is the new product identity for the Black Sheep news service. Existing blacksheep_* tools and www.newsbeat.dev endpoints remain unchanged. Black Sheep focuses on news intelligence for tokenized real-world assets. Verified token-to-company mapping and agent-to-agent messaging are planned, not live. Current capabilities are read-only company and crypto news tools. Black Sheep does not issue its own token.
+
+### Ask, chain and contracts
+
+| Tool | Route | Returns |
+| --- | --- | --- |
+| `blacksheep_ask` | `GET /v2/ask?q=` | Identity, headlines, prices and chain state in one attributed call |
+| `blacksheep_chain` | `GET /v2/chain` | Ethereum block and base fee, Solana slot |
+| `blacksheep_token` | `GET /v2/token?asset=` | Token price by contract address |
+
+Reach for `blacksheep_ask` first. Chaining the individual endpoints loses the attribution
+between calls, and it returns a `notes` array that states what was missing. Chain readings
+move every twelve seconds or less; none of this reads balances or quotes swaps.

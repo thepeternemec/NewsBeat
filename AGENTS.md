@@ -169,3 +169,15 @@ Prices take CoinGecko ids (`bitcoin`, `ethereum`, `solana`), not tickers, becaus
 ticker is ambiguous across chains. These are public endpoints read through a cache, so
 a value may be a few minutes old; `refresh_in_seconds` says when it will be re-read.
 This is reference data. There is no price forecast anywhere in the API.
+
+### Ask, chain and contracts
+
+| Tool | Route | Returns |
+| --- | --- | --- |
+| `blacksheep_ask` | `GET /v2/ask?q=` | Identity, headlines, prices and chain state in one attributed call |
+| `blacksheep_chain` | `GET /v2/chain` | Ethereum block and base fee, Solana slot |
+| `blacksheep_token` | `GET /v2/token?asset=` | Token price by contract address |
+
+Reach for `blacksheep_ask` first. Chaining the individual endpoints loses the attribution
+between calls, and it returns a `notes` array that states what was missing. Chain readings
+move every twelve seconds or less; none of this reads balances or quotes swaps.

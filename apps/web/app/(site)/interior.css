@@ -346,3 +346,75 @@
   line-height: 1.6;
   color: var(--text-ghost);
 }
+
+/* ── Live chain strip ────────────────────────────────────────────────────
+   The dot pulses only while the reading is fresh. A pulse on stale data is the
+   most misleading thing a live indicator can do. */
+.chain-pulse {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 18px;
+  margin: 12px 0 0;
+  padding: 11px 16px;
+  border: 1px solid var(--border-default);
+  border-radius: 10px;
+  background: var(--bg-base);
+  font: 11px/1.5 var(--font-mono);
+  letter-spacing: .04em;
+  color: var(--text-secondary);
+}
+
+.chain-dot {
+  width: 7px;
+  height: 7px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--text-ghost);
+}
+
+.chain-dot.is-live {
+  background: #3ddc84;
+  box-shadow: 0 0 0 0 rgba(61, 220, 132, .55);
+  animation: chainPulse 2.2s ease-out infinite;
+}
+
+.chain-dot.is-idle {
+  background: var(--text-ghost);
+}
+
+@keyframes chainPulse {
+  0% { box-shadow: 0 0 0 0 rgba(61, 220, 132, .5); }
+  70% { box-shadow: 0 0 0 7px rgba(61, 220, 132, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(61, 220, 132, 0); }
+}
+
+.chain-label {
+  color: var(--text-secondary);
+}
+
+.chain-value {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 7px;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.chain-value b {
+  font-weight: 600;
+  letter-spacing: .06em;
+}
+
+.chain-value em {
+  font-style: normal;
+  color: var(--text-ghost);
+}
+
+.chain-value.is-missing {
+  color: var(--text-ghost);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chain-dot.is-live { animation: none; }
+}

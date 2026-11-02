@@ -204,6 +204,24 @@ export default function DocsConnect() {
         These are public endpoints read through a cache, and the values are reference data,
         not advice. There is no price forecast anywhere in the API.
       </p>
+
+      <h2>Ask, chain and contracts</h2>
+      <p>
+        <code>GET /v2/ask?q=</code> is the one call to reach for first. It resolves the asset
+        in the catalog and returns headlines, market context and live chain state together,
+        each part attributed, plus a <code>notes</code> array that states plainly what was
+        missing. Chaining the individual endpoints yourself works, but you lose the
+        attribution between calls.
+      </p>
+      <ul>
+        <li><code>GET /v2/ask?q=nvidia</code> — identity, news, prices and chain in one answer.</li>
+        <li><code>GET /v2/chain</code> — Ethereum block and base fee, Solana slot.</li>
+        <li><code>GET /v2/token?asset=ethereum:0x…</code> — a token price by contract address.</li>
+      </ul>
+      <p>
+        Chain readings move every twelve seconds or less, so their freshness window is short.
+        None of this reads balances, quotes swaps, or sends anything to a node on your behalf.
+      </p>
     </>
   );
 }

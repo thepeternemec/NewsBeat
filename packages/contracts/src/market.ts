@@ -14,7 +14,7 @@
 /** Where a number came from, and how much to trust its currency. */
 export interface SourceAttribution {
   /** Machine name of the upstream, for caching and for saying "not our number". */
-  source: "defillama" | "coingecko" | "alternative.me" | "mixed";
+  source: "defillama" | "coingecko" | "alternative.me" | "google-news" | "mixed";
   /** The public home of the data, so a consumer can check it independently. */
   source_url: string;
   /** When this server fetched it, ISO 8601 UTC. */
@@ -106,4 +106,77 @@ export interface Unavailable {
   freshness: Freshness & { status: "unavailable" };
   /** Why, in plain language, so an agent can say what is missing instead of guessing. */
   error: string;
+}
+
+// ── On-chain ────────────────────────────────────────────────────────────
+
+/**
+ * A live reading from public chain endpoints.
+ *
+ * "Real-time" here means what the free public endpoints can honestly support: block
+ * height and gas from an Ethereum RPC, and a Solana slot. These move every ~12 seconds
+ * and ~400ms respectively, so a short TTL is meaningful. Nothing here is a transaction
+ * or a balance, and no address is ever sent to a node on a caller's behalf.
+ */
+export interface ChainPulse {
+  ethereum: {
+    block: number;
+    /** Base fee in gwei, as reported by the node. */
+    gas_gwei: number;
+    observed_at: string;
+  } | null;
+  solana: {
+    slot: number;
+    observed_at: string;
+  } | null;
+}
+
+/** A token price resolved by contract address rather than by id or ticker. */
+export interface ContractToken {
+  /** `chain:address`, exactly as the source keys it. */
+  asset: string;
+  chain: string;
+  address: string;
+  symbol: string;
+  /** USD price. `confidence` is the source's own, 0–1. */
+  price_usd: number;
+  confidence: number;
+  decimals: number;
+  /** ISO 8601 UTC of the price observation. */
+  observed_at: string;
+}
+
+export interface TokenPayload {
+  token: ContractToken | null;
+  /** Echoed back so a caller can tell a typo from an unsupported contract. */
+  requested: string;
+}
+
+/**
+ * One call that answers "what do we know about this asset right now": catalog identity,
+ * news, market context and chain state, each part attributed and each free to fail on its
+ * own. This is the surface an agent should reach for first, instead of chaining four
+ * calls and losing the attribution along the way.
+ */
+export interface AskNewsItem {
+  lede: string;
+  source: string;
+  url: string;
+  published_at: string;
+  first_indexed_at: string;
+}
+
+export interface AskPayload {
+  query: string;
+  topic: {
+    beat_id: string;
+    label: string;
+    asset: string;
+    status: string;
+  } | null;
+  news: Sourced<{ items: AskNewsItem[] }> | Unavailable;
+  market: Sourced<PricesPayload> | Unavailable;
+  chain: Sourced<ChainPulse> | Unavailable;
+  /** Plain-language notes about anything missing, for the agent to relay honestly. */
+  notes: string[];
 }
