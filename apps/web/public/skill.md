@@ -33,6 +33,11 @@ Respect the host's permissions. Resolve the correct asset; if a name is ambiguou
     short sentences with original report links and times. The basis is headlines only. The method
     field is generated or extractive; extractive shows original headlines if generation is unavailable.
     Check freshness and coverage_truncated. Never assume the complete articles were read.
+3e. Need market context? `blacksheep_market` returns sentiment, DeFi TVL and prices in
+    one call, each with its source and fetch time. Use `blacksheep_prices` for specific
+    assets — pass CoinGecko ids (`bitcoin`), not tickers. Quote the fetch time with the
+    number, and treat these as reference data: there is no price forecast anywhere.
+
 3d. Watching many topics? Use blacksheep_watch (POST /v2/watch) with the cursors you
     hold and get every topic's answer in one call, up to fifty. Each entry is
     independent — an expired cursor fails only its own result.

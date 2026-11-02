@@ -271,3 +271,78 @@
   .interior-page *, .interior-page *::before, .interior-page *::after { animation: none !important; transition-duration: 0s !important; scroll-behavior: auto !important; }
   .interior-page .feature:hover, .documentation-page .question-grid li:hover { transform: none; }
 }
+
+/* ── Market context ──────────────────────────────────────────────────────
+   Source and age are on the surface, not in a tooltip: that is the difference
+   between an attributed feed and a scraped number. */
+.market-pulse {
+  margin: 34px 0 0;
+  border: 1px solid var(--border-default);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.market-pulse-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--border-default);
+  font: 10px/1.4 var(--font-mono);
+  letter-spacing: .1em;
+  color: var(--text-secondary);
+}
+
+.market-pulse-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1px;
+  background: var(--border-default);
+}
+
+.market-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px;
+  background: var(--bg-base);
+  min-width: 0;
+}
+
+.market-label {
+  font: 10px/1.4 var(--font-mono);
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.market-value {
+  font-size: 24px;
+  font-weight: 550;
+  letter-spacing: -.03em;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+}
+
+.market-sub {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.market-source {
+  margin-top: auto;
+  font: 10px/1.4 var(--font-mono);
+  letter-spacing: .04em;
+  color: var(--text-ghost);
+}
+
+.market-pulse-note {
+  margin: 0;
+  padding: 11px 18px;
+  border-top: 1px solid var(--border-default);
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--text-ghost);
+}

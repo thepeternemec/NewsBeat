@@ -10,6 +10,7 @@
  */
 
 import { Hono } from "hono";
+import { marketRoutes } from "./lib/market-routes.js";
 import { newsRoutes } from "./lib/news-routes.js";
 import { rateLimit, rateLimits } from "./lib/limit.js";
 import { keyRoutes } from "./lib/key-routes.js";
@@ -51,6 +52,7 @@ app.get("/", (c) =>
 );
 
 app.route("/v2", newsRoutes);
+app.route("/v2", marketRoutes);
   // Self-serve keys. Separate from /v2 because it is not a news route.
   app.route("/keys", keyRoutes);
 app.all("/mcp", (c) => mcpResponse(c.req.raw));

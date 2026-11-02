@@ -3,6 +3,7 @@ import { z } from "zod";
 import { NEWS_TOOLS } from "@blacksheep/contracts";
 import { NewsError, topics, newsPage, brief, stories, watchMany, WATCH_LIMIT, TOPIC_PAGE_DEFAULT, TOPIC_PAGE_MAX } from "./news.js";
 import { headlineSummary } from "./headline-summary.js";
+import { fearGreed, overview, prices, DEFAULT_PRICE_IDS } from "./market.js";
 export const newsRoutes = new Hono();
 newsRoutes.onError((error, c) => { if (error instanceof NewsError)
     return c.json({ error: { code: error.code, message: error.message } }, error.status as 400 | 404 | 410 | 503); console.error("news request failed", error.name); return c.json({ error: { code: "service_unavailable", message: "News is temporarily unavailable." } }, 503); });
@@ -89,6 +90,18 @@ export async function callNewsTool(name: string, args: unknown, oidcToken?: stri
             watches: z.array(z.object({ beat_id: z.string(), cursor: z.string().max(2048).optional() })).min(1).max(WATCH_LIMIT),
         }).strict().parse(args);
         return watchMany(input.watches.map((w) => ({ beat_id: w.beat_id, cursor: w.cursor ?? "" })));
+    }
+    if (name === "blacksheep_market") {
+        z.object({}).strict().parse(args);
+        return { ...(await overview()), tool: "blacksheep_market" };
+    }
+    if (name === "blacksheep_prices") {
+        const input = z.object({ ids: z.array(z.string().min(1).max(80)).max(20).optional() }).strict().parse(args);
+        return { ...(await prices(input.ids?.length ? input.ids : [...DEFAULT_PRICE_IDS])), tool: "blacksheep_prices" };
+    }
+    if (name === "blacksheep_fear_greed") {
+        const input = z.object({ limit: z.number().int().min(1).max(30).optional() }).strict().parse(args);
+        return { ...(await fearGreed(input.limit ?? 7)), tool: "blacksheep_fear_greed" };
     }
     if (name === "blacksheep_changes") {
         const input = z.object({ beat_id: z.string(), cursor: z.string().max(2048) }).strict().parse(args);

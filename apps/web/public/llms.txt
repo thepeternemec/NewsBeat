@@ -46,6 +46,24 @@ Tools, for frameworks that would rather be handed a schema than a URL:
 `blacksheep_topics`, `blacksheep_news`, `blacksheep_changes`, `blacksheep_brief`,
 `blacksheep_stories`, `blacksheep_summary`, `blacksheep_watch`.
 
+## Market and sentiment
+
+Three more tools, same envelope as the news tools: every figure carries its `source`,
+its `fetched_at` time and a `freshness` object, and each part can fail independently.
+Read `freshness.status` before quoting a number, and quote the time with the price.
+
+| Tool | Route | Returns |
+| --- | --- | --- |
+| `blacksheep_market` | `GET /v2/market` | Sentiment, DeFi TVL and prices in one call |
+| `blacksheep_prices` | `GET /v2/prices?ids=` | Price, market cap and 24h change by CoinGecko id |
+| `blacksheep_fear_greed` | `GET /v2/sentiment?limit=` | Daily fear and greed index and history |
+
+Prices take CoinGecko ids (`bitcoin`, `ethereum`, `solana`), not tickers, because a
+ticker is ambiguous across chains. These are public endpoints read through a cache, so
+a value may be a few minutes old; `refresh_in_seconds` says when it will be re-read.
+This is reference data. There is no price forecast anywhere in the API.
+
+
 ## Grouped overview
 
 Use `blacksheep_stories` for one lead per group of similar headlines, ranked by headline relevance.

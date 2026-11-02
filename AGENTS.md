@@ -152,3 +152,20 @@ Use `blacksheep_summary` when someone asks what happened with an asset. It selec
 Use `blacksheep_stories` for a feed grouped by similar headlines and ranked by headline relevance. Each group includes a verbatim `lead_article` and `reports` with original source links and timestamps. No stored articles are deleted. Matching is conservative and approximate; source counts measure coverage, not independent verification.
 
 MCP returns up to 40 ranked groups drawn from 200 recent reports; REST scans 200 by default (`limit` 1–500). The 24-hour snapshot favors concrete developments, recency and coverage from multiple publishers, while downranking routine ownership notices and shopping headlines. This is a headline heuristic, not a measure of market impact or verification. Check `coverage_truncated` and `stories_scanned`. The brief ranks up to 200 recent reports for three distinct headlines; its `ranking` and `articles_scanned` fields explain the selection. Group IDs can change as the window rolls. Continue using the existing topic-bound article cursors for follow-up arrivals, then refresh the ranked overview for presentation.
+
+## Market and sentiment
+
+Three more tools, same envelope as the news tools: every figure carries its `source`,
+its `fetched_at` time and a `freshness` object, and each part can fail independently.
+Read `freshness.status` before quoting a number, and quote the time with the price.
+
+| Tool | Route | Returns |
+| --- | --- | --- |
+| `blacksheep_market` | `GET /v2/market` | Sentiment, DeFi TVL and prices in one call |
+| `blacksheep_prices` | `GET /v2/prices?ids=` | Price, market cap and 24h change by CoinGecko id |
+| `blacksheep_fear_greed` | `GET /v2/sentiment?limit=` | Daily fear and greed index and history |
+
+Prices take CoinGecko ids (`bitcoin`, `ethereum`, `solana`), not tickers, because a
+ticker is ambiguous across chains. These are public endpoints read through a cache, so
+a value may be a few minutes old; `refresh_in_seconds` says when it will be re-read.
+This is reference data. There is no price forecast anywhere in the API.

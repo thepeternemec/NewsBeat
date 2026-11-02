@@ -4,6 +4,7 @@ import InteriorPage from "@/components/site/interior-page";
 import SiteNav from "@/components/site/site-nav";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import MarketPulse from "@/components/site/market-pulse";
 
 /** Clusters to load articles for. One request each, so this stays small. */
 const CLUSTER_LIMIT = 10;
@@ -358,6 +359,8 @@ export default function Dashboard() {
             Company and crypto news coverage · token contracts are not mapped · no wallet needed
           </p>
         </div>
+
+        <MarketPulse />
 
         {/* Both views answer "which ticker?", so the search belongs to neither of
             them. Centred and larger: it is the first control a reader reaches for

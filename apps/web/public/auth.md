@@ -87,6 +87,9 @@ Returns the seven calls in OpenAI function-call shape:
 | `blacksheep_stories` | The events behind a topic, not the coverage — near-identical headlines grouped |
 | `blacksheep_summary` | Short explanations based on headlines, with source links; original headlines if generation is unavailable |
 | `blacksheep_watch` | Many topics in one call — the batch form of `changes` |
+| `blacksheep_market` | `GET /v2/market` | Sentiment, TVL and prices in one call, each attributed |
+| `blacksheep_prices` | `GET /v2/prices?ids=` | Prices, market caps and 24h change by CoinGecko id |
+| `blacksheep_fear_greed` | `GET /v2/sentiment` | Daily fear and greed index with recent history |
 
 `GET /v2/topics?q=` searches by ticker or company name across +2000 topics —
 US-listed equities and the largest crypto assets. A coin and a company can share a ticker

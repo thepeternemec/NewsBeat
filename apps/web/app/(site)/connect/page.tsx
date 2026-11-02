@@ -49,7 +49,9 @@ curl -s "${API_BASE}/v2/news?beat_id=b_bb964843350e"
 curl -s "${API_BASE}/v2/changes?beat_id=b_bb964843350e&cursor=<cursor>"
 
 # or go straight to headlines
-curl -s "${API_BASE}/v2/brief?beat_id=b_bb964843350e"`,
+curl -s "${API_BASE}/v2/brief?beat_id=b_bb964843350e"
+# market context, each figure carrying its source, fetch time and freshness
+curl -s "${API_BASE}/v2/market"`,
   tools: `// The schemas are served, not vendored — they cannot drift from the API.
 const { tools } = await fetch("${API_BASE}/v2/tools").then((r) => r.json());
 

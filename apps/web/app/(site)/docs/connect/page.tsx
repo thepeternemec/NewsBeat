@@ -187,6 +187,23 @@ export default function DocsConnect() {
         Primary host: <code>https://www.newsbeat.dev</code>.
         Alternate host: <code>https://news-beat.vercel.app</code>, with the same paths.
       </p>
+
+      <h2>Market and sentiment</h2>
+      <p>
+        The same envelope as the news routes: every figure carries its source, the time
+        this server fetched it and how long it stays good for. Each part fails on its own,
+        so a missing sentiment reading does not take the prices with it.
+      </p>
+      <ul>
+        <li><code>GET /v2/market</code> — sentiment, TVL and prices in one call.</li>
+        <li><code>GET /v2/sentiment?limit=7</code> — the daily index and recent history.</li>
+        <li><code>GET /v2/tvl?limit=12</code> — chain TVL with a 24-hour change.</li>
+        <li><code>GET /v2/prices?ids=bitcoin,ethereum</code> — prices by CoinGecko id.</li>
+      </ul>
+      <p>
+        These are public endpoints read through a cache, and the values are reference data,
+        not advice. There is no price forecast anywhere in the API.
+      </p>
     </>
   );
 }
