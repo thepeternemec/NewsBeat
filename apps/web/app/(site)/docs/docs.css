@@ -106,3 +106,99 @@
   .docs-path-card, .docs-path-action svg, .docs-pagination > a, .docs-developer-path, .docs-mobile-index summary > svg { transition: none; }
   .docs-path-card:hover, .docs-path-card:hover .docs-path-action svg { transform: none; }
 }
+
+/* A shared reading scale for every guide, including nested quickstart content. */
+.documentation-page article.docs-body { font-size: 17px; line-height: 1.8; overflow-wrap: break-word; }
+.documentation-page article.docs-body p { font-size: 17px; line-height: 1.8; }
+.documentation-page article.docs-body li { font-size: 16px; line-height: 1.8; }
+.documentation-page .docs-head h1 { font-size: clamp(38px, 4vw, 56px); line-height: 1.08; letter-spacing: -.045em; }
+.documentation-page article.docs-body .docs-lead { font-size: 19px; line-height: 1.75; }
+.documentation-page article.docs-body h2 { font-size: 28px; line-height: 1.25; letter-spacing: -.03em; }
+.documentation-page article.docs-body h3 { font-size: 20px; line-height: 1.35; }
+.documentation-page .docs-section + .docs-section { margin-top: 56px; padding-top: 42px; }
+.documentation-page .sec-eyebrow, .documentation-page .docs-free-note { font-size: 13px; line-height: 1.65; }
+.documentation-page article.docs-body code { font-size: .88em; line-height: inherit; color: var(--text-primary); overflow-wrap: anywhere; }
+.documentation-page .code pre, .documentation-page .docs-example-panel pre { font: 14px/1.85 var(--font-mono), monospace; padding: 24px; overflow-x: auto; overscroll-behavior-x: contain; tab-size: 2; }
+.documentation-page article.docs-body pre code { font: inherit; padding: 0; border: 0; background: none; color: inherit; white-space: pre; overflow-wrap: normal; }
+.documentation-page .code-bar { font-size: 13px; line-height: 1.6; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; }
+.documentation-page .code-bar>span { min-width: 0; }
+.documentation-page .copy-btn { min-height: 42px; padding: 9px 12px; font-size: 13px; flex: none; }
+.documentation-page .copy-btn svg { width: 15px; height: 15px; }
+.documentation-page article.docs-body table { font-size: 15px; line-height: 1.7; }
+.documentation-page .table-scroll table { min-width: 620px; }
+.documentation-page .table-scroll :is(td, th) { font-size: 15px; padding: 17px 18px; }
+.documentation-page .table-scroll th { font-size: 12px; line-height: 1.6; letter-spacing: .06em; }
+.documentation-page .table-scroll td code { font-size: 13px; }
+.documentation-page .docs-path-label, .documentation-page .docs-flow li>span { font-size: 12px; }
+.documentation-page .docs-path-action, .documentation-page .docs-text-action { font-size: 14px; }
+.documentation-page .docs-developer-path strong { font-size: 16px; }
+.documentation-page .docs-developer-path>span>span { font-size: 14px; }
+.documentation-page .docs-prompt-card>span, .documentation-page .docs-callout>strong { font-size: 14px; }
+.documentation-page article.docs-body :is(.docs-path-card, .docs-flow, .docs-facts, .docs-prompt-card, .docs-callout) p { font-size: 16px; }
+.documentation-page article.docs-body .docs-caption { font-size: 14px; }
+.documentation-page .docs-breadcrumb { font-size: 13px; margin-bottom: 30px; }
+.documentation-page .docs-pagination strong { font-size: 18px; }
+.documentation-page .docs-pagination>a>span { font-size: 13px; }
+.documentation-page .docs-contents .rail-label { font-size: 12px; }
+.documentation-page .docs-contents nav>a { font-size: 13px; line-height: 1.6; padding-block: 10px; }
+.documentation-page :is(.docs-back-top, .docs-mobile-index summary) { font-size: 13px; }
+.documentation-page .docs-contents nav>a[aria-current="location"] { background: var(--interior-wash); color: var(--text-primary); border-left-color: var(--text-primary); }
+
+/* The developer console pairs a stable endpoint with selectable, copyable examples. */
+.docs-developer-start { min-width: 0; border: 1px solid var(--border-strong); border-radius: 18px; overflow: hidden; background: var(--bg-base); box-shadow: var(--interior-shadow); margin: 26px 0 0; }
+.docs-endpoint { padding: 22px 24px; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 8px 18px; border-bottom: 1px solid var(--border-default); background: linear-gradient(120deg, var(--interior-wash), transparent); }
+.docs-endpoint>span { display: flex; align-items: center; gap: 8px; grid-column: 1; font: 12px/1.6 var(--font-mono); letter-spacing: .05em; color: var(--text-secondary); }
+.documentation-page .docs-endpoint>code { grid-column: 1; padding: 0; background: none; font-size: 14px; }
+.docs-endpoint>.copy-btn { grid-column: 2; grid-row: 1 / span 2; }
+.docs-example-tabs { display: flex; gap: 5px; padding: 12px 16px 0; border-bottom: 1px solid var(--border-default); }
+.docs-example-tabs button { position: relative; border: 0; border-bottom: 2px solid transparent; padding: 10px 13px 14px; min-height: 46px; background: transparent; color: var(--text-secondary); font: inherit; font-size: 14px; font-weight: 500; line-height: 1.4; cursor: pointer; transition: color .2s, background .2s; }
+.docs-example-tabs button[aria-selected="true"] { color: var(--text-primary); border-bottom-color: var(--text-primary); }
+.docs-example-tabs button:hover { color: var(--text-primary); background: var(--interior-wash); }
+.docs-example-panel { min-width: 0; }
+.docs-example-panel .code-bar { border: 0; background: none; padding: 14px 24px 0; color: var(--text-secondary); }
+.docs-example-panel pre { min-height: 280px; margin: 0; color: var(--text-primary); }
+.docs-example-next { padding: 20px 24px; border-top: 1px solid var(--border-default); background: var(--interior-wash); }
+.documentation-page article.docs-body .docs-example-next p { margin: 0 0 10px; font-size: 14px; line-height: 1.8; }
+.docs-example-next>a { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; font-size: 14px; font-weight: 600; }
+
+/* The quickstart and live lookup use the same readable scale. */
+.documentation-page :is(.quickstart-eyebrow, .quickstart-kicker, .quickstart-section-label, .quickstart-question>span, .quickstart-endpoint-top>span, .quickstart-prompt>div>span, .quickstart-answer>span) { font-size: 12px; line-height: 1.6; letter-spacing: .035em; }
+.documentation-page :is(.quickstart-text-link, .quickstart-route a, .quickstart-try a, .quickstart-try strong, .quickstart-try span, .quickstart-assurances, .quickstart-answer>div, .quickstart-contact) { font-size: 14px; line-height: 1.7; }
+.documentation-page :is(.quickstart-endpoint dt, .quickstart-endpoint dd) { font-size: 14px; }
+.documentation-page article.docs-body .quickstart-endpoint>code { font-size: 16px; }
+.documentation-page .quickstart-guide summary { font-size: 16px; line-height: 1.65; }
+.documentation-page article.docs-body .quickstart-small { font-size: 14px; }
+.documentation-page article.docs-body .quickstart-prompt>p { font-size: 21px; }
+.documentation-page .quickstart-guide .copy-btn { font-size: 13px; min-height: 42px; }
+.documentation-page .try-guide :is(.news-preview-heading, .news-preview-search label, .news-preview-results li>div, .news-preview-freshness, .news-preview-result-label, .news-preview-footnote) { font-size: 13px; line-height: 1.7; }
+.documentation-page .try-guide .news-preview-results li>a { font-size: 16px; line-height: 1.6; }
+.documentation-page .try-guide .news-preview-assets button { font-size: 14px; min-height: 44px; }
+.documentation-page .try-guide .news-preview-search input { font-size: 16px; }
+
+@keyframes docs-example-enter { from { opacity: .55; transform: translate3d(0, 8px, 0); } to { opacity: 1; transform: translate3d(0, 0, 0); } }
+@media (prefers-reduced-motion: no-preference) {
+  .docs-example-panel pre { animation: docs-example-enter .35s cubic-bezier(.16,1,.3,1); }
+  .docs-mobile-index[open]>nav { animation: docs-example-enter .25s ease-out; }
+  .documentation-page .docs-pagination>a { transition: transform .25s, border-color .25s, background .25s; }
+  .documentation-page .docs-pagination>a:hover { transform: translateY(-3px); }
+  .documentation-page :is(.docs-text-action, .docs-example-next>a) svg { transition: transform .2s; }
+  .documentation-page :is(.docs-text-action, .docs-example-next>a):hover svg { transform: translateX(3px); }
+}
+@media (max-width: 600px) {
+  .documentation-page article.docs-body p { font-size: 16px; }
+  .documentation-page article.docs-body .docs-lead { font-size: 18px; }
+  .documentation-page article.docs-body h2 { font-size: 26px; }
+  .documentation-page .code pre, .documentation-page .docs-example-panel pre { font-size: 14px; padding: 20px 16px; }
+  .documentation-page .docs-pagination strong { font-size: 16px; }
+  .docs-endpoint { padding: 20px 16px; grid-template-columns: minmax(0,1fr); gap: 9px; }
+  .docs-endpoint>.copy-btn { grid-column: 1; grid-row: auto; justify-self: start; margin-top: 3px; }
+  .docs-example-tabs { padding-inline: 8px; gap: 0; }
+  .docs-example-tabs button { padding-inline: 12px; font-size: 13px; }
+  .docs-example-panel .code-bar { padding-inline: 16px; }
+  .docs-example-next { padding: 18px 16px; }
+  .documentation-page .quickstart-route a { min-height: 48px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .documentation-page .docs-contents nav>a, .docs-example-tabs button { transition: none; }
+  .documentation-page .quickstart-question:hover { transform: none; }
+}

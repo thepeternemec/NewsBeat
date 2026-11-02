@@ -12,7 +12,7 @@ export default function InteriorPage({ children, className = "" }: { children: R
     if (preference.matches || !root.current) return;
     const animations = new Set<Animation>();
     const targets = root.current.querySelectorAll<HTMLElement>(
-      ".intro-copy > *, .intro-visual, .docs-head, .docs-body > h2, .docs-body > p, .docs-body > ul, .docs-body > .code, .docs-body > .table-scroll, .docs-pagination, .docs-path-card, .docs-developer-path, .docs-section > h2, .docs-section > p, .docs-flow, .docs-callout, .docs-prompt-card, .docs-facts > *, .try-guide > h2, .try-guide > p, .try-guide > .code, .try-guide > .try-steps > li, .try-guide > .news-preview, .scaffold .sec-head, .feature, .faq details, .section-aside, .access-plan, .terminal-heading, .metrics-grid > *, .quickstart-try, .quickstart-step, .quickstart-autopilot, .quickstart-explore, .quickstart-help"
+      ".intro-copy > *, .intro-visual, .docs-head, .docs-body > h2, .docs-body > p, .docs-body > ul, .docs-body > .code, .docs-body > .table-scroll, .docs-pagination, .docs-path-card, .docs-developer-start, .docs-developer-path, .docs-section > h2, .docs-section > p, .docs-flow, .docs-callout, .docs-prompt-card, .docs-facts > *, .try-guide > h2, .try-guide > p, .try-guide > .code, .try-guide > .try-steps > li, .try-guide > .news-preview, .scaffold .sec-head, .feature, .faq details, .section-aside, .access-plan, .terminal-heading, .metrics-grid > *, .quickstart-try, .quickstart-step, .quickstart-autopilot, .quickstart-explore, .quickstart-help"
     );
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -29,12 +29,12 @@ export default function InteriorPage({ children, className = "" }: { children: R
     }, { rootMargin: "0px 0px -5% 0px", threshold: 0.08 });
     targets.forEach((target, index) => {
       if (target.parentElement?.classList.contains("intro-copy")) target.dataset.enterDelay = String(Math.min(index * 55, 220));
-      else if (["features", "metrics-grid", "quickstart-steps", "try-steps"].some(group => target.parentElement?.classList.contains(group))) {
+      else if (["features", "metrics-grid", "quickstart-steps", "try-steps", "docs-start-grid", "docs-prompt-grid", "docs-facts"].some(group => target.parentElement?.classList.contains(group))) {
         target.dataset.enterDelay = String(Math.min(Array.from(target.parentElement!.children).indexOf(target) * 55, 165));
       }
       observer.observe(target);
     });
-    const stop = () => { if (preference.matches) animations.forEach(animation => animation.cancel()); };
+    const stop = () => { if (preference.matches) { observer.disconnect(); animations.forEach(animation => animation.cancel()); } };
     preference.addEventListener("change", stop);
     return () => { observer.disconnect(); animations.forEach(animation => animation.cancel()); preference.removeEventListener("change", stop); };
   }, []);

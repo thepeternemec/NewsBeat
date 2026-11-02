@@ -1,9 +1,10 @@
 import { ArrowRight, Check, Code2, Play, Plug } from "lucide-react";
 import CopyButton from "@/components/site/copy-button";
+import DocsDeveloperStart from "@/components/site/docs-developer-start";
 
 export const metadata = {
-  title: "Get started with Black Sheep",
-  description: "Try live company news for free, connect your agent, or build with the API. A simple guide to your first Black Sheep lookup.",
+  title: "Black Sheep docs — Build with market context",
+  description: "Connect to company and crypto news through MCP and REST. Copy working requests, discover seven agent tools, and track changes with sources and freshness.",
 };
 
 const QUESTIONS = [
@@ -17,19 +18,19 @@ export default function DocsOverview() {
   return (
     <div className="docs-overview">
       <header className="docs-head">
-        <span className="sec-eyebrow">A little setup. A lot more context.</span>
-        <h1>Get started with Black Sheep.</h1>
+        <span className="sec-eyebrow">BLACK SHEEP / DEVELOPER DOCS</span>
+        <h1>Build with<br />market context.</h1>
         <p className="docs-lead">
-          Ask about a company or crypto asset. Black Sheep gives your agent recent headlines and
-          short updates to help answer your question. Start with a free lookup, then bring it into your chat.
+          Give your agent company and crypto news through MCP or REST. Discover an asset,
+          retrieve the reporting, and ask what changed. Keep sources and freshness in every answer.
         </p>
         <div className="docs-free-note"><Check size={14} aria-hidden="true" /> Free public access <span>·</span> No account, key or card</div>
       </header>
 
-      <section className="docs-section" aria-labelledby="black-sheep-direction">
-        <h2 id="black-sheep-direction">Black Sheep is becoming Black Sheep</h2>
-        <p>The existing news engine powers our new product direction: news for tokenized-asset research and a proposed network between agents. Verified asset-contract mapping and agent messaging are planned. Existing www.newsbeat.dev endpoints and blacksheep_* tool names remain in use.</p>
-        <a className="docs-text-action" href="/docs/black-sheep">Explore the tokenized-asset research direction <ArrowRight size={14} aria-hidden="true" /></a>
+      <section className="docs-section" aria-labelledby="developer-quickstart">
+        <h2 id="developer-quickstart">Your first request.</h2>
+        <p>Try a public catalog lookup or add the remote MCP server to your client. Seven tools are available; news is collected on a fifteen-minute schedule.</p>
+        <DocsDeveloperStart />
       </section>
 
       <section className="docs-section" aria-labelledby="choose-your-path">
