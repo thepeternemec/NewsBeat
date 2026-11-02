@@ -48,7 +48,14 @@ export class UpstreamCache {
    * Read through the cache. `ttlMs` is how long a value is good for; `load` is what to
    * call upstream. `load` throwing is not fatal when we already hold a value.
    */
-  async read<T>(key: string, ttlMs: number, load: () => Promise<T>): Promise<Cached<T>> {
+  /**
+   * `options.noStale` refuses to serve a value past its TTL, even inside the grace window.
+   * Chain state needs this: Vercel runs several instances, each with its own cache, so a
+   * request can land on one holding an older block — and a block number that goes
+   * backwards reads as a broken product rather than as instance skew. Waiting ~200ms for
+   * a fresh read is better than showing a number that was true a minute ago.
+   */
+  async read<T>(key: string, ttlMs: number, load: () => Promise<T>, options: { noStale?: boolean } = {}): Promise<Cached<T>> {
     const entry = this.entries.get(key) as Entry<T> | undefined;
     const now = this.now();
 
@@ -56,7 +63,7 @@ export class UpstreamCache {
       return { value: entry.value, fetchedAt: entry.fetchedAt, stale: false };
     }
 
-    if (entry && now < entry.expiresAt + ttlMs * STALE_GRACE_MULTIPLIER) {
+    if (!options.noStale && entry && now < entry.expiresAt + ttlMs * STALE_GRACE_MULTIPLIER) {
       // Serve what we have and refresh behind the response. Errors are absorbed here on
       // purpose: the caller already has a usable value.
       void this.revalidate(key, ttlMs, load, false);

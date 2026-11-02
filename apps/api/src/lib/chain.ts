@@ -61,6 +61,8 @@ async function rpcWithFallback<T>(urls: readonly string[], method: string): Prom
 const hex = (value: string) => Number.parseInt(value, 16);
 
 export async function chainPulse(): Promise<Sourced<ChainPulse>> {
+  // noStale: a block number that goes backwards is worse than a slower answer. See the
+  // note on UpstreamCache.read — several serverless instances each hold their own cache.
   const cached = await upstreamCache.read("chain:pulse", CHAIN_TTL.pulse, async () => {
     const observedAt = new Date().toISOString();
     // Both chains are read together but each may fail; a Solana outage must not hide the
@@ -85,7 +87,7 @@ export async function chainPulse(): Promise<Sourced<ChainPulse>> {
       ethereum: eth.status === "fulfilled" ? eth.value : null,
       solana: sol.status === "fulfilled" ? sol.value : null,
     } satisfies ChainPulse;
-  });
+  }, { noStale: true });
 
   const ageSeconds = Math.max(0, Math.round((Date.now() - cached.fetchedAt) / 1000));
   return {

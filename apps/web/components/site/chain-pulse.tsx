@@ -36,7 +36,19 @@ export default function ChainPulseStrip() {
         if (!response.ok) throw new Error(String(response.status));
         const payload = (await response.json()) as Sourced<ChainPulse>;
         if (!cancelled) {
-          setPulse(payload);
+          // Serverless runs several instances, each with its own cache, so two reads a
+          // few seconds apart can come from instances that disagree. A block number or a
+          // slot that goes backwards reads as broken, so keep the highest we have seen.
+          setPulse((previous) => {
+            if (!previous) return payload;
+            const prevEth = previous.data.ethereum?.block ?? 0;
+            const prevSol = previous.data.solana?.slot ?? 0;
+            const nextEth = payload.data.ethereum;
+            const nextSol = payload.data.solana;
+            if (nextEth && nextEth.block < prevEth) nextEth.block = prevEth;
+            if (nextSol && nextSol.slot < prevSol) nextSol.slot = prevSol;
+            return payload;
+          });
           setFailed(false);
         }
       } catch {
