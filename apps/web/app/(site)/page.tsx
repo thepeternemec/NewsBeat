@@ -1,9 +1,9 @@
 import { ArrowRight, ArrowUpRight, Radio, Code2 } from "lucide-react";
 import SheepBadge from "@/components/site/sheep-badge";
-import BrandMark from "@/components/site/brand-mark";
 import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
 import NewsPreview from "@/components/site/news-preview";
+import CryptoLoop from "@/components/site/crypto-loop";
 import MissionBuilder from "@/components/site/mission-builder";
 import LandingMotion from "@/components/site/landing-motion";
 import CopyButton from "@/components/site/copy-button";
@@ -71,29 +71,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bs-crypto-stage">
-              <div className="bs-crypto-orbit" aria-hidden="true">
-                <div className="bs-crypto-rings" aria-hidden="true" />
-                <div className="bs-crypto-core">
-                  <BrandMark size={150} />
-                  <strong>$SHEEP</strong>
-                  <span>COMMUNITY · PLANNED</span>
-                </div>
-                <span className="bs-crypto-node bs-crypto-node-btc">BTC <small>RESEARCH TOPIC</small></span>
-                <span className="bs-crypto-node bs-crypto-node-eth">ETH <small>RESEARCH TOPIC</small></span>
-                <span className="bs-crypto-node bs-crypto-node-sol">SOL <small>RESEARCH TOPIC</small></span>
-                <span className="bs-crypto-orbit-note">ILLUSTRATIVE TOPICS · NO PRICE FEED</span>
-              </div>
-              <div className="bs-crypto-path">
-                <div className="bs-crypto-path-top"><span>THE RESEARCH LOOP</span><span>01 — 03</span></div>
-                <ol>
-                  <li><span>01 / DISCOVER</span><strong>Pick your beat.</strong><p>Start with a supported coin or company in the topic catalog.</p></li>
-                  <li><span>02 / DETECT</span><strong>Ask what changed.</strong><p>Save a cursor. On your next check, get the newly reported items.</p></li>
-                  <li><span>03 / VERIFY</span><strong>Keep the receipts.</strong><p>Each headline comes with its publisher, timestamp and source link.</p></li>
-                </ol>
-                <a href="/docs/quickstart">Put your agent on the beat <ArrowRight size={16} /></a>
-              </div>
-            </div>
+            <CryptoLoop />
 
             <div className="bs-crypto-foot">
               <p><strong>$SHEEP is for the community.</strong> Planned for pump.fun. Research access does not require the token.</p>

@@ -49,3 +49,145 @@
 @media (max-width: 390px) { .bs-crypto-node small { display: none; } .bs-crypto-core { width: 174px; } }
 @media (max-width: 700px) { .bs-crypto-node small, .bs-crypto-orbit-note { font-size: 11px; } }
 @media (prefers-reduced-motion: reduce) { .bs-crypto-rings::before, .bs-crypto-core svg { animation: none; } }
+
+/* ══════════════════════════════════════════════════════════════════════
+   THE LOOP IS OPERABLE
+   ──────────────────────────────────────────────────────────────────────
+   The three steps are buttons that drive the orbit, so the diagram shows what
+   each step does instead of describing it beside a static illustration.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ── The steps ───────────────────────────────────────────────────────── */
+.bs-crypto-path li button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.bs-crypto-path li button:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 6px;
+  border-radius: 4px;
+}
+
+.bs-crypto-path li > button > span { display: block; font: 12px/1.4 var(--font-mono); letter-spacing: .06em; color: var(--text-secondary); transition: color .3s; }
+.bs-crypto-path li > button > strong { display: block; margin-top: 8px; font-size: 21px; line-height: 1.25; font-weight: 550; letter-spacing: -.025em; transition: opacity .3s; }
+.bs-crypto-path li > button > p { font-size: 14px; line-height: 1.65; color: var(--text-secondary); max-width: 34ch; margin: 7px 0 0; }
+
+/* Inactive steps recede; the active one is the thing being explained. */
+.bs-crypto-path li[data-active="false"] > button > strong { opacity: .42; }
+.bs-crypto-path li[data-active="false"] > button > p { opacity: .42; }
+.bs-crypto-path li[data-active="true"] > button > span { color: var(--text-primary); }
+.bs-crypto-path li > button:hover > strong { opacity: .78; }
+
+/* The marker on the rule: hollow while idle, filled and haloed when active. */
+.bs-crypto-path li::before { transition: box-shadow .3s, transform .3s, background .3s; }
+.bs-crypto-path li[data-active="false"]::before { background: var(--bg-base); box-shadow: 0 0 0 4px var(--bg-base), inset 0 0 0 1px var(--border-strong); }
+.bs-crypto-path li[data-active="true"]::before { transform: scale(1.35); box-shadow: 0 0 0 4px var(--bg-base), 0 0 0 9px color-mix(in srgb, var(--text-primary) 14%, transparent); }
+
+/* ── The core ────────────────────────────────────────────────────────── */
+.bs-crypto-core-value {
+  margin-top: 6px;
+  font: 600 25px/1 var(--font-mono);
+  letter-spacing: -.03em;
+  font-variant-numeric: tabular-nums;
+  animation: cryptoCoreIn .42s cubic-bezier(.22,.61,.36,1) both;
+}
+
+.bs-crypto-core-label {
+  max-width: 74%;
+  margin-top: 9px;
+  font: 11px/1.55 var(--font-mono);
+  letter-spacing: .06em;
+  text-align: center;
+  text-wrap: balance;
+  /* A sentence-length label used to run past the edge of the circle and be clipped
+     by its border-radius, which read as "the text is invisible". It wraps now. */
+  color: var(--text-secondary);
+  animation: cryptoCoreIn .42s cubic-bezier(.22,.61,.36,1) both;
+}
+
+@keyframes cryptoCoreIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* VERIFY reads as a receipt, so it gets the mono treatment and a rule above it. */
+.bs-crypto-stage[data-step="verify"] .bs-crypto-core-value { font-size: 19px; letter-spacing: 0; }
+.bs-crypto-stage[data-step="detect"] .bs-crypto-core-value { font-size: 40px; letter-spacing: -.05em; }
+
+/* ── The orbit responds ──────────────────────────────────────────────── */
+.bs-crypto-node { transition: opacity .4s, transform .4s, border-color .4s, box-shadow .4s; }
+
+/* Detected and verified states dim the topics: attention is on the core. */
+.bs-crypto-stage[data-step="detect"] .bs-crypto-node,
+.bs-crypto-stage[data-step="verify"] .bs-crypto-node { opacity: .38; }
+
+.bs-crypto-node.is-focus {
+  border-color: var(--text-primary);
+  transform: scale(1.04);
+  box-shadow: 0 12px 28px rgba(0,0,0,.12), 0 0 0 5px color-mix(in srgb, var(--text-primary) 10%, transparent);
+}
+
+.bs-crypto-node.is-focus small { color: var(--text-primary); }
+
+/* The packet: a dot that leaves the tracked topic and reaches the core during DETECT.
+   It only exists for that step, so it is invisible otherwise. */
+/* It leaves the BTC chip and lands on the core. Animated on `left`/`top` rather than
+   `transform`, because a percentage translate is relative to the dot's own 7px box, not
+   to the orbit — the first version flew off to the upper left and stopped in mid-air. */
+.bs-crypto-packet {
+  position: absolute;
+  z-index: 3;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--text-primary);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--text-primary) 12%, transparent);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.bs-crypto-stage[data-step="detect"] .bs-crypto-packet {
+  animation: cryptoPacket 1.9s cubic-bezier(.45,.05,.25,1) infinite;
+}
+
+@keyframes cryptoPacket {
+  0% { opacity: 0; left: 20%; top: 19%; }
+  12% { opacity: 1; left: 20%; top: 19%; }
+  72% { opacity: 1; left: 47%; top: 47%; }
+  100% { opacity: 0; left: 50%; top: 50%; }
+}
+
+/* A ring pulse on the core when a change lands. */
+.bs-crypto-stage[data-step="detect"] .bs-crypto-core { animation: cryptoCorePulse 1.9s ease-out infinite; }
+
+@keyframes cryptoCorePulse {
+  0%, 55% { box-shadow: 0 15px 60px rgba(0,0,0,.28), 0 0 0 11px color-mix(in srgb, var(--text-primary) 5%, transparent); }
+  70% { box-shadow: 0 15px 60px rgba(0,0,0,.28), 0 0 0 20px color-mix(in srgb, var(--text-primary) 9%, transparent); }
+  100% { box-shadow: 0 15px 60px rgba(0,0,0,.28), 0 0 0 11px color-mix(in srgb, var(--text-primary) 5%, transparent); }
+}
+
+/* The dashed ring spins faster while the bot is checking. */
+.bs-crypto-stage[data-step="detect"] .bs-crypto-rings::before { animation-duration: 14s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bs-crypto-core-value, .bs-crypto-core-label { animation: none; }
+  .bs-crypto-stage[data-step="detect"] .bs-crypto-packet,
+  .bs-crypto-stage[data-step="detect"] .bs-crypto-core { animation: none; }
+  .bs-crypto-packet { display: none; }
+}
+
+/* Mobile keeps the steps readable when they stack. */
+@media (max-width: 700px) {
+  .bs-crypto-path li[data-active="false"] > button > strong,
+  .bs-crypto-path li[data-active="false"] > button > p { opacity: .55; }
+  .bs-crypto-path li > button > strong { font-size: 19px; }
+  .bs-crypto-path li > button > p { font-size: 13.5px; }
+}
