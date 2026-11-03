@@ -4,12 +4,13 @@ Updated **2026-11-03** from the current main-branch implementation. Counts descr
 
 ## Product direction
 
-NewsBeat is building meaningful signals for AI agents. The source-linked news foundation is live; deeper event context, task-specific relevance, possible implications and uncertainty-aware signals are planned. Stocks and crypto describe coverage. [Read the product direction](INTELLIGENCE.md).
+NewsBeat is building meaningful signals for AI agents. The source-linked news foundation is live; a first general event-intelligence pilot is implemented for six assets. Task-specific relevance, broader context and stronger verification remain planned. Stocks and crypto describe coverage. [Read the product direction](INTELLIGENCE.md).
 
 ## Current main branch
 
 | Capability | Status |
 | --- | --- |
+| Event intelligence pilot | Persistent event memory, conditional implications, uncertainty and next checks for NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum; scheduled worker, REST and MCP reads |
 | Asset catalog | **2,030 topics**: 1,528 US-listed equities and 502 crypto assets |
 | Headline reads | Source-linked articles with freshness, bounded pages and history cursors |
 | Change monitoring | Signed, asset-bound cursors; clients poll for newly indexed items |
@@ -17,8 +18,8 @@ NewsBeat is building meaningful signals for AI agents. The source-linked news fo
 | Stories | Approximate headline grouping, ranked by relevance, with original reports and source links |
 | Summaries | Up to three short explanations based only on headlines; generated text or labeled original-headline fallback |
 | Batched watch | Up to 50 assets per request; each result can succeed or fail independently |
-| REST and function calling | 14 read operations and schemas at `/api/v2/tools` |
-| Hosted MCP | 14 tools over Streamable HTTP at `/api/mcp`, including `newsbeat_summary` |
+| REST and function calling | 15 read operations and schemas at `/api/v2/tools` |
+| Hosted MCP | 15 tools over Streamable HTTP at `/api/mcp`, including `newsbeat_summary` |
 | Supporting reference utilities | Sourced crypto prices, sentiment, chain readings, contract prices and positioning, retained through REST and MCP |
 | Intelligence overview | Public product direction; distinguishes the available foundation from planned interpretation. The former `/crypto` page redirects here. |
 | Web news explorer | Asset search, grouped stories, source expansion, Show more controls and on-demand headline summaries |
@@ -56,7 +57,7 @@ PR #11 was closed without merging. Its implementation remains a reference for fu
 ## Remaining limits
 
 - Main-branch MCP calls do not yet share the full REST billing boundary; PR #11 addresses this.
-- Deeper task-aware signal intelligence is planned; reference metrics and headline summaries should not be described as verified event interpretation.
+- General event interpretation is a limited headline-based model pilot, not verified causal analysis. Task-aware relevance and broad signal intelligence remain planned.
 - Summaries are based only on headlines. Output checks reduce some errors but do not establish truth, read full articles or verify market impact.
 - No full article bodies, article ledes, trade execution, prediction-market prices or Polymarket account integration.
 - No general-news query search or server-scheduled notifications on main yet; the existing watch endpoint is client polling.

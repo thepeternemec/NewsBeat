@@ -22,6 +22,7 @@ import {
   AccordionItemContent,
 } from "@/components/ui/accordion/accordion";
 import StoryRow from "@/components/site/story-row";
+import IntelligencePanel from "@/components/site/intelligence-panel";
 import HeadlineSummary from "@/components/site/headline-summary";
 import AgentContextPanel from "@/components/site/agent-context-panel";
 import type { ResearchSnapshot } from "@/components/site/agent-context";
@@ -422,6 +423,8 @@ export default function Dashboard() {
                 ))}
               </div>
             </div>
+
+            {active && <IntelligencePanel key={active} beatId={active} label={activeTopic?.label ?? "this asset"} base={API_BASE} />}
 
             <div className="mock" style={{ marginTop: 18 }}>
               <div className="mock-bar">

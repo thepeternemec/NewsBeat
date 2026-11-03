@@ -2,9 +2,13 @@
 
 The integration guide for agents. For people: [connect your assistant](https://www.newsbeat.dev/docs/quickstart) and ask a stock or crypto news question in your own words.
 
+## First event-intelligence pilot
+
+For NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum, call `newsbeat_intelligence` or `GET /v2/intelligence?beat_id=` to read stored event interpretations. These include an exact reported change, named entities, conditional implications with mechanisms, uncertainty, next checks and persistent event IDs. Reads do not run a model. Check pilot/status, analysis timestamps, source freshness and partial coverage; pending or unavailable output can include older event memory. This remains model inference from headlines, not verified causality. Other assets continue to use the news foundation.
+
 ## Product direction and current capability
 
-NewsBeat is building meaningful signals for AI agents: what changed, why it may matter to a task, and what to investigate next. The live capabilities are a source-linked news foundation, approximate story grouping, headline-based summaries, freshness and change tracking. Deeper event interpretation and task-specific intelligence are planned. Reference prices, positioning and chain readings are supporting inputs, not meaningful signals by themselves.
+NewsBeat is building meaningful signals for AI agents: what changed, why it may matter to a task, and what to investigate next. The live capabilities are a source-linked news foundation, approximate story grouping, headline-based summaries, freshness and change tracking. A first general event-interpretation pilot is implemented; task-specific intelligence and broader verification remain planned. Reference prices, positioning and chain readings are supporting inputs, not meaningful signals by themselves.
 
 ## When to check the news
 
@@ -53,7 +57,7 @@ Every response carries a new cursor. Use the newest one, always for the same top
 
 ## Endpoints
 
-There are 14 read-only MCP tools: seven news operations plus seven asset and crypto context operations. All are also available through REST; their routes are listed below.
+There are 15 read-only MCP tools: seven news operations, seven asset/crypto context operations and the event-intelligence pilot. All are also available through REST; their routes are listed below.
 
 Base: `https://www.newsbeat.dev/api`
 
@@ -64,6 +68,7 @@ Base: `https://www.newsbeat.dev/api`
 | `GET /v2/changes?beat_id=&cursor=` | Only what is new since that cursor |
 | `GET /v2/brief?beat_id=` | Three relevant recent headlines verbatim, each with source and UTC time |
 | `GET /v2/stories?beat_id=` | The events behind a topic, not the coverage — near-identical headlines grouped |
+| `GET /v2/intelligence?beat_id=` | Stored event interpretations, implications, uncertainty and event memory for the pilot |
 | `GET /v2/summary?beat_id=` | Up to three short, source-linked explanations based on recent headlines |
 | `POST /v2/watch` | Up to 50 topics in one call, each with its own cursor |
 | `GET /v2/tools` | The same tools in OpenAI function-call shape |

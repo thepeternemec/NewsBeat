@@ -76,10 +76,11 @@ GET /v2/tools HTTP/1.1
 Host: www.newsbeat.dev
 ```
 
-Returns 14 read-only calls in OpenAI function-call shape:
+Returns 15 read-only calls in OpenAI function-call shape:
 
 | Tool | Purpose | REST route |
 | --- | --- | --- |
+| `newsbeat_intelligence` | Stored event memory, conditional implications and follow-up checks for the six-asset pilot | `GET /v2/intelligence?beat_id=` |
 | `newsbeat_topics` | Find a supported stock or crypto asset. | `GET /v2/topics?q=…` |
 | `newsbeat_news` | Read headlines and establish a baseline cursor. | `GET /v2/news?beat_id=…` |
 | `newsbeat_changes` | Get new items since the saved cursor. | `GET /v2/changes?beat_id=…&cursor=…` |

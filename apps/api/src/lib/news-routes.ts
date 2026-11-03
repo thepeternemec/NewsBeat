@@ -7,6 +7,7 @@ import { fearGreed, overview, prices, DEFAULT_PRICE_IDS } from "./market.js";
 import { chainPulse, contractToken } from "./chain.js";
 import { ask } from "./ask.js";
 import { signals } from "./signals.js";
+import { readIntelligence } from "./intelligence.js";
 export const newsRoutes = new Hono();
 newsRoutes.onError((error, c) => { if (error instanceof NewsError)
     return c.json({ error: { code: error.code, message: error.message } }, error.status as 400 | 404 | 410 | 503); console.error("news request failed", error.name); return c.json({ error: { code: "service_unavailable", message: "News is temporarily unavailable." } }, 503); });
@@ -39,6 +40,12 @@ newsRoutes.get("/stories", async (c) => {
         throw new NewsError("invalid_request", "beat_id is required.", 400);
     const limit = clamp(c.req.query("limit"), 200, 500) || 200;
     return c.json(await stories(beatId, limit));
+});
+newsRoutes.get("/intelligence", async c => {
+    const beatId = (c.req.query("beat_id") ?? "").trim();
+    if (!beatId) throw new NewsError("invalid_request", "beat_id is required.", 400);
+    c.header("Cache-Control", "public, max-age=0, s-maxage=30");
+    return c.json(await readIntelligence(beatId));
 });
 newsRoutes.get("/summary", async (c) => {
     const beatId = (c.req.query("beat_id") ?? "").trim();
@@ -82,6 +89,10 @@ export async function callNewsTool(name: string, args: unknown, oidcToken?: stri
     if (name === "newsbeat_stories") {
         const input = z.object({ beat_id: z.string() }).strict().parse(args);
         return stories(input.beat_id, 40, 200);
+    }
+    if (name === "newsbeat_intelligence") {
+        const input = z.object({ beat_id: z.string() }).strict().parse(args);
+        return readIntelligence(input.beat_id);
     }
     if (name === "newsbeat_summary") {
         const input = z.object({ beat_id: z.string() }).strict().parse(args);

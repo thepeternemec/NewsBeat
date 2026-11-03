@@ -6,7 +6,7 @@
 
 NewsBeat is building an intelligence layer that helps AI agents understand what changed, why it may matter, and what to investigate next.
 
-**News foundation live · Deeper signal intelligence planned**
+**News foundation + first event-intelligence pilot**
 
 [The intelligence direction](https://www.newsbeat.dev/intelligence) · [Try the live feed](https://www.newsbeat.dev/dashboard) · [Connect your agent](https://www.newsbeat.dev/docs/quickstart) · [Developer docs](https://www.newsbeat.dev/docs) · [Service status](https://www.newsbeat.dev/status)
 
@@ -23,7 +23,7 @@ An agent needs to understand which developments deserve attention. NewsBeat’s 
 
 The **live foundation** supplies source-linked headlines, approximate story grouping, headline-based summaries, freshness and changes since a previous check. Agents can use that evidence today.
 
-The **next intelligence layer is planned**: connect developments, assess task-specific relevance, explain possible implications and identify useful follow-up questions. Today’s summaries and reference market statistics do not establish those capabilities.
+The **first event-intelligence pilot** now adds persistent event IDs, exact cited changes, conditional implications with mechanisms, uncertainty and follow-up checks. NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum are the initial scope. Interpretations remain model hypotheses from headlines; task-specific relevance and deeper verification are future work.
 
 Stocks and crypto are the current coverage universe: 1,528 US stocks and 502 crypto assets. Tokenized assets remain a longer-term application. Read the [product direction](docs/INTELLIGENCE.md) and [current implementation status](docs/STATUS.md).
 
@@ -83,6 +83,7 @@ The primary REST base is `https://www.newsbeat.dev/api`. Use the primary domain 
 
 | MCP tool | Purpose |
 | --- | --- |
+| `newsbeat_intelligence` | Read stored events, implications, evidence and next checks for the six-asset pilot |
 | `newsbeat_topics` | Find supported stocks and crypto; inspect coverage |
 | `newsbeat_news` | Read headlines with sources, dates and a cursor |
 | `newsbeat_changes` | Get newly indexed items since the previous cursor |
@@ -131,7 +132,9 @@ Optional GitHub-issued keys provide a **seven-day REST evaluation**, starting on
 
 **Available:** the source-linked news foundation, with asset discovery, headline-based summaries, approximate grouping, freshness, change tracking and agent access.
 
-**Next layer / planned:** event understanding, context across developments, relevance to an agent’s task, possible implications and explicit uncertainty.
+**First intelligence pilot:** bounded scheduled interpretation, event memory, meaning revisions, conditional implications and explicit uncertainty for six assets.
+
+**Next:** task-specific relevance, broader context, stronger verification and wider coverage.
 
 **Longer-term applications:** saved watches, agent delivery, notifications and verified tokenized-asset mapping. Broader search and connector improvements support that direction.
 

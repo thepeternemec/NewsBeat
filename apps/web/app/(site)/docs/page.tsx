@@ -4,7 +4,7 @@ import DocsDeveloperStart from "@/components/site/docs-developer-start";
 
 export const metadata = {
   title: "NewsBeat docs — Build on the news foundation",
-  description: "Connect to stock and crypto news through MCP and REST. Copy working requests, discover 14 agent tools, and track changes with sources and freshness.",
+  description: "Connect to stock and crypto news through MCP and REST. Copy working requests, discover 15 agent tools, and track changes with sources and freshness.",
 };
 
 const QUESTIONS = [
@@ -27,11 +27,11 @@ export default function DocsOverview() {
         <div className="docs-free-note"><Check size={14} aria-hidden="true" /> Free public access <span>·</span> No account, key or card</div>
       </header>
 
-      <div className="docs-callout"><strong>From reporting to meaningful signals.</strong><p>Grouped coverage, headline-based summaries and change tracking are live. Task-specific interpretation, implications and deeper signal intelligence are planned. <a href="/intelligence">See the product direction.</a></p></div>
+      <div className="docs-callout"><strong>From reporting to meaningful signals.</strong><p>The news foundation is live. A first event-intelligence pilot adds persisted events, conditional implications, uncertainty and follow-up checks for six assets. Task-specific relevance and deeper verification remain planned. <a href="/intelligence">See the product direction.</a></p></div>
 
       <section className="docs-section" aria-labelledby="developer-quickstart">
         <h2 id="developer-quickstart">Your first request.</h2>
-        <p>Try a public catalog lookup or add the remote MCP server to your client. 14 tools are available; news is collected on a fifteen-minute schedule.</p>
+        <p>Try a public catalog lookup or add the remote MCP server to your client. 15 tools are available; news is collected on a fifteen-minute schedule.</p>
         <DocsDeveloperStart />
       </section>
 
