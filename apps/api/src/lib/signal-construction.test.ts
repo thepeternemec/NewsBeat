@@ -89,3 +89,17 @@ test("changing only a citation ID is not a new market interpretation", () => {
   const next = reconcileSignal(old.beat_id, repeat, [second], [old], now, "test/model");
   assert.equal(next.version, old.version); assert.equal(next.change_kind, "evidence_added");
 });
+
+test("construction evidence retains fresh denials and revisions within the bounded input", async () => {
+  const { selectIntelligenceEvidence } = await import("./intelligence-core.js");
+  const report = (id: number, title: string) => ({ id: String(id), title, source: "publisher", url: "https://example.com/" + id, published_at: "2026-11-03T12:00:00.000Z" });
+  const groups = Array.from({ length: 30 }, (_, index) => ({ reports: [report(index + 1, "Nvidia announces a product " + index)] }));
+  groups.push({ reports: [report(31, "Nvidia denies a revenue guidance increase")] });
+  groups[0]!.reports.push(report(32, "Repeated coverage"), report(33, "Repeated coverage"), report(34, "Nvidia withdraws its earlier guidance"));
+  const selected = selectIntelligenceEvidence(groups, "30");
+  assert.equal(selected.length, 24);
+  assert.equal(new Set(selected.map(item => item.id)).size, 24);
+  assert.ok(selected.some(item => item.id === "31"));
+  assert.ok(selected.some(item => item.id === "34"));
+  assert.ok(selected.some(item => item.id === "1"), "retain ranked context as well as arrivals");
+});

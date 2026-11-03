@@ -93,3 +93,21 @@ export function reconcileSignal(beatId: string, draft: IntelligenceEventDraft, e
   }
   return candidate;
 }
+
+/** Reserve evidence slots for new reporting, including contradictions that a digest may omit. */
+export function selectIntelligenceEvidence(groups: Array<{ reports: IntelligenceEvidence[] }>, processedArticleId: string, limit = 24): IntelligenceEvidence[] {
+  const reports = [...new Map(groups.flatMap(group => group.reports).map(report => [report.id, report])).values()];
+  const watermark = BigInt(processedArticleId);
+  const recent = reports.filter(report => /^\d+$/.test(report.id) && BigInt(report.id) > watermark)
+    .sort((a, b) => b.published_at.localeCompare(a.published_at) || (BigInt(a.id) > BigInt(b.id) ? -1 : 1));
+  const selected = new Map<string, IntelligenceEvidence>();
+  const add = (report: IntelligenceEvidence | undefined) => { if (report && selected.size < limit) selected.set(report.id, report); };
+  const contradiction = /\b(?:den(?:y|ies|ied)|withdraws?|retracts?|reverses?|cancels?|rejects?|suspends?|halts?)\b/i;
+  for (const report of recent.filter(report => contradiction.test(report.title)).slice(0, Math.min(8, limit))) add(report);
+  const recentSlots = Math.min(12, limit);
+  for (const report of recent) { if (selected.size >= recentSlots) break; add(report); }
+  // The remaining slots retain ranked context across different stories.
+  for (const group of groups) add(group.reports[0]);
+  for (const report of reports) add(report);
+  return [...selected.values()];
+}

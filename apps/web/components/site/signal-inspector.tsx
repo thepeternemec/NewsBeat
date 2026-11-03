@@ -68,7 +68,7 @@ function StoredSignal({ asset, context }: { asset: Asset; context: SignalContext
     {data?.context && <p className="signal-context-objective">{data.context.objective}</p>}
     {signal && <article className="inspected-event" aria-label={asset.label + " signal construction"}>
       <div className="inspected-event-tags"><span>{signal.category}</span><span>{signal.event_state}</span><span>Signal v{signal.version}</span></div>
-      {construction && <div className="signal-decision" data-state={construction.status}><span>CONTEXT DECISION</span><h3>{ACTIONS[construction.action]}</h3><p>{construction.status === "alert" ? construction.explanation : failed[0]?.reason ?? construction.explanation}</p></div>}
+      {construction && <div className="signal-decision" data-state={construction.status}><span>CONTEXT DECISION</span><h3>{ACTIONS[construction.action]}</h3><p>{construction.status === "alert" || construction.status === "invalidated" ? construction.explanation : failed[0]?.reason ?? construction.explanation}</p></div>}
       <section><span className="inspected-event-label">01 / REPORTED CHANGE</span><h3>{signal.what_changed}</h3></section>
       {assessment ? <>
         <section className="inspected-event-inference"><span className="inspected-event-label">02 / MARKET HYPOTHESIS <small>Model estimate</small></span><div className="signal-market-tags"><span>{assessment.channel.replaceAll("_", " ")}</span><span>{assessment.direction}</span><span>{assessment.materiality} materiality</span><span>{assessment.horizon}</span></div><h4>{assessment.market_relevance}</h4>{implication && <p>{implication.mechanism}</p>}</section>

@@ -2,8 +2,7 @@ import { randomUUID } from "node:crypto";
 import { db, hasDatabaseEnv } from "@newsbeat/db";
 import { SEED_BEATS, INTELLIGENCE_VERSION, SIGNAL_CONTEXTS, type SignalContextId, type SignalAlert, type ConstructedSignal, type IntelligenceResponse, type IntelligenceSignal, type IntelligenceEvidence } from "@newsbeat/contracts";
 import { stories, topicById, freshness } from "./news.js";
-import { selectSummaryStories } from "./relevance.js";
-import { hash, reconcileSignal } from "./intelligence-core.js";
+import { hash, reconcileSignal, selectIntelligenceEvidence } from "./intelligence-core.js";
 import { generateIntelligence, INTELLIGENCE_MODEL } from "./intelligence-model.js";
 
 export const INTELLIGENCE_SCHEMA = "-- Durable interpretation jobs and event memory. Applied only by the authenticated worker.\ncreate table if not exists public.newsbeat_intelligence_jobs (\n  beat_id text primary key,\n  requested_article_id bigint not null default 0,\n  processed_article_id bigint not null default 0,\n  input_hash text,\n  lease_token text,\n  lease_until timestamptz,\n  next_attempt_at timestamptz not null default now(),\n  last_attempt_at timestamptz,\n  last_success_at timestamptz,\n  last_error text,\n  coverage_truncated boolean not null default false\n);\ncreate table if not exists public.newsbeat_intelligence_events (\n  id text primary key,\n  beat_id text not null,\n  version integer not null check (version > 0),\n  event_changed_at timestamptz not null,\n  evidence_updated_at timestamptz not null,\n  signal jsonb not null\n);\ncreate index if not exists newsbeat_intelligence_events_asset_time_idx\n  on public.newsbeat_intelligence_events (beat_id, evidence_updated_at desc);\ncreate table if not exists public.newsbeat_intelligence_revisions (\n  event_id text not null references public.newsbeat_intelligence_events(id),\n  version integer not null,\n  recorded_at timestamptz not null default now(),\n  signal jsonb not null,\n  primary key (event_id, version)\n);\n\n-- Contextual signal construction and idempotent review-alert journal.\nalter table public.newsbeat_intelligence_jobs add column if not exists pipeline_version text;\nalter table public.newsbeat_intelligence_jobs add column if not exists last_attempt_version text;\ncreate table if not exists public.newsbeat_signal_alerts (\n  id text primary key,\n  beat_id text not null,\n  event_id text not null references public.newsbeat_intelligence_events(id),\n  signal_version integer not null check (signal_version > 0),\n  context_id text not null check (context_id in ('fundamentals', 'liquidity', 'risk')),\n  triggered_at timestamptz not null default now(),\n  resolved_at timestamptz,\n  resolution text,\n  construction jsonb not null,\n  unique (event_id, context_id, signal_version)\n);\ncreate index if not exists newsbeat_signal_alerts_asset_context_time_idx\n  on public.newsbeat_signal_alerts (beat_id, context_id, triggered_at desc);\n";
@@ -80,14 +79,8 @@ export async function runIntelligence(oidcToken?: string | null, generate: typeo
           and evidence_updated_at > now() - interval '7 days' order by evidence_updated_at desc limit 12`,
       ]);
       if (snapshot.freshness.status !== "fresh") throw new Error("source_stale");
-      const selected = selectSummaryStories(snapshot.stories.map(story => ({
-        lead: story.lead, sources: story.sources, source_count: story.source_count,
-        first_seen: story.first_seen, last_seen: story.last_seen, articles: story.reports,
-      })), 8);
-      const evidence: IntelligenceEvidence[] = selected.flatMap(story => story.articles.slice(0, 3).map(report => ({
-        id: report.id, title: report.title, source: report.source, url: report.url, published_at: report.published_at,
-      })));
       const previous = oldRows.map(row => decode(row.signal));
+      const evidence = selectIntelligenceEvidence(snapshot.stories, String(job.processed_article_id));
       const fingerprint = hash([INTELLIGENCE_VERSION, INTELLIGENCE_MODEL, evidence.map(report => [report.id, report.title])]);
       const drafts = job.input_hash === fingerprint || !evidence.length ? [] : await generate(evidence, previous, topic, oidcToken);
       const now = new Date().toISOString();
@@ -117,7 +110,7 @@ export async function runIntelligence(oidcToken?: string | null, generate: typeo
           }
         }
         await tx`update public.newsbeat_intelligence_jobs set processed_article_id = greatest(processed_article_id, ${job.requested_article_id}::bigint),
-          input_hash = ${fingerprint}, pipeline_version = ${INTELLIGENCE_VERSION}, last_success_at = now(), last_error = null, coverage_truncated = ${snapshot.coverage_truncated || snapshot.stories.length > selected.length},
+          input_hash = ${fingerprint}, pipeline_version = ${INTELLIGENCE_VERSION}, last_success_at = now(), last_error = null, coverage_truncated = ${snapshot.coverage_truncated || snapshot.articles_read > evidence.length},
           lease_token = null, lease_until = null, next_attempt_at = now() where beat_id = ${job.beat_id} and lease_token = ${token}`;
       });
       return { beat_id: job.beat_id, status: "processed", signals: signals.length, alerts: createdAlerts, reused: job.input_hash === fingerprint };
