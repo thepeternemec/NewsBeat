@@ -1,7 +1,7 @@
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
-import IntelligenceModel from "@/components/site/intelligence-model";
+import SignalInspector from "@/components/site/signal-inspector";
 import LandingMotion from "@/components/site/landing-motion";
 import "../landing.css";
 import "../newsbeat.css";
@@ -9,8 +9,8 @@ import "../newsbeat-polish.css";
 import "../intelligence.css";
 
 export const metadata = {
-  title: "NewsBeat intelligence — From reporting to meaningful signals",
-  description: "The NewsBeat direction: a source-linked news foundation today, with task-relevant signal intelligence, context and uncertainty as the next layer.",
+  title: "NewsBeat intelligence — Events, implications and evidence",
+  description: "Inspect the six-asset event-intelligence pilot: reported developments, possible implications, original evidence, event memory and follow-up checks.",
   alternates: { canonical: "https://www.newsbeat.dev/intelligence" },
 };
 
@@ -27,15 +27,15 @@ export default function IntelligencePage() {
     <main className="landing-home bs-home nb-home ni-home ni-overview">
       <LandingMotion />
       <section className="bs-hero">
-        <div className="wrap bs-hero-grid">
+        <div className="wrap bs-hero-grid" style={{ alignItems: "start" }}>
           <div className="bs-hero-copy">
-            <span className="bs-kicker">THE NEWSBEAT DIRECTION</span>
-            <h1>From reporting<br /><span>to understanding.</span></h1>
-            <p className="bs-lede">NewsBeat’s goal is to produce meaningful signals for AI agents: a reported change, its context, its relevance, and the questions it raises.</p>
+            <span className="bs-kicker">INSIDE THE INTELLIGENCE LAYER</span>
+            <h1>Inspect the event.<br /><span>Question the reasoning.</span></h1>
+            <p className="bs-lede">Explore a real stored interpretation. See the reported development, a possible implication, and the evidence or follow-up that could strengthen or challenge it.</p>
             <p className="ni-stage-note">The source-linked feed is live. The first event-intelligence pilot adds persisted events, conditional implications and follow-up checks for six assets.</p>
             <div className="hero-cta"><a className="btn-primary" href="/dashboard">Open research workspace <ArrowRight size={16} /></a><a className="bs-text-link" href="/docs/quickstart">Connect your agent <ArrowUpRight size={16} /></a></div>
           </div>
-          <div className="ni-hero-model"><IntelligenceModel /></div>
+          <div className="ni-hero-model"><SignalInspector /></div>
         </div>
       </section>
 

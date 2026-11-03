@@ -2,10 +2,12 @@ import { ArrowRight, ArrowUpRight, Code2 } from "lucide-react";
 import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
 import IntelligenceModel from "@/components/site/intelligence-model";
+import CryptoLoop from "@/components/site/crypto-loop";
 import LandingMotion from "@/components/site/landing-motion";
 import CopyButton from "@/components/site/copy-button";
 import "./landing.css";
 import "./newsbeat.css";
+import "./crypto-community.css";
 import "./newsbeat-polish.css";
 import "./intelligence.css";
 
@@ -36,8 +38,8 @@ export default function Home() {
             <h1>Meaningful signals.<br /><span>Built for agents.</span></h1>
             <p className="bs-lede">Help your agent understand what changed, why it may matter, and what deserves attention. NewsBeat is building an intelligence layer on top of source-linked market news.</p>
             <div className="hero-cta">
-              <a className="btn-primary" href="/intelligence">Explore the direction <ArrowRight size={16} /></a>
-              <a className="bs-text-link" href="/dashboard">See live intelligence <ArrowUpRight size={16} /></a>
+              <a className="btn-primary" href="/intelligence">Explore intelligence <ArrowRight size={16} /></a>
+              <a className="bs-text-link" href="#agent-workflow">Watch the agent flow <ArrowRight size={16} /></a>
             </div>
             <p className="ni-stage-note">Event intelligence is live in a six-asset pilot.</p>
           </div>
@@ -58,6 +60,16 @@ export default function Home() {
           </div>
           <div className="bs-principles">{SIGNAL_QUESTIONS.map(item => <article key={item.number}><span>{item.number}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
           <p className="ni-section-note">The pilot adds event memory, conditional implications and next checks. Task-specific relevance remains planned.</p>
+        </div>
+      </section>
+
+      <section className="bs-crypto" id="agent-workflow" aria-labelledby="workflow-title">
+        <div className="wrap">
+          <div className="bs-crypto-head">
+            <div><span className="bs-kicker">THE NEWS-TO-AGENT LOOP</span><h2 id="workflow-title">News comes in.<br /><span>Context moves forward.</span></h2></div>
+            <div className="bs-crypto-intro"><p>Follow reporting into NewsBeat, see an event take shape, then watch the context reach an agent. Select a step to explore it.</p><a className="bs-text-link" href="/intelligence">Inspect real event intelligence <ArrowUpRight size={17} /></a></div>
+          </div>
+          <CryptoLoop />
         </div>
       </section>
 

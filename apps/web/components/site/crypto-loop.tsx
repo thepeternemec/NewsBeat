@@ -11,7 +11,7 @@
  * an asset — it gets picked, a change is detected, the receipt arrives — so the diagram
  * is teaching the loop instead of sitting next to a description of it. It advances on
  * its own until someone touches it, and stops advancing once they do, because a thing
- * that moves while you are reading it is a distraction.
+ * that moves while you are reading it is a distraction. Play resumes the sequence.
  */
 
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -21,27 +21,27 @@ import BrandMark from "./brand-mark";
 const STEPS = [
   {
     id: "discover",
-    label: "01 / DISCOVER",
-    title: "Choose an asset.",
-    text: "Pick a stock or cryptocurrency, by name or ticker.",
-    coreTop: "NVDA",
-    coreBottom: "SELECTED",
+    label: "01 / REPORTING IN",
+    title: "Collect the evidence.",
+    text: "Company and crypto reporting enters the feed with sources and publication times attached.",
+    coreTop: "REPORTING",
+    coreBottom: "SOURCES + TIMESTAMPS",
   },
   {
     id: "detect",
-    label: "02 / DETECT",
-    title: "Ask what changed.",
-    text: "Your agent remembers its last check and asks for newly collected headlines.",
-    coreTop: "+3",
-    coreBottom: "NEW SINCE LAST CHECK",
+    label: "02 / INTERPRET",
+    title: "Build event context.",
+    text: "The pilot connects a reported change to event memory, possible implications and questions worth checking.",
+    coreTop: "EVENT",
+    coreBottom: "EVIDENCE + MEMORY",
   },
   {
     id: "verify",
-    label: "03 / VERIFY",
-    title: "Follow the sources.",
-    text: "Each headline comes with its publisher, timestamp and source link.",
-    coreTop: "SOURCE LINK",
-    coreBottom: "PUBLISHER + TIMESTAMP",
+    label: "03 / AGENT CONTEXT",
+    title: "Give the agent a next step.",
+    text: "On request, the agent receives what changed, why it may matter, the evidence and what to investigate next.",
+    coreTop: "CONTEXT",
+    coreBottom: "IMPLICATIONS + NEXT CHECKS",
   },
 ] as const;
 
@@ -53,17 +53,25 @@ const TOPICS = [
 
 export default function CryptoLoop() {
   const [step, setStep] = useState(0);
-  // Once the reader takes over, the auto-advance stops for good. Re-starting it after
-  // an interaction would pull the diagram out from under whatever they were reading.
+  // A chosen step pauses the sequence until the reader explicitly presses Play.
   const [owned, setOwned] = useState(false);
   const timer = useRef<number | null>(null);
 
   useEffect(() => {
     if (owned) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    timer.current = window.setInterval(() => setStep((current) => (current + 1) % STEPS.length), 4600);
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => {
+      if (timer.current !== null) window.clearInterval(timer.current);
+      timer.current = null;
+      if (!preference.matches && !document.hidden) timer.current = window.setInterval(() => setStep((current) => (current + 1) % STEPS.length), 4600);
+    };
+    update();
+    preference.addEventListener("change", update);
+    document.addEventListener("visibilitychange", update);
     return () => {
       if (timer.current !== null) window.clearInterval(timer.current);
+      preference.removeEventListener("change", update);
+      document.removeEventListener("visibilitychange", update);
     };
   }, [owned]);
 
@@ -75,7 +83,7 @@ export default function CryptoLoop() {
   const active = STEPS[step];
 
   return (
-    <div className="bs-crypto-stage" id="crypto-loop-stage" data-step={active.id}>
+    <div className="bs-crypto-stage" id="crypto-loop-stage" data-step={active.id} data-paused={owned}>
       <div className="bs-crypto-orbit" aria-hidden="true">
         <div className="bs-crypto-rings" />
         <div className="bs-crypto-core">
@@ -87,21 +95,23 @@ export default function CryptoLoop() {
         {TOPICS.map((topic) => (
           <span
             key={topic.symbol}
-            className={`bs-crypto-node bs-crypto-node-${topic.position}${step < 2 && topic.symbol === "NVDA" ? " is-focus" : ""}`}
+            className={`bs-crypto-node bs-crypto-node-${topic.position}${topic.symbol === "NVDA" ? " is-focus" : ""}`}
           >
-            {topic.symbol} <small>RESEARCH TOPIC</small>
+            {step === 2 ? topic.symbol === "NVDA" ? "YOUR AGENT" : topic.symbol === "BTC" ? "RESEARCH" : "WORKFLOW" : topic.symbol} <small>{step === 2 ? "CONTEXT" : "REPORTING"}</small>
           </span>
         ))}
 
         {/* The packet that travels from the tracked asset to the core during DETECT. */}
         <span className="bs-crypto-packet" />
-        <span className="bs-crypto-orbit-note">ILLUSTRATIVE NEWS WORKFLOW</span>
+        <span className="bs-crypto-return" />
+        <span className="bs-crypto-orbit-note">ILLUSTRATIVE WORKFLOW · MCP / API</span>
       </div>
 
       <div className="bs-crypto-path">
         <div className="bs-crypto-path-top">
-          <span>THE RESEARCH LOOP</span>
+          <span>NEWS → EVENT → AGENT</span>
           <span>{String(step + 1).padStart(2, "0")} — 03</span>
+          <button className="bs-loop-play" type="button" aria-label={owned ? "Play workflow animation" : "Pause workflow animation"} onClick={() => setOwned(value => !value)}>{owned ? "Play" : "Pause"}</button>
         </div>
 
         <ol>
