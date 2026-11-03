@@ -255,3 +255,35 @@ create table if not exists public.newsbeat_marketplace_deliveries (
   effective_at timestamptz,
   received_at timestamptz not null default now()
 );
+
+-- Durable interpretation jobs and event memory. Applied only by the authenticated worker.
+create table if not exists public.newsbeat_intelligence_jobs (
+  beat_id text primary key,
+  requested_article_id bigint not null default 0,
+  processed_article_id bigint not null default 0,
+  input_hash text,
+  lease_token text,
+  lease_until timestamptz,
+  next_attempt_at timestamptz not null default now(),
+  last_attempt_at timestamptz,
+  last_success_at timestamptz,
+  last_error text,
+  coverage_truncated boolean not null default false
+);
+create table if not exists public.newsbeat_intelligence_events (
+  id text primary key,
+  beat_id text not null,
+  version integer not null check (version > 0),
+  event_changed_at timestamptz not null,
+  evidence_updated_at timestamptz not null,
+  signal jsonb not null
+);
+create index if not exists newsbeat_intelligence_events_asset_time_idx
+  on public.newsbeat_intelligence_events (beat_id, evidence_updated_at desc);
+create table if not exists public.newsbeat_intelligence_revisions (
+  event_id text not null references public.newsbeat_intelligence_events(id),
+  version integer not null,
+  recorded_at timestamptz not null default now(),
+  signal jsonb not null,
+  primary key (event_id, version)
+);

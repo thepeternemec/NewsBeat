@@ -7,9 +7,13 @@ Use the NewsBeat MCP connection or its public HTTPS API. This instruction file a
 Base: https://www.newsbeat.dev/api
 MCP: https://www.newsbeat.dev/api/mcp
 
+## First event-intelligence pilot
+
+For NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum, call `newsbeat_intelligence` or `GET /v2/intelligence?beat_id=` to read stored event interpretations. These include an exact reported change, named entities, conditional implications with mechanisms, uncertainty, next checks and persistent event IDs. Reads do not run a model. Check pilot/status, analysis timestamps, source freshness and partial coverage; pending or unavailable output can include older event memory. This remains model inference from headlines, not verified causality. Other assets continue to use the news foundation.
+
 ## Product direction and current capability
 
-NewsBeat is building meaningful signals for AI agents: what changed, why it may matter to a task, and what to investigate next. The live capabilities are a source-linked news foundation, approximate story grouping, headline-based summaries, freshness and change tracking. Deeper event interpretation and task-specific intelligence are planned. Reference prices, positioning and chain readings are supporting inputs, not meaningful signals by themselves.
+NewsBeat is building meaningful signals for AI agents: what changed, why it may matter to a task, and what to investigate next. The live capabilities are a source-linked news foundation, approximate story grouping, headline-based summaries, freshness and change tracking. A first general event-interpretation pilot is implemented; task-specific intelligence and broader verification remain planned. Reference prices, positioning and chain readings are supporting inputs, not meaningful signals by themselves.
 
 ## When to use NewsBeat
 
@@ -19,7 +23,7 @@ Respect the host's permissions. Resolve the correct asset; if a name is ambiguou
 
 ## Available interfaces
 
-NewsBeat exposes 14 read-only tools over MCP and REST. The seven news tools below cover discovery, headlines, briefs, stories, summaries, changes and batch checks. Asset and crypto context is available through `newsbeat_ask`, `newsbeat_market`, `newsbeat_prices`, `newsbeat_fear_greed`, `newsbeat_chain`, `newsbeat_token` and `newsbeat_signals`. Read each result’s sources and freshness. Verified token-to-stock mapping remains planned.
+NewsBeat exposes 15 read-only tools over MCP and REST. The seven news tools below cover discovery, headlines, briefs, stories, summaries, changes and batch checks. Asset and crypto context is available through `newsbeat_ask`, `newsbeat_market`, `newsbeat_prices`, `newsbeat_fear_greed`, `newsbeat_chain`, `newsbeat_token` and `newsbeat_signals`. Read each result’s sources and freshness. Verified token-to-stock mapping remains planned.
 
 ## How to retrieve news
 

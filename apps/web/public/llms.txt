@@ -8,9 +8,13 @@
 Google News RSS, refreshed every fifteen minutes over a 24-hour window. A "topic" is
 one asset you follow, addressed by a stable `beat_id`.
 
+## First event-intelligence pilot
+
+For NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum, call `newsbeat_intelligence` or `GET /v2/intelligence?beat_id=` to read stored event interpretations. These include an exact reported change, named entities, conditional implications with mechanisms, uncertainty, next checks and persistent event IDs. Reads do not run a model. Check pilot/status, analysis timestamps, source freshness and partial coverage; pending or unavailable output can include older event memory. This remains model inference from headlines, not verified causality. Other assets continue to use the news foundation.
+
 ## Product direction and current capability
 
-NewsBeat is building meaningful signals for AI agents: what changed, why it may matter to a task, and what to investigate next. The live capabilities are a source-linked news foundation, approximate story grouping, headline-based summaries, freshness and change tracking. Deeper event interpretation and task-specific intelligence are planned. Reference prices, positioning and chain readings are supporting inputs, not meaningful signals by themselves.
+NewsBeat is building meaningful signals for AI agents: what changed, why it may matter to a task, and what to investigate next. The live capabilities are a source-linked news foundation, approximate story grouping, headline-based summaries, freshness and change tracking. A first general event-interpretation pilot is implemented; task-specific intelligence and broader verification remain planned. Reference prices, positioning and chain readings are supporting inputs, not meaningful signals by themselves.
 
 ## When to use it
 
@@ -105,7 +109,7 @@ shown once. That is a browser flow and needs a human.
 - Source — https://github.com/thepeternemec/NewsBeat
 
 ## Mission
-NewsBeat is a news feed for AI agents following stocks and crypto. It exposes 14 read-only tools over MCP and REST: seven news operations and seven asset/crypto context operations. Verified tokenized-asset mapping is planned; current news resolves the underlying company or cryptocurrency.
+NewsBeat is a news feed for AI agents following stocks and crypto. It exposes 15 read-only tools over MCP and REST, including the event-intelligence pilot. Verified tokenized-asset mapping is planned; current news resolves the underlying company or cryptocurrency.
 
 ### Ask, chain and contracts
 

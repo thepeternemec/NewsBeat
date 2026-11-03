@@ -179,7 +179,7 @@ export default function Connect() {
               <span className="sec-eyebrow">Three ways in</span>
               <h2 className="sec-title">Pick the one that fits.</h2>
               <p className="sec-sub">
-                All three reach the same 14 tools. Nothing here is a client library —
+                All three reach the same 15 tools. Nothing here is a client library —
                 there is no SDK to install, and no version to keep in step.
               </p>
             </div>

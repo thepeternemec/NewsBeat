@@ -35,8 +35,8 @@ export const ROADMAP = [
     "what": "A source-linked news foundation: discover assets, group related headlines, check freshness and track what changed. Headline-based summaries help agents start their research."
   },
   {
-    "when": "Next intelligence layer / planned",
-    "what": "Turn reporting into meaningful signals: understand a development, connect relevant context, assess its relevance to a task, and explain possible implications with explicit uncertainty."
+    "when": "First intelligence pilot",
+    "what": "A six-asset pilot interprets reported developments, retains event memory, and proposes conditional implications, uncertainty and follow-up checks. Task-specific relevance and stronger verification are next."
   },
   {
     "when": "Future workflows / planned",
@@ -51,7 +51,7 @@ export const ROADMAP = [
 export const FAQ = [
   {
     "q": "Does NewsBeat already produce deeper intelligence?",
-    "a": "The source-linked news foundation is live: grouped coverage, headline-based summaries, freshness and change tracking. The next layer is planned: connecting developments to an agent’s task, explaining possible implications, and making uncertainty explicit. Current summaries should not be treated as verified signals or causal analysis."
+    "a": "The news foundation is live, and a first six-asset event-intelligence pilot adds persistent event memory, conditional implications, uncertainty and follow-up checks. These are model hypotheses from headlines. Task-specific relevance, broader context and stronger verification remain planned."
   },
   {
     "q": "Can I try NewsBeat before connecting an assistant?",

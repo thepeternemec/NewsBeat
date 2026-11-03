@@ -4,7 +4,7 @@ import "./intelligence-model.css";
 const STAGES = [
   { number: "01", name: "Observe", title: "Know what changed.", text: "Source-linked reporting, collection freshness and new arrivals.", state: "Available", planned: false },
   { number: "02", name: "Organize", title: "Bring the evidence together.", text: "Related headlines grouped with their publishers and timestamps.", state: "Available", planned: false },
-  { number: "03", name: "Interpret", title: "Surface a meaningful signal.", text: "Relevance to a task, possible implications and what still needs checking.", state: "Planned", planned: true },
+  { number: "03", name: "Interpret", title: "Surface a meaningful signal.", text: "Conditional implications, event memory and what still needs checking. Six-asset pilot.", state: "First pilot", planned: false },
 ];
 
 export default function IntelligenceModel() {
