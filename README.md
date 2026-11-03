@@ -2,13 +2,13 @@
 
 # NewsBeat
 
-### The news behind stocks and crypto.
+### Meaningful signals. Built for agents.
 
-A news feed for AI agents. Get recent headlines, short source-linked updates, and what changed since your last check.
+NewsBeat is building an intelligence layer that helps AI agents understand what changed, why it may matter, and what to investigate next.
 
-**1,528 US stocks · 502 crypto assets · MCP + REST API**
+**News foundation live · Deeper signal intelligence planned**
 
-[Explore the news](https://www.newsbeat.dev/dashboard) · [Connect your agent](https://www.newsbeat.dev/docs/quickstart) · [Developer docs](https://www.newsbeat.dev/docs) · [Service status](https://www.newsbeat.dev/status)
+[The intelligence direction](https://www.newsbeat.dev/intelligence) · [Try the live feed](https://www.newsbeat.dev/dashboard) · [Connect your agent](https://www.newsbeat.dev/docs/quickstart) · [Developer docs](https://www.newsbeat.dev/docs) · [Service status](https://www.newsbeat.dev/status)
 
 [![CI](https://github.com/thepeternemec/NewsBeat/actions/workflows/ci.yml/badge.svg)](https://github.com/thepeternemec/NewsBeat/actions/workflows/ci.yml)
 [![MIT license](https://img.shields.io/badge/license-MIT-black)](LICENSE)
@@ -19,11 +19,13 @@ Free public access during early access. No account, API key or credit card neede
 
 ## Why NewsBeat
 
-Your agent can reason about a stock or cryptocurrency. NewsBeat supplies the recent reporting behind it.
+An agent needs to understand which developments deserve attention. NewsBeat’s direction is to produce meaningful signals grounded in reporting: the change, its context, its relevance to the task, and the uncertainty around it.
 
-Ask “What happened with Nvidia?” or “What changed with Bitcoin since my last check?” NewsBeat returns headlines, publishers, publication times and links, with coverage freshness on every lookup. Similar reports can be grouped into stories, and headline-based summaries give a short starting point for further research.
+The **live foundation** supplies source-linked headlines, approximate story grouping, headline-based summaries, freshness and changes since a previous check. Agents can use that evidence today.
 
-The mission is to build an agent feed for stocks and crypto, including the underlying assets behind tokenized markets. Today, NewsBeat resolves news topics by company or cryptocurrency; verified token-to-asset mapping is planned.
+The **next intelligence layer is planned**: connect developments, assess task-specific relevance, explain possible implications and identify useful follow-up questions. Today’s summaries and reference market statistics do not establish those capabilities.
+
+Stocks and crypto are the current coverage universe: 1,528 US stocks and 502 crypto assets. Tokenized assets remain a longer-term application. Read the [product direction](docs/INTELLIGENCE.md) and [current implementation status](docs/STATUS.md).
 
 ## Try it before you connect
 
@@ -77,7 +79,7 @@ curl "https://www.newsbeat.dev/api/v2/topics?q=bitcoin&limit=5"
 
 The primary REST base is `https://www.newsbeat.dev/api`. Use the primary domain for new integrations.
 
-## 14 agent tools
+## Agent interfaces
 
 | MCP tool | Purpose |
 | --- | --- |
@@ -107,7 +109,7 @@ For follow-up checks: resolve an asset, read a baseline, save its cursor, and as
 - **Watchlist workflows** that check multiple assets and forward new items to your own bot.
 - **Tokenized-asset research** that starts with news about the underlying company or cryptocurrency.
 
-A separate [crypto context page](https://www.newsbeat.dev/crypto) shows sourced reference prices, sentiment, chain readings and positioning data. Its REST endpoints include `/api/v2/market`, `/api/v2/prices`, `/api/v2/sentiment`, `/api/v2/chain`, `/api/v2/token`, `/api/v2/signals` and `/api/v2/ask`. The same context is available through the MCP tools above. Each panel reports its source and age.
+The implementation also retains reference utilities for crypto prices, sentiment, positioning and chain readings through MCP and REST. Those are supporting inputs. The product direction is the intelligence built from evidence; raw market metrics alone do not constitute a meaningful signal.
 
 ## Evidence and freshness
 
@@ -127,11 +129,13 @@ Optional GitHub-issued keys provide a **seven-day REST evaluation**, starting on
 
 ## Roadmap
 
-**Available:** asset discovery, headlines, source-linked summaries, grouped stories, change tracking, batch checks, 14 MCP tools, a browser news explorer, and REST crypto context.
+**Available:** the source-linked news foundation, with asset discovery, headline-based summaries, approximate grouping, freshness, change tracking and agent access.
 
-**Planned:** verified tokenized-asset mapping, broader news search, saved-watch notifications, more connector options, and ready-to-use Telegram and Discord relays. Availability depends on implementation, configuration and each host’s supported interfaces.
+**Next layer / planned:** event understanding, context across developments, relevance to an agent’s task, possible implications and explicit uncertainty.
 
-[Current capabilities](docs/STATUS.md) · [Changelog](CHANGELOG.md) · [Suggest an integration](https://github.com/thepeternemec/NewsBeat/discussions)
+**Longer-term applications:** saved watches, agent delivery, notifications and verified tokenized-asset mapping. Broader search and connector improvements support that direction.
+
+[Product direction](docs/INTELLIGENCE.md) · [Current capabilities](docs/STATUS.md) · [Changelog](CHANGELOG.md)
 
 ## Run locally
 

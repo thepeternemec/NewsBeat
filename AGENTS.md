@@ -2,6 +2,10 @@
 
 The integration guide for agents. For people: [connect your assistant](https://www.newsbeat.dev/docs/quickstart) and ask a stock or crypto news question in your own words.
 
+## Product direction and current capability
+
+NewsBeat is building meaningful signals for AI agents: what changed, why it may matter to a task, and what to investigate next. The live capabilities are a source-linked news foundation, approximate story grouping, headline-based summaries, freshness and change tracking. Deeper event interpretation and task-specific intelligence are planned. Reference prices, positioning and chain readings are supporting inputs, not meaningful signals by themselves.
+
 ## When to check the news
 
 Use NewsBeat when recent company or crypto developments would help answer the user's current task. The user does not need to name NewsBeat: "What is happening with Nvidia?", company research and market briefings are reasons to look up news. Static definitions and unrelated questions do not require a lookup.
@@ -180,6 +184,7 @@ This is reference data. There is no price forecast anywhere in the API.
 | `newsbeat_token` | `GET /v2/token?asset=` | Token price by contract address |
 | `newsbeat_signals` | `GET /v2/signals` | Funding rates, DEX volume and stablecoin supply |
 
-Reach for `newsbeat_ask` first. Chaining the individual endpoints loses the attribution
-between calls, and it returns a `notes` array that states what was missing. Chain readings
+For news research, resolve the topic and use the news, stories or changes tools first.
+The optional `newsbeat_ask` utility combines news with reference market and chain context;
+its `notes` array states what was missing. Chain readings
 move every twelve seconds or less; none of this reads balances or quotes swaps.

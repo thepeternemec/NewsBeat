@@ -1,4 +1,5 @@
 export const DOC_PAGES = [
+  { href: "/intelligence", label: "Intelligence direction", group: "Start here", description: "The foundation today and the intelligence we are building toward." },
   { href: "/docs", label: "Overview", group: "Start here", description: "Find your way around NewsBeat." },
   { href: "/docs/try", label: "Try live news", group: "Start here", description: "Make your first lookup. No setup needed." },
   { href: "/docs/quickstart", label: "Connect your agent", group: "Start here", description: "Bring the news into your conversations." },

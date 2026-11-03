@@ -8,6 +8,10 @@
 Google News RSS, refreshed every fifteen minutes over a 24-hour window. A "topic" is
 one asset you follow, addressed by a stable `beat_id`.
 
+## Product direction and current capability
+
+NewsBeat is building meaningful signals for AI agents: what changed, why it may matter to a task, and what to investigate next. The live capabilities are a source-linked news foundation, approximate story grouping, headline-based summaries, freshness and change tracking. Deeper event interpretation and task-specific intelligence are planned. Reference prices, positioning and chain readings are supporting inputs, not meaningful signals by themselves.
+
 ## When to use it
 
 Use NewsBeat when recent company or crypto news helps answer the user's current task,
@@ -112,6 +116,7 @@ NewsBeat is a news feed for AI agents following stocks and crypto. It exposes 14
 | `newsbeat_token` | `GET /v2/token?asset=` | Token price by contract address |
 | `newsbeat_signals` | `GET /v2/signals` | Funding rates, DEX volume and stablecoin supply |
 
-Reach for `newsbeat_ask` first. Chaining the individual endpoints loses the attribution
-between calls, and it returns a `notes` array that states what was missing. Chain readings
+For news research, resolve the topic and use the news, stories or changes tools first.
+The optional `newsbeat_ask` utility combines news with reference market and chain context;
+its `notes` array states what was missing. Chain readings
 move every twelve seconds or less; none of this reads balances or quotes swaps.

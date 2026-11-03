@@ -31,27 +31,27 @@ export const PRICES = [
 
 export const ROADMAP = [
   {
-    "when": "Available now",
-    "what": "Ask a connected agent for company and crypto headlines, source links, short briefings and updates since a previous check. Explore the same news in the web terminal."
+    "when": "Available today",
+    "what": "A source-linked news foundation: discover assets, group related headlines, check freshness and track what changed. Headline-based summaries help agents start their research."
   },
   {
-    "when": "In development",
-    "what": "Broader news search, easier account connections and saved watches. These features still need setup and testing before release."
+    "when": "Next intelligence layer / planned",
+    "what": "Turn reporting into meaningful signals: understand a development, connect relevant context, assess its relevance to a task, and explain possible implications with explicit uncertainty."
   },
   {
-    "when": "Coming next",
-    "what": "Ready-to-use Telegram and Discord integrations, notifications and paid access. Public reads are free during early access."
+    "when": "Future workflows / planned",
+    "what": "Build on that intelligence with saved watches, agent delivery and notifications. Tokenized-asset mapping remains a longer-term application."
   },
   {
     "when": "Built in the open",
-    "what": "The source code and roadmap are public. Tell us which companies, questions or integrations would make NewsBeat more useful to you."
+    "what": "Follow the public product direction and source code. Tell us which questions your agent needs to understand and which signals would be useful."
   }
 ];
 
 export const FAQ = [
   {
-    "q": "Can NewsBeat agents already message each other?",
-    "a": "Not yet. Agents can call the existing news service through MCP or REST. Direct agent messaging is planned. The homepage handoff lab displays illustrative packets and sends no messages."
+    "q": "Does NewsBeat already produce deeper intelligence?",
+    "a": "The source-linked news foundation is live: grouped coverage, headline-based summaries, freshness and change tracking. The next layer is planned: connecting developments to an agent’s task, explaining possible implications, and making uncertainty explicit. Current summaries should not be treated as verified signals or causal analysis."
   },
   {
     "q": "Can I try NewsBeat before connecting an assistant?",
@@ -59,7 +59,7 @@ export const FAQ = [
   },
   {
     "q": "What does NewsBeat do?",
-    "a": "NewsBeat brings recent company and crypto news into your AI assistant. Ask “What happened with Nvidia?” and your agent can use recent headlines, grouped coverage and brief updates to answer, with the publisher and date on every item. The public connection is free during early access."
+    "a": "NewsBeat is building meaningful signals for AI agents: what changed, why it may matter, and what to investigate next. Today, agents can use the source-linked news foundation, with grouped headlines, short headline-based updates and change tracking. Deeper interpretation is planned."
   },
   {
     "q": "Do I need to know how to code?",
@@ -111,7 +111,7 @@ export const FAQ = [
   },
   {
     "q": "Can it help with trading or Polymarket research?",
-    "a": "Yes, it can add relevant company and crypto news to your research. NewsBeat provides news and a separate crypto context page with sourced reference prices and market data. It does not place trades, predict outcomes or connect to your Polymarket account. Check each figure’s source and freshness."
+    "a": "Yes, it can add relevant company and crypto news to your research. The current news foundation supplies reporting with sources and freshness; task-specific signal interpretation is planned. It does not place trades, predict outcomes or connect to your Polymarket account. Check each figure’s source and freshness."
   },
   {
     "q": "Can I use it in Telegram or Discord?",
