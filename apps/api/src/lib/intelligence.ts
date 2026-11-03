@@ -115,7 +115,7 @@ export async function runIntelligence(oidcToken?: string | null, generate: typeo
       });
       return { beat_id: job.beat_id, status: "processed", signals: signals.length, alerts: createdAlerts, reused: job.input_hash === fingerprint };
     } catch (error) {
-      const reason = error instanceof Error && ["source_stale", "invalid_analysis", "model_unavailable", "lease_lost"].includes(error.message) ? error.message : "processing_failed";
+      const reason = error instanceof Error && (["source_stale", "invalid_analysis", "model_unavailable", "lease_lost"].includes(error.message) || /^invalid_analysis_[a-z_]{1,60}$/.test(error.message)) ? error.message : "processing_failed";
       await sql`update public.newsbeat_intelligence_jobs set last_error = ${reason}, lease_token = null, lease_until = null,
         next_attempt_at = now() + interval '15 minutes' where beat_id = ${job.beat_id} and lease_token = ${token}`;
       return { beat_id: job.beat_id, status: reason, signals: 0 };
