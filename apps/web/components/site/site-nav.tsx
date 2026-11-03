@@ -8,14 +8,12 @@ import "./mobile-navigation.css";
 
 const LINKS = [
   { href: "/intelligence", label: "Intelligence", description: "The direction: meaningful signals for AI agents" },
-  { href: "/#live-news", label: "Live feed", description: "Explore the current news foundation" },
   { href: "/#build", label: "For agents", description: "Connect your agent to NewsBeat" },
   { href: "/docs", label: "Docs", description: "Start building with MCP and REST" },
   { href: "/status", label: "Status", description: "Check the current news service" },
 ];
 
 export default function SiteNav({ active }: { active?: string }) {
-  const inTerminal = active === "/dashboard";
   return (
     <nav className="nav nav-site" aria-label="Main navigation">
       <div className="nav-pill">
@@ -29,9 +27,9 @@ export default function SiteNav({ active }: { active?: string }) {
           ))}
         </span>
         <span className="nav-desktop-theme"><ThemeToggle /></span>
-        <a className="nav-cta" href={inTerminal ? "/" : "/dashboard"}>
-          <span className="nav-cta-wide">{inTerminal ? "Home" : "Try the feed"}</span>
-          <span className="nav-cta-compact">{inTerminal ? "Home" : "Feed"}</span>
+        <a className="nav-cta" href="/docs/quickstart">
+          <span className="nav-cta-wide">Connect your agent</span>
+          <span className="nav-cta-compact">Connect</span>
         </a>
         <MobileNavigation links={LINKS} active={active} />
       </div>
