@@ -1,10 +1,10 @@
 # NewsBeat brand
 
-NewsBeat is a news feed for AI agents following **stocks and crypto**.
+NewsBeat is building **meaningful signals for AI agents**. Source-linked news is the foundation; deeper interpretation is the next product stage. Stocks and crypto are coverage areas.
 
 - Website: https://www.newsbeat.dev
-- Main line: **The news behind stocks and crypto.**
-- Product description: **Recent headlines, source-linked updates, and what changed since your last check.**
+- Main line: **Meaningful signals. Built for agents.**
+- Product description: **An intelligence layer that helps agents understand what changed, why it may matter, and what to investigate next.**
 - Contact: contact@newsbeat.dev
 
 ## Mark and palette
@@ -26,4 +26,4 @@ The website generates its current social preview in `apps/web/app/(site)/opengra
 
 ## Voice
 
-Lead with the user's task: explore news, catch up, see what changed, or connect an agent. Use “stocks and crypto” in public copy. Describe tokenized-asset mapping as planned until verified mappings are available. Keep sources, timestamps and coverage freshness visible.
+Lead with agent intelligence: meaningful developments, relevant context, evidence and uncertainty. Use “stocks and crypto” to describe coverage. Distinguish the live news foundation from planned interpretation; a summary or a market statistic is not automatically a meaningful signal. Describe tokenized-asset mapping as planned until verified mappings are available. Keep sources, timestamps and coverage freshness visible.

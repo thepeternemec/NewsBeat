@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11-03 — Agent intelligence direction
+
+- Refocused the homepage, social metadata and GitHub presentation on meaningful signals for AI agents.
+- Replaced the standalone crypto dashboard with an intelligence overview; existing /crypto links redirect to /intelligence.
+- Distinguished the available news foundation from planned event context, task-specific relevance, implications and uncertainty-aware signals.
+- Reframed raw prices, funding and chain readings as supporting reference utilities, preserving existing API compatibility.
+- Added the product direction in docs/INTELLIGENCE.md and aligned roadmap, FAQ, agent guidance and tool descriptions.
+
 ## 2026-11-03 — NewsBeat website and project refresh
 
 - Reframed the homepage around stock and crypto news for AI agents, with a live lookup in the hero and a separate agent prompt builder.

@@ -48,7 +48,7 @@ type Article = FeedItem;
 type View = "signals" | "clusters";
 
 const TABS: Array<{ value: View; title: string }> = [
-  { value: "signals", title: "Signals" },
+  { value: "signals", title: "News map" },
   { value: "clusters", title: "Stories by asset" },
 ];
 
@@ -298,7 +298,7 @@ export default function Dashboard() {
           <div>
             <span className="sec-eyebrow">NewsBeat / Intelligence terminal</span>
             <h1 style={{ margin: 0, fontSize: "clamp(30px, 4vw, 44px)", lineHeight: 1.05, letterSpacing: "-0.035em", color: "var(--text-primary)", fontWeight: 600 }}>
-              Follow stocks and crypto.
+              Evidence for your agent.
             </h1>
           </div>
           <span style={{ font: "11px var(--font-mono), monospace", color: "var(--text-ghost)" }}>
@@ -392,13 +392,13 @@ export default function Dashboard() {
             </div>
           </div>
           <p className="hero-tiny" style={{ marginTop: 30 }}>
-            Source-linked headlines · refreshed on a 15-minute schedule · free to explore
+            The news foundation · sources and freshness included · deeper intelligence planned
           </p>
         </div>
 
         {query.trim().length > 0 && view === "clusters" && filteredClusters.length === 0 && (
           <p className="catalog-search-note">
-            no loaded cluster matches “{query.trim()}” — show more, or open Signals for it
+            no loaded cluster matches “{query.trim()}” — show more, or open the News map for it
           </p>
         )}
 
@@ -427,7 +427,7 @@ export default function Dashboard() {
               <div className="mock-bar">
                 <span className="mock-dots"><span /><span /><span /></span>
                 <span className="mock-title">
-                  signal field · {activeTopic?.label ?? "no ticker selected"}
+                  news map · {activeTopic?.label ?? "no ticker selected"}
                   <span className="tz">all times UTC</span>
                 </span>
                 <span className="mock-live">{articles.length} stories</span>

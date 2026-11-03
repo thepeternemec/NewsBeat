@@ -7,6 +7,10 @@ Use the NewsBeat MCP connection or its public HTTPS API. This instruction file a
 Base: https://www.newsbeat.dev/api
 MCP: https://www.newsbeat.dev/api/mcp
 
+## Product direction and current capability
+
+NewsBeat is building meaningful signals for AI agents: what changed, why it may matter to a task, and what to investigate next. The live capabilities are a source-linked news foundation, approximate story grouping, headline-based summaries, freshness and change tracking. Deeper event interpretation and task-specific intelligence are planned. Reference prices, positioning and chain readings are supporting inputs, not meaningful signals by themselves.
+
 ## When to use NewsBeat
 
 Use the connected tools when recent company or crypto news would help with the user's current task, even if they do not mention NewsBeat. Examples: "What is happening with Nvidia?", a company research brief, or "What changed since our last check?" Do not rely only on memory for recent developments. Static definitions and unrelated tasks do not need a news lookup.

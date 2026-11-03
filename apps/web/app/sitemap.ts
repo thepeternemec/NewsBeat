@@ -6,6 +6,7 @@ const ORIGIN = "https://www.newsbeat.dev";
 const PAGES = [
   "/",
   "/connect",
+  "/intelligence",
   "/dashboard",
   "/docs",
   "/docs/connect",

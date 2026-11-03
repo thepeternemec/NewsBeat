@@ -38,7 +38,7 @@ export default function AgentContextPanel({ topic, snapshot, notice, onRefresh, 
   return (
     <section className="agent-context" aria-labelledby="agent-context-title">
       <div className="agent-context-head">
-        <div><span className="agent-context-eyebrow">RESEARCH WORKSPACE / {topic.ticker}</span><h2 id="agent-context-title">Bring this news to your agent.</h2><p>Recent {topic.label} coverage, ready for a source-linked brief.</p></div>
+        <div><span className="agent-context-eyebrow">RESEARCH WORKSPACE / {topic.ticker}</span><h2 id="agent-context-title">Ground your agent in evidence.</h2><p>Recent {topic.label} coverage, ready for a source-linked brief.</p></div>
         <a href="/docs/quickstart">Connect MCP <ArrowUpRight size={14} /></a>
       </div>
       <div className="agent-context-facts">

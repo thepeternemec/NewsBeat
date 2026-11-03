@@ -6,7 +6,8 @@ const COLUMNS = [
   {
     head: "Product",
     links: [
-      { href: "/dashboard", label: "Explore news" },
+      { href: "/intelligence", label: "Intelligence" },
+      { href: "/dashboard", label: "Live feed" },
       { href: "/connect", label: "Connect" },
       { href: "/pricing", label: "Pricing" },
       { href: "/status", label: "Service status" },
@@ -58,9 +59,9 @@ export default function SiteFooter() {
                 <span className="footer-co">NEWSBEAT</span>
                 <a className="footer-mobile-contact" href="mailto:contact@newsbeat.dev">Contact <span aria-hidden="true">↗</span></a>
               </div>
-              <p className="footer-tag">The news behind stocks and crypto.</p>
+              <p className="footer-tag">Meaningful signals for AI agents.</p>
               <p className="footer-address">
-                A clearer view for you and your agent.
+                News foundation live. Intelligence ahead.
               </p>
             </div>
 
@@ -98,7 +99,7 @@ export default function SiteFooter() {
 
           <div className="footer-base">
             <span>MCP + REST · free early access</span>
-            <span>Stocks + crypto · sources + context</span>
+            <span>Evidence · context · understanding</span>
             <nav className="footer-social" aria-label="Social media">
               <a
                 href="https://x.com/newsbeat_"

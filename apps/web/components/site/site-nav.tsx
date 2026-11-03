@@ -7,8 +7,8 @@ import MobileNavigation from "./mobile-navigation";
 import "./mobile-navigation.css";
 
 const LINKS = [
-  { href: "/#live-news", label: "News", description: "Explore stock and crypto news" },
-  { href: "/crypto", label: "Crypto", description: "Market, chain and positioning context" },
+  { href: "/intelligence", label: "Intelligence", description: "The direction: meaningful signals for AI agents" },
+  { href: "/#live-news", label: "Live feed", description: "Explore the current news foundation" },
   { href: "/#build", label: "For agents", description: "Connect your agent to NewsBeat" },
   { href: "/docs", label: "Docs", description: "Start building with MCP and REST" },
   { href: "/status", label: "Status", description: "Check the current news service" },
@@ -30,8 +30,8 @@ export default function SiteNav({ active }: { active?: string }) {
         </span>
         <span className="nav-desktop-theme"><ThemeToggle /></span>
         <a className="nav-cta" href={inTerminal ? "/" : "/dashboard"}>
-          <span className="nav-cta-wide">{inTerminal ? "Home" : "Explore news"}</span>
-          <span className="nav-cta-compact">{inTerminal ? "Home" : "News"}</span>
+          <span className="nav-cta-wide">{inTerminal ? "Home" : "Try the feed"}</span>
+          <span className="nav-cta-compact">{inTerminal ? "Home" : "Feed"}</span>
         </a>
         <MobileNavigation links={LINKS} active={active} />
       </div>

@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import BrandMark from "@/components/site/brand-mark";
 
-export const alt = "NewsBeat — The news behind stocks and crypto.";
+export const alt = "NewsBeat — Meaningful signals for AI agents.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -26,16 +26,16 @@ export default function OpenGraphImage() {
 
       <div style={{ display: "flex", flexDirection: "column", marginTop: 60 }}>
         <span style={{ fontSize: 18, color: "#bbbbbb", letterSpacing: 2 }}>
-          THE NEWS FEED FOR AI AGENTS
+          AGENT INTELLIGENCE
         </span>
         <span style={{ marginTop: 22, fontSize: 56, fontWeight: 700, letterSpacing: -2, lineHeight: 1.09 }}>
-          The news behind
+          Meaningful signals.
         </span>
         <span style={{ fontSize: 56, fontWeight: 700, letterSpacing: -2, lineHeight: 1.09 }}>
-          stocks and crypto.
+          Built for agents.
         </span>
         <span style={{ marginTop: 26, fontSize: 24, color: "#bbbbbb" }}>
-          Recent headlines. Clear updates. Every source linked.
+          From reported changes to context worth understanding.
         </span>
       </div>
 
@@ -51,7 +51,7 @@ export default function OpenGraphImage() {
           fontSize: 18,
         }}
       >
-        <span>MCP + API · Free to try</span>
+        <span>News foundation live · Intelligence ahead</span>
         <span>www.newsbeat.dev</span>
       </div>
     </div>,

@@ -1,0 +1,37 @@
+/* Agent intelligence takes the lead; the current feed remains a visible foundation. */
+.ni-home .bs-hero-copy{position:static;padding-top:0}
+.ni-home .bs-hero h1{font-size:clamp(42px,4.9vw,70px);line-height:1.07}
+.ni-hero-model{min-width:0}
+.ni-stage-note{font-size:13px;line-height:1.8;color:var(--text-secondary);max-width:43ch;margin:24px 0 0}
+.ni-value-strip{border-block:1px solid var(--border-default);background:color-mix(in srgb,var(--text-primary) 3%,transparent)}
+.ni-value-strip>.wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;padding-block:27px}
+.ni-value-strip span{font-size:14px;line-height:1.6;color:var(--text-secondary);text-align:center}
+.ni-value-strip span+span{border-left:1px solid var(--border-default)}
+.ni-section-note,.ni-coverage-note{font-size:13px;line-height:1.8;max-width:74ch;color:var(--text-secondary);margin:25px 0 0}
+.ni-coverage-note{max-width:43ch;margin:22px 0}
+.ni-home .bs-live-grid{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(36px,6vw,80px);align-items:center}
+.ni-roadmap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(36px,6vw,80px);align-items:start}
+.ni-roadmap .bs-section-head{margin-bottom:0}
+.ni-roadmap .bs-text-link{margin-top:24px}
+.ni-roadmap-cards{display:grid;gap:20px;min-width:0}
+.ni-roadmap-cards article,.ni-connect-panel,.ni-quality-grid article{border:1px solid var(--border-default);border-radius:16px;padding:30px;background:linear-gradient(145deg,color-mix(in srgb,var(--text-primary) 3%,transparent),transparent)}
+.ni-state{display:inline-block;border:1px solid var(--border-default);border-radius:5px;padding:4px 8px;font:11px/1.6 var(--font-mono);color:var(--text-secondary)}
+.ni-state-planned{border-style:dashed}
+.ni-roadmap-cards h3,.ni-connect-panel h3,.ni-quality-grid h3{font-size:24px;line-height:1.3;letter-spacing:-.03em;font-weight:500;margin:21px 0 14px}
+.ni-roadmap-cards p,.ni-quality-grid p{font-size:16px;line-height:1.8;color:var(--text-secondary);margin:0}
+.ni-connect-panel{min-width:0}
+.ni-connect-panel h3{font-size:30px}
+.ni-connect-panel .code{margin:25px 0}
+.ni-connect-panel>p{font-size:13px;line-height:1.8;color:var(--text-secondary);margin:0}
+.ni-home .bs-news-section{scroll-margin-top:90px}
+.ni-home .bs-build-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.ni-quality-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.ni-quality-grid h3{margin-top:0}
+.ni-roadmap-wide{grid-template-columns:repeat(2,minmax(0,1fr))}
+.ni-roadmap-wide .bs-text-link{margin-top:22px}
+.ni-scope{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:70px;align-items:start}
+.ni-scope .bs-body+.bs-body{margin-top:22px}
+.ni-scope .bs-text-link{margin-top:24px}
+@media(max-width:999px){.ni-home .bs-hero-grid{grid-template-columns:minmax(0,1fr)}.ni-hero-model{max-width:720px;width:100%}.ni-roadmap{grid-template-columns:minmax(0,1fr)}.ni-home .bs-hero h1{font-size:clamp(43px,6.5vw,66px)}}
+@media(max-width:760px){.ni-home .bs-live-grid,.ni-home .bs-build-grid,.ni-roadmap-wide,.ni-scope{grid-template-columns:minmax(0,1fr);gap:32px}.ni-value-strip>.wrap{gap:15px;padding-block:22px}.ni-value-strip span{font-size:12px}.ni-quality-grid{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:500px){.ni-home .bs-hero h1{font-size:clamp(34px,9vw,46px)}.ni-value-strip>.wrap{grid-template-columns:minmax(0,1fr);gap:12px}.ni-value-strip span{text-align:left}.ni-value-strip span+span{border-left:0}.ni-roadmap-cards article,.ni-connect-panel,.ni-quality-grid article{padding:24px}.ni-stage-note{font-size:12px}.ni-roadmap-cards h3{font-size:22px}}

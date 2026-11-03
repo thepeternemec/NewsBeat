@@ -3,7 +3,7 @@ import CopyButton from "@/components/site/copy-button";
 import DocsDeveloperStart from "@/components/site/docs-developer-start";
 
 export const metadata = {
-  title: "NewsBeat docs — Build with market context",
+  title: "NewsBeat docs — Build on the news foundation",
   description: "Connect to stock and crypto news through MCP and REST. Copy working requests, discover 14 agent tools, and track changes with sources and freshness.",
 };
 
@@ -19,13 +19,15 @@ export default function DocsOverview() {
     <div className="docs-overview">
       <header className="docs-head">
         <span className="sec-eyebrow">NEWSBEAT / DEVELOPER DOCS</span>
-        <h1>Build with<br />market context.</h1>
+        <h1>Build on<br />the evidence.</h1>
         <p className="docs-lead">
-          Give your agent stock and crypto news through MCP or REST. Discover an asset,
-          retrieve the reporting, and ask what changed. Keep sources and freshness in every answer.
+          Connect your agent to NewsBeat’s current news foundation through MCP or REST. Discover an asset,
+          retrieve the reporting, and track what changed. Deeper intelligence is the next stage.
         </p>
         <div className="docs-free-note"><Check size={14} aria-hidden="true" /> Free public access <span>·</span> No account, key or card</div>
       </header>
+
+      <div className="docs-callout"><strong>From reporting to meaningful signals.</strong><p>Grouped coverage, headline-based summaries and change tracking are live. Task-specific interpretation, implications and deeper signal intelligence are planned. <a href="/intelligence">See the product direction.</a></p></div>
 
       <section className="docs-section" aria-labelledby="developer-quickstart">
         <h2 id="developer-quickstart">Your first request.</h2>
