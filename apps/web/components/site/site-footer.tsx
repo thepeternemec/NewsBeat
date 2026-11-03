@@ -6,7 +6,7 @@ const COLUMNS = [
   {
     head: "Product",
     links: [
-      { href: "/dashboard", label: "Terminal" },
+      { href: "/dashboard", label: "Explore news" },
       { href: "/connect", label: "Connect" },
       { href: "/pricing", label: "Pricing" },
       { href: "/status", label: "Service status" },
@@ -33,7 +33,7 @@ const COLUMNS = [
       links: [
         { href: "/legal/terms", label: "Terms" },
         { href: "/legal/cookies", label: "Cookies" },
-        { href: "https://x.com/newsbeat_", label: "Contact" },
+        { href: "mailto:contact@newsbeat.dev", label: "Contact" },
       ],
     },
 ] as const;
@@ -41,7 +41,7 @@ const COLUMNS = [
 // Contact already sits beside the brand on mobile, so keep it out of the grid.
 const MOBILE_LINKS = COLUMNS.flatMap(
   (column): Array<{ href: string; label: string }> => [...column.links],
-).filter((link) => link.href !== "https://x.com/newsbeat_");
+).filter((link) => link.href !== "mailto:contact@newsbeat.dev");
 
 export default function SiteFooter() {
   return (
@@ -58,9 +58,9 @@ export default function SiteFooter() {
                 <span className="footer-co">NEWSBEAT</span>
                 <a className="footer-mobile-contact" href="mailto:contact@newsbeat.dev">Contact <span aria-hidden="true">↗</span></a>
               </div>
-              <p className="footer-tag">Context before the trade.</p>
+              <p className="footer-tag">The news behind stocks and crypto.</p>
               <p className="footer-address">
-                news tools live · asset mapping planned
+                A clearer view for you and your agent.
               </p>
             </div>
 
@@ -98,7 +98,7 @@ export default function SiteFooter() {
 
           <div className="footer-base">
             <span>MCP + REST · free early access</span>
-            <span>no seat licence · no lock-in</span>
+            <span>Stocks + crypto · sources + context</span>
             <nav className="footer-social" aria-label="Social media">
               <a
                 href="https://x.com/newsbeat_"

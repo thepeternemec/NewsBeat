@@ -100,8 +100,8 @@ shown once. That is a browser flow and needs a human.
 - Docs — https://www.newsbeat.dev/docs
 - Source — https://github.com/thepeternemec/NewsBeat
 
-# NewsBeat transition
-NewsBeat is a news service for AI agents: source-linked company and crypto headlines over MCP and REST. Existing newsbeat_* tools and www.newsbeat.dev addresses are unchanged.
+## Mission
+NewsBeat is a news feed for AI agents following stocks and crypto. It exposes 14 read-only tools over MCP and REST: seven news operations and seven asset/crypto context operations. Verified tokenized-asset mapping is planned; current news resolves the underlying company or cryptocurrency.
 
 ### Ask, chain and contracts
 

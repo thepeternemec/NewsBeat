@@ -16,22 +16,22 @@ import GridField from "@/components/site/grid-field";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.newsbeat.dev"),
-  title: "NewsBeat — source-linked news for AI agents",
+  title: "NewsBeat — Stock and crypto news for AI agents",
   description:
-    "NewsBeat brings recent company and crypto news to AI agents. Source-linked headlines, grouped coverage and cursors that tell you what changed — or that nothing moved.",
+    "Stock and crypto news for AI agents. Recent headlines, source-linked summaries and updates since your last check, through MCP and REST.",
   openGraph: {
     type: "website",
     url: "https://www.newsbeat.dev",
     siteName: "NewsBeat",
-    title: "NewsBeat — source-linked news for AI agents",
+    title: "NewsBeat — Stock and crypto news for AI agents",
     description:
-      "Follow the news behind the companies and coins you track. Headlines, linked sources and fresh context for your AI agent.",
+      "The news behind stocks and crypto. Recent headlines, short updates and source-linked context for your AI agent.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "NewsBeat — source-linked news for AI agents",
+    title: "NewsBeat — Stock and crypto news for AI agents",
     description:
-      "Company and crypto news with source-linked context for your agent. Headlines, publishers and dates on every item.",
+      "Stock and crypto news for your AI agent. Headlines, sources and timestamps on every update.",
   },
 };
 
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
  * Runs during parse, before React. Without it the page paints dark and then flips,
  * which is worse than not offering a choice.
  */
-const THEME_BOOTSTRAP = `(function(){try{var t=localStorage.getItem("newsbeat-theme")||localStorage.getItem("newsbeat-theme");document.documentElement.dataset.theme=t==="light"?"light":"dark"}catch(e){document.documentElement.dataset.theme="dark"}})();`;
+const THEME_BOOTSTRAP = `(function(){try{var t=localStorage.getItem("newsbeat-theme");document.documentElement.dataset.theme=t==="light"?"light":"dark"}catch(e){document.documentElement.dataset.theme="dark"}})();`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

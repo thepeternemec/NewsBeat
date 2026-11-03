@@ -18,7 +18,7 @@ export default function DocsData() {
         company name or ticker. A ticker is a short market symbol, such as NVDA for Nvidia.
       </p>
       <p>
-        A “topic” or “beat” means one supported company or crypto asset. Some names and tickers
+        A “topic” or “beat” means one supported stock or crypto asset. Some names and tickers
         overlap, so your agent should confirm it found the right asset. If there is no match,
         it should say the company is not covered. General news search and broader coverage are in development.
       </p>
@@ -99,7 +99,7 @@ export default function DocsData() {
 
       <h2 id="what-should-a-good-answer-include">What should a good answer include?</h2>
       <ul>
-        <li>The correct company or crypto asset.</li>
+        <li>The correct stock or crypto asset.</li>
         <li>The reported headlines or a cautious explanation grounded in them.</li>
         <li>Publisher names, dates and links you can open.</li>
         <li>A clear note when coverage is stale, missing or too limited to answer the question.</li>

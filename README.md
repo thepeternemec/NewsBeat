@@ -2,59 +2,38 @@
 
 # NewsBeat
 
-### Market intelligence. Built for your agent.
+### The news behind stocks and crypto.
 
-Source-linked news for agents researching companies and crypto. Check what changed, inspect freshness and follow the reporting behind an asset.
+A news feed for AI agents. Get recent headlines, short source-linked updates, and what changed since your last check.
 
-**Free during early access · No API key or credit card needed for public reads**
+**1,528 US stocks · 502 crypto assets · MCP + REST API**
 
-[Open the terminal](https://www.newsbeat.dev/dashboard) · [Explore crypto research](https://www.newsbeat.dev/#crypto-community) · [Connect your agent](https://www.newsbeat.dev/docs/quickstart) · [Read the docs](https://www.newsbeat.dev/docs)
-
-Contact: [@newsbeat_ on X](https://x.com/newsbeat_)
+[Explore the news](https://www.newsbeat.dev/dashboard) · [Connect your agent](https://www.newsbeat.dev/docs/quickstart) · [Developer docs](https://www.newsbeat.dev/docs) · [Service status](https://www.newsbeat.dev/status)
 
 [![CI](https://github.com/thepeternemec/NewsBeat/actions/workflows/ci.yml/badge.svg)](https://github.com/thepeternemec/NewsBeat/actions/workflows/ci.yml)
-[![MIT license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
-[![Early access](https://img.shields.io/badge/status-free_early_access-brightgreen)](https://www.newsbeat.dev)
+[![MIT license](https://img.shields.io/badge/license-MIT-black)](LICENSE)
+
+Free public access during early access. No account, API key or credit card needed.
 
 </div>
 
-Ask your assistant “What happened with Nvidia?” or “What changed with BTC since my last check?” It can look up supported news topics whenever it needs context for your question. Start with the [free terminal](https://www.newsbeat.dev/dashboard): search by name or ticker, read available headlines, and request a short source-linked summary. No account needed.
+## Why NewsBeat
 
-NewsBeat gives agents equity and crypto news through **MCP and REST**. Resolve an asset, get a short source-linked update, and check freshness. For follow-up checks, save a cursor and get only newly indexed headlines or a clear “nothing new.”
+Your agent can reason about a stock or cryptocurrency. NewsBeat supplies the recent reporting behind it.
 
-Built for developers bringing news into trading research, prediction-market analysis, personal assistants and monitoring workflows. Headlines are collected on a **15-minute schedule**; this is news context, not a price feed or a trading signal.
+Ask “What happened with Nvidia?” or “What changed with Bitcoin since my last check?” NewsBeat returns headlines, publishers, publication times and links, with coverage freshness on every lookup. Similar reports can be grouped into stories, and headline-based summaries give a short starting point for further research.
 
-| Coverage | Agent tools | Change tracking | Source code |
-| --- | --- | --- | --- |
-| **2,030 assets** — 1,528 US equities + 502 crypto | **7 tools** over MCP and REST | Signed cursors + checks for up to **50 assets** per request | **MIT licensed** |
+The mission is to build an agent feed for stocks and crypto, including the underlying assets behind tokenized markets. Today, NewsBeat resolves news topics by company or cryptocurrency; verified token-to-asset mapping is planned.
 
-## See it work before you connect
+## Try it before you connect
 
-**Start with your own question.** The [terminal](https://www.newsbeat.dev/dashboard) searches the supported catalog, shows recent headlines, and lets you request an on-demand summary. The [landing page](https://www.newsbeat.dev) has a mission builder that prepares a research prompt to copy into your own agent, plus a crypto community section illustrating the topic → change → source workflow. The mission builder does not execute an agent or place trades. Follow the [assistant quickstart](https://www.newsbeat.dev/docs/quickstart) when you are ready.
+Open the **[news explorer](https://www.newsbeat.dev/dashboard)**. Search by name or ticker, read the available reporting, expand a story’s sources, or choose **Summarize headlines** for a short update. The homepage also offers a live lookup and a prompt builder for your connected assistant.
 
-- **Headline summaries:** up to three short explanations with publisher links, publication times and freshness. Choose **Summarize headlines** in the terminal, call `newsbeat_summary` over MCP, or use [the summary API](https://www.newsbeat.dev/api/v2/summary?beat_id=b_bb964843350e).
-- **Grouped coverage:** similar reports appear as one story. Expand it to see the original headlines and sources; reporting is retained.
-- **Relevance ranking:** concrete developments appear ahead of routine ownership notices and shopping headlines. Summaries favor developments and select distinct stories.
-- **Clear evidence limits:** summaries use headlines only. If generation is unavailable or its output fails validation, original headlines are returned with `method: "extractive"`.
-- **Free early access:** public MCP and REST reads need no account, key or card. An optional seven-day keyed REST evaluation is available for higher limits.
+News is collected on a **15-minute schedule**. Coverage varies by asset; every response reports freshness. Summaries use headline metadata, and the original reporting stays linked.
 
-[Read the changelog](CHANGELOG.md) · [Current capabilities and limitations](docs/STATUS.md)
+## Connect your agent
 
-## Try the API in 30 seconds
-
-No account required. Make your first request:
-
-```bash
-curl "https://www.newsbeat.dev/api/v2/news?beat_id=b_bb964843350e"
-```
-
-For a short headline-based explanation of what happened with Nvidia:
-
-```bash
-curl "https://www.newsbeat.dev/api/v2/summary?beat_id=b_bb964843350e"
-```
-
-Or add the hosted MCP endpoint to a client that supports remote Streamable HTTP:
+Add this remote Streamable HTTP MCP endpoint to a compatible assistant:
 
 ```text
 https://www.newsbeat.dev/api/mcp
@@ -72,62 +51,87 @@ For clients that accept this configuration format:
 }
 ```
 
-Then ask: **“What happened with Nvidia? Give me a short summary and link the sources.”**
+Then ask: **“What happened with Nvidia? Give me a short update with sources and dates.”**
 
-Use the [connection guide](https://www.newsbeat.dev/connect) for setup and a live transport check. For function-calling agents, load schemas from [`/api/v2/tools`](https://www.newsbeat.dev/api/v2/tools). See the [model-loop example](examples/README.md).
+Setup varies by host. Follow the [quickstart](https://www.newsbeat.dev/docs/quickstart) or use the [connection check](https://www.newsbeat.dev/connect). A host must support custom remote MCP or an API integration; a native listing in every assistant’s directory is not implied.
 
+## Make your first API request
 
+Read recent Nvidia headlines:
+
+```bash
+curl "https://www.newsbeat.dev/api/v2/news?beat_id=b_bb964843350e"
+```
+
+Get a short headline-based update:
+
+```bash
+curl "https://www.newsbeat.dev/api/v2/summary?beat_id=b_bb964843350e"
+```
+
+Find another asset:
+
+```bash
+curl "https://www.newsbeat.dev/api/v2/topics?q=bitcoin&limit=5"
+```
+
+The primary REST base is `https://www.newsbeat.dev/api`. Use the primary domain for new integrations.
+
+## 14 agent tools
+
+| MCP tool | Purpose |
+| --- | --- |
+| `newsbeat_topics` | Find supported stocks and crypto; inspect coverage |
+| `newsbeat_news` | Read headlines with sources, dates and a cursor |
+| `newsbeat_changes` | Get newly indexed items since the previous cursor |
+| `newsbeat_brief` | Get three ranked recent headlines verbatim |
+| `newsbeat_stories` | Group similar headlines with their original reports |
+| `newsbeat_summary` | Get up to three short headline-based explanations |
+| `newsbeat_watch` | Check up to 50 assets in one request |
+| `newsbeat_ask` | Resolve an asset and gather news, prices and chain context. |
+| `newsbeat_market` | Read a sourced crypto market overview. |
+| `newsbeat_prices` | Read crypto prices by CoinGecko ID. |
+| `newsbeat_fear_greed` | Read the daily fear and greed index. |
+| `newsbeat_chain` | Read Ethereum and Solana chain state. |
+| `newsbeat_token` | Read a reference price by contract address. |
+| `newsbeat_signals` | Read funding, DEX volume and stablecoin supply. |
+
+Function-calling schemas are available at [`/api/v2/tools`](https://www.newsbeat.dev/api/v2/tools). See the [model-loop example](examples/README.md).
+
+For follow-up checks: resolve an asset, read a baseline, save its cursor, and ask for changes. Process each page before advancing the cursor, and continue while `has_more` is true. An empty page is a valid “nothing new.” Topic-bound cursors distinguish stock and crypto assets that share a ticker.
 
 ## What you can build
 
-- **Market research agents:** bring equity and crypto headlines into analysis alongside your own price data and models.
-- **Prediction-market research:** follow relevant company and crypto developments as one input to your research.
-- **Personal briefings:** ask what happened with an asset and get a short headline-based summary with sources and timestamps.
-- **Watchlist bots:** check up to 50 assets at once and pass new items into your own Telegram, Discord or other workflow.
+- **Research assistants** that bring recent stock and crypto reporting into an answer.
+- **Personal briefings** with short updates, dates and links.
+- **Watchlist workflows** that check multiple assets and forward new items to your own bot.
+- **Tokenized-asset research** that starts with news about the underlying company or cryptocurrency.
 
-NewsBeat supplies news context. It does not execute trades, provide prediction-market prices or connect to Polymarket accounts. Dedicated messaging integrations are on the roadmap.
+A separate [crypto context page](https://www.newsbeat.dev/crypto) shows sourced reference prices, sentiment, chain readings and positioning data. Its REST endpoints include `/api/v2/market`, `/api/v2/prices`, `/api/v2/sentiment`, `/api/v2/chain`, `/api/v2/token`, `/api/v2/signals` and `/api/v2/ask`. The same context is available through the MCP tools above. Each panel reports its source and age.
 
-## One API, seven tools
+## Evidence and freshness
 
-| MCP tool | What it does |
-| --- | --- |
-| `newsbeat_topics` | Find supported assets and inspect coverage |
-| `newsbeat_news` | Read headlines with sources, timestamps and a cursor |
-| `newsbeat_changes` | Get newly indexed items since your last cursor |
-| `newsbeat_brief` | Return three ranked recent headlines verbatim |
-| `newsbeat_stories` | Group similar headlines into approximate story clusters |
-| `newsbeat_summary` | Explain up to three recent stories from headlines, with source links |
-| `newsbeat_watch` | Check up to 50 assets in one request |
+NewsBeat collects English-language headline metadata through Google News RSS. Items include a headline, publisher, publication time and a link that resolves to the reporting. Full article bodies are not included.
 
-Choose an asset, read a baseline, save the cursor, then check for changes. Process each page before advancing its cursor and continue while `has_more` is true. An empty page is a valid result.
+Story grouping is approximate and preserves source reports. Ranking favors concrete developments and recency; publisher counts measure coverage, not independent corroboration or price impact.
 
-Ingestion is scheduled every 15 minutes. Responses report per-asset `freshness`, so your agent can distinguish a quiet topic from stale coverage. Items include headline metadata and links to the original reporting through Google News; full article bodies are not included.
+Summaries report `basis: "headlines_only"`, `freshness` and `coverage_truncated`. The `method` is `generated` when headline-based generation succeeds or `extractive` when original headlines are returned. Generation runs on demand through Vercel AI Gateway and falls back on failure. Read the linked reporting for details.
 
-## Free to start, open to build on
+MCP story snapshots return up to 40 ranked groups from 200 recent reports. REST scans 200 reports by default, with a configurable limit up to 500. Group IDs can change as the snapshot rolls; use article cursors to track arrivals.
 
-**Public reads are currently free during early access.** No sign-up, API key or credit card is required. Anonymous requests are rate limited to 120 per minute. Start with the public endpoint above.
+## Access
 
-Optional GitHub-issued API keys give an agent a seven-day evaluation, beginning with its first metered REST request, with up to $6 in usage credit and a higher request limit. `GET /api/keys/trial` shows the exact deadline and credit left. Expired keys receive 402; public access remains free. Stripe checkout is not live. See [current service status](docs/STATUS.md) for the exact limits and billing behavior.
+Public MCP and REST reads are free during early access, with an anonymous limit of **120 requests per minute**.
 
-The primary service is **[www.newsbeat.dev](https://www.newsbeat.dev)**:
+Optional GitHub-issued keys provide a **seven-day REST evaluation**, starting on the first metered request, with up to **$6 in usage credit** and **1,200 requests per minute**. Inspect `GET /api/keys/trial` for the deadline and remaining credit. Keyed requests stop with a 402 response after time or credit runs out; rotating a key does not restart the trial. Public access remains available without a key. Paid checkout is not live.
 
-| Interface | Primary URL |
-| --- | --- |
-| REST base | `https://www.newsbeat.dev/api` |
-| MCP | `https://www.newsbeat.dev/api/mcp` |
-| Agent instructions | `https://www.newsbeat.dev/skill.md` |
+## Roadmap
 
-The Vercel host remains available as an alternate: `https://news-beat.vercel.app/api` for REST and `https://news-beat.vercel.app/api/mcp` for MCP. New integrations should use the primary domain.
+**Available:** asset discovery, headlines, source-linked summaries, grouped stories, change tracking, batch checks, 14 MCP tools, a browser news explorer, and REST crypto context.
 
-## Building in the open
+**Planned:** verified tokenized-asset mapping, broader news search, saved-watch notifications, more connector options, and ready-to-use Telegram and Discord relays. Availability depends on implementation, configuration and each host’s supported interfaces.
 
-**Live today:** asset discovery, source-linked headlines, approximate story grouping, relevance ranking, headline-based summaries, change cursors, verbatim briefs, batched checks, seven hosted MCP tools and the web terminal.
-
-**In development:** broader news search, source-record lookup, multiple agent keys, OAuth connector support and saved-watch notifications. The work is tracked in [PR #11](https://github.com/thepeternemec/NewsBeat/pull/11) and still needs database migration, configuration and end-to-end activation before release.
-
-**Next:** Telegram and Discord relays, more service integrations, and paid access through Stripe. Platform-specific connector setup and directory submissions remain separate work; compatibility depends on each host's MCP or tool-calling support.
-
-Building something with NewsBeat? [Tell us what you need](https://github.com/thepeternemec/NewsBeat/issues/new), [suggest an integration](https://github.com/thepeternemec/NewsBeat/discussions), or [contribute](CONTRIBUTING.md). Star the repository to follow the project.
+[Current capabilities](docs/STATUS.md) · [Changelog](CHANGELOG.md) · [Suggest an integration](https://github.com/thepeternemec/NewsBeat/discussions)
 
 ## Run locally
 
@@ -142,45 +146,22 @@ npm test
 npm run dev
 ```
 
-The site runs at `http://localhost:3000`. News reads require a PostgreSQL database and cursor-signing secret; copy `.env.example` and follow [GO-LIVE.md](docs/GO-LIVE.md). Do not use production credentials for local tests.
-
-## Repository
+The site runs at `http://localhost:3000`. News reads require PostgreSQL and a cursor-signing secret; copy `.env.example` and follow [GO-LIVE.md](docs/GO-LIVE.md). Use development credentials for local work.
 
 | Directory | Purpose |
 | --- | --- |
-| `apps/web` | Next.js website, terminal and API/cron routes |
+| `apps/web` | Next.js website, news explorer, API and cron routes |
 | `apps/api` | Hono REST API, MCP transport, GitHub sign-in and rate limiting |
-| `apps/worker` | Provider ingestion, filtering and normalization |
-| `packages/contracts` | Shared schemas, asset catalog and tool definitions |
-| `packages/db` | PostgreSQL access, keys, rate limits and account billing |
+| `apps/worker` | News ingestion, filtering and normalization |
+| `packages/contracts` | Shared schemas, asset catalog and news tool definitions |
+| `packages/db` | PostgreSQL access, keys and account billing |
 | `db` | Schema and operator maintenance scripts |
 | `examples` | Function-calling adapter and OpenRouter example |
 
-## Documentation
+[Agent guide](AGENTS.md) · [Architecture](docs/ARCHITECTURE.md) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
 
-- [What changed](CHANGELOG.md)
-- [Current capabilities and limitations](docs/STATUS.md)
-- [Agent integration guide](AGENTS.md)
-- [Architecture](docs/ARCHITECTURE.md)
-- [Deployment](docs/GO-LIVE.md)
-- [Contributing](CONTRIBUTING.md)
-- [Security](SECURITY.md)
+Built in the open. [Open an issue](https://github.com/thepeternemec/NewsBeat/issues/new), contribute, or follow [@newsbeat_](https://x.com/newsbeat_).
+
+Contact: [contact@newsbeat.dev](mailto:contact@newsbeat.dev)
 
 MIT licensed. See [LICENSE](LICENSE).
-
-## How grouping, ranking and summaries work
-
-The terminal’s **Summarize headlines** button and `GET /api/v2/summary?beat_id=…` give a short, source-linked digest of up to three distinct ranked stories. Agents can call `newsbeat_summary` over MCP. The `basis` is always `headlines_only`; `method` is `generated` when generation is available or `extractive` when it displays original headlines. The original reports remain linked. Check `freshness` and `coverage_truncated` before describing the result as current or comprehensive.
-
-The terminal and `GET /api/v2/stories?beat_id=…` show one original lead per group of similar headlines, ranked by headline relevance. Expand a story in the terminal to see each report’s publisher, link and publication time. The API returns these in `lead_article` and `reports`; stored articles are retained.
-
-Matching is conservative and approximate: it uses a 24-hour window, headline overlap, and guards for changed numbers, outcomes and uncertainty. It can miss paraphrases or group unrelated reports. Publisher counts measure coverage, not independent verification.
-
-REST scans up to 200 reports by default (`limit` 1–500); `newsbeat_stories` over MCP ranks up to 40 groups from a 200-report scan. The brief selects three distinct headlines from up to 200 recent reports. The ranking heuristic favors concrete developments and recency, and downranks routine ownership notices and shopping headlines. Ranking is an explainable heuristic, not a market impact prediction. Check `coverage_truncated`. Groups are snapshot views; use `/v2/news` and `/v2/changes` cursors for article arrivals rather than treating group IDs as stable subscriptions.
-
-### Running summary generation
-
-The summarizer calls `google/gemini-2.5-flash-lite` through Vercel AI Gateway on demand. On Vercel, it uses the Function request’s OIDC token; another runtime can supply `AI_GATEWAY_API_KEY`. Keep credentials server-side. Generation uses the project owner’s Gateway allowance or credits; public access remains free during early access.
-
-Results are cached in memory for up to five minutes for the same selected report IDs. The cache is per running instance, not shared across the deployment. Generation has a 20-second timeout and falls back to original headlines on failure. The checks enforce matching story IDs, reject new numeric figures, and preserve selected uncertainty cues; they do not guarantee factual correctness. Always keep the source links and headline-only label visible.
-

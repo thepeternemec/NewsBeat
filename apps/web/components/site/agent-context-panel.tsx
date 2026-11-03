@@ -38,16 +38,16 @@ export default function AgentContextPanel({ topic, snapshot, notice, onRefresh, 
   return (
     <section className="agent-context" aria-labelledby="agent-context-title">
       <div className="agent-context-head">
-        <div><span className="agent-context-eyebrow">RESEARCH WORKSPACE / {topic.ticker}</span><h2 id="agent-context-title">From evidence to agent context.</h2><p>{topic.label} company coverage, ready for a source-linked brief.</p></div>
+        <div><span className="agent-context-eyebrow">RESEARCH WORKSPACE / {topic.ticker}</span><h2 id="agent-context-title">Bring this news to your agent.</h2><p>Recent {topic.label} coverage, ready for a source-linked brief.</p></div>
         <a href="/docs/quickstart">Connect MCP <ArrowUpRight size={14} /></a>
       </div>
       <div className="agent-context-facts">
         <div><span>Evidence</span><strong>{context ? `${context.evidence.length} grouped stories` : "Not loaded"}</strong><small>Headline metadata · rolling 24h</small></div>
         <div><span>Coverage</span><strong>{context?.coverage.status ?? "Not loaded"}</strong><small>{context?.coverage.last_success_at ? `Last collected ${new Date(context.coverage.last_success_at).toLocaleString()}` : "Collection time unavailable"}</small></div>
-        <div><span>Token identity</span><strong>Mapping unverified</strong><small>Researching the underlying company</small></div>
+        <div><span>Sources</span><strong>Linked to every story</strong><small>Publishers and publication times included</small></div>
       </div>
-      <div className="agent-context-task"><span>THE RESEARCH JOB</span><p>What changed, what supports or challenges your thesis, and what still needs checking? Export the evidence and a prompt that asks your agent to answer with citations.</p></div>
-      {context ? <p className="agent-context-note">{context.coverage.truncated ? "Partial snapshot: the API grouped the latest 200 reports. " : ""}{context.evidence.length === 0 ? "No reports in this snapshot. This does not establish that nothing happened. " : ""}Captured {new Date(context.captured_at).toLocaleString()}. Recheck freshness before using it for a new decision. Token quotes, liquidity and execution are not connected.</p> : <p className="agent-context-note" role="status">{notice}</p>}
+      <div className="agent-context-task"><span>YOUR NEXT QUESTION</span><p>What changed, what supports or challenges your thesis, and what still needs checking? Export the evidence and a prompt that asks your agent to answer with citations.</p></div>
+      {context ? <p className="agent-context-note">{context.coverage.truncated ? "Partial snapshot: the API grouped the latest 200 reports. " : ""}{context.evidence.length === 0 ? "No reports in this snapshot. This does not establish that nothing happened. " : ""}Captured {new Date(context.captured_at).toLocaleString()}. Recheck freshness before using it for a new decision.</p> : <p className="agent-context-note" role="status">{notice}</p>}
       <div className="agent-context-actions">
         <button type="button" className="agent-context-primary" disabled={!context} onClick={copyBrief}>{feedback.startsWith("Research brief copied") ? <Check size={15} /> : <Copy size={15} />} Copy research brief</button>
         <button type="button" disabled={!context} onClick={download}><Download size={15} /> Download JSON</button>

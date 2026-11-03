@@ -4,7 +4,7 @@ import DocsDeveloperStart from "@/components/site/docs-developer-start";
 
 export const metadata = {
   title: "NewsBeat docs — Build with market context",
-  description: "Connect to company and crypto news through MCP and REST. Copy working requests, discover seven agent tools, and track changes with sources and freshness.",
+  description: "Connect to stock and crypto news through MCP and REST. Copy working requests, discover 14 agent tools, and track changes with sources and freshness.",
 };
 
 const QUESTIONS = [
@@ -21,7 +21,7 @@ export default function DocsOverview() {
         <span className="sec-eyebrow">NEWSBEAT / DEVELOPER DOCS</span>
         <h1>Build with<br />market context.</h1>
         <p className="docs-lead">
-          Give your agent company and crypto news through MCP or REST. Discover an asset,
+          Give your agent stock and crypto news through MCP or REST. Discover an asset,
           retrieve the reporting, and ask what changed. Keep sources and freshness in every answer.
         </p>
         <div className="docs-free-note"><Check size={14} aria-hidden="true" /> Free public access <span>·</span> No account, key or card</div>
@@ -29,7 +29,7 @@ export default function DocsOverview() {
 
       <section className="docs-section" aria-labelledby="developer-quickstart">
         <h2 id="developer-quickstart">Your first request.</h2>
-        <p>Try a public catalog lookup or add the remote MCP server to your client. Seven tools are available; news is collected on a fifteen-minute schedule.</p>
+        <p>Try a public catalog lookup or add the remote MCP server to your client. 14 tools are available; news is collected on a fifteen-minute schedule.</p>
         <DocsDeveloperStart />
       </section>
 
@@ -57,7 +57,7 @@ export default function DocsOverview() {
       <section className="docs-section" aria-labelledby="how-it-works">
         <h2 id="how-it-works">One question. Useful context.</h2>
         <ol className="docs-flow">
-          <li><span>01</span><div><h3>You ask in your own words</h3><p>A company name is enough. Your agent finds the matching company or crypto asset.</p></div></li>
+          <li><span>01</span><div><h3>You ask in your own words</h3><p>A company name is enough. Your agent finds the matching stock or crypto asset.</p></div></li>
           <li><span>02</span><div><h3>Your agent checks NewsBeat</h3><p>It retrieves headlines or a short headline-based summary, with publishers and dates.</p></div></li>
           <li><span>03</span><div><h3>The news becomes part of your answer</h3><p>Your agent explains what was reported and how fresh the coverage is. Follow up when you need more.</p></div></li>
         </ol>
@@ -78,7 +78,7 @@ export default function DocsOverview() {
       <section className="docs-section" aria-labelledby="what-to-expect">
         <h2 id="what-to-expect">Know what you’re getting</h2>
         <div className="docs-facts">
-          <div><h3>Company and crypto coverage</h3><p>The catalog includes 1,528 US-listed equities and 502 crypto assets. <a href="/docs/try">Search the live catalog</a> to check your company.</p></div>
+          <div><h3>Stock and crypto coverage</h3><p>The catalog includes 1,528 US-listed equities and 502 crypto assets. <a href="/docs/try">Search the live catalog</a> to check your company.</p></div>
           <div><h3>Headlines, with context</h3><p>NewsBeat uses English-language headline metadata. Summaries are based on headlines; full article text is not included.</p></div>
           <div><h3>A clear freshness signal</h3><p>Source checks are scheduled every fifteen minutes. Check times and publication dates help your agent explain when coverage is delayed.</p></div>
           <div><h3>News when you ask</h3><p>NewsBeat responds to lookups. Recurring briefings need scheduling in your assistant or workflow. Built-in alerts are still in development.</p></div>

@@ -16,7 +16,7 @@ const ASSETS = [
 type Mission = "brief" | "changes" | "challenge";
 const MISSIONS: Array<{ id: Mission; title: string; short: string }> = [
   { id: "brief", title: "Catch me up", short: "The latest context" },
-  { id: "changes", title: "What changed?", short: "New since a cursor" },
+  { id: "changes", title: "What changed?", short: "Since your last check" },
   { id: "challenge", title: "Test a thesis", short: "Evidence for and against" },
 ];
 
@@ -27,7 +27,7 @@ const STEPS: Record<Mission, [string, string, string]> = {
 };
 
 export default function MissionBuilder() {
-  const [ticker, setTicker] = useState<(typeof ASSETS)[number]["ticker"]>("BTC");
+  const [ticker, setTicker] = useState<(typeof ASSETS)[number]["ticker"]>("NVDA");
   const [mission, setMission] = useState<Mission>("brief");
   const [thesis, setThesis] = useState("");
   const asset = ASSETS.find(item => item.ticker === ticker)!;
@@ -49,14 +49,14 @@ export default function MissionBuilder() {
   ].filter(Boolean).join("\n\n");
 
   return (
-    <aside className="mission-builder" aria-label="Build a research mission for your agent">
-      <div className="mission-top"><span><i aria-hidden="true" /> NEWSBEAT / MISSION CONTROL</span><span>RESEARCH MODE</span></div>
+    <aside className="mission-builder" aria-label="Build a research prompt for your agent">
+      <div className="mission-top"><span><i aria-hidden="true" /> NEWSBEAT / PROMPT BUILDER</span><span>TRY A QUESTION</span></div>
       <div className="mission-body">
-        <div className="mission-heading"><span>01 / PICK YOUR MARKET</span><strong>Give your agent a job.</strong><p>Start with an asset and a question. Bring the brief into your connected assistant.</p></div>
+        <div className="mission-heading"><span>01 / CHOOSE AN ASSET</span><strong>What would you like to know?</strong><p>Pick a stock or crypto asset and a question. Copy the prompt to your connected assistant.</p></div>
         <div className="mission-assets" role="group" aria-label="Choose an asset">
           {ASSETS.map(item => <button type="button" key={item.ticker} aria-pressed={ticker === item.ticker} onClick={() => setTicker(item.ticker)}>{item.ticker}</button>)}
         </div>
-        <span className="mission-label">02 / CHOOSE THE RESEARCH JOB</span>
+        <span className="mission-label">02 / CHOOSE YOUR QUESTION</span>
         <div className="mission-options" role="group" aria-label="Choose a research job">
           {MISSIONS.map(item => <button type="button" key={item.id} aria-pressed={mission === item.id} onClick={() => setMission(item.id)}><strong>{item.title}</strong><small>{item.short}</small></button>)}
         </div>
@@ -71,8 +71,8 @@ export default function MissionBuilder() {
           <ol>{STEPS[mission].map((step, index) => <li key={step}><span>0{index + 1}</span>{step}<Check size={13} aria-hidden="true" /></li>)}</ol>
           <details className="mission-prompt"><summary>Inspect the full prompt</summary><pre>{prompt}</pre></details>
         </div>
-        <div className="mission-actions"><CopyButton text={prompt} label="Copy agent mission" /><a href="/docs/quickstart">Connect MCP <ArrowUpRight size={14} aria-hidden="true" /></a></div>
-        <p className="mission-note">The mission runs in your connected agent. NewsBeat supplies sources and freshness; your agent prepares the answer.</p>
+        <div className="mission-actions"><CopyButton text={prompt} label="Copy research prompt" /><a href="/docs/quickstart">Connect MCP <ArrowUpRight size={14} aria-hidden="true" /></a></div>
+        <p className="mission-note">Copying a prompt does not run a lookup. Connect NewsBeat in your assistant, then paste the prompt to start.</p>
       </div>
     </aside>
   );

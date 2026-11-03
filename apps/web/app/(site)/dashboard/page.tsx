@@ -12,7 +12,7 @@ const CLUSTER_LIMIT = 10;
  * The tickers a visitor most likely wants. Everything else is one search away.
  * Chosen for recognition, not for volume.
  */
-const POPULAR = ["NVDA", "AAPL", "MSFT", "TSLA", "GOOGL", "AMZN", "META", "AMD", "NFLX", "AVGO"];
+const POPULAR = ["NVDA", "AAPL", "MSFT", "TSLA", "GOOGL", "BTC", "ETH", "SOL", "AMZN", "AMD"];
 import SignalField from "@/components/signal-field";
 import FluidTabs from "@/components/ui/fluid-tabs/fluid-tabs";
 import {
@@ -298,7 +298,7 @@ export default function Dashboard() {
           <div>
             <span className="sec-eyebrow">NewsBeat / Intelligence terminal</span>
             <h1 style={{ margin: 0, fontSize: "clamp(30px, 4vw, 44px)", lineHeight: 1.05, letterSpacing: "-0.035em", color: "var(--text-primary)", fontWeight: 600 }}>
-              Research the underlying asset.
+              Follow stocks and crypto.
             </h1>
           </div>
           <span style={{ font: "11px var(--font-mono), monospace", color: "var(--text-ghost)" }}>
@@ -332,7 +332,7 @@ export default function Dashboard() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder={`Search ${catalogTotal || topics.length} tickers or companies…`}
-                aria-label="Search tickers"
+                aria-label="Search stocks and crypto"
                 onKeyDown={(event) => {
                   if (event.key !== "Enter") return;
                   event.preventDefault();
@@ -366,17 +366,17 @@ export default function Dashboard() {
           <div className="metrics-grid">
             <div>
               <div className="metric-num">{catalogTotal || "\u2026"}</div>
-              <div className="metric-label">Equities and cryptos tracked</div>
+              <div className="metric-label">Stocks and crypto tracked</div>
             </div>
             <div>
               <div className="metric-num">{catalogTotal ? carrying : "\u2026"}</div>
               <div className="metric-label">
-                Carrying articles{carrying ? ` \u00b7 ${carryingPct}% of the catalog` : ""}
+                With news coverage{carrying ? ` \u00b7 ${carryingPct}% of the catalog` : ""}
               </div>
             </div>
             <div>
               <div className="metric-num">{topics.length ? movedRecently.toLocaleString() : "\u2026"}</div>
-              <div className="metric-label">Articles moved in the last 12h</div>
+              <div className="metric-label">Articles collected in the last 12h</div>
             </div>
             <div>
               <div className="metric-num" style={{ fontFamily: "var(--font-mono)", fontSize: 22 }}>
@@ -392,7 +392,7 @@ export default function Dashboard() {
             </div>
           </div>
           <p className="hero-tiny" style={{ marginTop: 30 }}>
-            Company and crypto news coverage · token contracts are not mapped · no wallet needed
+            Source-linked headlines · refreshed on a 15-minute schedule · free to explore
           </p>
         </div>
 

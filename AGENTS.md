@@ -1,6 +1,6 @@
 # NewsBeat for agents
 
-The integration guide for agents. For people: [connect your assistant](https://www.newsbeat.dev/docs/quickstart) and ask a company-news question in your own words.
+The integration guide for agents. For people: [connect your assistant](https://www.newsbeat.dev/docs/quickstart) and ask a stock or crypto news question in your own words.
 
 ## When to check the news
 
@@ -15,14 +15,13 @@ Tool selection and permission belong to the host. A lookup during an authorized 
 You send a topic and a cursor, and receive either **"nothing moved"** or **a small pack of cited
 stories** that appeared since that cursor.
 
-## What it is not
+## How the feed works
 
-- **Not a search engine.** You do not send a query and get ranked results. You send a topic you
-  already chose.
-- **Not a feed.** You do not read everything. You ask whether there is anything new.
-- **Not a source of article text.** Items carry a headline, a link and the publisher's name.
-  There is no `body` field at any price. The link goes to the article; the story is not ours to
-  reproduce.
+Resolve a supported stock or crypto asset from the catalog, read its recent headlines,
+and save the returned cursor to retrieve new arrivals on the next authorized check.
+Items carry a headline, a link and the publisher's name; full article text stays with
+the publisher. General news search is planned. Verified mapping from token contracts
+to underlying stocks is planned separately from current contract-price lookups.
 
 ## The canonical loop
 
@@ -49,6 +48,8 @@ Every response carries a new cursor. Use the newest one, always for the same top
 6. **Check `freshness` before claiming currency.** A topic can be `stale` or `unavailable`.
 
 ## Endpoints
+
+There are 14 read-only MCP tools: seven news operations plus seven asset and crypto context operations. All are also available through REST; their routes are listed below.
 
 Base: `https://www.newsbeat.dev/api`
 
