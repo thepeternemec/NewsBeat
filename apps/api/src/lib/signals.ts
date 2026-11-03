@@ -37,8 +37,6 @@ export const SIGNAL_TTL = {
   stablecoins: 30 * 60_000,
 } as const;
 
-const FUNDING_SYMBOLS = ["BTCUSDT", "ETHUSDT", "SOLUSDT"] as const;
-
 async function getJson<T>(url: string): Promise<T> {
   const response = await fetch(url, {
     signal: AbortSignal.timeout(TIMEOUT_MS),
@@ -58,8 +56,16 @@ function freshness(fetchedAt: number, ttlMs: number, cadence: string) {
   };
 }
 
+/** Funding runs every eight hours on both venues, so three settlements a day. */
+const SETTLEMENTS_PER_DAY = 3;
+
+const PAIRS = [
+  { symbol: "BTCUSDT", okx: "BTC-USDT-SWAP" },
+  { symbol: "ETHUSDT", okx: "ETH-USDT-SWAP" },
+  { symbol: "SOLUSDT", okx: "SOL-USDT-SWAP" },
+] as const;
+
 interface RawPremium {
-  symbol: string;
   markPrice: string;
   lastFundingRate: string;
   nextFundingTime: number;
@@ -69,38 +75,89 @@ interface RawInterest {
   openInterest: string;
 }
 
-/** Funding runs every eight hours on Binance, so three settlements a day. */
-const SETTLEMENTS_PER_DAY = 3;
+interface OkxEnvelope<T> {
+  data: T[];
+}
+
+interface OkxFunding {
+  fundingRate: string;
+  nextFundingTime: string;
+}
+
+interface OkxMark {
+  markPx: string;
+}
+
+/**
+ * Binance first, OKX second.
+ *
+ * Binance blocks some hosting regions and Vercel runs in one of them: the endpoint answers
+ * 200 from a European laptop and refused from the deployment, so funding came back
+ * unavailable in production while passing every local test. A single venue is a single
+ * point of failure for a whole signal, so the second provider is not a nicety.
+ */
+async function fundingFromBinance(): Promise<FundingRate[]> {
+  const rates: FundingRate[] = [];
+  for (const pair of PAIRS) {
+    try {
+      const premium = await getJson<RawPremium>(`https://fapi.binance.com/fapi/v1/premiumIndex?symbol=${pair.symbol}`);
+      const rate = Number(premium.lastFundingRate);
+      let openInterest: number | undefined;
+      try {
+        const interest = await getJson<RawInterest>(`https://fapi.binance.com/fapi/v1/openInterest?symbol=${pair.symbol}`);
+        openInterest = Number(interest.openInterest);
+      } catch {
+        // Open interest is a bonus; the rate is the signal.
+      }
+      rates.push({
+        symbol: pair.symbol,
+        rate,
+        annualised: rate * SETTLEMENTS_PER_DAY * 365,
+        mark_price: Number(premium.markPrice),
+        next_funding_at: new Date(premium.nextFundingTime).toISOString(),
+        ...(openInterest === undefined ? {} : { open_interest: openInterest }),
+      });
+    } catch {
+      // One symbol failing should not empty the list.
+    }
+  }
+  if (rates.length === 0) throw new Error("binance funding unavailable");
+  return rates;
+}
+
+async function fundingFromOkx(): Promise<FundingRate[]> {
+  const rates: FundingRate[] = [];
+  for (const pair of PAIRS) {
+    try {
+      const [funding, mark] = await Promise.allSettled([
+        getJson<OkxEnvelope<OkxFunding>>(`https://www.okx.com/api/v5/public/funding-rate?instId=${pair.okx}`),
+        getJson<OkxEnvelope<OkxMark>>(`https://www.okx.com/api/v5/public/mark-price?instType=SWAP&instId=${pair.okx}`),
+      ]);
+      if (funding.status === "rejected" || !funding.value.data[0]) continue;
+      const rate = Number(funding.value.data[0].fundingRate);
+      const markPrice = mark.status === "fulfilled" ? Number(mark.value.data[0]?.markPx ?? 0) : 0;
+      rates.push({
+        symbol: pair.symbol,
+        rate,
+        annualised: rate * SETTLEMENTS_PER_DAY * 365,
+        mark_price: markPrice,
+        next_funding_at: new Date(Number(funding.value.data[0].nextFundingTime)).toISOString(),
+      });
+    } catch {
+      // Keep going.
+    }
+  }
+  if (rates.length === 0) throw new Error("okx funding unavailable");
+  return rates;
+}
 
 export async function fundingRates(): Promise<Sourced<FundingRate[]>> {
   const cached = await upstreamCache.read("signals:funding", SIGNAL_TTL.funding, async () => {
-    const results = await Promise.allSettled(
-      FUNDING_SYMBOLS.map(async (symbol) => {
-        const [premium, interest] = await Promise.allSettled([
-          getJson<RawPremium>(`https://fapi.binance.com/fapi/v1/premiumIndex?symbol=${symbol}`),
-          getJson<RawInterest>(`https://fapi.binance.com/fapi/v1/openInterest?symbol=${symbol}`),
-        ]);
-        if (premium.status === "rejected") throw premium.reason;
-        const rate = Number(premium.value.lastFundingRate);
-        return {
-          symbol,
-          rate,
-          annualised: rate * SETTLEMENTS_PER_DAY * 365,
-          mark_price: Number(premium.value.markPrice),
-          next_funding_at: new Date(premium.value.nextFundingTime).toISOString(),
-          ...(interest.status === "fulfilled" ? { open_interest: Number(interest.value.openInterest) } : {}),
-        } satisfies FundingRate;
-      }),
-    );
-
-    const rates: FundingRate[] = [];
-    for (const result of results) {
-      if (result.status === "fulfilled") rates.push(result.value);
+    try {
+      return await fundingFromBinance();
+    } catch {
+      return fundingFromOkx();
     }
-
-    // One symbol failing should not empty the list; all of them failing is an outage.
-    if (rates.length === 0) throw new Error("no funding rates available");
-    return rates;
   });
 
   return {
