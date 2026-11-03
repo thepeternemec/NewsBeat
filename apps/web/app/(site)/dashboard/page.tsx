@@ -4,9 +4,6 @@ import InteriorPage from "@/components/site/interior-page";
 import SiteNav from "@/components/site/site-nav";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import MarketPulse from "@/components/site/market-pulse";
-import ChainPulseStrip from "@/components/site/chain-pulse";
-import SignalsStrip from "@/components/site/signals-strip";
 
 /** Clusters to load articles for. One request each, so this stays small. */
 const CLUSTER_LIMIT = 10;
@@ -426,11 +423,6 @@ export default function Dashboard() {
               </div>
             </div>
 
-            {activeTopic && <AgentContextPanel key={activeTopic.beat_id} topic={activeTopic}
-              snapshot={researchSnapshot} notice={feedNotice}
-              onRefresh={() => setRefreshNonce(value => value + 1)}
-              loading={feedNotice === "Loading news…"} />}
-
             <div className="mock" style={{ marginTop: 18 }}>
               <div className="mock-bar">
                 <span className="mock-dots"><span /><span /><span /></span>
@@ -483,6 +475,11 @@ export default function Dashboard() {
                 </div>
               )}
             </div>
+
+            {activeTopic && <AgentContextPanel key={activeTopic.beat_id} topic={activeTopic}
+              snapshot={researchSnapshot} notice={feedNotice}
+              onRefresh={() => setRefreshNonce(value => value + 1)}
+              loading={feedNotice === "Loading news…"} />}
           </>
         ) : (
           <div className="mock" style={{ marginTop: 40 }}>
@@ -565,13 +562,6 @@ export default function Dashboard() {
             )}
           </div>
         )}
-
-        {/* Everything below is polled context rather than news. It sits at the
-            bottom because a reader opening a news terminal wants headlines first. */}
-        <h2 className="terminal-subhead">Market &amp; chain</h2>
-        <MarketPulse />
-        <ChainPulseStrip />
-        <SignalsStrip />
       </InteriorPage>
 
       <footer className="site">
