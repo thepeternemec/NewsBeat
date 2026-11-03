@@ -287,3 +287,22 @@ create table if not exists public.newsbeat_intelligence_revisions (
   signal jsonb not null,
   primary key (event_id, version)
 );
+
+
+-- Contextual signal construction and idempotent review-alert journal.
+alter table public.newsbeat_intelligence_jobs add column if not exists pipeline_version text;
+alter table public.newsbeat_intelligence_jobs add column if not exists last_attempt_version text;
+create table if not exists public.newsbeat_signal_alerts (
+  id text primary key,
+  beat_id text not null,
+  event_id text not null references public.newsbeat_intelligence_events(id),
+  signal_version integer not null check (signal_version > 0),
+  context_id text not null check (context_id in ('fundamentals', 'liquidity', 'risk')),
+  triggered_at timestamptz not null default now(),
+  resolved_at timestamptz,
+  resolution text,
+  construction jsonb not null,
+  unique (event_id, context_id, signal_version)
+);
+create index if not exists newsbeat_signal_alerts_asset_context_time_idx
+  on public.newsbeat_signal_alerts (beat_id, context_id, triggered_at desc);

@@ -4,7 +4,7 @@ Updated **2026-11-03** from the current main-branch implementation. Counts descr
 
 ## Product direction
 
-NewsBeat is building meaningful signals for AI agents. The source-linked news foundation is live; a first general event-intelligence pilot is implemented for six assets. Task-specific relevance, broader context and stronger verification remain planned. Stocks and crypto describe coverage. [Read the product direction](INTELLIGENCE.md).
+NewsBeat is building meaningful signals for AI agents. The source-linked news foundation is live; a first general signal-construction pilot is implemented for six assets. Task-specific relevance, broader context and stronger verification remain planned. Stocks and crypto describe coverage. [Read the product direction](INTELLIGENCE.md).
 
 ## Current main branch
 
@@ -76,3 +76,7 @@ npm test
 Check `/api/health`, `/api/v2/topics?limit=5`, `/api/v2/news?beat_id=b_bb964843350e`, and `/api/v2/summary?beat_id=b_bb964843350e` on the target deployment. Confirm the summary’s method, source links, freshness and coverage limit. Use the connection screen for a live MCP round-trip check. Never test billing or destructive maintenance against production accounts merely to validate a preview.
 
 Update this file and the README whenever capabilities change.
+
+## Contextual signal construction
+
+The six-asset pilot adds three decision contexts, market-channel hypotheses, observable trigger evidence, invalidation and explicit reasons to wait. Deterministic checks gate review alerts; an idempotent journal records qualifying versions and closes earlier alerts when a premise is revised. REST and the existing MCP intelligence tool expose constructions and review-alert records. Price reaction is unmeasured; historical calibration, custom contexts and notification delivery remain planned.

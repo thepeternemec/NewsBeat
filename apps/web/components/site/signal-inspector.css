@@ -40,3 +40,21 @@
 .signal-inspector-foot>span{display:block}
 .signal-inspector-foot p{font:11px/1.8 var(--font-sans);margin:8px 0 0}
 @media(max-width:600px){.signal-inspector>header,.signal-inspector-asset,.signal-inspector-foot{padding:18px}.signal-inspector-toolbar{padding:10px 18px}.signal-inspector-notices{padding:0 18px}.inspected-event{padding:0 18px}.inspected-event h3{font-size:18px}.inspected-event h4{font-size:15px}.inspected-event p{font-size:13px}}
+
+.signal-inspector-context{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:0 24px 18px;border-bottom:1px solid var(--border-default)}
+.signal-inspector-context label{font-size:12px;color:var(--text-secondary)}
+.signal-inspector-context select{max-width:66%;min-height:40px;padding:8px 28px 8px 12px;border:1px solid var(--border-strong);border-radius:6px;color:var(--text-primary);background:var(--bg-raised);font:12px var(--font-mono)}
+.signal-context-objective{margin:0;padding:0 24px 16px;font-size:12px;line-height:1.7;color:var(--text-secondary)}
+.signal-decision{padding:16px 18px;border:1px solid var(--border-strong);border-left:3px solid var(--text-secondary);border-radius:6px;margin-bottom:20px;background:color-mix(in srgb,var(--text-primary) 3%,transparent)}
+.signal-decision[data-state="alert"]{border-left-color:var(--text-primary)}
+.signal-decision>span{font:10px/1.6 var(--font-mono);letter-spacing:.04em;color:var(--text-secondary)}
+.signal-decision h3{font-size:19px;margin:8px 0}
+.signal-decision p{font-size:12px}
+.signal-market-tags{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0;font:10px/1.6 var(--font-mono);color:var(--text-secondary)}
+.signal-market-tags>span{padding:3px 6px;border:1px solid var(--border-default);border-radius:4px}
+.signal-trigger-quote{border-left:1px solid var(--border-strong);padding-left:12px}
+.signal-trigger-quote>span{display:block;font:10px/1.8 var(--font-mono);margin-top:5px}
+.signal-gates li>strong{font-size:12px;font-weight:500;color:var(--text-primary)}
+.signal-gates li>p{font-size:12px;margin-top:3px}
+.signal-alert-record{font-size:11px!important;padding-bottom:16px;overflow-wrap:anywhere}
+@media(max-width:600px){.signal-inspector-context{padding:0 18px 18px}.signal-context-objective{padding:0 18px 16px}.signal-decision{padding:14px}.signal-inspector-context select{font-size:11px}}

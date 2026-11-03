@@ -11,7 +11,7 @@ import "./crypto-community.css";
 import "./newsbeat-polish.css";
 import "./intelligence.css";
 
-const DESCRIPTION = "NewsBeat is building meaningful signals for AI agents: what changed, why it may matter, and what to investigate next. Source-linked news is the foundation.";
+const DESCRIPTION = "NewsBeat constructs contextual signals for AI agents: potential market drivers, observable triggers and clear conditions for alerts across stocks and crypto.";
 const TITLE = "NewsBeat — Meaningful signals for AI agents";
 export const metadata = {
   title: TITLE, description: DESCRIPTION,
@@ -21,9 +21,9 @@ export const metadata = {
 };
 const MCP_URL = "https://www.newsbeat.dev/api/mcp";
 const SIGNAL_QUESTIONS = [
-  { number: "01", title: "What actually changed?", text: "Identify a reported development, preserve its sources, and distinguish new information from repeated coverage." },
-  { number: "02", title: "Why might it matter?", text: "Connect the development to the entities, questions and decisions an agent is working on." },
-  { number: "03", title: "What needs attention?", text: "Surface the evidence, possible implications, uncertainty and useful follow-up questions." },
+  { number: "01", title: "What could move the market?", text: "Connect a development to demand, revenue, liquidity or risk. Explain the transmission mechanism and what remains unknown." },
+  { number: "02", title: "What would trigger an alert?", text: "Set a context and an observable condition. Test relevance, materiality, freshness and new evidence before raising an alert." },
+  { number: "03", title: "When should the view change?", text: "State what would invalidate the hypothesis, why the market may ignore it, and when the agent should keep watching or reassess." },
 ];
 
 export default function Home() {
@@ -36,38 +36,38 @@ export default function Home() {
           <div className="bs-hero-copy">
             <span className="bs-kicker"><span /> AGENT INTELLIGENCE</span>
             <h1>Meaningful signals.<br /><span>Built for agents.</span></h1>
-            <p className="bs-lede">Help your agent understand what changed, why it may matter, and what deserves attention. NewsBeat is building an intelligence layer on top of source-linked market news.</p>
+            <p className="bs-lede">Connect what’s happening to what could move a market. NewsBeat constructs signals from news and context, with clear conditions for an alert, a reassessment, or a reason to keep watching.</p>
             <div className="hero-cta">
               <a className="btn-primary" href="/intelligence">Explore intelligence <ArrowRight size={16} /></a>
               <a className="bs-text-link" href="#agent-workflow">Watch the agent flow <ArrowRight size={16} /></a>
             </div>
-            <p className="ni-stage-note">Event intelligence is live in a six-asset pilot.</p>
+            <p className="ni-stage-note">Contextual signal construction for stocks and crypto. First pilot.</p>
           </div>
           <div className="ni-hero-model"><IntelligenceModel /></div>
         </div>
       </section>
 
       <section className="ni-value-strip" aria-label="Principles for agent intelligence">
-        <div className="wrap"><span>Relevant to the task</span><span>Grounded in evidence</span><span>Clear about uncertainty</span></div>
+        <div className="wrap"><span>Context before conviction</span><span>Conditions before alerts</span><span>Evidence at every step</span></div>
       </section>
 
       <section className="scaffold" id="thesis">
         <div className="wrap">
           <div className="bs-section-head">
             <span className="bs-kicker">WHAT MAKES A SIGNAL USEFUL</span>
-            <h2 className="bs-title">Context an agent<br />can reason with.</h2>
-            <p className="bs-body">A meaningful signal connects a reported change to a question worth investigating. This is the intelligence we’re building toward.</p>
+            <h2 className="bs-title">Construct the signal.<br />Test the context.</h2>
+            <p className="bs-body">A signal needs a market hypothesis, supporting evidence and a condition worth acting on. Better context helps an agent decide when to pay attention and when to wait.</p>
           </div>
           <div className="bs-principles">{SIGNAL_QUESTIONS.map(item => <article key={item.number}><span>{item.number}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
-          <p className="ni-section-note">The pilot adds event memory, conditional implications and next checks. Task-specific relevance remains planned.</p>
+          <p className="ni-section-note">First pilot: six assets, three decision contexts and explicit review-alert conditions.</p>
         </div>
       </section>
 
       <section className="bs-crypto" id="agent-workflow" aria-labelledby="workflow-title">
         <div className="wrap">
           <div className="bs-crypto-head">
-            <div><span className="bs-kicker">THE NEWS-TO-AGENT LOOP</span><h2 id="workflow-title">News comes in.<br /><span>Context moves forward.</span></h2></div>
-            <div className="bs-crypto-intro"><p>Follow reporting into NewsBeat, see an event take shape, then watch the context reach an agent. Select a step to explore it.</p><a className="bs-text-link" href="/intelligence">Inspect real event intelligence <ArrowUpRight size={17} /></a></div>
+            <div><span className="bs-kicker">THE NEWS-TO-AGENT LOOP</span><h2 id="workflow-title">News comes in.<br /><span>Signals take shape.</span></h2></div>
+            <div className="bs-crypto-intro"><p>Follow reporting into market context, then see a signal tested before it reaches an agent. Select a step to explore the construction.</p><a className="bs-text-link" href="/intelligence">Open the signal workbench <ArrowUpRight size={17} /></a></div>
           </div>
           <CryptoLoop />
         </div>
@@ -77,13 +77,13 @@ export default function Home() {
         <div className="wrap ni-roadmap">
           <div className="bs-section-head">
             <span className="bs-kicker">WHERE NEWSBEAT IS GOING</span>
-            <h2 className="bs-title">From reporting<br />to understanding.</h2>
-            <p className="bs-body">The first pilot interprets reported developments and keeps event memory. The next stage connects those developments to the task an agent is working on.</p>
+            <h2 className="bs-title">From context<br />to a decision.</h2>
+            <p className="bs-body">The first layer constructs a hypothesis and tests it against a decision context. The next stage measures market response and learns which conditions produce useful signals.</p>
             <a className="bs-text-link" href="/intelligence">Read the intelligence roadmap <ArrowUpRight size={16} /></a>
           </div>
           <div className="ni-roadmap-cards">
-            <article><span className="ni-state">Live pilot</span><h3>Events with a reason to investigate.</h3><p>Reported changes, possible implications, evidence and follow-up checks for NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum.</p></article>
-            <article><span className="ni-state ni-state-planned">Planned intelligence</span><h3>Meaningful signals for the task.</h3><p>Event context, connections across developments, relevance to an agent’s question, possible implications and explicit uncertainty.</p></article>
+            <article><span className="ni-state">Live pilot</span><h3>Signals with explicit conditions.</h3><p>Market-impact hypotheses, observable triggers, invalidation and review alerts for NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum.</p></article>
+            <article><span className="ni-state ni-state-planned">Next stage</span><h3>Market confirmation and calibration.</h3><p>Price and benchmark response, historical comparisons and tested thresholds to improve when a signal deserves attention.</p></article>
           </div>
         </div>
       </section>
@@ -93,7 +93,7 @@ export default function Home() {
           <div className="nb-connect-copy">
             <span className="bs-kicker"><Code2 size={13} /> BRING THE CONTEXT TO YOUR AGENT</span>
             <h2 className="bs-title">Keep your agent<br />in the loop.</h2>
-            <p className="bs-body">Read stored event interpretations and original reporting through MCP or REST. Bring changes, possible implications and follow-up checks into your agent’s workflow.</p>
+            <p className="bs-body">Read constructed signals through MCP or REST. Give your agent the market hypothesis, trigger conditions, evidence and a clear reason to review, watch or reassess.</p>
             <div className="bs-build-links"><a className="btn-primary" href="/docs/quickstart">Connect your agent <ArrowRight size={15} /></a><a className="bs-text-link" href="/docs">Developer docs <ArrowUpRight size={15} /></a></div>
           </div>
           <div className="ni-connect-panel">
@@ -110,7 +110,7 @@ export default function Home() {
           <span className="bs-kicker">NEWSBEAT / AGENT INTELLIGENCE</span>
           <h2 id="closing-title">Build agents<br />that stay informed.</h2>
           <div className="hero-cta"><a className="btn-primary" href="/docs/quickstart">Connect to NewsBeat <ArrowRight size={16} /></a><a className="bs-text-link" href="https://github.com/thepeternemec/NewsBeat" target="_blank" rel="noopener noreferrer">Follow the build <ArrowUpRight size={15} /></a></div>
-          <p className="bs-closing-fine">Event intelligence pilot live · MCP + REST</p>
+          <p className="bs-closing-fine">Signal construction · Contextual review alerts · MCP + REST</p>
         </div>
       </section>
     </main>

@@ -208,3 +208,8 @@ test("the advertising documents name at least the core routes", () => {
     assert.ok(mentions.length > 0, `${file} names no API routes at all`);
   }
 });
+
+test("unknown signal contexts are rejected before analysis is read", async () => {
+  const response = await app.request("/v2/intelligence?beat_id=b_bb964843350e&context=invented");
+  assert.equal(response.status, 400);
+});

@@ -2,9 +2,17 @@
 
 The integration guide for agents. For people: [connect your assistant](https://www.newsbeat.dev/docs/quickstart) and ask a stock or crypto news question in your own words.
 
-## First event-intelligence pilot
+## First contextual-signal pilot
 
 For NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum, call `newsbeat_intelligence` or `GET /v2/intelligence?beat_id=` to read stored event interpretations. These include an exact reported change, named entities, conditional implications with mechanisms, uncertainty, next checks and persistent event IDs. Reads do not run a model. Check pilot/status, analysis timestamps, source freshness and partial coverage; pending or unavailable output can include older event memory. This remains model inference from headlines, not verified causality. Other assets continue to use the news foundation.
+
+## Contextual signal construction
+
+Use `newsbeat_intelligence` with a `beat_id` and an optional `context`: `fundamentals`, `liquidity` or `risk`. REST accepts `GET /v2/intelligence?beat_id=...&context=fundamentals`. The response adds `context`, `constructions` and an `alerts` journal while preserving `signals`.
+
+A construction explains the proposed market channel, direction, qualitative materiality, time horizon, observable trigger, invalidation and why a development may not move the market. Explicit checks return `review_now`, `keep_watching`, `no_alert` or `reassess`. Context mismatch, stale/pending analysis, old trigger reports, unobserved conditions and repeat coverage block new review alerts. Alert IDs are stable for a context and interpretation version; track them to avoid repeated notifications in your own authorized workflow.
+
+The pilot records review alerts. Delivery integrations, custom strategy contexts, price/benchmark confirmation, historical comparisons and calibrated thresholds are future work. `market_reaction.status` is `unmeasured`; a model hypothesis does not establish that a price moved. Check original reporting before relying on a trigger.
 
 ## Product direction and current capability
 
@@ -57,7 +65,7 @@ Every response carries a new cursor. Use the newest one, always for the same top
 
 ## Endpoints
 
-There are 15 read-only MCP tools: seven news operations, seven asset/crypto context operations and the event-intelligence pilot. All are also available through REST; their routes are listed below.
+There are 15 read-only MCP tools: seven news operations, seven asset/crypto context operations and the signal-construction pilot. All are also available through REST; their routes are listed below.
 
 Base: `https://www.newsbeat.dev/api`
 

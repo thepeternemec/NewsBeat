@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { z } from "zod";
-import { NEWS_TOOLS } from "@newsbeat/contracts";
+import { NEWS_TOOLS, SignalContextIdSchema } from "@newsbeat/contracts";
 import { NewsError, topics, newsPage, brief, stories, watchMany, WATCH_LIMIT, TOPIC_PAGE_DEFAULT, TOPIC_PAGE_MAX } from "./news.js";
 import { headlineSummary } from "./headline-summary.js";
 import { fearGreed, overview, prices, DEFAULT_PRICE_IDS } from "./market.js";
@@ -45,7 +45,9 @@ newsRoutes.get("/intelligence", async c => {
     const beatId = (c.req.query("beat_id") ?? "").trim();
     if (!beatId) throw new NewsError("invalid_request", "beat_id is required.", 400);
     c.header("Cache-Control", "public, max-age=0, s-maxage=30");
-    return c.json(await readIntelligence(beatId));
+    const context = SignalContextIdSchema.safeParse(c.req.query("context") ?? "fundamentals");
+    if (!context.success) throw new NewsError("invalid_request", "context must be fundamentals, liquidity or risk.", 400);
+    return c.json(await readIntelligence(beatId, context.data));
 });
 newsRoutes.get("/summary", async (c) => {
     const beatId = (c.req.query("beat_id") ?? "").trim();
@@ -91,8 +93,8 @@ export async function callNewsTool(name: string, args: unknown, oidcToken?: stri
         return stories(input.beat_id, 40, 200);
     }
     if (name === "newsbeat_intelligence") {
-        const input = z.object({ beat_id: z.string() }).strict().parse(args);
-        return readIntelligence(input.beat_id);
+        const input = z.object({ beat_id: z.string(), context: SignalContextIdSchema.optional() }).strict().parse(args);
+        return readIntelligence(input.beat_id, input.context);
     }
     if (name === "newsbeat_summary") {
         const input = z.object({ beat_id: z.string() }).strict().parse(args);

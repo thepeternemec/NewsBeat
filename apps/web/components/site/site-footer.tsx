@@ -60,7 +60,7 @@ export default function SiteFooter() {
               </div>
               <p className="footer-tag">Meaningful signals for AI agents.</p>
               <p className="footer-address">
-                Event intelligence pilot live.
+                Signals built from context.
               </p>
             </div>
 

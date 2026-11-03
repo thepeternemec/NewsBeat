@@ -121,3 +121,5 @@ full protocol: Protected Resource Metadata, `/agent/identity`, the claim
 ceremony, and the RFC 7523 exchange. It will not describe them before they exist,
 because an agent that follows a flow this service does not implement wastes a
 turn and learns to distrust the file.
+
+The intelligence tool accepts optional `context`: `fundamentals`, `liquidity` or `risk`. `constructions` contains context-qualified hypotheses and alert checks; `alerts` contains review records with stable IDs. Reads do not start generation or deliver notifications. Price and benchmark response are unmeasured.
