@@ -7,7 +7,6 @@ const PAGES = [
   "/",
   "/connect",
   "/intelligence",
-  "/dashboard",
   "/docs",
   "/docs/connect",
   "/docs/data",

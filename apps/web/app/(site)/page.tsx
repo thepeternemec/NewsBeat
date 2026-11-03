@@ -1,7 +1,6 @@
 import { ArrowRight, ArrowUpRight, Code2 } from "lucide-react";
 import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
-import NewsPreview from "@/components/site/news-preview";
 import IntelligenceModel from "@/components/site/intelligence-model";
 import LandingMotion from "@/components/site/landing-motion";
 import CopyButton from "@/components/site/copy-button";
@@ -38,9 +37,9 @@ export default function Home() {
             <p className="bs-lede">Help your agent understand what changed, why it may matter, and what deserves attention. NewsBeat is building an intelligence layer on top of source-linked market news.</p>
             <div className="hero-cta">
               <a className="btn-primary" href="/intelligence">Explore the direction <ArrowRight size={16} /></a>
-              <a className="bs-text-link" href="/dashboard">Try the live feed <ArrowUpRight size={16} /></a>
+              <a className="bs-text-link" href="/dashboard">See live intelligence <ArrowUpRight size={16} /></a>
             </div>
-            <p className="ni-stage-note">The news foundation is live. Deeper signal intelligence is the next stage.</p>
+            <p className="ni-stage-note">Event intelligence is live in a six-asset pilot.</p>
           </div>
           <div className="ni-hero-model"><IntelligenceModel /></div>
         </div>
@@ -58,20 +57,7 @@ export default function Home() {
             <p className="bs-body">A meaningful signal connects a reported change to a question worth investigating. This is the intelligence we’re building toward.</p>
           </div>
           <div className="bs-principles">{SIGNAL_QUESTIONS.map(item => <article key={item.number}><span>{item.number}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
-          <p className="ni-section-note">Task-specific interpretation and implications are planned. Today’s summaries remain based on headlines.</p>
-        </div>
-      </section>
-
-      <section className="scaffold bs-news-section" id="live-news">
-        <div className="wrap bs-live-grid">
-          <div>
-            <span className="bs-kicker">THE FOUNDATION / AVAILABLE TODAY</span>
-            <h2 className="bs-title">Start with<br />the evidence.</h2>
-            <p className="bs-body">Explore recent reporting, grouped stories and changes since your agent’s last check. Every lookup keeps sources, timestamps and coverage freshness attached.</p>
-            <p className="ni-coverage-note">Current coverage: stocks and crypto. News collection runs on a 15-minute schedule.</p>
-            <a className="bs-text-link" href="/dashboard">Explore the news foundation <ArrowRight size={15} /></a>
-          </div>
-          <NewsPreview />
+          <p className="ni-section-note">The pilot adds event memory, conditional implications and next checks. Task-specific relevance remains planned.</p>
         </div>
       </section>
 
@@ -80,11 +66,11 @@ export default function Home() {
           <div className="bs-section-head">
             <span className="bs-kicker">WHERE NEWSBEAT IS GOING</span>
             <h2 className="bs-title">From reporting<br />to understanding.</h2>
-            <p className="bs-body">The feed supplies evidence. The next layer will help agents connect developments, assess their relevance and explain what to investigate next.</p>
+            <p className="bs-body">The first pilot interprets reported developments and keeps event memory. The next stage connects those developments to the task an agent is working on.</p>
             <a className="bs-text-link" href="/intelligence">Read the intelligence roadmap <ArrowUpRight size={16} /></a>
           </div>
           <div className="ni-roadmap-cards">
-            <article><span className="ni-state">Available today</span><h3>A source-linked news foundation.</h3><p>Asset discovery, approximate story grouping, headline-based updates, freshness and change tracking.</p></article>
+            <article><span className="ni-state">Live pilot</span><h3>Events with a reason to investigate.</h3><p>Reported changes, possible implications, evidence and follow-up checks for NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum.</p></article>
             <article><span className="ni-state ni-state-planned">Planned intelligence</span><h3>Meaningful signals for the task.</h3><p>Event context, connections across developments, relevance to an agent’s question, possible implications and explicit uncertainty.</p></article>
           </div>
         </div>
@@ -95,7 +81,7 @@ export default function Home() {
           <div className="nb-connect-copy">
             <span className="bs-kicker"><Code2 size={13} /> BRING THE CONTEXT TO YOUR AGENT</span>
             <h2 className="bs-title">Keep your agent<br />in the loop.</h2>
-            <p className="bs-body">Connect to the current news foundation through MCP or REST. Bring evidence into your agent’s workflow as NewsBeat develops the intelligence above it.</p>
+            <p className="bs-body">Read stored event interpretations and original reporting through MCP or REST. Bring changes, possible implications and follow-up checks into your agent’s workflow.</p>
             <div className="bs-build-links"><a className="btn-primary" href="/docs/quickstart">Connect your agent <ArrowRight size={15} /></a><a className="bs-text-link" href="/docs">Developer docs <ArrowUpRight size={15} /></a></div>
           </div>
           <div className="ni-connect-panel">
@@ -112,7 +98,7 @@ export default function Home() {
           <span className="bs-kicker">NEWSBEAT / AGENT INTELLIGENCE</span>
           <h2 id="closing-title">Build agents<br />that stay informed.</h2>
           <div className="hero-cta"><a className="btn-primary" href="/docs/quickstart">Connect to NewsBeat <ArrowRight size={16} /></a><a className="bs-text-link" href="https://github.com/thepeternemec/NewsBeat" target="_blank" rel="noopener noreferrer">Follow the build <ArrowUpRight size={15} /></a></div>
-          <p className="bs-closing-fine">Source-linked foundation today. Meaningful signal intelligence ahead.</p>
+          <p className="bs-closing-fine">Event intelligence pilot live · MCP + REST</p>
         </div>
       </section>
     </main>

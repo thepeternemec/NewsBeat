@@ -12,7 +12,6 @@ export default function MobileNavigation({ links, active }: { links: NavigationL
   const dialog = useRef<HTMLDialogElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
   const id = useId();
-  const inTerminal = active === "/dashboard";
 
   useEffect(() => {
     const panel = dialog.current;
@@ -50,7 +49,7 @@ export default function MobileNavigation({ links, active }: { links: NavigationL
             ))}
           </nav>
           <div className="mobile-nav-bottom">
-            <a className="mobile-nav-primary" href={inTerminal ? "/docs/quickstart" : "/docs/try"} onClick={() => setOpen(false)}>{inTerminal ? "Connect your agent" : "Try NewsBeat free"}<ArrowRight size={16} aria-hidden="true" /></a>
+            <a className="mobile-nav-primary" href="/docs/quickstart" onClick={() => setOpen(false)}>Connect your agent<ArrowRight size={16} aria-hidden="true" /></a>
             <div className="mobile-nav-appearance"><span>Appearance</span><ThemeToggle /></div>
           </div>
         </div>

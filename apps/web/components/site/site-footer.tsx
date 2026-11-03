@@ -7,7 +7,6 @@ const COLUMNS = [
     head: "Product",
     links: [
       { href: "/intelligence", label: "Intelligence" },
-      { href: "/dashboard", label: "Live feed" },
       { href: "/connect", label: "Connect" },
       { href: "/pricing", label: "Pricing" },
       { href: "/status", label: "Service status" },
@@ -61,7 +60,7 @@ export default function SiteFooter() {
               </div>
               <p className="footer-tag">Meaningful signals for AI agents.</p>
               <p className="footer-address">
-                News foundation live. Intelligence ahead.
+                Event intelligence pilot live.
               </p>
             </div>
 
