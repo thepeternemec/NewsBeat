@@ -8,7 +8,7 @@ import "./mobile-navigation.css";
 
 const LINKS = [
   { href: "/#live-news", label: "News", description: "Try the working company news engine" },
-  { href: "/#crypto-community", label: "Crypto", description: "Explore the flock's crypto research loop" },
+  { href: "/crypto", label: "Crypto", description: "Market, chain and positioning context" },
   { href: "/#build", label: "Agents", description: "Connect an agent to the news tools" },
   { href: "/docs/black-sheep", label: "Thesis", description: "Read the tokenized-asset research direction" },
   { href: "/docs", label: "Docs", description: "Connect to the existing news tools" },

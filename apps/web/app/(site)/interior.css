@@ -418,3 +418,155 @@
 @media (prefers-reduced-motion: reduce) {
   .chain-dot.is-live { animation: none; }
 }
+
+/* A sub-heading for the polled context at the bottom of the news terminal, so it reads as
+   a separate section rather than as more feed. */
+.terminal-subhead {
+  margin: 64px 0 18px;
+  padding-top: 26px;
+  border-top: 1px solid var(--border-default);
+  font: 10px/1.4 var(--font-mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+/* ── /crypto ──────────────────────────────────────────────────────────────
+   Crypto context has its own page, so the dashboard can lead with news again.
+   This page is a reference surface: readable, attributable, and explicit about
+   what it does not do. */
+.crypto-page {
+  padding: 118px 0 96px;
+}
+
+.crypto-hero {
+  max-width: 720px;
+  margin: 0 0 42px;
+}
+
+.crypto-hero h1 {
+  margin: 18px 0 20px;
+  font-size: clamp(36px, 4.6vw, 62px);
+  line-height: 1.02;
+  letter-spacing: -0.055em;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-wrap: balance;
+}
+
+.crypto-hero p {
+  margin: 0;
+  max-width: 54ch;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.crypto-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 22px;
+  margin-top: 28px;
+}
+
+.crypto-page .market-pulse {
+  margin-top: 26px;
+}
+
+.crypto-sources,
+.crypto-note {
+  margin-top: 64px;
+  padding-top: 30px;
+  border-top: 1px solid var(--border-default);
+}
+
+.crypto-sources h2,
+.crypto-note h2 {
+  margin: 0 0 14px;
+  font-size: clamp(20px, 2vw, 26px);
+  letter-spacing: -0.03em;
+  font-weight: 550;
+  color: var(--text-primary);
+}
+
+.crypto-sources p,
+.crypto-note p {
+  margin: 0 0 20px;
+  max-width: 62ch;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.crypto-note ul {
+  margin: 0 0 20px;
+  padding-left: 18px;
+  max-width: 62ch;
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--text-secondary);
+}
+
+.crypto-note li + li {
+  margin-top: 8px;
+}
+
+.crypto-source-table {
+  border: 1px solid var(--border-default);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.crypto-source-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.8fr) minmax(200px, 1.6fr) minmax(110px, 0.7fr);
+  gap: 16px;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.crypto-source-row:first-child {
+  border-top: 0;
+}
+
+.crypto-source-row.is-head {
+  background: var(--bg-raised);
+  font: 10px/1.4 var(--font-mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-ghost);
+}
+
+.crypto-source-row > span:first-child {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.crypto-note code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border-subtle);
+}
+
+@media (max-width: 700px) {
+  .crypto-page { padding: 96px 0 64px; }
+  .crypto-source-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  .crypto-source-row.is-head { display: none; }
+  .crypto-source-row > span:nth-child(2)::before { content: "· "; }
+}
+
+/* The search now leads the terminal, so it needs room above it and a gap before the
+   metrics. Without the gap the input's box sat against the cards and read as overlapping,
+   because `.metrics` is rendered with paddingTop: 0 inline. */
+.terminal-page .catalog-search {
+  margin: 34px 0 44px;
+}

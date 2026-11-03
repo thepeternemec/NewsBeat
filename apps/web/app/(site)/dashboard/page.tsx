@@ -328,48 +328,6 @@ export default function Dashboard() {
             />
         </div>
 
-        <div className="metrics" style={{ borderTop: 0, paddingTop: 0 }}>
-          <div className="metrics-grid">
-            <div>
-              <div className="metric-num">{catalogTotal || "\u2026"}</div>
-              <div className="metric-label">Equities and cryptos tracked</div>
-            </div>
-            <div>
-              <div className="metric-num">{catalogTotal ? carrying : "\u2026"}</div>
-              <div className="metric-label">
-                Carrying articles{carrying ? ` \u00b7 ${carryingPct}% of the catalog` : ""}
-              </div>
-            </div>
-            <div>
-              <div className="metric-num">{topics.length ? movedRecently.toLocaleString() : "\u2026"}</div>
-              <div className="metric-label">Articles moved in the last 12h</div>
-            </div>
-            <div>
-              <div className="metric-num" style={{ fontFamily: "var(--font-mono)", fontSize: 22 }}>
-                {ingestClock ? (
-                  <time dateTime={ingestClock.dateTime} title={ingestClock.title}>
-                    {ingestClock.time}
-                  </time>
-                ) : "\u2014"}
-              </div>
-              <div className="metric-label">
-                Last ingest{ingestClock ? ` · ${ingestClock.timeZone}` : ""}
-              </div>
-            </div>
-          </div>
-          <p className="hero-tiny" style={{ marginTop: 30 }}>
-            Company and crypto news coverage · token contracts are not mapped · no wallet needed
-          </p>
-        </div>
-
-        <MarketPulse />
-        <ChainPulseStrip />
-        <SignalsStrip />
-
-        {/* Both views answer "which ticker?", so the search belongs to neither of
-            them. Centred and larger: it is the first control a reader reaches for
-            on a dashboard of 2,030 topics. In Signals a pick selects the field;
-            in Clusters it opens that topic's cluster. */}
         <div className="catalog-search">
             <div className="ticker-search">
               <input
@@ -406,6 +364,41 @@ export default function Dashboard() {
               )}
             </div>
         </div>
+
+        <div className="metrics" style={{ borderTop: 0, paddingTop: 0 }}>
+          <div className="metrics-grid">
+            <div>
+              <div className="metric-num">{catalogTotal || "\u2026"}</div>
+              <div className="metric-label">Equities and cryptos tracked</div>
+            </div>
+            <div>
+              <div className="metric-num">{catalogTotal ? carrying : "\u2026"}</div>
+              <div className="metric-label">
+                Carrying articles{carrying ? ` \u00b7 ${carryingPct}% of the catalog` : ""}
+              </div>
+            </div>
+            <div>
+              <div className="metric-num">{topics.length ? movedRecently.toLocaleString() : "\u2026"}</div>
+              <div className="metric-label">Articles moved in the last 12h</div>
+            </div>
+            <div>
+              <div className="metric-num" style={{ fontFamily: "var(--font-mono)", fontSize: 22 }}>
+                {ingestClock ? (
+                  <time dateTime={ingestClock.dateTime} title={ingestClock.title}>
+                    {ingestClock.time}
+                  </time>
+                ) : "\u2014"}
+              </div>
+              <div className="metric-label">
+                Last ingest{ingestClock ? ` · ${ingestClock.timeZone}` : ""}
+              </div>
+            </div>
+          </div>
+          <p className="hero-tiny" style={{ marginTop: 30 }}>
+            Company and crypto news coverage · token contracts are not mapped · no wallet needed
+          </p>
+        </div>
+
         {query.trim().length > 0 && view === "clusters" && filteredClusters.length === 0 && (
           <p className="catalog-search-note">
             no loaded cluster matches “{query.trim()}” — show more, or open Signals for it
@@ -572,6 +565,13 @@ export default function Dashboard() {
             )}
           </div>
         )}
+
+        {/* Everything below is polled context rather than news. It sits at the
+            bottom because a reader opening a news terminal wants headlines first. */}
+        <h2 className="terminal-subhead">Market &amp; chain</h2>
+        <MarketPulse />
+        <ChainPulseStrip />
+        <SignalsStrip />
       </InteriorPage>
 
       <footer className="site">
