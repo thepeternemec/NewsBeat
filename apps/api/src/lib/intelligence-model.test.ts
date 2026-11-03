@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import type { IntelligenceEventDraft, IntelligenceEvidence } from "@newsbeat/contracts";
-import { INTELLIGENCE_OUTPUT_SCHEMA, parseIntelligenceResult } from "./intelligence-model.js";
+import { parseIntelligenceResult } from "./intelligence-model.js";
 
 const now = "2026-11-03T12:00:00Z";
 const reports: IntelligenceEvidence[] = [{ id: "r1", title: "Nvidia raises revenue guidance after new customer orders", source: "Publisher", url: "https://example.com/1", published_at: now }];
@@ -29,10 +29,12 @@ test("schema, evidence and missing context errors remain distinguishable", () =>
   const legacy = structuredClone(draft); delete legacy.market_assessment;
   assert.throws(() => parseIntelligenceResult(result({ events: [legacy] }), reports, []), /invalid_analysis_missing_context/);
 });
-test("the provider schema bounds output and requires market construction", () => {
-  const schema = INTELLIGENCE_OUTPUT_SCHEMA as any;
-  assert.equal(schema.properties.events.maxItems, 2);
-  assert.ok(schema.properties.events.items.required.includes("market_assessment"));
-  assert.equal(schema.properties.events.items.properties.implications.maxItems, 1);
-  assert.equal(schema.properties.events.items.additionalProperties, false);
+test("oversized model batches are rejected as a whole", () => {
+  const events = Array.from({ length: 3 }, (_, index) => {
+    const item = structuredClone(draft), id = "r" + (index + 1);
+    item.evidence_ids = [id]; item.implications[0]!.evidence_ids = [id]; item.market_assessment!.trigger.report_id = id;
+    return item;
+  });
+  const evidence = events.map((_, index) => ({ ...reports[0]!, id: "r" + (index + 1) }));
+  assert.throws(() => parseIntelligenceResult(result({ events }), evidence, []), /invalid_analysis_batch_limit/);
 });
