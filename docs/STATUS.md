@@ -13,9 +13,9 @@ Updated **2026-11-03** from the current main-branch implementation. Counts descr
 | Stories | Approximate headline grouping, ranked by relevance, with original reports and source links |
 | Summaries | Up to three short explanations based only on headlines; generated text or labeled original-headline fallback |
 | Batched watch | Up to 50 assets per request; each result can succeed or fail independently |
-| REST and function calling | Seven read operations and schemas at `/api/v2/tools` |
-| Hosted MCP | Seven tools over Streamable HTTP at `/api/mcp`, including `newsbeat_summary` |
-| Crypto reference REST | Sourced prices, sentiment, chain readings, contract prices and positioning; separate from the seven MCP news tools |
+| REST and function calling | 14 read operations and schemas at `/api/v2/tools` |
+| Hosted MCP | 14 tools over Streamable HTTP at `/api/mcp`, including `newsbeat_summary` |
+| Crypto context | Sourced prices, sentiment, chain readings, contract prices and positioning, through REST and MCP |
 | Web news explorer | Asset search, grouped stories, source expansion, Show more controls and on-demand headline summaries |
 | Self-serve keys | GitHub sign-in; signing in again rotates the existing key |
 | Account billing | Keyed REST usage is metered; anonymous reads are free and rate limited |

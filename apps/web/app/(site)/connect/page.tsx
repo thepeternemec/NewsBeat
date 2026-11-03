@@ -56,7 +56,7 @@ curl -s "${API_BASE}/v2/market"`,
 const { tools } = await fetch("${API_BASE}/v2/tools").then((r) => r.json());
 
 // Pass them to your model, execute what it calls, send the results back.
-// Seven tools: newsbeat_topics, newsbeat_news, newsbeat_changes,
+// News tools: newsbeat_topics, newsbeat_news, newsbeat_changes,
 // newsbeat_brief, newsbeat_stories, newsbeat_summary, newsbeat_watch.`,
 };
 
@@ -179,7 +179,7 @@ export default function Connect() {
               <span className="sec-eyebrow">Three ways in</span>
               <h2 className="sec-title">Pick the one that fits.</h2>
               <p className="sec-sub">
-                All three reach the same seven tools. Nothing here is a client library —
+                All three reach the same 14 tools. Nothing here is a client library —
                 there is no SDK to install, and no version to keep in step.
               </p>
             </div>

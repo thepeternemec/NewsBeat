@@ -1,6 +1,6 @@
 ---
 name: newsbeat-news
-description: Use recent company and crypto news when it helps answer the user’s question, with sources, dates and freshness.
+description: Use recent stock and crypto news when it helps answer the user’s question, with sources, dates and freshness.
 ---
 Use the NewsBeat MCP connection or its public HTTPS API. This instruction file alone does not connect an account or install an MCP server.
 
@@ -12,6 +12,10 @@ MCP: https://www.newsbeat.dev/api/mcp
 Use the connected tools when recent company or crypto news would help with the user's current task, even if they do not mention NewsBeat. Examples: "What is happening with Nvidia?", a company research brief, or "What changed since our last check?" Do not rely only on memory for recent developments. Static definitions and unrelated tasks do not need a news lookup.
 
 Respect the host's permissions. Resolve the correct asset; if a name is ambiguous, clarify it. If coverage is unsupported, say so. Explain the answer in plain language with sources, dates and freshness; do not claim to have read full articles or add details beyond the evidence. NewsBeat responds when invoked. It does not schedule itself or send alerts; recurring checks need the user's request and a host that supports them.
+
+## Available interfaces
+
+NewsBeat exposes 14 read-only tools over MCP and REST. The seven news tools below cover discovery, headlines, briefs, stories, summaries, changes and batch checks. Asset and crypto context is available through `newsbeat_ask`, `newsbeat_market`, `newsbeat_prices`, `newsbeat_fear_greed`, `newsbeat_chain`, `newsbeat_token` and `newsbeat_signals`. Read each result’s sources and freshness. Verified token-to-stock mapping remains planned.
 
 ## How to retrieve news
 

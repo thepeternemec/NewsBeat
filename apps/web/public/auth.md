@@ -76,24 +76,24 @@ GET /v2/tools HTTP/1.1
 Host: www.newsbeat.dev
 ```
 
-Returns the seven calls in OpenAI function-call shape:
+Returns 14 read-only calls in OpenAI function-call shape:
 
-| Tool | Use it to |
-| --- | --- |
-| `newsbeat_topics` | Find a topic. Never invent a `beat_id` |
-| `newsbeat_news` | Read a topic and take a baseline cursor |
-| `newsbeat_changes` | Ask what is new since that cursor |
-| `newsbeat_brief` | The top headlines verbatim, with source and UTC time |
-| `newsbeat_stories` | The events behind a topic, not the coverage — near-identical headlines grouped |
-| `newsbeat_summary` | Short explanations based on headlines, with source links; original headlines if generation is unavailable |
-| `newsbeat_watch` | Many topics in one call — the batch form of `changes` |
-| `newsbeat_market` | `GET /v2/market` | Sentiment, TVL and prices in one call, each attributed |
-| `newsbeat_prices` | `GET /v2/prices?ids=` | Prices, market caps and 24h change by CoinGecko id |
-| `newsbeat_fear_greed` | `GET /v2/sentiment` | Daily fear and greed index with recent history |
-| `newsbeat_ask` | `GET /v2/ask?q=` | Identity, news, market and chain in one attributed call |
-| `newsbeat_chain` | `GET /v2/chain` | Ethereum block and gas, Solana slot |
-| `newsbeat_token` | `GET /v2/token?asset=` | Token price by contract address |
-| `newsbeat_signals` | `GET /v2/signals` | Funding rates, DEX volume and stablecoin supply |
+| Tool | Purpose | REST route |
+| --- | --- | --- |
+| `newsbeat_topics` | Find a supported stock or crypto asset. | `GET /v2/topics?q=…` |
+| `newsbeat_news` | Read headlines and establish a baseline cursor. | `GET /v2/news?beat_id=…` |
+| `newsbeat_changes` | Get new items since the saved cursor. | `GET /v2/changes?beat_id=…&cursor=…` |
+| `newsbeat_brief` | Read three relevant recent headlines verbatim. | `GET /v2/brief?beat_id=…` |
+| `newsbeat_stories` | Read grouped headlines and their sources. | `GET /v2/stories?beat_id=…` |
+| `newsbeat_summary` | Read a short headline-based explanation. | `GET /v2/summary?beat_id=…` |
+| `newsbeat_watch` | Check up to 50 topics once. | `POST /v2/watch` |
+| `newsbeat_ask` | Resolve an asset and gather news, prices and chain context. | `GET /v2/ask?q=bitcoin` |
+| `newsbeat_market` | Read a sourced crypto market overview. | `GET /v2/market` |
+| `newsbeat_prices` | Read crypto prices by CoinGecko ID. | `GET /v2/prices?ids=bitcoin` |
+| `newsbeat_fear_greed` | Read the daily fear and greed index. | `GET /v2/sentiment` |
+| `newsbeat_chain` | Read Ethereum and Solana chain state. | `GET /v2/chain` |
+| `newsbeat_token` | Read a reference price by contract address. | `GET /v2/token?asset=…` |
+| `newsbeat_signals` | Read funding, DEX volume and stablecoin supply. | `GET /v2/signals` |
 
 `GET /v2/topics?q=` searches by ticker or company name across +2000 topics —
 US-listed equities and the largest crypto assets. A coin and a company can share a ticker

@@ -1,7 +1,7 @@
 import CopyButton from "@/components/site/copy-button";
 import AgentInstructions from "@/components/site/agent-instructions";
 
-export const metadata = { title: "Developer reference", description: "Connect NewsBeat through remote MCP, REST or function calling. Seven tools, current endpoints and working examples." };
+export const metadata = { title: "Developer reference", description: "Connect NewsBeat through remote MCP, REST or function calling. 14 tools, current endpoints and working examples." };
 const API = "https://www.newsbeat.dev/api";
 const MCP_CONFIG = JSON.stringify({ mcpServers: { newsbeat: { url: `${API}/mcp` } } }, null, 2);
 const TOOLS = [
@@ -12,6 +12,13 @@ const TOOLS = [
   ["newsbeat_stories", "Read grouped headlines with every report’s source link.", "GET /v2/stories?beat_id=…"],
   ["newsbeat_summary", "Get a short explanation from headlines with original source links.", "GET /v2/summary?beat_id=…"],
   ["newsbeat_watch", "Check up to 50 assets in one request; does not create a schedule.", "POST /v2/watch"],
+  ["newsbeat_ask","Resolve an asset and gather news, prices and chain context.","GET /v2/ask?q=bitcoin"],
+  ["newsbeat_market","Read a sourced crypto market overview.","GET /v2/market"],
+  ["newsbeat_prices","Read crypto prices by CoinGecko ID.","GET /v2/prices?ids=bitcoin"],
+  ["newsbeat_fear_greed","Read the daily fear and greed index.","GET /v2/sentiment"],
+  ["newsbeat_chain","Read Ethereum and Solana chain state.","GET /v2/chain"],
+  ["newsbeat_token","Read a reference price by contract address.","GET /v2/token?asset=…"],
+  ["newsbeat_signals","Read funding, DEX volume and stablecoin supply.","GET /v2/signals"],
 ];
 const FIRST_REQUEST = `curl -s "${API}/v2/topics?q=nvidia"
 
@@ -42,7 +49,7 @@ export default function DocsConnect() {
         <pre>{MCP_CONFIG}</pre>
       </div>
       <p>
-        The server advertises seven read-only tools and guidance on when to use them. The host decides
+        The server advertises 14 read-only tools and guidance on when to use them. The host decides
         when tools run and enforces its own approvals. Custom remote connections are not available
         in every assistant or account; this endpoint does not imply directory approval.
       </p>
@@ -55,7 +62,7 @@ export default function DocsConnect() {
       </p>
       <AgentInstructions />
 
-      <h2 id="seven-tools-and-their-rest-routes">Seven tools and their REST routes</h2>
+      <h2 id="seven-tools-and-their-rest-routes">14 tools and their REST routes</h2>
       <p>Prefix REST routes with <code>{API}</code>. Most reads use GET; batched watch uses POST.</p>
       <div className="table-scroll">
         <table>

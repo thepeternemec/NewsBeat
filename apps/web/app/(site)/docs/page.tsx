@@ -4,7 +4,7 @@ import DocsDeveloperStart from "@/components/site/docs-developer-start";
 
 export const metadata = {
   title: "NewsBeat docs — Build with market context",
-  description: "Connect to stock and crypto news through MCP and REST. Copy working requests, discover seven agent tools, and track changes with sources and freshness.",
+  description: "Connect to stock and crypto news through MCP and REST. Copy working requests, discover 14 agent tools, and track changes with sources and freshness.",
 };
 
 const QUESTIONS = [
@@ -29,7 +29,7 @@ export default function DocsOverview() {
 
       <section className="docs-section" aria-labelledby="developer-quickstart">
         <h2 id="developer-quickstart">Your first request.</h2>
-        <p>Try a public catalog lookup or add the remote MCP server to your client. Seven tools are available; news is collected on a fifteen-minute schedule.</p>
+        <p>Try a public catalog lookup or add the remote MCP server to your client. 14 tools are available; news is collected on a fifteen-minute schedule.</p>
         <DocsDeveloperStart />
       </section>
 

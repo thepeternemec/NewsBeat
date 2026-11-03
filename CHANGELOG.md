@@ -6,7 +6,7 @@
 - Restored consistent NewsBeat language across navigation, the news explorer, footer, social preview and GitHub README.
 - Improved landing-page text sizes, responsive spacing, dark/light styling and reduced-motion support.
 - Added stock and crypto shortcuts and fixed lookup timeouts that could leave search or summaries loading indefinitely.
-- Corrected agent discovery docs to distinguish the seven MCP news tools from additional REST crypto context endpoints.
+- Aligned agent discovery docs and reference tables with all 14 implemented MCP and REST tools.
 - Kept tokenized-asset research on the roadmap, with verified token mapping described as planned.
 
 Not a version history — the project is one deployment, not a set of releases. This

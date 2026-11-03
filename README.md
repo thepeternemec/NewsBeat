@@ -77,7 +77,7 @@ curl "https://www.newsbeat.dev/api/v2/topics?q=bitcoin&limit=5"
 
 The primary REST base is `https://www.newsbeat.dev/api`. Use the primary domain for new integrations.
 
-## Seven news tools
+## 14 agent tools
 
 | MCP tool | Purpose |
 | --- | --- |
@@ -88,6 +88,13 @@ The primary REST base is `https://www.newsbeat.dev/api`. Use the primary domain 
 | `newsbeat_stories` | Group similar headlines with their original reports |
 | `newsbeat_summary` | Get up to three short headline-based explanations |
 | `newsbeat_watch` | Check up to 50 assets in one request |
+| `newsbeat_ask` | Resolve an asset and gather news, prices and chain context. |
+| `newsbeat_market` | Read a sourced crypto market overview. |
+| `newsbeat_prices` | Read crypto prices by CoinGecko ID. |
+| `newsbeat_fear_greed` | Read the daily fear and greed index. |
+| `newsbeat_chain` | Read Ethereum and Solana chain state. |
+| `newsbeat_token` | Read a reference price by contract address. |
+| `newsbeat_signals` | Read funding, DEX volume and stablecoin supply. |
 
 Function-calling schemas are available at [`/api/v2/tools`](https://www.newsbeat.dev/api/v2/tools). See the [model-loop example](examples/README.md).
 
@@ -100,7 +107,7 @@ For follow-up checks: resolve an asset, read a baseline, save its cursor, and as
 - **Watchlist workflows** that check multiple assets and forward new items to your own bot.
 - **Tokenized-asset research** that starts with news about the underlying company or cryptocurrency.
 
-A separate [crypto context page](https://www.newsbeat.dev/crypto) shows sourced reference prices, sentiment, chain readings and positioning data. Its REST endpoints include `/api/v2/market`, `/api/v2/prices`, `/api/v2/sentiment`, `/api/v2/chain`, `/api/v2/token`, `/api/v2/signals` and `/api/v2/ask`. These are separate from the seven hosted MCP news tools. Each panel reports its source and age.
+A separate [crypto context page](https://www.newsbeat.dev/crypto) shows sourced reference prices, sentiment, chain readings and positioning data. Its REST endpoints include `/api/v2/market`, `/api/v2/prices`, `/api/v2/sentiment`, `/api/v2/chain`, `/api/v2/token`, `/api/v2/signals` and `/api/v2/ask`. The same context is available through the MCP tools above. Each panel reports its source and age.
 
 ## Evidence and freshness
 
@@ -120,7 +127,7 @@ Optional GitHub-issued keys provide a **seven-day REST evaluation**, starting on
 
 ## Roadmap
 
-**Available:** asset discovery, headlines, source-linked summaries, grouped stories, change tracking, batch checks, seven MCP news tools, a browser news explorer, and REST crypto context.
+**Available:** asset discovery, headlines, source-linked summaries, grouped stories, change tracking, batch checks, 14 MCP tools, a browser news explorer, and REST crypto context.
 
 **Planned:** verified tokenized-asset mapping, broader news search, saved-watch notifications, more connector options, and ready-to-use Telegram and Discord relays. Availability depends on implementation, configuration and each host’s supported interfaces.
 
