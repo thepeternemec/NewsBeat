@@ -16,22 +16,22 @@ import GridField from "@/components/site/grid-field";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.newsbeat.dev"),
-  title: "NewsBeat — Intelligence for tokenized assets",
+  title: "NewsBeat — source-linked news for AI agents",
   description:
-    "NewsBeat follows the news behind tokenized assets. Source-linked company intelligence for AI agents, with Robinhood Chain asset mapping and agent coordination planned.",
+    "NewsBeat brings recent company and crypto news to AI agents. Source-linked headlines, grouped coverage and cursors that tell you what changed — or that nothing moved.",
   openGraph: {
     type: "website",
     url: "https://www.newsbeat.dev",
     siteName: "NewsBeat",
-    title: "NewsBeat — Intelligence for tokenized assets",
+    title: "NewsBeat — source-linked news for AI agents",
     description:
-      "Follow the news behind tokenized assets. Company headlines, linked sources and fresh context for your AI agent.",
+      "Follow the news behind the companies and coins you track. Headlines, linked sources and fresh context for your AI agent.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "NewsBeat — Intelligence for tokenized assets",
+    title: "NewsBeat — source-linked news for AI agents",
     description:
-      "Company news and source-linked context for your AI agent. Follow the real-world stories behind tokenized assets.",
+      "Company and crypto news with source-linked context for your agent. Headlines, publishers and dates on every item.",
   },
 };
 

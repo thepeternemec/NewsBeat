@@ -4,7 +4,7 @@
 
 ### Market intelligence. Built for your agent.
 
-Source-linked news for agents researching companies, crypto and tokenized markets. Check what changed, inspect freshness and follow the reporting behind an asset.
+Source-linked news for agents researching companies and crypto. Check what changed, inspect freshness and follow the reporting behind an asset.
 
 **Free during early access · No API key or credit card needed for public reads**
 
@@ -76,21 +76,7 @@ Then ask: **“What happened with Nvidia? Give me a short summary and link the s
 
 Use the [connection guide](https://www.newsbeat.dev/connect) for setup and a live transport check. For function-calling agents, load schemas from [`/api/v2/tools`](https://www.newsbeat.dev/api/v2/tools). See the [model-loop example](examples/README.md).
 
-## $SHEEP and the product direction
 
-The NewsBeat news engine collects company and crypto headline metadata and serves source-linked research through MCP and REST. The community identity is **$SHEEP**, a token **planned for pump.fun**. No launch date or verified contract address has been published here. The token is not required to use the research tools, and holding it is not a claim on the product.
-
-The product direction includes verified token-to-company mapping for tokenized assets and possible agent coordination. These are planned capabilities. $SHEEP's community launch is separate from that research integration. Existing endpoints, tool names and package identifiers remain compatible.
-
-Read the [product direction](docs/NEWSBEAT.md) and [website guide](https://www.newsbeat.dev/docs/newsbeat).
-
-## Direction: context for Robinhood Chain
-
-We are building toward a read-only context layer for tokenized markets on **Robinhood Chain**: connect stock-token identities to news about the underlying companies, then add corporate-action context and separately sourced market data.
-
-**Planned, not released.** Today's MCP and REST news tools remain the foundation. Token-contract mapping, chain balances, token prices and transaction execution are not implemented. NewsBeat is an independent project with no Robinhood affiliation or endorsement.
-
-Read the [integration plan](docs/ROBINHOOD-CHAIN.md) or the [website guide](https://www.newsbeat.dev/docs/robinhood-chain). The current MCP and REST news interfaces remain in place.
 
 ## What you can build
 

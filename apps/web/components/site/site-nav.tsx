@@ -10,7 +10,6 @@ const LINKS = [
   { href: "/#live-news", label: "News", description: "Try the working company news engine" },
   { href: "/crypto", label: "Crypto", description: "Market, chain and positioning context" },
   { href: "/#build", label: "Agents", description: "Connect an agent to the news tools" },
-  { href: "/docs/newsbeat", label: "Thesis", description: "Read the tokenized-asset research direction" },
   { href: "/docs", label: "Docs", description: "Connect to the existing news tools" },
   { href: "/status", label: "Status", description: "Check the current news service" },
 ];

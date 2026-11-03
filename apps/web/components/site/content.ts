@@ -31,20 +31,12 @@ export const PRICES = [
 
 export const ROADMAP = [
   {
-    "when": "NewsBeat · Product direction",
-    "what": "News intelligence for tokenized assets and the companies behind them. The news engine works today; verified asset-contract mapping and agent messaging are planned."
-  },
-  {
     "when": "Available now",
     "what": "Ask a connected agent for company and crypto headlines, source links, short briefings and updates since a previous check. Explore the same news in the web terminal."
   },
   {
     "when": "In development",
     "what": "Broader news search, easier account connections and saved watches. These features still need setup and testing before release."
-  },
-  {
-    "when": "Planned · Robinhood Chain",
-    "what": "Connect stock-token identities to underlying-company news, then add corporate-action context and independently sourced market data. Chain integration, wallet reads and execution are not live."
   },
   {
     "when": "Coming next",
@@ -58,10 +50,6 @@ export const ROADMAP = [
 
 export const FAQ = [
   {
-    "q": "What assets does NewsBeat follow?",
-    "a": "NewsBeat focuses on tokenized real-world assets, starting with the companies behind Stock Tokens on Robinhood Chain. Today you can research supported underlying companies through the news engine. Verified token-contract mapping is planned. $SHEEP is the NewsBeat community token, planned for pump.fun. It has no verified contract address or announced launch date on this site. The Robinhood Chain plan concerns tokenized-asset news research, not the $SHEEP launch."
-  },
-  {
     "q": "Can NewsBeat agents already message each other?",
     "a": "Not yet. Agents can call the existing news service through MCP or REST. Direct agent messaging is planned. The homepage handoff lab displays illustrative packets and sends no messages."
   },
@@ -71,11 +59,7 @@ export const FAQ = [
   },
   {
     "q": "What does NewsBeat do?",
-    "a": "NewsBeat follows the news behind tokenized assets and is the new identity for the NewsBeat news engine. Its planned agent network shares source-linked asset context. Its working service brings recent company and crypto news into your AI assistant. Ask “What happened with Nvidia?” and your agent can use recent headlines, grouped coverage and brief updates to answer. The public connection is free during early access."
-  },
-  {
-    "q": "How does NewsBeat fit Robinhood Chain?",
-    "a": "Our planned integration connects Robinhood Chain stock-token identities to news about the underlying companies, then adds corporate-action context and separately sourced market data. Today NewsBeat provides company and crypto headlines through MCP and REST. It does not yet read chain balances, map token contracts, supply token prices or execute transactions. NewsBeat is an independent project with no Robinhood affiliation or endorsement."
+    "a": "NewsBeat brings recent company and crypto news into your AI assistant. Ask “What happened with Nvidia?” and your agent can use recent headlines, grouped coverage and brief updates to answer, with the publisher and date on every item. The public connection is free during early access."
   },
   {
     "q": "Do I need to know how to code?",

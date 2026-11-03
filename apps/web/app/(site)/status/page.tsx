@@ -25,7 +25,7 @@ export default function StatusPage() {
               <span className="sec-eyebrow">NewsBeat operations</span>
               <h1>Know where things stand.</h1>
               <p>
-                Checks for the working news engine. Tokenized-asset mapping and direct agent messaging are planned, not live.
+                Checks for the working news engine and its upstream data sources. Direct agent messaging are planned, not live.
               </p>
             </div>
             <a className="btn-ghost" href="/api/status/feed">

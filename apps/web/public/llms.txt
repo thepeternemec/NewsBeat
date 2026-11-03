@@ -101,7 +101,7 @@ shown once. That is a browser flow and needs a human.
 - Source — https://github.com/thepeternemec/NewsBeat
 
 # NewsBeat transition
-NewsBeat is the new product identity for the NewsBeat news service. Existing newsbeat_* tools and www.newsbeat.dev endpoints remain unchanged. NewsBeat focuses on news intelligence for tokenized real-world assets. Verified token-to-company mapping and agent-to-agent messaging are planned, not live. Current capabilities are read-only company and crypto news tools. NewsBeat does not issue its own token.
+NewsBeat is a news service for AI agents: source-linked company and crypto headlines over MCP and REST. Existing newsbeat_* tools and www.newsbeat.dev addresses are unchanged.
 
 ### Ask, chain and contracts
 

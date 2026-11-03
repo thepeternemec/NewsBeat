@@ -1,5 +1,4 @@
 import { ArrowRight, ArrowUpRight, Radio, Code2 } from "lucide-react";
-import SheepBadge from "@/components/site/sheep-badge";
 import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
 import NewsPreview from "@/components/site/news-preview";
@@ -12,7 +11,7 @@ import "./newsbeat.css";
 import "./crypto-community.css";
 
 const DESCRIPTION =
-  "Market news intelligence for agents researching companies, crypto and tokenized assets. Source-linked headlines, coverage freshness and updates since your last check. Checked on a fifteen-minute cycle.";
+  "Market news intelligence for agents researching companies and crypto. Source-linked headlines, coverage freshness and updates since your last check. Checked on a fifteen-minute cycle.";
 export const metadata = {
   title: "NewsBeat — Market intelligence for agents",
   description: DESCRIPTION,
@@ -35,10 +34,9 @@ export default function Home() {
         <section className="bs-hero" id="top">
           <div className="wrap bs-hero-grid">
             <div className="bs-hero-copy">
-              <SheepBadge />
               <span className="bs-kicker"><span /> FINANCIAL NEWS / AGENT INTELLIGENCE</span>
               <h1>Market intelligence.<br /><span>Built for your agent.</span></h1>
-              <p className="bs-lede">Give your agent the context behind companies, crypto and tokenized markets. Follow the reporting, check what changed, and trace every source.</p>
+              <p className="bs-lede">Give your agent the context behind companies and crypto. Follow the reporting, check what changed, and trace every source.</p>
               <div className="hero-cta">
                 <a className="btn-primary" href="/dashboard">Open the terminal <ArrowRight size={16} /></a>
                 <a className="bs-text-link" href="/docs/quickstart">Connect your agent <ArrowUpRight size={16} /></a>
@@ -72,11 +70,6 @@ export default function Home() {
             </div>
 
             <CryptoLoop />
-
-            <div className="bs-crypto-foot">
-              <p><strong>$SHEEP is for the community.</strong> Planned for pump.fun. Research access does not require the token.</p>
-              <a href="#sheep-community">Meet the flock <ArrowUpRight size={16} /></a>
-            </div>
           </div>
         </section>
 
@@ -117,16 +110,15 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="bs-closing" id="sheep-community" aria-labelledby="closing-title">
+        <section className="bs-closing" id="community" aria-labelledby="closing-title">
           <div className="wrap">
             <span className="bs-kicker">THE NEWSBEAT COMMUNITY</span>
             <h2 id="closing-title">Research the asset.<br />Then make your move.</h2>
-            <p className="bs-closing-note">$SHEEP is the community token, planned for pump.fun. You do not need it to use the bot, and holding it is not a claim on the product.</p>
             <div className="hero-cta">
               <a className="btn-primary" href="/dashboard">Build your first brief <ArrowRight size={16} /></a>
               <a className="bs-text-link" href="https://x.com/newsbeat_" target="_blank" rel="noopener noreferrer">Follow the flock <ArrowUpRight size={15} /></a>
             </div>
-            <p className="bs-closing-fine">Company research today. Token mapping, market data and execution are not connected. Independent project, no Robinhood affiliation.</p>
+            <p className="bs-closing-fine">Company and crypto research today. Market data is reference data, not advice. Independent project.</p>
           </div>
         </section>
       </main>
