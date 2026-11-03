@@ -48,6 +48,7 @@ function StoredSignal({ asset, context }: { asset: Asset; context: SignalContext
   }, [asset.beatId, context, attempt]);
   const signal = data?.signals[index];
   const count = data?.signals.length ?? 0;
+  const constructedCount = data?.constructions.filter(item => item.assessment).length ?? 0;
   const implication = signal?.implications[0];
   const construction = data?.constructions.find(item => item.source_signal_id === signal?.id);
   const assessment = construction?.assessment;
@@ -55,7 +56,7 @@ function StoredSignal({ asset, context }: { asset: Asset; context: SignalContext
   const latestAlert = data?.alerts.find(item => item.source_signal_id === signal?.id);
   return <>
     <div className="signal-inspector-toolbar">
-      <span>{phase === "loading" ? "Loading signal context…" : phase === "error" && !data ? "Signal context unavailable" : count + " " + (count === 1 ? "construction" : "constructions")}</span>
+      <span>{phase === "loading" ? "Loading signal context…" : phase === "error" && !data ? "Signal context unavailable" : count + " stored " + (count === 1 ? "signal" : "signals") + " · " + constructedCount + " constructed"}</span>
       <button type="button" disabled={phase === "loading"} onClick={() => setAttempt(value => value + 1)} aria-label="Refresh stored intelligence"><RefreshCw size={14} aria-hidden="true" /> Refresh</button>
     </div>
     <div className="signal-inspector-notices" role="status">
