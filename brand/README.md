@@ -1,42 +1,29 @@
-# NewsBeat — social assets
+# NewsBeat brand
 
-These are generated from `apps/web/app/icon.svg`, the app's own mark. There was no
-logo file to pull: the brand on the site is a text wordmark, and the only graphic is
-that icon. So these are rendered from it rather than exported from a brand kit.
+NewsBeat is a news feed for AI agents following **stocks and crypto**.
 
-## The mark
+- Website: https://www.newsbeat.dev
+- Main line: **The news behind stocks and crypto.**
+- Product description: **Recent headlines, source-linked updates, and what changed since your last check.**
+- Contact: contact@newsbeat.dev
 
-Three rounded bars — the middle one is the event, the two beside it are the coverage
-around it.
+## Mark and palette
 
-It replaced a constellation of eight dots joined by thin lines. That was a fair picture
-of a graph and unreadable at 16×16, where a favicon actually lives: eight dots and six
-hairsines collapse into a smudge. Three solid bars survive the reduction.
+The NewsBeat mark is three rounded white bars on a black rounded tile. The middle bar is tallest. Use `apps/web/app/icon.svg` as the graphic source and `apps/web/components/site/brand-mark.tsx` in the website.
 
-The obvious reference for a mark this shape is Sona UI's white four-pointed star on a
-black disc, which reads beautifully small. Theirs cannot be used: it is their
-trademark, and NewsBeat would appear to be them in every browser tab. The *approach* is
-worth copying — one bold shape, solid background, nothing thin — and that is what this
-does.
+The palette is black, white and grey. Use the site's theme variables so the interface remains legible in dark and light modes.
 
-| File | Size | Use |
+## Assets
+
+| File | Size | Purpose |
 | --- | --- | --- |
-| `newsbeat-mark-1024.png` | 1024×1024 | Profile picture. The glyph sits inside the circular-crop safe area, so it survives the round mask X, GitHub, LinkedIn and Discord apply. |
-| `newsbeat-lockup-1024.png` | 1024×1024 | Mark above the wordmark. Square posts, press, anywhere the name must be read. |
-| `newsbeat-og-1200x630.png` | 1200×630 | Open Graph and Twitter cards. The 1.91:1 size neither platform crops. |
-| `newsbeat-square-1080.png` | 1080×1080 | Instagram and LinkedIn feed posts. |
+| `newsbeat-mark-1024.png` | 1024 × 1024 | Profile mark |
+| `newsbeat-lockup-1024.png` | 1024 × 1024 | Mark and wordmark |
+| `newsbeat-og-1200x630.png` | 1200 × 630 | Static social asset |
+| `newsbeat-square-1080.png` | 1080 × 1080 | Square social post |
 
-Background is `#050505` with a subtle top-centre lift, matching the site. The mark is
-`#e8ecff` on `#0a0f1e`; the connecting lines are `#7f8cff` at 50%.
+The website generates its current social preview in `apps/web/app/(site)/opengraph-image.tsx`; it is the source of truth for link previews. Static exports should be checked against the current mark and copy before use.
 
-## Regenerating
+## Voice
 
-The source of truth is the SVG, not these PNGs. If the mark changes, re-render rather
-than editing a bitmap. The render used headless Chrome at each exact size so there is
-no resampling.
-
-## Caveat
-
-The deployed site still says **NewsGraph**. The NewsBeat rename exists on
-`origin/docs/newsbeat-everyday-users`, and these assets follow that name — they will
-not match production until the rename lands.
+Lead with the user's task: explore news, catch up, see what changed, or connect an agent. Use “stocks and crypto” in public copy. Describe tokenized-asset mapping as planned until verified mappings are available. Keep sources, timestamps and coverage freshness visible.

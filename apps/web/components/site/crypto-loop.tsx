@@ -22,33 +22,33 @@ const STEPS = [
   {
     id: "discover",
     label: "01 / DISCOVER",
-    title: "Pick your beat.",
-    text: "Start with a supported coin or company in the topic catalog.",
-    coreTop: "BTC",
+    title: "Choose an asset.",
+    text: "Pick a stock or cryptocurrency, by name or ticker.",
+    coreTop: "NVDA",
     coreBottom: "SELECTED",
   },
   {
     id: "detect",
     label: "02 / DETECT",
     title: "Ask what changed.",
-    text: "Save a cursor. On your next check, get the newly reported items.",
+    text: "Your agent remembers its last check and asks for newly collected headlines.",
     coreTop: "+3",
     coreBottom: "NEW SINCE LAST CHECK",
   },
   {
     id: "verify",
     label: "03 / VERIFY",
-    title: "Keep the receipts.",
+    title: "Follow the sources.",
     text: "Each headline comes with its publisher, timestamp and source link.",
-    coreTop: "COINDESK",
-    coreBottom: "14:02 UTC",
+    coreTop: "SOURCE LINK",
+    coreBottom: "PUBLISHER + TIMESTAMP",
   },
 ] as const;
 
 const TOPICS = [
-  { symbol: "BTC", position: "btc" },
-  { symbol: "ETH", position: "eth" },
-  { symbol: "SOL", position: "sol" },
+  { symbol: "NVDA", position: "btc" },
+  { symbol: "BTC", position: "eth" },
+  { symbol: "AAPL", position: "sol" },
 ] as const;
 
 export default function CryptoLoop() {
@@ -87,7 +87,7 @@ export default function CryptoLoop() {
         {TOPICS.map((topic) => (
           <span
             key={topic.symbol}
-            className={`bs-crypto-node bs-crypto-node-${topic.position}${step < 2 && topic.symbol === "BTC" ? " is-focus" : ""}`}
+            className={`bs-crypto-node bs-crypto-node-${topic.position}${step < 2 && topic.symbol === "NVDA" ? " is-focus" : ""}`}
           >
             {topic.symbol} <small>RESEARCH TOPIC</small>
           </span>
@@ -95,7 +95,7 @@ export default function CryptoLoop() {
 
         {/* The packet that travels from the tracked asset to the core during DETECT. */}
         <span className="bs-crypto-packet" />
-        <span className="bs-crypto-orbit-note">ILLUSTRATIVE TOPICS · NO PRICE FEED</span>
+        <span className="bs-crypto-orbit-note">ILLUSTRATIVE NEWS WORKFLOW</span>
       </div>
 
       <div className="bs-crypto-path">
@@ -122,7 +122,7 @@ export default function CryptoLoop() {
         </ol>
 
         <a href="/docs/quickstart">
-          Put your agent on the beat <ArrowRight size={16} />
+          Connect your agent <ArrowRight size={16} />
         </a>
       </div>
     </div>

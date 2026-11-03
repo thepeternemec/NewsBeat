@@ -1,20 +1,10 @@
-/**
- * The NewsBeat mark: three bars in a rounded tile — a beat, read as an equalizer.
- *
- * This is the original mark, restored. It replaced a sheep mascot during a rename that
- * was reverted, and the mascot-free version is better on every surface: it is legible at
- * 16px in a browser tab, it does not need a light or dark variant because the tile
- * supplies its own contrast, and it reads as a beat rather than as a character.
- *
- * Flat fills only, no strokes, so it renders identically at 16px and at 1024px.
- */
 export default function BrandMark({
   className,
   size = 64,
 }: {
   className?: string;
   size?: number;
-  /** Accepted for callers that still pass it; the mark has a single form now. */
+  /** Retained for compatible callers; the NewsBeat mark uses one shape. */
   variant?: "portrait" | "mascot";
 }) {
   return (

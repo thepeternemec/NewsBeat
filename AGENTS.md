@@ -1,10 +1,10 @@
 # NewsBeat for agents
 
-The integration guide for agents. For people: [connect your assistant](https://www.newsbeat.dev/docs/quickstart) and ask a company-news question in your own words.
+The integration guide for agents. For people: [connect your assistant](https://www.newsbeat.dev/docs/quickstart) and ask a stock or crypto news question in your own words.
 
 ## When to check the news
 
-Use NewsBeat when recent company or crypto developments would help answer the user's current task. The user does not need to name NewsBeat: "What is happening with Nvidia?", company research and market briefings are reasons to look up news. Static definitions and unrelated questions do not require a lookup.
+Use NewsBeat when recent stock or crypto developments would help answer the user's current task. The user does not need to name NewsBeat: "What is happening with Nvidia?", company research and market briefings are reasons to look up news. Static definitions and unrelated questions do not require a lookup.
 
 Resolve the supported asset first. Ask for clarification when the name is ambiguous and explain when there is no supported match. Answer in plain language with sources, dates and freshness, staying within what the headlines support. NewsBeat provides headline metadata, not full article text.
 
@@ -153,32 +153,22 @@ Use `newsbeat_stories` for a feed grouped by similar headlines and ranked by hea
 
 MCP returns up to 40 ranked groups drawn from 200 recent reports; REST scans 200 by default (`limit` 1–500). The 24-hour snapshot favors concrete developments, recency and coverage from multiple publishers, while downranking routine ownership notices and shopping headlines. This is a headline heuristic, not a measure of market impact or verification. Check `coverage_truncated` and `stories_scanned`. The brief ranks up to 200 recent reports for three distinct headlines; its `ranking` and `articles_scanned` fields explain the selection. Group IDs can change as the window rolls. Continue using the existing topic-bound article cursors for follow-up arrivals, then refresh the ranked overview for presentation.
 
-## Market and sentiment
+## Additional REST context
 
-Three more tools, same envelope as the news tools: every figure carries its `source`,
-its `fetched_at` time and a `freshness` object, and each part can fail independently.
-Read `freshness.status` before quoting a number, and quote the time with the price.
+The crypto context endpoints are available through REST, separately from the seven MCP news tools.
+Each response reports its source, fetch time and freshness. Read those before quoting a figure.
 
-| Tool | Route | Returns |
-| --- | --- | --- |
-| `newsbeat_market` | `GET /v2/market` | Sentiment, DeFi TVL and prices in one call |
-| `newsbeat_prices` | `GET /v2/prices?ids=` | Price, market cap and 24h change by CoinGecko id |
-| `newsbeat_fear_greed` | `GET /v2/sentiment?limit=` | Daily fear and greed index and history |
+| Route (relative to the REST base) | Context |
+| --- | --- |
+| `GET /v2/market` | Sentiment, DeFi TVL and prices |
+| `GET /v2/prices?ids=` | Crypto prices by CoinGecko ID, such as bitcoin |
+| `GET /v2/sentiment?limit=` | Daily fear and greed index and history |
+| `GET /v2/ask?q=` | Asset identity, headlines and available market context |
+| `GET /v2/chain` | Ethereum block and base fee, Solana slot |
+| `GET /v2/token?asset=` | Reference token price by contract address |
+| `GET /v2/signals` | Funding rates, DEX volume and stablecoin supply |
 
-Prices take CoinGecko ids (`bitcoin`, `ethereum`, `solana`), not tickers, because a
-ticker is ambiguous across chains. These are public endpoints read through a cache, so
-a value may be a few minutes old; `refresh_in_seconds` says when it will be re-read.
-This is reference data. There is no price forecast anywhere in the API.
+Use the news tools for reporting and these REST routes when additional market context is needed.
+Token contract pricing does not establish a verified mapping to a tokenized stock.
+These are cached reference readings, not price forecasts or execution quotes.
 
-### Ask, chain and contracts
-
-| Tool | Route | Returns |
-| --- | --- | --- |
-| `newsbeat_ask` | `GET /v2/ask?q=` | Identity, headlines, prices and chain state in one attributed call |
-| `newsbeat_chain` | `GET /v2/chain` | Ethereum block and base fee, Solana slot |
-| `newsbeat_token` | `GET /v2/token?asset=` | Token price by contract address |
-| `newsbeat_signals` | `GET /v2/signals` | Funding rates, DEX volume and stablecoin supply |
-
-Reach for `newsbeat_ask` first. Chaining the individual endpoints loses the attribution
-between calls, and it returns a `notes` array that states what was missing. Chain readings
-move every twelve seconds or less; none of this reads balances or quotes swaps.

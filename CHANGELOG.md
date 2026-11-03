@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-11-03 — NewsBeat website and project refresh
+
+- Reframed the homepage around stock and crypto news for AI agents, with a live lookup in the hero and a separate agent prompt builder.
+- Restored consistent NewsBeat language across navigation, the news explorer, footer, social preview and GitHub README.
+- Improved landing-page text sizes, responsive spacing, dark/light styling and reduced-motion support.
+- Added stock and crypto shortcuts and fixed lookup timeouts that could leave search or summaries loading indefinitely.
+- Corrected agent discovery docs to distinguish the seven MCP news tools from additional REST crypto context endpoints.
+- Kept tokenized-asset research on the roadmap, with verified token mapping described as planned.
+
 Not a version history — the project is one deployment, not a set of releases. This
 is a record of decisions, because the reasoning is the thing that gets lost.
 

@@ -8,6 +8,8 @@ import { API_BASE } from "./content";
 const ASSETS = [
   { label: "Nvidia", ticker: "NVDA", beatId: "b_bb964843350e" },
   { label: "Apple", ticker: "AAPL", beatId: "b_7d5acdda6186" },
+  { label: "Bitcoin", ticker: "BTC", beatId: "b_06c91290de1c" },
+  { label: "Ethereum", ticker: "ETH", beatId: "b_edbc5b5af755" },
 ] as const;
 const CRYPTO_ASSETS = [
   { label: "Bitcoin", ticker: "BTC", beatId: "b_06c91290de1c" },
@@ -71,6 +73,7 @@ export default function NewsPreview({ cryptoFirst = false }: { cryptoFirst?: boo
   useEffect(() => {
     if (!search) return;
     const controller = new AbortController();
+    let cancelled = false;
     const timeout = window.setTimeout(() => controller.abort(), 12000);
     void (async () => {
       try {
@@ -78,19 +81,20 @@ export default function NewsPreview({ cryptoFirst = false }: { cryptoFirst?: boo
         if (!response.ok) throw new Error("Search unavailable");
         const data = (await response.json()) as { topics?: Topic[] };
         if (!Array.isArray(data.topics)) throw new Error("Search unavailable");
-        if (!controller.signal.aborted) setSearchState({ status: "ready", topics: data.topics });
+        if (!cancelled) setSearchState({ status: "ready", topics: data.topics });
       } catch {
-        if (!controller.signal.aborted) setSearchState({ status: "error", topics: [] });
+        if (!cancelled) setSearchState({ status: "error", topics: [] });
       } finally {
         window.clearTimeout(timeout);
       }
     })();
-    return () => { controller.abort(); window.clearTimeout(timeout); };
+    return () => { cancelled = true; controller.abort(); window.clearTimeout(timeout); };
   }, [search, searchAttempt]);
 
   useEffect(() => {
     if (!summaryRequested) return;
     const controller = new AbortController();
+    let cancelled = false;
     const timeout = window.setTimeout(() => controller.abort(), 25000);
     void (async () => {
       try {
@@ -98,14 +102,14 @@ export default function NewsPreview({ cryptoFirst = false }: { cryptoFirst?: boo
         if (!response.ok) throw new Error("Summary unavailable");
         const data = (await response.json()) as Summary;
         if (data.basis !== "headlines_only" || !Array.isArray(data.items) || !data.freshness) throw new Error("Summary unavailable");
-        if (!controller.signal.aborted) setSummaryState({ status: "ready", data });
+        if (!cancelled) setSummaryState({ status: "ready", data });
       } catch {
-        if (!controller.signal.aborted) setSummaryState({ status: "error", data: null });
+        if (!cancelled) setSummaryState({ status: "error", data: null });
       } finally {
         window.clearTimeout(timeout);
       }
     })();
-    return () => { controller.abort(); window.clearTimeout(timeout); };
+    return () => { cancelled = true; controller.abort(); window.clearTimeout(timeout); };
   }, [asset.beatId, summaryRequested, summaryAttempt]);
 
   function chooseAsset(next: Asset) {
@@ -151,7 +155,7 @@ export default function NewsPreview({ cryptoFirst = false }: { cryptoFirst?: boo
   }, [asset.beatId, attempt]);
 
   return (
-    <div className="news-preview" data-state={state.status} aria-label="Try a real news lookup">
+    <div className="news-preview" data-state={state.status} aria-label="Try the news feed">
       <div className="news-preview-heading">
         <span>
           <Radio size={14} aria-hidden="true" /> {cryptoFirst ? "Your crypto briefing" : "Try a real news lookup"}
@@ -184,7 +188,7 @@ export default function NewsPreview({ cryptoFirst = false }: { cryptoFirst?: boo
         setSearch(term);
         setSearchAttempt((value) => value + 1);
       }}>
-        <label htmlFor="news-preview-query">Or find your company or crypto</label>
+        <label htmlFor="news-preview-query">Search stocks and crypto</label>
         <div>
           <input id="news-preview-query" type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder={cryptoFirst ? "Search crypto or companies, e.g. ETH" : "Name or ticker, e.g. AMD"} minLength={2} maxLength={80} />
           <button type="submit" aria-label="Search supported assets"><Search size={16} /></button>
@@ -195,7 +199,7 @@ export default function NewsPreview({ cryptoFirst = false }: { cryptoFirst?: boo
         {searchState.status === "error" && <p>Search is unavailable right now. Try again.</p>}
         {searchState.status === "ready" && searchState.topics.length === 0 && <p>No supported assets match “{search}”. Try a full name or ticker.</p>}
         {searchState.status === "ready" && searchState.topics.map((topic) => <button key={topic.beat_id} type="button" onClick={() => chooseAsset({ label: topic.label, ticker: topic.ticker, beatId: topic.beat_id })}>
-          <span>{topic.label} <small>{topic.asset === "crypto" ? "Crypto" : "Company"}</small></span>
+          <span>{topic.label} <small>{topic.asset === "crypto" ? "Crypto" : "Stock"}</small></span>
           <span>{topic.ticker} <ArrowRight size={13} /></span>
         </button>)}
       </div>}
@@ -302,7 +306,7 @@ export default function NewsPreview({ cryptoFirst = false }: { cryptoFirst?: boo
           )}
       </div>
       <div className="news-preview-footer">
-        <p>Live coverage from the same news your agent can use.</p>
+        <p>Real headlines. The same feed your agent can use.</p>
         <a href="/dashboard">
           Explore more news <ArrowRight size={13} />
         </a>

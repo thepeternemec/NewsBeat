@@ -18,7 +18,7 @@ export default function LandingMotion() {
       animations.add(animation);
       void animation.finished.then(() => animations.delete(animation)).catch(() => {});
     };
-    root.querySelectorAll(".bs-hero-copy > *, .bs-hero-grid > .mission-builder").forEach((node, index) => enter(node, index * 65));
+    root.querySelectorAll(".bs-hero-copy > *, .nb-hero-preview").forEach((node, index) => enter(node, index * 65));
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
@@ -26,7 +26,7 @@ export default function LandingMotion() {
         enter(entry.target, Number((entry.target as HTMLElement).dataset.motionDelay || 0));
       });
     }, { threshold: 0.12 });
-    root.querySelectorAll(".bs-proof .wrap > div, .bs-crypto-head > div, .bs-crypto-stage, .bs-crypto-foot, .bs-section-head, .bs-principles article, .bs-live-grid > div, .bs-build-grid > div, .bs-closing .wrap > *").forEach(node => {
+    root.querySelectorAll(".bs-proof .wrap > div, .bs-crypto-head > div, .bs-crypto-stage, .bs-crypto-foot, .bs-section-head, .bs-principles article, .bs-live-grid > div, .bs-build-grid > div, .bs-build-grid > .mission-builder, .bs-closing .wrap > *").forEach(node => {
       const index = Array.from(node.parentElement?.children ?? []).indexOf(node);
       (node as HTMLElement).dataset.motionDelay = String(Math.min(index, 3) * 70);
       observer.observe(node);

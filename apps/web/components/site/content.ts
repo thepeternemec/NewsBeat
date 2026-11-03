@@ -111,7 +111,7 @@ export const FAQ = [
   },
   {
     "q": "Can it help with trading or Polymarket research?",
-    "a": "Yes, it can add relevant company and crypto news to your research. NewsBeat does not provide live market prices, place trades, predict outcomes or connect to your Polymarket account. Your assistant needs other sources for prices and market data."
+    "a": "Yes, it can add relevant company and crypto news to your research. NewsBeat provides news and a separate crypto context page with sourced reference prices and market data. It does not place trades, predict outcomes or connect to your Polymarket account. Check each figure’s source and freshness."
   },
   {
     "q": "Can I use it in Telegram or Discord?",

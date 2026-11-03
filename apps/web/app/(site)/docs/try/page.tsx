@@ -6,7 +6,7 @@ import "./try.css";
 
 export const metadata = {
   title: "Try NewsBeat for free",
-  description: "Search a company or crypto asset, read live headlines and request a source-linked summary. No account, key or card needed.",
+  description: "Search a stock or crypto asset, read live headlines and request a source-linked summary. No account, key or card needed.",
 };
 
 const REQUEST = 'curl "https://www.newsbeat.dev/api/v2/summary?beat_id=b_bb964843350e"';
@@ -18,7 +18,7 @@ export default function TryNewsBeat() {
         <span className="sec-eyebrow">A real lookup · no setup</span>
         <h1>Try the news before you connect.</h1>
         <p className="docs-lead">
-          Search a company or crypto asset, read recent headlines, and ask for a short summary.
+          Search a stock or crypto asset, read recent headlines, and ask for a short summary.
           This uses the same public news service your agent can call. No NewsBeat account, API key
           or credit card is needed.
         </p>

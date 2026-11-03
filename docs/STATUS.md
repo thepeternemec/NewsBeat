@@ -1,6 +1,6 @@
 # NewsBeat project status
 
-Updated **2026-10-21** from the current main-branch implementation. Counts describe the bundled catalog, not a guarantee of live article coverage.
+Updated **2026-11-03** from the current main-branch implementation. Counts describe the bundled catalog, not a guarantee of live article coverage.
 
 ## Current main branch
 
@@ -15,7 +15,8 @@ Updated **2026-10-21** from the current main-branch implementation. Counts descr
 | Batched watch | Up to 50 assets per request; each result can succeed or fail independently |
 | REST and function calling | Seven read operations and schemas at `/api/v2/tools` |
 | Hosted MCP | Seven tools over Streamable HTTP at `/api/mcp`, including `newsbeat_summary` |
-| Web terminal | Asset search, grouped stories, source expansion, Show more controls and on-demand headline summaries |
+| Crypto reference REST | Sourced prices, sentiment, chain readings, contract prices and positioning; separate from the seven MCP news tools |
+| Web news explorer | Asset search, grouped stories, source expansion, Show more controls and on-demand headline summaries |
 | Self-serve keys | GitHub sign-in; signing in again rotates the existing key |
 | Account billing | Keyed REST usage is metered; anonymous reads are free and rate limited |
 | Ingestion | Google News RSS by default; Vercel cron configured every 15 minutes |
@@ -37,15 +38,15 @@ REST story snapshots scan 200 reports by default (`limit` 1–500). MCP returns 
 
 ## Brand and domain
 
-The product and repository are **NewsBeat**, live at **https://www.newsbeat.dev**. Use `https://www.newsbeat.dev/api` for REST and `https://www.newsbeat.dev/api/mcp` for MCP. The `news-beat.vercel.app` host remains an alternate service address. Public reads are free during early access; no API key or credit card is needed. Account keys have a **seven-day evaluation** from the first metered REST call, with up to **$6 in trial credit**. The start is recorded per account in the usage ledger, so rotating a key does not reset it. Existing accounts keep their balances and start their seven-day window on their next metered call after this release. `GET /api/keys/trial` reports the deadline and spendable credit. When the trial ends, unused trial credit becomes unavailable and keyed reads return `402 trial_expired`; public anonymous reads continue. Stripe checkout is not live.
+The product and repository are **NewsBeat**, live at **https://www.newsbeat.dev**. The public mission is an agent news feed for stocks and crypto. Verified tokenized-asset mapping is planned; current news topics resolve the underlying company or cryptocurrency. Use `https://www.newsbeat.dev/api` for REST and `https://www.newsbeat.dev/api/mcp` for MCP. The `news-beat.vercel.app` host remains an alternate service address. Public reads are free during early access; no API key or credit card is needed. Account keys have a **seven-day evaluation** from the first metered REST call, with up to **$6 in trial credit**. The start is recorded per account in the usage ledger, so rotating a key does not reset it. Existing accounts keep their balances and start their seven-day window on their next metered call after this release. `GET /api/keys/trial` reports the deadline and spendable credit. When the trial ends, unused trial credit becomes unavailable and keyed reads return `402 trial_expired`; public anonymous reads continue. Stripe checkout is not live.
 
 New discovery uses `newsbeat_*` tool names. Old tool names, deployed environment-variable names and existing signed cursors retain compatibility. Workspace package names use `@newsbeat/*` and `newsbeat-*`.
 
-## Connector expansion — preview, not production
+## Planned connector expansion
 
 [PR #11](https://github.com/thepeternemec/NewsBeat/pull/11) implements eight shared MCP/REST operations, general news search and source-record lookup, named independent keys, atomic account metering, OAuth resource-server verification, saved watches and signed webhooks. It also includes Telegram/Discord relay and Grok API examples.
 
-That work passed its preview checks but still needs its additive database migration, environment configuration and end-to-end activation. It is not merged into main. An external OAuth authorization server and platform-specific consent/client registration must be configured separately.
+PR #11 was closed without merging. Its implementation remains a reference for future work and is not available on main. Shipping those capabilities requires additive database migration, environment configuration and end-to-end activation. An external OAuth authorization server and platform-specific consent/client registration must be configured separately.
 
 ## Remaining limits
 

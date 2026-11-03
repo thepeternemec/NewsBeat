@@ -1,4 +1,4 @@
-import { ArrowRight, ArrowUpRight, Radio, Code2 } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Code2, Check } from "lucide-react";
 import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
 import NewsPreview from "@/components/site/news-preview";
@@ -9,116 +9,111 @@ import CopyButton from "@/components/site/copy-button";
 import "./landing.css";
 import "./newsbeat.css";
 import "./crypto-community.css";
+import "./newsbeat-polish.css";
 
-const DESCRIPTION =
-  "Market news intelligence for agents researching companies and crypto. Source-linked headlines, coverage freshness and updates since your last check. Checked on a fifteen-minute cycle.";
+const DESCRIPTION = "Stock and crypto news for AI agents. Explore recent headlines, get source-linked updates, and follow what changed through MCP or API.";
+const TITLE = "NewsBeat — Stock and crypto news for AI agents";
 export const metadata = {
-  title: "NewsBeat — Market intelligence for agents",
+  title: TITLE,
   description: DESCRIPTION,
-  openGraph: { title: "NewsBeat — Market intelligence for agents", description: DESCRIPTION, url: "https://www.newsbeat.dev", siteName: "NewsBeat", type: "website" },
-  twitter: { card: "summary_large_image", title: "NewsBeat — Market intelligence for agents", description: DESCRIPTION },
+  alternates: { canonical: "https://www.newsbeat.dev" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: "https://www.newsbeat.dev", siteName: "NewsBeat", type: "website" },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 const MCP_URL = "https://www.newsbeat.dev/api/mcp";
-const PRINCIPLES = [
-  { number: "01", title: "It knows what changed.", text: "Send a topic and a cursor. You get only the reports that appeared since your last check — not a fresh pile to read again." },
-  { number: "02", title: "It shows its evidence.", text: "Every item carries a publisher, a timestamp and a link. Freshness is reported per lookup, and “unavailable” is a state, not an empty list." },
-  { number: "03", title: "It will not invent the rest.", text: "No article bodies, no summaries passed off as reporting, no claims about price. What the headlines do not say, NewsBeat does not say." },
+const BENEFITS = [
+  { number: "01", title: "Catch up in a moment.", text: "Get a short update from recent headlines. Similar reports are grouped, so you can spend less time sorting through repeated coverage." },
+  { number: "02", title: "See what changed.", text: "Your agent can remember its last check and bring back newly collected stories. A quiet feed gets a clear “nothing new.”" },
+  { number: "03", title: "Follow every source.", text: "Publisher links, publication times and coverage freshness stay with the news. Open the reporting and make up your own mind." },
 ];
 
 export default function Home() {
   return (
     <>
       <SiteNav active="/" />
-      <main className="landing-home bs-home">
+      <main className="landing-home bs-home nb-home">
         <LandingMotion />
         <section className="bs-hero" id="top">
           <div className="wrap bs-hero-grid">
             <div className="bs-hero-copy">
-              <span className="bs-kicker"><span /> FINANCIAL NEWS / AGENT INTELLIGENCE</span>
-              <h1>Market intelligence.<br /><span>Built for your agent.</span></h1>
-              <p className="bs-lede">Give your agent the context behind companies and crypto. Follow the reporting, check what changed, and trace every source.</p>
+              <span className="bs-kicker"><span /> THE NEWS FEED FOR AI AGENTS</span>
+              <h1>The news behind<br /><span>stocks and crypto.</span></h1>
+              <p className="bs-lede">Give your agent a clearer view of what’s happening. Get recent headlines, short updates, and the changes that matter to your research — with sources you can follow.</p>
               <div className="hero-cta">
-                <a className="btn-primary" href="/dashboard">Open the terminal <ArrowRight size={16} /></a>
+                <a className="btn-primary" href="/dashboard">Explore the news <ArrowRight size={16} /></a>
                 <a className="bs-text-link" href="/docs/quickstart">Connect your agent <ArrowUpRight size={16} /></a>
               </div>
-              <p className="bs-hero-cadence"><span aria-hidden="true" /> 15-minute collection cycle <span aria-hidden="true">·</span> MCP + REST</p>
+              <p className="nb-free"><Check size={14} aria-hidden="true" /> Free to try. No account or API key needed.</p>
+              <div className="nb-asset-strip" aria-label="Example stocks and cryptocurrencies">
+                <span>NVDA</span><span>AAPL</span><span>MSFT</span><i aria-hidden="true" /><span>BTC</span><span>ETH</span><span>SOL</span>
+              </div>
             </div>
-            <MissionBuilder />
+            <div className="nb-hero-preview" id="live-news">
+              <NewsPreview />
+            </div>
           </div>
         </section>
 
-        <section className="bs-proof" aria-label="NewsBeat at a glance">
+        <section className="bs-proof" aria-label="NewsBeat coverage">
           <div className="wrap">
-            <div><strong>2,030</strong><span>assets covered</span></div>
-            <div><strong>15 min</strong><span>refresh cycle</span></div>
-            <div><strong>7</strong><span>agent tools</span></div>
-            <div><strong>$0</strong><span>to start</span></div>
-          </div>
-        </section>
-
-        <section className="bs-crypto" id="crypto-community" aria-labelledby="crypto-title">
-          <div className="wrap">
-            <div className="bs-crypto-head">
-              <div>
-                <span className="bs-kicker">THE FLOCK / CRYPTO RESEARCH</span>
-                <h2 id="crypto-title">Markets move fast.<br /><span>Bring receipts.</span></h2>
-              </div>
-              <div className="bs-crypto-intro">
-                <p>Follow reporting on 502 crypto assets. Ask what appeared since your agent last checked, then follow the source before forming a view.</p>
-                <a className="bs-text-link" href="/dashboard">Explore crypto coverage <ArrowUpRight size={17} /></a>
-              </div>
-            </div>
-
-            <CryptoLoop />
+            <div><strong>1,528</strong><span>US stocks</span></div>
+            <div><strong>502</strong><span>crypto assets</span></div>
+            <div><strong>15 min</strong><span>news collection cycle</span></div>
+            <div><strong>MCP + API</strong><span>ready for your agent</span></div>
           </div>
         </section>
 
         <section className="scaffold" id="thesis">
           <div className="wrap">
             <div className="bs-section-head">
-              <span className="bs-kicker">THE CASE</span>
-              <h2 className="bs-title">From market noise<br />to useful context.</h2>
-              <p className="bs-body">A clear view of what was reported, what changed, and how fresh the evidence is.</p>
+              <span className="bs-kicker">LESS NOISE. MORE CONTEXT.</span>
+              <h2 className="bs-title">Keep up with the assets<br />you care about.</h2>
+              <p className="bs-body">From company announcements to crypto developments, NewsBeat turns a stream of headlines into useful context for you and your agent.</p>
             </div>
-            <div className="bs-principles">{PRINCIPLES.map(item => <article key={item.number}><span>{item.number}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
+            <div className="bs-principles">{BENEFITS.map(item => <article key={item.number}><span>{item.number}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
           </div>
         </section>
 
-        <section className="scaffold bs-news-section" id="live-news">
-          <div className="wrap bs-live-grid">
-            <div>
-              <span className="bs-kicker"><Radio size={13} /> LIVE</span>
-              <h2 className="bs-title">Every token<br />has a story.</h2>
-              <p className="bs-body">Read it before you act on it. Live coverage, original sources, freshness on every lookup.</p>
-              <a className="bs-text-link" href="/dashboard">Open the terminal <ArrowRight size={15} /></a>
+        <section className="bs-crypto" id="crypto-community" aria-labelledby="workflow-title">
+          <div className="wrap">
+            <div className="bs-crypto-head">
+              <div>
+                <span className="bs-kicker">YOUR AGENT, ON THE BEAT</span>
+                <h2 id="workflow-title">One simple loop.<br /><span>A better-informed agent.</span></h2>
+              </div>
+              <div className="bs-crypto-intro">
+                <p>Choose a stock or cryptocurrency. Check the latest reporting. Come back for what’s new. The same workflow works across both markets.</p>
+                <a className="bs-text-link" href="/docs/quickstart">See how to connect <ArrowUpRight size={17} /></a>
+              </div>
             </div>
-            <NewsPreview />
+            <CryptoLoop />
+            <p className="nb-direction">Built for stock and crypto research today. We’re building toward feeds for tokenized assets, starting with the news behind the underlying company or cryptocurrency.</p>
           </div>
         </section>
 
         <section className="scaffold bs-build-section" id="build">
           <div className="wrap bs-build-grid">
-            <div>
-              <span className="bs-kicker"><Code2 size={13} /> CONNECT</span>
-              <h2 className="bs-title">One endpoint.<br />Any agent.</h2>
-              <p className="bs-body">Point it at NewsBeat and it can read the news. MCP for tool calls, REST for your own stack.</p>
-              <div className="bs-build-links"><a className="btn-primary" href="/docs/quickstart">Connect your agent <ArrowRight size={15} /></a><a className="bs-text-link" href="/docs">Read the docs <ArrowUpRight size={15} /></a></div>
-            </div>
-            <div>
+            <div className="nb-connect-copy">
+              <span className="bs-kicker"><Code2 size={13} /> BUILT TO CONNECT</span>
+              <h2 className="bs-title">Your assistant.<br />Now with the news.</h2>
+              <p className="bs-body">Connect NewsBeat to an assistant that supports remote MCP, or use the REST API in your own app. Ask a question naturally and let your agent bring back the context.</p>
+              <div className="bs-build-links"><a className="btn-primary" href="/docs/quickstart">Get connected <ArrowRight size={15} /></a><a className="bs-text-link" href="/docs/connect">API reference <ArrowUpRight size={15} /></a></div>
               <div className="code"><div className="code-bar">MCP ENDPOINT <CopyButton text={MCP_URL} label="Copy" /></div><pre>{MCP_URL}</pre></div>
+              <p className="nb-connect-note">Try a research prompt here, then copy it into your connected agent.</p>
             </div>
+            <MissionBuilder />
           </div>
         </section>
 
         <section className="bs-closing" id="community" aria-labelledby="closing-title">
           <div className="wrap">
-            <span className="bs-kicker">THE NEWSBEAT COMMUNITY</span>
-            <h2 id="closing-title">Research the asset.<br />Then make your move.</h2>
+            <span className="bs-kicker">STAY ON THE BEAT</span>
+            <h2 id="closing-title">The next headline.<br />A little more context.</h2>
             <div className="hero-cta">
-              <a className="btn-primary" href="/dashboard">Build your first brief <ArrowRight size={16} /></a>
-              <a className="bs-text-link" href="https://x.com/newsbeat_" target="_blank" rel="noopener noreferrer">Follow the flock <ArrowUpRight size={15} /></a>
+              <a className="btn-primary" href="/dashboard">Explore stocks and crypto <ArrowRight size={16} /></a>
+              <a className="bs-text-link" href="https://github.com/thepeternemec/NewsBeat" target="_blank" rel="noopener noreferrer">Build with NewsBeat <ArrowUpRight size={15} /></a>
             </div>
-            <p className="bs-closing-fine">Company and crypto research today. Market data is reference data, not advice. Independent project.</p>
+            <p className="bs-closing-fine">Source-linked news · Headline-based summaries · Free public access during early access</p>
           </div>
         </section>
       </main>
@@ -126,4 +121,3 @@ export default function Home() {
     </>
   );
 }
-

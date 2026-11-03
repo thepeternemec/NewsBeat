@@ -10,7 +10,7 @@ one asset you follow, addressed by a stable `beat_id`.
 
 ## When to use it
 
-Use NewsBeat when recent company or crypto news helps answer the user's current task,
+Use NewsBeat when recent stock or crypto news helps answer the user's current task,
 even if they do not explicitly ask for a news lookup. Examples include "What is happening
 with Nvidia?" and company research. Resolve the supported asset first. Explain missing
 coverage, include sources and dates, and do not infer details beyond the headlines.
@@ -46,23 +46,24 @@ Tools, for frameworks that would rather be handed a schema than a URL:
 `newsbeat_topics`, `newsbeat_news`, `newsbeat_changes`, `newsbeat_brief`,
 `newsbeat_stories`, `newsbeat_summary`, `newsbeat_watch`.
 
-## Market and sentiment
+## Additional REST context
 
-Three more tools, same envelope as the news tools: every figure carries its `source`,
-its `fetched_at` time and a `freshness` object, and each part can fail independently.
-Read `freshness.status` before quoting a number, and quote the time with the price.
+The crypto context endpoints are available through REST, separately from the seven MCP news tools.
+Each response reports its source, fetch time and freshness. Read those before quoting a figure.
 
-| Tool | Route | Returns |
-| --- | --- | --- |
-| `newsbeat_market` | `GET /v2/market` | Sentiment, DeFi TVL and prices in one call |
-| `newsbeat_prices` | `GET /v2/prices?ids=` | Price, market cap and 24h change by CoinGecko id |
-| `newsbeat_fear_greed` | `GET /v2/sentiment?limit=` | Daily fear and greed index and history |
+| Route (relative to the REST base) | Context |
+| --- | --- |
+| `GET /v2/market` | Sentiment, DeFi TVL and prices |
+| `GET /v2/prices?ids=` | Crypto prices by CoinGecko ID, such as bitcoin |
+| `GET /v2/sentiment?limit=` | Daily fear and greed index and history |
+| `GET /v2/ask?q=` | Asset identity, headlines and available market context |
+| `GET /v2/chain` | Ethereum block and base fee, Solana slot |
+| `GET /v2/token?asset=` | Reference token price by contract address |
+| `GET /v2/signals` | Funding rates, DEX volume and stablecoin supply |
 
-Prices take CoinGecko ids (`bitcoin`, `ethereum`, `solana`), not tickers, because a
-ticker is ambiguous across chains. These are public endpoints read through a cache, so
-a value may be a few minutes old; `refresh_in_seconds` says when it will be re-read.
-This is reference data. There is no price forecast anywhere in the API.
-
+Use the news tools for reporting and these REST routes when additional market context is needed.
+Token contract pricing does not establish a verified mapping to a tokenized stock.
+These are cached reference readings, not price forecasts or execution quotes.
 
 ## Grouped overview
 
@@ -100,18 +101,3 @@ shown once. That is a browser flow and needs a human.
 - Docs — https://www.newsbeat.dev/docs
 - Source — https://github.com/thepeternemec/NewsBeat
 
-# NewsBeat transition
-NewsBeat is a news service for AI agents: source-linked company and crypto headlines over MCP and REST. Existing newsbeat_* tools and www.newsbeat.dev addresses are unchanged.
-
-### Ask, chain and contracts
-
-| Tool | Route | Returns |
-| --- | --- | --- |
-| `newsbeat_ask` | `GET /v2/ask?q=` | Identity, headlines, prices and chain state in one attributed call |
-| `newsbeat_chain` | `GET /v2/chain` | Ethereum block and base fee, Solana slot |
-| `newsbeat_token` | `GET /v2/token?asset=` | Token price by contract address |
-| `newsbeat_signals` | `GET /v2/signals` | Funding rates, DEX volume and stablecoin supply |
-
-Reach for `newsbeat_ask` first. Chaining the individual endpoints loses the attribution
-between calls, and it returns a `notes` array that states what was missing. Chain readings
-move every twelve seconds or less; none of this reads balances or quotes swaps.
