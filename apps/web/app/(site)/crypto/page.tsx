@@ -84,20 +84,54 @@ export default function CryptoPage() {
           </div>
         </section>
 
-        <section className="crypto-note" aria-label="What this is not">
-          <h2>What this is not</h2>
-          <ul>
-            <li>Not a trading terminal: there are no charts drawn from our own ticks, and no orders.</li>
-            <li>Not advice: a funding rate says what longs pay shorts, not where the price goes.</li>
-            <li>Not real-time in the market-data sense: these are polled public endpoints, and each panel shows its own age.</li>
-            <li>Not a wallet: nothing here reads a balance, quotes a swap, or sends anything to a node on your behalf.</li>
-          </ul>
-          <p>
-            For the same data as tools, call <code>GET /api/v2/market</code>,{" "}
-            <code>GET /api/v2/signals</code> or <code>GET /api/v2/chain</code>, or use{" "}
-            <code>blacksheep_market</code>, <code>blacksheep_signals</code> and{" "}
-            <code>blacksheep_chain</code> over MCP.
-          </p>
+        <section className="crypto-limits" aria-labelledby="limits-title">
+          <div className="crypto-limits-head">
+            <span className="sec-eyebrow">Scope</span>
+            <h2 id="limits-title">What this is not.</h2>
+            <p>
+              A page full of live numbers should be as clear about its edges as about its figures.
+              These are the four it will not cross.
+            </p>
+          </div>
+
+          <div className="crypto-limits-grid">
+            <article>
+              <span className="crypto-limit-mark" aria-hidden="true">✗</span>
+              <h3>Not a trading terminal</h3>
+              <p>No charts drawn from our own ticks, no order flow, no positions.</p>
+            </article>
+            <article>
+              <span className="crypto-limit-mark" aria-hidden="true">✗</span>
+              <h3>Not advice</h3>
+              <p>A funding rate says who pays whom. It does not say where price goes.</p>
+            </article>
+            <article>
+              <span className="crypto-limit-mark" aria-hidden="true">✗</span>
+              <h3>Not a live market feed</h3>
+              <p>Polled public endpoints. Every panel prints its own age so you can judge it.</p>
+            </article>
+            <article>
+              <span className="crypto-limit-mark" aria-hidden="true">✗</span>
+              <h3>Not a wallet</h3>
+              <p>Nothing reads a balance, quotes a swap, or sends anything to a node for you.</p>
+            </article>
+          </div>
+
+          <div className="crypto-api">
+            <p className="crypto-api-lead">The same figures, as tools</p>
+            <div className="crypto-api-row">
+              <span className="crypto-api-label">REST</span>
+              <code>GET /api/v2/market</code>
+              <code>GET /api/v2/signals</code>
+              <code>GET /api/v2/chain</code>
+            </div>
+            <div className="crypto-api-row">
+              <span className="crypto-api-label">MCP</span>
+              <code>blacksheep_market</code>
+              <code>blacksheep_signals</code>
+              <code>blacksheep_chain</code>
+            </div>
+          </div>
         </section>
       </InteriorPage>
 

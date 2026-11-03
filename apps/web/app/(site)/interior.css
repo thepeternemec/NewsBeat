@@ -474,55 +474,40 @@
   margin-top: 26px;
 }
 
-.crypto-sources,
-.crypto-note {
-  margin-top: 64px;
-  padding-top: 30px;
+/* ── Where the numbers come from ───────────────────────────────────────── */
+.crypto-sources {
+  margin-top: 72px;
+  padding-top: 34px;
   border-top: 1px solid var(--border-default);
 }
 
-.crypto-sources h2,
-.crypto-note h2 {
-  margin: 0 0 14px;
+.crypto-sources h2 {
+  margin: 0 0 12px;
   font-size: clamp(20px, 2vw, 26px);
   letter-spacing: -0.03em;
   font-weight: 550;
   color: var(--text-primary);
 }
 
-.crypto-sources p,
-.crypto-note p {
-  margin: 0 0 20px;
-  max-width: 62ch;
+.crypto-sources > p {
+  margin: 0 0 24px;
+  max-width: 58ch;
   font-size: 14px;
   line-height: 1.8;
   color: var(--text-secondary);
 }
 
-.crypto-note ul {
-  margin: 0 0 20px;
-  padding-left: 18px;
-  max-width: 62ch;
-  font-size: 14px;
-  line-height: 1.9;
-  color: var(--text-secondary);
-}
-
-.crypto-note li + li {
-  margin-top: 8px;
-}
-
 .crypto-source-table {
   border: 1px solid var(--border-default);
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
 }
 
 .crypto-source-row {
   display: grid;
-  grid-template-columns: minmax(120px, 0.8fr) minmax(200px, 1.6fr) minmax(110px, 0.7fr);
+  grid-template-columns: minmax(120px, 0.7fr) minmax(200px, 1.7fr) minmax(110px, 0.6fr);
   gap: 16px;
-  padding: 12px 16px;
+  padding: 14px 18px;
   font-size: 13px;
   color: var(--text-secondary);
   border-top: 1px solid var(--border-subtle);
@@ -545,23 +530,145 @@
   font-weight: 500;
 }
 
-.crypto-note code {
+/* ── What this is not ──────────────────────────────────────────────────────
+   It was a bulleted list of four long sentences, which read as documentation and
+   looked like markdown. The negative is the point, so each one is a card with a
+   mark, a short claim and a single supporting line. */
+.crypto-limits {
+  margin-top: 76px;
+  padding-top: 38px;
+  border-top: 1px solid var(--border-default);
+  display: grid;
+  grid-template-columns: minmax(240px, 0.62fr) minmax(0, 1.38fr);
+  gap: clamp(28px, 5vw, 72px);
+}
+
+.crypto-limits-head h2 {
+  margin: 16px 0 14px;
+  font-size: clamp(28px, 3.2vw, 42px);
+  line-height: 1.06;
+  letter-spacing: -0.045em;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.crypto-limits-head p {
+  margin: 0;
+  max-width: 32ch;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.crypto-limits-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--border-default);
+  border: 1px solid var(--border-default);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.crypto-limits-grid article {
+  background: var(--bg-base);
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.crypto-limit-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  color: var(--text-ghost);
+  font-size: 11px;
+  line-height: 1;
+}
+
+.crypto-limits-grid h3 {
+  margin: 4px 0 0;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.crypto-limits-grid p {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+/* ── The same figures, as tools ────────────────────────────────────────── */
+.crypto-api {
+  grid-column: 1 / -1;
+  margin-top: 8px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border-default);
+}
+
+.crypto-api-lead {
+  margin: 0 0 14px;
+  font: 10px/1.4 var(--font-mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-ghost);
+}
+
+.crypto-api-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.crypto-api-row + .crypto-api-row {
+  margin-top: 12px;
+}
+
+.crypto-api-label {
+  min-width: 46px;
+  font: 10px/1.4 var(--font-mono);
+  letter-spacing: .1em;
+  color: var(--text-secondary);
+}
+
+.crypto-api code {
   font-family: var(--font-mono);
   font-size: 12px;
-  padding: 1px 5px;
-  border-radius: 4px;
+  padding: 6px 11px;
+  border-radius: 999px;
   background: var(--bg-raised);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-default);
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .crypto-limits {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+  .crypto-limits-head p { max-width: 46ch; }
 }
 
 @media (max-width: 700px) {
   .crypto-page { padding: 96px 0 64px; }
+  .crypto-limits-grid { grid-template-columns: minmax(0, 1fr); }
   .crypto-source-row {
     grid-template-columns: 1fr;
     gap: 4px;
   }
   .crypto-source-row.is-head { display: none; }
   .crypto-source-row > span:nth-child(2)::before { content: "· "; }
+  .crypto-api-label { min-width: 100%; }
 }
 
 /* The search now leads the terminal, so it needs room above it and a gap before the
