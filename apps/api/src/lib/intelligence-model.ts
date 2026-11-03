@@ -55,11 +55,11 @@ export const INTELLIGENCE_OUTPUT_SCHEMA = object({
   }) },
 });
 
-export function parseIntelligenceResult(body: { choices?: Array<{ finish_reason?: string; message?: { content?: string } }> }, evidence: IntelligenceEvidence[], previous: IntelligenceSignal[]) {
-  const choice = body.choices?.[0];
+export function parseIntelligenceResult(body: unknown, evidence: IntelligenceEvidence[], previous: IntelligenceSignal[]) {
+  const choice = body && typeof body === "object" && "choices" in body && Array.isArray(body.choices) ? body.choices[0] : undefined;
   if (choice?.finish_reason === "length") throw new Error("invalid_analysis_truncated");
   const content = choice?.message?.content;
-  if (!content) throw new Error("invalid_analysis_empty");
+  if (typeof content !== "string" || !content) throw new Error("invalid_analysis_empty");
   let value: unknown;
   try { value = JSON.parse(content.trim().replace(/^\x60\x60\x60(?:json)?\s*|\s*\x60\x60\x60$/g, "")); }
   catch { throw new Error("invalid_analysis_json"); }

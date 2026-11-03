@@ -19,6 +19,8 @@ test("complete grounded constructions parse and an empty selection is valid", ()
   assert.deepEqual(parseIntelligenceResult(result({ events: [] }), reports, []), []);
 });
 test("truncated and malformed generations are rejected before persistence", () => {
+  assert.throws(() => parseIntelligenceResult(null, reports, []), /invalid_analysis_empty/);
+  assert.throws(() => parseIntelligenceResult({ choices: [{ message: { content: 42 } }] }, reports, []), /invalid_analysis_empty/);
   assert.throws(() => parseIntelligenceResult(result({ events: [draft] }, "length"), reports, []), /invalid_analysis_truncated/);
   assert.throws(() => parseIntelligenceResult({ choices: [{ message: { content: '{"events":[' } }] }, reports, []), /invalid_analysis_json/);
 });
