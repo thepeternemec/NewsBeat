@@ -28,7 +28,7 @@ The public interfaces read stored observations, never execute probes or create
 tables. They are outside API-key billing and rate-limit storage middleware, and
 have a 30-second shared-cache lifetime. The JSON response carries `generated_at`,
 `status`, `monitoring`, `interval_minutes`, `latest` and `history`. History exposes
-at most 48 observations from the last four hours; `latest` retains the last
+at most 288 observations from the last 24 hours; `latest` retains the last
 observation even if older. Database errors return HTTP 503 with unknown status,
 without internal errors or credentials.
 
@@ -42,12 +42,16 @@ declared incidents or guaranteed outage intervals.
 
 This is first-party monitoring, on the same Vercel deployment and database. It
 cannot independently prove availability through a complete platform outage. Use
-an external monitor for that requirement. No uptime percentage is claimed.
+an external monitor for that requirement. The page labels its percentage as healthy observed checks: operational observations divided by operational, degraded and unavailable observations in the selected range. Missing and unknown windows are excluded from that denominator and remain visibly gray; this is not an uptime SLA.
+
+## Status page
+
+The page defaults to 24 hours (288 five-minute bars per service), with 4-hour and 12-hour options. Timelines scroll horizontally on narrow screens and support pointer, touch and keyboard inspection. Times default to the viewer’s local zone, with a UTC option. Each service shows its stable monitor ID, protocol or job type, endpoint, check method, observed duration or coverage, and expandable details.
 
 ## Verification
 
 Run `npm run build:packages`, `npm run build -w @newsbeat/api`, and
 `node --test apps/api/dist/lib/operations-policy.test.js`. The normal `npm test`
-also includes those tests. Build the web app and verify the `/status` page on
+also includes those tests and the web history tests for slot alignment, duplicate observation ordering and missing-data percentages. Build the web app and verify the `/status` page on
 mobile and desktop. The public cron URL must reject unauthenticated requests,
 including requests with a forged `vercel-cron` user agent.
