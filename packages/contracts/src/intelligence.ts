@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const INTELLIGENCE_VERSION = "contextual-signals-v1";
+export const INTELLIGENCE_VERSION = "contextual-signals-v2";
 export const EventCategorySchema = z.enum(["guidance", "earnings", "regulation", "legal", "deal", "product", "operations", "security", "leadership", "financing", "macro", "other"]);
 export const EventStateSchema = z.enum(["reported", "planned", "alleged", "denied", "disputed"]);
 const text = (max: number) => z.string().trim().min(1).max(max).refine(value => !/[<>\r\n]/.test(value));

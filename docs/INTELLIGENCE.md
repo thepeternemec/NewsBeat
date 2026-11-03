@@ -37,7 +37,7 @@ The authenticated worker bootstraps additive schema changes. Jobs track complete
 
 Evidence selection is separate from summary selection: up to 24 reports combine newly indexed coverage (with reserved space for denials and withdrawals) and ranked story context. This keeps contradictory reporting eligible for analysis even when a digest would omit it. The 200-report source scan and selected evidence are bounded; inspect partial-coverage flags.
 
-Bounds remain two asset jobs per five-minute run, one model call per job, 25-second timeout, 4,000 output tokens and 15-minute retry delay. The model may select up to three developments. No new credentials, payment method or budget is configured.
+Bounds remain two asset jobs per five-minute run, one model call per job, 25-second timeout, 4,000 output tokens and 15-minute retry delay. A strict JSON response schema limits the model to two concise constructions per batch. Truncated, malformed, ungrounded or context-free output is rejected with a specific analysis error code; prior memory is retained. No new credentials, payment method or budget is configured.
 
 ## Interfaces
 
