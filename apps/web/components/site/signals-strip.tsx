@@ -75,7 +75,7 @@ export default function SignalsStrip() {
               <span className="market-sub">
                 {funding.data[0]!.symbol.replace("USDT", "")} per 8h · {pct(funding.data[0]!.annualised, 1)} annualised
               </span>
-              <span className="market-source">binance · continuous</span>
+              <span className="market-source">{funding.source} · continuous</span>
             </>
           ) : (
             <>
@@ -122,7 +122,7 @@ export default function SignalsStrip() {
                 .map((rate) => `${rate.symbol.replace("USDT", "")} ${pct(rate.rate, 4)}`)
                 .join(" · ")}
             </span>
-            <span className="market-source">binance</span>
+            <span className="market-source">{funding.source}</span>
           </div>
         ) : null}
       </div>
