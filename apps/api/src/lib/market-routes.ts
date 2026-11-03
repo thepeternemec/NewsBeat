@@ -10,6 +10,7 @@ import { Hono } from "hono";
 import { chainTvl, DEFAULT_PRICE_IDS, fearGreed, overview, prices } from "./market.js";
 import { chainPulse, contractToken } from "./chain.js";
 import { ask } from "./ask.js";
+import { signals } from "./signals.js";
 
 export const marketRoutes = new Hono();
 
@@ -96,5 +97,14 @@ marketRoutes.get("/ask", async (c) => {
   // The slowest part sets the envelope: news is on a fifteen-minute cycle, chain on eight
   // seconds, so five seconds is a safe edge cache for the combined answer.
   attributed(c, "mixed", new Date().toISOString(), 5);
+  return c.json(payload);
+});
+
+marketRoutes.get("/signals", async (c) => {
+  const payload = await signals();
+  const sources = [payload.funding, payload.dex_volume, payload.stablecoins]
+    .filter((part) => "source" in part)
+    .map((part) => part.source);
+  attributed(c, [...new Set(sources)].join(","), new Date().toISOString(), 60);
   return c.json(payload);
 });

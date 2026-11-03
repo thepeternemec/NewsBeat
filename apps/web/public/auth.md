@@ -93,6 +93,7 @@ Returns the seven calls in OpenAI function-call shape:
 | `blacksheep_ask` | `GET /v2/ask?q=` | Identity, news, market and chain in one attributed call |
 | `blacksheep_chain` | `GET /v2/chain` | Ethereum block and gas, Solana slot |
 | `blacksheep_token` | `GET /v2/token?asset=` | Token price by contract address |
+| `blacksheep_signals` | `GET /v2/signals` | Funding rates, DEX volume and stablecoin supply |
 
 `GET /v2/topics?q=` searches by ticker or company name across +2000 topics —
 US-listed equities and the largest crypto assets. A coin and a company can share a ticker

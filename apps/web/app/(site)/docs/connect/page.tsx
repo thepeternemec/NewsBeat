@@ -222,6 +222,15 @@ export default function DocsConnect() {
         Chain readings move every twelve seconds or less, so their freshness window is short.
         None of this reads balances, quotes swaps, or sends anything to a node on your behalf.
       </p>
+
+      <h2>Signals</h2>
+      <p>
+        <code>GET /v2/signals</code> returns positioning and liquidity rather than prices:
+        perpetual funding rates with open interest, aggregate DEX volume with the largest
+        venues, and total stablecoin supply. Funding says what leveraged traders are paying
+        to stay in — positive means longs pay shorts, so leverage is leaning long. These are
+        facts about positioning, not forecasts.
+      </p>
     </>
   );
 }

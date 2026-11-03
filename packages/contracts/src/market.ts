@@ -14,7 +14,7 @@
 /** Where a number came from, and how much to trust its currency. */
 export interface SourceAttribution {
   /** Machine name of the upstream, for caching and for saying "not our number". */
-  source: "defillama" | "coingecko" | "alternative.me" | "google-news" | "mixed";
+  source: "defillama" | "coingecko" | "alternative.me" | "binance" | "google-news" | "mixed";
   /** The public home of the data, so a consumer can check it independently. */
   source_url: string;
   /** When this server fetched it, ISO 8601 UTC. */
@@ -179,4 +179,55 @@ export interface AskPayload {
   chain: Sourced<ChainPulse> | Unavailable;
   /** Plain-language notes about anything missing, for the agent to relay honestly. */
   notes: string[];
+}
+
+// ── Signals ─────────────────────────────────────────────────────────────
+
+/**
+ * Positioning and liquidity, from free public endpoints.
+ *
+ * These are the signals that are cheap to obtain, hard to fake, and genuinely different
+ * from each other: funding says what leveraged traders are paying to stay in, DEX volume
+ * says where liquidity actually changed hands, and stablecoin supply says how much dry
+ * powder exists. None of them is a prediction, and the API never frames them as one.
+ */
+export interface FundingRate {
+  symbol: string;
+  /** Fraction per funding interval, e.g. 0.0001 is 0.01%. Positive means longs pay shorts. */
+  rate: number;
+  /** Per year, assuming the interval repeats: rate × intervals per day × 365. */
+  annualised: number;
+  /** Mark price at the time of the reading, for context. */
+  mark_price: number;
+  /** ISO 8601 UTC of the next funding settlement. */
+  next_funding_at: string;
+  /** Open interest in the base asset, when the source reports it. */
+  open_interest?: number;
+}
+
+export interface DexVenue {
+  name: string;
+  volume_24h_usd: number;
+}
+
+export interface DexVolumePayload {
+  total_24h_usd: number;
+  /** Percent change versus the previous day, as a fraction. */
+  change_24h?: number;
+  /** A handful of the largest venues, so a caller can see concentration. */
+  top_venues: DexVenue[];
+}
+
+export interface StablecoinPayload {
+  /** Total circulating across every pegged asset the source tracks. */
+  circulating_usd: number;
+  assets_tracked: number;
+  /** The largest few by circulating supply. */
+  top: { symbol: string; circulating_usd: number }[];
+}
+
+export interface SignalsPayload {
+  funding: Sourced<FundingRate[]> | Unavailable;
+  dex_volume: Sourced<DexVolumePayload> | Unavailable;
+  stablecoins: Sourced<StablecoinPayload> | Unavailable;
 }

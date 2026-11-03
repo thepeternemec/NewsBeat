@@ -1,0 +1,198 @@
+/**
+ * Signals: positioning, liquidity and dry powder, from free public endpoints.
+ *
+ * Three questions that a news feed cannot answer and a price chart only implies:
+ *
+ *  - **Who is paying to hold a position?** Binance publishes funding rates without a key.
+ *    Positive means longs pay shorts, which is leverage leaning long. It is a fact about
+ *    positioning, not a forecast, and it is the single most useful number here.
+ *  - **Where did liquidity actually move?** DefiLlama aggregates DEX volume across chains,
+ *    including tokenized-asset venues, so a caller can see whether a quiet headline day
+ *    was also a quiet trading day.
+ *  - **How much dry powder is there?** Stablecoin supply is the closest free proxy for
+ *    capital waiting rather than deployed.
+ *
+ * Each is attributed and cached on its own cadence: funding moves continuously, a 24-hour
+ * volume aggregate does not, and stablecoin supply moves slowest of all.
+ */
+
+import type {
+  DexVolumePayload,
+  DexVenue,
+  FundingRate,
+  SignalsPayload,
+  Sourced,
+  StablecoinPayload,
+  Unavailable,
+} from "@blacksheep/contracts";
+import { upstreamCache } from "./market-cache.js";
+
+const TIMEOUT_MS = 8_000;
+
+export const SIGNAL_TTL = {
+  /** Funding settles every eight hours but the rate is live; two minutes is ample. */
+  funding: 2 * 60_000,
+  /** A rolling 24-hour aggregate does not need to be read every minute. */
+  dexVolume: 10 * 60_000,
+  stablecoins: 30 * 60_000,
+} as const;
+
+const FUNDING_SYMBOLS = ["BTCUSDT", "ETHUSDT", "SOLUSDT"] as const;
+
+async function getJson<T>(url: string): Promise<T> {
+  const response = await fetch(url, {
+    signal: AbortSignal.timeout(TIMEOUT_MS),
+    headers: { accept: "application/json", "user-agent": "blacksheep/0.3" },
+  });
+  if (!response.ok) throw new Error(`${new URL(url).host} responded ${response.status}`);
+  return (await response.json()) as T;
+}
+
+function freshness(fetchedAt: number, ttlMs: number, cadence: string) {
+  const ageSeconds = Math.max(0, Math.round((Date.now() - fetchedAt) / 1000));
+  return {
+    status: (ageSeconds * 1000 > ttlMs ? "stale" : "fresh") as "fresh" | "stale",
+    age_seconds: ageSeconds,
+    refresh_in_seconds: Math.max(0, Math.round(ttlMs / 1000) - ageSeconds),
+    upstream_cadence: cadence,
+  };
+}
+
+interface RawPremium {
+  symbol: string;
+  markPrice: string;
+  lastFundingRate: string;
+  nextFundingTime: number;
+}
+
+interface RawInterest {
+  openInterest: string;
+}
+
+/** Funding runs every eight hours on Binance, so three settlements a day. */
+const SETTLEMENTS_PER_DAY = 3;
+
+export async function fundingRates(): Promise<Sourced<FundingRate[]>> {
+  const cached = await upstreamCache.read("signals:funding", SIGNAL_TTL.funding, async () => {
+    const results = await Promise.allSettled(
+      FUNDING_SYMBOLS.map(async (symbol) => {
+        const [premium, interest] = await Promise.allSettled([
+          getJson<RawPremium>(`https://fapi.binance.com/fapi/v1/premiumIndex?symbol=${symbol}`),
+          getJson<RawInterest>(`https://fapi.binance.com/fapi/v1/openInterest?symbol=${symbol}`),
+        ]);
+        if (premium.status === "rejected") throw premium.reason;
+        const rate = Number(premium.value.lastFundingRate);
+        return {
+          symbol,
+          rate,
+          annualised: rate * SETTLEMENTS_PER_DAY * 365,
+          mark_price: Number(premium.value.markPrice),
+          next_funding_at: new Date(premium.value.nextFundingTime).toISOString(),
+          ...(interest.status === "fulfilled" ? { open_interest: Number(interest.value.openInterest) } : {}),
+        } satisfies FundingRate;
+      }),
+    );
+
+    const rates: FundingRate[] = [];
+    for (const result of results) {
+      if (result.status === "fulfilled") rates.push(result.value);
+    }
+
+    // One symbol failing should not empty the list; all of them failing is an outage.
+    if (rates.length === 0) throw new Error("no funding rates available");
+    return rates;
+  });
+
+  return {
+    source: "binance",
+    source_url: "https://www.binance.com/en/futures/funding-history/perpetual/real-time-funding-rate",
+    fetched_at: new Date(cached.fetchedAt).toISOString(),
+    ttl_seconds: Math.round(SIGNAL_TTL.funding / 1000),
+    freshness: freshness(cached.fetchedAt, SIGNAL_TTL.funding, "continuous, settled every eight hours"),
+    data: cached.value,
+  };
+}
+
+interface RawDex {
+  total24h?: number;
+  change_1d?: number;
+  protocols?: { name?: string; total24h?: number }[];
+}
+
+export async function dexVolume(): Promise<Sourced<DexVolumePayload>> {
+  const cached = await upstreamCache.read("signals:dex", SIGNAL_TTL.dexVolume, async () => {
+    const raw = await getJson<RawDex>(
+      "https://api.llama.fi/overview/dexs?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true",
+    );
+    const venues: DexVenue[] = (raw.protocols ?? [])
+      .filter((venue) => typeof venue.total24h === "number" && venue.total24h > 0)
+      .map((venue) => ({ name: venue.name ?? "unknown", volume_24h_usd: Math.round(venue.total24h ?? 0) }))
+      .sort((a, b) => b.volume_24h_usd - a.volume_24h_usd)
+      .slice(0, 5);
+
+    return {
+      total_24h_usd: Math.round(raw.total24h ?? 0),
+      ...(typeof raw.change_1d === "number" ? { change_24h: raw.change_1d / 100 } : {}),
+      top_venues: venues,
+    } satisfies DexVolumePayload;
+  });
+
+  return {
+    source: "defillama",
+    source_url: "https://defillama.com/dexs",
+    fetched_at: new Date(cached.fetchedAt).toISOString(),
+    ttl_seconds: Math.round(SIGNAL_TTL.dexVolume / 1000),
+    freshness: freshness(cached.fetchedAt, SIGNAL_TTL.dexVolume, "daily aggregate, updated continuously"),
+    data: cached.value,
+  };
+}
+
+interface RawStable {
+  peggedAssets?: { symbol?: string; circulating?: { peggedUSD?: number } }[];
+}
+
+export async function stablecoinSupply(): Promise<Sourced<StablecoinPayload>> {
+  const cached = await upstreamCache.read("signals:stables", SIGNAL_TTL.stablecoins, async () => {
+    const raw = await getJson<RawStable>("https://stablecoins.llama.fi/stablecoins?includePrices=false");
+    const assets = raw.peggedAssets ?? [];
+    const sized = assets
+      .map((asset) => ({ symbol: asset.symbol ?? "?", circulating_usd: asset.circulating?.peggedUSD ?? 0 }))
+      .filter((asset) => asset.circulating_usd > 0)
+      .sort((a, b) => b.circulating_usd - a.circulating_usd);
+
+    if (sized.length === 0) throw new Error("no stablecoin supply reported");
+    return {
+      circulating_usd: Math.round(sized.reduce((sum, asset) => sum + asset.circulating_usd, 0)),
+      assets_tracked: sized.length,
+      top: sized.slice(0, 5).map((asset) => ({ ...asset, circulating_usd: Math.round(asset.circulating_usd) })),
+    } satisfies StablecoinPayload;
+  });
+
+  return {
+    source: "defillama",
+    source_url: "https://defillama.com/stablecoins",
+    fetched_at: new Date(cached.fetchedAt).toISOString(),
+    ttl_seconds: Math.round(SIGNAL_TTL.stablecoins / 1000),
+    freshness: freshness(cached.fetchedAt, SIGNAL_TTL.stablecoins, "hourly"),
+    data: cached.value,
+  };
+}
+
+/** All three together, each failing on its own so one dead upstream is not a dead panel. */
+export async function signals(): Promise<SignalsPayload> {
+  const [funding, dex, stables] = await Promise.allSettled([fundingRates(), dexVolume(), stablecoinSupply()]);
+
+  const part = <T>(result: PromiseSettledResult<Sourced<T>>): Sourced<T> | Unavailable =>
+    result.status === "fulfilled"
+      ? result.value
+      : {
+          freshness: { status: "unavailable", age_seconds: 0, refresh_in_seconds: 0 },
+          error: result.reason instanceof Error ? result.reason.message : "unavailable",
+        };
+
+  return {
+    funding: part(funding),
+    dex_volume: part(dex),
+    stablecoins: part(stables),
+  };
+}

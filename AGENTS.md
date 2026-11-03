@@ -177,6 +177,7 @@ This is reference data. There is no price forecast anywhere in the API.
 | `blacksheep_ask` | `GET /v2/ask?q=` | Identity, headlines, prices and chain state in one attributed call |
 | `blacksheep_chain` | `GET /v2/chain` | Ethereum block and base fee, Solana slot |
 | `blacksheep_token` | `GET /v2/token?asset=` | Token price by contract address |
+| `blacksheep_signals` | `GET /v2/signals` | Funding rates, DEX volume and stablecoin supply |
 
 Reach for `blacksheep_ask` first. Chaining the individual endpoints loses the attribution
 between calls, and it returns a `notes` array that states what was missing. Chain readings

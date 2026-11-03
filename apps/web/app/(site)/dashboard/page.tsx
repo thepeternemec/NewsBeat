@@ -6,6 +6,7 @@ import SiteNav from "@/components/site/site-nav";
 import { useCallback, useEffect, useRef, useState } from "react";
 import MarketPulse from "@/components/site/market-pulse";
 import ChainPulseStrip from "@/components/site/chain-pulse";
+import SignalsStrip from "@/components/site/signals-strip";
 
 /** Clusters to load articles for. One request each, so this stays small. */
 const CLUSTER_LIMIT = 10;
@@ -363,6 +364,7 @@ export default function Dashboard() {
 
         <MarketPulse />
         <ChainPulseStrip />
+        <SignalsStrip />
 
         {/* Both views answer "which ticker?", so the search belongs to neither of
             them. Centred and larger: it is the first control a reader reaches for
