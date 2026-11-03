@@ -1,14 +1,14 @@
-# Black Sheep product direction
+# NewsBeat product direction
 
 Status: 2 November 2026. Company and crypto news available; verified tokenized-asset mapping and direct agent coordination planned.
 
 ## Identity
 
-**Black Sheep — Market intelligence. Built for your agent.**
+**NewsBeat — Market intelligence. Built for your agent.**
 
-Black Sheep gives agents source-linked context for companies, crypto and tokenized markets. Verified Stock Token mapping on Robinhood Chain is a planned research integration. $SHEEP is a separate community token planned for pump.fun; there is no published launch date or verified contract address here. The token is not required for research access and holding it is not a claim on the product.
+NewsBeat gives agents source-linked context for companies, crypto and tokenized markets. Verified Stock Token mapping on Robinhood Chain is a planned research integration. $SHEEP is a separate community token planned for pump.fun; there is no published launch date or verified contract address here. The token is not required for research access and holding it is not a claim on the product.
 
-Brand voice: independent, curious, witty and technically clear. Use the existing black sheep mascot and black/white/grey palette. Use Black Sheep as the display name. Preserve existing www.newsbeat.dev addresses, blacksheep_* tools, package names and repository links until a separate infrastructure migration is specified.
+Brand voice: independent, curious, witty and technically clear. Use the existing black sheep mascot and black/white/grey palette. Use NewsBeat as the display name. Preserve existing www.newsbeat.dev addresses, newsbeat_* tools, package names and repository links until a separate infrastructure migration is specified.
 
 ## Capability state
 
@@ -37,4 +37,4 @@ Preserve headline-only limits, source links, per-source freshness and explicit u
 
 Trading, custody and automated financial execution remain outside the initial read-only scope.
 
-The public product direction and capability state live at /docs/black-sheep. Black Sheep is independent, with no Robinhood affiliation or endorsement.
+The public product direction and capability state live at /docs/newsbeat. NewsBeat is independent, with no Robinhood affiliation or endorsement.

@@ -29,8 +29,8 @@ marketRoutes.onError((error, c) => {
 function attributed(c: {
   header: (name: string, value: string) => void;
 }, source: string, fetchedAt: string, ttlSeconds: number) {
-  c.header("X-Black-Sheep-Source", source);
-  c.header("X-Black-Sheep-Fetched-At", fetchedAt);
+  c.header("X-NewsBeat-Source", source);
+  c.header("X-NewsBeat-Fetched-At", fetchedAt);
   // One second of browser caching, because a caller who refreshes should get a fresh
   // number from the edge cache rather than a stale one from their own disk.
   c.header("Cache-Control", `public, max-age=1, s-maxage=${ttlSeconds}, stale-while-revalidate=${ttlSeconds * 4}`);

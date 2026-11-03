@@ -43,7 +43,7 @@ export default function DocsSide() {
       <div className="docs-nav-panel" id={id} data-lenis-prevent>
         <a className="docs-nav-brand" href="/docs">
           <span className="docs-nav-mark"><BookOpen size={19} strokeWidth={1.6} aria-hidden="true" /></span>
-          <span><small>BLACK SHEEP</small><strong>Documentation</strong></span>
+          <span><small>NEWSBEAT</small><strong>Documentation</strong></span>
         </a>
         <nav className="docs-nav-groups" aria-label="Documentation">
           {GROUPS.map(group => (
@@ -63,7 +63,7 @@ export default function DocsSide() {
           ))}
         </nav>
         <div className="docs-nav-resources">
-          <a href="https://github.com/thepeternemec/black-sheep" target="_blank" rel="noopener noreferrer"><GitBranch size={15} aria-hidden="true" /> GitHub <ArrowUpRight size={12} aria-hidden="true" /></a>
+          <a href="https://github.com/thepeternemec/NewsBeat" target="_blank" rel="noopener noreferrer"><GitBranch size={15} aria-hidden="true" /> GitHub <ArrowUpRight size={12} aria-hidden="true" /></a>
           <a href="/status"><Activity size={15} aria-hidden="true" /> Status</a>
         </div>
         <a className="docs-nav-contact" href="mailto:contact@newsbeat.dev"><Mail size={15} aria-hidden="true" /><span>Need a hand? <strong>Contact us</strong></span><ArrowUpRight size={12} aria-hidden="true" /></a>

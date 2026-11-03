@@ -8,9 +8,9 @@ What has to be true before the site is serving real news, and how to check each 
 | --- | --- | --- |
 | 1 | A Postgres database | `DATABASE_URL` |
 | 2 | The schema | `npm run db:setup` once |
-| 3 | *(optional)* a newsapi.ai key | `NEWSAPI_API_KEY` — only for `BLACKSHEEP_PROVIDER=newsapi` |
+| 3 | *(optional)* a newsapi.ai key | `NEWSAPI_API_KEY` — only for `NEWSBEAT_PROVIDER=newsapi` |
 
-Plus `BLACKSHEEP_CURSOR_SECRET`, which signs cursors. Rotating it invalidates every cursor already
+Plus `NEWSBEAT_CURSOR_SECRET`, which signs cursors. Rotating it invalidates every cursor already
 issued, so treat it as long-lived.
 
 ## 1. Create the database
@@ -43,8 +43,8 @@ Vercel → Project → Settings → Environment Variables (Production and Previe
 ```
 DATABASE_URL              (usually injected by the Storage integration)
 NEWSAPI_API_KEY           your full-access key
-BLACKSHEEP_CURSOR_SECRET   32 random bytes, hex
-BLACKSHEEP_CRON_SECRET     optional; only for manual ingestion runs
+NEWSBEAT_CURSOR_SECRET   32 random bytes, hex
+NEWSBEAT_CRON_SECRET     optional; only for manual ingestion runs
 ```
 
 ## 4. Put the topics in
@@ -75,7 +75,7 @@ orphans every cursor already in the wild — so add, never renumber.
 ## 5. Run the first ingestion
 
 ```bash
-curl -H "Authorization: Bearer $BLACKSHEEP_CRON_SECRET" \
+curl -H "Authorization: Bearer $NEWSBEAT_CRON_SECRET" \
      https://www.newsbeat.dev/api/cron/ingest
 ```
 
@@ -106,7 +106,7 @@ A topic that ingested successfully reads `fresh` or `stale`; one that has never 
 ## 6. The schedule
 
 `vercel.json` runs `/api/cron/ingest` every 15 minutes. Vercel signs its own cron requests, so no
-secret is needed for those; `BLACKSHEEP_CRON_SECRET` only guards manual runs.
+secret is needed for those; `NEWSBEAT_CRON_SECRET` only guards manual runs.
 
 > **Hobby plan crons run once per day.** A 15-minute cadence needs Pro. If you are on Hobby,
 > either change the schedule in `vercel.json` or drive it from GitHub Actions instead.
@@ -115,7 +115,7 @@ secret is needed for those; `BLACKSHEEP_CRON_SECRET` only guards manual runs.
 
 - [ ] `DATABASE_URL` set, and `npm run db:setup` has been run against it
 - [ ] `NEWSAPI_API_KEY` set
-- [ ] `BLACKSHEEP_CURSOR_SECRET` set
+- [ ] `NEWSBEAT_CURSOR_SECRET` set
 - [ ] Topics added to `packages/contracts/src/seed.ts`, and `npm test` passes
 - [ ] First ingestion returned `ok: true` with a non-zero `inserted`
 - [ ] `/api/v2/topics` shows `fresh` or `stale` rather than `unavailable`
@@ -148,9 +148,9 @@ For preview deployments, the callback is derived from the request origin, so eac
 deployment serves its own `/api/keys/callback`. GitHub allows one callback URL per
 OAuth app, so a preview will refuse the redirect unless you register a second app.
 
-## Black Sheep production domain
+## NewsBeat production domain
 
-The repository is https://github.com/thepeternemec/black-sheep. The live primary domain is **https://www.newsbeat.dev**; `https://news-beat.vercel.app` remains an alternate host.
+The repository is https://github.com/thepeternemec/NewsBeat. The live primary domain is **https://www.newsbeat.dev**; `https://news-beat.vercel.app` remains an alternate host.
 
 - REST base: `https://www.newsbeat.dev/api`
 - MCP: `https://www.newsbeat.dev/api/mcp`
@@ -159,4 +159,4 @@ The repository is https://github.com/thepeternemec/black-sheep. The live primary
 
 The domain is connected. Keep the OAuth app callback aligned with the primary origin before using sign-in there. Verify `/api/health`, MCP and a real news read after deployments. Retain alternate API hosts for existing clients; do not introduce redirects for API POST requests without testing clients.
 
-New configuration uses `BLACKSHEEP_*`. Existing `BLACKSHEEP_*` variables remain supported as fallbacks so a branding deployment does not invalidate credentials. Existing cursor signatures and cached MCP tool names also remain valid. No database migration is needed for this rename.
+New configuration uses `NEWSBEAT_*`. Existing `NEWSBEAT_*` variables remain supported as fallbacks so a branding deployment does not invalidate credentials. Existing cursor signatures and cached MCP tool names also remain valid. No database migration is needed for this rename.

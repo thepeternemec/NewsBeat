@@ -34,7 +34,7 @@ type OptionId = (typeof OPTIONS)[number]["id"];
 const SNIPPETS: Record<OptionId, string> = {
   mcp: `{
   "mcpServers": {
-    "blacksheep": {
+    "newsbeat": {
       "url": "${API_BASE}/mcp"
     }
   }
@@ -56,8 +56,8 @@ curl -s "${API_BASE}/v2/market"`,
 const { tools } = await fetch("${API_BASE}/v2/tools").then((r) => r.json());
 
 // Pass them to your model, execute what it calls, send the results back.
-// Seven tools: blacksheep_topics, blacksheep_news, blacksheep_changes,
-// blacksheep_brief, blacksheep_stories, blacksheep_summary, blacksheep_watch.`,
+// Seven tools: newsbeat_topics, newsbeat_news, newsbeat_changes,
+// newsbeat_brief, newsbeat_stories, newsbeat_summary, newsbeat_watch.`,
 };
 
 export default function Connect() {
@@ -107,7 +107,7 @@ export default function Connect() {
           params: {
             protocolVersion: "2025-06-18",
             capabilities: {},
-            clientInfo: { name: "blacksheep-connect-check", version: "1.0.0" },
+            clientInfo: { name: "newsbeat-connect-check", version: "1.0.0" },
           },
         }),
       });

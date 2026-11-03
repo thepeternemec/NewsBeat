@@ -28,7 +28,7 @@ export default function AgentContextPanel({ topic, snapshot, notice, onRefresh, 
     const url = URL.createObjectURL(new Blob([json], { type: "application/json" }));
     const anchor = document.createElement("a");
     anchor.href = url;
-    anchor.download = `black-sheep-${topic.ticker.replace(/[^a-z0-9_-]/gi, "-")}-research.json`;
+    anchor.download = `newsbeat-${topic.ticker.replace(/[^a-z0-9_-]/gi, "-")}-research.json`;
     document.body.appendChild(anchor);
     anchor.click();
     anchor.remove();

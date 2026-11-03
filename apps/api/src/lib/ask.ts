@@ -11,7 +11,7 @@
  * because the agent has the conversation and we do not.
  */
 
-import type { AskNewsItem, AskPayload, Freshness, PricesPayload, Unavailable, ChainPulse, Sourced } from "@blacksheep/contracts";
+import type { AskNewsItem, AskPayload, Freshness, PricesPayload, Unavailable, ChainPulse, Sourced } from "@newsbeat/contracts";
 import { brief, topics } from "./news.js";
 import { prices } from "./market.js";
 import { chainPulse, contractToken } from "./chain.js";
@@ -37,7 +37,7 @@ export async function ask(query: string): Promise<AskPayload> {
 
   const topic = await resolveTopic(trimmed).catch(() => null);
   if (!topic) {
-    notes.push(`No supported company or crypto asset matches "${trimmed}". Use blacksheep_topics to find one.`);
+    notes.push(`No supported company or crypto asset matches "${trimmed}". Use newsbeat_topics to find one.`);
   } else if (topic.status !== "fresh") {
     notes.push(`Coverage for ${topic.label} is ${topic.status}; the headlines below may be older than they look.`);
   }

@@ -35,7 +35,7 @@ export interface Stats {
   live: number;
 }
 
-export function useBlackSheepStats(intervalMs = 20000) {
+export function useNewsBeatStats(intervalMs = 20000) {
   const [topics, setTopics] = useState<Topic[]>([]);
   // The catalog is paginated, so `topics.length` is the size of a page capped at
   // 1000 and the headline number stopped there. The API reports the real total.
@@ -85,7 +85,7 @@ export function useBlackSheepStats(intervalMs = 20000) {
   const mapped = items.map((i) => ({
     id: i.id,
     beat_id: i.beat_id,
-    beat_label: labelOf.get(i.beat_id) ?? "BLACK SHEEP",
+    beat_label: labelOf.get(i.beat_id) ?? "NEWSBEAT",
     lede: i.title,
     source: i.source,
     url: i.url,
@@ -97,7 +97,7 @@ export function useBlackSheepStats(intervalMs = 20000) {
     ? mapped.slice(0, 8)
     : [
         {
-          beat_label: "BLACK SHEEP",
+          beat_label: "NEWSBEAT",
           lede: "Awaiting the next ingestion cycle.",
           source: "system",
           url: "#",

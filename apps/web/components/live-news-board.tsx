@@ -70,7 +70,7 @@ export default function LiveNewsBoard({ stats }: { stats: Stats | null }) {
 }
 
 const PLACEHOLDER: RecentItem[] = [
-  { beat_label: "Markets", lede: "Scanning thousands of sources for the first signal.", source: "Black Sheep", url: "#", corroboration: 0 },
-  { beat_label: "Policy", lede: "Clustering stories before they reach the mainstream.", source: "Black Sheep", url: "#", corroboration: 0 },
-  { beat_label: "AI", lede: "Structured, filtered, ready for agents and humans.", source: "Black Sheep", url: "#", corroboration: 0 },
+  { beat_label: "Markets", lede: "Scanning thousands of sources for the first signal.", source: "NewsBeat", url: "#", corroboration: 0 },
+  { beat_label: "Policy", lede: "Clustering stories before they reach the mainstream.", source: "NewsBeat", url: "#", corroboration: 0 },
+  { beat_label: "AI", lede: "Structured, filtered, ready for agents and humans.", source: "NewsBeat", url: "#", corroboration: 0 },
 ];

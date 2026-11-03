@@ -18,14 +18,14 @@ const EXAMPLES = [
   "https://www.newsbeat.dev/api/v2/topics?q=bitcoin&limit=5"
 );
 if (!response.ok) {
-  throw new Error(\`Black Sheep: HTTP \${response.status}\`);
+  throw new Error(\`NewsBeat: HTTP \${response.status}\`);
 }
 const catalog = await response.json();
 console.log(catalog.topics);`,
   },
   {
     id: "mcp", label: "MCP config", language: "JSON", title: "For clients that accept mcpServers configuration",
-    code: JSON.stringify({ mcpServers: { blacksheep: { url: MCP } } }, null, 2),
+    code: JSON.stringify({ mcpServers: { newsbeat: { url: MCP } } }, null, 2),
   },
 ] as const;
 

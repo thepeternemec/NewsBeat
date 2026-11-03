@@ -1,23 +1,23 @@
 import { ArrowRight } from "lucide-react";
 
 export const metadata = {
-  title: "Black Sheep — Intelligence for tokenized assets",
+  title: "NewsBeat — Intelligence for tokenized assets",
   description: "Follow the news behind tokenized real-world assets. Source-linked company context for agents, with Robinhood Chain asset mapping planned.",
 };
 
-export default function BlackSheepThesis() {
+export default function NewsBeatThesis() {
   return (
     <div className="docs-overview">
       <header className="docs-head">
-        <span className="sec-eyebrow">Black Sheep / Product direction</span>
+        <span className="sec-eyebrow">NewsBeat / Product direction</span>
         <h1>Context before the trade.</h1>
-        <p className="docs-lead">Black Sheep is the company intelligence layer for agents researching tokenized assets. Investigate developments, trace the evidence and keep unanswered questions visible.</p>
-        <div className="docs-callout"><strong>Company news available today. Asset mapping comes next.</strong><p>The existing Black Sheep engine powers Black Sheep. News lookup, grouping and headline summaries work today. Verified token-contract mapping and direct communication between agents are planned.</p></div>
+        <p className="docs-lead">NewsBeat is the company intelligence layer for agents researching tokenized assets. Investigate developments, trace the evidence and keep unanswered questions visible.</p>
+        <div className="docs-callout"><strong>Company news available today. Asset mapping comes next.</strong><p>The existing NewsBeat engine powers NewsBeat. News lookup, grouping and headline summaries work today. Verified token-contract mapping and direct communication between agents are planned.</p></div>
       </header>
       <section className="docs-section" aria-labelledby="what-it-does">
         <h2 id="what-it-does">Start with the world behind the asset</h2>
         <p>An agent researching a tokenized asset needs to know which underlying asset it refers to, what was reported about that asset, and how fresh the coverage is. The initial focus is Stock Tokens on Robinhood Chain and their underlying companies, including NVIDIA, Alphabet and Apple.</p>
-        <p>Black Sheep’s current foundation collects company and crypto headline metadata through Google News RSS. It supports source-linked news, approximate story grouping, headline-based summaries and follow-up checks through MCP and REST. It does not retrieve full article bodies. Checks run on a fifteen-minute schedule.</p>
+        <p>NewsBeat’s current foundation collects company and crypto headline metadata through Google News RSS. It supports source-linked news, approximate story grouping, headline-based summaries and follow-up checks through MCP and REST. It does not retrieve full article bodies. Checks run on a fifteen-minute schedule.</p>
         <a className="docs-text-action" href="/docs/try">Try a live company lookup <ArrowRight size={14} aria-hidden="true" /></a>
       </section>
       <section className="docs-section" aria-labelledby="asset-context">
@@ -40,12 +40,12 @@ export default function BlackSheepThesis() {
       <section className="docs-section" aria-labelledby="robinhood-fit">
         <h2 id="robinhood-fit">The Robinhood Chain direction</h2>
         <p>The planned first integration maps a Stock Token’s verified chain ID and contract to its underlying company and an existing supported news asset. Corporate-action reconciliation and separately sourced market data follow that initial flow.</p>
-        <p>Black Sheep provides research context. $SHEEP is its community token, planned for pump.fun; no verified contract address or launch date has been published here. The Robinhood Chain direction is a separate news research integration. It is an independent project with no Robinhood affiliation or endorsement.</p>
+        <p>NewsBeat provides research context. $SHEEP is its community token, planned for pump.fun; no verified contract address or launch date has been published here. The Robinhood Chain direction is a separate news research integration. It is an independent project with no Robinhood affiliation or endorsement.</p>
         <a className="docs-text-action" href="/docs/robinhood-chain">Read the asset integration plan <ArrowRight size={14} aria-hidden="true" /></a>
       </section>
       <section className="docs-section" aria-labelledby="transition">
         <h2 id="transition">Connect the news tools</h2>
-        <p>The working service remains at www.newsbeat.dev. Existing blacksheep_* tool names, API paths, account settings and repository links retain their current identifiers. Public news reads require no wallet.</p>
+        <p>The working service remains at www.newsbeat.dev. Existing newsbeat_* tool names, API paths, account settings and repository links retain their current identifiers. Public news reads require no wallet.</p>
         <a className="docs-text-action" href="/docs/quickstart">Connect your agent <ArrowRight size={14} aria-hidden="true" /></a>
       </section>
     </div>

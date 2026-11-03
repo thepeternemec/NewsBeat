@@ -10,7 +10,7 @@
  */
 
 import { useEffect, useState } from "react";
-import type { SignalsPayload } from "@blacksheep/contracts";
+import type { SignalsPayload } from "@newsbeat/contracts";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "/api";
 const POLL_MS = 60_000;

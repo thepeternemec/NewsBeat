@@ -1,5 +1,5 @@
 /**
- * Black Sheep API.
+ * NewsBeat API.
  *
  * Read-only news interfaces: topics, articles, changes since a cursor, and an
  * MCP server for agent frameworks. This is the canonical source for the
@@ -39,13 +39,13 @@ app.route("/status", operationRoutes);
 app.route("/webhooks/github/marketplace", marketplaceRoutes);
 app.use("*", rateLimit);
 
-app.get("/health", (c) => c.json({ ok: true, service: "blacksheep", version: "0.3.0" }));
+app.get("/health", (c) => c.json({ ok: true, service: "newsbeat", version: "0.3.0" }));
 
 app.get("/", (c) =>
   c.json({
-    service: "Black Sheep",
+    service: "NewsBeat",
     docs: "https://www.newsbeat.dev/docs",
-    repo: "https://github.com/thepeternemec/black-sheep",
+    repo: "https://github.com/thepeternemec/NewsBeat",
     routes: ["/v2/topics", "/v2/news", "/v2/changes", "/v2/watch", "/v2/brief", "/v2/stories", "/v2/summary", "/v2/tools", "/mcp", "/health", "/status", "/status/feed", "/keys/authorize"],
     rate_limits: rateLimits,
   }),

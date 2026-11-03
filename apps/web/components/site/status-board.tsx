@@ -6,7 +6,7 @@ import type {
   OperationState,
   OperationSnapshot,
   OperationStatus,
-} from "@blacksheep/contracts";
+} from "@newsbeat/contracts";
 import { API_BASE } from "./content";
 
 const LABELS: Record<OperationState, string> = {

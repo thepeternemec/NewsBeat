@@ -1,4 +1,4 @@
-/* Black Sheep: a playful editorial identity in black, white and grey. */
+/* NewsBeat: a playful editorial identity in black, white and grey. */
 .bs-home{--bs-wash:rgba(128,128,128,.045);background:var(--bg-base);position:relative}
 .bs-home .scaffold{padding:100px 0}
 .bs-home a:focus-visible,.bs-home button:focus-visible{outline:2px solid var(--text-primary);outline-offset:5px}
@@ -280,7 +280,7 @@
   padding-top: clamp(8px, 4vw, 56px);
 }
 
-/* Black Sheep polish: readable hierarchy and a quieter, deeper stage. */
+/* NewsBeat polish: readable hierarchy and a quieter, deeper stage. */
 .bs-home{--bs-wash:color-mix(in srgb,var(--text-primary) 3%,transparent)}
 .bs-hero{position:relative;padding-top:140px}
 .bs-hero::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 80% 30%,color-mix(in srgb,var(--text-primary) 5%,transparent),transparent 62%)}

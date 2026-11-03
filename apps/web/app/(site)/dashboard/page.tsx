@@ -296,7 +296,7 @@ export default function Dashboard() {
       <InteriorPage className="wrap dash-main terminal-page">
         <div className="terminal-heading">
           <div>
-            <span className="sec-eyebrow">Black Sheep / Intelligence terminal</span>
+            <span className="sec-eyebrow">NewsBeat / Intelligence terminal</span>
             <h1 style={{ margin: 0, fontSize: "clamp(30px, 4vw, 44px)", lineHeight: 1.05, letterSpacing: "-0.035em", color: "var(--text-primary)", fontWeight: 600 }}>
               Research the underlying asset.
             </h1>
@@ -568,7 +568,7 @@ export default function Dashboard() {
         <div className="wrap">
           <div className="footer-row">
             <div className="footer-brand-line">
-              <span className="footer-co">BLACK SHEEP</span>
+              <span className="footer-co">NEWSBEAT</span>
               <span style={{ color: "var(--border-strong)" }}>/</span>
               <span className="footer-address">read-only · live graph</span>
             </div>

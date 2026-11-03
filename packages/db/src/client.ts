@@ -9,14 +9,15 @@ import postgres, { type Sql } from "postgres";
  */
 
 export function env(name: string): string | undefined {
-  // Variable names were NEWSGRAPH_*, then NEWSBEAT_*, and are now BLACKSHEEP_*. All
-  // three resolve so a deployment never depends on the rename landing at the same
-  // instant as the code. The current name wins.
+  // The variable names have been NEWSGRAPH_*, NEWSBEAT_*, BLACKSHEEP_* and back to
+  // NEWSBEAT_*. Every name that has ever been deployed still resolves, so a deployment
+  // never depends on the rename landing at the same instant as the code. The current
+  // name wins, then the other two in the order they were introduced.
   const direct = process.env[name];
   if (direct !== undefined) return direct;
-  if (name.startsWith("BLACKSHEEP_")) {
-    const suffix = name.slice("BLACKSHEEP_".length);
-    return process.env[`NEWSBEAT_${suffix}`] ?? process.env[`NEWSGRAPH_${suffix}`];
+  if (name.startsWith("NEWSBEAT_")) {
+    const suffix = name.slice("NEWSBEAT_".length);
+    return process.env[`BLACKSHEEP_${suffix}`] ?? process.env[`NEWSGRAPH_${suffix}`];
   }
   return undefined;
 }
@@ -39,7 +40,7 @@ export function db(): Sql {
   if (!url) throw new Error("DATABASE_URL is not set");
   // The site asks for a dozen things at once (catalog, feed, ten clusters). With
   // a pool of one those serialise and the slowest query sets the page's latency.
-  const max = Math.max(1, Number(env("BLACKSHEEP_DB_POOL") ?? 5));
+  const max = Math.max(1, Number(env("NEWSBEAT_DB_POOL") ?? 5));
   client ??= postgres(url, { max, idle_timeout: 20, prepare: false });
   return client;
 }

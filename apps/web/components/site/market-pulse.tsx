@@ -11,7 +11,7 @@
  */
 
 import { useEffect, useState } from "react";
-import type { MarketOverview, Sourced } from "@blacksheep/contracts";
+import type { MarketOverview, Sourced } from "@newsbeat/contracts";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "/api";
 

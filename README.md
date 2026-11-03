@@ -1,6 +1,6 @@
 <div align="center">
 
-# Black Sheep
+# NewsBeat
 
 ### Market intelligence. Built for your agent.
 
@@ -10,9 +10,9 @@ Source-linked news for agents researching companies, crypto and tokenized market
 
 [Open the terminal](https://www.newsbeat.dev/dashboard) · [Explore crypto research](https://www.newsbeat.dev/#crypto-community) · [Connect your agent](https://www.newsbeat.dev/docs/quickstart) · [Read the docs](https://www.newsbeat.dev/docs)
 
-Contact: [@blacksheep_ on X](https://x.com/blacksheep_)
+Contact: [@newsbeat_ on X](https://x.com/newsbeat_)
 
-[![CI](https://github.com/thepeternemec/black-sheep/actions/workflows/ci.yml/badge.svg)](https://github.com/thepeternemec/black-sheep/actions/workflows/ci.yml)
+[![CI](https://github.com/thepeternemec/NewsBeat/actions/workflows/ci.yml/badge.svg)](https://github.com/thepeternemec/NewsBeat/actions/workflows/ci.yml)
 [![MIT license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![Early access](https://img.shields.io/badge/status-free_early_access-brightgreen)](https://www.newsbeat.dev)
 
@@ -20,7 +20,7 @@ Contact: [@blacksheep_ on X](https://x.com/blacksheep_)
 
 Ask your assistant “What happened with Nvidia?” or “What changed with BTC since my last check?” It can look up supported news topics whenever it needs context for your question. Start with the [free terminal](https://www.newsbeat.dev/dashboard): search by name or ticker, read available headlines, and request a short source-linked summary. No account needed.
 
-Black Sheep gives agents equity and crypto news through **MCP and REST**. Resolve an asset, get a short source-linked update, and check freshness. For follow-up checks, save a cursor and get only newly indexed headlines or a clear “nothing new.”
+NewsBeat gives agents equity and crypto news through **MCP and REST**. Resolve an asset, get a short source-linked update, and check freshness. For follow-up checks, save a cursor and get only newly indexed headlines or a clear “nothing new.”
 
 Built for developers bringing news into trading research, prediction-market analysis, personal assistants and monitoring workflows. Headlines are collected on a **15-minute schedule**; this is news context, not a price feed or a trading signal.
 
@@ -32,7 +32,7 @@ Built for developers bringing news into trading research, prediction-market anal
 
 **Start with your own question.** The [terminal](https://www.newsbeat.dev/dashboard) searches the supported catalog, shows recent headlines, and lets you request an on-demand summary. The [landing page](https://www.newsbeat.dev) has a mission builder that prepares a research prompt to copy into your own agent, plus a crypto community section illustrating the topic → change → source workflow. The mission builder does not execute an agent or place trades. Follow the [assistant quickstart](https://www.newsbeat.dev/docs/quickstart) when you are ready.
 
-- **Headline summaries:** up to three short explanations with publisher links, publication times and freshness. Choose **Summarize headlines** in the terminal, call `blacksheep_summary` over MCP, or use [the summary API](https://www.newsbeat.dev/api/v2/summary?beat_id=b_bb964843350e).
+- **Headline summaries:** up to three short explanations with publisher links, publication times and freshness. Choose **Summarize headlines** in the terminal, call `newsbeat_summary` over MCP, or use [the summary API](https://www.newsbeat.dev/api/v2/summary?beat_id=b_bb964843350e).
 - **Grouped coverage:** similar reports appear as one story. Expand it to see the original headlines and sources; reporting is retained.
 - **Relevance ranking:** concrete developments appear ahead of routine ownership notices and shopping headlines. Summaries favor developments and select distinct stories.
 - **Clear evidence limits:** summaries use headlines only. If generation is unavailable or its output fails validation, original headlines are returned with `method: "extractive"`.
@@ -65,7 +65,7 @@ For clients that accept this configuration format:
 ```json
 {
   "mcpServers": {
-    "blacksheep": {
+    "newsbeat": {
       "url": "https://www.newsbeat.dev/api/mcp"
     }
   }
@@ -78,17 +78,17 @@ Use the [connection guide](https://www.newsbeat.dev/connect) for setup and a liv
 
 ## $SHEEP and the product direction
 
-The Black Sheep news engine collects company and crypto headline metadata and serves source-linked research through MCP and REST. The community identity is **$SHEEP**, a token **planned for pump.fun**. No launch date or verified contract address has been published here. The token is not required to use the research tools, and holding it is not a claim on the product.
+The NewsBeat news engine collects company and crypto headline metadata and serves source-linked research through MCP and REST. The community identity is **$SHEEP**, a token **planned for pump.fun**. No launch date or verified contract address has been published here. The token is not required to use the research tools, and holding it is not a claim on the product.
 
 The product direction includes verified token-to-company mapping for tokenized assets and possible agent coordination. These are planned capabilities. $SHEEP's community launch is separate from that research integration. Existing endpoints, tool names and package identifiers remain compatible.
 
-Read the [product direction](docs/BLACK-SHEEP.md) and [website guide](https://www.newsbeat.dev/docs/black-sheep).
+Read the [product direction](docs/NEWSBEAT.md) and [website guide](https://www.newsbeat.dev/docs/newsbeat).
 
 ## Direction: context for Robinhood Chain
 
 We are building toward a read-only context layer for tokenized markets on **Robinhood Chain**: connect stock-token identities to news about the underlying companies, then add corporate-action context and separately sourced market data.
 
-**Planned, not released.** Today's MCP and REST news tools remain the foundation. Token-contract mapping, chain balances, token prices and transaction execution are not implemented. Black Sheep is an independent project with no Robinhood affiliation or endorsement.
+**Planned, not released.** Today's MCP and REST news tools remain the foundation. Token-contract mapping, chain balances, token prices and transaction execution are not implemented. NewsBeat is an independent project with no Robinhood affiliation or endorsement.
 
 Read the [integration plan](docs/ROBINHOOD-CHAIN.md) or the [website guide](https://www.newsbeat.dev/docs/robinhood-chain). The current MCP and REST news interfaces remain in place.
 
@@ -99,19 +99,19 @@ Read the [integration plan](docs/ROBINHOOD-CHAIN.md) or the [website guide](http
 - **Personal briefings:** ask what happened with an asset and get a short headline-based summary with sources and timestamps.
 - **Watchlist bots:** check up to 50 assets at once and pass new items into your own Telegram, Discord or other workflow.
 
-Black Sheep supplies news context. It does not execute trades, provide prediction-market prices or connect to Polymarket accounts. Dedicated messaging integrations are on the roadmap.
+NewsBeat supplies news context. It does not execute trades, provide prediction-market prices or connect to Polymarket accounts. Dedicated messaging integrations are on the roadmap.
 
 ## One API, seven tools
 
 | MCP tool | What it does |
 | --- | --- |
-| `blacksheep_topics` | Find supported assets and inspect coverage |
-| `blacksheep_news` | Read headlines with sources, timestamps and a cursor |
-| `blacksheep_changes` | Get newly indexed items since your last cursor |
-| `blacksheep_brief` | Return three ranked recent headlines verbatim |
-| `blacksheep_stories` | Group similar headlines into approximate story clusters |
-| `blacksheep_summary` | Explain up to three recent stories from headlines, with source links |
-| `blacksheep_watch` | Check up to 50 assets in one request |
+| `newsbeat_topics` | Find supported assets and inspect coverage |
+| `newsbeat_news` | Read headlines with sources, timestamps and a cursor |
+| `newsbeat_changes` | Get newly indexed items since your last cursor |
+| `newsbeat_brief` | Return three ranked recent headlines verbatim |
+| `newsbeat_stories` | Group similar headlines into approximate story clusters |
+| `newsbeat_summary` | Explain up to three recent stories from headlines, with source links |
+| `newsbeat_watch` | Check up to 50 assets in one request |
 
 Choose an asset, read a baseline, save the cursor, then check for changes. Process each page before advancing its cursor and continue while `has_more` is true. An empty page is a valid result.
 
@@ -137,19 +137,19 @@ The Vercel host remains available as an alternate: `https://news-beat.vercel.app
 
 **Live today:** asset discovery, source-linked headlines, approximate story grouping, relevance ranking, headline-based summaries, change cursors, verbatim briefs, batched checks, seven hosted MCP tools and the web terminal.
 
-**In development:** broader news search, source-record lookup, multiple agent keys, OAuth connector support and saved-watch notifications. The work is tracked in [PR #11](https://github.com/thepeternemec/black-sheep/pull/11) and still needs database migration, configuration and end-to-end activation before release.
+**In development:** broader news search, source-record lookup, multiple agent keys, OAuth connector support and saved-watch notifications. The work is tracked in [PR #11](https://github.com/thepeternemec/NewsBeat/pull/11) and still needs database migration, configuration and end-to-end activation before release.
 
 **Next:** Telegram and Discord relays, more service integrations, and paid access through Stripe. Platform-specific connector setup and directory submissions remain separate work; compatibility depends on each host's MCP or tool-calling support.
 
-Building something with Black Sheep? [Tell us what you need](https://github.com/thepeternemec/black-sheep/issues/new), [suggest an integration](https://github.com/thepeternemec/black-sheep/discussions), or [contribute](CONTRIBUTING.md). Star the repository to follow the project.
+Building something with NewsBeat? [Tell us what you need](https://github.com/thepeternemec/NewsBeat/issues/new), [suggest an integration](https://github.com/thepeternemec/NewsBeat/discussions), or [contribute](CONTRIBUTING.md). Star the repository to follow the project.
 
 ## Run locally
 
 Use Node.js 22 or 24 and npm workspaces.
 
 ```bash
-git clone https://github.com/thepeternemec/black-sheep.git
-cd black-sheep
+git clone https://github.com/thepeternemec/NewsBeat.git
+cd NewsBeat
 npm ci
 npm run build
 npm test
@@ -184,13 +184,13 @@ MIT licensed. See [LICENSE](LICENSE).
 
 ## How grouping, ranking and summaries work
 
-The terminal’s **Summarize headlines** button and `GET /api/v2/summary?beat_id=…` give a short, source-linked digest of up to three distinct ranked stories. Agents can call `blacksheep_summary` over MCP. The `basis` is always `headlines_only`; `method` is `generated` when generation is available or `extractive` when it displays original headlines. The original reports remain linked. Check `freshness` and `coverage_truncated` before describing the result as current or comprehensive.
+The terminal’s **Summarize headlines** button and `GET /api/v2/summary?beat_id=…` give a short, source-linked digest of up to three distinct ranked stories. Agents can call `newsbeat_summary` over MCP. The `basis` is always `headlines_only`; `method` is `generated` when generation is available or `extractive` when it displays original headlines. The original reports remain linked. Check `freshness` and `coverage_truncated` before describing the result as current or comprehensive.
 
 The terminal and `GET /api/v2/stories?beat_id=…` show one original lead per group of similar headlines, ranked by headline relevance. Expand a story in the terminal to see each report’s publisher, link and publication time. The API returns these in `lead_article` and `reports`; stored articles are retained.
 
 Matching is conservative and approximate: it uses a 24-hour window, headline overlap, and guards for changed numbers, outcomes and uncertainty. It can miss paraphrases or group unrelated reports. Publisher counts measure coverage, not independent verification.
 
-REST scans up to 200 reports by default (`limit` 1–500); `blacksheep_stories` over MCP ranks up to 40 groups from a 200-report scan. The brief selects three distinct headlines from up to 200 recent reports. The ranking heuristic favors concrete developments and recency, and downranks routine ownership notices and shopping headlines. Ranking is an explainable heuristic, not a market impact prediction. Check `coverage_truncated`. Groups are snapshot views; use `/v2/news` and `/v2/changes` cursors for article arrivals rather than treating group IDs as stable subscriptions.
+REST scans up to 200 reports by default (`limit` 1–500); `newsbeat_stories` over MCP ranks up to 40 groups from a 200-report scan. The brief selects three distinct headlines from up to 200 recent reports. The ranking heuristic favors concrete developments and recency, and downranks routine ownership notices and shopping headlines. Ranking is an explainable heuristic, not a market impact prediction. Check `coverage_truncated`. Groups are snapshot views; use `/v2/news` and `/v2/changes` cursors for article arrivals rather than treating group IDs as stable subscriptions.
 
 ### Running summary generation
 

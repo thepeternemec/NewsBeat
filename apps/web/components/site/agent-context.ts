@@ -14,7 +14,7 @@ export function buildResearchContext(topic: ResearchTopic, snapshot: ResearchSna
   if (!snapshot || snapshot.beatId !== topic.beat_id) return null;
   const items = snapshot.items.filter(item => item.beat_id === topic.beat_id);
   return {
-    schema: "black-sheep/research-context-v1",
+    schema: "newsbeat/research-context-v1",
     captured_at: snapshot.receivedAt,
     underlying: { beat_id: topic.beat_id, name: topic.label, ticker: topic.ticker },
     coverage: {

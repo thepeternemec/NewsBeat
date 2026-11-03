@@ -13,7 +13,7 @@
  */
 
 import { useEffect, useState } from "react";
-import type { ChainPulse, Sourced } from "@blacksheep/contracts";
+import type { ChainPulse, Sourced } from "@newsbeat/contracts";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "/api";
 // Poll inside the server's 8s TTL, not at the block cadence. Polling at 12s against an

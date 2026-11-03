@@ -12,7 +12,7 @@ Host: `www.newsbeat.dev` · API base: `https://www.newsbeat.dev/api`
 Skip this step. There is no `/agent/identity`, no `/oauth2/token`, and no claim
 ceremony. `POST` to any of them returns `404`.
 
-Black Sheep is a **public read-only news API**. Access is not gated, so there is no
+NewsBeat is a **public read-only news API**. Access is not gated, so there is no
 user to register and no scoped token to mint. An agent may call it on first use,
 with no setup and no operator involvement.
 
@@ -34,7 +34,7 @@ Anonymous callers get **120 requests a minute**, identified by calling address �
 hashed, never stored. That ceiling is high enough for the intended loop: one
 `changes` call per topic per schedule, not a poll.
 
-A key lets you run a **seven-day trial** of Black Sheep in your agent, beginning
+A key lets you run a **seven-day trial** of NewsBeat in your agent, beginning
 with its first metered REST request. It includes **up to $6 in usage credit**
 and a ceiling of 1200 requests a minute. A check that found nothing is $0.0005,
 one that moved is $0.004, and a brief is $0.03. The credit covers up to twelve
@@ -80,20 +80,20 @@ Returns the seven calls in OpenAI function-call shape:
 
 | Tool | Use it to |
 | --- | --- |
-| `blacksheep_topics` | Find a topic. Never invent a `beat_id` |
-| `blacksheep_news` | Read a topic and take a baseline cursor |
-| `blacksheep_changes` | Ask what is new since that cursor |
-| `blacksheep_brief` | The top headlines verbatim, with source and UTC time |
-| `blacksheep_stories` | The events behind a topic, not the coverage — near-identical headlines grouped |
-| `blacksheep_summary` | Short explanations based on headlines, with source links; original headlines if generation is unavailable |
-| `blacksheep_watch` | Many topics in one call — the batch form of `changes` |
-| `blacksheep_market` | `GET /v2/market` | Sentiment, TVL and prices in one call, each attributed |
-| `blacksheep_prices` | `GET /v2/prices?ids=` | Prices, market caps and 24h change by CoinGecko id |
-| `blacksheep_fear_greed` | `GET /v2/sentiment` | Daily fear and greed index with recent history |
-| `blacksheep_ask` | `GET /v2/ask?q=` | Identity, news, market and chain in one attributed call |
-| `blacksheep_chain` | `GET /v2/chain` | Ethereum block and gas, Solana slot |
-| `blacksheep_token` | `GET /v2/token?asset=` | Token price by contract address |
-| `blacksheep_signals` | `GET /v2/signals` | Funding rates, DEX volume and stablecoin supply |
+| `newsbeat_topics` | Find a topic. Never invent a `beat_id` |
+| `newsbeat_news` | Read a topic and take a baseline cursor |
+| `newsbeat_changes` | Ask what is new since that cursor |
+| `newsbeat_brief` | The top headlines verbatim, with source and UTC time |
+| `newsbeat_stories` | The events behind a topic, not the coverage — near-identical headlines grouped |
+| `newsbeat_summary` | Short explanations based on headlines, with source links; original headlines if generation is unavailable |
+| `newsbeat_watch` | Many topics in one call — the batch form of `changes` |
+| `newsbeat_market` | `GET /v2/market` | Sentiment, TVL and prices in one call, each attributed |
+| `newsbeat_prices` | `GET /v2/prices?ids=` | Prices, market caps and 24h change by CoinGecko id |
+| `newsbeat_fear_greed` | `GET /v2/sentiment` | Daily fear and greed index with recent history |
+| `newsbeat_ask` | `GET /v2/ask?q=` | Identity, news, market and chain in one attributed call |
+| `newsbeat_chain` | `GET /v2/chain` | Ethereum block and gas, Solana slot |
+| `newsbeat_token` | `GET /v2/token?asset=` | Token price by contract address |
+| `newsbeat_signals` | `GET /v2/signals` | Funding rates, DEX volume and stablecoin supply |
 
 `GET /v2/topics?q=` searches by ticker or company name across +2000 topics —
 US-listed equities and the largest crypto assets. A coin and a company can share a ticker

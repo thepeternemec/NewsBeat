@@ -5,13 +5,13 @@ import "../../landing.css";
 import "./try.css";
 
 export const metadata = {
-  title: "Try Black Sheep for free",
+  title: "Try NewsBeat for free",
   description: "Search a company or crypto asset, read live headlines and request a source-linked summary. No account, key or card needed.",
 };
 
 const REQUEST = 'curl "https://www.newsbeat.dev/api/v2/summary?beat_id=b_bb964843350e"';
 
-export default function TryBlackSheep() {
+export default function TryNewsBeat() {
   return (
     <div className="try-guide">
       <header className="docs-head">
@@ -19,7 +19,7 @@ export default function TryBlackSheep() {
         <h1>Try the news before you connect.</h1>
         <p className="docs-lead">
           Search a company or crypto asset, read recent headlines, and ask for a short summary.
-          This uses the same public news service your agent can call. No Black Sheep account, API key
+          This uses the same public news service your agent can call. No NewsBeat account, API key
           or credit card is needed.
         </p>
       </header>
@@ -35,9 +35,9 @@ export default function TryBlackSheep() {
 
       <h2 id="want-to-ask-your-own-assistant">Want to ask your own assistant?</h2>
       <p>
-        The lookup above shows Black Sheep’s data in your browser. To bring it into your chat, your
+        The lookup above shows NewsBeat’s data in your browser. To bring it into your chat, your
         assistant needs to support a custom remote MCP connection. Follow the guide, add the
-        Black Sheep address, then ask “What happened with Nvidia? Include sources and dates.”
+        NewsBeat address, then ask “What happened with Nvidia? Include sources and dates.”
       </p>
       <a className="try-next" href="/docs/quickstart">Connect your assistant <ArrowRight size={15} /></a>
 

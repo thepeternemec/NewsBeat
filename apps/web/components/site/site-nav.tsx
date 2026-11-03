@@ -10,7 +10,7 @@ const LINKS = [
   { href: "/#live-news", label: "News", description: "Try the working company news engine" },
   { href: "/crypto", label: "Crypto", description: "Market, chain and positioning context" },
   { href: "/#build", label: "Agents", description: "Connect an agent to the news tools" },
-  { href: "/docs/black-sheep", label: "Thesis", description: "Read the tokenized-asset research direction" },
+  { href: "/docs/newsbeat", label: "Thesis", description: "Read the tokenized-asset research direction" },
   { href: "/docs", label: "Docs", description: "Connect to the existing news tools" },
   { href: "/status", label: "Status", description: "Check the current news service" },
 ];
@@ -20,9 +20,9 @@ export default function SiteNav({ active }: { active?: string }) {
   return (
     <nav className="nav nav-site" aria-label="Main navigation">
       <div className="nav-pill">
-        <a className="nav-logo" href="/" aria-label="Black Sheep home">
+        <a className="nav-logo" href="/" aria-label="NewsBeat home">
           <BrandMark className="brand-beat" />
-          BLACK SHEEP
+          NEWSBEAT
         </a>
         <span className="nav-links">
           {LINKS.map(link => (

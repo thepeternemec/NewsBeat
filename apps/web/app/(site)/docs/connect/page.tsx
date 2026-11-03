@@ -1,17 +1,17 @@
 import CopyButton from "@/components/site/copy-button";
 import AgentInstructions from "@/components/site/agent-instructions";
 
-export const metadata = { title: "Developer reference", description: "Connect Black Sheep through remote MCP, REST or function calling. Seven tools, current endpoints and working examples." };
+export const metadata = { title: "Developer reference", description: "Connect NewsBeat through remote MCP, REST or function calling. Seven tools, current endpoints and working examples." };
 const API = "https://www.newsbeat.dev/api";
-const MCP_CONFIG = JSON.stringify({ mcpServers: { blacksheep: { url: `${API}/mcp` } } }, null, 2);
+const MCP_CONFIG = JSON.stringify({ mcpServers: { newsbeat: { url: `${API}/mcp` } } }, null, 2);
 const TOOLS = [
-  ["blacksheep_topics", "Find a supported company or crypto asset.", "GET /v2/topics?q=nvidia"],
-  ["blacksheep_news", "Read latest headlines and establish a baseline cursor.", "GET /v2/news?beat_id=…"],
-  ["blacksheep_changes", "Read newly indexed items after a saved cursor.", "GET /v2/changes?beat_id=…&cursor=…"],
-  ["blacksheep_brief", "Get three relevant recent headlines verbatim with sources and times.", "GET /v2/brief?beat_id=…"],
-  ["blacksheep_stories", "Read grouped headlines with every report’s source link.", "GET /v2/stories?beat_id=…"],
-  ["blacksheep_summary", "Get a short explanation from headlines with original source links.", "GET /v2/summary?beat_id=…"],
-  ["blacksheep_watch", "Check up to 50 assets in one request; does not create a schedule.", "POST /v2/watch"],
+  ["newsbeat_topics", "Find a supported company or crypto asset.", "GET /v2/topics?q=nvidia"],
+  ["newsbeat_news", "Read latest headlines and establish a baseline cursor.", "GET /v2/news?beat_id=…"],
+  ["newsbeat_changes", "Read newly indexed items after a saved cursor.", "GET /v2/changes?beat_id=…&cursor=…"],
+  ["newsbeat_brief", "Get three relevant recent headlines verbatim with sources and times.", "GET /v2/brief?beat_id=…"],
+  ["newsbeat_stories", "Read grouped headlines with every report’s source link.", "GET /v2/stories?beat_id=…"],
+  ["newsbeat_summary", "Get a short explanation from headlines with original source links.", "GET /v2/summary?beat_id=…"],
+  ["newsbeat_watch", "Check up to 50 assets in one request; does not create a schedule.", "POST /v2/watch"],
 ];
 const FIRST_REQUEST = `curl -s "${API}/v2/topics?q=nvidia"
 
@@ -21,7 +21,7 @@ export default function DocsConnect() {
   return (
     <>
       <div className="docs-head">
-        <span className="sec-eyebrow">Build with Black Sheep</span>
+        <span className="sec-eyebrow">Build with NewsBeat</span>
         <h1>MCP &amp; API reference</h1>
         <p className="docs-lead">
           Connect through MCP, REST or function calling. If you just want to ask your assistant
@@ -81,7 +81,7 @@ export default function DocsConnect() {
       <h2 id="grouped-feed">Grouped feed</h2>
       <p>
         For a quick answer to “What happened with Nvidia?”, use <code>/v2/summary?beat_id=…</code>
-        or <code>blacksheep_summary</code>. It selects up to three distinct ranked stories and gives
+        or <code>newsbeat_summary</code>. It selects up to three distinct ranked stories and gives
         short sentences with links to the original reports. <code>basis</code> is always
         <code>headlines_only</code>. <code>method</code> is <code>generated</code> when headline
         summarization succeeds; <code>extractive</code> shows original headlines when it cannot.
@@ -89,7 +89,7 @@ export default function DocsConnect() {
         the complete articles and does not infer market impact.
       </p>
       <p>
-        Use <code>/v2/stories?beat_id=…</code> or <code>blacksheep_stories</code> for one lead per
+        Use <code>/v2/stories?beat_id=…</code> or <code>newsbeat_stories</code> for one lead per
         group of similar headlines. Groups include <code>lead_article</code> and <code>reports</code>:
         each report keeps its original headline, publisher, URL, publication time and indexing time.
         Groups are ranked by headline relevance, and all stored articles are retained.
@@ -137,7 +137,7 @@ export default function DocsConnect() {
       <p>
         Fetch <a href="/api/v2/tools">{API}/v2/tools</a> for OpenAI-compatible function schemas.
         Your application executes the selected call and returns the result to the model.
-        See the <a href="https://github.com/thepeternemec/black-sheep/tree/main/examples">working examples</a>.
+        See the <a href="https://github.com/thepeternemec/NewsBeat/tree/main/examples">working examples</a>.
       </p>
 
       <h2 id="access-and-limits">Access and limits</h2>

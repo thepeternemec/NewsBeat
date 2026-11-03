@@ -21,7 +21,7 @@ import SignalsStrip from "@/components/site/signals-strip";
  */
 
 export const metadata: Metadata = {
-  title: "Black Sheep crypto — market, chain and positioning",
+  title: "NewsBeat crypto — market, chain and positioning",
   description:
     "Live crypto context: sentiment, DeFi TVL, prices, chain state, funding rates and stablecoin supply. Every figure carries its source, its fetch time and its freshness.",
   alternates: { canonical: "https://www.newsbeat.dev/crypto" },
@@ -127,9 +127,9 @@ export default function CryptoPage() {
             </div>
             <div className="crypto-api-row">
               <span className="crypto-api-label">MCP</span>
-              <code>blacksheep_market</code>
-              <code>blacksheep_signals</code>
-              <code>blacksheep_chain</code>
+              <code>newsbeat_market</code>
+              <code>newsbeat_signals</code>
+              <code>newsbeat_chain</code>
             </div>
           </div>
         </section>

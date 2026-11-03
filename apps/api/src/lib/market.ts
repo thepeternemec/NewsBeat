@@ -24,7 +24,7 @@ import type {
   Sourced,
   TvlPayload,
   Unavailable,
-} from "@blacksheep/contracts";
+} from "@newsbeat/contracts";
 import { upstreamCache } from "./market-cache.js";
 
 const TIMEOUT_MS = 8_000;
@@ -46,7 +46,7 @@ const SOURCE_URL = {
 async function getJson<T>(url: string): Promise<T> {
   const response = await fetch(url, {
     signal: AbortSignal.timeout(TIMEOUT_MS),
-    headers: { accept: "application/json", "user-agent": "blacksheep/0.3" },
+    headers: { accept: "application/json", "user-agent": "newsbeat/0.3" },
   });
   if (!response.ok) throw new Error(`${new URL(url).host} responded ${response.status}`);
   return (await response.json()) as T;

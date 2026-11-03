@@ -15,7 +15,7 @@
  * what this is.
  */
 
-import type { ChainPulse, ContractToken, Sourced, TokenPayload } from "@blacksheep/contracts";
+import type { ChainPulse, ContractToken, Sourced, TokenPayload } from "@newsbeat/contracts";
 import { upstreamCache } from "./market-cache.js";
 
 const TIMEOUT_MS = 6_000;
@@ -124,7 +124,7 @@ export async function contractToken(asset: string): Promise<Sourced<TokenPayload
   const cached = await upstreamCache.read(`chain:token:${requested}`, CHAIN_TTL.token, async () => {
     const body = await fetch(`https://coins.llama.fi/prices/current/${requested}`, {
       signal: AbortSignal.timeout(TIMEOUT_MS),
-      headers: { accept: "application/json", "user-agent": "blacksheep/0.3" },
+      headers: { accept: "application/json", "user-agent": "newsbeat/0.3" },
     });
     if (!body.ok) throw new Error(`coins.llama.fi responded ${body.status}`);
     return (await body.json()) as RawCoins;

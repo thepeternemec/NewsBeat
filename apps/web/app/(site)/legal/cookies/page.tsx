@@ -5,7 +5,7 @@ import SiteFooter from "@/components/site/site-footer";
 
 export const metadata = {
   title: "Cookie notice",
-  description: "Black Sheep sets no cookies. This page explains that, and what analytics run.",
+  description: "NewsBeat sets no cookies. This page explains that, and what analytics run.",
 };
 
 /**
@@ -26,7 +26,7 @@ export default function Cookies() {
             <span className="sec-eyebrow">Legal</span>
             <h1 className="sec-title">Cookie notice</h1>
             <p className="sec-sub">
-              Black Sheep sets no cookies. Not for sessions, not for preferences, not for
+              NewsBeat sets no cookies. Not for sessions, not for preferences, not for
               advertising. There is nothing to consent to, so there is no banner.
             </p>
             <p className="hero-tiny">Last updated 20 October 2026</p>
