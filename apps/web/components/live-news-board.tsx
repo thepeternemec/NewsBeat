@@ -29,7 +29,7 @@ export default function LiveNewsBoard({ stats }: { stats: Stats | null }) {
           <span className="dot" />
           <span className="dot" />
         </span>
-        <span className="title">black sheep — live terminal</span>
+        <span className="title">newsbeat — live terminal</span>
         <span className="live">streaming</span>
       </div>
 
@@ -61,7 +61,7 @@ export default function LiveNewsBoard({ stats }: { stats: Stats | null }) {
           <div className="feed-line">
             <span className="tag">awaiting</span>
             <span className="txt">Backend is paused while topic queries are rebuilt.</span>
-            <span className="src">black sheep</span>
+            <span className="src">newsbeat</span>
           </div>
         )}
         </div>
