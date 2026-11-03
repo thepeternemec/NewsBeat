@@ -6,7 +6,7 @@
 
 NewsBeat is building an intelligence layer that helps AI agents understand what changed, why it may matter, and what to investigate next.
 
-**News foundation + first event-intelligence pilot**
+**News foundation + first contextual-signal pilot**
 
 [The intelligence direction](https://www.newsbeat.dev/intelligence) · [Try the live feed](https://www.newsbeat.dev/dashboard) · [Connect your agent](https://www.newsbeat.dev/docs/quickstart) · [Developer docs](https://www.newsbeat.dev/docs) · [Service status](https://www.newsbeat.dev/status)
 
@@ -23,7 +23,7 @@ An agent needs to understand which developments deserve attention. NewsBeat’s 
 
 The **live foundation** supplies source-linked headlines, approximate story grouping, headline-based summaries, freshness and changes since a previous check. Agents can use that evidence today.
 
-The **first event-intelligence pilot** now adds persistent event IDs, exact cited changes, conditional implications with mechanisms, uncertainty and follow-up checks. NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum are the initial scope. Interpretations remain model hypotheses from headlines; task-specific relevance and deeper verification are future work.
+The **first contextual-signal pilot** now adds persistent event IDs, exact cited changes, conditional implications with mechanisms, uncertainty and follow-up checks. NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum are the initial scope. Interpretations remain model hypotheses from headlines; task-specific relevance and deeper verification are future work.
 
 Stocks and crypto are the current coverage universe: 1,528 US stocks and 502 crypto assets. Tokenized assets remain a longer-term application. Read the [product direction](docs/INTELLIGENCE.md) and [current implementation status](docs/STATUS.md).
 
@@ -172,3 +172,12 @@ Built in the open. [Open an issue](https://github.com/thepeternemec/NewsBeat/iss
 Contact: [contact@newsbeat.dev](mailto:contact@newsbeat.dev)
 
 MIT licensed. See [LICENSE](LICENSE).
+
+## Contextual signal construction
+
+Use `newsbeat_intelligence` with a `beat_id` and an optional `context`: `fundamentals`, `liquidity` or `risk`. REST accepts `GET /v2/intelligence?beat_id=...&context=fundamentals`. The response adds `context`, `constructions` and an `alerts` journal while preserving `signals`.
+
+A construction explains the proposed market channel, direction, qualitative materiality, time horizon, observable trigger, invalidation and why a development may not move the market. Explicit checks return `review_now`, `keep_watching`, `no_alert` or `reassess`. Context mismatch, stale/pending analysis, old trigger reports, unobserved conditions and repeat coverage block new review alerts. Alert IDs are stable for a context and interpretation version; track them to avoid repeated notifications in your own authorized workflow.
+
+The pilot records review alerts. Delivery integrations, custom strategy contexts, price/benchmark confirmation, historical comparisons and calibrated thresholds are future work. `market_reaction.status` is `unmeasured`; a model hypothesis does not establish that a price moved. Check original reporting before relying on a trigger.
+

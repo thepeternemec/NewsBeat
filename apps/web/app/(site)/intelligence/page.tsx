@@ -9,8 +9,8 @@ import "../newsbeat-polish.css";
 import "../intelligence.css";
 
 export const metadata = {
-  title: "NewsBeat intelligence — Events, implications and evidence",
-  description: "Inspect the six-asset event-intelligence pilot: reported developments, possible implications, original evidence, event memory and follow-up checks.",
+  title: "NewsBeat intelligence — Contextual signals and alert conditions",
+  description: "Construct signals for a decision context, inspect their market hypothesis and evidence, and understand which trigger conditions pass or block a review alert.",
   alternates: { canonical: "https://www.newsbeat.dev/intelligence" },
 };
 
@@ -29,10 +29,10 @@ export default function IntelligencePage() {
       <section className="bs-hero">
         <div className="wrap bs-hero-grid" style={{ alignItems: "start" }}>
           <div className="bs-hero-copy">
-            <span className="bs-kicker">INSIDE THE INTELLIGENCE LAYER</span>
-            <h1>Inspect the event.<br /><span>Question the reasoning.</span></h1>
-            <p className="bs-lede">Explore a real stored interpretation. See the reported development, a possible implication, and the evidence or follow-up that could strengthen or challenge it.</p>
-            <p className="ni-stage-note">The source-linked feed is live. The first event-intelligence pilot adds persisted events, conditional implications and follow-up checks for six assets.</p>
+            <span className="bs-kicker">THE SIGNAL WORKBENCH</span>
+            <h1>Construct the signal.<br /><span>Test the context.</span></h1>
+            <p className="bs-lede">Choose a decision context. Inspect the possible market driver, what would trigger an alert, why the market may ignore it, and what would invalidate the hypothesis.</p>
+            <p className="ni-stage-note">The first pilot combines model hypotheses with explicit alert gates. Price response and historical calibration are the next inputs to build.</p>
             <div className="hero-cta"><a className="btn-primary" href="/dashboard">Open research workspace <ArrowRight size={16} /></a><a className="bs-text-link" href="/docs/quickstart">Connect your agent <ArrowUpRight size={16} /></a></div>
           </div>
           <div className="ni-hero-model"><SignalInspector /></div>
@@ -52,7 +52,7 @@ export default function IntelligencePage() {
           <div className="bs-section-head"><span className="bs-kicker">THE BUILDING BLOCKS</span><h2 className="bs-title" id="intelligence-roadmap">A foundation.<br />Then deeper intelligence.</h2></div>
           <div className="ni-roadmap-cards ni-roadmap-wide">
             <article><span className="ni-state">Available today</span><h3>Collect and organize evidence.</h3><p>Source-linked market headlines, approximate story grouping, headline-based summaries, collection freshness and updates since the last check. Agents can use this foundation now.</p><a className="bs-text-link" href="/docs/data">Coverage and evidence limits <ArrowRight size={15} /></a></article>
-            <article><span className="ni-state ni-state-planned">First intelligence pilot</span><h3>Interpret what deserves attention.</h3><p>The scheduled pilot interprets developments, preserves event memory, and proposes conditional implications, uncertainty and next checks. NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum are the first scope.</p><a className="bs-text-link" href="/dashboard">Open live intelligence <ArrowRight size={15} /></a></article>
+            <article><span className="ni-state ni-state-planned">Signal construction pilot</span><h3>Construct and evaluate a signal.</h3><p>The scheduled pilot constructs market hypotheses and evaluates context, freshness, materiality and grounded trigger conditions. Review alerts are recorded once per signal version and context.</p><a className="bs-text-link" href="/dashboard">Open the research workspace <ArrowRight size={15} /></a></article>
           </div>
         </div>
       </section>

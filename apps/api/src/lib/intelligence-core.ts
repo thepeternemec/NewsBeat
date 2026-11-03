@@ -6,6 +6,8 @@ const fold = (value: string) => value.normalize("NFKC").toLowerCase().replace(/[
 const figures = (value: string) => value.match(/\d+(?:[.,]\d+)*/g) ?? [];
 const unsafePrediction = /\b(?:guaranteed|buy now|sell now|will (?:rise|fall|surge|crash)|price target)\b/i;
 
+export const quoteMatches = (title: string, quote: string) => fold(quote).length >= 16 && fold(quote).split(" ").length >= 3 && fold(title).includes(fold(quote));
+
 /** Ground facts in exact source headlines; interpretation is separately labeled. */
 export function validateIntelligence(value: unknown, evidence: IntelligenceEvidence[], previous: IntelligenceSignal[]): IntelligenceEventDraft[] | null {
   const parsed = IntelligenceDraftSchema.safeParse(value);
@@ -22,7 +24,8 @@ export function validateIntelligence(value: unknown, evidence: IntelligenceEvide
     if (event.existing_event_id) {
       revised.add(event.existing_event_id);
       const old = prior.get(event.existing_event_id)!;
-      if (event.change_kind === "update" && event.evidence_ids.every(id => old.evidence.some(report => report.id === id))) return null;
+      const firstConstruction = !old.market_assessment && !!event.market_assessment;
+      if (event.change_kind === "update" && !firstConstruction && event.evidence_ids.every(id => old.evidence.some(report => report.id === id))) return null;
       if (event.change_kind === "evidence_only" && event.event_state !== old.event_state) return null;
     }
     if (!event.existing_event_id && event.change_kind !== "new") return null;
@@ -32,20 +35,32 @@ export function validateIntelligence(value: unknown, evidence: IntelligenceEvide
     if (event.affected_entities.some(entity => !(" " + words + " ").includes(" " + fold(entity) + " "))) return null;
     const numbers = new Set(figures(reports.map(report => report.title).join(" ")));
     const interpretation = [event.attention_reason, event.change_reason, ...event.unknowns, ...event.next_checks,
-      ...event.implications.flatMap(item => [item.hypothesis, item.mechanism, item.watch_for])].join(" ");
+      ...event.implications.flatMap(item => [item.hypothesis, item.mechanism, item.watch_for]),
+      ...(event.market_assessment ? [event.market_assessment.market_relevance, event.market_assessment.why_it_may_not_move, event.market_assessment.invalidation, event.market_assessment.trigger.condition] : [])].join(" ");
     if (figures(interpretation).some(number => !numbers.has(number)) || unsafePrediction.test(interpretation)) return null;
     for (const implication of event.implications) {
       if (implication.evidence_ids.some(id => !event.evidence_ids.includes(id))) return null;
       if (!/\b(?:could|may|might|if|potential|risk)\b/i.test(implication.hypothesis)) return null;
     }
+    if (event.market_assessment) {
+      const trigger = event.market_assessment.trigger;
+      if (trigger.status === "not_observed") {
+        if (trigger.report_id !== null || trigger.headline_quote !== null) return null;
+      } else {
+        if (!trigger.report_id || !event.evidence_ids.includes(trigger.report_id) || !trigger.headline_quote) return null;
+        if (!quoteMatches(byId.get(trigger.report_id)!.title, trigger.headline_quote)) return null;
+      }
+    }
   }
   return parsed.data.events;
 }
 
-function meaning(signal: Pick<IntelligenceSignal, "category" | "event_state" | "what_changed" | "affected_entities" | "attention" | "attention_reason" | "implications" | "unknowns" | "next_checks">) {
+function meaning(signal: Pick<IntelligenceSignal, "category" | "event_state" | "what_changed" | "affected_entities" | "attention" | "attention_reason" | "implications" | "unknowns" | "next_checks" | "market_assessment">) {
+  const assessment = signal.market_assessment;
   return { category: signal.category, event_state: signal.event_state, what_changed: signal.what_changed,
     affected_entities: [...signal.affected_entities].sort(), attention: signal.attention, attention_reason: signal.attention_reason,
-    implications: signal.implications.map(({ evidence_ids, ...item }) => item), unknowns: signal.unknowns, next_checks: signal.next_checks };
+    implications: signal.implications.map(({ evidence_ids, ...item }) => item), unknowns: signal.unknowns, next_checks: signal.next_checks,
+    market_assessment: assessment ? { ...assessment, trigger: { ...assessment.trigger, report_id: undefined } } : undefined };
 }
 
 /** Repeated reporting adds evidence without inventing a new event or meaning revision. */
@@ -71,6 +86,7 @@ export function reconcileSignal(beatId: string, draft: IntelligenceEventDraft, e
     change_reason: draft.change_reason, first_detected_at: prior?.first_detected_at ?? now,
     updated_at: now, evidence_updated_at: now, basis: "headline_metadata", interpretation: "model_inference",
     model, pipeline_version: INTELLIGENCE_VERSION,
+    ...(draft.market_assessment ? { market_assessment: draft.market_assessment } : {}),
   };
   if (prior && hash(meaning(candidate)) === hash(meaning(prior))) {
     return { ...prior, evidence: combined, evidence_updated_at: now, change_kind: "evidence_added" };

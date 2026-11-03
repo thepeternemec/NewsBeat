@@ -2,8 +2,9 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import { db, closeDb } from "@newsbeat/db";
-import type { IntelligenceEventDraft } from "@newsbeat/contracts";
+import { INTELLIGENCE_VERSION, type IntelligenceEventDraft } from "@newsbeat/contracts";
 import { runIntelligence, readIntelligence, PILOT_BEATS } from "./intelligence.js";
+import { validateIntelligence } from "./intelligence-core.js";
 
 const connection = process.env.NEWSBEAT_INTELLIGENCE_TEST_DATABASE_URL;
 if (connection) {
@@ -17,7 +18,7 @@ test("Postgres pipeline persists event memory, skips unchanged inputs, revises e
   const sql = db();
   try {
     await sql.unsafe(readFileSync(new URL("../../../../db/schema.sql", import.meta.url), "utf8"));
-    await sql`truncate public.newsbeat_intelligence_revisions, public.newsbeat_intelligence_events, public.newsbeat_intelligence_jobs, public.news_articles, public.news_ingestion_status restart identity`;
+    await sql`truncate public.newsbeat_signal_alerts, public.newsbeat_intelligence_revisions, public.newsbeat_intelligence_events, public.newsbeat_intelligence_jobs, public.news_articles, public.news_ingestion_status restart identity`;
     const beat = PILOT_BEATS.find(item => item.ticker === "NVDA")!;
     const insert = async (title: string, source: string) => {
       await sql`insert into public.news_articles (beat_id, provider_uri, title, excerpt, url, source, published_at)
@@ -100,5 +101,78 @@ test("Postgres pipeline persists event memory, skips unchanged inputs, revises e
     assert.equal(calls, before, "stale source coverage never produces a new interpretation");
     const unsupported = PILOT_BEATS.every(item => item.ticker !== "TSLA");
     assert.equal(unsupported, true);
+  } finally { await closeDb(); }
+});
+
+test("Postgres records alerts once, resolves changed premises and upgrades unchanged jobs", { skip: !connection, timeout: 45000 }, async () => {
+  process.env.DATABASE_URL = connection!;
+  const sql = db();
+  try {
+    await sql.unsafe(readFileSync(new URL("../../../../db/schema.sql", import.meta.url), "utf8"));
+    await sql`truncate public.newsbeat_signal_alerts, public.newsbeat_intelligence_revisions, public.newsbeat_intelligence_events, public.newsbeat_intelligence_jobs, public.news_articles, public.news_ingestion_status restart identity`;
+    const beat = PILOT_BEATS.find(item => item.ticker === "NVDA")!;
+    const insert = async (title: string, source: string) => {
+      await sql`insert into public.news_articles (beat_id, provider_uri, title, excerpt, url, source, published_at)
+        values (${beat.beat_id}, ${source}, ${title}, '', ${"https://example.com/" + source}, ${source}, now())`;
+      await sql`insert into public.news_ingestion_status (beat_id, last_success_at, last_checked_at) values (${beat.beat_id}, now(), now())
+        on conflict (beat_id) do update set last_success_at=now(), last_checked_at=now()`;
+    };
+    let mode: "new" | "repeat" | "denial" | "revision" = "new";
+    let calls = 0;
+    const generate: Parameters<typeof runIntelligence>[1] = async (evidence, previous) => {
+      calls++;
+      const prior = previous[0];
+      const report = evidence.find(item => !prior?.evidence.some(old => old.id === item.id)) ?? evidence.find(item => item.title === prior?.what_changed) ?? evidence[0]!;
+      const denied = mode === "denial";
+      const draft: IntelligenceEventDraft = {
+        existing_event_id: prior?.id ?? null, change_kind: prior ? mode === "repeat" ? "evidence_only" : "update" : "new",
+        category: "guidance", event_state: denied ? "denied" : "reported", evidence_ids: [report.id], affected_entities: ["Nvidia"], attention: "priority",
+        attention_reason: "A guidance revision could affect revenue expectations.", change_reason: denied ? "A denial changes the premise." : "A reported guidance change needs review.",
+        implications: [{ hypothesis: "Guidance could alter revenue expectations.", mechanism: "Orders may translate into revenue.", watch_for: "Official guidance.", evidence_ids: [report.id] }],
+        unknowns: ["The commercial terms."], next_checks: ["Read official guidance."],
+        market_assessment: { channel: "revenue", direction: "supportive", materiality: "high", horizon: "days", market_relevance: "Guidance could alter revenue expectations.", why_it_may_not_move: "The revision may be offset by costs.", invalidation: "Withdrawal would weaken the premise.",
+          trigger: { condition: "Nvidia reports a guidance increase.", status: denied ? "contradicted" : "reported", report_id: report.id, headline_quote: report.title } },
+      };
+      assert.ok(validateIntelligence({ events: [draft] }, evidence, previous));
+      return [draft];
+    };
+    await insert("Nvidia raises revenue guidance after new orders", "guidance-a");
+    assert.equal((await runIntelligence(null, generate)).results[0]!.status, "processed");
+    let response = await readIntelligence(beat.beat_id, "fundamentals");
+    assert.equal(response.analysis.pipeline_version, INTELLIGENCE_VERSION);
+    assert.equal(response.constructions[0]!.action, "review_now"); assert.equal(response.alerts.length, 1);
+    const alertId = response.alerts[0]!.id;
+    assert.equal((await readIntelligence(beat.beat_id, "liquidity")).constructions[0]!.action, "no_alert");
+    assert.equal((await readIntelligence(beat.beat_id, "liquidity")).alerts.length, 0);
+    await readIntelligence(beat.beat_id);
+    assert.equal((await runIntelligence(null, generate)).claimed, 0);
+    assert.equal((await readIntelligence(beat.beat_id)).alerts[0]!.id, alertId);
+    mode = "repeat";
+    await insert("Nvidia raises revenue guidance after new orders", "guidance-b");
+    await runIntelligence(null, generate);
+    response = await readIntelligence(beat.beat_id);
+    assert.equal(response.signals[0]!.version, 1); assert.equal(response.constructions[0]!.action, "keep_watching");
+    assert.equal(response.alerts.length, 1);
+    mode = "denial";
+    await insert("Nvidia denies a revenue guidance increase", "guidance-c");
+    await runIntelligence(null, generate);
+    response = await readIntelligence(beat.beat_id);
+    assert.equal(response.signals[0]!.version, 2); assert.equal(response.constructions[0]!.action, "reassess");
+    assert.equal(response.alerts.length, 1); assert.ok(response.alerts[0]!.resolved_at);
+    mode = "revision";
+    await insert("Nvidia raises revenue guidance following renewed customer orders", "guidance-d");
+    await runIntelligence(null, generate);
+    response = await readIntelligence(beat.beat_id);
+    assert.equal(response.signals[0]!.version, 3); assert.equal(response.alerts.length, 2);
+    assert.notEqual(response.alerts[0]!.id, alertId); assert.equal(response.alerts[0]!.resolved_at, null);
+    mode = "repeat";
+    const before = calls;
+    await sql`update public.newsbeat_intelligence_jobs set pipeline_version='old-version', input_hash='old-fingerprint' where beat_id=${beat.beat_id}`;
+    assert.equal((await readIntelligence(beat.beat_id)).status, "pending");
+    assert.equal((await runIntelligence(null, generate)).claimed, 1);
+    assert.equal(calls, before + 1);
+    assert.equal((await readIntelligence(beat.beat_id)).analysis.pipeline_version, INTELLIGENCE_VERSION);
+    assert.equal((await readIntelligence(beat.beat_id)).alerts.length, 2);
+    assert.equal((await runIntelligence(null, generate)).claimed, 0);
   } finally { await closeDb(); }
 });

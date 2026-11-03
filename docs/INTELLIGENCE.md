@@ -1,76 +1,58 @@
-# Event intelligence v1
+# Contextual signal construction
 
-The first intelligence layer is implemented above the noise-reduced news feed.
+NewsBeat is building signals that explain potential market drivers and define when context warrants attention. Summaries and duplicate reduction prepare evidence; signal construction adds a hypothesis, trigger, invalidation and a decision to review, watch, suppress or reassess.
 
-It interprets reported developments, retains event memory, and returns conditional implications, transmission mechanisms, uncertainty and follow-up checks. It does not turn headline volume, sentiment or prices into a claimed trading signal.
+## First implementation
 
-## Data flow
+The authenticated worker covers NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum. Fresh headline snapshots support:
+- A market channel: revenue, demand, margins, supply, capital cost, liquidity, adoption, policy or security.
+- Qualitative direction, materiality and time horizon.
+- A conditional mechanism and why the market may ignore it.
+- An observable trigger, bound to a cited report and matching headline excerpt when reported.
+- An invalidation condition and useful follow-up checks.
 
-1. The existing ingestion pipeline persists de-duplicated headlines.
-2. Every five minutes, the authenticated intelligence worker compares article watermarks for a six-asset pilot.
-3. It leases at most two dirty assets, reads up to 200 recent reports, and selects up to eight diverse story groups with up to three reports each.
-4. A bounded model call proposes up to four events. Output must pass the typed schema and citation/entity/number checks.
-5. A transaction stores event memory and meaning revisions, then advances the processed watermark.
-6. Public REST, MCP and the dashboard read the stored output. Reads never start model work.
+The model receives no price response, benchmark return, consensus estimate or backtest. These are hypotheses, not measured market impact. `market_reaction.status` remains `unmeasured`.
 
-## Pilot and bounds
+## Context and alert policy
 
-Initial assets: **NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum**.
+| Context | Focus | Trigger report window |
+| --- | --- | --- |
+| `fundamentals` | Revenue, demand, margins, supply | 180 minutes |
+| `liquidity` | Liquidity, financing cost, supply | 120 minutes |
+| `risk` | Adoption, policy, security | 180 minutes |
 
-- Two asset jobs per five-minute worker run; concurrent runs use expiring leases and row locks.
-- One model request per claimed asset, a 25-second timeout and at most 4,000 output tokens.
-- Repeated input fingerprints skip generation.
-- A failed or invalid analysis is retried after 15 minutes; the feed remains available.
-- The current model is `google/gemini-2.5-flash-lite`, using the existing Vercel AI Gateway integration and server-side credentials.
-- Sources must be fresh before interpretation. Selection is bounded, and partial coverage is reported.
+An alert requires a valid construction, matching context, fresh collection, completed analysis within 90 minutes, a high-materiality hypothesis with an identified direction, a grounded reported trigger inside the context window, a substantive interpretation change and a reported premise that is not denied or disputed.
 
-This is a general event-research pilot. Custom task lenses, broad entity graphs, verified causal analysis, full-article evidence and cross-asset propagation are future work.
+A matching excerpt binds an observation to a headline. It does not independently verify reporting or establish causality. Multiple publishers do not establish independent confirmation. Materiality and horizon are qualitative estimates, not calibrated probabilities or expected returns.
 
-## Signal contents
+Actions are `review_now`, `keep_watching`, `no_alert` and `reassess`. An unobserved condition stays on watch; context mismatch suppresses an alert; contradiction or denial requires reassessment. Repeated coverage alone cannot create another alert.
 
-| Field | Meaning |
-| --- | --- |
-| `what_changed` | An exact cited headline, supplied by the server |
-| `category`, `event_state` | Typed event classification; reported, planned, alleged, denied or disputed |
-| `affected_entities` | Names present in the event’s cited reporting |
-| `attention`, `attention_reason` | Qualitative model judgment with a reason, not a probability or market-impact score |
-| `implications` | Conditional hypotheses, a mechanism, an observable follow-up and source IDs |
-| `unknowns`, `next_checks` | Missing evidence and questions for the agent to investigate |
-| `evidence` | Original headlines, publishers, URLs and publication times |
-| `id`, `version`, timestamps | Persistent identity and interpretation history |
+## Persistence
 
-Interpretations are explicitly labeled `model_inference`, with a `headline_metadata` basis. Multiple publishers do not establish independent verification. Structural checks reduce some errors; they cannot prove a hypothesis true.
+The existing intelligence tables preserve source-signal identity and interpretation revisions. A market assessment is part of meaning; changing only a citation ID is not a new meaning version. Legacy explanations remain readable but cannot pass construction gates until assessed.
 
-## Event memory
+The authenticated worker bootstraps additive schema changes. Jobs track completed and attempted pipeline versions, allowing a bounded upgrade pass at unchanged article watermarks while retaining retry delay after failed attempts.
 
-New evidence can attach to an existing event through a supplied previous ID or an overlapping report. Repeated coverage updates the evidence timestamp while preserving the interpretation version. A substantive update requires new cited reporting and a change reason. An explicit denial cannot silently be treated as unchanged evidence.
+`newsbeat_signal_alerts` records one review alert per source signal, context and interpretation version. A revised premise resolves older alert records in the same transaction as the new interpretation. Historical alert timestamps do not establish current eligibility. Public reads do not write alerts, run models or create tables.
 
-Meaning revisions are stored in `newsbeat_intelligence_revisions`; the latest evidence and interpretation live in `newsbeat_intelligence_events`. Evidence needed by prior implications stays pinned when the retained source list is bounded. Event matching is approximate and can still miss equivalent developments.
+Bounds remain two asset jobs per five-minute run, one model call per job, 25-second timeout, 4,000 output tokens and 15-minute retry delay. The model may select up to three developments. No new credentials, payment method or budget is configured.
 
 ## Interfaces
 
 ```bash
-curl "https://www.newsbeat.dev/api/v2/intelligence?beat_id=b_bb964843350e"
+curl 'https://www.newsbeat.dev/api/v2/intelligence?beat_id=b_bb964843350e&context=fundamentals'
 ```
 
-MCP: `newsbeat_intelligence({ "beat_id": "b_bb964843350e" })`.
+MCP: `newsbeat_intelligence({ "beat_id": "b_bb964843350e", "context": "fundamentals" })`.
 
-Responses expose `pilot`, `status`, source `freshness`, analysis timestamps, partial coverage and `signals`. Status is `ready`, `pending`, `unavailable` or `not_in_pilot`. A successful empty analysis is valid. Older stored signals can accompany pending/unavailable state and must not be presented as a fresh interpretation.
+Responses preserve `signals` and add `context`, `constructions` and `alerts`. Inspect gate reasons, freshness, analysis state/times, partial coverage and market-reaction status. Track stable alert IDs in authorized monitoring workflows.
 
-The dashboard adds an Event intelligence panel above the existing news map and summaries.
+The workbench on `/intelligence` selects an asset and context, shows why an alert passes or is held, and exposes evidence and review-alert history.
 
-## Deployment and storage
+## Next quantitative inputs
 
-The new additive tables are included in `db/schema.sql`. The authenticated worker also bootstraps them so this release does not require production credentials in a local session.
+Price and benchmark confirmation, historical comparisons, expectation changes, strategy-specific contexts and threshold calibration are future work. Notification delivery and trade execution are not connected. This release records conditional review alerts rather than claiming verified alpha.
 
-The worker route is `/api/cron/intelligence`, configured in `apps/web/vercel.json`. It fails closed without `CRON_SECRET` and requires the actual bearer credential; user-agent text does not authenticate this route. Public reads do not create tables or enqueue arbitrary model work.
+## Verification
 
-Vercel OIDC or `AI_GATEWAY_API_KEY` authenticates generation. Model use consumes the project owner’s Gateway allowance or credits. Pilot scope, per-run limits, input fingerprints and retry delay bound work; no new payment method or budget is configured.
-
-## Validation
-
-Run `npm run build` and `npm test`. The intelligence tests cover source binding, invented entities/numbers, conditional interpretations, event revisions, repeated coverage, contradictory reporting, citation retention and cross-asset identity separation.
-
-CI also exercises the real worker against a dedicated disposable PostgreSQL database, including revisions, leases and failure recovery. On main, a read-only deployment check waits for stored analysis and verifies source citations, tool discovery and cron authentication.
-
-After deployment, wait for the scheduled worker and read the pilot endpoint. Check actual generation, persisted event IDs, analysis times and original evidence before expanding the pilot.
+Unit tests cover context mismatch, freshness, missing/unsupported trigger evidence, thresholds, contradiction, repeat coverage and version identity. Disposable PostgreSQL checks cover alert idempotency, resolving revised premises, pipeline upgrades, persistence and concurrent leases. Main-branch verification waits for real stored market constructions, checks context selection, protocol discovery and cron authentication.

@@ -8,7 +8,7 @@
 Google News RSS, refreshed every fifteen minutes over a 24-hour window. A "topic" is
 one asset you follow, addressed by a stable `beat_id`.
 
-## First event-intelligence pilot
+## First contextual-signal pilot
 
 For NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum, call `newsbeat_intelligence` or `GET /v2/intelligence?beat_id=` to read stored event interpretations. These include an exact reported change, named entities, conditional implications with mechanisms, uncertainty, next checks and persistent event IDs. Reads do not run a model. Check pilot/status, analysis timestamps, source freshness and partial coverage; pending or unavailable output can include older event memory. This remains model inference from headlines, not verified causality. Other assets continue to use the news foundation.
 
@@ -109,7 +109,7 @@ shown once. That is a browser flow and needs a human.
 - Source — https://github.com/thepeternemec/NewsBeat
 
 ## Mission
-NewsBeat is a news feed for AI agents following stocks and crypto. It exposes 15 read-only tools over MCP and REST, including the event-intelligence pilot. Verified tokenized-asset mapping is planned; current news resolves the underlying company or cryptocurrency.
+NewsBeat is a news feed for AI agents following stocks and crypto. It exposes 15 read-only tools over MCP and REST, including the signal-construction pilot. Verified tokenized-asset mapping is planned; current news resolves the underlying company or cryptocurrency.
 
 ### Ask, chain and contracts
 
@@ -124,3 +124,5 @@ For news research, resolve the topic and use the news, stories or changes tools 
 The optional `newsbeat_ask` utility combines news with reference market and chain context;
 its `notes` array states what was missing. Chain readings
 move every twelve seconds or less; none of this reads balances or quotes swaps.
+
+Contextual signals: pass context=fundamentals, liquidity or risk to /v2/intelligence, or the context argument to newsbeat_intelligence. Read constructions for hypotheses, trigger conditions, invalidation and alert checks; alerts is the persisted review-alert journal. Actions: review_now, keep_watching, no_alert, reassess. Market reaction is unmeasured. Price confirmation, historical calibration and notification delivery are planned.

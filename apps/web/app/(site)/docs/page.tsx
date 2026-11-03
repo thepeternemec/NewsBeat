@@ -27,7 +27,7 @@ export default function DocsOverview() {
         <div className="docs-free-note"><Check size={14} aria-hidden="true" /> Free public access <span>·</span> No account, key or card</div>
       </header>
 
-      <div className="docs-callout"><strong>From reporting to meaningful signals.</strong><p>The news foundation is live. A first event-intelligence pilot adds persisted events, conditional implications, uncertainty and follow-up checks for six assets. Task-specific relevance and deeper verification remain planned. <a href="/intelligence">See the product direction.</a></p></div>
+      <div className="docs-callout"><strong>From reporting to meaningful signals.</strong><p>The news foundation is live. A first contextual-signal pilot adds persisted events, conditional implications, uncertainty and follow-up checks for six assets. Task-specific relevance and deeper verification remain planned. <a href="/intelligence">See the product direction.</a></p></div>
 
       <section className="docs-section" aria-labelledby="developer-quickstart">
         <h2 id="developer-quickstart">Your first request.</h2>

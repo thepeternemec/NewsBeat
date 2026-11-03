@@ -2,15 +2,15 @@ import BrandMark from "./brand-mark";
 import "./intelligence-model.css";
 
 const STAGES = [
-  { number: "01", name: "Observe", title: "Know what changed.", text: "Source-linked reporting, collection freshness and new arrivals.", state: "Available", planned: false },
-  { number: "02", name: "Organize", title: "Bring the evidence together.", text: "Related headlines grouped with their publishers and timestamps.", state: "Available", planned: false },
-  { number: "03", name: "Interpret", title: "Surface a meaningful signal.", text: "Conditional implications, event memory and what still needs checking. Six-asset pilot.", state: "First pilot", planned: false },
+  { number: "01", name: "Observe", title: "Read the change.", text: "Collect reporting, preserve its sources and track what is new.", state: "Available", planned: false },
+  { number: "02", name: "Construct", title: "Connect it to the market.", text: "Build a hypothesis around revenue, demand, liquidity or risk.", state: "Available", planned: false },
+  { number: "03", name: "Evaluate", title: "Test the alert conditions.", text: "Check the context, evidence and trigger. Decide whether to review, watch or reassess.", state: "First pilot", planned: false },
 ];
 
 export default function IntelligenceModel() {
   return (
     <aside className="intelligence-model" aria-label="The path from reporting to agent intelligence">
-      <div className="intelligence-model-bar"><span><BrandMark size={26} /> NEWSBEAT</span><span>THE INTELLIGENCE LAYER</span></div>
+      <div className="intelligence-model-bar"><span><BrandMark size={26} /> NEWSBEAT</span><span>SIGNAL CONSTRUCTION</span></div>
       <ol className="intelligence-model-stages">
         {STAGES.map(stage => <li key={stage.number} data-planned={stage.planned}>
           <div className="intelligence-model-index" aria-hidden="true">{stage.number}</div>
@@ -20,7 +20,7 @@ export default function IntelligenceModel() {
           </div>
         </li>)}
       </ol>
-      <div className="intelligence-model-outcome"><span>THE GOAL</span><p>An agent that knows what deserves attention — with the evidence to explain why.</p></div>
+      <div className="intelligence-model-outcome"><span>THE GOAL</span><p>A signal with a reason, a trigger, and a clear condition for changing the view.</p></div>
     </aside>
   );
 }

@@ -30,18 +30,18 @@ const STEPS = [
   {
     id: "detect",
     label: "02 / INTERPRET",
-    title: "Build event context.",
-    text: "The pilot connects a reported change to event memory, possible implications and questions worth checking.",
-    coreTop: "EVENT",
-    coreBottom: "EVIDENCE + MEMORY",
+    title: "Construct market context.",
+    text: "Connect a reported change to demand, revenue, liquidity or risk. Form a hypothesis and define what would invalidate it.",
+    coreTop: "CONTEXT",
+    coreBottom: "HYPOTHESIS + EVIDENCE",
   },
   {
     id: "verify",
     label: "03 / AGENT CONTEXT",
-    title: "Give the agent a next step.",
-    text: "On request, the agent receives what changed, why it may matter, the evidence and what to investigate next.",
-    coreTop: "CONTEXT",
-    coreBottom: "IMPLICATIONS + NEXT CHECKS",
+    title: "Test the trigger.",
+    text: "When context and reported conditions pass, record a review alert. Otherwise keep watching or reassess the premise.",
+    coreTop: "SIGNAL",
+    coreBottom: "ALERT / WATCH / REASSESS",
   },
 ] as const;
 
@@ -109,7 +109,7 @@ export default function CryptoLoop() {
 
       <div className="bs-crypto-path">
         <div className="bs-crypto-path-top">
-          <span>NEWS → EVENT → AGENT</span>
+          <span>NEWS → CONTEXT → SIGNAL</span>
           <span>{String(step + 1).padStart(2, "0")} — 03</span>
           <button className="bs-loop-play" type="button" aria-label={owned ? "Play workflow animation" : "Pause workflow animation"} onClick={() => setOwned(value => !value)}>{owned ? "Play" : "Pause"}</button>
         </div>
