@@ -160,7 +160,7 @@ export async function readOperationStatus() {
   try {
     const rows = await db()<
       Array<{ report: unknown }>
-    >`select report from public.newsbeat_operation_checks order by slot desc limit 48`;
+    >`select report from public.newsbeat_operation_checks order by slot desc limit 288`;
     const history = rows.flatMap((row) => {
       const report = decodeSnapshot(row.report);
       return report ? [report] : [];

@@ -71,7 +71,7 @@ export function statusDocument(
     latest,
     history: history.filter(
       (report) =>
-        now - Date.parse(report.checked_at) <= 4 * 60 * 60_000 &&
+        now - Date.parse(report.checked_at) <= 24 * 60 * 60_000 &&
         Date.parse(report.checked_at) <= now + 60_000,
     ),
   };

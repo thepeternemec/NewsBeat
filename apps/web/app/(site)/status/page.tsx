@@ -23,13 +23,13 @@ export default function StatusPage() {
           <header className="status-heading">
             <div>
               <span className="sec-eyebrow">NewsBeat operations</span>
-              <h1>Know where things stand.</h1>
+              <h1>Service status.</h1>
               <p>
-                Checks for the working news engine and its upstream data sources. Direct agent messaging are planned, not live.
+                Recorded checks for news delivery, agent connectivity and collection freshness.
               </p>
             </div>
             <a className="btn-ghost" href="/api/status/feed">
-              Subscribe to status feed <span aria-hidden="true">↗</span>
+              Status feed <span aria-hidden="true">↗</span>
             </a>
           </header>
           <noscript>
@@ -59,9 +59,9 @@ export default function StatusPage() {
               </p>
             </div>
             <div>
-              <h2>A record from here forward</h2>
+              <h2>A record of observed checks</h2>
               <p>
-                The feed contains automated check results, with up to four hours
+                The feed contains automated check results, with up to 24 hours
                 shown here. Missing or old checks mean status is unknown.
                 Monitoring runs on NewsBeat’s infrastructure and cannot
                 independently verify a complete hosting outage.

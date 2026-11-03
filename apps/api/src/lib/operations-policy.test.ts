@@ -118,3 +118,13 @@ test("Atom preserves observation timestamps and escapes publisher-facing text", 
   assert(feed.includes(`<updated>${good.checked_at}</updated>`));
   assert(!atomFeed(statusDocument([], now)).includes("<entry>"));
 });
+
+test("the public history retains a full day without treating older observations as current", () => {
+  const withinDay = { ...good, checked_at: new Date(now - 23 * 60 * 60_000).toISOString() };
+  const outsideDay = { ...good, checked_at: new Date(now - 24 * 60 * 60_000 - 1).toISOString() };
+  const future = { ...good, checked_at: new Date(now + 60_001).toISOString() };
+  const result = statusDocument([good, withinDay, outsideDay, future], now);
+  assert.deepEqual(result.history, [good, withinDay]);
+  assert.equal(result.monitoring, "current");
+  assert.equal(statusDocument([withinDay], now).status, "unknown");
+});
