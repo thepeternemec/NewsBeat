@@ -28,9 +28,9 @@ test("Postgres pipeline persists event memory, skips unchanged inputs, revises e
     let calls = 0;
     const generate: Parameters<typeof runIntelligence>[1] = async (evidence, previous) => {
       calls++;
-      const denial = evidence.find(item => item.title.includes("denies"));
-      const selected = denial ?? evidence[0]!;
       const prior = previous[0];
+      const denial = evidence.find(item => item.title.includes("denies"));
+      const selected = denial ?? evidence.find(item => !prior?.evidence.some(old => old.id === item.id)) ?? evidence[0]!;
       const event: IntelligenceEventDraft = {
         existing_event_id: prior?.id ?? null,
         change_kind: prior ? denial ? "update" : "evidence_only" : "new",
@@ -56,7 +56,8 @@ test("Postgres pipeline persists event memory, skips unchanged inputs, revises e
     assert.equal(calls, 1, "reading or checking unchanged input does not generate again");
 
     await insert("Nvidia plans new supply restrictions", "source-b");
-    await runIntelligence(null, generate);
+    const repeated = await runIntelligence(null, generate);
+    assert.equal(repeated.results[0]?.status, "processed");
     response = await readIntelligence(beat.beat_id);
     assert.equal(response.signals[0]!.id, id);
     assert.equal(response.signals[0]!.version, 1);

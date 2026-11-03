@@ -16,7 +16,7 @@ Interpretation must add reasoning: explain a possible transmission mechanism, a 
 Facts are supplied as original headlines by the server. Do not pretend to verify them. Distinguish reported plans and allegations from completed outcomes.
 Use only cited report ids. Do not introduce numeric figures or dates missing from the event's cited headlines. No price forecasts, guaranteed outcomes or trading recommendations.
 Evidence from several publishers is not proof of independent verification. State missing article details as unknowns.
-For an existing event, preserve its id. Use evidence_only for repeated coverage with no substantive new development; the server preserves the previous interpretation in that case. Use update only when new cited reporting changes the event or interpretation, and explain that change. Reuse prior wording when meaning is unchanged.
+For an existing event, preserve its id. Cite newly supplied report IDs when attaching additional coverage to a previous event. Use evidence_only for repeated coverage with no substantive new development; the server preserves the previous interpretation in that case. Use update only when new cited reporting changes the event or interpretation, and explain that change. Reuse prior wording when meaning is unchanged.
 All prose fields are plain single-line text, at most 300 characters (mechanism 450). One or two implications, one to four unknowns and next_checks. An empty events array is valid; do not fill quotas.`;
 
 export async function generateIntelligence(evidence: IntelligenceEvidence[], previous: IntelligenceSignal[], asset: { label: string; ticker: string }, oidcToken?: string | null) {
