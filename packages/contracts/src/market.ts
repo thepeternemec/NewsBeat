@@ -14,7 +14,7 @@
 /** Where a number came from, and how much to trust its currency. */
 export interface SourceAttribution {
   /** Machine name of the upstream, for caching and for saying "not our number". */
-  source: "defillama" | "coingecko" | "alternative.me" | "binance" | "google-news" | "mixed";
+  source: "defillama" | "coingecko" | "alternative.me" | "binance" | "okx" | "google-news" | "mixed";
   /** The public home of the data, so a consumer can check it independently. */
   source_url: string;
   /** When this server fetched it, ISO 8601 UTC. */

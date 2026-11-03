@@ -153,20 +153,26 @@ async function fundingFromOkx(): Promise<FundingRate[]> {
 
 export async function fundingRates(): Promise<Sourced<FundingRate[]>> {
   const cached = await upstreamCache.read("signals:funding", SIGNAL_TTL.funding, async () => {
+    // The provider travels with the data. Labelling an OKX reading as Binance would be a
+    // lie about attribution, which is the one thing this API claims to get right.
     try {
-      return await fundingFromBinance();
+      return { rates: await fundingFromBinance(), provider: "binance" as const };
     } catch {
-      return fundingFromOkx();
+      return { rates: await fundingFromOkx(), provider: "okx" as const };
     }
   });
 
+  const provider = cached.value.provider;
   return {
-    source: "binance",
-    source_url: "https://www.binance.com/en/futures/funding-history/perpetual/real-time-funding-rate",
+    source: provider === "binance" ? "binance" : "okx",
+    source_url:
+      provider === "binance"
+        ? "https://www.binance.com/en/futures/funding-history/perpetual/real-time-funding-rate"
+        : "https://www.okx.com/trade-swap/btc-usdt-swap",
     fetched_at: new Date(cached.fetchedAt).toISOString(),
     ttl_seconds: Math.round(SIGNAL_TTL.funding / 1000),
     freshness: freshness(cached.fetchedAt, SIGNAL_TTL.funding, "continuous, settled every eight hours"),
-    data: cached.value,
+    data: cached.value.rates,
   };
 }
 
