@@ -92,12 +92,40 @@ export function parseBook(body: unknown, instrument: MarketInstrument, observedA
     sell_impact_bps: units <= 0.000001 ? (1 - proceeds / notional) * 10000 : null };
 }
 export interface MarketRefresh { id: string; snapshot?: MarketSnapshot; error?: string }
-export async function fetchMarketSnapshots(now = Date.now()): Promise<MarketRefresh[]> {
-  const get = async (url: string) => {
-    const response = await fetch(url, { signal: AbortSignal.timeout(8000), headers: { accept: "application/json", "user-agent": "NewsBeat/0.4 contact@newsbeat.dev" } });
-    if (!response.ok) throw new Error("provider_http_" + response.status);
-    return response.json();
+/** Public endpoints share an IP budget. Space starts and bound transient retries. */
+export function marketRequester(dependencies: { fetch?: typeof fetch; now?: () => number; wait?: (ms: number) => Promise<void> } = {}) {
+  const request = dependencies.fetch ?? fetch, clock = dependencies.now ?? Date.now;
+  const wait = dependencies.wait ?? (ms => new Promise(resolve => setTimeout(resolve, ms)));
+  let nextStart = 0;
+  return async (url: string) => {
+    for (let attempt = 0; attempt < 2; attempt++) {
+      const start = Math.max(clock(), nextStart);
+      nextStart = start + 1100;
+      if (start > clock()) await wait(start - clock());
+      let response: Response;
+      try { response = await request(url, { signal: AbortSignal.timeout(8000), headers: { accept: "application/json", "user-agent": "NewsBeat/0.4 contact@newsbeat.dev" } }); }
+      catch (error) { if (!attempt) continue; throw error; }
+      if (!response.ok) {
+        if (!attempt && (response.status === 429 || response.status >= 500)) {
+          const after = Number(response.headers.get("retry-after"));
+          if (Number.isFinite(after) && after > 5) throw new Error("provider_rate_limited");
+          nextStart = Math.max(nextStart, clock() + (Number.isFinite(after) && after > 0 ? after * 1000 : 2200));
+          continue;
+        }
+        throw new Error("provider_http_" + response.status);
+      }
+      const body: unknown = await response.json(), errors = object(body)?.error;
+      if (Array.isArray(errors) && errors.length) {
+        if (!attempt && errors.some(error => typeof error === "string" && /rate limit|too many|throttl|unavailable|busy/i.test(error))) { nextStart = Math.max(nextStart, clock() + 2200); continue; }
+        throw new Error(errors.some(error => typeof error === "string" && /rate limit|too many|throttl/i.test(error)) ? "provider_rate_limited" : "provider_response_invalid");
+      }
+      return body;
+    }
+    throw new Error("market_source_unavailable");
   };
+}
+export async function fetchMarketSnapshots(now = Date.now()): Promise<MarketRefresh[]> {
+  const get = marketRequester();
   const observedAt = new Date(now).toISOString();
   const classes = await Promise.allSettled(["currency", "tokenized_asset"].map(assetClass => {
     const pairs = MARKET_PROFILES.filter(p => (p.kind === "crypto" ? "currency" : "tokenized_asset") === assetClass).map(p => p.pair).join(",");
@@ -119,7 +147,7 @@ export async function fetchMarketSnapshots(now = Date.now()): Promise<MarketRefr
         const bars = parseClosedBars(history.value, instrument, Date.parse(collectedAt));
         let book: MarketBook | null = null;
         try { if (depth.status === "fulfilled") book = parseBook(depth.value, instrument, collectedAt); } catch { /* Price history remains usable; book gates stay closed. */ }
-        output.push({ id: wanted.id, snapshot: { instrument, observed_at: collectedAt, bars, book, error: book ? null : "market_book_unavailable" } });
+        output.push({ id: wanted.id, snapshot: { instrument, observed_at: collectedAt, bars, book, error: book ? null : depth.status === "rejected" && depth.reason instanceof Error && /^[a-z0-9_]+$/.test(depth.reason.message) ? depth.reason.message : "market_book_unavailable" } });
       } catch (error) {
         output.push({ id: wanted.id, error: error instanceof Error && /^[a-z0-9_]+$/.test(error.message) ? error.message : "market_source_unavailable" });
       }
