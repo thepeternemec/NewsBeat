@@ -80,7 +80,7 @@ test("first construction upgrades legacy memory once without claiming new report
   assert.ok(validateIntelligence({ events: [upgrade] }, reports, [old]));
   const next = reconcileSignal(old.beat_id, upgrade, reports, [old], now, "test/model");
   assert.equal(next.version, 2); assert.ok(next.market_assessment);
-  assert.equal(validateIntelligence({ events: [upgrade] }, reports, [next]), null);
+  assert.deepEqual(validateIntelligence({ events: [upgrade] }, reports, [next]), [], "the same construction cannot refresh known reporting");
 });
 test("changing only a citation ID is not a new market interpretation", () => {
   const old = signal(); const second = { ...reports[0]!, id: "r2" };

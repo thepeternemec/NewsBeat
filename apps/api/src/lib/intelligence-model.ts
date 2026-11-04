@@ -88,6 +88,7 @@ export function parseIntelligenceResult(body: unknown, evidence: IntelligenceEvi
   let value: unknown;
   try { value = JSON.parse(content.trim().replace(/^\x60\x60\x60(?:json)?\s*|\s*\x60\x60\x60$/g, "")); }
   catch { throw new Error("invalid_analysis_json"); }
+  if (value && typeof value === "object" && "events" in value && Array.isArray(value.events) && value.events.length > 1) throw new Error("invalid_analysis_batch_limit");
   const result = inspectIntelligence(singleLine(value), evidence, previous);
   if (!result.events) throw new Error("invalid_analysis_" + result.error);
   if (result.events.length > 1) throw new Error("invalid_analysis_batch_limit");
