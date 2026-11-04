@@ -18,6 +18,7 @@ import { mcpResponse } from "./lib/mcp.js";
 import { marketplaceRoutes } from "./lib/marketplace.js";
 import { operationRoutes } from "./lib/operations.js";
 export { runIntelligence } from "./lib/intelligence.js";
+export { runMarketIntelligence } from "./lib/quant-store.js";
 export { runOperationalCheck } from "./lib/operations.js";
 
 const app = new Hono();

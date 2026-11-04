@@ -10,3 +10,4 @@ export * from "./news.js";
 export * from "./operations.js";
 export * from "./market.js";
 export * from "./intelligence.js";
+export * from "./quantitative.js";

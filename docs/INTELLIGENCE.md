@@ -11,7 +11,7 @@ The authenticated worker covers NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and 
 - An observable trigger, bound to a cited report and matching headline excerpt when reported.
 - An invalidation condition and useful follow-up checks.
 
-The model receives no price response, benchmark return, consensus estimate or backtest. These are hypotheses, not measured market impact. `market_reaction.status` remains `unmeasured`.
+The model receives no price response, benchmark return, consensus estimate or backtest. Its output remains a hypothesis. A separate quantitative layer measures verified venue prices, information delta, pre-information beta/residuals, participation and liquidity. `market_reaction.status` can be `observed` for an aligned post-thesis window without establishing causality. See [methodology and thresholds](QUANTITATIVE.md).
 
 ## Context and alert policy
 
@@ -21,7 +21,7 @@ The model receives no price response, benchmark return, consensus estimate or ba
 | `liquidity` | Liquidity, financing cost, supply | 120 minutes |
 | `risk` | Adoption, policy, security | 180 minutes |
 
-An alert requires a valid construction, matching context, fresh collection, completed analysis within 90 minutes, a high-materiality hypothesis with an identified direction, a grounded reported trigger inside the context window, a substantive interpretation change and a reported premise that is not denied or disputed.
+An alert requires a valid construction, matching context, fresh collection, completed analysis within 90 minutes, medium/high materiality with an identified direction, a grounded reported trigger, a fresh substantive information delta and a premise that is not denied or disputed. The measured layer additionally requires a valid pre-information baseline, directional residual confirmation, unusual participation and acceptable observed liquidity. Interpretation alone cannot create a timing alert.
 
 A matching excerpt binds an observation to a headline. It does not independently verify reporting or establish causality. Multiple publishers do not establish independent confirmation. Materiality and horizon are qualitative estimates, not calibrated probabilities or expected returns.
 
@@ -33,11 +33,11 @@ The existing intelligence tables preserve source-signal identity and interpretat
 
 The authenticated worker bootstraps additive schema changes. Jobs track completed and attempted pipeline versions, allowing a bounded upgrade pass at unchanged article watermarks while retaining retry delay after failed attempts.
 
-`newsbeat_signal_alerts` records one review alert per source signal, context and interpretation version. A revised premise resolves older alert records in the same transaction as the new interpretation. Historical alert timestamps do not establish current eligibility. Public reads do not write alerts, run models or create tables.
+The measured journal records one review alert per source signal, context, interpretation version and quantitative policy. A revised premise resolves older measured alerts during the next market run. Legacy qualitative-only alerts remain stored but are not returned as measured alerts. Historical timestamps do not establish current eligibility. Public reads do not write alerts, run models or create tables.
 
 Evidence selection is separate from summary selection: up to 24 reports combine newly indexed coverage (with reserved space for denials and withdrawals) and ranked story context. This keeps contradictory reporting eligible for analysis even when a digest would omit it. The 200-report source scan and selected evidence are bounded; inspect partial-coverage flags.
 
-Bounds remain two asset jobs per five-minute run, one model call per job, 25-second timeout, 4,000 output tokens and 15-minute retry delay. A strict JSON response schema limits the model to two concise constructions per batch. Truncated, malformed, ungrounded or context-free output is rejected with a specific analysis error code; prior memory is retained. No new credentials, payment method or budget is configured.
+Bounds remain two asset jobs per five-minute run, one model call per job, 25-second timeout, 4,000 output tokens and 15-minute retry delay. A strict JSON response schema limits the model to one concise construction per batch and four relevant prior contexts. Prior memory supplies no extra citable report IDs. Truncated, malformed, ungrounded or context-free output is rejected with a specific error code and schema field path; prior memory is retained. Unchanged known reporting is discarded as a no-op. No new credentials, payment method or budget is configured.
 
 ## Interfaces
 
@@ -47,13 +47,13 @@ curl 'https://www.newsbeat.dev/api/v2/intelligence?beat_id=b_bb964843350e&contex
 
 MCP: `newsbeat_intelligence({ "beat_id": "b_bb964843350e", "context": "fundamentals" })`.
 
-Responses preserve `signals` and add `context`, `constructions` and `alerts`. Inspect gate reasons, freshness, analysis state/times, partial coverage and market-reaction status. Track stable alert IDs in authorized monitoring workflows.
+Responses preserve `signals` and add `context`, `constructions`, measured `alerts` and `quantitative`. Inspect gate reasons, freshness, analysis state/times, partial coverage and market-reaction status. The quantitative bundle includes verified pair metadata, matched price paths, information deltas, decision fits, frozen reference records and forward outcome cohorts. Track stable alert IDs in authorized monitoring workflows.
 
 The workbench on `/intelligence` selects an asset and context, shows why an alert passes or is held, and exposes evidence and review-alert history.
 
-## Next quantitative inputs
+## Quantitative inputs and next work
 
-Price and benchmark confirmation, historical comparisons, expectation changes, strategy-specific contexts and threshold calibration are future work. Notification delivery and trade execution are not connected. This release records conditional review alerts rather than claiming verified alpha.
+Price/proxy confirmation, pre-information historical baselines, participation, book costs and prospective outcome records are implemented for the six-asset pilot. Expectation changes, richer source verification, strategy-specific contexts and threshold calibration remain future work. Notification delivery and trade execution are not connected. This release records measured review decisions without claiming verified alpha.
 
 ## Verification
 

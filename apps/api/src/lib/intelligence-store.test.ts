@@ -104,7 +104,7 @@ test("Postgres pipeline persists event memory, skips unchanged inputs, revises e
   } finally { await closeDb(); }
 });
 
-test("Postgres records alerts once, resolves changed premises and upgrades unchanged jobs", { skip: !connection, timeout: 45000 }, async () => {
+test("Postgres requires quantitative confirmation while preserving context revisions and upgrades", { skip: !connection, timeout: 45000 }, async () => {
   process.env.DATABASE_URL = connection!;
   const sql = db();
   try {
@@ -140,33 +140,31 @@ test("Postgres records alerts once, resolves changed premises and upgrades uncha
     assert.equal((await runIntelligence(null, generate)).results[0]!.status, "processed");
     let response = await readIntelligence(beat.beat_id, "fundamentals");
     assert.equal(response.analysis.pipeline_version, INTELLIGENCE_VERSION);
-    assert.equal(response.constructions[0]!.action, "review_now"); assert.equal(response.alerts.length, 1);
-    const alertId = response.alerts[0]!.id;
+    assert.equal(response.constructions[0]!.action, "keep_watching"); assert.equal(response.alerts.length, 0);
     assert.equal((await readIntelligence(beat.beat_id, "liquidity")).constructions[0]!.action, "no_alert");
     assert.equal((await readIntelligence(beat.beat_id, "liquidity")).alerts.length, 0);
     await readIntelligence(beat.beat_id);
     assert.equal((await runIntelligence(null, generate)).claimed, 0);
-    assert.equal((await readIntelligence(beat.beat_id)).alerts[0]!.id, alertId);
+    assert.equal((await readIntelligence(beat.beat_id)).alerts.length, 0);
     mode = "repeat";
     await insert("Nvidia raises revenue guidance after new orders", "guidance-b");
     await runIntelligence(null, generate);
     response = await readIntelligence(beat.beat_id);
     assert.equal(response.signals[0]!.version, 1); assert.equal(response.constructions[0]!.action, "keep_watching");
-    assert.equal(response.alerts.length, 1);
+    assert.equal(response.alerts.length, 0);
     mode = "denial";
     await insert("Nvidia denies a revenue guidance increase", "guidance-c");
     const deniedRun = await runIntelligence(null, generate);
     assert.equal(deniedRun.results[0]?.status, "processed", JSON.stringify(deniedRun));
     response = await readIntelligence(beat.beat_id);
     assert.equal(response.signals[0]!.version, 2, "denial revises the premise"); assert.equal(response.constructions[0]!.action, "reassess");
-    assert.equal(response.alerts.length, 1); assert.ok(response.alerts[0]!.resolved_at);
+    assert.equal(response.alerts.length, 0);
     mode = "revision";
     await insert("Nvidia raises revenue guidance following renewed customer orders", "guidance-d");
     const revisionRun = await runIntelligence(null, generate);
     assert.equal(revisionRun.results[0]?.status, "processed", JSON.stringify(revisionRun));
     response = await readIntelligence(beat.beat_id);
-    assert.equal(response.signals[0]!.version, 3, "new guidance revises the denial"); assert.equal(response.alerts.length, 2, JSON.stringify(response.constructions));
-    assert.notEqual(response.alerts[0]!.id, alertId); assert.equal(response.alerts[0]!.resolved_at, null);
+    assert.equal(response.signals[0]!.version, 3, "new guidance revises the denial"); assert.equal(response.alerts.length, 0, "qualitative revisions alone cannot create a timing alert");
     mode = "repeat";
     const before = calls;
     await sql`update public.newsbeat_intelligence_jobs set pipeline_version='old-version', input_hash='old-fingerprint' where beat_id=${beat.beat_id}`;
@@ -174,7 +172,7 @@ test("Postgres records alerts once, resolves changed premises and upgrades uncha
     assert.equal((await runIntelligence(null, generate)).claimed, 1);
     assert.equal(calls, before + 1);
     assert.equal((await readIntelligence(beat.beat_id)).analysis.pipeline_version, INTELLIGENCE_VERSION);
-    assert.equal((await readIntelligence(beat.beat_id)).alerts.length, 2);
+    assert.equal((await readIntelligence(beat.beat_id)).alerts.length, 0);
     assert.equal((await runIntelligence(null, generate)).claimed, 0);
   } finally { await closeDb(); }
 });

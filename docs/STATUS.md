@@ -1,6 +1,6 @@
 # NewsBeat project status
 
-Updated **2026-11-03** from the current main-branch implementation. Counts describe the bundled catalog, not a guarantee of live article coverage.
+Updated **2026-11-04** from the current main-branch implementation. Counts describe the bundled catalog, not a guarantee of live article coverage.
 
 ## Product direction
 
@@ -10,7 +10,7 @@ NewsBeat is building meaningful signals for AI agents. The source-linked news fo
 
 | Capability | Status |
 | --- | --- |
-| Event intelligence pilot | Persistent event memory, conditional implications, uncertainty and next checks for NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum; scheduled worker, REST and MCP reads |
+| Intelligence pilot | Persistent thesis revisions, measured information deltas, pre-information beta/residuals, participation/liquidity gates and prospective outcomes for NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum |
 | Asset catalog | **2,030 topics**: 1,528 US-listed equities and 502 crypto assets |
 | Headline reads | Source-linked articles with freshness, bounded pages and history cursors |
 | Change monitoring | Signed, asset-bound cursors; clients poll for newly indexed items |
@@ -21,7 +21,7 @@ NewsBeat is building meaningful signals for AI agents. The source-linked news fo
 | REST and function calling | 15 read operations and schemas at `/api/v2/tools` |
 | Hosted MCP | 15 tools over Streamable HTTP at `/api/mcp`, including `newsbeat_summary` |
 | Supporting reference utilities | Sourced crypto prices, sentiment, chain readings, contract prices and positioning, retained through REST and MCP |
-| Intelligence overview | Public product direction; distinguishes the available foundation from planned interpretation. The former `/crypto` page redirects here. |
+| Intelligence workbench | Full-width measured market path, context selection, thesis/evidence inspector, timing reasons and forward observation cohorts. The former `/crypto` page redirects here. |
 | Web news explorer | Asset search, grouped stories, source expansion, Show more controls and on-demand headline summaries |
 | Self-serve keys | GitHub sign-in; signing in again rotates the existing key |
 | Account billing | Keyed REST usage is metered; anonymous reads are free and rate limited |
@@ -44,7 +44,7 @@ REST story snapshots scan 200 reports by default (`limit` 1–500). MCP returns 
 
 ## Brand and domain
 
-The product and repository are **NewsBeat**, live at **https://www.newsbeat.dev**. The public mission is meaningful signals for AI agents. The live news foundation covers stocks and crypto. Verified tokenized-asset mapping is planned; current news topics resolve the underlying company or cryptocurrency. Use `https://www.newsbeat.dev/api` for REST and `https://www.newsbeat.dev/api/mcp` for MCP. The `news-beat.vercel.app` host remains an alternate service address. Public reads are free during early access; no API key or credit card is needed. Account keys have a **seven-day evaluation** from the first metered REST call, with up to **$6 in trial credit**. The start is recorded per account in the usage ledger, so rotating a key does not reset it. Existing accounts keep their balances and start their seven-day window on their next metered call after this release. `GET /api/keys/trial` reports the deadline and spendable credit. When the trial ends, unused trial credit becomes unavailable and keyed reads return `402 trial_expired`; public anonymous reads continue. Stripe checkout is not live.
+The product and repository are **NewsBeat**, live at **https://www.newsbeat.dev**. The public mission is meaningful signals for AI agents. The live news foundation covers stocks and crypto. Pilot xStock exchange pairs are verified against the venue directory; onchain contract, redemption and consolidated underlying-stock verification remain planned. Use `https://www.newsbeat.dev/api` for REST and `https://www.newsbeat.dev/api/mcp` for MCP. The `news-beat.vercel.app` host remains an alternate service address. Public reads are free during early access; no API key or credit card is needed. Account keys have a **seven-day evaluation** from the first metered REST call, with up to **$6 in trial credit**. The start is recorded per account in the usage ledger, so rotating a key does not reset it. Existing accounts keep their balances and start their seven-day window on their next metered call after this release. `GET /api/keys/trial` reports the deadline and spendable credit. When the trial ends, unused trial credit becomes unavailable and keyed reads return `402 trial_expired`; public anonymous reads continue. Stripe checkout is not live.
 
 New discovery uses `newsbeat_*` tool names. Old tool names, deployed environment-variable names and existing signed cursors retain compatibility. Workspace package names use `@newsbeat/*` and `newsbeat-*`.
 
@@ -79,4 +79,4 @@ Update this file and the README whenever capabilities change.
 
 ## Contextual signal construction
 
-The six-asset pilot adds three decision contexts, market-channel hypotheses, observable trigger evidence, invalidation and explicit reasons to wait. Deterministic checks gate review alerts; an idempotent journal records qualifying versions and closes earlier alerts when a premise is revised. REST and the existing MCP intelligence tool expose constructions and review-alert records. Price reaction is unmeasured; historical calibration, custom contexts and notification delivery remain planned.
+The six-asset pilot adds three decision contexts, market-channel hypotheses, observable trigger evidence, invalidation and explicit reasons to wait. Deterministic checks gate review alerts; an idempotent journal records qualifying versions and closes earlier alerts when a premise is revised. REST and the existing MCP intelligence tool expose constructions and review-alert records. Kraken xStock and crypto venue data add measured timing checks and frozen prospective outcome records. Threshold calibration, expectation changes, custom contexts and notification delivery remain planned. See [quantitative methodology](QUANTITATIVE.md).

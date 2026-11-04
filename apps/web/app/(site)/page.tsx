@@ -78,12 +78,12 @@ export default function Home() {
           <div className="bs-section-head">
             <span className="bs-kicker">WHERE NEWSBEAT IS GOING</span>
             <h2 className="bs-title">From context<br />to a decision.</h2>
-            <p className="bs-body">The first layer constructs a hypothesis and tests it against a decision context. The next stage measures market response and learns which conditions produce useful signals.</p>
-            <a className="bs-text-link" href="/intelligence">Read the intelligence roadmap <ArrowUpRight size={16} /></a>
+            <p className="bs-body">A useful signal needs a fresh information delta, a market baseline and the right conditions. NewsBeat measures the response and records what follows each decision.</p>
+            <a className="bs-text-link" href="/intelligence">Inspect the intelligence layer <ArrowUpRight size={16} /></a>
           </div>
           <div className="ni-roadmap-cards">
             <article><span className="ni-state">Live pilot</span><h3>Signals with explicit conditions.</h3><p>Market-impact hypotheses, observable triggers, invalidation and review alerts for NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum.</p></article>
-            <article><span className="ni-state ni-state-planned">Next stage</span><h3>Market confirmation and calibration.</h3><p>Price and benchmark response, historical comparisons and tested thresholds to improve when a signal deserves attention.</p></article>
+            <article><span className="ni-state">Measured pilot</span><h3>Delta. Confirmation. Timing.</h3><p>Benchmark-adjusted moves, participation and liquidity checks. Developing, extended or fading—with a forward record to test the decision.</p></article>
           </div>
         </div>
       </section>

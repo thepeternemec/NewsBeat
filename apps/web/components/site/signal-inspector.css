@@ -58,3 +58,15 @@
 .signal-gates li>p{font-size:12px;margin-top:3px}
 .signal-alert-record{font-size:11px!important;padding-bottom:16px;overflow-wrap:anywhere}
 @media(max-width:600px){.signal-inspector-context{padding:0 18px 18px}.signal-context-objective{padding:0 18px 16px}.signal-decision{padding:14px}.signal-inspector-context select{font-size:11px}}
+
+.signal-inspector-filters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-bottom:1px solid var(--border-default)}
+.signal-inspector-filters .signal-inspector-asset,.signal-inspector-filters .signal-inspector-context{min-width:0;padding:16px 24px;border-bottom:0}
+.signal-inspector-filters .signal-inspector-asset{border-right:1px solid var(--border-default)}
+.signal-workbench-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);border-top:1px solid var(--border-default)}
+.signal-workbench-grid .inspected-event{min-width:0;padding:24px}
+.signal-workbench-grid[data-has-signal="false"]{grid-template-columns:1fr}
+.signal-workbench-grid[data-has-signal="false"] .quant-panel{border-right:0}
+.signal-inspector-foot{display:flex;flex-wrap:wrap;gap:4px 20px}
+.signal-inspector-foot p{width:100%}
+@media(max-width:900px){.signal-workbench-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.signal-inspector-filters{grid-template-columns:1fr}.signal-inspector-filters .signal-inspector-asset{border-right:0;border-bottom:1px solid var(--border-default)}.signal-inspector-filters .signal-inspector-asset,.signal-inspector-filters .signal-inspector-context{padding:15px 18px}.signal-workbench-grid .inspected-event{padding:20px 18px}}

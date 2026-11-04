@@ -6,7 +6,7 @@
 
 NewsBeat constructs signals from news and context: what could affect stocks and crypto, what would trigger a review alert, and what would invalidate the hypothesis.
 
-**News foundation + first contextual-signal pilot**
+**News evidence + measured market timing**
 
 [Signal workbench](https://www.newsbeat.dev/intelligence) · [How signals are constructed](https://www.newsbeat.dev/#agent-workflow) · [Connect your agent](https://www.newsbeat.dev/docs/quickstart) · [Developer docs](https://www.newsbeat.dev/docs) · [Service status](https://www.newsbeat.dev/status)
 
@@ -23,15 +23,19 @@ An agent needs to understand which developments deserve attention. NewsBeat’s 
 
 The **live foundation** supplies source-linked headlines, approximate story grouping, headline-based summaries, freshness and changes since a previous check. Agents can use that evidence today.
 
-The **first contextual-signal pilot** evaluates market hypotheses against three contexts: business fundamentals, liquidity and capital, and adoption and risk. Each construction records a market channel, materiality, an observable alert trigger, reasons it may not move the market, and invalidation conditions. Freshness, reporting state, novelty and context gates determine whether to review, watch, suppress or reassess it. Qualified review alerts are recorded once per signal revision. NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum are the initial scope. Price and benchmark confirmation are not connected yet; these are headline-based hypotheses, not calibrated trading signals.
+The **six-asset intelligence pilot** combines a source-grounded thesis with measured market timing. It distinguishes new information from repeated coverage, estimates a pre-information beta and residual baseline, and checks price confirmation, relative volume, fresh trades and order-book costs. Signals can develop, fade, diverge or become extended. A review alert needs all applicable gates; headline interpretation alone cannot trigger one.
 
-Stocks and crypto are the current coverage universe: 1,528 US stocks and 502 crypto assets. Tokenized assets remain a longer-term application. Read the [product direction](docs/INTELLIGENCE.md) and [current implementation status](docs/STATUS.md).
+NVIDIA, Apple, Microsoft and Alphabet are measured through their USD xStock markets on Kraken against QQQx. Bitcoin and Ethereum use self-excluding crypto peers. These are observed venue markets, not consolidated stock prices or verified token redemption values. The [quantitative methodology](docs/QUANTITATIVE.md) documents sources, thresholds, timestamps and limits.
+
+Every eligible construction and qualifying review alert gets a frozen reference snapshot for prospective 15-minute, one-hour and four-hour outcomes. The journal compares all cases with selected review alerts, including pending and missed observations. This is a research record, not a claim of profitable timing or superiority to another agent.
+
+The broader news foundation covers 1,528 US stocks and 502 crypto assets. Wider quantitative coverage, expectations data and outcome calibration remain next steps. Read the [product direction](docs/INTELLIGENCE.md) and [current implementation status](docs/STATUS.md).
 
 ## Try it before you connect
 
 Open the **[signal workbench](https://www.newsbeat.dev/intelligence)**. Select an asset and a decision context, inspect the hypothesis and trigger, then expand the checks behind the decision. The homepage animates how news becomes context and a signal.
 
-News is collected on a **15-minute schedule**. Coverage varies by asset; every response reports freshness. Summaries use headline metadata, and the original reporting stays linked.
+The wider catalog is collected on a **15-minute schedule**; the six pilot topics and market measurements are scheduled every five minutes. Coverage varies by asset; every response reports freshness. Summaries use headline metadata, and the original reporting stays linked.
 
 ## Connect your agent
 
@@ -132,9 +136,9 @@ Optional GitHub-issued keys provide a **seven-day REST evaluation**, starting on
 
 **Available:** the source-linked news foundation, with asset discovery, headline-based summaries, approximate grouping, freshness, change tracking and agent access.
 
-**First signal-construction pilot:** bounded scheduled analysis, persistent signal revisions, three decision contexts, observable triggers, deterministic review-alert gates and an alert journal for six assets.
+**Six-asset timing pilot:** bounded scheduled analysis, persistent thesis revisions, three contexts, beta-adjusted market response, liquidity and participation gates, a measured alert journal and prospective outcome cohorts.
 
-**Next:** price and benchmark confirmation, expectations, calibration against outcomes, stronger source verification and wider coverage.
+**Next:** collect and calibrate prospective outcomes, add expectation changes and richer source evidence, and expand measured coverage.
 
 **Longer-term applications:** saved watches, agent delivery, notifications and verified tokenized-asset mapping. Broader search and connector improvements support that direction.
 

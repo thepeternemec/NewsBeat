@@ -306,3 +306,15 @@ create table if not exists public.newsbeat_signal_alerts (
 );
 create index if not exists newsbeat_signal_alerts_asset_context_time_idx
   on public.newsbeat_signal_alerts (beat_id, context_id, triggered_at desc);
+
+-- Measured venue context, timing decisions and prospective evaluation.
+create table if not exists public.newsbeat_market_sources (instrument_id text primary key, snapshot jsonb, last_attempt_at timestamptz not null default now(), last_error text);
+create table if not exists public.newsbeat_market_bars (instrument_id text not null, started_at timestamptz not null, open_price double precision not null check(open_price>0), high_price double precision not null, low_price double precision not null, close_price double precision not null check(close_price>0), volume double precision not null check(volume>=0), trades integer not null check(trades>=0), observed_at timestamptz not null, primary key(instrument_id,started_at));
+create index if not exists newsbeat_market_bars_retention_idx on public.newsbeat_market_bars(started_at);
+create table if not exists public.newsbeat_quant_contexts (beat_id text not null, context_id text not null check(context_id in ('fundamentals','liquidity','risk')), policy_version text not null, computed_at timestamptz not null, bundle jsonb not null, primary key(beat_id,context_id));
+create table if not exists public.newsbeat_quant_evaluations (id text primary key, beat_id text not null, event_id text not null, signal_version integer not null, context_id text not null, cohort text not null check(cohort in ('all_constructions','review_alert')), policy_version text not null, decision_at timestamptz not null, next_due_at timestamptz, record jsonb not null, unique(event_id,signal_version,context_id,cohort,policy_version));
+create index if not exists newsbeat_quant_evaluations_due_idx on public.newsbeat_quant_evaluations(next_due_at) where next_due_at is not null;
+create index if not exists newsbeat_quant_evaluations_context_time_idx on public.newsbeat_quant_evaluations(beat_id,context_id,decision_at desc);
+create table if not exists public.newsbeat_quant_alerts (id text primary key, beat_id text not null, event_id text not null, signal_version integer not null, context_id text not null, policy_version text not null, triggered_at timestamptz not null, resolved_at timestamptz, resolution text, construction jsonb not null, unique(event_id,context_id,signal_version,policy_version));
+create index if not exists newsbeat_quant_alerts_context_time_idx on public.newsbeat_quant_alerts(beat_id,context_id,triggered_at desc);
+create table if not exists public.newsbeat_quant_worker (id text primary key, lease_token text, lease_until timestamptz, last_started_at timestamptz, last_success_at timestamptz, last_error text);

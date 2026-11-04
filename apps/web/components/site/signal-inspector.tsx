@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, ExternalLink, RefreshCw } from "lucide-react";
 import type { IntelligenceResponse, SignalContextId } from "@newsbeat/contracts";
 import "./signal-inspector.css";
+import QuantitativePanel from "./quantitative-panel";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "/api";
 const ASSETS = [
@@ -29,6 +30,19 @@ function StoredSignal({ asset, context }: { asset: Asset; context: SignalContext
   const [phase, setPhase] = useState<"loading" | "ready" | "error">("loading");
   const [attempt, setAttempt] = useState(0);
   const [index, setIndex] = useState(0);
+  const [clock, setClock] = useState(0);
+  const selectedId = useRef<string | null>(null);
+  useEffect(() => { selectedId.current = data?.signals[index]?.id ?? null; }, [data, index]);
+  useEffect(() => {
+    const refresh = () => {
+      if (document.visibilityState !== "visible") return;
+      setClock(Date.now()); setAttempt(value => value + 1);
+    };
+    setClock(Date.now());
+    const interval = window.setInterval(refresh, 60000);
+    document.addEventListener("visibilitychange", refresh);
+    return () => { window.clearInterval(interval); document.removeEventListener("visibilitychange", refresh); };
+  }, [asset.beatId, context]);
   useEffect(() => {
     let active = true;
     const controller = new AbortController();
@@ -40,7 +54,7 @@ function StoredSignal({ asset, context }: { asset: Asset; context: SignalContext
         if (!response.ok) throw new Error("Unavailable");
         const next = await response.json() as IntelligenceResponse;
         if (next.beat_id !== asset.beatId || next.context?.id !== context || !Array.isArray(next.signals) || !Array.isArray(next.constructions) || !Array.isArray(next.alerts) || !next.analysis) throw new Error("Invalid response");
-        if (active) { setData(next); setIndex(0); setPhase("ready"); }
+        if (active) { const selected = next.signals.findIndex(item => item.id === selectedId.current); setData(next); setIndex(selected >= 0 ? selected : 0); setClock(Date.now()); setPhase("ready"); }
       } catch { if (active) setPhase("error"); }
       finally { window.clearTimeout(timer); }
     })();
@@ -50,9 +64,10 @@ function StoredSignal({ asset, context }: { asset: Asset; context: SignalContext
   const count = data?.signals.length ?? 0;
   const constructedCount = data?.constructions.filter(item => item.assessment).length ?? 0;
   const implication = signal?.implications[0];
-  const construction = data?.constructions.find(item => item.source_signal_id === signal?.id);
+  const readStale = phase === "error" || !!data && clock - Date.parse(data.generated_at) > 10 * 60000;
+  const storedConstruction = data?.constructions.find(item => item.source_signal_id === signal?.id);
+  const construction = storedConstruction && readStale && storedConstruction.action === "review_now" ? { ...storedConstruction, status: "watch" as const, action: "keep_watching" as const, alert_id: null, explanation: "The last read is no longer current. Refresh before assessing timing." } : storedConstruction;
   const assessment = construction?.assessment;
-  const failed = construction?.checks.filter(item => !item.passed) ?? [];
   const latestAlert = data?.alerts.find(item => item.source_signal_id === signal?.id);
   return <>
     <div className="signal-inspector-toolbar">
@@ -67,9 +82,11 @@ function StoredSignal({ asset, context }: { asset: Asset; context: SignalContext
       {phase === "ready" && data?.status === "ready" && !signal && <p>No substantive development was selected in the latest snapshot.</p>}
     </div>
     {data?.context && <p className="signal-context-objective">{data.context.objective}</p>}
+    <div className="signal-workbench-grid" data-has-signal={Boolean(signal)}>
+    <QuantitativePanel bundle={data?.quantitative} decision={construction?.quantitative} signalId={signal?.id} version={signal?.version} readStale={readStale} />
     {signal && <article className="inspected-event" aria-label={asset.label + " signal construction"}>
       <div className="inspected-event-tags"><span>{signal.category}</span><span>{signal.event_state}</span><span>Signal v{signal.version}</span></div>
-      {construction && <div className="signal-decision" data-state={construction.status}><span>CONTEXT DECISION</span><h3>{ACTIONS[construction.action]}</h3><p>{construction.status === "alert" || construction.status === "invalidated" ? construction.explanation : failed[0]?.reason ?? construction.explanation}</p></div>}
+      {construction && !data?.quantitative && <div className="signal-decision" data-state={construction.status}><span>CONTEXT DECISION</span><h3>{ACTIONS[construction.action]}</h3><p>{construction.explanation}</p></div>}
       <section><span className="inspected-event-label">01 / REPORTED CHANGE</span><h3>{signal.what_changed}</h3></section>
       {assessment ? <>
         <section className="inspected-event-inference"><span className="inspected-event-label">02 / MARKET HYPOTHESIS <small>Model estimate</small></span><div className="signal-market-tags"><span>{assessment.channel.replaceAll("_", " ")}</span><span>{assessment.direction}</span><span>{assessment.materiality} materiality</span><span>{assessment.horizon}</span></div><h4>{assessment.market_relevance}</h4>{implication && <p>{implication.mechanism}</p>}</section>
@@ -77,8 +94,8 @@ function StoredSignal({ asset, context }: { asset: Asset; context: SignalContext
         <section><span className="inspected-event-label">04 / WHY IT MAY NOT MOVE</span><p>{assessment.why_it_may_not_move}</p><p className="inspected-event-unknown"><strong>Reassess if:</strong> {assessment.invalidation}</p></section>
       </> : <section><span className="inspected-event-label">02 / CONSTRUCTION PENDING</span><p>The worker is adding a market channel, trigger and invalidation to this earlier interpretation.</p>{implication && <p>{implication.hypothesis}</p>}</section>}
       <section><span className="inspected-event-label">NEXT CHECK</span><p>{signal.next_checks[0]}</p>{signal.unknowns[0] && <p className="inspected-event-unknown"><strong>Still unknown:</strong> {signal.unknowns[0]}</p>}</section>
-      {construction && <details className="signal-gates" key={signal.id + context}><summary>Why this decision <span>{construction.checks.filter(item => item.passed).length} / {construction.checks.length} checks met</span></summary><ul>{construction.checks.map(check => <li key={check.id}><strong>{check.passed ? "Met" : "Hold"} · {check.label}</strong><p>{check.reason}</p></li>)}</ul></details>}
-      {latestAlert && <p className="signal-alert-record">Review alert recorded {date(latestAlert.triggered_at)}{latestAlert.resolved_at ? " · superseded " + date(latestAlert.resolved_at) : ""}. Alert ID: <code>{latestAlert.id}</code></p>}
+      {construction && <details className="signal-gates" key={signal.id + context}><summary>Reporting &amp; construction checks <span>{construction.checks.filter(item => item.passed).length} / {construction.checks.length} checks met</span></summary><ul>{construction.checks.map(check => <li key={check.id}><strong>{check.passed ? "Met" : "Hold"} · {check.label}</strong><p>{check.reason}</p></li>)}</ul></details>}
+      {latestAlert && <p className="signal-alert-record">Timing review alert recorded {date(latestAlert.triggered_at)}{latestAlert.resolved_at ? " · superseded " + date(latestAlert.resolved_at) : ""}. Alert ID: <code>{latestAlert.id}</code></p>}
       <details key={signal.id}><summary>Evidence &amp; signal memory <span>{signal.evidence.length} {signal.evidence.length === 1 ? "report" : "reports"}</span></summary>
         <div className="inspected-event-memory"><code>{construction?.id ?? signal.id}</code><span>First detected {date(signal.first_detected_at)}</span><span>Interpretation updated {date(signal.updated_at)}</span>{signal.version > 1 && <p>{signal.change_reason}</p>}</div>
         <ul>{signal.evidence.slice(0, 5).map(report => <li key={report.id}><a href={report.url} target="_blank" rel="noopener noreferrer">{report.title}<ExternalLink size={12} aria-hidden="true" /></a><span>{report.source} · {date(report.published_at)}</span></li>)}</ul>
@@ -86,7 +103,8 @@ function StoredSignal({ asset, context }: { asset: Asset; context: SignalContext
       </details>
       <div className="inspected-event-pagination"><span>Signal {index + 1} / {count}</span><div><button type="button" disabled={index === 0} onClick={() => setIndex(value => value - 1)} aria-label="Previous signal"><ArrowLeft size={16} aria-hidden="true" /></button><button type="button" disabled={index >= count - 1} onClick={() => setIndex(value => value + 1)} aria-label="Next signal"><ArrowRight size={16} aria-hidden="true" /></button></div></div>
     </article>}
-    <div className="signal-inspector-foot"><span>{data?.analysis.last_success_at ? "Analyzed " + date(data.analysis.last_success_at) : "Scheduled signal-construction pilot"}</span>{data && <span>Source coverage: {data.freshness.status}</span>}{data?.analysis.coverage_truncated && <span>Selected coverage snapshot</span>}<p>Market reaction awaits price confirmation. Review alerts are recorded in this workbench.</p></div>
+    </div>
+    <div className="signal-inspector-foot"><span>{data?.analysis.last_success_at ? "Thesis analyzed " + date(data.analysis.last_success_at) : "Scheduled signal-construction pilot"}</span>{data && <span>Source coverage: {data.freshness.status}</span>}{data?.analysis.coverage_truncated && <span>Selected coverage snapshot</span>}<p>Market collection runs every five minutes. This view refreshes each minute while visible. Review alerts and forward observations are recorded here.</p></div>
   </>;
 }
 
@@ -94,10 +112,12 @@ export default function SignalInspector() {
   const [ticker, setTicker] = useState<string>("NVDA");
   const [context, setContext] = useState<SignalContextId>("fundamentals");
   const asset = ASSETS.find(item => item.ticker === ticker) ?? ASSETS[0];
-  return <aside className="signal-inspector" aria-label="Contextual signal workbench">
-    <header><span><i aria-hidden="true" /> SIGNAL CONSTRUCTION</span><span>CONTEXTUAL PILOT</span></header>
+  return <aside className="signal-inspector" aria-label="Market intelligence workbench">
+    <header><span><i aria-hidden="true" /> NEWSBEAT INTELLIGENCE</span><span>DELTA · MARKET RESPONSE · TIMING</span></header>
+    <div className="signal-inspector-filters">
     <div className="signal-inspector-asset"><label htmlFor="inspector-asset">Inspect an asset</label><select id="inspector-asset" value={ticker} onChange={event => setTicker(event.target.value)}>{ASSETS.map(item => <option key={item.ticker} value={item.ticker}>{item.label} / {item.ticker}</option>)}</select></div>
     <div className="signal-inspector-context"><label htmlFor="inspector-context">Decision context</label><select id="inspector-context" value={context} onChange={event => setContext(event.target.value as SignalContextId)}>{CONTEXTS.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}</select></div>
+    </div>
     <StoredSignal key={asset.beatId + context} asset={asset} context={context} />
   </aside>;
 }
