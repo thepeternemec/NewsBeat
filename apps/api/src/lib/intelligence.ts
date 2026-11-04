@@ -1,16 +1,17 @@
 import { randomUUID } from "node:crypto";
 import { db, hasDatabaseEnv } from "@newsbeat/db";
-import { SEED_BEATS, INTELLIGENCE_VERSION, SIGNAL_CONTEXTS, type SignalContextId, type SignalAlert, type ConstructedSignal, type IntelligenceResponse, type IntelligenceSignal, type IntelligenceEvidence } from "@newsbeat/contracts";
+import { SEED_BEATS, INTELLIGENCE_VERSION, SIGNAL_CONTEXTS, type SignalContextId, type IntelligenceResponse, type IntelligenceSignal, type IntelligenceEvidence } from "@newsbeat/contracts";
 import { stories, topicById, freshness } from "./news.js";
 import { hash, reconcileSignal, selectIntelligenceEvidence } from "./intelligence-core.js";
 import { generateIntelligence, INTELLIGENCE_MODEL } from "./intelligence-model.js";
+import { attachQuantitative } from "./quant-store.js";
 
 export const INTELLIGENCE_SCHEMA = "-- Durable interpretation jobs and event memory. Applied only by the authenticated worker.\ncreate table if not exists public.newsbeat_intelligence_jobs (\n  beat_id text primary key,\n  requested_article_id bigint not null default 0,\n  processed_article_id bigint not null default 0,\n  input_hash text,\n  lease_token text,\n  lease_until timestamptz,\n  next_attempt_at timestamptz not null default now(),\n  last_attempt_at timestamptz,\n  last_success_at timestamptz,\n  last_error text,\n  coverage_truncated boolean not null default false\n);\ncreate table if not exists public.newsbeat_intelligence_events (\n  id text primary key,\n  beat_id text not null,\n  version integer not null check (version > 0),\n  event_changed_at timestamptz not null,\n  evidence_updated_at timestamptz not null,\n  signal jsonb not null\n);\ncreate index if not exists newsbeat_intelligence_events_asset_time_idx\n  on public.newsbeat_intelligence_events (beat_id, evidence_updated_at desc);\ncreate table if not exists public.newsbeat_intelligence_revisions (\n  event_id text not null references public.newsbeat_intelligence_events(id),\n  version integer not null,\n  recorded_at timestamptz not null default now(),\n  signal jsonb not null,\n  primary key (event_id, version)\n);\n\n-- Contextual signal construction and idempotent review-alert journal.\nalter table public.newsbeat_intelligence_jobs add column if not exists pipeline_version text;\nalter table public.newsbeat_intelligence_jobs add column if not exists last_attempt_version text;\ncreate table if not exists public.newsbeat_signal_alerts (\n  id text primary key,\n  beat_id text not null,\n  event_id text not null references public.newsbeat_intelligence_events(id),\n  signal_version integer not null check (signal_version > 0),\n  context_id text not null check (context_id in ('fundamentals', 'liquidity', 'risk')),\n  triggered_at timestamptz not null default now(),\n  resolved_at timestamptz,\n  resolution text,\n  construction jsonb not null,\n  unique (event_id, context_id, signal_version)\n);\ncreate index if not exists newsbeat_signal_alerts_asset_context_time_idx\n  on public.newsbeat_signal_alerts (beat_id, context_id, triggered_at desc);\n";
 import { constructSignal } from "./signal-construction.js";
 
 const PILOT_TICKERS = ["NVDA", "AAPL", "MSFT", "GOOGL", "BTC", "ETH"];
 export const PILOT_BEATS = PILOT_TICKERS.map(ticker => SEED_BEATS.find(beat => beat.ticker === ticker && (["BTC", "ETH"].includes(ticker) ? beat.asset === "crypto" : beat.asset !== "crypto"))!).filter(Boolean);
-type Job = { beat_id: string; requested_article_id: string; processed_article_id: string; input_hash: string | null; lease_token: string | null; last_success_at: string | null; last_attempt_at: string | null; last_error: string | null; coverage_truncated: boolean; pipeline_version: string | null };
+type Job = { beat_id: string; requested_article_id: string; processed_article_id: string; input_hash: string | null; lease_token: string | null; last_success_at: string | null; last_attempt_at: string | null; last_error: string | null; coverage_truncated: boolean; pipeline_version: string | null; newest_article_id?: string | null };
 const iso = (value: unknown): string | null => value instanceof Date ? value.toISOString() : typeof value === "string" ? value : null;
 const decode = <T = IntelligenceSignal>(value: unknown): T => (typeof value === "string" ? JSON.parse(value) : value) as T;
 
@@ -25,25 +26,20 @@ export async function readIntelligence(beatId: string, contextId: SignalContextI
   if (!hasDatabaseEnv()) return { ...output, status: "unavailable" };
   try {
     const sql = db();
-    type AlertRow = Omit<SignalAlert, "triggered_at" | "resolved_at" | "construction"> & { triggered_at: unknown; resolved_at: unknown; construction: unknown };
-    const [jobs, rows, source, alerts] = await Promise.all([
-      sql<Job[]>`select * from public.newsbeat_intelligence_jobs where beat_id = ${beatId}`,
+    const [jobs, rows, source] = await Promise.all([
+      sql<Job[]>`select j.*, (select coalesce(max(a.id),0)::text from public.news_articles a where a.beat_id=j.beat_id and a.published_at>now()-interval '24 hours') as newest_article_id from public.newsbeat_intelligence_jobs j where j.beat_id = ${beatId}`,
       sql<Array<{ signal: unknown }>>`select signal from public.newsbeat_intelligence_events where beat_id = ${beatId} and evidence_updated_at > now() - interval '7 days' order by event_changed_at desc, id limit 20`,
       sql<Array<{ last_success_at: unknown }>>`select last_success_at from public.news_ingestion_status where beat_id = ${beatId}`,
-      sql<AlertRow[]>`select id, beat_id, event_id as source_signal_id, signal_version, context_id, triggered_at, resolved_at, resolution, construction
-        from public.newsbeat_signal_alerts where beat_id = ${beatId} and context_id = ${contextId}
-        and triggered_at > now() - interval '7 days' order by triggered_at desc, id limit 20`,
     ]);
     const job = jobs[0];
     output.freshness = freshness(iso(source[0]?.last_success_at), topic.freshness_slo_minutes);
     output.signals = rows.map(row => decode(row.signal));
     if (job) {
       output.analysis = { last_success_at: iso(job.last_success_at), last_attempt_at: iso(job.last_attempt_at), error: job.last_error, coverage_truncated: job.coverage_truncated, pipeline_version: job.pipeline_version };
-      output.status = job.last_error ? "unavailable" : !job.last_success_at || job.pipeline_version !== INTELLIGENCE_VERSION || BigInt(job.requested_article_id) > BigInt(job.processed_article_id) ? "pending" : "ready";
+      output.status = job.last_error ? "unavailable" : !job.last_success_at || job.pipeline_version !== INTELLIGENCE_VERSION || BigInt(job.newest_article_id ?? job.requested_article_id) > BigInt(job.processed_article_id) ? "pending" : "ready";
     }
     output.constructions = output.signals.map(signal => constructSignal(signal, context, { source_freshness: output.freshness.status, analysis_ready: output.status === "ready", analysis_at: output.analysis.last_success_at, now: output.generated_at }));
-    output.alerts = alerts.map(row => ({ ...row, triggered_at: iso(row.triggered_at)!, resolved_at: iso(row.resolved_at), construction: decode<ConstructedSignal>(row.construction) }));
-    return output;
+    return await attachQuantitative(output);
   } catch (error) {
     if ((error as { code?: string }).code === "42P01") return output;
     console.warn("intelligence read unavailable");
@@ -86,7 +82,6 @@ export async function runIntelligence(oidcToken?: string | null, generate: typeo
       const now = new Date().toISOString();
       const signals = drafts.map(draft => reconcileSignal(job.beat_id, draft, evidence, previous, now, INTELLIGENCE_MODEL));
       if (new Set(signals.map(signal => signal.id)).size !== signals.length) throw new Error("invalid_analysis");
-      let createdAlerts = 0;
       await sql.begin(async tx => {
         const owner = await tx<Array<{ lease_token: string | null; requested_article_id: string }>>`select lease_token, requested_article_id from public.newsbeat_intelligence_jobs where beat_id = ${job.beat_id} for update`;
         if (owner[0]?.lease_token !== token) throw new Error("lease_lost");
@@ -99,21 +94,13 @@ export async function runIntelligence(oidcToken?: string | null, generate: typeo
             values (${signal.id}, ${signal.version}, ${tx.json(JSON.parse(JSON.stringify(signal)))}) on conflict (event_id, version) do nothing`;
           await tx`update public.newsbeat_signal_alerts set resolved_at = now(), resolution = 'signal_revised'
             where event_id = ${signal.id} and signal_version < ${signal.version} and resolved_at is null`;
-          for (const context of SIGNAL_CONTEXTS) {
-            const construction = constructSignal(signal, context, { source_freshness: snapshot.freshness.status,
-              analysis_ready: BigInt(owner[0]!.requested_article_id) <= BigInt(job.requested_article_id), analysis_at: now, now });
-            if (!construction.alert_id) continue;
-            const written = await tx<Array<{ id: string }>>`insert into public.newsbeat_signal_alerts (id, beat_id, event_id, signal_version, context_id, construction)
-              values (${construction.alert_id}, ${signal.beat_id}, ${signal.id}, ${signal.version}, ${context.id}, ${tx.json(JSON.parse(JSON.stringify(construction)))})
-              on conflict (event_id, context_id, signal_version) do nothing returning id`;
-            createdAlerts += written.length;
-          }
+
         }
         await tx`update public.newsbeat_intelligence_jobs set processed_article_id = greatest(processed_article_id, ${job.requested_article_id}::bigint),
           input_hash = ${fingerprint}, pipeline_version = ${INTELLIGENCE_VERSION}, last_success_at = now(), last_error = null, coverage_truncated = ${snapshot.coverage_truncated || snapshot.articles_read > evidence.length},
           lease_token = null, lease_until = null, next_attempt_at = now() where beat_id = ${job.beat_id} and lease_token = ${token}`;
       });
-      return { beat_id: job.beat_id, status: "processed", signals: signals.length, alerts: createdAlerts, reused: job.input_hash === fingerprint };
+      return { beat_id: job.beat_id, status: "processed", signals: signals.length, alerts: 0, reused: job.input_hash === fingerprint };
     } catch (error) {
       const reason = error instanceof Error && (["source_stale", "invalid_analysis", "model_unavailable", "lease_lost"].includes(error.message) || /^invalid_analysis_[a-z_]{1,60}$/.test(error.message)) ? error.message : "processing_failed";
       await sql`update public.newsbeat_intelligence_jobs set last_error = ${reason}, lease_token = null, lease_until = null,

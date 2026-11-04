@@ -159,6 +159,15 @@ export async function runIngestion(): Promise<IngestionResult> {
   return { beats: SEED_BEATS.length, calls, inserted, results };
 }
 
+/** The six-asset research pilot gets a bounded five-minute source check. Paid-provider schedules stay unchanged. */
+export async function runPilotIngestion(): Promise<IngestionResult> {
+  if (!hasDatabaseEnv()) throw new Error("DATABASE_URL is not set");
+  const tickers = new Set(["NVDA", "AAPL", "MSFT", "GOOGL", "BTC", "ETH"]);
+  const beats = SEED_BEATS.filter(beat => tickers.has(beat.ticker) && (["BTC", "ETH"].includes(beat.ticker) ? beat.asset === "crypto" : beat.asset !== "crypto"));
+  if (PROVIDER !== "google") return { beats: 0, calls: 0, inserted: 0, results: [], deferred: beats.length };
+  return runGoogle(beats as Beat[], new Date());
+}
+
 
 /**
  * One Google News request per topic, a few at a time.

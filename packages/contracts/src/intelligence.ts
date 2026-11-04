@@ -1,4 +1,5 @@
 import { z } from "zod";
+import type { QuantBundle, QuantSignalDecision } from "./quantitative.js";
 
 export const INTELLIGENCE_VERSION = "contextual-signals-v2";
 export const EventCategorySchema = z.enum(["guidance", "earnings", "regulation", "legal", "deal", "product", "operations", "security", "leadership", "financing", "macro", "other"]);
@@ -35,7 +36,7 @@ export const IntelligenceDraftSchema = z.object({
 }).strict();
 export type IntelligenceDraft = z.infer<typeof IntelligenceDraftSchema>;
 export type IntelligenceEventDraft = IntelligenceDraft["events"][number];
-export interface IntelligenceEvidence { id: string; title: string; source: string; url: string; published_at: string }
+export interface IntelligenceEvidence { id: string; title: string; source: string; url: string; published_at: string; first_indexed_at?: string }
 export interface IntelligenceSignal {
   id: string; beat_id: string; category: z.infer<typeof EventCategorySchema>;
   event_state: z.infer<typeof EventStateSchema>; what_changed: string;
@@ -65,7 +66,8 @@ export interface ConstructedSignal {
   assessment: MarketAssessment | null;
   checks: Array<{ id: string; label: string; passed: boolean; reason: string }>;
   explanation: string; evaluated_at: string;
-  market_reaction: { status: "unmeasured"; reason: string }; alert_id: string | null;
+  market_reaction: { status: "unmeasured" | "observed"; reason: string; asset_return?: number; benchmark_return?: number; residual_return?: number | null; start_at?: string; end_at?: string }; alert_id: string | null;
+  quantitative?: QuantSignalDecision;
 }
 export interface SignalAlert {
   id: string; beat_id: string; source_signal_id: string; signal_version: number; context_id: SignalContextId;
@@ -78,4 +80,5 @@ export interface IntelligenceResponse {
   analysis: { last_success_at: string | null; last_attempt_at: string | null; error: string | null; coverage_truncated: boolean; pipeline_version?: string | null };
   signals: IntelligenceSignal[];
   context: SignalContext; constructions: ConstructedSignal[]; alerts: SignalAlert[];
+  quantitative?: QuantBundle;
 }
