@@ -121,7 +121,7 @@ export function beginEvaluation(signal: IntelligenceSignal, decision: QuantSigna
     reference_benchmark_prices: Object.fromEntries(benchmark.components.map(part => [part.instrument_id, snapshots.get(part.instrument_id)!.book!.mid])),
     frozen_beta: decision.fit?.beta ?? null, frozen_intercept: decision.fit?.intercept ?? null, decision,
     outcomes: [15, 60, 240].map(minutes => ({ horizon_minutes: minutes, status: "pending", due_at: iso(decisionAt + minutes * 60000),
-      observed_at: null, asset_return: null, benchmark_return: null, residual_return: null })) };
+      observed_at: null, market_at: null, asset_return: null, benchmark_return: null, residual_return: null })) };
 }
 export function updateOutcomes(record: QuantEvaluationRecord, profile: MarketProfile, snapshots: Map<string, MarketSnapshot>, now: number): ForwardOutcome[] {
   const asset = snapshots.get(profile.id), benchmark = benchmarkFor(profile);
@@ -141,7 +141,7 @@ export function updateOutcomes(record: QuantEvaluationRecord, profile: MarketPro
       if (!complete || record.reference_price <= 0) continue;
       const assetReturn = bar.close / record.reference_price - 1, periods = (bar.time + INTERVAL - Date.parse(record.reference_at)) / INTERVAL;
       const residual = record.frozen_beta === null || record.frozen_intercept === null ? null : Math.expm1(Math.log1p(assetReturn) - record.frozen_beta * Math.log1p(benchmarkReturn) - record.frozen_intercept * periods);
-      return { ...outcome, status: "observed", observed_at: iso(now), asset_return: assetReturn, benchmark_return: benchmarkReturn, residual_return: residual };
+      return { ...outcome, status: "observed", observed_at: iso(now), market_at: iso(bar.time + INTERVAL), asset_return: assetReturn, benchmark_return: benchmarkReturn, residual_return: residual };
     }
     return now > due + 10 * 60000 ? { ...outcome, status: "expired", observed_at: iso(now) } : outcome;
   });

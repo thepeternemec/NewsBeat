@@ -42,7 +42,7 @@ export async function readQuantBundle(beatId: string, contextId: string): Promis
     const [rows, alerts] = await Promise.all([
       sql.unsafe<Array<{ bundle: unknown }>>("select bundle from public.newsbeat_quant_contexts where beat_id=$1 and context_id=$2 and policy_version=$3", [beatId, contextId, QUANT_POLICY_VERSION]),
       sql.unsafe<Array<{ id: string; beat_id: string; source_signal_id: string; signal_version: number; context_id: SignalAlert["context_id"]; triggered_at: unknown; resolved_at: unknown; resolution: string | null; construction: unknown }>>(
-        "select id,beat_id,event_id as source_signal_id,signal_version,context_id,triggered_at,resolved_at,resolution,construction from public.newsbeat_quant_alerts where beat_id=$1 and context_id=$2 and policy_version=$3 order by triggered_at desc limit 20", [beatId, contextId, QUANT_POLICY_VERSION]),
+        "select id,beat_id,event_id as source_signal_id,signal_version,context_id,triggered_at,resolved_at,resolution,construction from public.newsbeat_quant_alerts where beat_id=$1 and context_id=$2 and policy_version=$3 order by triggered_at desc,signal_version desc,id desc limit 20", [beatId, contextId, QUANT_POLICY_VERSION]),
     ]);
     const bundle = rows[0] ? decode<QuantBundle>(rows[0].bundle) : undefined;
     if (bundle && Date.now() - Date.parse(bundle.computed_at) > 10 * 60000) bundle.market.status = "stale";
@@ -146,16 +146,19 @@ export async function runMarketIntelligence(dependencies: WorkerDependencies = {
         });
         const [recentRecords, stats] = await Promise.all([
           sql.unsafe<Array<{ record: unknown }>>("select record from public.newsbeat_quant_evaluations where beat_id=$1 and context_id=$2 and policy_version=$3 order by decision_at desc,id limit 8", [profile.beat_id, context.id, QUANT_POLICY_VERSION]),
-          sql.unsafe<Array<{ cohort: string; minutes: number; total: string; observed: string; pending: string; mean_excess: number | null }>>(
-            "select cohort,(o->>'horizon_minutes')::integer as minutes,count(*)::text as total,count(*) filter(where o->>'status'='observed')::text as observed,count(*) filter(where o->>'status'='pending')::text as pending,avg((o->>'asset_return')::double precision-(o->>'benchmark_return')::double precision) filter(where o->>'status'='observed') as mean_excess from public.newsbeat_quant_evaluations cross join lateral jsonb_array_elements(record->'outcomes') o where beat_id=$1 and context_id=$2 and policy_version=$3 and decision_at>to_timestamp($4)-interval '30 days' group by cohort,minutes", [profile.beat_id, context.id, QUANT_POLICY_VERSION, now / 1000]),
+          sql.unsafe<Array<{ cohort: string; minutes: number; total: string; observed: string; pending: string; expired: string; mean_excess: number | null; mean_directional_excess: number | null }>>(
+            "select cohort,(o->>'horizon_minutes')::integer as minutes,count(*)::text as total,count(*) filter(where o->>'status'='observed')::text as observed,count(*) filter(where o->>'status'='pending')::text as pending,count(*) filter(where o->>'status'='expired')::text as expired,avg((o->>'asset_return')::double precision-(o->>'benchmark_return')::double precision) filter(where o->>'status'='observed') as mean_excess,avg((case record->'decision'->>'direction' when 'supportive' then 1 when 'adverse' then -1 else null end)*((o->>'asset_return')::double precision-(o->>'benchmark_return')::double precision)) filter(where o->>'status'='observed') as mean_directional_excess from public.newsbeat_quant_evaluations cross join lateral jsonb_array_elements(record->'outcomes') o where beat_id=$1 and context_id=$2 and policy_version=$3 and decision_at>to_timestamp($4)-interval '30 days' group by cohort,minutes", [profile.beat_id, context.id, QUANT_POLICY_VERSION, now / 1000]),
         ]);
         const first = stats.find(row => row.cohort === "all_constructions"), alerts = stats.find(row => row.cohort === "review_alert");
+        const horizons = (cohort: string) => [15, 60, 240].map(minutes => {
+          const row = stats.find(row => row.cohort === cohort && row.minutes === minutes);
+          return { minutes, observed: Number(row?.observed ?? 0), pending: Number(row?.pending ?? 0), expired: Number(row?.expired ?? 0),
+            mean_excess_return: row?.mean_excess ?? null, mean_directional_excess_return: row?.mean_directional_excess ?? null };
+        });
         const bundle: QuantBundle = { policy_version: QUANT_POLICY_VERSION, computed_at: nowIso, context_id: context.id, market,
           decisions: timing.map(item => item.decision), evaluations: recentRecords.map(row => decode<QuantEvaluationRecord>(row.record)),
-          evaluation: { observations: Number(first?.total ?? 0), alerts: Number(alerts?.total ?? 0), horizons: [15, 60, 240].map(minutes => {
-            const row = stats.find(row => row.cohort === "all_constructions" && row.minutes === minutes);
-            return { minutes, observed: Number(row?.observed ?? 0), pending: Number(row?.pending ?? 0), mean_excess_return: row?.mean_excess ?? null };
-          }), note: "Prospective first-snapshot observations across all constructions, including held cases. Snapshot-mid reference returns before fees; not executable P&L, a backtest or evidence of outperformance. Thirty-day cohort." } };
+          evaluation: { observations: Number(first?.total ?? 0), alerts: Number(alerts?.total ?? 0), horizons: horizons("all_constructions"), review_horizons: horizons("review_alert"),
+            note: "Prospective first-snapshot observations include held cases. Direction-aligned excess flips adverse theses; mixed/unclear directions are excluded from that mean. Snapshot-mid returns before fees; not executable P&L, a backtest or evidence of outperformance. Thirty-day cohorts differ in selection and entry time." } };
         await sql.unsafe("insert into public.newsbeat_quant_contexts(beat_id,context_id,policy_version,computed_at,bundle) values($1,$2,$3,$4,$5::jsonb) on conflict(beat_id,context_id) do update set policy_version=excluded.policy_version,computed_at=excluded.computed_at,bundle=excluded.bundle", [profile.beat_id, context.id, QUANT_POLICY_VERSION, nowIso, json(bundle)]);
       }
     }

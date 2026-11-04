@@ -55,7 +55,7 @@ export interface QuantSignalDecision {
 }
 export interface ForwardOutcome {
   horizon_minutes: number; status: "pending" | "observed" | "expired";
-  due_at: string; observed_at: string | null; asset_return: number | null;
+  due_at: string; observed_at: string | null; market_at: string | null; asset_return: number | null;
   benchmark_return: number | null; residual_return: number | null;
 }
 export interface QuantEvaluationRecord {
@@ -68,8 +68,12 @@ export interface QuantEvaluationRecord {
 }
 export interface QuantEvaluationSummary {
   observations: number; alerts: number;
-  horizons: Array<{ minutes: number; observed: number; pending: number; mean_excess_return: number | null }>;
+  horizons: QuantHorizonSummary[]; review_horizons: QuantHorizonSummary[];
   note: string;
+}
+export interface QuantHorizonSummary {
+  minutes: number; observed: number; pending: number; expired: number;
+  mean_excess_return: number | null; mean_directional_excess_return: number | null;
 }
 export interface QuantBundle {
   policy_version: string; computed_at: string; context_id: string; market: MarketContext;

@@ -17,11 +17,11 @@ Use `newsbeat_intelligence` with a `beat_id` and an optional `context`: `fundame
 
 A construction explains the proposed market channel, direction, qualitative materiality, time horizon, observable trigger, invalidation and why a development may not move the market. Explicit checks return `review_now`, `keep_watching`, `no_alert` or `reassess`. Context mismatch, stale/pending analysis, old trigger reports, unobserved conditions and repeat coverage block new review alerts. Alert IDs are stable for a context and interpretation version; track them to avoid repeated notifications in your own authorized workflow.
 
-The pilot records review alerts. Delivery integrations, custom strategy contexts, price/benchmark confirmation, historical comparisons and calibrated thresholds are future work. `market_reaction.status` is `unmeasured`; a model hypothesis does not establish that a price moved. Check original reporting before relying on a trigger.
+The pilot adds `quantitative`: verified Kraken xStock/crypto prices, five-minute closed candles, a pre-information beta baseline, residual moves, relative volume and observed book costs. `constructions[].quantitative` explains information delta and timing gates; `market_reaction` can be `observed` when an aligned post-thesis window exists, without establishing causality. Missing, stale, thin or unprocessed data holds alerts. `evaluation` compares prospective all-construction and review-alert cohorts; `evaluations` freezes entry references and later 15/60/240-minute observations. Returns exclude fees and are not executable P&L. Thresholds are research heuristics awaiting calibration. Notification delivery and execution are not connected. See [methodology](https://github.com/thepeternemec/NewsBeat/blob/main/docs/QUANTITATIVE.md).
 
 ## Product direction and current capability
 
-NewsBeat is building meaningful signals for AI agents: what changed, why it may matter to a task, and what to investigate next. The live capabilities are a source-linked news foundation, approximate story grouping, headline-based summaries, freshness and change tracking. A first general event-interpretation pilot is implemented; task-specific intelligence and broader verification remain planned. Reference prices, positioning and chain readings are supporting inputs, not meaningful signals by themselves.
+NewsBeat is building meaningful signals for AI agents: what changed, why it may matter to a task, and what to investigate next. The live capabilities are a source-linked news foundation, approximate story grouping, headline-based summaries, freshness and change tracking. A six-asset pilot combines source-grounded hypotheses with measured market timing and prospective outcomes; broader verification and calibrated strategies remain planned. Reference prices, positioning and chain readings are supporting inputs, not meaningful signals by themselves.
 
 ## When to use NewsBeat
 
@@ -31,7 +31,7 @@ Respect the host's permissions. Resolve the correct asset; if a name is ambiguou
 
 ## Available interfaces
 
-NewsBeat exposes 15 read-only tools over MCP and REST. The seven news tools below cover discovery, headlines, briefs, stories, summaries, changes and batch checks. Asset and crypto context is available through `newsbeat_ask`, `newsbeat_market`, `newsbeat_prices`, `newsbeat_fear_greed`, `newsbeat_chain`, `newsbeat_token` and `newsbeat_signals`. Read each result’s sources and freshness. Verified token-to-stock mapping remains planned.
+NewsBeat exposes 15 read-only tools over MCP and REST. The seven news tools below cover discovery, headlines, briefs, stories, summaries, changes and batch checks. Asset and crypto context is available through `newsbeat_ask`, `newsbeat_market`, `newsbeat_prices`, `newsbeat_fear_greed`, `newsbeat_chain`, `newsbeat_token` and `newsbeat_signals`. Read each result’s sources and freshness. Pilot venue pairs are verified against the exchange directory; onchain token-to-stock identity and redemption verification remain planned.
 
 ## How to retrieve news
 

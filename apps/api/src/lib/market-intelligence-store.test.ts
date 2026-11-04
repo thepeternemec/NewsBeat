@@ -94,6 +94,7 @@ test("Postgres persists measured timing, immutable forward snapshots, alert idem
     await runMarketIntelligence(dependencies);
     const outcomes = await sql.unsafe<Array<{ record: QuantEvaluationRecord }>>("select record from public.newsbeat_quant_evaluations where id=$1", [frozen.id]);
     assert.equal(outcomes[0]!.record.outcomes[0]!.status, "observed");
+    assert.equal(outcomes[0]!.record.outcomes[0]!.market_at, new Date(f.end + 20 * 60000).toISOString());
     assert.ok(Math.abs(outcomes[0]!.record.outcomes[0]!.asset_return! - 0.01) < 1e-9);
     assert.equal(outcomes[0]!.record.outcomes[1]!.status, "pending");
     assert.deepEqual(outcomes[0]!.record.decision, frozen.decision, "outcome updates cannot rewrite the recorded thesis or model");

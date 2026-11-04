@@ -1,7 +1,8 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import type { IntelligenceEventDraft, IntelligenceEvidence } from "@newsbeat/contracts";
-import { parseIntelligenceResult } from "./intelligence-model.js";
+import { intelligenceInput, parseIntelligenceResult } from "./intelligence-model.js";
+import { reconcileSignal } from "./intelligence-core.js";
 
 const now = "2026-11-03T12:00:00Z";
 const reports: IntelligenceEvidence[] = [{ id: "r1", title: "Nvidia raises revenue guidance after new customer orders", source: "Publisher", url: "https://example.com/1", published_at: now }];
@@ -32,11 +33,41 @@ test("schema, evidence and missing context errors remain distinguishable", () =>
   assert.throws(() => parseIntelligenceResult(result({ events: [legacy] }), reports, []), /invalid_analysis_missing_context/);
 });
 test("oversized model batches are rejected as a whole", () => {
-  const events = Array.from({ length: 3 }, (_, index) => {
+  const events = Array.from({ length: 2 }, (_, index) => {
     const item = structuredClone(draft), id = "r" + (index + 1);
     item.evidence_ids = [id]; item.implications[0]!.evidence_ids = [id]; item.market_assessment!.trigger.report_id = id;
     return item;
   });
   const evidence = events.map((_, index) => ({ ...reports[0]!, id: "r" + (index + 1) }));
   assert.throws(() => parseIntelligenceResult(result({ events }), evidence, []), /invalid_analysis_batch_limit/);
+});
+
+test("prior memory exposes only current citable report IDs and stays bounded", () => {
+  const old = structuredClone(reconcileSignal("test", draft, reports, [], now, "test"));
+  old.evidence.push({ ...reports[0]!, id: "expired-citation" });
+  old.implications[0]!.evidence_ids = ["expired-citation"];
+  old.market_assessment!.trigger.report_id = "expired-citation";
+  const previous = Array.from({ length: 8 }, (_, index) => ({ ...old, id: "event-" + index }));
+  const input = intelligenceInput(reports, previous, { label: "Nvidia", ticker: "NVDA" });
+  assert.equal(input.previous_events.length, 4);
+  assert.ok(!JSON.stringify(input).includes("expired-citation"));
+  assert.deepEqual(input.previous_events[0]!.evidence_ids, ["r1"]);
+});
+
+test("known unchanged reporting is a no-op, while unsupported state changes still fail", () => {
+  const old = structuredClone(reconcileSignal("test", draft, reports, [], now, "test"));
+  const repeat = structuredClone(draft); repeat.existing_event_id = old.id; repeat.change_kind = "update";
+  repeat.attention_reason = "Fresh wording must not refresh old information.";
+  assert.deepEqual(parseIntelligenceResult(result({ events: [repeat] }), reports, [old]), []);
+  repeat.event_state = "denied";
+  assert.throws(() => parseIntelligenceResult(result({ events: [repeat] }), reports, [old]), /missing_new_evidence/);
+  repeat.event_state = "reported"; repeat.change_kind = "new";
+  assert.throws(() => parseIntelligenceResult(result({ events: [repeat] }), reports, [old]), /invalid_new_kind/);
+});
+
+test("formatting normalization preserves facts and diagnostic codes identify schema fields", () => {
+  const formatted = structuredClone(draft); formatted.unknowns = ["Commercial terms\nand the size of the revision."];
+  assert.equal(parseIntelligenceResult(result({ events: [formatted] }), reports, [])[0]!.unknowns[0], draft.unknowns[0]);
+  const invalid = structuredClone(draft) as any; invalid.market_assessment.direction = "bullish";
+  assert.throws(() => parseIntelligenceResult(result({ events: [invalid] }), reports, []), /invalid_analysis_schema_events__market_assessment_direction/);
 });

@@ -11,12 +11,18 @@ export const quoteMatches = (title: string, quote: string) => fold(quote).length
 /** Ground facts in exact source headlines; interpretation is separately labeled. */
 export function inspectIntelligence(value: unknown, evidence: IntelligenceEvidence[], previous: IntelligenceSignal[]): { events: IntelligenceEventDraft[] | null; error: string | null } {
   const parsed = IntelligenceDraftSchema.safeParse(value);
-  if (!parsed.success) return { events: null, error: "schema" };
+  if (!parsed.success) {
+    const issue = parsed.error.issues[0];
+    const field = [...(issue?.path ?? []), issue?.code ?? "invalid"].join("_").toLowerCase().replace(/[^a-z_]/g, "");
+    return { events: null, error: ("schema_" + field).slice(0, 60) };
+  }
   const byId = new Map(evidence.map(report => [report.id, report]));
   const prior = new Map(previous.map(signal => [signal.id, signal]));
   const used = new Set<string>();
   const revised = new Set<string>();
+  const accepted: IntelligenceEventDraft[] = [];
   for (const event of parsed.data.events) {
+    let redundant = false;
     if (new Set(event.evidence_ids).size !== event.evidence_ids.length) return { events: null, error: "duplicate_evidence" };
     if (event.evidence_ids.some(id => !byId.has(id) || used.has(id))) return { events: null, error: "unknown_evidence" };
     event.evidence_ids.forEach(id => used.add(id));
@@ -24,8 +30,11 @@ export function inspectIntelligence(value: unknown, evidence: IntelligenceEviden
     if (event.existing_event_id) {
       revised.add(event.existing_event_id);
       const old = prior.get(event.existing_event_id)!;
+      if (event.change_kind === "new") return { events: null, error: "invalid_new_kind" };
       const firstConstruction = !old.market_assessment && !!event.market_assessment;
-      if (event.change_kind === "update" && !firstConstruction && event.evidence_ids.every(id => old.evidence.some(report => report.id === id))) return { events: null, error: "missing_new_evidence" };
+      const knownEvidence = event.evidence_ids.every(id => old.evidence.some(report => report.id === id));
+      redundant = !!old.market_assessment && knownEvidence && event.event_state === old.event_state;
+      if (event.change_kind === "update" && !firstConstruction && knownEvidence && !redundant) return { events: null, error: "missing_new_evidence" };
       if (event.change_kind === "evidence_only" && event.event_state !== old.event_state) return { events: null, error: "changed_evidence_only" };
     }
     if (!event.existing_event_id && event.change_kind !== "new") return { events: null, error: "invalid_new_kind" };
@@ -51,8 +60,10 @@ export function inspectIntelligence(value: unknown, evidence: IntelligenceEviden
         if (!quoteMatches(byId.get(trigger.report_id)!.title, trigger.headline_quote)) return { events: null, error: "unsupported_trigger_quote" };
       }
     }
+    // Unchanged reporting cannot refresh a thesis or replace its interpretation.
+    if (!redundant) accepted.push(event);
   }
-  return { events: parsed.data.events, error: null };
+  return { events: accepted, error: null };
 }
 
 export function validateIntelligence(value: unknown, evidence: IntelligenceEvidence[], previous: IntelligenceSignal[]): IntelligenceEventDraft[] | null {
