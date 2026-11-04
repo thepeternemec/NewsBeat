@@ -48,7 +48,7 @@ export interface QuantSignalDecision {
   phase: "data_hold" | "analysis_hold" | "inactive" | "liquidity_hold" | "old_information" | "unconfirmed" | "developing" | "extended" | "fading" | "diverging" | "invalidated";
   action: "review_now" | "keep_watching" | "no_alert" | "reassess";
   direction: "supportive" | "adverse" | "mixed" | "unclear";
-  reason: string; delta: InformationDelta; anchor_at: string; event_window: MarketWindow | null;
+  reason: string; delta: InformationDelta; anchor_at: string; event_window: MarketWindow | null; recent_window: MarketWindow | null;
   fit: MarketFit | null; volume_ratio: number | null; pre_information_window: MarketWindow | null;
   checks: Array<{ id: string; passed: boolean; reason: string }>;
   alert_id: string | null;

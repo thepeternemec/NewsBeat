@@ -12,7 +12,8 @@ import { applyTiming, beginEvaluation, decideTiming, updateOutcomes } from "./qu
 import { QUANT_SCHEMA } from "./quant-schema.js";
 
 const decode = <T>(value: unknown): T => (typeof value === "string" ? JSON.parse(value) : value) as T;
-const json = (value: unknown) => JSON.stringify(value);
+// postgres.js serializes inferred jsonb parameters; pass JSON values, never an encoded string.
+const json = (value: unknown) => JSON.parse(JSON.stringify(value));
 const iso = (value: unknown): string | null => value instanceof Date ? value.toISOString() : typeof value === "string" ? value : null;
 function nextDue(record: QuantEvaluationRecord) {
   const pending = record.outcomes.filter(outcome => outcome.status === "pending").map(outcome => outcome.due_at).sort();

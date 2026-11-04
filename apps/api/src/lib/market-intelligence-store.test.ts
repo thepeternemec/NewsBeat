@@ -26,8 +26,8 @@ test("Postgres persists measured timing, immutable forward snapshots, alert idem
       return rows[0]!.id;
     };
     const saveSignal = async (signal: IntelligenceSignal) => {
-      await sql.unsafe("insert into public.newsbeat_intelligence_events(id,beat_id,version,event_changed_at,evidence_updated_at,signal) values($1,$2,$3,$4,$4,$5::jsonb) on conflict(id) do update set version=excluded.version,event_changed_at=excluded.event_changed_at,evidence_updated_at=excluded.evidence_updated_at,signal=excluded.signal", [signal.id, signal.beat_id, signal.version, signal.updated_at, JSON.stringify(signal)]);
-      await sql.unsafe("insert into public.newsbeat_intelligence_revisions(event_id,version,signal) values($1,$2,$3::jsonb) on conflict(event_id,version) do nothing", [signal.id, signal.version, JSON.stringify(signal)]);
+      await sql.unsafe("insert into public.newsbeat_intelligence_events(id,beat_id,version,event_changed_at,evidence_updated_at,signal) values($1,$2,$3,$4,$4,$5::jsonb) on conflict(id) do update set version=excluded.version,event_changed_at=excluded.event_changed_at,evidence_updated_at=excluded.evidence_updated_at,signal=excluded.signal", [signal.id, signal.beat_id, signal.version, signal.updated_at, JSON.parse(JSON.stringify(signal))]);
+      await sql.unsafe("insert into public.newsbeat_intelligence_revisions(event_id,version,signal) values($1,$2,$3::jsonb) on conflict(event_id,version) do nothing", [signal.id, signal.version, JSON.parse(JSON.stringify(signal))]);
     };
     const firstId = await addReport(f.signal.what_changed, "first");
     f.signal.evidence[0]!.id = firstId; f.signal.implications[0]!.evidence_ids = [firstId]; f.signal.market_assessment!.trigger.report_id = firstId;

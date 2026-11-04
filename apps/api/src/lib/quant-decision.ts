@@ -82,7 +82,7 @@ export function decideTiming(signal: IntelligenceSignal, previous: IntelligenceS
   }
   return { policy_version: QUANT_POLICY_VERSION, source_signal_id: signal.id, signal_version: signal.version, context_id: base.context_id,
     evaluated_at: iso(now), phase, action, direction: assessment?.direction ?? "unclear", reason, delta,
-    anchor_at: Number.isFinite(anchor) ? iso(anchor) : signal.updated_at, event_window: event, fit, volume_ratio: volume, pre_information_window: before, checks,
+    anchor_at: Number.isFinite(anchor) ? iso(anchor) : signal.updated_at, event_window: event, recent_window: recent, fit, volume_ratio: volume, pre_information_window: before, checks,
     alert_id: action === "review_now" ? "qalert_" + hash([signal.id, signal.version, base.context_id, QUANT_POLICY_VERSION]).slice(0, 24) : null };
 }
 /** Re-read safety checks can only downgrade a stored timing decision, never create a new alert. */
