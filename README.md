@@ -12,8 +12,6 @@
 <p align="center">
   <a href="https://github.com/thepeternemec/NewsBeat/actions/workflows/ci.yml"><img src="https://github.com/thepeternemec/NewsBeat/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-181818?labelColor=303030" alt="MIT license"></a>
-  <a href="https://www.newsbeat.dev/docs/quickstart"><img src="https://img.shields.io/badge/connect-MCP%20%2B%20REST-181818?labelColor=303030" alt="MCP and REST"></a>
-  <a href="#project-status"><img src="https://img.shields.io/badge/status-early%20development-181818?labelColor=303030" alt="Early development"></a>
 </p>
 
 <p align="center">
