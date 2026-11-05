@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-05 — Homepage company lookup
+
+- Brought company and ticker search onto the landing page, with keyboard-accessible suggestions that distinguish stocks from crypto assets.
+- Added a compact preview of real headlines, publishers, publication times and collection freshness, with optional additional headlines and visible-page refreshes.
+- Kept the news-to-signal animation and connected the news preview to the intelligence workspace. No separate terminal is needed.
+
 ## 2026-11-05 — Clearer agent intelligence
 
 - Added a motion-led, interactive explanation of how reporting becomes context for an agent, with pause controls and reduced-motion support.

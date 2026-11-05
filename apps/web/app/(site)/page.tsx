@@ -1,7 +1,7 @@
 import { ArrowRight, ArrowUpRight, Code2 } from "lucide-react";
 import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
-import IntelligenceModel from "@/components/site/intelligence-model";
+import LandingNewsLookup from "@/components/site/landing-news-lookup";
 import CryptoLoop from "@/components/site/crypto-loop";
 import LandingMotion from "@/components/site/landing-motion";
 import CopyButton from "@/components/site/copy-button";
@@ -43,7 +43,7 @@ export default function Home() {
             </div>
             <p className="ni-stage-note">Stocks and crypto · MCP or API · No account needed.</p>
           </div>
-          <div className="ni-hero-model"><IntelligenceModel /></div>
+          <div className="ni-hero-model"><LandingNewsLookup /></div>
         </div>
       </section>
 
