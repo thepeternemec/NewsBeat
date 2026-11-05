@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight, ExternalLink, RefreshCw } from "lucide-react";
 import type { IntelligenceResponse, SignalContextId } from "@newsbeat/contracts";
 import "./signal-inspector.css";
 import QuantitativePanel from "./quantitative-panel";
+import { selectSignalIndex } from "./signal-presentation";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "/api";
 const ASSETS = [
@@ -53,7 +54,7 @@ function StoredSignal({ asset, context }: { asset: Asset; context: SignalContext
         if (!response.ok) throw new Error("Unavailable");
         const next = await response.json() as IntelligenceResponse;
         if (next.beat_id !== asset.beatId || next.context?.id !== context || !Array.isArray(next.signals) || !Array.isArray(next.constructions) || !Array.isArray(next.alerts) || !next.analysis) throw new Error("Invalid response");
-        if (active) { const selected = next.signals.findIndex(item => item.id === selectedId.current); setData(next); setIndex(selected >= 0 ? selected : 0); setClock(Date.now()); setPhase("ready"); }
+        if (active) { setData(next); setIndex(selectSignalIndex(next, selectedId.current)); setClock(Date.now()); setPhase("ready"); }
       } catch { if (active) setPhase("error"); }
       finally { window.clearTimeout(timer); }
     })();
@@ -99,7 +100,7 @@ function StoredSignal({ asset, context }: { asset: Asset; context: SignalContext
         </details>
         <div className="inspected-event-pagination"><span>Explore another reported change</span><div><button type="button" disabled={index === 0} onClick={() => setIndex(value => value - 1)} aria-label="Previous signal"><ArrowLeft size={16} aria-hidden="true" /></button><button type="button" disabled={index >= count - 1} onClick={() => setIndex(value => value + 1)} aria-label="Next signal"><ArrowRight size={16} aria-hidden="true" /></button></div></div>
       </article> : null}
-      <QuantitativePanel bundle={data?.quantitative} decision={construction?.quantitative} signalId={signal?.id} version={signal?.version} readStale={readStale} />
+      <QuantitativePanel bundle={data?.quantitative} decision={construction?.quantitative} signalId={signal?.id} version={signal?.version} construction={construction} analysisStatus={data?.status} loading={phase === "loading" && !data} readStale={readStale} />
     </div>
     <div className="signal-connect-value"><div><strong>Bring this context into your agent’s answers.</strong><p>The reported change, the interpretation and what to check next—through one connection.</p></div><a href="/docs/quickstart">Connect your agent <ArrowRight size={15} aria-hidden="true" /></a></div>
     <div className="signal-inspector-foot"><span>Headline-based research pilot · Source collection: {data?.freshness.status ?? "checking"}</span><details><summary>About this stored view</summary><p>{count} stored signals · {constructedCount} constructed. {data?.analysis.last_success_at ? "Last analysis " + date(data.analysis.last_success_at) + "." : "Analysis is scheduled."} Market checks run every five minutes; this page refreshes each minute while visible.{data?.analysis.coverage_truncated ? " Evidence is a selected coverage snapshot." : ""}</p><a href="/docs/intelligence">Read how signals and measurements work ↗</a></details></div>

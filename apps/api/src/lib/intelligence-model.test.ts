@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import type { IntelligenceEventDraft, IntelligenceEvidence } from "@newsbeat/contracts";
-import { intelligenceInput, parseIntelligenceResult } from "./intelligence-model.js";
+import { generateValidatedIntelligence, intelligenceInput, parseIntelligenceResult } from "./intelligence-model.js";
 import { reconcileSignal } from "./intelligence-core.js";
 
 const now = "2026-11-03T12:00:00Z";
@@ -51,7 +51,7 @@ test("prior memory exposes only current citable report IDs and stays bounded", (
   const input = intelligenceInput(reports, previous, { label: "Nvidia", ticker: "NVDA" });
   assert.equal(input.previous_events.length, 4);
   assert.ok(!JSON.stringify(input).includes("expired-citation"));
-  assert.deepEqual(input.previous_events[0]!.evidence_ids, ["r1"]);
+  assert.deepEqual(input.previous_events[0]!.already_seen_report_ids, ["r1"]);
 });
 
 test("known unchanged reporting is a no-op, while unsupported state changes still fail", () => {
@@ -70,4 +70,38 @@ test("formatting normalization preserves facts and diagnostic codes identify sch
   assert.equal(parseIntelligenceResult(result({ events: [formatted] }), reports, [])[0]!.unknowns[0], draft.unknowns[0]);
   const invalid = structuredClone(draft) as any; invalid.market_assessment.direction = "bullish";
   assert.throws(() => parseIntelligenceResult(result({ events: [invalid] }), reports, []), /invalid_analysis_schema_events__market_assessment_direction/);
+});
+
+test("excess citations trigger one grounded correction without truncating evidence", async () => {
+  const evidence = Array.from({ length: 6 }, (_, i) => ({ ...reports[0]!, id: "r" + (i + 1) }));
+  const oversized = structuredClone(draft); oversized.evidence_ids = evidence.map(report => report.id);
+  const requests: Array<{ body: any; signal: AbortSignal | null | undefined }> = [];
+  const request: typeof fetch = async (_url, options) => {
+    requests.push({ body: JSON.parse(String(options?.body)), signal: options?.signal });
+    return new Response(JSON.stringify(result({ events: [requests.length === 1 ? oversized : draft] })));
+  };
+  const output = await generateValidatedIntelligence(evidence, [], { label: "Nvidia", ticker: "NVDA" }, "test-credential", request);
+  assert.equal(output.length, 1);
+  assert.deepEqual(output[0]!.evidence_ids, ["r1"]);
+  assert.equal(requests.length, 2);
+  assert.equal(requests[0]!.signal, requests[1]!.signal, "both attempts share the original timeout");
+  assert.equal(requests[1]!.body.messages.length, 4);
+  assert.match(requests[1]!.body.messages[3].content, /evidence_ids_too_big/);
+  assert.equal(JSON.parse(requests[1]!.body.messages[1].content).reports.length, 6);
+});
+test("a correction cannot bypass citation grounding or retry indefinitely", async () => {
+  const invalid = structuredClone(draft); invalid.evidence_ids = ["unknown-report"];
+  let calls = 0;
+  const request: typeof fetch = async () => { calls++; return new Response(JSON.stringify(result({ events: [invalid] }))); };
+  await assert.rejects(generateValidatedIntelligence(reports, [], { label: "Nvidia", ticker: "NVDA" }, "test-credential", request), /invalid_analysis_unknown_evidence/);
+  assert.equal(calls, 2);
+});
+test("a valid empty result and an upstream failure do not trigger correction calls", async () => {
+  let calls = 0;
+  const empty: typeof fetch = async () => { calls++; return new Response(JSON.stringify(result({ events: [] }))); };
+  assert.deepEqual(await generateValidatedIntelligence(reports, [], { label: "Nvidia", ticker: "NVDA" }, "test-credential", empty), []);
+  assert.equal(calls, 1);
+  const unavailable: typeof fetch = async () => { calls++; return new Response("unavailable", { status: 503 }); };
+  await assert.rejects(generateValidatedIntelligence(reports, [], { label: "Nvidia", ticker: "NVDA" }, "test-credential", unavailable), /model_unavailable/);
+  assert.equal(calls, 2);
 });
