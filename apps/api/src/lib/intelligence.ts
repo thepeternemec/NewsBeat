@@ -63,7 +63,8 @@ export async function runIntelligence(oidcToken?: string | null, generate: typeo
       where requested_article_id > 0 and (requested_article_id > processed_article_id or pipeline_version is distinct from ${INTELLIGENCE_VERSION})
         and (next_attempt_at <= now() or last_attempt_version is distinct from ${INTELLIGENCE_GENERATION_VERSION})
         and (lease_until is null or lease_until < now())
-      order by case when pipeline_version is distinct from ${INTELLIGENCE_VERSION} then 0 else 1 end,
+      order by case when last_error is not null then 0 else 1 end,
+        case when pipeline_version is distinct from ${INTELLIGENCE_VERSION} then 0 else 1 end,
         last_attempt_at asc nulls first, last_success_at asc nulls first, beat_id limit 2 for update skip locked)
     returning *`;
   const results = await Promise.all(jobs.map(async job => {

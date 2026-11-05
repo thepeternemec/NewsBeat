@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-05 — Precise grounding recovery
+
+- Restored analysis for Apple, Microsoft and Ethereum after the citation-bound fix. The six-asset live check exposed a separate Bitcoin failure involving unsupported figures or prediction wording.
+- Added exact numeric-token feedback for a single correction attempt and exposed headline figures as source metadata. Unsupported claims remain rejected; no figures are silently repaired.
+- Prioritized eligible failed jobs so a corrected generator can restore an affected asset before processing a second healthy waiting job, while retaining retry backoff and fair scheduling.
+
 ## 2026-11-05 — Signal readiness and analysis recovery
 
 - Distinguished a constructed signal from a confirmed timing alert. The intelligence workspace opens a relevant constructed signal and explains pending timing, failed analysis and missing hypotheses separately.

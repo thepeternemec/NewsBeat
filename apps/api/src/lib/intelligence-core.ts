@@ -9,7 +9,7 @@ const unsafePrediction = /\b(?:guaranteed|buy now|sell now|will (?:rise|fall|sur
 export const quoteMatches = (title: string, quote: string) => fold(quote).length >= 16 && fold(quote).split(" ").length >= 3 && fold(title).includes(fold(quote));
 
 /** Ground facts in exact source headlines; interpretation is separately labeled. */
-export function inspectIntelligence(value: unknown, evidence: IntelligenceEvidence[], previous: IntelligenceSignal[]): { events: IntelligenceEventDraft[] | null; error: string | null } {
+export function inspectIntelligence(value: unknown, evidence: IntelligenceEvidence[], previous: IntelligenceSignal[]): { events: IntelligenceEventDraft[] | null; error: string | null; feedback?: string } {
   const parsed = IntelligenceDraftSchema.safeParse(value);
   if (!parsed.success) {
     const issue = parsed.error.issues[0];
@@ -46,7 +46,13 @@ export function inspectIntelligence(value: unknown, evidence: IntelligenceEviden
     const interpretation = [event.attention_reason, event.change_reason, ...event.unknowns, ...event.next_checks,
       ...event.implications.flatMap(item => [item.hypothesis, item.mechanism, item.watch_for]),
       ...(event.market_assessment ? [event.market_assessment.market_relevance, event.market_assessment.why_it_may_not_move, event.market_assessment.invalidation, event.market_assessment.trigger.condition] : [])].join(" ");
-    if (figures(interpretation).some(number => !numbers.has(number)) || unsafePrediction.test(interpretation)) return { events: null, error: "unsupported_number_or_prediction" };
+    const unsupportedNumbers = [...new Set(figures(interpretation).filter(number => !numbers.has(number)))];
+    const prediction = interpretation.match(unsafePrediction)?.[0];
+    if (unsupportedNumbers.length || prediction) return { events: null, error: "unsupported_number_or_prediction",
+      feedback: "Unsupported numeric tokens: " + (unsupportedNumbers.slice(0, 16).join(", ") || "none") +
+        ". Numeric tokens present in the cited headlines: " + ([...numbers].slice(0, 24).join(", ") || "none") +
+        ". Prohibited prediction wording: " + (prediction ?? "none") +
+        ". Remove unsupported figures and prediction wording. Do not calculate or reformat figures, use dates from metadata, or replace the claim with a different unsupported figure. Prefer a conditional explanation without numbers." };
     for (const implication of event.implications) {
       if (implication.evidence_ids.some(id => !event.evidence_ids.includes(id))) return { events: null, error: "implication_evidence" };
       if (!/\b(?:could|may|might|if|potential|risk)\b/i.test(implication.hypothesis)) return { events: null, error: "unconditional_hypothesis" };
