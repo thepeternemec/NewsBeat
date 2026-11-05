@@ -2,7 +2,7 @@
   "name": "newsbeat",
   "version": "0.2.0",
   "private": true,
-  "description": "NewsBeat \u2014 the news layer for AI agents. Source-linked equity and crypto headlines, change monitoring, MCP and REST.",
+  "description": "NewsBeat — meaningful signals for AI agents. Stock and crypto context, source-grounded interpretations and market checks over MCP and REST.",
   "license": "MIT",
   "engines": {
     "node": ">=20"

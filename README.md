@@ -1,53 +1,65 @@
-<div align="center">
+<p align="center">
+  <a href="https://www.newsbeat.dev">
+    <img src="brand/newsbeat-github.svg" alt="NewsBeat — Meaningful signals. Built for agents. News becomes context your agent can use." width="100%">
+  </a>
+</p>
 
-# NewsBeat
+<p align="center">
+  <strong>Give your AI agent a clearer view of stocks and crypto.</strong><br>
+  What changed. Why it could matter. What to check next.
+</p>
 
-### Meaningful signals. Built for agents.
+<p align="center">
+  <a href="https://github.com/thepeternemec/NewsBeat/actions/workflows/ci.yml"><img src="https://github.com/thepeternemec/NewsBeat/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-181818?labelColor=303030" alt="MIT license"></a>
+  <a href="https://www.newsbeat.dev/docs/quickstart"><img src="https://img.shields.io/badge/connect-MCP%20%2B%20REST-181818?labelColor=303030" alt="MCP and REST"></a>
+  <a href="#project-status"><img src="https://img.shields.io/badge/status-early%20development-181818?labelColor=303030" alt="Early development"></a>
+</p>
 
-NewsBeat constructs signals from news and context: what could affect stocks and crypto, what would trigger a review alert, and what would invalidate the hypothesis.
+<p align="center">
+  <a href="https://www.newsbeat.dev"><strong>Try NewsBeat</strong></a> ·
+  <a href="https://www.newsbeat.dev/intelligence">Explore a signal</a> ·
+  <a href="https://www.newsbeat.dev/docs/quickstart">Connect your agent</a> ·
+  <a href="https://www.newsbeat.dev/docs">Docs</a> ·
+  <a href="https://www.newsbeat.dev/status">Service status</a>
+</p>
 
-**News evidence + measured market timing**
+---
 
-[Signal workbench](https://www.newsbeat.dev/intelligence) · [How signals are constructed](https://www.newsbeat.dev/#agent-workflow) · [Connect your agent](https://www.newsbeat.dev/docs/quickstart) · [Developer docs](https://www.newsbeat.dev/docs) · [Service status](https://www.newsbeat.dev/status)
+NewsBeat is an open-source intelligence layer for AI agents. It brings together stock and crypto reporting, the context behind a development, and market checks that help an agent decide whether to investigate, keep watching or reassess.
 
-[![CI](https://github.com/thepeternemec/NewsBeat/actions/workflows/ci.yml/badge.svg)](https://github.com/thepeternemec/NewsBeat/actions/workflows/ci.yml)
-[![MIT license](https://img.shields.io/badge/license-MIT-black)](LICENSE)
+**Built in the open since September 2026.** The news foundation is live. Signal construction and market timing are an evolving six-asset research pilot. Contributions, questions and real-world feedback are welcome.
 
-Free public access during early access. No account, API key or credit card needed.
+[Get started](#get-started) · [How it works](#how-it-works) · [Project status](#project-status) · [Run locally](#run-locally) · [Contribute](#contribute)
 
-</div>
+## Why NewsBeat?
 
-## Why NewsBeat
+A headline tells your agent something happened. A useful signal helps it understand what deserves attention.
 
-An agent needs to understand which developments deserve attention. NewsBeat’s direction is to produce meaningful signals grounded in reporting: the change, its context, its relevance to the task, and the uncertainty around it.
+- **See what actually changed.** Discover recent reporting, group repeated coverage and follow new arrivals.
+- **Understand the context.** Read a source-linked interpretation, its uncertainty and the questions it raises.
+- **Know what to check next.** Inspect market confirmation, conditions that would change the view and explicit reasons to wait.
 
-The **live foundation** supplies source-linked headlines, approximate story grouping, headline-based summaries, freshness and changes since a previous check. Agents can use that evidence today.
+Use it inside a research assistant, a personal briefing or a watchlist workflow. Start with the underlying company or cryptocurrency when researching a tokenized asset.
 
-The **six-asset intelligence pilot** combines a source-grounded thesis with measured market timing. It distinguishes new information from repeated coverage, estimates a pre-information beta and residual baseline, and checks price confirmation, relative volume, fresh trades and order-book costs. Signals can develop, fade, diverge or become extended. A review alert needs all applicable gates; headline interpretation alone cannot trigger one.
+## Get started
 
-NVIDIA, Apple, Microsoft and Alphabet are measured through their USD xStock markets on Kraken against QQQx. Bitcoin and Ethereum use self-excluding crypto peers. These are observed venue markets, not consolidated stock prices or verified token redemption values. The [quantitative methodology](docs/QUANTITATIVE.md) documents sources, thresholds, timestamps and limits.
+### 1. Explore in your browser
 
-Every eligible construction and qualifying review alert gets a frozen reference snapshot for prospective 15-minute, one-hour and four-hour outcomes. The journal compares all cases with selected review alerts, including pending and missed observations. This is a research record, not a claim of profitable timing or superiority to another agent.
+Search a company name or ticker on [newsbeat.dev](https://www.newsbeat.dev/#company-news). Open the [intelligence page](https://www.newsbeat.dev/intelligence) to see a reported change alongside the context your agent can use.
 
-The broader news foundation covers 1,528 US stocks and 502 crypto assets. Wider quantitative coverage, expectations data and outcome calibration remain next steps. Read the [product direction](docs/INTELLIGENCE.md) and [current implementation status](docs/STATUS.md).
+**No setup, account or API key required for public reads.**
 
-## Try it before you connect
+### 2. Connect your AI agent
 
-Search a company name or ticker on the **[homepage](https://www.newsbeat.dev/#company-news)** to see real headlines, publishers, publication times and collection freshness. Stock and crypto matches remain distinct, and more headlines are available on demand.
-
-Open the **[signal workbench](https://www.newsbeat.dev/intelligence)**. Select an asset and a decision context, inspect the hypothesis and trigger, then expand the checks behind the decision. The homepage animates how news becomes context and a signal.
-
-The wider catalog is collected on a **15-minute schedule**; the six pilot topics and market measurements are scheduled every five minutes. Coverage varies by asset; every response reports freshness. Summaries use headline metadata, and the original reporting stays linked.
-
-## Connect your agent
-
-Add this remote Streamable HTTP MCP endpoint to a compatible assistant:
+Add this URL as a remote MCP server in an assistant that supports **Streamable HTTP**:
 
 ```text
 https://www.newsbeat.dev/api/mcp
 ```
 
-For clients that accept this configuration format:
+<details>
+<summary>JSON configuration for compatible MCP clients</summary>
 
 ```json
 {
@@ -59,96 +71,80 @@ For clients that accept this configuration format:
 }
 ```
 
-Then ask: **“Inspect Nvidia in the business fundamentals context. What could matter, what would trigger an alert, and what would change the view?”**
+Configuration varies by client. Follow the [connection guide](https://www.newsbeat.dev/docs/quickstart) or run the [connection check](https://www.newsbeat.dev/connect). Your assistant needs custom remote MCP support.
 
-Setup varies by host. Follow the [quickstart](https://www.newsbeat.dev/docs/quickstart) or use the [connection check](https://www.newsbeat.dev/connect). A host must support custom remote MCP or an API integration; a native listing in every assistant’s directory is not implied.
+</details>
 
-## Make your first API request
+Then ask:
 
-Read Nvidia signal constructions and recorded review alerts:
+> Use NewsBeat to check NVIDIA. What changed, why could it matter, and what still needs confirmation?
+
+### 3. Make an API request
+
+Find an asset:
+
+```bash
+curl "https://www.newsbeat.dev/api/v2/topics?q=nvidia&limit=5"
+```
+
+Read NVIDIA's stored intelligence:
 
 ```bash
 curl "https://www.newsbeat.dev/api/v2/intelligence?beat_id=b_bb964843350e&context=fundamentals"
 ```
 
-Get a short headline-based update:
+Use the returned `beat_id` for other assets. The intelligence pilot currently covers **NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum**. Other supported assets have news access.
 
-```bash
-curl "https://www.newsbeat.dev/api/v2/summary?beat_id=b_bb964843350e"
-```
+[More examples](examples/README.md) · [API and MCP reference](AGENTS.md) · [Live tool schemas](https://www.newsbeat.dev/api/v2/tools)
 
-Find another asset:
+## How it works
 
-```bash
-curl "https://www.newsbeat.dev/api/v2/topics?q=bitcoin&limit=5"
-```
+**Reporting → Context → Market checks → Your agent**
 
-The primary REST base is `https://www.newsbeat.dev/api`. Use the primary domain for new integrations.
+NewsBeat collects source-linked headlines, reduces repeated coverage and tracks new information. The pilot builds a conditional interpretation, checks observed market activity and stores the result for agents to read.
 
-## Agent interfaces
-
-| MCP tool | Purpose |
+| Your agent receives | What it helps answer |
 | --- | --- |
-| `newsbeat_intelligence` | Read contextual constructions, alert checks, evidence and recorded review alerts for the six-asset pilot |
-| `newsbeat_topics` | Find supported stocks and crypto; inspect coverage |
-| `newsbeat_news` | Read headlines with sources, dates and a cursor |
-| `newsbeat_changes` | Get newly indexed items since the previous cursor |
-| `newsbeat_brief` | Get three ranked recent headlines verbatim |
-| `newsbeat_stories` | Group similar headlines with their original reports |
-| `newsbeat_summary` | Get up to three short headline-based explanations |
-| `newsbeat_watch` | Check up to 50 assets in one request |
-| `newsbeat_ask` | Resolve an asset and gather news, prices and chain context. |
-| `newsbeat_market` | Read a sourced crypto market overview. |
-| `newsbeat_prices` | Read crypto prices by CoinGecko ID. |
-| `newsbeat_fear_greed` | Read the daily fear and greed index. |
-| `newsbeat_chain` | Read Ethereum and Solana chain state. |
-| `newsbeat_token` | Read a reference price by contract address. |
-| `newsbeat_signals` | Read funding, DEX volume and stablecoin supply. |
+| The reported change, source and time | What happened? |
+| A contextual interpretation | Why could this matter? |
+| Market confirmation and reasons to wait | Is there enough evidence to review it now? |
+| Invalidation and a next check | What would change the view? |
 
-Function-calling schemas are available at [`/api/v2/tools`](https://www.newsbeat.dev/api/v2/tools). See the [model-loop example](examples/README.md).
+A signal can say **review**, **keep watching**, **no alert** or **reassess**. Waiting is a useful result when evidence is missing, old or unconfirmed. Repeated headlines alone do not justify a new review alert.
 
-For follow-up checks: resolve an asset, read a baseline, save its cursor, and ask for changes. Process each page before advancing the cursor, and continue while `has_more` is true. An empty page is a valid “nothing new.” Topic-bound cursors distinguish stock and crypto assets that share a ticker.
+<details>
+<summary>Evidence, market data and research limits</summary>
 
-## What you can build
+- Reporting comes from English-language Google News RSS metadata. Full article bodies remain with publishers; interpretations are based on headlines.
+- The stock pilot observes Kraken xStock markets against QQQx. Bitcoin and Ethereum use crypto venue data and peer comparisons. These are venue observations, not consolidated stock prices or verified token redemption values.
+- Timing checks include relative market moves, participation, liquidity and data freshness. Thresholds are research heuristics awaiting calibration.
+- Prospective outcome records help evaluate constructions and review alerts over time. They do not establish profitable performance or executable returns.
+- NewsBeat records qualifying review alerts. Notification delivery and trade execution are not connected.
 
-- **Research assistants** that bring recent stock and crypto reporting into an answer.
-- **Personal briefings** with short updates, dates and links.
-- **Watchlist workflows** that check multiple assets and forward new items to your own bot.
-- **Tokenized-asset research** that starts with news about the underlying company or cryptocurrency.
+See the [methodology](docs/QUANTITATIVE.md) for the measurements, thresholds and limitations.
 
-The implementation also retains reference utilities for crypto prices, sentiment, positioning and chain readings through MCP and REST. Those are supporting inputs. The product direction is the intelligence built from evidence; raw market metrics alone do not constitute a meaningful signal.
+</details>
 
-## Evidence and freshness
+## Project status
 
-NewsBeat collects English-language headline metadata through Google News RSS. Items include a headline, publisher, publication time and a link that resolves to the reporting. Full article bodies are not included.
+**Early development · active research pilot · MIT licensed**
 
-Story grouping is approximate and preserves source reports. Ranking favors concrete developments and recency; publisher counts measure coverage, not independent corroboration or price impact.
+| Stage | Available today |
+| --- | --- |
+| News foundation | A bundled catalog of 2,030 stock and crypto topics; headlines, grouping, summaries, freshness and change tracking |
+| Agent access | Public MCP and REST interfaces; asset discovery and batched watchlist reads |
+| Intelligence pilot | Six assets, three contexts, persistent interpretations, market checks and a review-alert journal |
+| Evaluation | Prospective observations for comparing all constructions with selected review alerts |
 
-Summaries report `basis: "headlines_only"`, `freshness` and `coverage_truncated`. The `method` is `generated` when headline-based generation succeeds or `extractive` when original headlines are returned. Generation runs on demand through Vercel AI Gateway and falls back on failure. Read the linked reporting for details.
+**Next:** calibrate against collected outcomes, add richer evidence and expectation changes, and expand measured coverage. Saved watches, notification delivery and verified tokenized-asset mapping are planned.
 
-MCP story snapshots return up to 40 ranked groups from 200 recent reports. REST scans 200 reports by default, with a configurable limit up to 500. Group IDs can change as the snapshot rolls; use article cursors to track arrivals.
+The wider catalog is scheduled every 15 minutes; pilot collection and analysis run on five-minute schedules. Read freshness and analysis timestamps: schedules do not guarantee fresh results for every asset.
 
-## Access
-
-Public MCP and REST reads are free during early access, with an anonymous limit of **120 requests per minute**.
-
-Optional GitHub-issued keys provide a **seven-day REST evaluation**, starting on the first metered request, with up to **$6 in usage credit** and **1,200 requests per minute**. Inspect `GET /api/keys/trial` for the deadline and remaining credit. Keyed requests stop with a 402 response after time or credit runs out; rotating a key does not restart the trial. Public access remains available without a key. Paid checkout is not live.
-
-## Roadmap
-
-**Available:** the source-linked news foundation, with asset discovery, headline-based summaries, approximate grouping, freshness, change tracking and agent access.
-
-**Six-asset timing pilot:** bounded scheduled analysis, persistent thesis revisions, three contexts, beta-adjusted market response, liquidity and participation gates, a measured alert journal and prospective outcome cohorts.
-
-**Next:** collect and calibrate prospective outcomes, add expectation changes and richer source evidence, and expand measured coverage.
-
-**Longer-term applications:** saved watches, agent delivery, notifications and verified tokenized-asset mapping. Broader search and connector improvements support that direction.
-
-[Product direction](docs/INTELLIGENCE.md) · [Current capabilities](docs/STATUS.md) · [Changelog](CHANGELOG.md)
+[Current capabilities](docs/STATUS.md) · [Product direction](docs/INTELLIGENCE.md) · [Changelog](CHANGELOG.md)
 
 ## Run locally
 
-Use Node.js 22 or 24 and npm workspaces.
+Use **Node.js 22 or 24** and npm.
 
 ```bash
 git clone https://github.com/thepeternemec/NewsBeat.git
@@ -159,31 +155,48 @@ npm test
 npm run dev
 ```
 
-The site runs at `http://localhost:3000`. News reads require PostgreSQL and a cursor-signing secret; copy `.env.example` and follow [GO-LIVE.md](docs/GO-LIVE.md). Use development credentials for local work.
+Open **http://localhost:3000**. You can build, run the standard tests and work on the interface without service credentials. Local news reads need a development PostgreSQL database and cursor secret.
 
-| Directory | Purpose |
+Follow the [development guide](docs/DEVELOPMENT.md) to configure local data, run ingestion and test the API. Hosted public reads are the fastest way to try NewsBeat.
+
+<details>
+<summary>Repository map</summary>
+
+| Path | Purpose |
 | --- | --- |
-| `apps/web` | Next.js website, news explorer, API and cron routes |
-| `apps/api` | Hono REST API, MCP transport, GitHub sign-in and rate limiting |
-| `apps/worker` | News ingestion, filtering and normalization |
-| `packages/contracts` | Shared schemas, asset catalog and news tool definitions |
-| `packages/db` | PostgreSQL access, keys and account billing |
-| `db` | Schema and operator maintenance scripts |
-| `examples` | Function-calling adapter and OpenRouter example |
+| `apps/web` | Next.js website, API mount and scheduled routes |
+| `apps/api` | Hono REST API, MCP transport and intelligence pipeline |
+| `apps/worker` | Collection, filtering and normalization |
+| `packages/contracts` | Shared schemas, asset catalog and tool definitions |
+| `packages/db` | PostgreSQL access, accounts and metering |
+| `db` | Schema and maintenance scripts |
+| `examples` | API recipes and a reference model adapter |
+| `docs` | Development, methodology and operations |
 
-[Agent guide](AGENTS.md) · [Architecture](docs/ARCHITECTURE.md) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
+[Architecture](docs/ARCHITECTURE.md) · [Documentation index](docs/README.md)
 
-Built in the open. [Open an issue](https://github.com/thepeternemec/NewsBeat/issues/new), contribute, or follow [@newsbeat_](https://x.com/newsbeat_).
+</details>
 
-Contact: [contact@newsbeat.dev](mailto:contact@newsbeat.dev)
+## Access
 
-MIT licensed. See [LICENSE](LICENSE).
+Public MCP and REST reads are free during early access, with an anonymous limit of **120 requests per minute**. An API key is optional.
 
-## Contextual signal construction
+Optional account keys offer a seven-day REST evaluation, starting on the first metered request, with up to $6 in credit and a higher rate limit. Paid checkout is not live. [Access details](https://www.newsbeat.dev/docs)
 
-Use `newsbeat_intelligence` with a `beat_id` and an optional `context`: `fundamentals`, `liquidity` or `risk`. REST accepts `GET /v2/intelligence?beat_id=...&context=fundamentals`. The response adds `context`, `constructions` and an `alerts` journal while preserving `signals`.
+## Contribute
 
-A construction explains the proposed market channel, direction, qualitative materiality, time horizon, observable trigger, invalidation and why a development may not move the market. Explicit checks return `review_now`, `keep_watching`, `no_alert` or `reassess`. Context mismatch, stale/pending analysis, old trigger reports, unobserved conditions and repeat coverage block new review alerts. Alert IDs are stable for a context and interpretation version; track them to avoid repeated notifications in your own authorized workflow.
+NewsBeat is young, and there is room to help shape it. Good places to start:
 
-The pilot records review alerts. Delivery integrations, custom strategy contexts, price/benchmark confirmation, historical comparisons and calibrated thresholds are future work. `market_reaction.status` is `unmeasured`; a model hypothesis does not establish that a price moved. Check original reporting before relying on a trigger.
+- Improve a setup step, example or explanation.
+- Report a confusing signal or asset match, including the source and time.
+- Improve accessibility, source grounding or market-data checks.
+- Help evaluate outcomes or extend measured coverage.
 
+Read [CONTRIBUTING.md](CONTRIBUTING.md), [open an issue](https://github.com/thepeternemec/NewsBeat/issues/new/choose), or [start a discussion](https://github.com/thepeternemec/NewsBeat/discussions). Small, focused pull requests are welcome.
+
+[MIT license](LICENSE) · [Code of conduct](CODE_OF_CONDUCT.md) · [Security](SECURITY.md)
+
+<p align="center">
+  Built by <a href="https://github.com/thepeternemec">Peter Nemec</a> and contributors.<br>
+  <a href="https://www.newsbeat.dev">newsbeat.dev</a> · <a href="https://x.com/newsbeat_">@newsbeat_</a> · <a href="mailto:contact@newsbeat.dev">contact@newsbeat.dev</a>
+</p>

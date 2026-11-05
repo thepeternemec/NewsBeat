@@ -1,29 +1,41 @@
 # NewsBeat brand
 
-NewsBeat is building **meaningful signals for AI agents**. Source-linked news is the foundation; deeper interpretation is the next product stage. Stocks and crypto are coverage areas.
+**Meaningful signals. Built for agents.**
 
-- Website: https://www.newsbeat.dev
-- Main line: **Meaningful signals. Built for agents.**
-- Product description: **An intelligence layer that helps agents understand what changed, why it may matter, and what to investigate next.**
-- Contact: contact@newsbeat.dev
+NewsBeat helps AI agents understand stock and crypto developments: what changed, why it could matter and what to check next.
 
-## Mark and palette
+[Website](https://www.newsbeat.dev) · [Project README](../README.md) · [Contact](mailto:contact@newsbeat.dev)
 
-The NewsBeat mark is three rounded white bars on a black rounded tile. The middle bar is tallest. Use `apps/web/app/icon.svg` as the graphic source and `apps/web/components/site/brand-mark.tsx` in the website.
+## Visual identity
 
-The palette is black, white and grey. Use the site's theme variables so the interface remains legible in dark and light modes.
+The NewsBeat mark uses three rounded white bars on a black rounded tile, with the middle bar tallest. The palette is black, white and grey.
+
+- Use [the icon source](../apps/web/app/icon.svg) for the mark.
+- Use [BrandMark](../apps/web/components/site/brand-mark.tsx) inside the website.
+- Use the site's theme variables for legible dark and light interfaces.
+- Give the mark space and keep text readable at small sizes.
 
 ## Assets
 
-| File | Size | Purpose |
+| File | Format and size | Use |
 | --- | --- | --- |
-| `newsbeat-mark-1024.png` | 1024 × 1024 | Profile mark |
-| `newsbeat-lockup-1024.png` | 1024 × 1024 | Mark and wordmark |
-| `newsbeat-og-1200x630.png` | 1200 × 630 | Static social asset |
-| `newsbeat-square-1080.png` | 1080 × 1080 | Square social post |
+| [GitHub header](newsbeat-github.svg) | SVG · 1280 × 440 | Repository introduction |
+| [Profile mark](newsbeat-mark-1024.png) | PNG · 1024 × 1024 | Profile icon |
+| [Wordmark](newsbeat-lockup-1024.png) | PNG · 1024 × 1024 | Mark and name |
+| [Social preview](newsbeat-og-1200x630.png) | PNG · 1200 × 630 | Static social image |
+| [Square post](newsbeat-square-1080.png) | PNG · 1080 × 1080 | Social post |
 
-The website generates its current social preview in `apps/web/app/(site)/opengraph-image.tsx`; it is the source of truth for link previews. Static exports should be checked against the current mark and copy before use.
+The website generates its current link preview in [opengraph-image.tsx](../apps/web/app/(site)/opengraph-image.tsx). Check static exports against the current mark and message before publishing.
 
 ## Voice
 
-Lead with agent intelligence: meaningful developments, relevant context, evidence and uncertainty. Use “stocks and crypto” to describe coverage. Distinguish the live news foundation from planned interpretation; a summary or a market statistic is not automatically a meaningful signal. Describe tokenized-asset mapping as planned until verified mappings are available. Keep sources, timestamps and coverage freshness visible.
+Write clearly for someone trying NewsBeat for the first time.
+
+- Lead with what an agent can understand or check.
+- Say **stocks and crypto** when describing coverage.
+- Keep the reported change, interpretation and observed market evidence distinct.
+- Describe the six-asset intelligence pilot as work in progress.
+- Keep technical measurements in the methodology and optional detail.
+- Preserve sources, timestamps, freshness and uncertainty.
+
+Use **NewsBeat** as one word with a capital N and B. The primary domain is **newsbeat.dev**.

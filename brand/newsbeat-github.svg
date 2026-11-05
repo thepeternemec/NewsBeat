@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="440" viewBox="0 0 1280 440" role="img" aria-labelledby="title desc">
+  <title id="title">NewsBeat — Meaningful signals. Built for agents.</title>
+  <desc id="desc">A monochrome NewsBeat banner. Reporting connects to context, market checks and your agent.</desc>
+  <defs>
+    <radialGradient id="glow" cx="82%" cy="38%" r="75%">
+      <stop offset="0" stop-color="#242424"/>
+      <stop offset="1" stop-color="#080808"/>
+    </radialGradient>
+    <linearGradient id="line"><stop stop-color="#777"/><stop offset="1" stop-color="#eee"/></linearGradient>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#fff" opacity=".045"/></pattern>
+  </defs>
+  <rect width="1280" height="440" rx="24" fill="#080808"/>
+  <rect x=".5" y=".5" width="1279" height="439" rx="23.5" fill="url(#glow)" stroke="#333"/>
+  <rect x="1" y="1" width="1278" height="438" rx="23" fill="url(#dots)"/>
+  <g fill="#fff" transform="translate(54 48)">
+    <rect x="0" y="12" width="8" height="18" rx="4"/>
+    <rect x="13" width="8" height="40" rx="4"/>
+    <rect x="26" y="7" width="8" height="26" rx="4"/>
+  </g>
+  <text x="105" y="78" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="700" letter-spacing="3">NEWSBEAT</text>
+  <rect x="1026" y="49" width="199" height="32" rx="16" fill="#fff" fill-opacity=".035" stroke="#444"/>
+  <circle cx="1047" cy="65" r="3" fill="#eee"/>
+  <text x="1060" y="69" fill="#ccc" font-family="Arial,Helvetica,sans-serif" font-size="11" letter-spacing="1.7">BUILDING IN THE OPEN</text>
+  <text x="54" y="176" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="62" font-weight="700" letter-spacing="-2">Meaningful signals.</text>
+  <text x="54" y="247" fill="#aaa" font-family="Arial,Helvetica,sans-serif" font-size="62" font-weight="700" letter-spacing="-2">Built for agents.</text>
+  <text x="57" y="294" fill="#bbb" font-family="Arial,Helvetica,sans-serif" font-size="18">Understand what changed. Know what deserves attention.</text>
+  <g transform="translate(917 192)">
+    <circle r="105" fill="none" stroke="#fff" stroke-opacity=".055"/>
+    <circle r="77" fill="none" stroke="#fff" stroke-opacity=".09"/>
+    <circle r="48" fill="#111" stroke="#555"/>
+    <g fill="#fff"><rect x="-24" y="-9" width="11" height="24" rx="5.5"/><rect x="-5" y="-27" width="11" height="54" rx="5.5"/><rect x="14" y="-18" width="11" height="35" rx="5.5"/></g>
+    <path d="M-158 0h51m214 0h102" stroke="url(#line)" stroke-width="1.5" stroke-dasharray="3 6"/>
+    <circle cx="-126" r="3" fill="#bbb"/><circle cx="159" r="4" fill="#fff"/>
+    <circle cx="18" cy="-75" r="3" fill="#aaa"/><circle cx="-71" cy="78" r="3" fill="#666"/>
+    <rect x="-192" y="-15" width="34" height="30" rx="7" fill="#161616" stroke="#555"/>
+    <path d="M-184-7h17m-17 7h17m-17 7h10" stroke="#aaa" stroke-width="1.5"/>
+    <rect x="209" y="-15" width="34" height="30" rx="7" fill="#161616" stroke="#777"/>
+    <path d="m218 0 5 5 10-11" fill="none" stroke="#fff" stroke-width="1.5"/>
+  </g>
+  <path d="M54 338h1172" stroke="#fff" stroke-opacity=".13"/>
+  <g font-family="Arial,Helvetica,sans-serif" font-size="12" letter-spacing="1.5" fill="#bbb">
+    <text x="57" y="378">01  REPORTING</text>
+    <text x="306" y="378">02  CONTEXT</text>
+    <text x="542" y="378">03  MARKET CHECKS</text>
+    <text x="845" y="378" fill="#fff">04  YOUR AGENT</text>
+  </g>
+  <g fill="none" stroke="#666"><path d="M239 374h24m-5-5 5 5-5 5"/><path d="M475 374h24m-5-5 5 5-5 5"/><path d="M778 374h24m-5-5 5 5-5 5"/></g>
+  <text x="1226" y="378" text-anchor="end" fill="#888" font-family="Arial,Helvetica,sans-serif" font-size="12">newsbeat.dev</text>
+</svg>

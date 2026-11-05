@@ -1,94 +1,66 @@
-# Architecture
+# NewsBeat architecture
 
-One Next.js deployment on Vercel, one Postgres, one provider. Everything below fits on a page
-because there is not much of it.
+[Documentation](README.md) · [Development](DEVELOPMENT.md) · [Methodology](QUANTITATIVE.md)
 
-## The pieces
+NewsBeat runs its website, REST API and MCP endpoint in one Next.js deployment. PostgreSQL stores the reporting, analysis state, signal revisions and evaluation records. Scheduled routes perform collection and analysis; public intelligence reads use stored results.
 
-```
-apps/web        the site  ─┐
-                           ├─ one Vercel deployment
-apps/api        the API   ─┘   mounted at /api/*
-apps/worker     ingestion      called by a Vercel Cron route
-packages/contracts   wire shapes (zod) — the single source of truth
-packages/db          a Postgres client, nothing else
-db/schema.sql        three tables and one function
-```
+## Components
 
-`apps/api` is a Hono app. `apps/web/app/api/[[...route]]/route.ts` mounts it under `/api`, so the
-site and the API are the same deployment with no CORS and no second host. The same Hono app runs
-standalone on Node if you ever want that.
-
-## A read request
-
-```
-client → /api/v2/news?beat_id=…&cursor=…
-       → news.ts   verifies the signed cursor, runs one SQL query
-       → Postgres  news_articles, filtered by topic and id boundary
-       → a page of ≤8 items, re-bounded to ~1800 tokens, plus a new cursor
-```
-
-The cursor is an HMAC-signed `{beat, sequence, mode, expiry}`, not a session. That means the API
-holds no state between calls and any instance can serve any request — which is what makes it fine
-on serverless.
-
-## Ingestion
-
-```
-Vercel Cron (*/15) → /api/cron/ingest → runIngestion()
-        ├ one **Google News RSS** query per topic, quoted keywords OR'd,
-        │   `when:1d`, English, four in flight at a time
-        ├ drop results whose headline does not name the topic  ← see below
-        ├ normalise: strip the " - Publisher" suffix, cap title 240
-        └ append_news_articles(topic, batch)  ← one transaction per topic
-
-**Google News is the default provider and it is free** — key-less, no quota.
-`NEWSBEAT_PROVIDER=newsapi` switches to the paid provider, which also supports
-batching five topics per call (five topics per request rather than one) and
-returns excerpts. The trade is real and deliberate: Google costs nothing but
-gives a redirect URL and no excerpt.
-
-Google matches the whole article, so its results **are** re-filtered on the
-headline before storage. A topic's keyword must appear in the title to count.
-
-This is the single most contentious rule here, so the reasoning is written down.
-Google will happily return a film trailer that mentions a chip in passing, and
-it can outrank real coverage — the first NVIDIA brief opened with one. Serious
-coverage of a company names it, and coverage that does not is noise.
-
-The cost is real and accepted: a story headlined "Chip stocks rally on AI
-demand" no longer lands under NVIDIA even though it is about them. If a topic
-looks thin, this rule is the first thing to reconsider — but check whether it is
-thin or merely quiet first.
-```
-
-`append_news_articles` does three things atomically: inserts the batch, deduplicates on
-`(beat_id, url)`, and stamps `news_ingestion_status`. Doing the insert and the freshness stamp in
-one transaction is what stops `last_success_at` from ever disagreeing with what is actually
-stored.
-
-## Why `packages/contracts` matters
-
-The same shape is used by the REST routes, the MCP tools, the OpenAPI document and the worker. If
-a field changes it changes once, and the compiler finds every caller. It also refuses to describe
-a field the API cannot return — which is the mechanism behind the project's one rule.
-
-## Deliberate non-features
-
-- **No article bodies.** Items carry a headline, a link and the publisher's name. There is no
-  `body` column at any price.
-- **No writes in the API.** Every route is read-only.
-- **No sessions, no required keys.** Read-only and public. A key is optional, raises the rate
-  limit and is metered.
-- **No queue.** Ingestion is one pass over the catalog; the advisory lock in the SQL makes
-  concurrent runs safe rather than a scheduler's problem.
-
-## Where things live
-
-| Concern | File |
+| Component | Responsibility |
 | --- | --- |
-| The topic catalog | `packages/contracts/src/seed.ts` |
-| Wire shapes | `packages/contracts/src/{beats,packs,news,errors}.ts` |
-| SQL | `db/schema.sql`, and the queries in `apps/api/src/lib/news.ts` |
-| Provider client | `apps/worker/src/newsapi.ts` |
-| The schedule | `vercel.json` |
+| `apps/web` | Next.js interface, Hono API mount and scheduled route handlers |
+| `apps/api` | REST and MCP interfaces, source-grounded analysis, construction and timing logic |
+| `apps/worker` | Provider requests, headline matching, normalization and ingestion |
+| `packages/contracts` | Shared Zod schemas, the asset catalog and tool definitions |
+| `packages/db` | Database access, account keys, rate limits and metering |
+| `db/schema.sql` | Idempotent schema for news, analysis, market observations, alerts and evaluation |
+
+## Read and update paths
+
+```mermaid
+flowchart TD
+  Client["Website or AI agent"] --> API["REST and MCP"]
+  API --> Store[("PostgreSQL")]
+  Schedule["Scheduled routes"] --> News["News collection"]
+  Schedule --> Analysis["Signal analysis"]
+  Schedule --> Market["Market checks"]
+  News --> Store
+  Store --> Analysis
+  Analysis --> Store
+  Store --> Market
+  Market --> Store
+```
+
+The Hono app is mounted at `/api/*` by the Next.js catch-all route. REST uses `/api/v2/*`; MCP uses `/api/mcp`. An intelligence read does not invoke the analysis model.
+
+## News foundation
+
+The default collector queries Google News RSS, matches supported asset names in headlines, normalizes records and persists source links and publication times. Duplicate URLs are not inserted twice for the same asset.
+
+News reads use signed, asset-bound cursors. Clients save the returned cursor and ask for later arrivals through the changes endpoint. An empty result is a successful check.
+
+Stories and summaries operate on bounded snapshots. Grouping is approximate; summaries and interpretations use headline metadata rather than full article text.
+
+## Intelligence and market checks
+
+The six-asset pilot keeps source-grounded interpretations and revisions in PostgreSQL. The model proposes a conditional explanation; deterministic validation checks the shape and supplied source evidence before it is stored.
+
+The market worker collects Kraken xStock and crypto observations. Timing logic considers information delta, relative market movement, participation, liquidity and freshness. Qualifying review alerts are recorded with stable identities. Prospective observations support later evaluation.
+
+A model interpretation and an observed price move do not establish causality. Missing or unconfirmed evidence can hold a review alert. Read the [quantitative methodology](QUANTITATIVE.md) for the exact research policy.
+
+## Runtime configuration
+
+- The interface and ordinary API reads share the Next.js process.
+- PostgreSQL and the cursor secret are required for local news data.
+- Model generation needs server-side AI Gateway authentication.
+- Pilot scheduled routes require their configured bearer secret.
+- Optional GitHub OAuth enables account-key issuance.
+
+See [DEVELOPMENT.md](DEVELOPMENT.md) for exact environment-file locations and runnable commands. [vercel.json](../apps/web/vercel.json) defines the deployed schedules.
+
+## Verification
+
+The standard suite checks contracts and pure application behavior without service credentials. CI separately verifies persistence against disposable PostgreSQL. Main-branch CI checks the deployed read path, measured context, analysis health and authenticated worker boundaries.
+
+The workflow is defined in [ci.yml](../.github/workflows/ci.yml).

@@ -8,19 +8,19 @@ const architecture = readFileSync(
   "utf8",
 );
 
-// docs/ARCHITECTURE.md was rewritten when the repo went from nine packages and
-// two APIs down to two packages and one API. These guards keep it describing the
-// layout that actually exists, so the docs cannot silently drift back to the
-// pre-simplification system.
+// Keep the architecture guide aligned with the single-deployment layout and
+// the current stored-read / scheduled-update boundary.
 const REQUIRED = [
-  "One Next.js deployment on Vercel, one Postgres, one provider",
+  "one Next.js deployment",
   "packages/contracts",
   "packages/db",
   "db/schema.sql",
   "apps/api",
   "apps/worker",
-  "client → /api/v2/news",
-  "Postgres",
+  "/api/v2/*",
+  "/api/mcp",
+  "Scheduled routes",
+  "PostgreSQL",
 ];
 
 const FORBIDDEN = [
