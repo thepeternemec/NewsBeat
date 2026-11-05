@@ -1,6 +1,6 @@
 # NewsBeat project status
 
-Updated **2026-11-04** from the current main-branch implementation. Counts describe the bundled catalog, not a guarantee of live article coverage.
+Updated **2026-11-06** from the current main-branch implementation. Counts describe the bundled catalog, not a guarantee of live article coverage.
 
 ## Product direction
 
@@ -10,6 +10,7 @@ NewsBeat is building meaningful signals for AI agents. The source-linked news fo
 
 | Capability | Status |
 | --- | --- |
+| Independent discovery | Past-only 15/30/60-minute market scans, descriptive historical rarity, volatility context and frozen episode outcomes; no headline thesis required |
 | Intelligence pilot | Persistent thesis revisions, measured information deltas, pre-information beta/residuals, participation/liquidity gates and prospective outcomes for NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum |
 | Asset catalog | **2,030 topics**: 1,528 US-listed equities and 502 crypto assets |
 | Headline reads | Source-linked articles with freshness, bounded pages and history cursors |

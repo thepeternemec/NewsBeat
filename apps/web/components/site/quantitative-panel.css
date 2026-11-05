@@ -77,3 +77,14 @@
 .agent-market-picture .quant-asset-line{stroke-dasharray:1;stroke-dashoffset:0;animation:market-path-reveal 1.4s ease-out both}
 @keyframes market-path-reveal{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
 @media(prefers-reduced-motion:reduce){.agent-market-picture .quant-asset-line{animation:none;stroke-dasharray:none}}
+.quant-discovery{padding:0 0 28px;margin-bottom:30px;border-bottom:1px solid var(--border,rgba(128,128,128,.2))}
+.quant-discovery h3{font-size:clamp(21px,2vw,28px);line-height:1.25;letter-spacing:-.03em;margin:17px 0 12px}
+.quant-discovery>p{font-size:14px;line-height:1.7;opacity:.72;max-width:58ch}
+.quant-discovery-windows{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:22px}
+.quant-discovery-windows>span{font-size:12px;border:1px solid rgba(128,128,128,.25);padding:12px;border-radius:8px}
+.quant-discovery-windows i{display:inline-block;width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.3;margin-right:7px}
+.quant-discovery-windows [data-state=unusual] i{opacity:1;box-shadow:0 0 10px currentColor;animation:quant-discovery-flash 2.4s ease-in-out infinite}
+.quant-discovery-windows small{display:block;font-size:10px;line-height:1.5;opacity:.65;margin-top:7px}
+.quant-discovery .quant-discovery-reporting{font-size:12px;margin-top:18px}
+@keyframes quant-discovery-flash{50%{opacity:.35}}
+@media(prefers-reduced-motion:reduce){.quant-discovery-windows [data-state=unusual] i{animation:none}}

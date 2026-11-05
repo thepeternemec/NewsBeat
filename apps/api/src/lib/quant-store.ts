@@ -2,7 +2,7 @@ import { randomUUID } from "node:crypto";
 import { db, hasDatabaseEnv, type Sql } from "@newsbeat/db";
 import {
   INTELLIGENCE_VERSION, QUANT_POLICY_VERSION, SIGNAL_CONTEXTS, SEED_BEATS, type IntelligenceSignal, type IntelligenceResponse,
-  type MarketSnapshot, type MarketBar, type QuantBundle, type QuantEvaluationRecord, type SignalAlert,
+  type MarketSnapshot, type MarketBar, type QuantBundle, type QuantEvaluationRecord, type SignalAlert, type MarketAnomalyRecord,
 } from "@newsbeat/contracts";
 import { constructSignal } from "./signal-construction.js";
 import { freshness } from "./news.js";
@@ -10,12 +10,13 @@ import { MARKET_PROFILES, fetchMarketSnapshots, type MarketRefresh, type MarketP
 import { buildMarketContext } from "./quant-engine.js";
 import { applyTiming, beginEvaluation, decideTiming, updateOutcomes } from "./quant-decision.js";
 import { QUANT_SCHEMA } from "./quant-schema.js";
+import { ANOMALY_VERSION, discoverMarket, freezeAnomaly } from "./quant-anomaly.js";
 
 const decode = <T>(value: unknown): T => (typeof value === "string" ? JSON.parse(value) : value) as T;
 // postgres.js serializes inferred jsonb parameters; pass JSON values, never an encoded string.
 const json = (value: unknown) => JSON.parse(JSON.stringify(value));
 const iso = (value: unknown): string | null => value instanceof Date ? value.toISOString() : typeof value === "string" ? value : null;
-function nextDue(record: QuantEvaluationRecord) {
+function nextDue(record: Pick<QuantEvaluationRecord, "outcomes">) {
   const pending = record.outcomes.filter(outcome => outcome.status === "pending").map(outcome => outcome.due_at).sort();
   return pending[0] ?? null;
 }
@@ -45,7 +46,10 @@ export async function readQuantBundle(beatId: string, contextId: string): Promis
         "select id,beat_id,event_id as source_signal_id,signal_version,context_id,triggered_at,resolved_at,resolution,construction from public.newsbeat_quant_alerts where beat_id=$1 and context_id=$2 and policy_version=$3 order by triggered_at desc,signal_version desc,id desc limit 20", [beatId, contextId, QUANT_POLICY_VERSION]),
     ]);
     const bundle = rows[0] ? decode<QuantBundle>(rows[0].bundle) : undefined;
-    if (bundle && Date.now() - Date.parse(bundle.computed_at) > 10 * 60000) bundle.market.status = "stale";
+    if (bundle && (!Number.isFinite(Date.parse(bundle.computed_at)) || Date.now() - Date.parse(bundle.computed_at) > 10 * 60000 || Date.parse(bundle.computed_at) > Date.now() + 5000)) {
+      bundle.market.status = "stale";
+      if (bundle.research) bundle.research = { ...bundle.research, status: "data_hold", headline: "The last independent scan is no longer current." };
+    }
     return { ...(bundle ? { bundle } : {}), alerts: alerts.map(row => ({ ...row, triggered_at: iso(row.triggered_at)!, resolved_at: iso(row.resolved_at), construction: decode<SignalAlert["construction"]>(row.construction) })) };
   } catch (error) {
     if ((error as { code?: string }).code !== "42P01") console.warn("quantitative read unavailable");
@@ -94,6 +98,13 @@ export async function runMarketIntelligence(dependencies: WorkerDependencies = {
       }
     });
     const snapshots = await loadSnapshots(sql, now);
+    const dueAnomalies = await sql.unsafe<Array<{ id: string; record: unknown }>>("select id,record from public.newsbeat_market_anomalies where next_due_at<=to_timestamp($1) order by next_due_at limit 200", [now / 1000]);
+    for (const row of dueAnomalies) {
+      const record = decode<MarketAnomalyRecord>(row.record), profile = MARKET_PROFILES.find(p => p.id === record.instrument_id);
+      if (!profile) continue;
+      const updated = { ...record, outcomes: updateOutcomes(record, profile, snapshots, now) };
+      await sql.unsafe("update public.newsbeat_market_anomalies set record=$2::jsonb,next_due_at=$3 where id=$1", [row.id, json(updated), nextDue(updated)]);
+    }
     type SignalRow = { signal: unknown; current_revision: unknown; previous_revision: unknown; last_success_at: unknown; last_error: string | null; pipeline_version: string | null; pending: boolean; source_success: unknown };
     const rows = await sql.unsafe<SignalRow[]>(
       "select e.signal,c.signal as current_revision,p.signal as previous_revision,j.last_success_at,j.last_error,j.pipeline_version,(coalesce((select max(a.id) from public.news_articles a where a.beat_id=e.beat_id and a.published_at>to_timestamp($1)-interval '24 hours'),0)>coalesce(j.processed_article_id,0)) as pending,s.last_success_at as source_success from public.newsbeat_intelligence_events e left join public.newsbeat_intelligence_revisions c on c.event_id=e.id and c.version=e.version left join public.newsbeat_intelligence_revisions p on p.event_id=e.id and p.version=e.version-1 left join public.newsbeat_intelligence_jobs j on j.beat_id=e.beat_id left join public.news_ingestion_status s on s.beat_id=e.beat_id where e.evidence_updated_at>to_timestamp($1)-interval '7 days' order by e.event_changed_at desc limit 120", [now / 1000]);
@@ -107,6 +118,21 @@ export async function runMarketIntelligence(dependencies: WorkerDependencies = {
     for (const profile of MARKET_PROFILES.filter((item): item is MarketProfile & { beat_id: string } => !!item.beat_id)) {
       const market = buildMarketContext(profile, snapshots, now), topic = SEED_BEATS.find(topic => topic.beat_id === profile.beat_id)!;
       const relevant = rows.filter(row => decode<IntelligenceSignal>(row.signal).beat_id === profile.beat_id).slice(0, 20);
+      const research = discoverMarket(profile, snapshots, market, relevant.map(row => decode<IntelligenceSignal>(row.signal)),
+        relevant.some(row => !!row.last_success_at && now - Date.parse(iso(row.last_success_at)!) <= 90 * 60000 && !row.pending && !row.last_error && row.pipeline_version === INTELLIGENCE_VERSION && freshness(iso(row.source_success), topic.freshness_slo_minutes).status === "fresh"), now);
+      await sql.begin(async tx => {
+        const owner = await tx.unsafe<Array<{ lease_token: string | null }>>("select lease_token from public.newsbeat_quant_worker where id='market-intelligence' for update");
+        if (owner[0]?.lease_token !== token) throw new Error("lease_lost");
+        for (const window of research.windows) {
+          // Missing data cannot close an episode. A measured reset or reversal can.
+          if (window.status === "insufficient") continue;
+          await tx.unsafe("update public.newsbeat_market_anomalies set closed_at=$4::timestamptz,record=jsonb_set(record,'{closed_at}',to_jsonb($4::text)) where instrument_id=$1 and detector_version=$2 and minutes=$3 and closed_at is null and ($5::text='usual' or direction<>$6)", [profile.id, ANOMALY_VERSION, window.minutes, nowIso, window.status, window.direction]);
+          const record = freezeAnomaly(window, profile, snapshots, now);
+          if (record) await tx.unsafe("insert into public.newsbeat_market_anomalies(id,instrument_id,detector_version,minutes,direction,opened_at,next_due_at,record) values($1,$2,$3,$4,$5,$6,$7,$8::jsonb) on conflict do nothing", [record.id, profile.id, ANOMALY_VERSION, window.minutes, window.direction, nowIso, nextDue(record), json(record)]);
+        }
+      });
+      const episodes = await sql.unsafe<Array<{ record: unknown }>>("select record from public.newsbeat_market_anomalies where instrument_id=$1 and detector_version=$2 order by opened_at desc,id limit 8", [profile.id, ANOMALY_VERSION]);
+      research.records = episodes.map(row => decode<MarketAnomalyRecord>(row.record));
       for (const context of SIGNAL_CONTEXTS) {
         const timing = relevant.map(row => {
           const current = decode<IntelligenceSignal>(row.signal), canonical = row.current_revision ? decode<IntelligenceSignal>(row.current_revision) : current;
@@ -155,7 +181,7 @@ export async function runMarketIntelligence(dependencies: WorkerDependencies = {
           return { minutes, observed: Number(row?.observed ?? 0), pending: Number(row?.pending ?? 0), expired: Number(row?.expired ?? 0),
             mean_excess_return: row?.mean_excess ?? null, mean_directional_excess_return: row?.mean_directional_excess ?? null };
         });
-        const bundle: QuantBundle = { policy_version: QUANT_POLICY_VERSION, computed_at: nowIso, context_id: context.id, market,
+        const bundle: QuantBundle = { policy_version: QUANT_POLICY_VERSION, computed_at: nowIso, context_id: context.id, market, research,
           decisions: timing.map(item => item.decision), evaluations: recentRecords.map(row => decode<QuantEvaluationRecord>(row.record)),
           evaluation: { observations: Number(first?.total ?? 0), alerts: Number(alerts?.total ?? 0), horizons: horizons("all_constructions"), review_horizons: horizons("review_alert"),
             note: "Prospective first-snapshot observations include held cases. Direction-aligned excess flips adverse theses; mixed/unclear directions are excluded from that mean. Snapshot-mid returns before fees; not executable P&L, a backtest or evidence of outperformance. Thirty-day cohorts differ in selection and entry time." } };

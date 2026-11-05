@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import { db, closeDb } from "@newsbeat/db";
-import { INTELLIGENCE_VERSION, type IntelligenceSignal, type MarketSnapshot, type QuantEvaluationRecord } from "@newsbeat/contracts";
+import { INTELLIGENCE_VERSION, type IntelligenceSignal, type MarketSnapshot, type QuantEvaluationRecord, type MarketAnomalyRecord } from "@newsbeat/contracts";
 import { quantitativeFixture } from "./quant-fixtures.js";
 import { runMarketIntelligence } from "./quant-store.js";
 import { readIntelligence } from "./intelligence.js";
@@ -12,7 +12,41 @@ if (connection) {
   const url = new URL(connection);
   if (!["localhost", "127.0.0.1"].includes(url.hostname) || url.pathname !== "/newsbeat_intelligence_test") throw new Error("Quantitative tests require the dedicated localhost database.");
 }
-const truncate = "truncate public.newsbeat_quant_alerts,public.newsbeat_quant_evaluations,public.newsbeat_quant_contexts,public.newsbeat_quant_worker,public.newsbeat_market_bars,public.newsbeat_market_sources,public.newsbeat_signal_alerts,public.newsbeat_intelligence_revisions,public.newsbeat_intelligence_events,public.newsbeat_intelligence_jobs,public.news_articles,public.news_ingestion_status restart identity";
+const truncate = "truncate public.newsbeat_market_anomalies,public.newsbeat_quant_alerts,public.newsbeat_quant_evaluations,public.newsbeat_quant_contexts,public.newsbeat_quant_worker,public.newsbeat_market_bars,public.newsbeat_market_sources,public.newsbeat_signal_alerts,public.newsbeat_intelligence_revisions,public.newsbeat_intelligence_events,public.newsbeat_intelligence_jobs,public.news_articles,public.news_ingestion_status restart identity";
+
+test("market discovery persists without news, deduplicates active episodes and scores frozen future observations", { skip: !connection, timeout: 45000 }, async () => {
+  process.env.DATABASE_URL = connection!;
+  const sql = db(), f = quantitativeFixture(Date.now(), 0.003);
+  let clock = f.now, markets = [f.asset, f.benchmark], fetches = 0;
+  try {
+    await sql.unsafe(readFileSync(new URL("../../../../db/schema.sql", import.meta.url), "utf8"));
+    await sql.unsafe(truncate);
+    const deps = { now: () => clock, fetchMarkets: async () => { fetches++; return markets.map(snapshot => ({ id: snapshot.instrument.id, snapshot: structuredClone(snapshot) })); } };
+    await runMarketIntelligence(deps);
+    let response = await readIntelligence(f.profile.beat_id!);
+    assert.equal(response.signals.length, 0);
+    assert.ok(response.quantitative?.research?.windows.some(w => w.status === "unusual"));
+    const initial = await sql.unsafe<Array<{ record: MarketAnomalyRecord }>>("select record from public.newsbeat_market_anomalies order by id");
+    assert.ok(initial.length > 0);
+    const frozen = initial[0]!.record;
+    await runMarketIntelligence(deps);
+    const repeated = await sql.unsafe<Array<{ record: MarketAnomalyRecord }>>("select record from public.newsbeat_market_anomalies order by id");
+    assert.deepEqual(repeated, initial, "same episode cannot reset the reference or inflate sample counts");
+    const previousFetches = fetches;
+    await readIntelligence(f.profile.beat_id!);
+    assert.equal(fetches, previousFetches, "public reads only load stored research");
+    clock = f.end + 25 * 60000;
+    markets = markets.map(s => { const copy = structuredClone(s), close = copy.book!.mid * (s.instrument.id === f.profile.id ? 1.01 : 1.005);
+      copy.observed_at = new Date(clock).toISOString(); copy.book!.observed_at = copy.observed_at;
+      copy.bars.push({ time: f.end + 15 * 60000, open: close, high: close, low: close, close, volume: 10, trades: 2 }); return copy; });
+    await runMarketIntelligence(deps);
+    const [updated] = await sql.unsafe<Array<{ record: MarketAnomalyRecord }>>("select record from public.newsbeat_market_anomalies where id=$1", [frozen.id]);
+    assert.equal(updated!.record.outcomes[0]!.status, "observed");
+    assert.deepEqual(updated!.record.window, frozen.window);
+    assert.equal(updated!.record.reference_price, frozen.reference_price);
+    assert.equal(updated!.record.closed_at, null, "a gap is not evidence that the anomaly cleared");
+  } finally { await closeDb(); }
+});
 
 test("Postgres persists measured timing, immutable forward snapshots, alert idempotency and revised-premise closure", { skip: !connection, timeout: 45000 }, async () => {
   process.env.DATABASE_URL = connection!;

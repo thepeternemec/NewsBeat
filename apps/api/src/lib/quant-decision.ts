@@ -129,7 +129,7 @@ export function beginEvaluation(signal: IntelligenceSignal, decision: QuantSigna
     outcomes: [15, 60, 240].map(minutes => ({ horizon_minutes: minutes, status: "pending", due_at: iso(decisionAt + minutes * 60000),
       observed_at: null, market_at: null, asset_return: null, benchmark_return: null, residual_return: null })) };
 }
-export function updateOutcomes(record: QuantEvaluationRecord, profile: MarketProfile, snapshots: Map<string, MarketSnapshot>, now: number): ForwardOutcome[] {
+export function updateOutcomes(record: Pick<QuantEvaluationRecord, "outcomes" | "reference_at" | "reference_price" | "reference_benchmark_prices" | "frozen_beta" | "frozen_intercept">, profile: MarketProfile, snapshots: Map<string, MarketSnapshot>, now: number): ForwardOutcome[] {
   const asset = snapshots.get(profile.id), benchmark = benchmarkFor(profile);
   return record.outcomes.map(outcome => {
     if (outcome.status !== "pending" || now < Date.parse(outcome.due_at)) return outcome;

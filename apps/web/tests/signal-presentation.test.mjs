@@ -60,6 +60,21 @@ test("a stale panel cannot display a current review outcome", () => {
   assert.ok(!readable.includes("Review now"));
 });
 
+test("independent discovery appears without a headline thesis and never upgrades a stale scan", () => {
+  const research = { status: "ready", headline: "An unusual relative move deserves investigation.", explanation: "The market scan works independently of reporting.",
+    windows: [{ minutes: 30, status: "unusual", historical_windows: 40, empirical_tail_fraction: .024, regime: "stable" }], reporting: { note: "Reporting is still being checked." }, records: [], note: "Ranks are not return probabilities." };
+  const html = renderToStaticMarkup(createElement(Panel, { bundle: { ...bundle, research } }));
+  const readable = html.slice(0, html.indexOf('<details class="quant-technical">'));
+  assert.match(readable, /INDEPENDENT MARKET SCAN/);
+  assert.match(readable, /An unusual relative move/);
+  assert.ok(!readable.includes("2.40%"));
+  assert.ok(!readable.includes("Review now"));
+  const stale = renderToStaticMarkup(createElement(Panel, { bundle: { ...bundle, research }, readStale: true }));
+  const staleReadable = stale.slice(0, stale.indexOf('<details class="quant-technical">'));
+  assert.match(staleReadable, /last independent scan needs refreshing/);
+  assert.ok(!staleReadable.includes("Unusual move"));
+});
+
 test("a built hypothesis is distinguished from its pending timing check and failed analysis", () => {
   const ready = { constructed: true, analysisStatus: "ready" };
   assert.equal(presentTiming(undefined, false, ready).label, "Signal constructed");
