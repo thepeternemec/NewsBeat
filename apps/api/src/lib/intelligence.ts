@@ -3,7 +3,7 @@ import { db, hasDatabaseEnv } from "@newsbeat/db";
 import { SEED_BEATS, INTELLIGENCE_VERSION, SIGNAL_CONTEXTS, type SignalContextId, type IntelligenceResponse, type IntelligenceSignal, type IntelligenceEvidence } from "@newsbeat/contracts";
 import { stories, topicById, freshness } from "./news.js";
 import { hash, reconcileSignal, selectIntelligenceEvidence } from "./intelligence-core.js";
-import { generateIntelligence, INTELLIGENCE_MODEL } from "./intelligence-model.js";
+import { generateIntelligence, INTELLIGENCE_MODEL, INTELLIGENCE_GENERATION_VERSION } from "./intelligence-model.js";
 import { attachQuantitative } from "./quant-store.js";
 
 export const INTELLIGENCE_SCHEMA = "-- Durable interpretation jobs and event memory. Applied only by the authenticated worker.\ncreate table if not exists public.newsbeat_intelligence_jobs (\n  beat_id text primary key,\n  requested_article_id bigint not null default 0,\n  processed_article_id bigint not null default 0,\n  input_hash text,\n  lease_token text,\n  lease_until timestamptz,\n  next_attempt_at timestamptz not null default now(),\n  last_attempt_at timestamptz,\n  last_success_at timestamptz,\n  last_error text,\n  coverage_truncated boolean not null default false\n);\ncreate table if not exists public.newsbeat_intelligence_events (\n  id text primary key,\n  beat_id text not null,\n  version integer not null check (version > 0),\n  event_changed_at timestamptz not null,\n  evidence_updated_at timestamptz not null,\n  signal jsonb not null\n);\ncreate index if not exists newsbeat_intelligence_events_asset_time_idx\n  on public.newsbeat_intelligence_events (beat_id, evidence_updated_at desc);\ncreate table if not exists public.newsbeat_intelligence_revisions (\n  event_id text not null references public.newsbeat_intelligence_events(id),\n  version integer not null,\n  recorded_at timestamptz not null default now(),\n  signal jsonb not null,\n  primary key (event_id, version)\n);\n\n-- Contextual signal construction and idempotent review-alert journal.\nalter table public.newsbeat_intelligence_jobs add column if not exists pipeline_version text;\nalter table public.newsbeat_intelligence_jobs add column if not exists last_attempt_version text;\ncreate table if not exists public.newsbeat_signal_alerts (\n  id text primary key,\n  beat_id text not null,\n  event_id text not null references public.newsbeat_intelligence_events(id),\n  signal_version integer not null check (signal_version > 0),\n  context_id text not null check (context_id in ('fundamentals', 'liquidity', 'risk')),\n  triggered_at timestamptz not null default now(),\n  resolved_at timestamptz,\n  resolution text,\n  construction jsonb not null,\n  unique (event_id, context_id, signal_version)\n);\ncreate index if not exists newsbeat_signal_alerts_asset_context_time_idx\n  on public.newsbeat_signal_alerts (beat_id, context_id, triggered_at desc);\n";
@@ -58,13 +58,13 @@ export async function runIntelligence(oidcToken?: string | null, generate: typeo
   }
   const token = randomUUID();
   const jobs = await sql<Job[]>`update public.newsbeat_intelligence_jobs set lease_token = ${token},
-    lease_until = now() + interval '2 minutes', last_attempt_at = now(), last_attempt_version = ${INTELLIGENCE_VERSION}
+    lease_until = now() + interval '2 minutes', last_attempt_at = now(), last_attempt_version = ${INTELLIGENCE_GENERATION_VERSION}
     where beat_id in (select beat_id from public.newsbeat_intelligence_jobs
       where requested_article_id > 0 and (requested_article_id > processed_article_id or pipeline_version is distinct from ${INTELLIGENCE_VERSION})
-        and (next_attempt_at <= now() or last_attempt_version is distinct from ${INTELLIGENCE_VERSION})
+        and (next_attempt_at <= now() or last_attempt_version is distinct from ${INTELLIGENCE_GENERATION_VERSION})
         and (lease_until is null or lease_until < now())
       order by case when pipeline_version is distinct from ${INTELLIGENCE_VERSION} then 0 else 1 end,
-        case when beat_id = ${PILOT_BEATS[0]!.beat_id} then 0 else 1 end, last_success_at asc nulls first, beat_id limit 2 for update skip locked)
+        last_attempt_at asc nulls first, last_success_at asc nulls first, beat_id limit 2 for update skip locked)
     returning *`;
   const results = await Promise.all(jobs.map(async job => {
     try {
@@ -77,7 +77,7 @@ export async function runIntelligence(oidcToken?: string | null, generate: typeo
       if (snapshot.freshness.status !== "fresh") throw new Error("source_stale");
       const previous = oldRows.map(row => decode(row.signal));
       const evidence = selectIntelligenceEvidence(snapshot.stories, String(job.processed_article_id));
-      const fingerprint = hash([INTELLIGENCE_VERSION, INTELLIGENCE_MODEL, evidence.map(report => [report.id, report.title])]);
+      const fingerprint = hash([INTELLIGENCE_VERSION, INTELLIGENCE_GENERATION_VERSION, INTELLIGENCE_MODEL, evidence.map(report => [report.id, report.title])]);
       const drafts = job.input_hash === fingerprint || !evidence.length ? [] : await generate(evidence, previous, topic, oidcToken);
       const now = new Date().toISOString();
       const signals = drafts.map(draft => reconcileSignal(job.beat_id, draft, evidence, previous, now, INTELLIGENCE_MODEL));

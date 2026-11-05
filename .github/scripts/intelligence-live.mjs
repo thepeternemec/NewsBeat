@@ -33,7 +33,7 @@ function verifyMarket(data, kind) {
   }
 }
 let last = "deployment not ready";
-for (let attempt = 0; attempt < 20; attempt++) {
+for (let attempt = 0; attempt < 32; attempt++) {
   try {
     const data = await read("/api/v2/intelligence?beat_id=b_bb964843350e&check=" + Date.now());
     assert.equal(data.beat_id, "b_bb964843350e"); assert.equal(data.pilot, true); assert.equal(data.context.id, "fundamentals");
@@ -63,6 +63,20 @@ for (let attempt = 0; attempt < 20; attempt++) {
       const home = await fetch(origin + "/?verify=timing").then(result => result.text());
       assert.ok(!/event.intelligence/i.test(home)); assert.ok(home.includes("Signal construction")); assert.ok(home.includes('id="agent-workflow"'));
       assert.ok(home.includes("Delta. Confirmation. Timing."));
+      const pilots = [["NVDA", "b_bb964843350e"], ["AAPL", "b_7d5acdda6186"], ["MSFT", "b_a723a1d2787f"],
+        ["GOOGL", "b_c0c3f9282a94"], ["BTC", "b_06c91290de1c"], ["ETH", "b_edbc5b5af755"]];
+      const pilotReads = await Promise.all(pilots.map(async ([ticker, id]) => ({ ticker, data: await read("/api/v2/intelligence?beat_id=" + id + "&verify=" + Date.now()) })));
+      for (const { ticker, data: pilot } of pilotReads) {
+        console.log(JSON.stringify({ pilot: ticker, status: pilot.status, analysis_error: pilot.analysis.error, analysis_at: pilot.analysis.last_success_at,
+          signals: pilot.signals.length, constructed: pilot.constructions.filter(item => item.assessment).length,
+          timed: pilot.constructions.filter(item => item.quantitative).length, review_alerts: pilot.quantitative?.evaluation.alerts ?? 0 }));
+      }
+      for (const { ticker, data: pilot } of pilotReads) {
+        assert.equal(pilot.analysis.error, null, ticker + " analysis must recover");
+        assert.ok(Date.now() - Date.parse(pilot.analysis.last_success_at) < 90 * 60000, ticker + " needs a recent successful analysis");
+      }
+      const workspace = await fetch(origin + "/intelligence?verify=readiness").then(result => result.text());
+      assert.ok(workspace.includes("Reading the stored signal."), "the readable readiness update is deployed");
       console.log("Verified measured xStock/crypto context, grounded analysis, timing safety, outcome records, context selection, discovery and authenticated workers.");
       process.exit(0);
     }

@@ -1,4 +1,4 @@
-import type { QuantBundle, QuantSignalDecision, MarketContext } from "@newsbeat/contracts";
+import type { ConstructedSignal, IntelligenceResponse, QuantBundle, QuantSignalDecision, MarketContext } from "@newsbeat/contracts";
 import "./quantitative-panel.css";
 import { presentTiming } from "./signal-presentation";
 
@@ -37,10 +37,12 @@ function ReturnPath({ market }: { market: MarketContext }) {
 function Metric({ label, value, note }: { label: string; value: string; note: string }) {
   return <div className="quant-metric"><span>{label}</span><strong>{value}</strong><small>{note}</small></div>;
 }
-export default function QuantitativePanel({ bundle, decision, signalId, version, readStale = false }: {
+export default function QuantitativePanel({ bundle, decision, signalId, version, construction, analysisStatus, loading = false, readStale = false }: {
   bundle?: QuantBundle; decision?: QuantSignalDecision; signalId?: string; version?: number; readStale?: boolean;
+  construction?: ConstructedSignal; analysisStatus?: IntelligenceResponse["status"]; loading?: boolean;
 }) {
-  if (!bundle) return <div className="quant-panel quant-pending" role="status"><span className="quant-eyebrow">WHAT YOUR AGENT CAN USE</span><h3>Building the picture.</h3><p>The reporting remains available. A current market check is needed before a review signal can be assessed.</p></div>;
+  const readiness = construction || analysisStatus || loading ? { constructed: Boolean(construction?.assessment), analysisStatus, loading } : undefined;
+  if (!bundle) { const pending = presentTiming(undefined, readStale, readiness); return <div className="quant-panel quant-pending" role="status"><span className="quant-eyebrow">{pending.label}</span><h3>{pending.title}</h3><p>{pending.text}</p></div>; }
   const market = bundle.market, stale = readStale || market.status === "stale";
   const recent = decision?.recent_window ?? market.windows.find(row => row.minutes === 30);
   const fit = decision ? decision.fit : market.fit;
@@ -50,10 +52,10 @@ export default function QuantitativePanel({ bundle, decision, signalId, version,
   const records = bundle.evaluations.filter(row => row.source_signal_id === signalId && row.signal_version === version);
   const first = records.find(row => row.cohort === "all_constructions");
   const cost = market.book?.buy_impact_bps !== null && market.book?.buy_impact_bps !== undefined && market.book.sell_impact_bps !== null ? market.book.buy_impact_bps + market.book.sell_impact_bps : null;
-  const view = presentTiming(currentDecision, stale);
+  const view = presentTiming(currentDecision, stale, readiness);
   const passed = (id: string) => !stale && decision?.checks.find(check => check.id === id)?.passed === true;
   const checks = [
-    { label: "New information", met: passed("information_delta") },
+    { label: "Market hypothesis", met: construction ? Boolean(construction.assessment) : Boolean(decision) },
     { label: "Market confirmation", met: passed("post_information_response") && passed("relative_confirmation") },
     { label: "Ready for review", met: view.state === "review" },
   ];

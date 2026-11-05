@@ -59,3 +59,44 @@ test("a stale panel cannot display a current review outcome", () => {
   assert.match(readable, /Get a fresh view first/);
   assert.ok(!readable.includes("Review now"));
 });
+
+test("a built hypothesis is distinguished from its pending timing check and failed analysis", () => {
+  const ready = { constructed: true, analysisStatus: "ready" };
+  assert.equal(presentTiming(undefined, false, ready).label, "Signal constructed");
+  assert.match(presentTiming(undefined, false, ready).title, /next market check/);
+  const unavailable = presentTiming({ phase: "developing", action: "review_now" }, false, { ...ready, analysisStatus: "unavailable" });
+  assert.equal(unavailable.state, "hold");
+  assert.match(unavailable.title, /Analysis needs a retry/);
+  assert.match(presentTiming(undefined, false, { ...ready, analysisStatus: "pending" }).title, /Fresh reporting is being checked/);
+  assert.match(presentTiming(undefined, false, { constructed: false, analysisStatus: "ready" }).title, /needs a market hypothesis/);
+});
+test("a constructed watch signal explains the failed confirmation without exposing the math", () => {
+  const view = presentTiming({ phase: "unconfirmed", action: "keep_watching", checks: [{ id: "post_information_response", passed: false }] });
+  assert.equal(view.label, "Signal constructed");
+  assert.match(view.text, /has not moved in the hypothesis/);
+  assert.equal(view.state, "watch");
+});
+test("the initial story matches the focus and has a construction; explicit selection persists", () => {
+  const data = {
+    signals: [{ id: "outside", version: 1 }, { id: "legacy", version: 1 }, { id: "new-version", version: 2 }, { id: "constructed", version: 1 }],
+    constructions: [
+      { source_signal_id: "outside", assessment: {}, checks: [{ id: "context", passed: false }], action: "no_alert" },
+      { source_signal_id: "legacy", assessment: null, checks: [] },
+      { source_signal_id: "new-version", assessment: {}, checks: [{ id: "context", passed: true }], action: "keep_watching" },
+      { source_signal_id: "constructed", assessment: {}, checks: [{ id: "context", passed: true }], action: "keep_watching", quantitative: { signal_version: 1 } },
+    ],
+  };
+  assert.equal(presentation.selectSignalIndex(data), 3);
+  assert.equal(presentation.selectSignalIndex(data, "outside"), 0);
+  assert.equal(presentation.selectSignalIndex({ signals: [], constructions: [] }), 0);
+});
+test("the live panel shows a constructed signal while timing is pending and holds on analysis failure", () => {
+  const construction = { assessment: {} };
+  const pending = renderToStaticMarkup(createElement(Panel, { bundle, construction, analysisStatus: "ready" }));
+  assert.match(pending, /Signal constructed/);
+  assert.match(pending, /Waiting for the next market check/);
+  const failure = renderToStaticMarkup(createElement(Panel, { bundle, construction, analysisStatus: "unavailable", decision: { ...decision, phase: "developing", action: "review_now" } }));
+  const readable = failure.slice(0, failure.indexOf('<details class="quant-technical">')).replace(/<[^>]+>/g, " ");
+  assert.match(readable, /Analysis needs a retry/);
+  assert.ok(!readable.includes("Review now"));
+});

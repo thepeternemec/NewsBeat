@@ -176,3 +176,31 @@ test("Postgres requires quantitative confirmation while preserving context revis
     assert.equal((await runIntelligence(null, generate)).claimed, 0);
   } finally { await closeDb(); }
 });
+
+test("Postgres retries a revised generator once despite old backoff and gives all pilot assets a turn", { skip: !connection, timeout: 45000 }, async () => {
+  process.env.DATABASE_URL = connection!;
+  const sql = db();
+  try {
+    await sql.unsafe(readFileSync(new URL("../../../../db/schema.sql", import.meta.url), "utf8"));
+    await runIntelligence(null, async () => []);
+    await sql`truncate public.newsbeat_signal_alerts, public.newsbeat_intelligence_revisions, public.newsbeat_intelligence_events, public.newsbeat_intelligence_jobs, public.news_articles, public.news_ingestion_status restart identity`;
+    const ordered = [...PILOT_BEATS.filter(beat => beat.ticker !== "NVDA"), PILOT_BEATS.find(beat => beat.ticker === "NVDA")!];
+    for (const [index, beat] of ordered.entries()) {
+      await sql`insert into public.news_articles(beat_id,provider_uri,title,excerpt,url,source,published_at)
+        values(${beat.beat_id},${"fair-" + beat.ticker},${beat.label + " reports an update"},'','https://example.com/report','Publisher',now())`;
+      await sql`insert into public.news_ingestion_status(beat_id,last_success_at,last_checked_at) values(${beat.beat_id},now(),now())`;
+      await sql`insert into public.newsbeat_intelligence_jobs(beat_id,pipeline_version,last_attempt_version,last_attempt_at,next_attempt_at,last_error)
+        values(${beat.beat_id},${INTELLIGENCE_VERSION},'previous-generator',${new Date(Date.now() - (ordered.length - index) * 60_000).toISOString()},now()+interval '1 hour','invalid_analysis_schema_events__evidence_ids_too_big')`;
+    }
+    const seen: string[] = [];
+    const generate: Parameters<typeof runIntelligence>[1] = async (_reports, _prior, asset) => { seen.push(asset.ticker); return []; };
+    for (let run = 0; run < 3; run++) {
+      const before = seen.length;
+      assert.equal((await runIntelligence(null, generate)).claimed, 2);
+      assert.deepEqual(new Set(seen.slice(before)), new Set(ordered.slice(run * 2, run * 2 + 2).map(beat => beat.ticker)));
+    }
+    assert.equal(new Set(seen).size, 6);
+    assert.equal((await runIntelligence(null, generate)).claimed, 0);
+    for (const beat of ordered) assert.equal((await readIntelligence(beat.beat_id)).analysis.error, null);
+  } finally { await closeDb(); }
+});

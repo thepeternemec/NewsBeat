@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11-05 — Signal readiness and analysis recovery
+
+- Distinguished a constructed signal from a confirmed timing alert. The intelligence workspace opens a relevant constructed signal and explains pending timing, failed analysis and missing hypotheses separately.
+- Prevented an expired trigger from being mislabeled as an analysis outage, while preserving holds and alert suppression.
+- Added one fully validated model correction within the existing 25-second deadline when structured generation fails. Oversized citation lists are regenerated rather than truncated; unsupported claims and citations remain rejected.
+- Scheduled the oldest attempted asset first and allowed a revised generator one attempt past existing failure backoff. Live deployment checks now cover analysis recovery for all six pilot assets.
+- Kept prior reference lists distinct from output citation fields to reduce repeated citation-limit failures.
+
 ## 2026-11-05 — Homepage company lookup
 
 - Brought company and ticker search onto the landing page, with keyboard-accessible suggestions that distinguish stocks from crypto assets.

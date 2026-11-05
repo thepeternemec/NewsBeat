@@ -37,7 +37,7 @@ The measured journal records one review alert per source signal, context, interp
 
 Evidence selection is separate from summary selection: up to 24 reports combine newly indexed coverage (with reserved space for denials and withdrawals) and ranked story context. This keeps contradictory reporting eligible for analysis even when a digest would omit it. The 200-report source scan and selected evidence are bounded; inspect partial-coverage flags.
 
-Bounds remain two asset jobs per five-minute run, one model call per job, 25-second timeout, 4,000 output tokens and 15-minute retry delay. A strict JSON response schema limits the model to one concise construction per batch and four relevant prior contexts. Prior memory supplies no extra citable report IDs. Truncated, malformed, ungrounded or context-free output is rejected with a specific error code and schema field path; prior memory is retained. Unchanged known reporting is discarded as a no-op. No new credentials, payment method or budget is configured.
+Bounds remain two asset jobs per five-minute run, one initial model call plus at most one correction for rejected output per job, a shared 25-second timeout, and at most 4,000 output tokens per attempt and 15-minute retry delay. A strict JSON response schema limits the model to one concise construction per batch and four relevant prior contexts. Prior memory supplies no extra citable report IDs. Truncated, malformed, ungrounded or context-free output is rejected with a specific error code and schema field path; prior memory is retained. Unchanged known reporting is discarded as a no-op. No new credentials, payment method or budget is configured.
 
 ## Interfaces
 
@@ -58,3 +58,7 @@ Price/proxy confirmation, pre-information historical baselines, participation, b
 ## Verification
 
 Unit tests cover context mismatch, freshness, missing/unsupported trigger evidence, thresholds, contradiction, repeat coverage and version identity. Disposable PostgreSQL checks cover alert idempotency, resolving revised premises, pipeline upgrades, persistence and concurrent leases. Main-branch verification waits for real stored market constructions, checks context selection, protocol discovery and cron authentication.
+
+A constructed signal and a confirmed review alert are separate outputs. The workspace opens a constructed signal that matches the selected focus when available and shows why timing is waiting. Missing timing, unfinished interpretation, failed analysis and absent price confirmation are distinct states; a watch decision is a valid intelligence output.
+
+Jobs are claimed by oldest attempt rather than permanently prioritizing one asset. A generator-version change allows one attempt past the prior failure backoff, so a deployed correction can recover stalled assets; subsequent failures retain the normal retry delay. Live deployment verification checks successful analysis across all six pilot assets, including schema-error recovery.

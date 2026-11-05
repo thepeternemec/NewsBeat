@@ -90,7 +90,10 @@ export function applyTiming(base: ConstructedSignal, decision: QuantSignalDecisi
   const current = decision && decision.signal_version === base.version && decision.context_id === base.context_id &&
     now - Date.parse(decision.evaluated_at) >= -5000 && now - Date.parse(decision.evaluated_at) <= POLICY.max_snapshot_age_ms;
   const analysisReady = base.checks.find(check => check.id === "freshness")?.passed ?? false;
-  const hardReady = base.checks.filter(check => !["materiality", "novelty"].includes(check.id)).every(check => check.passed);
+  const hardChecks = base.checks.filter(check => !["materiality", "novelty"].includes(check.id));
+  const hardReady = hardChecks.every(check => check.passed);
+  const holdReason = !analysisReady ? "New source information is waiting for analysis. Timing alerts are on hold."
+    : hardChecks.find(check => !check.passed)?.reason;
   const invalidated = base.status === "invalidated";
   const marketCheck = { id: "market_timing", label: "Measured market timing", passed: !!current && decision.action === "review_now" && hardReady,
     reason: current ? decision.reason : "Waiting for current quantitative context. Headline interpretation alone cannot raise a timing alert." };
@@ -100,9 +103,12 @@ export function applyTiming(base: ConstructedSignal, decision: QuantSignalDecisi
     reason: "The timing policy accepts medium or high materiality only with measured price, participation and liquidity confirmation." }
     : check.id === "novelty" ? { ...check, passed: !!current && decision.delta.meaningful, reason: current ? decision.delta.description : check.reason } : check), marketCheck];
   return { ...base, action: canReview ? "review_now" : action, status: invalidated || action === "reassess" ? "invalidated" : canReview ? "alert" : action === "no_alert" ? "suppressed" : "watch",
-    explanation: invalidated ? base.explanation : !analysisReady && current ? "New source information is waiting for analysis. Timing alerts are on hold." : marketCheck.reason,
+    explanation: invalidated ? base.explanation : current && !hardReady && base.status !== "suppressed" ? holdReason ?? marketCheck.reason : marketCheck.reason,
     checks, alert_id: canReview ? decision!.alert_id : null, ...(current ? { quantitative: hardReady || invalidated || base.status === "suppressed" ? decision : {
-      ...decision, phase: "analysis_hold", action: "keep_watching", alert_id: null, reason: "Current source and analysis gates are not met; the stored timing result is held." } } : {}),
+      ...decision, phase: !analysisReady ? "analysis_hold" : decision.phase === "developing" ? "unconfirmed" : decision.phase,
+      action: "keep_watching", alert_id: null, reason: holdReason ?? "A current source condition is not met; the stored timing result is held.",
+      checks: decision.checks.map(check => check.id === "analysis_current" ? { ...check, passed: check.passed && analysisReady }
+        : check.id === "reported_trigger" ? { ...check, passed: check.passed && ["trigger", "window", "state"].every(id => base.checks.find(item => item.id === id)?.passed === true) } : check) } } : {}),
     market_reaction: current && decision.event_window ? { status: "observed", reason: "Coincident venue-price response after the recorded thesis anchor; proxy adjustment is descriptive and does not establish causality.",
       asset_return: decision.event_window.asset_return, benchmark_return: decision.event_window.benchmark_return,
       residual_return: decision.event_window.residual_return, start_at: decision.event_window.start_at, end_at: decision.event_window.end_at } : base.market_reaction };
