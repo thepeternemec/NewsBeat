@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-05 — Quoted-headline schema compatibility
+
+- Fixed a provider rejection caused by embedding quoted news headlines directly in strict-schema enum literals.
+- Report and event IDs remain restricted to the supplied sources. Trigger quotes retain the same server-side grounding checks; headlines and quotes are not rewritten.
+- Added a regression using a quoted headline and confirming that unrelated trigger text is still rejected.
+
 ## 2026-11-05 — Source-bound structured generation
 
 - Replaced the repeatedly noncompliant lightweight generator with a live-catalog structured-output model through the existing AI Gateway connection.
