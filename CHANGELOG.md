@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11-05 — Clearer agent intelligence
+
+- Added a motion-led, interactive explanation of how reporting becomes context for an agent, with pause controls and reduced-motion support.
+- Made live intelligence readable by default: a reported change, a short interpretation, a next check and plain-language review/wait/reassess states.
+- Moved calculations, thresholds, full reasoning, source history and forward observations into optional disclosures. The real price-comparison graph remains visible.
+- Clarified the value of connecting an agent, added example questions and published a signals-and-measurements guide in the docs.
+
+
 ## 2026-11-05 — Collection Unicode fix
 
 - Fixed a long headline that split an emoji at the text limit, causing PostgreSQL to reject an entire topic's collection batch and keep its status degraded.

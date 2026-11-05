@@ -1,5 +1,6 @@
 import type { QuantBundle, QuantSignalDecision, MarketContext } from "@newsbeat/contracts";
 import "./quantitative-panel.css";
+import { presentTiming } from "./signal-presentation";
 
 const PHASES: Record<QuantSignalDecision["phase"], string> = {
   data_hold: "Waiting for reliable market data", analysis_hold: "New reporting awaits analysis",
@@ -18,19 +19,19 @@ const date = (value: string) => new Date(value).toLocaleString(undefined, { mont
 const ACTIONS = { review_now: "Review now", keep_watching: "Keep watching", no_alert: "No alert in this context", reassess: "Reassess" };
 function ReturnPath({ market }: { market: MarketContext }) {
   const rows = market.curve;
-  if (rows.length < 2) return <div className="quant-chart-empty">A comparable price path is waiting for complete candles.</div>;
+  if (rows.length < 2) return <div className="quant-chart-empty">The recent price comparison is still being collected.</div>;
   const values = rows.flatMap(row => [row.asset_return, row.benchmark_return]);
   const low = Math.min(0, ...values), high = Math.max(0, ...values), range = Math.max(high - low, 0.0001);
   const points = (field: "asset_return" | "benchmark_return") => rows.map((row, index) =>
     (index / (rows.length - 1) * 700 + 10).toFixed(1) + "," + (146 - (row[field] - low) / range * 130).toFixed(1)).join(" ");
   return <figure className="quant-return-path">
-    <figcaption><span><i />{market.instrument?.symbol ?? "Asset"}</span><span><i className="quant-proxy-line" />{market.benchmark.label}</span><small>Rebased returns</small></figcaption>
+    <figcaption><span><i />{market.instrument?.underlying_ticker ?? "Asset"} market</span><span><i className="quant-proxy-line" />Market comparison</span></figcaption>
     <svg viewBox="0 0 720 160" role="img" aria-label={"Observed matched-candle returns for " + (market.instrument?.symbol ?? "the asset") + " and " + market.benchmark.label} preserveAspectRatio="none">
       <line x1="10" x2="710" y1={146 - (0 - low) / range * 130} y2={146 - (0 - low) / range * 130} stroke="currentColor" opacity=".15" />
       <polyline points={points("benchmark_return")} fill="none" stroke="currentColor" strokeWidth="1.5" strokeDasharray="5 5" opacity=".45" vectorEffect="non-scaling-stroke" />
-      <polyline points={points("asset_return")} fill="none" stroke="currentColor" strokeWidth="1.75" vectorEffect="non-scaling-stroke" />
+      <polyline className="quant-asset-line" pathLength={1} points={points("asset_return")} fill="none" stroke="currentColor" strokeWidth="1.75" vectorEffect="non-scaling-stroke" />
     </svg>
-    <div className="quant-chart-range"><span>{date(rows[0]!.at)}</span><span>{date(rows.at(-1)!.at)}</span></div>
+    <div className="quant-chart-range"><span>Earlier</span><span>Most recent</span></div>
   </figure>;
 }
 function Metric({ label, value, note }: { label: string; value: string; note: string }) {
@@ -39,7 +40,7 @@ function Metric({ label, value, note }: { label: string; value: string; note: st
 export default function QuantitativePanel({ bundle, decision, signalId, version, readStale = false }: {
   bundle?: QuantBundle; decision?: QuantSignalDecision; signalId?: string; version?: number; readStale?: boolean;
 }) {
-  if (!bundle) return <div className="quant-panel quant-pending" role="status"><span className="quant-eyebrow">MEASURED MARKET CONTEXT</span><h3>The first market snapshot is pending.</h3><p>Verified venue prices, a benchmark baseline and liquidity checks are required before a timing alert can be recorded.</p></div>;
+  if (!bundle) return <div className="quant-panel quant-pending" role="status"><span className="quant-eyebrow">WHAT YOUR AGENT CAN USE</span><h3>Building the picture.</h3><p>The reporting remains available. A current market check is needed before a review signal can be assessed.</p></div>;
   const market = bundle.market, stale = readStale || market.status === "stale";
   const recent = decision?.recent_window ?? market.windows.find(row => row.minutes === 30);
   const fit = decision ? decision.fit : market.fit;
@@ -49,7 +50,19 @@ export default function QuantitativePanel({ bundle, decision, signalId, version,
   const records = bundle.evaluations.filter(row => row.source_signal_id === signalId && row.signal_version === version);
   const first = records.find(row => row.cohort === "all_constructions");
   const cost = market.book?.buy_impact_bps !== null && market.book?.buy_impact_bps !== undefined && market.book.sell_impact_bps !== null ? market.book.buy_impact_bps + market.book.sell_impact_bps : null;
-  return <div className="quant-panel" aria-label="Measured market timing">
+  const view = presentTiming(currentDecision, stale);
+  const passed = (id: string) => !stale && decision?.checks.find(check => check.id === id)?.passed === true;
+  const checks = [
+    { label: "New information", met: passed("information_delta") },
+    { label: "Market confirmation", met: passed("post_information_response") && passed("relative_confirmation") },
+    { label: "Ready for review", met: view.state === "review" },
+  ];
+  return <div className="quant-panel" aria-label="Your agent's view">
+    <div className="agent-outcome" data-state={view.state}><span className="quant-eyebrow">WHAT YOUR AGENT CAN USE</span><div className="agent-outcome-label"><i aria-hidden="true" />{view.label}</div><h3>{view.title}</h3><p>{view.text}</p></div>
+    <ul className="agent-simple-checks" aria-label="Signal checks at a glance">{checks.map(check => <li key={check.label} data-met={check.met}><i aria-hidden="true" /><span>{check.label}</span><small>{check.met ? "Met" : "Waiting"}</small></li>)}</ul>
+    <div className="agent-market-picture"><span className="quant-eyebrow">{stale ? "LAST RECORDED MARKET PICTURE" : "THE MARKET PICTURE"}</span><ReturnPath market={market} /><p>{market.instrument?.kind === "tokenized_equity" ? "Stock graph uses the related xStock venue market." : "Price comparison uses one spot venue."} This shows observed movement, not a forecast.</p></div>
+    <details className="quant-technical"><summary>See the numbers and checks <span aria-hidden="true">+</span></summary><div className="quant-technical-content">
+
     <div className="quant-market-head"><div><span className="quant-eyebrow">MEASURED MARKET CONTEXT</span><h3>{market.instrument?.symbol ?? "Market data pending"}</h3></div><span className="quant-venue">{market.instrument?.venue ?? "Kraken"} · 5m</span></div>
     <p className="quant-instrument-note">{market.instrument?.kind === "tokenized_equity" ? "xStock venue market · company news informs the thesis" : "Spot venue market · self-excluding peer comparison"}{market.instrument && <> · <a href={market.instrument.mapping_url} target="_blank" rel="noopener noreferrer">Verified pair ↗</a></>}</p>
     <div className="quant-timing-state" data-phase={phase ?? "pending"}>
@@ -65,7 +78,6 @@ export default function QuantitativePanel({ bundle, decision, signalId, version,
       <Metric label="Quoted spread" value={number(market.book?.spread_bps, " bp")} note="Top of observed book" />
       <Metric label="$1k book impact" value={number(cost, " bp")} note="Two-sided estimate · fees excluded" />
     </div>
-    <ReturnPath market={market} />
     {decision && <div className="quant-delta">
       <span className="quant-eyebrow">INFORMATION DELTA</span><h4>{DELTAS[decision.delta.kind]}</h4><p>{decision.delta.description}</p>
       <div><span>{decision.delta.previous_version === null ? "First revision" : "v" + decision.delta.previous_version + " → v" + decision.delta.current_version}</span><span>{decision.delta.new_report_count} new cited {decision.delta.new_report_count === 1 ? "report" : "reports"}</span></div>
@@ -91,5 +103,8 @@ export default function QuantitativePanel({ bundle, decision, signalId, version,
       <small>{bundle.evaluation.note}</small>
     </div>
     <div className="quant-asof"><span>Collected {market.observed_at ? date(market.observed_at) : "pending"}</span><span>Last traded bucket {market.last_trade_at ? date(market.last_trade_at) : "unavailable"}</span><span>{bundle.policy_version}</span></div>
+
+    <a className="quant-doc-link" href="/docs/intelligence">What do these measurements mean? ↗</a>
+    </div></details>
   </div>;
 }

@@ -22,12 +22,12 @@ export default function DocsOverview() {
         <h1>Build on<br />the evidence.</h1>
         <p className="docs-lead">
           Connect your agent to NewsBeat’s current news foundation through MCP or REST. Discover an asset,
-          retrieve the reporting, and track what changed. Deeper intelligence is the next stage.
+          retrieve the reporting, and track what changed. The six-asset intelligence pilot also adds market context and reasons to review, wait or reassess.
         </p>
         <div className="docs-free-note"><Check size={14} aria-hidden="true" /> Free public access <span>·</span> No account, key or card</div>
       </header>
 
-      <div className="docs-callout"><strong>From reporting to meaningful signals.</strong><p>The news foundation is live. A first contextual-signal pilot adds persisted events, conditional implications, uncertainty and follow-up checks for six assets. Task-specific relevance and deeper verification remain planned. <a href="/intelligence">See the product direction.</a></p></div>
+      <div className="docs-callout"><strong>From reporting to meaningful signals.</strong><p>Explore a reported change, why it could matter and what your agent should check next. The pilot adds measured market checks while keeping detailed calculations optional. <a href="/intelligence">See a real signal.</a> <a href="/docs/intelligence">Understand the measurements.</a></p></div>
 
       <section className="docs-section" aria-labelledby="developer-quickstart">
         <h2 id="developer-quickstart">Your first request.</h2>
