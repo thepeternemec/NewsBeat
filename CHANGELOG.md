@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-05 — Source-bound structured generation
+
+- Replaced the repeatedly noncompliant lightweight generator with a live-catalog structured-output model through the existing AI Gateway connection.
+- Bound report IDs, previous event IDs and complete trigger headlines to the request’s actual source metadata. Grounding, conditional interpretation and alert checks remain enforced.
+- Retained the two-job limit, shared 25-second deadline, token bounds and at most one correction attempt.
+
 ## 2026-11-05 — Trigger citation feedback
 
 - Confirmed Bitcoin recovery with fresh successful analysis. Full-pilot monitoring also caught an Alphabet trigger-citation failure.

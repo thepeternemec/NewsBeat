@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import type { IntelligenceEventDraft, IntelligenceEvidence } from "@newsbeat/contracts";
-import { generateValidatedIntelligence, intelligenceInput, parseIntelligenceResult } from "./intelligence-model.js";
+import { generateValidatedIntelligence, intelligenceInput, intelligenceOutputSchema, parseIntelligenceResult } from "./intelligence-model.js";
 import { reconcileSignal } from "./intelligence-core.js";
 
 const now = "2026-11-03T12:00:00Z";
@@ -162,4 +162,29 @@ test("trigger correction names the allowed reports and still rejects ungrounded 
   });
   const neverGrounded: typeof fetch = async () => new Response(JSON.stringify(result({ events: [invalid] })));
   await assert.rejects(generateValidatedIntelligence(reports, [], { label: "Nvidia", ticker: "NVDA" }, "test-credential", neverGrounded), /ungrounded_trigger/);
+});
+
+test("generation choices are bound to source IDs, prior IDs and verbatim headlines", () => {
+  const schema = intelligenceOutputSchema(reports, ["known-event"]) as any;
+  const event = schema.properties.events.items.properties;
+  assert.deepEqual(event.evidence_ids.items.enum, ["r1"]);
+  assert.deepEqual(event.implications.items.properties.evidence_ids.items.enum, ["r1"]);
+  assert.deepEqual(event.existing_event_id.enum, ["known-event", null]);
+  assert.deepEqual(event.market_assessment.properties.trigger.properties.report_id.enum, ["r1", null]);
+  assert.deepEqual(event.market_assessment.properties.trigger.properties.headline_quote.enum, [reports[0]!.title, null]);
+  assert.equal(schema.properties.events.maxItems, 1);
+  assert.equal(event.evidence_ids.maxItems, 5);
+});
+test("the scheduled generator uses its source-bound schema with a structured-output model", async () => {
+  const request: typeof fetch = async (_url, options) => {
+    const body = JSON.parse(String(options?.body));
+    assert.equal(body.model, "openai/gpt-4.1-mini");
+    const event = body.response_format.json_schema.schema.properties.events.items.properties;
+    assert.equal(body.response_format.json_schema.strict, true);
+    assert.deepEqual(event.existing_event_id.enum, [null]);
+    assert.deepEqual(event.market_assessment.properties.trigger.properties.headline_quote.enum, [reports[0]!.title, null]);
+    assert.equal(body.max_tokens, 4000);
+    return new Response(JSON.stringify(result({ events: [] })));
+  };
+  assert.deepEqual(await generateValidatedIntelligence(reports, [], { label: "Nvidia", ticker: "NVDA" }, "test-credential", request), []);
 });
