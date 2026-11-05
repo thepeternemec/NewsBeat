@@ -135,3 +135,31 @@ test("source metadata exposes exact headline figures without treating publicatio
   assert.deepEqual(input.reports[0]!.headline_figures, ["37"]);
   assert.ok(!input.reports[0]!.headline_figures.includes("2026"));
 });
+
+test("trigger correction names the allowed reports and still rejects ungrounded triggers", async () => {
+  const invalid = structuredClone(draft); invalid.market_assessment!.trigger.report_id = "unknown-report";
+  assert.throws(() => parseIntelligenceResult(result({ events: [invalid] }), reports, []), error => {
+    assert.ok(error instanceof Error);
+    assert.match(error.message, /invalid_analysis_ungrounded_trigger/);
+    assert.match(String(error.cause), /evidence_ids: r1/);
+    assert.match(String(error.cause), /Received report_id: unknown-report/);
+    return true;
+  });
+  let calls = 0;
+  const request: typeof fetch = async (_url, options) => {
+    calls++;
+    if (calls === 2) assert.match(JSON.parse(String(options?.body)).messages.at(-1).content, /evidence_ids: r1/);
+    return new Response(JSON.stringify(result({ events: [calls === 1 ? invalid : draft] })));
+  };
+  assert.equal((await generateValidatedIntelligence(reports, [], { label: "Nvidia", ticker: "NVDA" }, "test-credential", request)).length, 1);
+  assert.equal(calls, 2);
+  const badQuote = structuredClone(draft); badQuote.market_assessment!.trigger.headline_quote = "Nvidia announces something unrelated";
+  assert.throws(() => parseIntelligenceResult(result({ events: [badQuote] }), reports, []), error => {
+    assert.ok(error instanceof Error);
+    assert.match(error.message, /unsupported_trigger_quote/);
+    assert.match(String(error.cause), /exact headline is: Nvidia raises revenue guidance/);
+    return true;
+  });
+  const neverGrounded: typeof fetch = async () => new Response(JSON.stringify(result({ events: [invalid] })));
+  await assert.rejects(generateValidatedIntelligence(reports, [], { label: "Nvidia", ticker: "NVDA" }, "test-credential", neverGrounded), /ungrounded_trigger/);
+});
