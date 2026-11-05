@@ -64,3 +64,5 @@ A constructed signal and a confirmed review alert are separate outputs. The work
 Jobs are claimed by oldest attempt rather than permanently prioritizing one asset. A generator-version change allows one attempt past the prior failure backoff, so a deployed correction can recover stalled assets; subsequent failures retain the normal retry delay. Live deployment verification checks successful analysis across all six pilot assets, including schema-error recovery.
 
 Rejected numeric claims receive private correction feedback listing the unsupported tokens and the figures actually present in the cited headlines. Publication dates are not numeric evidence. The validator is unchanged: a repeated unsupported claim still fails. Eligible failed jobs take priority over healthy waiting jobs, with the existing failure backoff and oldest-attempt ordering preserved within each group.
+
+Correction feedback also identifies invalid citation fields, the report IDs permitted for a trigger and the exact headline needed for a literal quote. A missing observed trigger must remain not_observed. The server never selects a replacement citation or rewrites a quote to make a claim pass.

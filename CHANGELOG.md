@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-05 — Trigger citation feedback
+
+- Confirmed Bitcoin recovery with fresh successful analysis. Full-pilot monitoring also caught an Alphabet trigger-citation failure.
+- Added precise correction feedback for schema fields, source IDs, conditional hypotheses and trigger quotes. Missing evidence remains a hold; the server never rewrites citations or quotes into validity.
+
 ## 2026-11-05 — Precise grounding recovery
 
 - Restored analysis for Apple, Microsoft and Ethereum after the citation-bound fix. The six-asset live check exposed a separate Bitcoin failure involving unsupported figures or prediction wording.

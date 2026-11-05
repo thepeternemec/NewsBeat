@@ -14,7 +14,7 @@ export function inspectIntelligence(value: unknown, evidence: IntelligenceEviden
   if (!parsed.success) {
     const issue = parsed.error.issues[0];
     const field = [...(issue?.path ?? []), issue?.code ?? "invalid"].join("_").toLowerCase().replace(/[^a-z_]/g, "");
-    return { events: null, error: ("schema_" + field).slice(0, 60) };
+    return { events: null, error: ("schema_" + field).slice(0, 60), feedback: "Invalid field " + (issue?.path.join(".") ?? "response") + ": " + (issue?.message ?? "Use the response schema exactly.") };
   }
   const byId = new Map(evidence.map(report => [report.id, report]));
   const prior = new Map(previous.map(signal => [signal.id, signal]));
@@ -23,8 +23,8 @@ export function inspectIntelligence(value: unknown, evidence: IntelligenceEviden
   const accepted: IntelligenceEventDraft[] = [];
   for (const event of parsed.data.events) {
     let redundant = false;
-    if (new Set(event.evidence_ids).size !== event.evidence_ids.length) return { events: null, error: "duplicate_evidence" };
-    if (event.evidence_ids.some(id => !byId.has(id) || used.has(id))) return { events: null, error: "unknown_evidence" };
+    if (new Set(event.evidence_ids).size !== event.evidence_ids.length) return { events: null, error: "duplicate_evidence", feedback: "Each evidence_ids array must contain unique report IDs. Do not repeat a citation." };
+    if (event.evidence_ids.some(id => !byId.has(id) || used.has(id))) return { events: null, error: "unknown_evidence", feedback: "Cite only current report IDs, without reusing them across events: " + [...byId.keys()].join(", ") };
     event.evidence_ids.forEach(id => used.add(id));
     if (event.existing_event_id && (!prior.has(event.existing_event_id) || revised.has(event.existing_event_id))) return { events: null, error: "unknown_event" };
     if (event.existing_event_id) {
@@ -41,7 +41,7 @@ export function inspectIntelligence(value: unknown, evidence: IntelligenceEviden
     const reports = event.evidence_ids.map(id => byId.get(id)!);
     if (reports.some(report => /\bden(?:y|ies|ied)\b/i.test(report.title)) && !["denied", "disputed"].includes(event.event_state)) return { events: null, error: "denial_state" };
     const words = fold(reports.map(report => report.title).join(" "));
-    if (event.affected_entities.some(entity => !(" " + words + " ").includes(" " + fold(entity) + " "))) return { events: null, error: "unsupported_entity" };
+    if (event.affected_entities.some(entity => !(" " + words + " ").includes(" " + fold(entity) + " "))) return { events: null, error: "unsupported_entity", feedback: "Every affected_entities name must appear verbatim in the headlines for this event’s cited reports. Do not add the asset name from metadata when absent from those headlines." };
     const numbers = new Set(figures(reports.map(report => report.title).join(" ")));
     const interpretation = [event.attention_reason, event.change_reason, ...event.unknowns, ...event.next_checks,
       ...event.implications.flatMap(item => [item.hypothesis, item.mechanism, item.watch_for]),
@@ -54,16 +54,21 @@ export function inspectIntelligence(value: unknown, evidence: IntelligenceEviden
         ". Prohibited prediction wording: " + (prediction ?? "none") +
         ". Remove unsupported figures and prediction wording. Do not calculate or reformat figures, use dates from metadata, or replace the claim with a different unsupported figure. Prefer a conditional explanation without numbers." };
     for (const implication of event.implications) {
-      if (implication.evidence_ids.some(id => !event.evidence_ids.includes(id))) return { events: null, error: "implication_evidence" };
-      if (!/\b(?:could|may|might|if|potential|risk)\b/i.test(implication.hypothesis)) return { events: null, error: "unconditional_hypothesis" };
+      if (implication.evidence_ids.some(id => !event.evidence_ids.includes(id))) return { events: null, error: "implication_evidence", feedback: "The implication may cite only IDs in this event’s evidence_ids: " + event.evidence_ids.join(", ") };
+      if (!/\b(?:could|may|might|if|potential|risk)\b/i.test(implication.hypothesis)) return { events: null, error: "unconditional_hypothesis", feedback: "Write a conditional hypothesis using could, may, might, if, potential or risk." };
     }
     if (event.market_assessment) {
       const trigger = event.market_assessment.trigger;
       if (trigger.status === "not_observed") {
-        if (trigger.report_id !== null || trigger.headline_quote !== null) return { events: null, error: "unexpected_trigger_evidence" };
+        if (trigger.report_id !== null || trigger.headline_quote !== null) return { events: null, error: "unexpected_trigger_evidence", feedback: "For not_observed, both trigger.report_id and trigger.headline_quote must be null." };
       } else {
-        if (!trigger.report_id || !event.evidence_ids.includes(trigger.report_id) || !trigger.headline_quote) return { events: null, error: "ungrounded_trigger" };
-        if (!quoteMatches(byId.get(trigger.report_id)!.title, trigger.headline_quote)) return { events: null, error: "unsupported_trigger_quote" };
+        if (!trigger.report_id || !event.evidence_ids.includes(trigger.report_id) || !trigger.headline_quote) return { events: null, error: "ungrounded_trigger",
+          feedback: "A reported or contradicted trigger requires trigger.report_id to be exactly one of this event’s evidence_ids: " + event.evidence_ids.join(", ") +
+            ". Received report_id: " + String(trigger.report_id) + ". Supply a literal headline_quote from that same report, at least three words and sixteen characters. If the condition is not explicitly reported, use not_observed and null for both citation fields. Do not fabricate an observed trigger." };
+        if (!quoteMatches(byId.get(trigger.report_id)!.title, trigger.headline_quote)) return { events: null, error: "unsupported_trigger_quote",
+          feedback: "The trigger quote must be a literal excerpt of at least three words and sixteen characters from report " + trigger.report_id +
+            ". That report’s exact headline is: " + byId.get(trigger.report_id)!.title +
+            ". If it does not explicitly establish the trigger condition, use not_observed with null report_id and null headline_quote." };
       }
     }
     // Unchanged reporting cannot refresh a thesis or replace its interpretation.
