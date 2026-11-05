@@ -72,7 +72,7 @@ export function intelligenceInput(evidence: IntelligenceEvidence[], previous: In
   const currentWords = tokens(evidence.map(report => report.title).join(" "));
   const rank = (signal: IntelligenceSignal) => signal.evidence.filter(report => ids.has(report.id)).length * 100 + [...tokens(signal.what_changed)].filter(word => currentWords.has(word)).length;
   const selected = [...previous].sort((a, b) => rank(b) - rank(a) || b.updated_at.localeCompare(a.updated_at)).slice(0, 4);
-  return { asset, reports: evidence.map(({ id, title, source, published_at }) => ({ id, title, source, published_at, headline_figures: title.match(/\d+(?:[.,]\d+)*/g) ?? [] })),
+  return { asset, reports: evidence.map(({ id, title, source, published_at }) => ({ id, title, source, published_at, headline_figures: (title.match(/\d+(?:[.,]\d+)*/g) ?? []) as string[] })),
     previous_events: selected.map(signal => ({
       id: signal.id, category: signal.category, event_state: signal.event_state, what_changed: signal.what_changed,
       affected_entities: signal.affected_entities, already_seen_report_ids: signal.evidence.filter(report => ids.has(report.id)).map(report => report.id),
