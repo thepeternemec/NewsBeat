@@ -105,3 +105,33 @@ test("a valid empty result and an upstream failure do not trigger correction cal
   await assert.rejects(generateValidatedIntelligence(reports, [], { label: "Nvidia", ticker: "NVDA" }, "test-credential", unavailable), /model_unavailable/);
   assert.equal(calls, 2);
 });
+
+test("correction feedback identifies unsupported figures without relaxing the numeric gate", async () => {
+  const invalid = structuredClone(draft);
+  invalid.implications[0]!.mechanism = "Orders could add 37 percent to revenue.";
+  assert.throws(() => parseIntelligenceResult(result({ events: [invalid] }), reports, []), error => {
+    assert.ok(error instanceof Error);
+    assert.match(error.message, /invalid_analysis_unsupported_number_or_prediction/);
+    assert.match(String(error.cause), /Unsupported numeric tokens: 37/);
+    return true;
+  });
+  let calls = 0;
+  const request: typeof fetch = async (_url, options) => {
+    calls++;
+    const body = JSON.parse(String(options?.body));
+    if (calls === 2) {
+      assert.match(body.messages.at(-1).content, /Unsupported numeric tokens: 37/);
+      assert.match(body.messages.at(-1).content, /Prefer a conditional explanation without numbers/);
+    }
+    return new Response(JSON.stringify(result({ events: [calls === 1 ? invalid : draft] })));
+  };
+  assert.equal((await generateValidatedIntelligence(reports, [], { label: "Nvidia", ticker: "NVDA" }, "test-credential", request)).length, 1);
+  assert.equal(calls, 2);
+  const stillInvalid: typeof fetch = async () => new Response(JSON.stringify(result({ events: [invalid] })));
+  await assert.rejects(generateValidatedIntelligence(reports, [], { label: "Nvidia", ticker: "NVDA" }, "test-credential", stillInvalid), /unsupported_number_or_prediction/);
+});
+test("source metadata exposes exact headline figures without treating publication dates as evidence", () => {
+  const input = intelligenceInput([{ ...reports[0]!, title: "Nvidia reports 37 percent revenue growth" }], [], { label: "Nvidia", ticker: "NVDA" });
+  assert.deepEqual(input.reports[0]!.headline_figures, ["37"]);
+  assert.ok(!input.reports[0]!.headline_figures.includes("2026"));
+});

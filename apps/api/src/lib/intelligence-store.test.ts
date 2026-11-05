@@ -202,5 +202,17 @@ test("Postgres retries a revised generator once despite old backoff and gives al
     assert.equal(new Set(seen).size, 6);
     assert.equal((await runIntelligence(null, generate)).claimed, 0);
     for (const beat of ordered) assert.equal((await readIntelligence(beat.beat_id)).analysis.error, null);
+
+    const waiting = ["NVDA", "AAPL", "BTC"].map(ticker => PILOT_BEATS.find(beat => beat.ticker === ticker)!);
+    for (const [index, beat] of waiting.entries()) {
+      await sql`insert into public.news_articles(beat_id,provider_uri,title,excerpt,url,source,published_at)
+        values(${beat.beat_id},${"recovery-" + beat.ticker},${beat.label + " reports another update"},'','https://example.com/update','Publisher',now())`;
+      await sql`update public.newsbeat_intelligence_jobs set last_attempt_at=${new Date(Date.now() - (waiting.length - index) * 60_000).toISOString()},
+        next_attempt_at=now(),last_error=${beat.ticker === "BTC" ? "invalid_analysis_unsupported_number_or_prediction" : null} where beat_id=${beat.beat_id}`;
+    }
+    const before = seen.length;
+    assert.equal((await runIntelligence(null, generate)).claimed, 2);
+    assert.deepEqual(new Set(seen.slice(before)), new Set(["BTC", "NVDA"]), "a failed asset recovers before a second healthy waiting asset");
+    assert.equal((await runIntelligence(null, generate)).claimed, 1, "the remaining healthy asset still gets its turn");
   } finally { await closeDb(); }
 });
