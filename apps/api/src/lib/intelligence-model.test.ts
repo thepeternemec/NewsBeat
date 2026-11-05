@@ -164,14 +164,14 @@ test("trigger correction names the allowed reports and still rejects ungrounded 
   await assert.rejects(generateValidatedIntelligence(reports, [], { label: "Nvidia", ticker: "NVDA" }, "test-credential", neverGrounded), /ungrounded_trigger/);
 });
 
-test("generation choices are bound to source IDs, prior IDs and verbatim headlines", () => {
+test("generation choices are bound to source IDs and prior IDs while quotes remain server-validated", () => {
   const schema = intelligenceOutputSchema(reports, ["known-event"]) as any;
   const event = schema.properties.events.items.properties;
   assert.deepEqual(event.evidence_ids.items.enum, ["r1"]);
   assert.deepEqual(event.implications.items.properties.evidence_ids.items.enum, ["r1"]);
   assert.deepEqual(event.existing_event_id.enum, ["known-event", null]);
   assert.deepEqual(event.market_assessment.properties.trigger.properties.report_id.enum, ["r1", null]);
-  assert.deepEqual(event.market_assessment.properties.trigger.properties.headline_quote.enum, [reports[0]!.title, null]);
+  assert.equal(event.market_assessment.properties.trigger.properties.headline_quote.enum, undefined);
   assert.equal(schema.properties.events.maxItems, 1);
   assert.equal(event.evidence_ids.maxItems, 5);
 });
@@ -182,9 +182,23 @@ test("the scheduled generator uses its source-bound schema with a structured-out
     const event = body.response_format.json_schema.schema.properties.events.items.properties;
     assert.equal(body.response_format.json_schema.strict, true);
     assert.deepEqual(event.existing_event_id.enum, [null]);
-    assert.deepEqual(event.market_assessment.properties.trigger.properties.headline_quote.enum, [reports[0]!.title, null]);
+    assert.equal(event.market_assessment.properties.trigger.properties.headline_quote.enum, undefined);
     assert.equal(body.max_tokens, 4000);
     return new Response(JSON.stringify(result({ events: [] })));
   };
   assert.deepEqual(await generateValidatedIntelligence(reports, [], { label: "Nvidia", ticker: "NVDA" }, "test-credential", request), []);
+});
+
+test("quoted source headlines do not become provider-rejected string literals in the request schema", () => {
+  const evidence = [{ ...reports[0]!, title: 'Nvidia calls demand "strong" after new customer orders' }];
+  const schema = intelligenceOutputSchema(evidence, []) as any;
+  const trigger = schema.properties.events.items.properties.market_assessment.properties.trigger.properties;
+  assert.equal(trigger.headline_quote.enum, undefined);
+  assert.deepEqual(trigger.report_id.enum, ["r1", null]);
+  assert.ok(!JSON.stringify(schema).includes("strong"));
+  const grounded = structuredClone(draft);
+  grounded.market_assessment!.trigger.headline_quote = evidence[0]!.title;
+  assert.equal(parseIntelligenceResult(result({ events: [grounded] }), evidence, []).length, 1);
+  grounded.market_assessment!.trigger.headline_quote = "Nvidia announces an unrelated development";
+  assert.throws(() => parseIntelligenceResult(result({ events: [grounded] }), evidence, []), /unsupported_trigger_quote/);
 });
