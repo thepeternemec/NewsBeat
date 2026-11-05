@@ -1,5 +1,14 @@
 import { db, hasDatabaseEnv } from "@newsbeat/db";
 import type { ProviderArticle } from "./newsapi.js";
+
+/** PostgreSQL JSON/text rejects NUL and lone UTF-16 surrogates. Count whole characters when limiting prose. */
+function unicodeText(value: string) {
+    return value.replace(/\u0000/g, "").replace(/[\uD800-\uDFFF]/gu, "\uFFFD");
+}
+function plainText(value: string, limit: number) {
+    const plain = unicodeText(value).replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+    return Array.from(plain).slice(0, limit).join("");
+}
 export function normalizeArticles(articles: ProviderArticle[], now = new Date()) {
     const seen = new Set<string>();
     return articles.flatMap(article => {
@@ -25,11 +34,10 @@ export function normalizeArticles(articles: ProviderArticle[], now = new Date())
         const date = new Date(article.dateTime ?? article.date ?? "");
         if (!Number.isFinite(date.getTime()) || date.getTime() < now.getTime() - 30 * 86400000 || date.getTime() > now.getTime() + 300000)
             return [];
-        const plain = (s: string) => s.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
-        const title = plain(article.title).slice(0, 240);
+        const title = plainText(article.title, 240);
         if (!title)
             return [];
-        return [{ provider_uri: article.uri, title, excerpt: plain(article.body ?? "").slice(0, 320), url: canonical, source: plain(article.source.title ?? article.source.uri ?? url.hostname).slice(0, 120), published_at: date.toISOString() }];
+        return [{ provider_uri: unicodeText(article.uri), title, excerpt: plainText(article.body ?? "", 320), url: canonical, source: plainText(article.source.title ?? article.source.uri ?? url.hostname, 120), published_at: date.toISOString() }];
     }).sort((a, b) => a.published_at.localeCompare(b.published_at) || a.url.localeCompare(b.url));
 }
 export async function persistNews(beatId: string, articles: ProviderArticle[]) { if (!hasDatabaseEnv())
