@@ -48,3 +48,32 @@
 .quant-pending{padding:30px 24px}
 @media(max-width:900px){.quant-panel{border-right:0;border-bottom:1px solid var(--border-default)}}
 @media(max-width:520px){.quant-panel{padding:20px 18px}.quant-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.quant-metrics .quant-metric:nth-child(3n){border-right:1px solid var(--border-default)}.quant-metrics .quant-metric:nth-child(2n){border-right:0}.quant-metrics .quant-metric:nth-last-child(-n+3){border-bottom:1px solid var(--border-default)}.quant-metrics .quant-metric:nth-last-child(-n+2){border-bottom:0}.quant-metric>strong{font-size:23px}.quant-timing-state{padding:16px}.quant-chart-range{font-size:7px}.quant-market-head h3{font-size:24px}.quant-return-path figcaption small{margin-left:0}.quant-forward th,.quant-forward td{padding:9px 5px}}
+
+
+/* The default view explains a decision; measured detail is opt-in. */
+.quant-panel{border-right:0;border-left:1px solid var(--border-default);padding:28px}
+.agent-outcome-label{display:flex;align-items:center;gap:7px;margin-top:21px;font:11px/1.7 var(--font-mono);color:var(--text-secondary)}
+.agent-outcome-label i{width:6px;height:6px;border:1px solid currentColor;border-radius:50%}
+.agent-outcome[data-state="review"] .agent-outcome-label{color:var(--text-primary)}.agent-outcome[data-state="review"] .agent-outcome-label i{background:currentColor;box-shadow:0 0 0 5px color-mix(in srgb,var(--text-primary) 5%,transparent)}
+.agent-outcome h3{font-size:clamp(23px,2.5vw,32px);font-weight:500;letter-spacing:-.045em;line-height:1.2;max-width:460px;margin:15px 0 12px}
+.agent-outcome>p{font-size:14px;line-height:1.8;max-width:490px;margin:0}
+.agent-simple-checks{list-style:none;padding:0;margin:25px 0;display:grid;gap:0;border-block:1px solid var(--border-default)}
+.agent-simple-checks li{display:flex;align-items:center;gap:9px;padding:11px 0;font-size:11px;color:var(--text-secondary)}.agent-simple-checks li+li{border-top:1px solid var(--border-default)}
+.agent-simple-checks i{width:5px;height:5px;flex:none;border:1px solid var(--border-strong);border-radius:50%}.agent-simple-checks [data-met="true"] i{background:var(--text-primary);border-color:var(--text-primary)}
+.agent-simple-checks small{margin-left:auto;font:9px var(--font-mono)}.agent-simple-checks [data-met="true"]{color:var(--text-primary)}
+.agent-market-picture>.quant-eyebrow{display:block;margin-bottom:12px}.agent-market-picture .quant-return-path{margin-top:0}.agent-market-picture>p{font-size:10px;line-height:1.8;margin:12px 0 0}
+.agent-market-picture .quant-chart-range{font:9px var(--font-mono)}
+.quant-technical{border-top:1px solid var(--border-default);margin-top:25px;padding-top:16px}
+.quant-technical>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;min-height:34px;font-size:12px;list-style:none}
+.quant-technical>summary::-webkit-details-marker{display:none}.quant-technical>summary>span{font:18px var(--font-mono);color:var(--text-secondary);transition:transform .2s}.quant-technical[open]>summary>span{transform:rotate(45deg)}
+.quant-technical>summary:focus-visible{outline:2px solid var(--text-primary);outline-offset:5px}
+.quant-technical-content{padding-top:22px}.quant-technical-content>.quant-market-head h3{font-size:22px}
+.quant-doc-link{display:inline-block;margin-top:20px;font-size:12px;color:var(--text-primary);text-underline-offset:4px}
+.quant-pending h3{font-size:26px;letter-spacing:-.04em;font-weight:500;margin:18px 0 12px}.quant-pending p{font-size:14px}
+@media(max-width:900px){.quant-panel{border-left:0;border-bottom:0;border-top:1px solid var(--border-default)}}
+@media(max-width:600px){.quant-panel{padding:23px 20px}.agent-outcome h3{font-size:27px}.agent-outcome>p{font-size:13px}.agent-simple-checks{margin:20px 0}}
+@media(prefers-reduced-motion:reduce){.quant-technical>summary>span{transition:none}}
+
+.agent-market-picture .quant-asset-line{stroke-dasharray:1;stroke-dashoffset:0;animation:market-path-reveal 1.4s ease-out both}
+@keyframes market-path-reveal{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@media(prefers-reduced-motion:reduce){.agent-market-picture .quant-asset-line{animation:none;stroke-dasharray:none}}

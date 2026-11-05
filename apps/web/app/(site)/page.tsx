@@ -36,19 +36,19 @@ export default function Home() {
           <div className="bs-hero-copy">
             <span className="bs-kicker"><span /> AGENT INTELLIGENCE</span>
             <h1>Meaningful signals.<br /><span>Built for agents.</span></h1>
-            <p className="bs-lede">Connect what’s happening to what could move a market. NewsBeat constructs signals from news and context, with clear conditions for an alert, a reassessment, or a reason to keep watching.</p>
+            <p className="bs-lede">Give your agent the reported change, why it could matter, and what to check next. NewsBeat connects news to market context so your agent can explain when to review, wait or reassess.</p>
             <div className="hero-cta">
-              <a className="btn-primary" href="/intelligence">Explore intelligence <ArrowRight size={16} /></a>
-              <a className="bs-text-link" href="#agent-workflow">Watch the agent flow <ArrowRight size={16} /></a>
+              <a className="btn-primary" href="/docs/quickstart">Connect your agent <ArrowRight size={16} /></a>
+              <a className="bs-text-link" href="/intelligence">See a real signal <ArrowRight size={16} /></a>
             </div>
-            <p className="ni-stage-note">Contextual signal construction for stocks and crypto. First pilot.</p>
+            <p className="ni-stage-note">Stocks and crypto · MCP or API · No account needed.</p>
           </div>
           <div className="ni-hero-model"><IntelligenceModel /></div>
         </div>
       </section>
 
       <section className="ni-value-strip" aria-label="Principles for agent intelligence">
-        <div className="wrap"><span>Context before conviction</span><span>Conditions before alerts</span><span>Evidence at every step</span></div>
+        <div className="wrap"><span>Notice what changed</span><span>Understand the context</span><span>Know what to check next</span></div>
       </section>
 
       <section className="scaffold" id="thesis">
@@ -93,7 +93,7 @@ export default function Home() {
           <div className="nb-connect-copy">
             <span className="bs-kicker"><Code2 size={13} /> BRING THE CONTEXT TO YOUR AGENT</span>
             <h2 className="bs-title">Keep your agent<br />in the loop.</h2>
-            <p className="bs-body">Read constructed signals through MCP or REST. Give your agent the market hypothesis, trigger conditions, evidence and a clear reason to review, watch or reassess.</p>
+            <p className="bs-body">Bring the reported change, the market context and the next useful question into your agent’s answers. Connect through MCP or API and ask in your own words.</p>
             <div className="bs-build-links"><a className="btn-primary" href="/docs/quickstart">Connect your agent <ArrowRight size={15} /></a><a className="bs-text-link" href="/docs">Developer docs <ArrowUpRight size={15} /></a></div>
           </div>
           <div className="ni-connect-panel">

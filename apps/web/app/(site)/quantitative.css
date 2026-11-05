@@ -1,22 +1,22 @@
 .ni-quant-home{padding-top:1px}
-.ni-quant-head{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;padding-top:138px;padding-bottom:42px}
-.ni-quant-head h1{font-size:clamp(38px,4.9vw,68px);line-height:1.07;letter-spacing:-.065em;font-weight:500;margin:22px 0 0}
-.ni-quant-head h1>span{color:var(--text-secondary)}
-.ni-quant-intro{padding-bottom:3px}
-.ni-quant-intro>p{font-size:15px;line-height:1.8;color:var(--text-secondary);margin:0 0 14px}
-.ni-quant-intro>p.ni-quant-scope{font-size:12px;line-height:1.8;max-width:540px}
-.ni-quant-intro>a{font-size:12px}
-.ni-quant-workspace{padding-bottom:60px}
-.ni-quant-method{padding-top:30px;padding-bottom:80px;border-top:1px solid var(--border-default)}
-.ni-quant-method-head{display:flex;align-items:center;flex-wrap:wrap;gap:16px 24px}
-.ni-quant-method-head>.bs-kicker{width:100%}
-.ni-quant-method-head h2{font-size:clamp(24px,2.8vw,36px);letter-spacing:-.045em;font-weight:500;line-height:1.2;margin:0}
-.ni-quant-method-head>a{font-size:12px;margin-left:auto}
-.ni-quant-method-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;margin-top:30px}
-.ni-quant-method-grid article{padding-top:18px;border-top:1px solid var(--border-strong)}
-.ni-quant-method-grid article>span{font:10px var(--font-mono);color:var(--text-secondary)}
-.ni-quant-method-grid h3{font-size:17px;line-height:1.5;letter-spacing:-.02em;font-weight:500;margin:16px 0 10px}
-.ni-quant-method-grid p,.ni-quant-method-note{font-size:12px;line-height:1.9;color:var(--text-secondary)}
-.ni-quant-method-note{margin:28px 0 0;max-width:850px}
-@media(max-width:900px){.ni-quant-head{gap:28px;padding-top:120px}.ni-quant-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:600px){.ni-quant-head{grid-template-columns:1fr;gap:22px;padding-top:110px;padding-bottom:28px}.ni-quant-head h1{font-size:43px;letter-spacing:-.06em;margin-top:18px}.ni-quant-intro>p{font-size:14px}.ni-quant-workspace{padding-bottom:38px}.ni-quant-method{padding-bottom:50px}.ni-quant-method-grid{grid-template-columns:1fr;gap:14px}.ni-quant-method-grid article{padding-top:16px}.ni-quant-method-head>a{margin-left:0}.ni-quant-method-grid h3{margin:9px 0}.ni-quant-method-grid p{margin:0 0 10px}}
+.ni-quant-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);gap:54px;align-items:center;padding-top:135px;padding-bottom:65px}
+.ni-quant-copy h1{font-size:clamp(43px,4.5vw,64px);line-height:1.07;letter-spacing:-.065em;font-weight:500;margin:25px 0 23px}
+.ni-quant-copy h1>span{color:var(--text-secondary)}
+.ni-quant-copy>p{max-width:480px;font-size:17px;line-height:1.8;color:var(--text-secondary);margin:0 0 28px}
+.ni-quant-copy .hero-cta{gap:18px;flex-wrap:wrap}.ni-quant-copy .hero-cta>a{font-size:12px}
+.ni-quant-copy>small{display:block;margin-top:22px;font:9px/1.9 var(--font-mono);color:var(--text-secondary)}
+.ni-agent-value{display:flex;justify-content:space-between;gap:20px;padding-block:23px;border-block:1px solid var(--border-default);font-size:13px;color:var(--text-secondary)}
+.ni-workspace-heading{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:end;padding:64px 0 28px}
+.ni-workspace-heading h2{font-size:clamp(27px,3vw,39px);line-height:1.2;letter-spacing:-.045em;font-weight:500;margin:16px 0 0}
+.ni-workspace-heading>p{max-width:470px;font-size:13px;line-height:1.8;color:var(--text-secondary);margin:0 0 2px}
+.ni-quant-workspace{padding-bottom:70px;scroll-margin-top:95px}
+.ni-agent-questions{display:grid;grid-template-columns:1fr 1fr;gap:65px;padding-block:58px 64px;border-top:1px solid var(--border-default)}
+.ni-agent-questions-head h2{font-size:clamp(29px,3.5vw,45px);line-height:1.15;letter-spacing:-.05em;font-weight:500;margin:20px 0}.ni-agent-questions-head h2>span{color:var(--text-secondary)}
+.ni-agent-questions-head p{font-size:14px;line-height:1.8;color:var(--text-secondary);max-width:430px;margin:0 0 20px}.ni-agent-questions-head>a{font-size:12px}
+.ni-question-cards{display:grid;gap:15px}.ni-question-cards article{padding:23px 25px;border:1px solid var(--border-default);border-radius:10px;background:color-mix(in srgb,var(--text-primary) 2%,transparent)}
+.ni-question-cards h3{font-size:16px;line-height:1.4;letter-spacing:-.02em;font-weight:500;margin:0 0 14px}.ni-question-cards p{font-size:13px;line-height:1.8;color:var(--text-secondary);margin:0 0 20px}
+.ni-question-cards .copy-btn{display:inline-flex;align-items:center;gap:7px;max-width:100%;font:10px/1.6 var(--font-sans);padding:8px 10px;border:1px solid var(--border-strong);border-radius:5px;background:transparent;color:var(--text-primary);text-align:left;cursor:pointer}
+.ni-method-link{display:flex;align-items:center;justify-content:space-between;gap:25px;padding-bottom:65px;color:var(--text-secondary)}.ni-method-link>p{max-width:610px;font-size:11px;line-height:1.9;margin:0}.ni-method-link>a{display:inline-flex;align-items:center;gap:7px;font-size:11px;flex:none;color:var(--text-primary);text-underline-offset:4px}
+@media(max-width:1000px){.ni-quant-head{gap:30px}.ni-quant-copy h1{font-size:49px}.ni-quant-copy>p{font-size:15px}.ni-agent-questions{gap:32px}.ni-agent-value{font-size:12px}}
+@media(max-width:800px){.ni-quant-head{grid-template-columns:1fr;padding-top:112px;gap:35px;padding-bottom:40px}.ni-quant-copy h1{font-size:clamp(43px,7vw,65px)}.ni-quant-copy>p{font-size:16px;max-width:570px}.ni-quant-head>.signal-engine{max-width:620px;width:100%;justify-self:center}.ni-workspace-heading{grid-template-columns:1fr;gap:19px;padding-top:45px}.ni-workspace-heading>p{max-width:550px}.ni-agent-questions{grid-template-columns:1fr;gap:28px}.ni-method-link{align-items:flex-start;flex-direction:column;gap:13px}}
+@media(max-width:520px){.ni-quant-head{padding-top:108px;gap:30px}.ni-quant-copy h1{font-size:44px;margin:20px 0}.ni-quant-copy>p{font-size:15px;line-height:1.8;margin-bottom:24px}.ni-quant-copy .hero-cta{gap:14px}.ni-quant-copy>small{font-size:8px}.ni-agent-value{gap:9px;flex-direction:column;font-size:12px;padding-block:20px}.ni-workspace-heading h2{font-size:30px}.ni-workspace-heading>p{font-size:12px}.ni-quant-workspace{padding-bottom:45px}.ni-agent-questions{padding-block:36px 40px}.ni-question-cards article{padding:21px}.ni-method-link{padding-bottom:40px}}
