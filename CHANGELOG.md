@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-05 — Collection Unicode fix
+
+- Fixed a long headline that split an emoji at the text limit, causing PostgreSQL to reject an entire topic's collection batch and keep its status degraded.
+- Headline, excerpt and publisher limits now preserve whole Unicode characters. Invalid upstream surrogates and NUL characters are normalized before JSON persistence.
+- Added boundary tests and a disposable PostgreSQL regression that reproduces the old failure, persists the corrected batch and verifies collection freshness advances.
+- Status bars retain their original recorded results; recovery is shown by new successful checks.
+
 ## 2026-11-03 — Agent intelligence direction
 
 - Refocused the homepage, social metadata and GitHub presentation on meaningful signals for AI agents.
