@@ -33,6 +33,8 @@ The broader news foundation covers 1,528 US stocks and 502 crypto assets. Wider 
 
 ## Try it before you connect
 
+Search a company name or ticker on the **[homepage](https://www.newsbeat.dev/#company-news)** to see real headlines, publishers, publication times and collection freshness. Stock and crypto matches remain distinct, and more headlines are available on demand.
+
 Open the **[signal workbench](https://www.newsbeat.dev/intelligence)**. Select an asset and a decision context, inspect the hypothesis and trigger, then expand the checks behind the decision. The homepage animates how news becomes context and a signal.
 
 The wider catalog is collected on a **15-minute schedule**; the six pilot topics and market measurements are scheduled every five minutes. Coverage varies by asset; every response reports freshness. Summaries use headline metadata, and the original reporting stays linked.
