@@ -1,13 +1,14 @@
 import { db, hasDatabaseEnv } from "@newsbeat/db";
 import type { ProviderArticle } from "./newsapi.js";
 
-/** PostgreSQL JSON/text rejects NUL and lone UTF-16 surrogates. Count whole characters when limiting prose. */
+/** PostgreSQL JSON/text rejects NUL and lone UTF-16 surrogates. */
 function unicodeText(value: string) {
     return value.replace(/\u0000/g, "").replace(/[\uD800-\uDFFF]/gu, "\uFFFD");
 }
 function plainText(value: string, limit: number) {
     const plain = unicodeText(value).replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
-    return Array.from(plain).slice(0, limit).join("");
+    // Keep the API's UTF-16 length ceiling, removing a whole emoji if it cannot fit.
+    return plain.slice(0, limit).replace(/[\uD800-\uDBFF]$/u, "");
 }
 export function normalizeArticles(articles: ProviderArticle[], now = new Date()) {
     const seen = new Set<string>();
