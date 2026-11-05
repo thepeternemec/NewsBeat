@@ -21,7 +21,7 @@ test("a long emoji headline persists with its batch and advances real collection
     assert.equal(result.inserted, 2, "one long headline must not discard valid reports in the same batch");
     const rows = await sql<Array<{ title: string; excerpt: string; source: string }>>`select title,excerpt,source from public.news_articles where beat_id=${beat} and provider_uri=${article.uri}`;
     assert.equal(rows.length, 1);
-    for (const field of ["title", "excerpt", "source"] as const) assert.ok(rows[0]![field].endsWith("📷"));
+    for (const [field, limit] of [["title", 240], ["excerpt", 320], ["source", 120]] as const) assert.equal(rows[0]![field], "x".repeat(limit - 1));
     const status = await sql<Array<{ last_success_at: Date | null; last_checked_at: Date | null; last_article_count: number }>>`select last_success_at,last_checked_at,last_article_count from public.news_ingestion_status where beat_id=${beat}`;
     assert.ok(status[0]!.last_success_at); assert.equal(status[0]!.last_article_count, 2);
     assert.equal(status[0]!.last_success_at!.getTime(), status[0]!.last_checked_at!.getTime());
