@@ -78,4 +78,32 @@ export interface QuantHorizonSummary {
 export interface QuantBundle {
   policy_version: string; computed_at: string; context_id: string; market: MarketContext;
   decisions: QuantSignalDecision[]; evaluations: QuantEvaluationRecord[]; evaluation: QuantEvaluationSummary;
+  research?: MarketResearch;
+}
+
+/** Independent market discovery. Ranks describe observed history, not future-return probabilities. */
+export interface MarketAnomalyWindow {
+  minutes: number; status: "unusual" | "usual" | "insufficient";
+  start_at: string; end_at: string; direction: "up" | "down" | "flat";
+  residual_return: number | null; residual_z: number | null;
+  historical_windows: number; historical_exceedances: number;
+  empirical_tail_fraction: number | null; volume_ratio: number | null;
+  fit: MarketFit | null; regime: "quiet" | "stable" | "volatile" | "unknown";
+  volatility_ratio: number | null; checks: Array<{ id: string; passed: boolean; reason: string }>;
+}
+export interface MarketAnomalyRecord {
+  id: string; instrument_id: string; detector_version: string;
+  opened_at: string; closed_at: string | null; window: MarketAnomalyWindow;
+  reference_at: string; reference_price: number; reference_quotes_at: Record<string, string>;
+  reference_benchmark_prices: Record<string, number>; frozen_beta: number; frozen_intercept: number;
+  estimated_book_cost_bps: number | null; outcomes: ForwardOutcome[];
+}
+export interface MarketResearch {
+  detector_version: string; scanned_at: string;
+  status: "ready" | "warming_up" | "data_hold";
+  headline: string; explanation: string;
+  windows: MarketAnomalyWindow[];
+  reporting: { status: "aligned" | "opposing" | "mixed" | "unmatched" | "pending"; signal_ids: string[]; note: string };
+  records: MarketAnomalyRecord[];
+  note: string;
 }

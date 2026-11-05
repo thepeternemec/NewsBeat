@@ -318,3 +318,9 @@ create index if not exists newsbeat_quant_evaluations_context_time_idx on public
 create table if not exists public.newsbeat_quant_alerts (id text primary key, beat_id text not null, event_id text not null, signal_version integer not null, context_id text not null, policy_version text not null, triggered_at timestamptz not null, resolved_at timestamptz, resolution text, construction jsonb not null, unique(event_id,context_id,signal_version,policy_version));
 create index if not exists newsbeat_quant_alerts_context_time_idx on public.newsbeat_quant_alerts(beat_id,context_id,triggered_at desc);
 create table if not exists public.newsbeat_quant_worker (id text primary key, lease_token text, lease_until timestamptz, last_started_at timestamptz, last_success_at timestamptz, last_error text);
+
+-- Independent market-discovery episodes and frozen forward observations.
+create table if not exists public.newsbeat_market_anomalies (id text primary key, instrument_id text not null, detector_version text not null, minutes integer not null, direction text not null check(direction in ('up','down','flat')), opened_at timestamptz not null, closed_at timestamptz, next_due_at timestamptz, record jsonb not null);
+create unique index if not exists newsbeat_market_anomalies_episode_idx on public.newsbeat_market_anomalies(instrument_id,detector_version,minutes,direction) where closed_at is null;
+create index if not exists newsbeat_market_anomalies_due_idx on public.newsbeat_market_anomalies(next_due_at) where next_due_at is not null;
+create index if not exists newsbeat_market_anomalies_recent_idx on public.newsbeat_market_anomalies(instrument_id,opened_at desc);

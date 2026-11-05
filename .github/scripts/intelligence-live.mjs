@@ -16,6 +16,17 @@ function verifyMarket(data, kind) {
   assert.ok(Date.now() - Date.parse(quant.computed_at) < 10 * 60000, "collector has run recently");
   assert.ok(quant.market.curve.length > 1);
   assert.ok(Array.isArray(quant.evaluation.review_horizons));
+  assert.equal(quant.research?.detector_version, "market-discovery-v1");
+  assert.deepEqual(quant.research.windows.map(w => w.minutes), [15, 30, 60]);
+  assert.ok(["ready", "warming_up", "data_hold"].includes(quant.research.status));
+  for (const window of quant.research.windows) if (window.status === "unusual") {
+    assert.ok(window.checks.every(check => check.passed));
+    assert.ok(window.historical_windows >= 24);
+    assert.ok(Date.parse(window.fit.end_at) <= Date.parse(window.start_at));
+  }
+  for (const record of quant.research.records) for (const outcome of record.outcomes) {
+    if (outcome.status === "observed") assert.ok(Date.parse(outcome.market_at) >= Date.parse(outcome.due_at));
+  }
   for (const item of data.constructions) {
     if (item.market_reaction.status === "observed") {
       assert.ok(Number.isFinite(item.market_reaction.asset_return));

@@ -123,6 +123,8 @@ See the [methodology](docs/QUANTITATIVE.md) for the measurements, thresholds and
 
 </details>
 
+NewsBeat also scans the market independently of reporting: it looks for unusual relative moves, compares them with earlier behavior and records what happened next. The same existing venue data powers this discovery layer; a headline is not required to start an investigation. [How discovery works](docs/QUANTITATIVE.md#independent-discovery-market-discovery-v1)
+
 ## Project status
 
 **Early development · active research pilot · MIT licensed**
@@ -132,6 +134,7 @@ See the [methodology](docs/QUANTITATIVE.md) for the measurements, thresholds and
 | News foundation | A bundled catalog of 2,030 stock and crypto topics; headlines, grouping, summaries, freshness and change tracking |
 | Agent access | Public MCP and REST interfaces; asset discovery and batched watchlist reads |
 | Intelligence pilot | Six assets, three contexts, persistent interpretations, market checks and a review-alert journal |
+| Independent discovery | 15/30/60-minute anomaly scans, past-only comparisons, volatility context and an episode journal |
 | Evaluation | Prospective observations for comparing all constructions with selected review alerts |
 
 **Next:** calibrate against collected outcomes, add richer evidence and expectation changes, and expand measured coverage. Saved watches, notification delivery and verified tokenized-asset mapping are planned.

@@ -1,5 +1,9 @@
 /** Additive schema, applied only by the authenticated market worker. */
 export const QUANT_SCHEMA = [
+  "create table if not exists public.newsbeat_market_anomalies (id text primary key, instrument_id text not null, detector_version text not null, minutes integer not null, direction text not null check(direction in ('up','down','flat')), opened_at timestamptz not null, closed_at timestamptz, next_due_at timestamptz, record jsonb not null)",
+  "create unique index if not exists newsbeat_market_anomalies_episode_idx on public.newsbeat_market_anomalies(instrument_id,detector_version,minutes,direction) where closed_at is null",
+  "create index if not exists newsbeat_market_anomalies_due_idx on public.newsbeat_market_anomalies(next_due_at) where next_due_at is not null",
+  "create index if not exists newsbeat_market_anomalies_recent_idx on public.newsbeat_market_anomalies(instrument_id,opened_at desc)",
   "create table if not exists public.newsbeat_market_sources (instrument_id text primary key, snapshot jsonb, last_attempt_at timestamptz not null default now(), last_error text)",
   "create table if not exists public.newsbeat_market_bars (instrument_id text not null, started_at timestamptz not null, open_price double precision not null check(open_price>0), high_price double precision not null, low_price double precision not null, close_price double precision not null check(close_price>0), volume double precision not null check(volume>=0), trades integer not null check(trades>=0), observed_at timestamptz not null, primary key(instrument_id,started_at))",
   "create index if not exists newsbeat_market_bars_retention_idx on public.newsbeat_market_bars(started_at)",

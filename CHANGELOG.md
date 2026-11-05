@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11-06 — Independent market discovery
+
+- Added a deterministic market-first scan over existing venue observations, independent of headline theses. Separate pre-window fits and past-only non-overlapping comparisons score 15/30/60-minute relative moves.
+- Added volatility context, descriptive historical ranks, directional reporting links and explicit warm-up/data holds. Discovery does not bypass review-alert gates or imply profitable direction.
+- Persisted deduplicated anomaly episodes with frozen references, models, estimated costs and prospective 15/60/240-minute observations. Missing data cannot falsely close an episode.
+- Exposed research through the existing MCP/REST intelligence response and a readable market-scan panel, with measurements and episode outcomes behind optional details.
+- Added look-ahead, market-factor, sparse-data, stale-quote, independent persistence and episode-idempotency regressions.
+
 ## 2026-11-05 — Quoted-headline schema compatibility
 
 - Fixed a provider rejection caused by embedding quoted news headlines directly in strict-schema enum literals.

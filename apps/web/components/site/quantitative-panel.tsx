@@ -60,10 +60,25 @@ export default function QuantitativePanel({ bundle, decision, signalId, version,
     { label: "Ready for review", met: view.state === "review" },
   ];
   return <div className="quant-panel" aria-label="Your agent's view">
+    {bundle.research && <section className="quant-discovery" aria-label="Independent market discovery" data-active={!stale && bundle.research.windows.some(w => w.status === "unusual")}>
+      <span className="quant-eyebrow">INDEPENDENT MARKET SCAN</span>
+      <h3>{stale ? "The last independent scan needs refreshing." : bundle.research.headline}</h3>
+      <p>{stale ? "Earlier measurements remain visible. A current scan is required before interpreting an anomaly." : bundle.research.explanation}</p>
+      <div className="quant-discovery-windows" aria-label="Market scan horizons">{bundle.research.windows.map(w => <span key={w.minutes} data-state={stale ? "insufficient" : w.status}><i aria-hidden="true" />{w.minutes < 60 ? w.minutes + " min" : "1 hour"}<small>{stale || w.status === "insufficient" ? "Building context" : w.status === "unusual" ? "Unusual move" : "Within range"}</small></span>)}</div>
+      {!stale && bundle.research.windows.some(w => w.status === "unusual") && <p className="quant-discovery-reporting">{bundle.research.reporting.note}</p>}
+    </section>}
     <div className="agent-outcome" data-state={view.state}><span className="quant-eyebrow">WHAT YOUR AGENT CAN USE</span><div className="agent-outcome-label"><i aria-hidden="true" />{view.label}</div><h3>{view.title}</h3><p>{view.text}</p></div>
     <ul className="agent-simple-checks" aria-label="Signal checks at a glance">{checks.map(check => <li key={check.label} data-met={check.met}><i aria-hidden="true" /><span>{check.label}</span><small>{check.met ? "Met" : "Waiting"}</small></li>)}</ul>
     <div className="agent-market-picture"><span className="quant-eyebrow">{stale ? "LAST RECORDED MARKET PICTURE" : "THE MARKET PICTURE"}</span><ReturnPath market={market} /><p>{market.instrument?.kind === "tokenized_equity" ? "Stock graph uses the related xStock venue market." : "Price comparison uses one spot venue."} This shows observed movement, not a forecast.</p></div>
     <details className="quant-technical"><summary>See the numbers and checks <span aria-hidden="true">+</span></summary><div className="quant-technical-content">
+
+    {bundle.research && <details className="quant-details"><summary>Independent discovery and frozen outcomes</summary>
+      <p>{bundle.research.note}</p>
+      <div className="quant-table-scroll"><table><caption>Earlier scored windows · descriptive comparison</caption><thead><tr><th>Window</th><th>Prior windows</th><th>Tail rank</th><th>Volatility</th></tr></thead><tbody>{bundle.research.windows.map(w => <tr key={w.minutes}><th>{w.minutes}m</th><td>{w.historical_windows}</td><td>{percent(w.empirical_tail_fraction, false)}</td><td>{w.regime}</td></tr>)}</tbody></table></div>
+      <p>Tail rank is the fraction of earlier scored magnitudes at least this large, with an add-one adjustment. It is not the probability of a future return.</p>
+      {bundle.research.records.length ? bundle.research.records.map(record => <div key={record.id}><h4>{record.window.minutes}-minute {record.window.direction === "up" ? "upward" : "downward"} episode</h4><p>First recorded {date(record.opened_at)}{record.closed_at ? " · cleared " + date(record.closed_at) : " · awaiting a measured reset"}. First reference and fitted model stay frozen.</p><ul>{record.outcomes.map(o => <li key={o.horizon_minutes}><strong>{o.horizon_minutes}m · {o.status}</strong><p>{o.status === "observed" ? "Proxy-adjusted return " + percent(o.residual_return) : o.status === "pending" ? "Waiting for a future aligned traded candle." : "No eligible observation in the measurement window."}</p></li>)}</ul></div>) : <p>No independently detected episode has a frozen observation yet.</p>}
+      <p>Reference-midpoint returns exclude fees and execution. Neither continuation nor reversal is assumed profitable.</p>
+    </details>}
 
     <div className="quant-market-head"><div><span className="quant-eyebrow">MEASURED MARKET CONTEXT</span><h3>{market.instrument?.symbol ?? "Market data pending"}</h3></div><span className="quant-venue">{market.instrument?.venue ?? "Kraken"} · 5m</span></div>
     <p className="quant-instrument-note">{market.instrument?.kind === "tokenized_equity" ? "xStock venue market · company news informs the thesis" : "Spot venue market · self-excluding peer comparison"}{market.instrument && <> · <a href={market.instrument.mapping_url} target="_blank" rel="noopener noreferrer">Verified pair ↗</a></>}</p>
