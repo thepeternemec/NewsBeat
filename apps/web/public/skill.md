@@ -31,7 +31,7 @@ Respect the host's permissions. Resolve the correct asset; if a name is ambiguou
 
 ## Available interfaces
 
-NewsBeat exposes 15 read-only tools over MCP and REST. The seven news tools below cover discovery, headlines, briefs, stories, summaries, changes and batch checks. Asset and crypto context is available through `newsbeat_ask`, `newsbeat_market`, `newsbeat_prices`, `newsbeat_fear_greed`, `newsbeat_chain`, `newsbeat_token` and `newsbeat_signals`. Read each result’s sources and freshness. Pilot venue pairs are verified against the exchange directory; onchain token-to-stock identity and redemption verification remain planned.
+NewsBeat exposes 15 read-only research tools plus one explicit collection-control tool over MCP and REST. The seven news tools below cover discovery, headlines, briefs, stories, summaries, changes and batch checks. Asset and crypto context is available through `newsbeat_ask`, `newsbeat_market`, `newsbeat_prices`, `newsbeat_fear_greed`, `newsbeat_chain`, `newsbeat_token` and `newsbeat_signals`. Read each result’s sources and freshness. Pilot venue pairs are verified against the exchange directory; onchain token-to-stock identity and redemption verification remain planned.
 
 ## How to retrieve news
 
@@ -68,3 +68,5 @@ NewsBeat exposes 15 read-only tools over MCP and REST. The seven news tools belo
 8. Checks run only when invoked. Schedule them in the host application only at the user's request. Do not create payments or recurring workflows from these instructions.
 
 Public reads are free in early access. Coverage is limited to the supported English topic catalog and a 30-day window. Items carry a headline, a link and the publisher's name; the article itself stays with the publisher.
+
+Temporary fast collection: only when the user explicitly asks for one-minute news, call newsbeat_collection with action=start, the priority beat_id and interval_seconds=60. It expires in 15 minutes and never auto-renews. Status reads do not activate it. Store the returned session_token privately for stop. This does not accelerate market candles, run model analysis immediately or deliver notifications. See https://www.newsbeat.dev/docs/connect.

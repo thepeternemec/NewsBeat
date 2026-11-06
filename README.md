@@ -139,7 +139,7 @@ NewsBeat also scans the market independently of reporting: it looks for unusual 
 
 **Next:** calibrate against collected outcomes, add richer evidence and expectation changes, and expand measured coverage. Saved watches, notification delivery and verified tokenized-asset mapping are planned.
 
-The wider catalog is scheduled every 15 minutes; pilot collection and analysis run on five-minute schedules. Read freshness and analysis timestamps: schedules do not guarantee fresh results for every asset.
+The catalog is scheduled every 10 minutes. One-minute news collection for a priority asset starts only on explicit request, lasts 15 minutes and never auto-renews. Analysis and market measurements remain on five-minute schedules. Read freshness and analysis timestamps: schedules do not guarantee fresh results for every asset.
 
 [Current capabilities](docs/STATUS.md) · [Product direction](docs/INTELLIGENCE.md) · [Changelog](CHANGELOG.md)
 
@@ -177,6 +177,10 @@ Follow the [development guide](docs/DEVELOPMENT.md) to configure local data, run
 [Architecture](docs/ARCHITECTURE.md) · [Documentation index](docs/README.md)
 
 </details>
+
+## Optional one-minute collection
+
+On the intelligence page, choose **Request 1-min news · 15 min** for the selected priority asset. Or explicitly ask your agent for one-minute collection; `newsbeat_collection` starts the bounded session only with `action: "start"` and `interval_seconds: 60`. Status reads and ordinary news lookups do not activate it. You can stop your own session early. [Request and API details](docs/COLLECTION.md)
 
 ## Access
 

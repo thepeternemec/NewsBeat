@@ -10,3 +10,4 @@ export * from "./keys.js";
 export * from "./billing.js";
 export * from "./balance.js";
 export * from "./marketplace.js";
+export * from "./collection.js";

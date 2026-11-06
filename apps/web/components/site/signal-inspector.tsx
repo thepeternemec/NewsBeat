@@ -6,6 +6,7 @@ import type { IntelligenceResponse, SignalContextId } from "@newsbeat/contracts"
 import "./signal-inspector.css";
 import QuantitativePanel from "./quantitative-panel";
 import { selectSignalIndex } from "./signal-presentation";
+import FastCollectionControl from "./fast-collection-control";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "/api";
 const ASSETS = [
@@ -117,6 +118,7 @@ export default function SignalInspector() {
     <div className="signal-inspector-asset"><label htmlFor="inspector-asset">Follow an asset</label><select id="inspector-asset" value={ticker} onChange={event => setTicker(event.target.value)}>{ASSETS.map(item => <option key={item.ticker} value={item.ticker}>{item.label} / {item.ticker}</option>)}</select></div>
     <div className="signal-inspector-context"><label htmlFor="inspector-context">Focus</label><select id="inspector-context" value={context} onChange={event => setContext(event.target.value as SignalContextId)}>{CONTEXTS.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}</select></div>
     </div>
+    <FastCollectionControl key={asset.beatId} beatId={asset.beatId} />
     <StoredSignal key={asset.beatId + context} asset={asset} context={context} />
   </aside>;
 }

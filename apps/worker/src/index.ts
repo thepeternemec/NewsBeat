@@ -6,9 +6,9 @@
  * directly with `npm run ingest`.
  */
 import { SEED_BEATS, type Beat } from "@newsbeat/contracts";
-import { db, env, hasDatabaseEnv } from "@newsbeat/db";
+import { db, env, hasDatabaseEnv, claimCollection, finishCollection } from "@newsbeat/db";
 import { NewsApiClient, type ProviderArticle } from "./newsapi.js";
-import { searchGoogleNews } from "./googlenews.js";
+import { searchGoogleNews, type GoogleNewsOptions } from "./googlenews.js";
 import { persistNews } from "./ingest-news.js";
 
 /**
@@ -159,14 +159,6 @@ export async function runIngestion(): Promise<IngestionResult> {
   return { beats: SEED_BEATS.length, calls, inserted, results };
 }
 
-/** The six-asset research pilot gets a bounded five-minute source check. Paid-provider schedules stay unchanged. */
-export async function runPilotIngestion(): Promise<IngestionResult> {
-  if (!hasDatabaseEnv()) throw new Error("DATABASE_URL is not set");
-  const tickers = new Set(["NVDA", "AAPL", "MSFT", "GOOGL", "BTC", "ETH"]);
-  const beats = SEED_BEATS.filter(beat => tickers.has(beat.ticker) && (["BTC", "ETH"].includes(beat.ticker) ? beat.asset === "crypto" : beat.asset !== "crypto"));
-  if (PROVIDER !== "google") return { beats: 0, calls: 0, inserted: 0, results: [], deferred: beats.length };
-  return runGoogle(beats as Beat[], new Date());
-}
 
 
 /**
@@ -191,7 +183,7 @@ export async function runPilotIngestion(): Promise<IngestionResult> {
  */
 const INGEST_BUDGET_MS = Math.max(10_000, Number(env("NEWSBEAT_INGEST_BUDGET_MS") ?? 240_000));
 
-async function runGoogle(beats: Beat[], now: Date): Promise<IngestionResult> {
+async function runGoogle(beats: Beat[], now: Date, options: { budgetMs?: number; google?: GoogleNewsOptions } = {}): Promise<IngestionResult> {
   const results: BeatResult[] = [];
   let inserted = 0;
   let calls = 0;
@@ -206,7 +198,7 @@ async function runGoogle(beats: Beat[], now: Date): Promise<IngestionResult> {
     return at - bt;
   });
 
-  const deadline = Date.now() + INGEST_BUDGET_MS;
+  const deadline = Date.now() + (options.budgetMs ?? INGEST_BUDGET_MS);
   let cursor = 0;
   let deferred = 0;
 
@@ -222,7 +214,7 @@ async function runGoogle(beats: Beat[], now: Date): Promise<IngestionResult> {
       if (!beat) return;
       try {
         calls += 1;
-        const fetched = await searchGoogleNews([...beat.keywords]);
+        const fetched = await searchGoogleNews([...beat.keywords], options.google);
         // Google matches the whole article, so a film trailer that mentions the
         // chip in passing arrives under the NVIDIA topic — and can outrank real
         // coverage. Requiring the keyword in the headline is what "has this
@@ -246,6 +238,26 @@ async function runGoogle(beats: Beat[], now: Date): Promise<IngestionResult> {
   // Reported, not silent: a run that could not cover the catalog should say so,
   // because "ok: true" covering 60% of topics is how a stale product looks healthy.
   return { beats: results.length, calls, inserted, results, deferred };
+}
+
+/** One-minute cron does no provider work without an explicit unexpired request. */
+export async function runRequestedIngestion(dependencies: { now?: () => number; collect?: (beats: Beat[]) => Promise<IngestionResult> } = {}): Promise<IngestionResult> {
+  if (PROVIDER !== "google") return { beats: 0, calls: 0, inserted: 0, results: [] };
+  const clock = dependencies.now ?? Date.now;
+  const jobs = await claimCollection(clock());
+  if (!jobs.length) return { beats: 0, calls: 0, inserted: 0, results: [] };
+  const beats = SEED_BEATS.filter(beat => jobs.some(job => job.beat_id === beat.beat_id));
+  try {
+    const result = await (dependencies.collect ?? (items => runGoogle(items, new Date(clock()), { budgetMs: 40000, google: { requestTimeoutMs: 8000, maxAttempts: 2 } })))(beats as Beat[]);
+    for (const job of jobs) {
+      const checked = result.results.find(row => row.beat_id === job.beat_id);
+      await finishCollection(job.beat_id, job.lease_token, checked ? checked.error ? "collection_failed" : null : "budget_deferred", clock());
+    }
+    return result;
+  } catch (error) {
+    for (const job of jobs) await finishCollection(job.beat_id, job.lease_token, "collection_failed", clock()).catch(() => {});
+    throw error;
+  }
 }
 
 /** When each topic was last checked, for ordering. */

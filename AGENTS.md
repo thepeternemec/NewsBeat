@@ -26,6 +26,8 @@ NewsBeat is building meaningful signals for AI agents: what changed, why it may 
 
 ## When to check the news
 
+Default catalog collection is scheduled every ten minutes. Only when the user explicitly requests one-minute news collection, call `newsbeat_collection` with `action: "start"`, the priority `beat_id` and `interval_seconds: 60`. Sessions last 15 minutes and never auto-renew. Save the returned `session_token` privately for an explicit `stop`; do not put it in URLs or answers. `action: "status"` is read-only. Duplicate active requests share the existing session without extending it. This controls news collection only, not market candles, immediate model inference or notifications. See [collection details](docs/COLLECTION.md).
+
 Use NewsBeat when recent company or crypto developments would help answer the user's current task. The user does not need to name NewsBeat: "What is happening with Nvidia?", company research and market briefings are reasons to look up news. Static definitions and unrelated questions do not require a lookup.
 
 Resolve the supported asset first. Ask for clarification when the name is ambiguous and explain when there is no supported match. Answer in plain language with sources, dates and freshness, staying within what the headlines support. NewsBeat provides headline metadata, not full article text.
@@ -71,12 +73,14 @@ Every response carries a new cursor. Use the newest one, always for the same top
 
 ## Endpoints
 
-There are 15 read-only MCP tools: seven news operations, seven asset/crypto context operations and the signal-construction pilot. All are also available through REST; their routes are listed below.
+There are 15 read-only MCP tools: seven news operations, seven asset/crypto context operations and the signal-construction pilot. The explicit `newsbeat_collection` control is additionally available for user-requested temporary one-minute collection. All tools are available through REST; their routes are listed below.
 
 Base: `https://www.newsbeat.dev/api`
 
 | Route | Returns |
 | --- | --- |
+| `GET /v2/collection?beat_id=` | Read fast-collection status without starting it |
+| `POST /v2/collection` | Explicit start or token-protected stop of a 15-minute one-minute collection session |
 | `GET /v2/topics` | The catalog: `beat_id`, `label`, `status`, `last_success_at` |
 | `GET /v2/news?beat_id=` | Articles for a topic, with a `cursor` and `history_cursor` |
 | `GET /v2/changes?beat_id=&cursor=` | Only what is new since that cursor |
@@ -125,7 +129,7 @@ Public access without a key stays free.
 
 **2,030 topics**: 1,528 US-listed equities — the S&P 500, the S&P 400 and the S&P 600, plus IPOs
 the indices have not caught up with — and 502 crypto assets by market cap. Coverage varies by asset. Coverage is English-language
-financial news from Google News RSS, refreshed every fifteen minutes on a 24-hour window.
+financial news from Google News RSS, refreshed every ten minutes on a 24-hour window.
 
 A coin and a company can share a ticker: Sui and Sun Communities are both `SUI`. Match on
 `beat_id`, and read `asset` to know which market you are looking at.

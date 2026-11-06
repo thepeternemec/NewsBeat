@@ -13,7 +13,7 @@ export const metadata = {
  *
  * Every factual claim here is drawn from the codebase rather than from another
  * company's document: the metered key with its $6 trial and 402, the anonymous
- * 120-a-minute tier, headlines-only with links to publishers, the fifteen-minute
+ * 120-a-minute tier, headlines-only with links to publishers, the ten-minute
  * refresh, the absence of any account for readers. Terms that describe a service
  * other than the one being operated are worse than no terms, because they bind.
  *
@@ -58,7 +58,7 @@ export default function Terms() {
               as tools over MCP.
             </p>
             <p>
-              Headlines come from Google News RSS, refreshed on a fifteen-minute schedule. Coverage
+              Headlines come from Google News RSS, refreshed on a ten-minute schedule. Coverage
               varies by asset and is not guaranteed for any particular one.
             </p>
 
@@ -136,7 +136,7 @@ export default function Terms() {
 
             <h2>8. Availability</h2>
             <p>
-              The service is provided as it is. It is refreshed on a fifteen-minute schedule and we
+              The service is provided as it is. It is refreshed on a ten-minute schedule and we
               aim to keep it available, but no uptime commitment is made and none should be assumed.
               Each topic reports its own <code>freshness</code>; a check can fail, and the field says
               so rather than pretending otherwise.

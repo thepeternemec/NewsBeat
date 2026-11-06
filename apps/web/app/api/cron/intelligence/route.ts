@@ -1,6 +1,5 @@
 import { timingSafeEqual } from "node:crypto";
 import { runIntelligence } from "@newsbeat/api";
-import { runPilotIngestion } from "newsbeat-worker";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -14,8 +13,7 @@ export async function GET(request: Request) {
   const expected = Buffer.from(`Bearer ${secret}`);
   if (actual.length !== expected.length || !timingSafeEqual(actual, expected)) return Response.json({ error: "unauthorized" }, { status: 401 });
   try {
-    const ingestion = await runPilotIngestion();
-    return Response.json({ ok: true, pilot_ingestion: { calls: ingestion.calls, inserted: ingestion.inserted, deferred: ingestion.deferred ?? 0 },
+    return Response.json({ ok: true,
       ...(await runIntelligence(request.headers.get("x-vercel-oidc-token"))) }, { headers: { "Cache-Control": "no-store" } });
   } catch {
     return Response.json({ error: "intelligence_worker_unavailable" }, { status: 503 });

@@ -94,6 +94,8 @@ export function isDegenerateTitle(title: string, publisher = ""): boolean {
 }
 
 export interface GoogleNewsOptions {
+  requestTimeoutMs?: number;
+  maxAttempts?: number;
   /** Google's relative window operator, e.g. `1d`, `7d`. */
   when?: string;
   hl?: string;
@@ -118,7 +120,7 @@ export async function searchGoogleNews(
   // Google rate-limits (429) under load, and a 5xx is usually transient. Retry
   // rather than dropping a topic for the whole cycle — a silently skipped topic
   // looks identical to a topic with no news.
-  const attempts = 3;
+  const attempts = Math.max(1, Math.min(3, options.maxAttempts ?? 3));
   let response: Response | undefined;
   let lastError = "";
   for (let attempt = 0; attempt < attempts; attempt += 1) {
@@ -126,7 +128,7 @@ export async function searchGoogleNews(
     try {
       const res = await fetchImpl(url, {
         headers: { "user-agent": USER_AGENT, accept: "application/rss+xml, application/xml" },
-        signal: AbortSignal.timeout(20000),
+        signal: AbortSignal.timeout(Math.max(1000, Math.min(20000, options.requestTimeoutMs ?? 20000))),
       });
       if (res.ok) {
         response = res;

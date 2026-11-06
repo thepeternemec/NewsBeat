@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-06 — Requested one-minute collection
+
+- Changed the catalog schedule and catalog metadata to ten minutes. Removed unconditional pilot news collection from the five-minute analysis job.
+- Added explicit 15-minute fast-collection sessions for the six priority assets through the website, REST and the `newsbeat_collection` MCP control. Reads never opt in; sessions do not auto-renew.
+- Coalesced duplicate requests, protected cancellation with hashed tokens, and leased scheduled work to prevent overlapping fetches. An idle one-minute cron makes no provider requests.
+- Kept model analysis and market-candle schedules unchanged. Added disposable-Postgres checks for opt-in behavior, expiry, cancellation and overlapping jobs.
+
 ## 2026-11-06 — Independent market discovery
 
 - Added a deterministic market-first scan over existing venue observations, independent of headline theses. Separate pre-window fits and past-only non-overlapping comparisons score 15/30/60-minute relative moves.

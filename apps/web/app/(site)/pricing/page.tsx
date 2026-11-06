@@ -139,7 +139,7 @@ export default function Pricing() {
               <span className="sec-eyebrow">The surface</span>
               <h2 className="sec-title">Connect through MCP or API.</h2>
               <p className="sec-sub">
-                2,000+ equities and cryptos covered — refreshed every fifteen
+                2,000+ equities and cryptos covered — refreshed every ten
                 minutes.
               </p>
             </div>

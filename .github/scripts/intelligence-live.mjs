@@ -65,12 +65,18 @@ for (let attempt = 0; attempt < 32; attempt++) {
       const eth = topics.topics.find(item => item.ticker === "ETH"); assert.ok(eth);
       verifyMarket(await read("/api/v2/intelligence?beat_id=" + eth.beat_id), "crypto");
       const invalid = await fetch(origin + "/api/v2/intelligence?beat_id=b_bb964843350e&context=invented"); assert.equal(invalid.status, 400);
-      for (const route of ["intelligence", "market-intelligence"]) {
+      for (const route of ["intelligence", "market-intelligence", "priority-news"]) {
         const cron = await fetch(origin + "/api/cron/" + route); assert.equal(cron.status, 401);
       }
       const tools = await read("/api/v2/tools");
       const tool = tools.tools.find(item => item.function?.name === "newsbeat_intelligence");
       assert.deepEqual(tool.function.parameters.properties.context.enum, ["fundamentals", "liquidity", "risk"]);
+      assert.ok(tools.tools.some(item => item.function?.name === "newsbeat_collection"));
+      const collection = await read("/api/v2/collection?beat_id=b_bb964843350e");
+      assert.equal(collection.catalog_interval_seconds, 600);
+      assert.equal(collection.interval_seconds, 60);
+      assert.equal(collection.duration_minutes, 15);
+      assert.equal(collection.session_token, undefined, "status reads never reveal cancellation tokens");
       const home = await fetch(origin + "/?verify=timing").then(result => result.text());
       assert.ok(!/event.intelligence/i.test(home)); assert.ok(home.includes("Signal construction")); assert.ok(home.includes('id="agent-workflow"'));
       assert.ok(home.includes("Delta. Confirmation. Timing."));

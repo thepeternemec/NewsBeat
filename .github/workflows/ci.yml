@@ -58,7 +58,7 @@ jobs:
       - name: Build pipeline packages
         run: npm run build:packages && npm run build -w @newsbeat/api && npm run build -w newsbeat-worker
       - name: Verify event memory against disposable Postgres
-        run: node --test --test-concurrency=1 apps/api/dist/lib/intelligence-store.test.js apps/api/dist/lib/market-intelligence-store.test.js apps/worker/dist/ingest-news-store.test.js
+        run: node --test --test-concurrency=1 apps/api/dist/lib/intelligence-store.test.js apps/api/dist/lib/market-intelligence-store.test.js apps/worker/dist/ingest-news-store.test.js apps/worker/dist/priority-collection-store.test.js
 
   intelligence-live-read:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
