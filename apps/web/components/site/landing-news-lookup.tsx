@@ -88,7 +88,7 @@ export default function LandingNewsLookup() {
     return () => { active = false; controller.abort(); window.clearTimeout(debounce); window.clearTimeout(timeout); };
   }, [term, attempt]);
   return <aside className="landing-lookup" id="company-news" aria-labelledby="landing-lookup-title">
-    <div className="landing-lookup-intro"><span className="landing-lookup-eyebrow"><i aria-hidden="true" /> THE NEWS BEHIND THE SIGNAL</span><h2 id="landing-lookup-title">What’s happening with…</h2><p>Find a company. Go straight to the reporting.</p></div>
+    <div className="landing-lookup-intro"><span className="landing-lookup-eyebrow"><i aria-hidden="true" /> NEWS ARCHIVE · 10-MINUTE COLLECTION</span><h2 id="landing-lookup-title">What’s happening with…</h2><p>Search collected stock and crypto headlines.</p></div>
     <form className="landing-lookup-search" role="search" aria-label="Company and crypto news" onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false); }} onSubmit={event => { event.preventDefault(); if (index >= 0 && topics[index]) choose(topics[index]); else if (topics.length === 1) choose(topics[0]); else { setOpen(true); setAttempt(value => value + 1); } }}>
       <label htmlFor="landing-company-query" className="landing-lookup-sr">Search by company name or ticker</label>
       <div className="landing-lookup-input"><Search size={19} aria-hidden="true" /><input ref={input} id="landing-company-query" type="text" role="combobox" aria-autocomplete="list" aria-expanded={matches} aria-controls={matches ? "landing-company-matches" : undefined} aria-activedescendant={matches && topics[index] ? `landing-match-${topics[index].beat_id}` : undefined} autoComplete="off" maxLength={80} placeholder="Company or ticker, e.g. Tesla or TSLA" value={query} onFocus={() => setOpen(true)} onChange={event => { setQuery(event.target.value); setIndex(-1); setOpen(true); }} onKeyDown={event => {
@@ -99,7 +99,7 @@ export default function LandingNewsLookup() {
     </form>
     <div className="landing-lookup-suggestions" role="group" aria-label="Try a company or asset"><span>Try</span>{SUGGESTIONS.map(item => <button type="button" key={item.beat_id} aria-pressed={item.beat_id === asset.beat_id} onClick={() => choose(item)}>{item.label}</button>)}</div>
     <Coverage key={asset.beat_id} asset={asset} />
-    <div className="landing-lookup-bridge"><span>Headlines are the starting point.<br /><strong>Your agent gets the context.</strong></span><a href="/intelligence">Explore signals <ArrowRight size={15} aria-hidden="true" /></a></div>
+    <div className="landing-lookup-bridge"><span>Start with the reporting.<br /><strong>Find the context behind it.</strong></span><a href="/intelligence">Explore signals <ArrowRight size={15} aria-hidden="true" /></a></div>
     <noscript><p>Enable JavaScript to search live coverage, or <a href="/docs/quickstart">connect your agent</a>.</p></noscript>
   </aside>;
 }
