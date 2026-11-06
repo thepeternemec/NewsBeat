@@ -14,7 +14,7 @@ export async function mcpResponse(request: Request) {
     if (Number(request.headers.get("content-length") ?? 0) > 16384)
         return new Response("Request too large", { status: 413 });
     const server = new Server({ name: "newsbeat", version: "0.3.0" }, { capabilities: { tools: {} }, instructions: NEWS_AGENT_INSTRUCTIONS });
-    server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools: NEWS_TOOLS.map(tool => ({ ...tool, inputSchema: { ...tool.inputSchema, type: "object" as const }, annotations: { readOnlyHint: true, destructiveHint: false, openWorldHint: true } })) }));
+    server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools: NEWS_TOOLS.map(tool => ({ ...tool, inputSchema: { ...tool.inputSchema, type: "object" as const }, annotations: { readOnlyHint: tool.name !== "newsbeat_collection", destructiveHint: false, openWorldHint: true } })) }));
     server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest) => {
         try {
             const result = await callNewsTool(request.params.name, request.params.arguments ?? {}, oidcToken);

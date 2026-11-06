@@ -184,13 +184,14 @@ test("every public route is mentioned in the docs", () => {
 /** POST is allowed only where a request body is the whole point, and writes nothing. */
 const POST_READS = new Set(["/v2/watch"]);
 
-test("the public routes write nothing", () => {
+test("research reads stay read-only; temporary collection control is an explicit exception", () => {
   // The contract is read-only. A mutating verb appearing here would be a product
   // change, not a refactor. `/v2/watch` is a POST because fifty cursors do not fit
   // in a URL — it reads, and the allowlist is explicit so the next one has to be
   // argued for rather than assumed.
   for (const route of served()) {
     if (!route.path.startsWith("/v2/")) continue;
+    if (route.path === "/v2/collection") { assert.ok(["GET", "POST"].includes(route.method)); continue; }
     if (POST_READS.has(route.path)) {
       assert.equal(route.method, "POST", `${route.path} is in the POST allowlist but served as ${route.method}`);
       continue;

@@ -105,10 +105,10 @@ A topic that ingested successfully reads `fresh` or `stale`; one that has never 
 
 ## 6. The schedule
 
-`vercel.json` runs `/api/cron/ingest` every 15 minutes. Vercel signs its own cron requests, so no
+`vercel.json` runs `/api/cron/ingest` every 10 minutes. Vercel signs its own cron requests, so no
 secret is needed for those; `NEWSBEAT_CRON_SECRET` only guards manual runs.
 
-> **Hobby plan crons run once per day.** A 15-minute cadence needs Pro. If you are on Hobby,
+> **Hobby plan crons run once per day.** A 10-minute cadence needs Pro. If you are on Hobby,
 > either change the schedule in `vercel.json` or drive it from GitHub Actions instead.
 
 ## Checklist

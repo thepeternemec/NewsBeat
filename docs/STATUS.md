@@ -19,14 +19,14 @@ NewsBeat is building meaningful signals for AI agents. The source-linked news fo
 | Stories | Approximate headline grouping, ranked by relevance, with original reports and source links |
 | Summaries | Up to three short explanations based only on headlines; generated text or labeled original-headline fallback |
 | Batched watch | Up to 50 assets per request; each result can succeed or fail independently |
-| REST and function calling | 15 read operations and schemas at `/api/v2/tools` |
-| Hosted MCP | 15 tools over Streamable HTTP at `/api/mcp`, including `newsbeat_summary` |
+| REST and function calling | 15 read operations plus explicit collection control and schemas at `/api/v2/tools` |
+| Hosted MCP | 16 tools over Streamable HTTP at `/api/mcp`, 15 research reads plus the explicit `newsbeat_collection` control |
 | Supporting reference utilities | Sourced crypto prices, sentiment, chain readings, contract prices and positioning, retained through REST and MCP |
 | Intelligence workbench | Full-width measured market path, context selection, thesis/evidence inspector, timing reasons and forward observation cohorts. The former `/crypto` page redirects here. |
 | Web news explorer | Asset search, grouped stories, source expansion, Show more controls and on-demand headline summaries |
 | Self-serve keys | GitHub sign-in; signing in again rotates the existing key |
 | Account billing | Keyed REST usage is metered; anonymous reads are free and rate limited |
-| Ingestion | Google News RSS by default; Vercel cron configured every 15 minutes |
+| Ingestion | Google News RSS by default; Vercel cron configured every 10 minutes |
 | Retention | 30-day API window; maintenance retains 35 days by default |
 
 The scheduled worker uses a time budget and prioritizes overdue assets. A schedule is not proof that every fetch succeeded: inspect `status`, `last_success_at`, article counts and the cron’s deferred/error counts. Empty coverage can be legitimate for quiet assets.

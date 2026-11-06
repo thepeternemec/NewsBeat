@@ -17,6 +17,7 @@ import { callNewsTool } from "./news-routes.js";
 
 /** The smallest arguments each tool will accept. */
 const MINIMAL: Record<string, unknown> = {
+  newsbeat_collection: { action: "status", beat_id: "b_bb964843350e" },
   newsbeat_topics: {},
   newsbeat_news: { beat_id: "b_bb964843350e" },
   newsbeat_changes: { beat_id: "b_bb964843350e", cursor: "x" },

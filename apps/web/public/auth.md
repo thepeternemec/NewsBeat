@@ -12,7 +12,7 @@ Host: `www.newsbeat.dev` · API base: `https://www.newsbeat.dev/api`
 Skip this step. There is no `/agent/identity`, no `/oauth2/token`, and no claim
 ceremony. `POST` to any of them returns `404`.
 
-NewsBeat is a **public read-only news API**. Access is not gated, so there is no
+NewsBeat provides public read-only research and an explicit temporary collection-control endpoint. Access is not gated, so there is no
 user to register and no scoped token to mint. An agent may call it on first use,
 with no setup and no operator involvement.
 
@@ -76,10 +76,11 @@ GET /v2/tools HTTP/1.1
 Host: www.newsbeat.dev
 ```
 
-Returns 15 read-only calls in OpenAI function-call shape:
+Returns 15 read-only research calls plus one explicit collection-control call in OpenAI function-call shape:
 
 | Tool | Purpose | REST route |
 | --- | --- | --- |
+| `newsbeat_collection` | Explicitly request one-minute collection for 15 minutes, read status, or stop with your token. | `GET/POST /v2/collection` |
 | `newsbeat_intelligence` | Stored event memory, conditional implications and follow-up checks for the six-asset pilot | `GET /v2/intelligence?beat_id=` |
 | `newsbeat_topics` | Find a supported stock or crypto asset. | `GET /v2/topics?q=…` |
 | `newsbeat_news` | Read headlines and establish a baseline cursor. | `GET /v2/news?beat_id=…` |

@@ -38,7 +38,7 @@ export default function DocsData() {
 
       <h2 id="how-fresh-is-latest">How fresh is “latest”?</h2>
       <p>
-        Source checks are scheduled every fifteen minutes. A check may be delayed or fail, and
+        Source checks are scheduled every ten minutes. A check may be delayed or fail, and
         some companies receive little coverage. NewsBeat reports the time of the last successful
         check alongside the news. This is different from the time a publisher released an article.
       </p>

@@ -31,7 +31,7 @@ export default function DocsOverview() {
 
       <section className="docs-section" aria-labelledby="developer-quickstart">
         <h2 id="developer-quickstart">Your first request.</h2>
-        <p>Try a public catalog lookup or add the remote MCP server to your client. 15 tools are available; news is collected on a fifteen-minute schedule.</p>
+        <p>Try a public catalog lookup or add the remote MCP server to your client. 16 tools are available; news is collected on a ten-minute schedule.</p>
         <DocsDeveloperStart />
       </section>
 
@@ -82,7 +82,7 @@ export default function DocsOverview() {
         <div className="docs-facts">
           <div><h3>Stock and crypto coverage</h3><p>The catalog includes 1,528 US-listed equities and 502 crypto assets. <a href="/docs/try">Search the live catalog</a> to check your company.</p></div>
           <div><h3>Headlines, with context</h3><p>NewsBeat uses English-language headline metadata. Summaries are based on headlines; full article text is not included.</p></div>
-          <div><h3>A clear freshness signal</h3><p>Source checks are scheduled every fifteen minutes. Check times and publication dates help your agent explain when coverage is delayed.</p></div>
+          <div><h3>A clear freshness signal</h3><p>Source checks are scheduled every ten minutes. Check times and publication dates help your agent explain when coverage is delayed.</p></div>
           <div><h3>News when you ask</h3><p>NewsBeat responds to lookups. Recurring briefings need scheduling in your assistant or workflow. Built-in alerts are still in development.</p></div>
         </div>
         <a className="docs-text-action" href="/docs/data">Understand coverage and freshness <ArrowRight size={14} aria-hidden="true" /></a>

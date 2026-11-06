@@ -1,10 +1,11 @@
 import CopyButton from "@/components/site/copy-button";
 import AgentInstructions from "@/components/site/agent-instructions";
 
-export const metadata = { title: "Developer reference", description: "Connect NewsBeat through remote MCP, REST or function calling. 15 tools, current endpoints and working examples." };
+export const metadata = { title: "Developer reference", description: "Connect NewsBeat through remote MCP, REST or function calling. 16 tools, current endpoints and working examples." };
 const API = "https://www.newsbeat.dev/api";
 const MCP_CONFIG = JSON.stringify({ mcpServers: { newsbeat: { url: `${API}/mcp` } } }, null, 2);
 const TOOLS = [
+  ["newsbeat_collection", "Explicitly request one-minute collection for 15 minutes, read status, or stop your session.", "GET/POST /v2/collection"],
   ["newsbeat_intelligence", "Read stored event interpretations, evidence and follow-up checks for the six-asset pilot.", "GET /v2/intelligence?beat_id=…"],
   ["newsbeat_topics", "Find a supported company or crypto asset.", "GET /v2/topics?q=nvidia"],
   ["newsbeat_news", "Read latest headlines and establish a baseline cursor.", "GET /v2/news?beat_id=…"],
@@ -50,7 +51,7 @@ export default function DocsConnect() {
         <pre>{MCP_CONFIG}</pre>
       </div>
       <p>
-        The server advertises 15 read-only tools and guidance on when to use them. The host decides
+        The server advertises 15 read-only research tools plus one explicit collection-control tool and guidance on when to use them. The host decides
         when tools run and enforces its own approvals. Custom remote connections are not available
         in every assistant or account; this endpoint does not imply directory approval.
       </p>
@@ -63,7 +64,7 @@ export default function DocsConnect() {
       </p>
       <AgentInstructions />
 
-      <h2 id="seven-tools-and-their-rest-routes">15 tools and their REST routes</h2>
+      <h2 id="seven-tools-and-their-rest-routes">16 tools and their REST routes</h2>
       <p>Prefix REST routes with <code>{API}</code>. Most reads use GET; batched watch uses POST.</p>
       <div className="table-scroll">
         <table>
@@ -75,6 +76,7 @@ export default function DocsConnect() {
       </div>
 
       <h2 id="first-rest-requests">First REST requests</h2>
+      <p>Catalog collection is scheduled every 10 minutes. Only when a user explicitly asks for one-minute news, call <code>newsbeat_collection</code> with <code>action: "start"</code>, the priority <code>beat_id</code> and <code>interval_seconds: 60</code>, or POST that body to <code>/v2/collection</code>. It lasts 15 minutes and never auto-renews. Save the returned private session token to stop early. GET status does not activate collection. Market measurements and model analysis retain five-minute schedules.</p>
       <div className="code">
         <div className="code-bar">Find Nvidia, then request a short update <CopyButton text={FIRST_REQUEST} label="requests" /></div>
         <pre>{FIRST_REQUEST}</pre>

@@ -47,7 +47,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -59,7 +59,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -71,7 +71,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -83,7 +83,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -95,7 +95,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -107,7 +107,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -119,7 +119,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -131,7 +131,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -143,7 +143,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -155,7 +155,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -167,7 +167,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -179,7 +179,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -191,7 +191,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -203,7 +203,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -215,7 +215,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -227,7 +227,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -239,7 +239,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -251,7 +251,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -263,7 +263,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -275,7 +275,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -287,7 +287,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -299,7 +299,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -311,7 +311,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -323,7 +323,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -335,7 +335,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -347,7 +347,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -359,7 +359,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -371,7 +371,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -383,7 +383,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -395,7 +395,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -407,7 +407,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -419,7 +419,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -431,7 +431,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -443,7 +443,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -455,7 +455,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -467,7 +467,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -479,7 +479,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -491,7 +491,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -503,7 +503,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -515,7 +515,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -527,7 +527,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -539,7 +539,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -551,7 +551,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -563,7 +563,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -575,7 +575,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -587,7 +587,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -599,7 +599,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -611,7 +611,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -623,7 +623,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -635,7 +635,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -647,7 +647,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -659,7 +659,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -671,7 +671,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -683,7 +683,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -695,7 +695,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -707,7 +707,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -719,7 +719,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -731,7 +731,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -743,7 +743,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -755,7 +755,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -767,7 +767,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -779,7 +779,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -791,7 +791,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -803,7 +803,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -815,7 +815,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -827,7 +827,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -839,7 +839,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -851,7 +851,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -863,7 +863,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -875,7 +875,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -887,7 +887,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -899,7 +899,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -911,7 +911,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -923,7 +923,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -935,7 +935,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -947,7 +947,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -959,7 +959,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -971,7 +971,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -983,7 +983,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -995,7 +995,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1007,7 +1007,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1019,7 +1019,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1031,7 +1031,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1043,7 +1043,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1055,7 +1055,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1067,7 +1067,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1079,7 +1079,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1091,7 +1091,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1103,7 +1103,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1115,7 +1115,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1127,7 +1127,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1139,7 +1139,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1151,7 +1151,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1163,7 +1163,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1175,7 +1175,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1187,7 +1187,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1199,7 +1199,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1211,7 +1211,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1223,7 +1223,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1235,7 +1235,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1247,7 +1247,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1259,7 +1259,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1271,7 +1271,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1283,7 +1283,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1295,7 +1295,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1307,7 +1307,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1319,7 +1319,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1331,7 +1331,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1343,7 +1343,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1355,7 +1355,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1367,7 +1367,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1379,7 +1379,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1391,7 +1391,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1403,7 +1403,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1415,7 +1415,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1427,7 +1427,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1439,7 +1439,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1451,7 +1451,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1463,7 +1463,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1475,7 +1475,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1487,7 +1487,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1499,7 +1499,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1511,7 +1511,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1523,7 +1523,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1535,7 +1535,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1547,7 +1547,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1559,7 +1559,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1571,7 +1571,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1583,7 +1583,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1595,7 +1595,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1607,7 +1607,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1619,7 +1619,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1631,7 +1631,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1643,7 +1643,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1655,7 +1655,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1667,7 +1667,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1679,7 +1679,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1691,7 +1691,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1703,7 +1703,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1715,7 +1715,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1727,7 +1727,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1739,7 +1739,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1751,7 +1751,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1763,7 +1763,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1775,7 +1775,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1787,7 +1787,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1799,7 +1799,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1811,7 +1811,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1823,7 +1823,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1835,7 +1835,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1847,7 +1847,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1859,7 +1859,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1871,7 +1871,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1883,7 +1883,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1895,7 +1895,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1907,7 +1907,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1919,7 +1919,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1931,7 +1931,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1943,7 +1943,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1955,7 +1955,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1967,7 +1967,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1979,7 +1979,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -1991,7 +1991,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2003,7 +2003,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2015,7 +2015,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2027,7 +2027,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2039,7 +2039,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2051,7 +2051,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2063,7 +2063,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2075,7 +2075,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2087,7 +2087,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2099,7 +2099,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2111,7 +2111,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2123,7 +2123,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2135,7 +2135,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2147,7 +2147,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2159,7 +2159,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2171,7 +2171,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2183,7 +2183,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2195,7 +2195,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2207,7 +2207,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2219,7 +2219,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2231,7 +2231,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2243,7 +2243,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2255,7 +2255,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2267,7 +2267,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2279,7 +2279,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2291,7 +2291,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2303,7 +2303,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2315,7 +2315,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2327,7 +2327,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2339,7 +2339,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2351,7 +2351,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2363,7 +2363,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2375,7 +2375,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2387,7 +2387,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2399,7 +2399,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2411,7 +2411,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2423,7 +2423,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2435,7 +2435,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2447,7 +2447,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2459,7 +2459,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2471,7 +2471,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2483,7 +2483,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2495,7 +2495,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2507,7 +2507,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2519,7 +2519,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2531,7 +2531,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2543,7 +2543,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2555,7 +2555,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2567,7 +2567,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2579,7 +2579,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2591,7 +2591,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2603,7 +2603,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2615,7 +2615,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2627,7 +2627,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2639,7 +2639,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2651,7 +2651,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2663,7 +2663,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2675,7 +2675,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2687,7 +2687,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2699,7 +2699,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2711,7 +2711,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2723,7 +2723,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2735,7 +2735,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2747,7 +2747,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2759,7 +2759,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2771,7 +2771,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2783,7 +2783,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2795,7 +2795,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2807,7 +2807,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2819,7 +2819,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2831,7 +2831,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2843,7 +2843,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2855,7 +2855,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2867,7 +2867,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2879,7 +2879,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2891,7 +2891,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2903,7 +2903,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2915,7 +2915,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2927,7 +2927,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2939,7 +2939,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2951,7 +2951,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2963,7 +2963,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2975,7 +2975,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2987,7 +2987,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -2999,7 +2999,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3011,7 +3011,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3023,7 +3023,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3035,7 +3035,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3047,7 +3047,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3059,7 +3059,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3071,7 +3071,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3083,7 +3083,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3095,7 +3095,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3107,7 +3107,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3119,7 +3119,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3131,7 +3131,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3143,7 +3143,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3155,7 +3155,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3167,7 +3167,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3179,7 +3179,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3191,7 +3191,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3203,7 +3203,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3215,7 +3215,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3227,7 +3227,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3239,7 +3239,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3251,7 +3251,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3263,7 +3263,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3275,7 +3275,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3287,7 +3287,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3299,7 +3299,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3311,7 +3311,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3323,7 +3323,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3335,7 +3335,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3347,7 +3347,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3359,7 +3359,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3371,7 +3371,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3383,7 +3383,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3395,7 +3395,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3407,7 +3407,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3419,7 +3419,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3431,7 +3431,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3443,7 +3443,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3455,7 +3455,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3467,7 +3467,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3479,7 +3479,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3491,7 +3491,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3503,7 +3503,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3515,7 +3515,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3527,7 +3527,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3539,7 +3539,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3551,7 +3551,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3563,7 +3563,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3575,7 +3575,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3587,7 +3587,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3599,7 +3599,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3611,7 +3611,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3623,7 +3623,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3635,7 +3635,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3647,7 +3647,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3659,7 +3659,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3671,7 +3671,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3683,7 +3683,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3695,7 +3695,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3707,7 +3707,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3719,7 +3719,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3731,7 +3731,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3743,7 +3743,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3755,7 +3755,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3767,7 +3767,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3779,7 +3779,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3791,7 +3791,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3803,7 +3803,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3815,7 +3815,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3827,7 +3827,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3839,7 +3839,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3851,7 +3851,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3863,7 +3863,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3875,7 +3875,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3887,7 +3887,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3899,7 +3899,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3911,7 +3911,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3923,7 +3923,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3935,7 +3935,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3947,7 +3947,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3959,7 +3959,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3971,7 +3971,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3983,7 +3983,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -3995,7 +3995,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4007,7 +4007,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4019,7 +4019,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4031,7 +4031,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4043,7 +4043,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4055,7 +4055,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4067,7 +4067,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4079,7 +4079,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4091,7 +4091,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4103,7 +4103,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4115,7 +4115,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4127,7 +4127,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4139,7 +4139,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4151,7 +4151,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4163,7 +4163,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4175,7 +4175,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4187,7 +4187,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4199,7 +4199,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4211,7 +4211,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4223,7 +4223,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4235,7 +4235,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4247,7 +4247,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4259,7 +4259,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4271,7 +4271,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4283,7 +4283,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4295,7 +4295,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4307,7 +4307,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4319,7 +4319,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4331,7 +4331,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4343,7 +4343,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4355,7 +4355,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4367,7 +4367,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4379,7 +4379,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4391,7 +4391,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4403,7 +4403,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4415,7 +4415,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4427,7 +4427,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4439,7 +4439,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4451,7 +4451,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4463,7 +4463,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4475,7 +4475,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4487,7 +4487,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4499,7 +4499,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4511,7 +4511,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4523,7 +4523,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4535,7 +4535,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4547,7 +4547,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4559,7 +4559,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4571,7 +4571,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4583,7 +4583,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4595,7 +4595,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4607,7 +4607,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4619,7 +4619,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4631,7 +4631,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4643,7 +4643,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4655,7 +4655,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4667,7 +4667,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4679,7 +4679,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4691,7 +4691,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4703,7 +4703,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4715,7 +4715,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4727,7 +4727,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4739,7 +4739,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4751,7 +4751,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4763,7 +4763,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4775,7 +4775,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4787,7 +4787,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4799,7 +4799,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4811,7 +4811,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4823,7 +4823,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4835,7 +4835,7 @@ const CATALOG_1: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
 ];
@@ -4853,7 +4853,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4865,7 +4865,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4877,7 +4877,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4889,7 +4889,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4901,7 +4901,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4913,7 +4913,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4925,7 +4925,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4937,7 +4937,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4949,7 +4949,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4961,7 +4961,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4973,7 +4973,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4985,7 +4985,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -4997,7 +4997,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5009,7 +5009,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5021,7 +5021,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5033,7 +5033,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5045,7 +5045,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5057,7 +5057,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5069,7 +5069,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5081,7 +5081,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5093,7 +5093,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5105,7 +5105,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5117,7 +5117,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5129,7 +5129,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5141,7 +5141,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5153,7 +5153,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5165,7 +5165,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5177,7 +5177,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5189,7 +5189,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5201,7 +5201,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5213,7 +5213,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5225,7 +5225,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5237,7 +5237,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5249,7 +5249,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5261,7 +5261,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5273,7 +5273,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5285,7 +5285,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5297,7 +5297,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5309,7 +5309,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5321,7 +5321,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5333,7 +5333,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5345,7 +5345,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5357,7 +5357,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5369,7 +5369,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5381,7 +5381,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5393,7 +5393,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5405,7 +5405,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5417,7 +5417,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5429,7 +5429,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5441,7 +5441,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5453,7 +5453,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5465,7 +5465,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5477,7 +5477,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5489,7 +5489,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5501,7 +5501,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5513,7 +5513,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5525,7 +5525,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5537,7 +5537,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5549,7 +5549,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5561,7 +5561,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5573,7 +5573,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5585,7 +5585,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5597,7 +5597,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5609,7 +5609,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5621,7 +5621,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5633,7 +5633,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5645,7 +5645,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5657,7 +5657,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5669,7 +5669,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5681,7 +5681,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5693,7 +5693,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5705,7 +5705,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5717,7 +5717,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5729,7 +5729,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5741,7 +5741,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5753,7 +5753,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5765,7 +5765,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5777,7 +5777,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5789,7 +5789,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5801,7 +5801,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5813,7 +5813,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5825,7 +5825,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5837,7 +5837,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5849,7 +5849,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5861,7 +5861,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5873,7 +5873,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5885,7 +5885,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5897,7 +5897,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5909,7 +5909,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5921,7 +5921,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5933,7 +5933,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5945,7 +5945,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5957,7 +5957,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5969,7 +5969,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5981,7 +5981,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -5993,7 +5993,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6005,7 +6005,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6017,7 +6017,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6029,7 +6029,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6041,7 +6041,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6053,7 +6053,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6065,7 +6065,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6077,7 +6077,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6089,7 +6089,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6101,7 +6101,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6113,7 +6113,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6125,7 +6125,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6137,7 +6137,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6149,7 +6149,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6161,7 +6161,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6173,7 +6173,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6185,7 +6185,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6197,7 +6197,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6209,7 +6209,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6221,7 +6221,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6233,7 +6233,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6245,7 +6245,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6257,7 +6257,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6269,7 +6269,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6281,7 +6281,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6293,7 +6293,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6305,7 +6305,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6317,7 +6317,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6329,7 +6329,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6341,7 +6341,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6353,7 +6353,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6365,7 +6365,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6377,7 +6377,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6389,7 +6389,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6401,7 +6401,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6413,7 +6413,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6425,7 +6425,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6437,7 +6437,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6449,7 +6449,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6461,7 +6461,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6473,7 +6473,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6485,7 +6485,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6497,7 +6497,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6509,7 +6509,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6521,7 +6521,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6533,7 +6533,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6545,7 +6545,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6557,7 +6557,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6569,7 +6569,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6581,7 +6581,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6593,7 +6593,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6605,7 +6605,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6617,7 +6617,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6629,7 +6629,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6641,7 +6641,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6653,7 +6653,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6665,7 +6665,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6677,7 +6677,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6689,7 +6689,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6701,7 +6701,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6713,7 +6713,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6725,7 +6725,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6737,7 +6737,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6749,7 +6749,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6761,7 +6761,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6773,7 +6773,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6785,7 +6785,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6797,7 +6797,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6809,7 +6809,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6821,7 +6821,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6833,7 +6833,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6845,7 +6845,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6857,7 +6857,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6869,7 +6869,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6881,7 +6881,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6893,7 +6893,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6905,7 +6905,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6917,7 +6917,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6929,7 +6929,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6941,7 +6941,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6953,7 +6953,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6965,7 +6965,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6977,7 +6977,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -6989,7 +6989,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7001,7 +7001,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7013,7 +7013,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7025,7 +7025,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7037,7 +7037,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7049,7 +7049,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7061,7 +7061,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7073,7 +7073,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7085,7 +7085,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7097,7 +7097,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7109,7 +7109,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7121,7 +7121,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7133,7 +7133,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7145,7 +7145,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7157,7 +7157,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7169,7 +7169,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7181,7 +7181,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7193,7 +7193,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7205,7 +7205,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7217,7 +7217,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7229,7 +7229,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7241,7 +7241,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7253,7 +7253,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7265,7 +7265,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7277,7 +7277,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7289,7 +7289,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7301,7 +7301,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7313,7 +7313,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7325,7 +7325,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7337,7 +7337,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7349,7 +7349,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7361,7 +7361,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7373,7 +7373,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7385,7 +7385,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7397,7 +7397,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7409,7 +7409,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7421,7 +7421,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7433,7 +7433,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7445,7 +7445,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7457,7 +7457,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7469,7 +7469,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7481,7 +7481,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7493,7 +7493,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7505,7 +7505,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7517,7 +7517,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7529,7 +7529,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7541,7 +7541,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7553,7 +7553,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7565,7 +7565,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7577,7 +7577,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7589,7 +7589,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7601,7 +7601,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7613,7 +7613,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7625,7 +7625,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7637,7 +7637,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7649,7 +7649,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7661,7 +7661,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7673,7 +7673,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7685,7 +7685,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7697,7 +7697,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7709,7 +7709,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7721,7 +7721,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7733,7 +7733,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7745,7 +7745,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7757,7 +7757,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7769,7 +7769,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7781,7 +7781,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7793,7 +7793,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7805,7 +7805,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7817,7 +7817,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7829,7 +7829,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7841,7 +7841,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7853,7 +7853,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7865,7 +7865,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7877,7 +7877,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7889,7 +7889,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7901,7 +7901,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7913,7 +7913,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7925,7 +7925,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7937,7 +7937,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7949,7 +7949,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7961,7 +7961,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7973,7 +7973,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7985,7 +7985,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -7997,7 +7997,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8009,7 +8009,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8021,7 +8021,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8033,7 +8033,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8045,7 +8045,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8057,7 +8057,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8069,7 +8069,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8081,7 +8081,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8093,7 +8093,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8105,7 +8105,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8117,7 +8117,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8129,7 +8129,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8141,7 +8141,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8153,7 +8153,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8165,7 +8165,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8177,7 +8177,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8189,7 +8189,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8201,7 +8201,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8213,7 +8213,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8225,7 +8225,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8237,7 +8237,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8249,7 +8249,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8261,7 +8261,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8273,7 +8273,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8285,7 +8285,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8297,7 +8297,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8309,7 +8309,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8321,7 +8321,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8333,7 +8333,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8345,7 +8345,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8357,7 +8357,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8369,7 +8369,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8381,7 +8381,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8393,7 +8393,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8405,7 +8405,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8417,7 +8417,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8429,7 +8429,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8441,7 +8441,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8453,7 +8453,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8465,7 +8465,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8477,7 +8477,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8489,7 +8489,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8501,7 +8501,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8513,7 +8513,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8525,7 +8525,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8537,7 +8537,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8549,7 +8549,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8561,7 +8561,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8573,7 +8573,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8585,7 +8585,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8597,7 +8597,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8609,7 +8609,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8621,7 +8621,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8633,7 +8633,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8645,7 +8645,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8657,7 +8657,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8669,7 +8669,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8681,7 +8681,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8693,7 +8693,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8705,7 +8705,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8717,7 +8717,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8729,7 +8729,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8741,7 +8741,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8753,7 +8753,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8765,7 +8765,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8777,7 +8777,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8789,7 +8789,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8801,7 +8801,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8813,7 +8813,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8825,7 +8825,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8837,7 +8837,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8849,7 +8849,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8861,7 +8861,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8873,7 +8873,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8885,7 +8885,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8897,7 +8897,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8909,7 +8909,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8921,7 +8921,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8933,7 +8933,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8945,7 +8945,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8957,7 +8957,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8969,7 +8969,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8981,7 +8981,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -8993,7 +8993,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9005,7 +9005,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9017,7 +9017,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9029,7 +9029,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9041,7 +9041,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9053,7 +9053,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9065,7 +9065,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9077,7 +9077,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9089,7 +9089,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9101,7 +9101,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9113,7 +9113,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9125,7 +9125,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9137,7 +9137,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9149,7 +9149,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9161,7 +9161,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9173,7 +9173,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9185,7 +9185,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9197,7 +9197,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9209,7 +9209,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9221,7 +9221,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9233,7 +9233,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9245,7 +9245,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9257,7 +9257,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9269,7 +9269,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9281,7 +9281,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9293,7 +9293,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9305,7 +9305,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9317,7 +9317,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9329,7 +9329,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9341,7 +9341,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9353,7 +9353,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9365,7 +9365,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9377,7 +9377,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9389,7 +9389,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9401,7 +9401,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9413,7 +9413,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9425,7 +9425,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9437,7 +9437,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9449,7 +9449,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9461,7 +9461,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9473,7 +9473,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9485,7 +9485,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9497,7 +9497,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9509,7 +9509,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9521,7 +9521,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9533,7 +9533,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9545,7 +9545,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9557,7 +9557,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9569,7 +9569,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9581,7 +9581,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9593,7 +9593,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9605,7 +9605,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9617,7 +9617,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9629,7 +9629,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9641,7 +9641,7 @@ const CATALOG_2: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
 ];
@@ -9659,7 +9659,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9671,7 +9671,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9683,7 +9683,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9695,7 +9695,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9707,7 +9707,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9719,7 +9719,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9731,7 +9731,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9743,7 +9743,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9755,7 +9755,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9767,7 +9767,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9779,7 +9779,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9791,7 +9791,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9803,7 +9803,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9815,7 +9815,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9827,7 +9827,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9839,7 +9839,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9851,7 +9851,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9863,7 +9863,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9875,7 +9875,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9887,7 +9887,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9899,7 +9899,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9911,7 +9911,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9923,7 +9923,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9935,7 +9935,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9947,7 +9947,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9959,7 +9959,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9971,7 +9971,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9983,7 +9983,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -9995,7 +9995,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10007,7 +10007,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10019,7 +10019,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10031,7 +10031,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10043,7 +10043,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10055,7 +10055,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10067,7 +10067,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10079,7 +10079,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10091,7 +10091,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10103,7 +10103,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10115,7 +10115,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10127,7 +10127,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10139,7 +10139,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10151,7 +10151,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10163,7 +10163,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10175,7 +10175,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10187,7 +10187,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10199,7 +10199,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10211,7 +10211,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10223,7 +10223,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10235,7 +10235,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10247,7 +10247,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10259,7 +10259,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10271,7 +10271,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10283,7 +10283,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10295,7 +10295,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10307,7 +10307,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10319,7 +10319,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10331,7 +10331,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10343,7 +10343,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10355,7 +10355,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10367,7 +10367,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10379,7 +10379,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10391,7 +10391,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10403,7 +10403,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10415,7 +10415,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10427,7 +10427,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10439,7 +10439,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10451,7 +10451,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10463,7 +10463,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10475,7 +10475,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10487,7 +10487,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10499,7 +10499,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10511,7 +10511,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10523,7 +10523,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10535,7 +10535,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10547,7 +10547,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10559,7 +10559,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10571,7 +10571,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10583,7 +10583,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10595,7 +10595,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10607,7 +10607,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10619,7 +10619,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10631,7 +10631,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10643,7 +10643,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10655,7 +10655,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10667,7 +10667,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10679,7 +10679,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10691,7 +10691,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10703,7 +10703,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10715,7 +10715,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10727,7 +10727,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10739,7 +10739,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10751,7 +10751,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10763,7 +10763,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10775,7 +10775,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10787,7 +10787,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10799,7 +10799,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10811,7 +10811,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10823,7 +10823,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10835,7 +10835,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10847,7 +10847,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10859,7 +10859,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10871,7 +10871,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10883,7 +10883,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10895,7 +10895,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10907,7 +10907,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10919,7 +10919,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10931,7 +10931,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10943,7 +10943,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10955,7 +10955,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10967,7 +10967,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10979,7 +10979,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -10991,7 +10991,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11003,7 +11003,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11015,7 +11015,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11027,7 +11027,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11039,7 +11039,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11051,7 +11051,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11063,7 +11063,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11075,7 +11075,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11087,7 +11087,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11099,7 +11099,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11111,7 +11111,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11123,7 +11123,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11135,7 +11135,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11147,7 +11147,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11159,7 +11159,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11171,7 +11171,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11183,7 +11183,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11195,7 +11195,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11207,7 +11207,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11219,7 +11219,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11231,7 +11231,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11243,7 +11243,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11255,7 +11255,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11267,7 +11267,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11279,7 +11279,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11291,7 +11291,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11303,7 +11303,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11315,7 +11315,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11327,7 +11327,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11339,7 +11339,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11351,7 +11351,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11363,7 +11363,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11375,7 +11375,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11387,7 +11387,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11399,7 +11399,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11411,7 +11411,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11423,7 +11423,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11435,7 +11435,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11447,7 +11447,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11459,7 +11459,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11471,7 +11471,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11483,7 +11483,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11495,7 +11495,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11507,7 +11507,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11519,7 +11519,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11531,7 +11531,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11543,7 +11543,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11555,7 +11555,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11567,7 +11567,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11579,7 +11579,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11591,7 +11591,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11603,7 +11603,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11615,7 +11615,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11627,7 +11627,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11639,7 +11639,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11651,7 +11651,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11663,7 +11663,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11675,7 +11675,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11687,7 +11687,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11699,7 +11699,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11711,7 +11711,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11723,7 +11723,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11735,7 +11735,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11747,7 +11747,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11759,7 +11759,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11771,7 +11771,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11783,7 +11783,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11795,7 +11795,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11807,7 +11807,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11819,7 +11819,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11831,7 +11831,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11843,7 +11843,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11855,7 +11855,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11867,7 +11867,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11879,7 +11879,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11891,7 +11891,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11903,7 +11903,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11915,7 +11915,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11927,7 +11927,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11939,7 +11939,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11951,7 +11951,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11963,7 +11963,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11975,7 +11975,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11987,7 +11987,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -11999,7 +11999,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12011,7 +12011,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12023,7 +12023,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12035,7 +12035,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12047,7 +12047,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12059,7 +12059,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12071,7 +12071,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12083,7 +12083,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12095,7 +12095,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12107,7 +12107,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12119,7 +12119,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12131,7 +12131,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12143,7 +12143,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12155,7 +12155,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12167,7 +12167,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12179,7 +12179,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12191,7 +12191,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12203,7 +12203,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12215,7 +12215,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12227,7 +12227,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12239,7 +12239,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12251,7 +12251,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12263,7 +12263,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12275,7 +12275,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12287,7 +12287,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12299,7 +12299,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12311,7 +12311,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12323,7 +12323,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12335,7 +12335,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12347,7 +12347,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12359,7 +12359,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12371,7 +12371,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12383,7 +12383,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12395,7 +12395,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12407,7 +12407,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12419,7 +12419,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12431,7 +12431,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12443,7 +12443,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12455,7 +12455,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12467,7 +12467,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12479,7 +12479,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12491,7 +12491,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12503,7 +12503,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12515,7 +12515,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12527,7 +12527,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12539,7 +12539,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12551,7 +12551,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12563,7 +12563,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12575,7 +12575,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12587,7 +12587,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12599,7 +12599,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12611,7 +12611,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12623,7 +12623,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12635,7 +12635,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12647,7 +12647,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12659,7 +12659,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12671,7 +12671,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12683,7 +12683,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12695,7 +12695,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12707,7 +12707,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12719,7 +12719,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12731,7 +12731,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12743,7 +12743,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12755,7 +12755,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12767,7 +12767,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12779,7 +12779,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12791,7 +12791,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12803,7 +12803,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12815,7 +12815,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12827,7 +12827,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12839,7 +12839,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12851,7 +12851,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12863,7 +12863,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12875,7 +12875,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12887,7 +12887,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12899,7 +12899,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12911,7 +12911,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12923,7 +12923,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12935,7 +12935,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12947,7 +12947,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12959,7 +12959,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12971,7 +12971,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12983,7 +12983,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -12995,7 +12995,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13007,7 +13007,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13019,7 +13019,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13031,7 +13031,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13043,7 +13043,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13055,7 +13055,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13067,7 +13067,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13079,7 +13079,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13091,7 +13091,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13103,7 +13103,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13115,7 +13115,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13127,7 +13127,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13139,7 +13139,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13151,7 +13151,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13163,7 +13163,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13175,7 +13175,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13187,7 +13187,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13199,7 +13199,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13211,7 +13211,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13223,7 +13223,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13235,7 +13235,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13247,7 +13247,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13259,7 +13259,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13271,7 +13271,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13283,7 +13283,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13295,7 +13295,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13307,7 +13307,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13319,7 +13319,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13331,7 +13331,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13343,7 +13343,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13355,7 +13355,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13367,7 +13367,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13379,7 +13379,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13391,7 +13391,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13403,7 +13403,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13415,7 +13415,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13427,7 +13427,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13439,7 +13439,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13451,7 +13451,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13463,7 +13463,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13475,7 +13475,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13487,7 +13487,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13499,7 +13499,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13511,7 +13511,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13523,7 +13523,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13535,7 +13535,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13547,7 +13547,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13559,7 +13559,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13571,7 +13571,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13583,7 +13583,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13595,7 +13595,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13607,7 +13607,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13619,7 +13619,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13631,7 +13631,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13643,7 +13643,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13655,7 +13655,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13667,7 +13667,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13679,7 +13679,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13691,7 +13691,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13703,7 +13703,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13715,7 +13715,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13727,7 +13727,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13739,7 +13739,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13751,7 +13751,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13763,7 +13763,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13775,7 +13775,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13787,7 +13787,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13799,7 +13799,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13811,7 +13811,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13823,7 +13823,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13835,7 +13835,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13847,7 +13847,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13859,7 +13859,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13871,7 +13871,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13883,7 +13883,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13895,7 +13895,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13907,7 +13907,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13919,7 +13919,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13931,7 +13931,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13943,7 +13943,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13955,7 +13955,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13967,7 +13967,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13979,7 +13979,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -13991,7 +13991,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14003,7 +14003,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14015,7 +14015,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14027,7 +14027,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14039,7 +14039,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14051,7 +14051,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14063,7 +14063,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14075,7 +14075,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14087,7 +14087,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14099,7 +14099,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14111,7 +14111,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14123,7 +14123,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14135,7 +14135,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14147,7 +14147,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14159,7 +14159,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14171,7 +14171,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14183,7 +14183,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14195,7 +14195,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14207,7 +14207,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14219,7 +14219,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14231,7 +14231,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14243,7 +14243,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14255,7 +14255,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14267,7 +14267,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14279,7 +14279,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14291,7 +14291,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14303,7 +14303,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14315,7 +14315,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14327,7 +14327,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14339,7 +14339,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14351,7 +14351,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14363,7 +14363,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14375,7 +14375,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14387,7 +14387,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14399,7 +14399,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14411,7 +14411,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14423,7 +14423,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14435,7 +14435,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14447,7 +14447,7 @@ const CATALOG_3: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
 ];
@@ -14465,7 +14465,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14477,7 +14477,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14489,7 +14489,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14501,7 +14501,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14513,7 +14513,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14525,7 +14525,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14537,7 +14537,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14549,7 +14549,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14561,7 +14561,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14573,7 +14573,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14585,7 +14585,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14597,7 +14597,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14609,7 +14609,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14621,7 +14621,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14633,7 +14633,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14645,7 +14645,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14657,7 +14657,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14669,7 +14669,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14681,7 +14681,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14693,7 +14693,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14705,7 +14705,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14717,7 +14717,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14729,7 +14729,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14741,7 +14741,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14753,7 +14753,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14765,7 +14765,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14777,7 +14777,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14789,7 +14789,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14801,7 +14801,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14813,7 +14813,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14825,7 +14825,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14837,7 +14837,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14849,7 +14849,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14861,7 +14861,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14873,7 +14873,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14885,7 +14885,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14897,7 +14897,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14909,7 +14909,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14921,7 +14921,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14933,7 +14933,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14945,7 +14945,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14957,7 +14957,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14969,7 +14969,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14981,7 +14981,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -14993,7 +14993,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15005,7 +15005,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15017,7 +15017,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15029,7 +15029,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15041,7 +15041,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15053,7 +15053,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15065,7 +15065,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15077,7 +15077,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15089,7 +15089,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15101,7 +15101,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15113,7 +15113,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15125,7 +15125,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15137,7 +15137,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15149,7 +15149,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15161,7 +15161,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15173,7 +15173,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15185,7 +15185,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15197,7 +15197,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15209,7 +15209,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15221,7 +15221,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15233,7 +15233,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15245,7 +15245,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15257,7 +15257,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15269,7 +15269,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15281,7 +15281,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15293,7 +15293,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15305,7 +15305,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15317,7 +15317,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15329,7 +15329,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15341,7 +15341,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15353,7 +15353,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15365,7 +15365,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15377,7 +15377,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15389,7 +15389,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15401,7 +15401,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15413,7 +15413,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15425,7 +15425,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15437,7 +15437,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15449,7 +15449,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15461,7 +15461,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15473,7 +15473,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15485,7 +15485,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15497,7 +15497,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15509,7 +15509,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15521,7 +15521,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15533,7 +15533,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15545,7 +15545,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15557,7 +15557,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15569,7 +15569,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15581,7 +15581,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15593,7 +15593,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15605,7 +15605,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15617,7 +15617,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15629,7 +15629,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15641,7 +15641,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15653,7 +15653,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15665,7 +15665,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15677,7 +15677,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15689,7 +15689,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15701,7 +15701,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15713,7 +15713,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15725,7 +15725,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15737,7 +15737,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15749,7 +15749,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15761,7 +15761,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15773,7 +15773,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15785,7 +15785,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15797,7 +15797,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15809,7 +15809,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15821,7 +15821,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15833,7 +15833,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15845,7 +15845,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15857,7 +15857,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15869,7 +15869,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15881,7 +15881,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15893,7 +15893,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15905,7 +15905,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15917,7 +15917,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15929,7 +15929,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15941,7 +15941,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15953,7 +15953,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15965,7 +15965,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15977,7 +15977,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -15989,7 +15989,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16001,7 +16001,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16013,7 +16013,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16025,7 +16025,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16037,7 +16037,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16049,7 +16049,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16061,7 +16061,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16073,7 +16073,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16085,7 +16085,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16097,7 +16097,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16109,7 +16109,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16121,7 +16121,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16133,7 +16133,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16145,7 +16145,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16157,7 +16157,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16169,7 +16169,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16181,7 +16181,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16193,7 +16193,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16205,7 +16205,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16217,7 +16217,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16229,7 +16229,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16241,7 +16241,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16253,7 +16253,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16265,7 +16265,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16277,7 +16277,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16289,7 +16289,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16301,7 +16301,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16313,7 +16313,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16325,7 +16325,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16337,7 +16337,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16349,7 +16349,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16361,7 +16361,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16373,7 +16373,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16385,7 +16385,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16397,7 +16397,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16409,7 +16409,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16421,7 +16421,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16433,7 +16433,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16445,7 +16445,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16457,7 +16457,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16469,7 +16469,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16481,7 +16481,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16493,7 +16493,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16505,7 +16505,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16517,7 +16517,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16529,7 +16529,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16541,7 +16541,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16553,7 +16553,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16565,7 +16565,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16577,7 +16577,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16589,7 +16589,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16601,7 +16601,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16613,7 +16613,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16625,7 +16625,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16637,7 +16637,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16649,7 +16649,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16661,7 +16661,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16673,7 +16673,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16685,7 +16685,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16697,7 +16697,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16709,7 +16709,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16721,7 +16721,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16733,7 +16733,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16745,7 +16745,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16757,7 +16757,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16769,7 +16769,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16781,7 +16781,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16793,7 +16793,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16805,7 +16805,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16817,7 +16817,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16829,7 +16829,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16841,7 +16841,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16853,7 +16853,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16865,7 +16865,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16877,7 +16877,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16889,7 +16889,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16901,7 +16901,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16913,7 +16913,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16925,7 +16925,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16937,7 +16937,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16949,7 +16949,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16961,7 +16961,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16973,7 +16973,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16985,7 +16985,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -16997,7 +16997,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17009,7 +17009,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17021,7 +17021,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17033,7 +17033,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17045,7 +17045,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17057,7 +17057,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17069,7 +17069,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17081,7 +17081,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17093,7 +17093,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17105,7 +17105,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17117,7 +17117,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17129,7 +17129,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17141,7 +17141,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17153,7 +17153,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17165,7 +17165,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17177,7 +17177,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17189,7 +17189,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17201,7 +17201,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17213,7 +17213,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17225,7 +17225,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17237,7 +17237,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17249,7 +17249,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17261,7 +17261,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17273,7 +17273,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17285,7 +17285,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17297,7 +17297,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17309,7 +17309,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17321,7 +17321,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17333,7 +17333,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17345,7 +17345,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17357,7 +17357,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17369,7 +17369,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17381,7 +17381,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17393,7 +17393,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17405,7 +17405,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17417,7 +17417,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17429,7 +17429,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17441,7 +17441,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17453,7 +17453,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17465,7 +17465,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17477,7 +17477,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17489,7 +17489,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17501,7 +17501,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17513,7 +17513,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17525,7 +17525,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17537,7 +17537,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17549,7 +17549,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17561,7 +17561,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17573,7 +17573,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17585,7 +17585,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17597,7 +17597,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17609,7 +17609,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17621,7 +17621,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17633,7 +17633,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17645,7 +17645,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17657,7 +17657,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17669,7 +17669,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17681,7 +17681,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17693,7 +17693,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17705,7 +17705,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17717,7 +17717,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17729,7 +17729,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17741,7 +17741,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17753,7 +17753,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17765,7 +17765,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17777,7 +17777,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17789,7 +17789,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17801,7 +17801,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17813,7 +17813,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17825,7 +17825,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17837,7 +17837,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17849,7 +17849,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17861,7 +17861,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17873,7 +17873,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17885,7 +17885,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17897,7 +17897,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17909,7 +17909,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17921,7 +17921,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17933,7 +17933,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17945,7 +17945,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17957,7 +17957,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17969,7 +17969,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17981,7 +17981,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -17993,7 +17993,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18005,7 +18005,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18017,7 +18017,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18029,7 +18029,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18041,7 +18041,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18053,7 +18053,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18065,7 +18065,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18077,7 +18077,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18089,7 +18089,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18101,7 +18101,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18113,7 +18113,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18125,7 +18125,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18137,7 +18137,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18149,7 +18149,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18161,7 +18161,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18173,7 +18173,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18185,7 +18185,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18197,7 +18197,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18209,7 +18209,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18221,7 +18221,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18233,7 +18233,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18245,7 +18245,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18257,7 +18257,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18269,7 +18269,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18281,7 +18281,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18293,7 +18293,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18305,7 +18305,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18317,7 +18317,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18329,7 +18329,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18341,7 +18341,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18353,7 +18353,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18365,7 +18365,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18377,7 +18377,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18390,7 +18390,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18403,7 +18403,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18416,7 +18416,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18429,7 +18429,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18442,7 +18442,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18455,7 +18455,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18468,7 +18468,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18481,7 +18481,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18494,7 +18494,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18507,7 +18507,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18520,7 +18520,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18533,7 +18533,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18546,7 +18546,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18559,7 +18559,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18572,7 +18572,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18585,7 +18585,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18598,7 +18598,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18611,7 +18611,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18624,7 +18624,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18637,7 +18637,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18650,7 +18650,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18663,7 +18663,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18676,7 +18676,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18689,7 +18689,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18702,7 +18702,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18715,7 +18715,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18728,7 +18728,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18741,7 +18741,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18754,7 +18754,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18767,7 +18767,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18780,7 +18780,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18793,7 +18793,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18806,7 +18806,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18819,7 +18819,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18832,7 +18832,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18845,7 +18845,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18858,7 +18858,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18871,7 +18871,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18884,7 +18884,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18897,7 +18897,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18910,7 +18910,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18923,7 +18923,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18936,7 +18936,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18949,7 +18949,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18962,7 +18962,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18975,7 +18975,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -18988,7 +18988,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19001,7 +19001,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19014,7 +19014,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19027,7 +19027,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19040,7 +19040,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19053,7 +19053,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19066,7 +19066,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19079,7 +19079,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19092,7 +19092,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19105,7 +19105,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19118,7 +19118,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19131,7 +19131,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19144,7 +19144,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19157,7 +19157,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19170,7 +19170,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19183,7 +19183,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19196,7 +19196,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19209,7 +19209,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19222,7 +19222,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19235,7 +19235,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19248,7 +19248,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19261,7 +19261,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19274,7 +19274,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19287,7 +19287,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19300,7 +19300,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19313,7 +19313,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19326,7 +19326,7 @@ const CATALOG_4: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
 ];
@@ -19345,7 +19345,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19358,7 +19358,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19371,7 +19371,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19384,7 +19384,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19397,7 +19397,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19410,7 +19410,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19423,7 +19423,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19436,7 +19436,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19449,7 +19449,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19462,7 +19462,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19475,7 +19475,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19488,7 +19488,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19501,7 +19501,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19514,7 +19514,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19527,7 +19527,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19540,7 +19540,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19553,7 +19553,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19566,7 +19566,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19579,7 +19579,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19592,7 +19592,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19605,7 +19605,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19618,7 +19618,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19631,7 +19631,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19644,7 +19644,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19657,7 +19657,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19670,7 +19670,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19683,7 +19683,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19695,7 +19695,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19708,7 +19708,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19721,7 +19721,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19734,7 +19734,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19747,7 +19747,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19760,7 +19760,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19773,7 +19773,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19786,7 +19786,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19799,7 +19799,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19812,7 +19812,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19825,7 +19825,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19838,7 +19838,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19851,7 +19851,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19864,7 +19864,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19877,7 +19877,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19890,7 +19890,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19903,7 +19903,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19916,7 +19916,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19929,7 +19929,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19942,7 +19942,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19955,7 +19955,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19968,7 +19968,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19981,7 +19981,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -19994,7 +19994,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20007,7 +20007,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20020,7 +20020,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20033,7 +20033,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20046,7 +20046,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20059,7 +20059,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20072,7 +20072,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20085,7 +20085,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20098,7 +20098,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20111,7 +20111,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20124,7 +20124,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20137,7 +20137,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20150,7 +20150,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20163,7 +20163,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20176,7 +20176,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20189,7 +20189,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20202,7 +20202,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20215,7 +20215,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20228,7 +20228,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20241,7 +20241,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20254,7 +20254,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20267,7 +20267,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20280,7 +20280,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20293,7 +20293,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20306,7 +20306,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20319,7 +20319,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20332,7 +20332,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20345,7 +20345,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20358,7 +20358,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20371,7 +20371,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20384,7 +20384,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20397,7 +20397,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20410,7 +20410,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20423,7 +20423,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20436,7 +20436,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20449,7 +20449,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20462,7 +20462,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20475,7 +20475,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20488,7 +20488,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20501,7 +20501,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20514,7 +20514,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20527,7 +20527,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20540,7 +20540,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20553,7 +20553,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20566,7 +20566,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20579,7 +20579,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20592,7 +20592,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20605,7 +20605,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20618,7 +20618,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20631,7 +20631,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20644,7 +20644,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20657,7 +20657,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20670,7 +20670,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20683,7 +20683,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20696,7 +20696,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20709,7 +20709,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20722,7 +20722,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20735,7 +20735,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20748,7 +20748,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20761,7 +20761,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20774,7 +20774,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20787,7 +20787,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20800,7 +20800,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20813,7 +20813,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20826,7 +20826,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20839,7 +20839,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20852,7 +20852,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20865,7 +20865,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20878,7 +20878,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20891,7 +20891,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20904,7 +20904,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20917,7 +20917,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20930,7 +20930,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20943,7 +20943,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20956,7 +20956,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20969,7 +20969,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20982,7 +20982,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -20995,7 +20995,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21008,7 +21008,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21021,7 +21021,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21034,7 +21034,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21047,7 +21047,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21060,7 +21060,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21073,7 +21073,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21086,7 +21086,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21099,7 +21099,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21112,7 +21112,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21125,7 +21125,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21138,7 +21138,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21151,7 +21151,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21164,7 +21164,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21177,7 +21177,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21190,7 +21190,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21203,7 +21203,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21216,7 +21216,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21229,7 +21229,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21242,7 +21242,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21255,7 +21255,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21268,7 +21268,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21281,7 +21281,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21294,7 +21294,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21307,7 +21307,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21320,7 +21320,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21333,7 +21333,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21346,7 +21346,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21359,7 +21359,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21372,7 +21372,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21385,7 +21385,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21398,7 +21398,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21411,7 +21411,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21424,7 +21424,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21437,7 +21437,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21450,7 +21450,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21463,7 +21463,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21476,7 +21476,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21489,7 +21489,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21502,7 +21502,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21515,7 +21515,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21528,7 +21528,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21541,7 +21541,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21554,7 +21554,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21567,7 +21567,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21580,7 +21580,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21593,7 +21593,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21606,7 +21606,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21619,7 +21619,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21632,7 +21632,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21645,7 +21645,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21658,7 +21658,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21671,7 +21671,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21684,7 +21684,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21697,7 +21697,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21710,7 +21710,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21723,7 +21723,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21736,7 +21736,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21749,7 +21749,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21762,7 +21762,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21775,7 +21775,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21788,7 +21788,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21801,7 +21801,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21814,7 +21814,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21827,7 +21827,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21840,7 +21840,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21853,7 +21853,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21866,7 +21866,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21879,7 +21879,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21892,7 +21892,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21905,7 +21905,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21918,7 +21918,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21931,7 +21931,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21944,7 +21944,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21957,7 +21957,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21970,7 +21970,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21983,7 +21983,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -21996,7 +21996,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22009,7 +22009,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22022,7 +22022,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22035,7 +22035,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22048,7 +22048,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22061,7 +22061,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22074,7 +22074,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22087,7 +22087,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22100,7 +22100,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22113,7 +22113,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22126,7 +22126,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22139,7 +22139,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22152,7 +22152,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22165,7 +22165,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22178,7 +22178,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22191,7 +22191,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22204,7 +22204,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22217,7 +22217,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22230,7 +22230,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22243,7 +22243,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22256,7 +22256,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22269,7 +22269,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22282,7 +22282,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22295,7 +22295,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22308,7 +22308,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22321,7 +22321,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22334,7 +22334,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22347,7 +22347,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22360,7 +22360,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22373,7 +22373,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22386,7 +22386,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22399,7 +22399,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22412,7 +22412,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22425,7 +22425,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22438,7 +22438,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22451,7 +22451,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22464,7 +22464,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22477,7 +22477,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22490,7 +22490,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22503,7 +22503,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22516,7 +22516,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22529,7 +22529,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22542,7 +22542,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22555,7 +22555,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22568,7 +22568,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22581,7 +22581,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22594,7 +22594,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22607,7 +22607,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22620,7 +22620,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22633,7 +22633,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22646,7 +22646,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22659,7 +22659,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22672,7 +22672,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22685,7 +22685,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22698,7 +22698,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22711,7 +22711,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22724,7 +22724,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22737,7 +22737,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22750,7 +22750,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22763,7 +22763,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22776,7 +22776,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22789,7 +22789,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22802,7 +22802,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22815,7 +22815,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22828,7 +22828,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22841,7 +22841,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22854,7 +22854,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22867,7 +22867,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22880,7 +22880,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22893,7 +22893,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22906,7 +22906,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22919,7 +22919,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22932,7 +22932,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22945,7 +22945,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22958,7 +22958,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22971,7 +22971,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22984,7 +22984,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -22997,7 +22997,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23010,7 +23010,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23023,7 +23023,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23036,7 +23036,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23049,7 +23049,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23062,7 +23062,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23075,7 +23075,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23088,7 +23088,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23101,7 +23101,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23114,7 +23114,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23127,7 +23127,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23140,7 +23140,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23153,7 +23153,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23166,7 +23166,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23179,7 +23179,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23192,7 +23192,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23205,7 +23205,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23218,7 +23218,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23231,7 +23231,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23244,7 +23244,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23257,7 +23257,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23270,7 +23270,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23283,7 +23283,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23296,7 +23296,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23309,7 +23309,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23322,7 +23322,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23335,7 +23335,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23348,7 +23348,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23361,7 +23361,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23374,7 +23374,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23387,7 +23387,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23400,7 +23400,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23413,7 +23413,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23426,7 +23426,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23439,7 +23439,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23452,7 +23452,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23465,7 +23465,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23478,7 +23478,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23491,7 +23491,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23504,7 +23504,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23517,7 +23517,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23530,7 +23530,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23543,7 +23543,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23556,7 +23556,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23569,7 +23569,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23582,7 +23582,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23595,7 +23595,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23608,7 +23608,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23621,7 +23621,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23634,7 +23634,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23647,7 +23647,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23660,7 +23660,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23673,7 +23673,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23686,7 +23686,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23699,7 +23699,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23712,7 +23712,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23725,7 +23725,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23738,7 +23738,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23751,7 +23751,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23764,7 +23764,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23777,7 +23777,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23790,7 +23790,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23803,7 +23803,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23816,7 +23816,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23829,7 +23829,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23842,7 +23842,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23855,7 +23855,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23868,7 +23868,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23881,7 +23881,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23894,7 +23894,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23907,7 +23907,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23920,7 +23920,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23933,7 +23933,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23946,7 +23946,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23959,7 +23959,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23972,7 +23972,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23985,7 +23985,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -23998,7 +23998,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24011,7 +24011,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24024,7 +24024,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24037,7 +24037,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24050,7 +24050,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24063,7 +24063,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24076,7 +24076,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24089,7 +24089,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24102,7 +24102,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24115,7 +24115,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24128,7 +24128,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24141,7 +24141,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24154,7 +24154,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24167,7 +24167,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24180,7 +24180,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24193,7 +24193,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24206,7 +24206,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24219,7 +24219,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24232,7 +24232,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24245,7 +24245,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24258,7 +24258,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24271,7 +24271,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24284,7 +24284,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24297,7 +24297,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24310,7 +24310,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24323,7 +24323,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24336,7 +24336,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24349,7 +24349,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24362,7 +24362,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24375,7 +24375,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24388,7 +24388,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24401,7 +24401,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24414,7 +24414,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24427,7 +24427,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24440,7 +24440,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24453,7 +24453,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24466,7 +24466,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24479,7 +24479,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24492,7 +24492,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24505,7 +24505,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24518,7 +24518,7 @@ const CATALOG_5: Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
 ];
@@ -24540,7 +24540,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24553,7 +24553,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24566,7 +24566,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24579,7 +24579,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24592,7 +24592,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24605,7 +24605,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24618,7 +24618,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24631,7 +24631,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24644,7 +24644,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24657,7 +24657,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24670,7 +24670,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24683,7 +24683,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24696,7 +24696,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24709,7 +24709,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24722,7 +24722,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24735,7 +24735,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24748,7 +24748,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24761,7 +24761,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24774,7 +24774,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24787,7 +24787,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24800,7 +24800,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24813,7 +24813,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24826,7 +24826,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24839,7 +24839,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24852,7 +24852,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24865,7 +24865,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24878,7 +24878,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24891,7 +24891,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24904,7 +24904,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24917,7 +24917,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
   {
@@ -24930,7 +24930,7 @@ export const SEED_BEATS: readonly Beat[] = [
     languages: ["eng"],
     excludes: "",
     state: "warm",
-    refresh_interval_minutes: 15,
+    refresh_interval_minutes: 10,
     freshness_slo_minutes: 30,
   },
 ];

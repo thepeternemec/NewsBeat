@@ -157,7 +157,7 @@ export default function Connect() {
             <h1 className="sec-title">Start in one request.</h1>
             <p className="sec-sub">
               No key, no signup, and the anonymous tier is free. Point your agent at the endpoint below and ask it about
-              a ticker — 2,000+ equities and cryptos covered, refreshed every fifteen minutes.
+              a ticker — 2,000+ equities and cryptos covered, refreshed every ten minutes.
             </p>
             <div className="hero-cta">
               <a className="btn-primary" href="/docs/quickstart">
@@ -179,7 +179,7 @@ export default function Connect() {
               <span className="sec-eyebrow">Three ways in</span>
               <h2 className="sec-title">Pick the one that fits.</h2>
               <p className="sec-sub">
-                All three reach the same 15 tools. Nothing here is a client library —
+                All three reach the same 16 tools. Nothing here is a client library —
                 there is no SDK to install, and no version to keep in step.
               </p>
             </div>
