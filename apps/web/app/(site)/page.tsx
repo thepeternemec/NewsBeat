@@ -10,8 +10,9 @@ import "./newsbeat.css";
 import "./crypto-community.css";
 import "./newsbeat-polish.css";
 import "./intelligence.css";
+import "./landing-cadence.css";
 
-const DESCRIPTION = "NewsBeat constructs contextual signals for AI agents: potential market drivers, observable triggers and clear conditions for alerts across stocks and crypto.";
+const DESCRIPTION = "Stock and crypto context for AI agents. Explore a news archive collected every 10 minutes, with optional one-minute checks for priority assets.";
 const TITLE = "NewsBeat — Meaningful signals for AI agents";
 export const metadata = {
   title: TITLE, description: DESCRIPTION,
@@ -21,9 +22,9 @@ export const metadata = {
 };
 const MCP_URL = "https://www.newsbeat.dev/api/mcp";
 const SIGNAL_QUESTIONS = [
-  { number: "01", title: "What could move the market?", text: "Connect a development to demand, revenue, liquidity or risk. Explain the transmission mechanism and what remains unknown." },
-  { number: "02", title: "What would trigger an alert?", text: "Set a context and an observable condition. Test relevance, materiality, freshness and new evidence before raising an alert." },
-  { number: "03", title: "When should the view change?", text: "State what would invalidate the hypothesis, why the market may ignore it, and when the agent should keep watching or reassess." },
+  { number: "01", title: "What changed?", text: "Find the development behind the headlines, with its original reporting and the questions it leaves open." },
+  { number: "02", title: "Does the market agree?", text: "Compare the story with observed market behavior. Look for an unusual move, supporting evidence or a reason to wait." },
+  { number: "03", title: "What should your agent check next?", text: "Follow a clear condition for review, and understand what would strengthen or change the view." },
 ];
 
 export default function Home() {
@@ -36,11 +37,16 @@ export default function Home() {
           <div className="bs-hero-copy">
             <span className="bs-kicker"><span /> AGENT INTELLIGENCE</span>
             <h1>Meaningful signals.<br /><span>Built for agents.</span></h1>
-            <p className="bs-lede">Give your agent the reported change, why it could matter, and what to check next. NewsBeat connects news to market context so your agent can explain when to review, wait or reassess.</p>
+            <p className="bs-lede">Give your agent a clearer view of stocks and crypto: what changed, what looks unusual, and what deserves a closer look.</p>
             <div className="hero-cta">
               <a className="btn-primary" href="/docs/quickstart">Connect your agent <ArrowRight size={16} /></a>
               <a className="bs-text-link" href="/intelligence">See a real signal <ArrowRight size={16} /></a>
             </div>
+            <dl className="nb-collection-pace" aria-label="News collection options">
+              <div><dt><span>SHARED NEWS ARCHIVE</span><strong>Every 10 minutes.</strong></dt><dd>We check the catalog for new reporting and add it to one searchable archive.</dd></div>
+              <div><dt><span>WHEN YOU ASK</span><strong>Every minute.</strong></dt><dd>Request one-minute news checks for a priority asset. The session runs for 15 minutes, then stops automatically.</dd><a href="/intelligence#real-signal">Choose a priority asset <ArrowUpRight size={14} aria-hidden="true" /></a></div>
+            </dl>
+            <p className="nb-collection-note">One-minute requests cover news collection. Signal analysis follows its own schedule.</p>
             <p className="ni-stage-note">Stocks and crypto · MCP or API · No account needed.</p>
           </div>
           <div className="ni-hero-model"><LandingNewsLookup /></div>
@@ -55,11 +61,11 @@ export default function Home() {
         <div className="wrap">
           <div className="bs-section-head">
             <span className="bs-kicker">WHAT MAKES A SIGNAL USEFUL</span>
-            <h2 className="bs-title">Construct the signal.<br />Test the context.</h2>
-            <p className="bs-body">A signal needs a market hypothesis, supporting evidence and a condition worth acting on. Better context helps an agent decide when to pay attention and when to wait.</p>
+            <h2 className="bs-title">See the change.<br />Understand the signal.</h2>
+            <p className="bs-body">Reporting is the starting point. NewsBeat brings it together with market context, so your agent can explain what deserves attention and what still needs checking.</p>
           </div>
           <div className="bs-principles">{SIGNAL_QUESTIONS.map(item => <article key={item.number}><span>{item.number}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
-          <p className="ni-section-note">First pilot: six assets, three decision contexts and explicit review-alert conditions.</p>
+          <p className="ni-section-note">The intelligence pilot follows six assets, with clear reasons to review, keep watching or reassess.</p>
         </div>
       </section>
 
@@ -67,7 +73,7 @@ export default function Home() {
         <div className="wrap">
           <div className="bs-crypto-head">
             <div><span className="bs-kicker">THE NEWS-TO-AGENT LOOP</span><h2 id="workflow-title">News comes in.<br /><span>Signals take shape.</span></h2></div>
-            <div className="bs-crypto-intro"><p>Follow reporting into market context, then see a signal tested before it reaches an agent. Select a step to explore the construction.</p><a className="bs-text-link" href="/intelligence">Open the signal workbench <ArrowUpRight size={17} /></a></div>
+            <div className="bs-crypto-intro"><p>See how reporting becomes context your agent can use. Follow the evidence, explore the market checks and understand the next useful question.</p><a className="bs-text-link" href="/intelligence">Explore the intelligence layer <ArrowUpRight size={17} /></a></div>
           </div>
           <CryptoLoop />
         </div>
@@ -78,12 +84,12 @@ export default function Home() {
           <div className="bs-section-head">
             <span className="bs-kicker">WHERE NEWSBEAT IS GOING</span>
             <h2 className="bs-title">From context<br />to a decision.</h2>
-            <p className="bs-body">A useful signal needs a fresh information delta, a market baseline and the right conditions. NewsBeat measures the response and records what follows each decision.</p>
+            <p className="bs-body">Notice new information. Compare it with market behavior. Record what happens next. Each step helps us test whether a signal was useful.</p>
             <a className="bs-text-link" href="/intelligence">Inspect the intelligence layer <ArrowUpRight size={16} /></a>
           </div>
           <div className="ni-roadmap-cards">
-            <article><span className="ni-state">Live pilot</span><h3>Signals with explicit conditions.</h3><p>Market-impact hypotheses, observable triggers, invalidation and review alerts for NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum.</p></article>
-            <article><span className="ni-state">Measured pilot</span><h3>Delta. Confirmation. Timing.</h3><p>Benchmark-adjusted moves, participation and liquidity checks. Developing, extended or fading—with a forward record to test the decision.</p></article>
+            <article><span className="ni-state">Live pilot</span><h3>A reason to pay attention.</h3><p>Understand why a development could matter, what needs confirming and what would change the view. Available for NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum.</p></article>
+            <article><span className="ni-state">Measured pilot</span><h3>Delta. Confirmation. Timing.</h3><p>Look for unusual moves, check market participation and follow whether a move develops or fades. Keep a record to test the interpretation over time.</p></article>
           </div>
         </div>
       </section>
