@@ -30,7 +30,7 @@ export interface ResearchAsset {
 export interface ResearchResponse {
   version: "question-research-v1"; question: string; generated_at: string;
   status: "ready" | "partial" | "needs_clarification" | "unavailable";
-  method: "reasoned" | "evidence_only"; context: string;
+  method: "reasoned" | "measured" | "evidence_only"; context: string;
   answer: ResearchAnswer | null; message: string | null; generation_error: string | null;
   assets: ResearchAsset[]; candidates: Array<{ beat_id: string; ticker: string; label: string; asset: string }>;
   evidence: ResearchEvidence[]; limitations: string[];
