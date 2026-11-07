@@ -1574,62 +1574,61 @@
 [data-theme="light"] {
   color-scheme: light;
 
-  /* Surfaces: warm paper, not clinical white. #fff is reserved for cards so they
-     lift off the page instead of merging with it. */
-  --bg: #faf9f7;
-  --bg-base: #faf9f7;
-  --bg-soft: #f3f1ed;
+  /* Neutral white surfaces with grey depth; no warm paper tint. */
+  --bg: #ffffff;
+  --bg-base: #ffffff;
+  --bg-soft: #f4f4f4;
   --bg-raised: #ffffff;
   --bg-input: #ffffff;
   --panel: #ffffff;
   --panel-raised: #ffffff;
-  --background: #faf9f7;
-  --foreground: #14130f;
+  --background: #ffffff;
+  --foreground: #171717;
   --card: #ffffff;
-  --card-foreground: #14130f;
+  --card-foreground: #171717;
   --popover: #ffffff;
-  --popover-foreground: #14130f;
-  --secondary: #f3f1ed;
-  --secondary-foreground: #14130f;
-  --muted: #f3f1ed;
-  --muted-foreground: #5f5c55;
-  --input: #d9d6cf;
-  --ring: #14130f;
+  --popover-foreground: #171717;
+  --secondary: #f4f4f4;
+  --secondary-foreground: #171717;
+  --muted: #f4f4f4;
+  --muted-foreground: #5c5c5c;
+  --input: #d6d6d6;
+  --ring: #171717;
 
   /* Text */
-  --text: #14130f;
-  --text-primary: #14130f;
-  --text-secondary: rgba(20, 19, 15, 0.86);
-  --text-tertiary: rgba(20, 19, 15, 0.66);
-  --text-muted: rgba(20, 19, 15, 0.56);
-  --text-ghost: rgba(20, 19, 15, 0.4);
+  --text: #171717;
+  --text-primary: #171717;
+  --text-secondary: rgba(23, 23, 23, 0.86);
+  --text-tertiary: rgba(23, 23, 23, 0.66);
+  --text-muted: rgba(23, 23, 23, 0.56);
+  --text-ghost: rgba(23, 23, 23, 0.4);
 
   /* Lines */
-  --border: #e4e1da;
-  --border-default: #e4e1da;
-  --border-subtle: #efedE7;
-  --border-strong: #c8c4bb;
-  --soft-line: #d6d2c9;
+  --border: #dedede;
+  --border-default: #dedede;
+  --border-subtle: #ededed;
+  --border-strong: #bfbfbf;
+  --soft-line: #d2d2d2;
 
   /* Accent: the ink, so buttons and figures read on paper. */
-  --accent: #14130f;
-  --accent-primary: #14130f;
-  --accent-dim: rgba(20, 19, 15, 0.62);
-  --accent-ink: #faf9f7;
-  --accent-hover: #2c2a24;
-  --accent-gradient: linear-gradient(115deg, #14130f 0%, #6b675e 100%);
-  --primary: #14130f;
-  --primary-foreground: #faf9f7;
+  --accent: #171717;
+  --accent-primary: #171717;
+  --accent-dim: rgba(23, 23, 23, 0.62);
+  --accent-ink: #ffffff;
+  --accent-hover: #2b2b2b;
+  --accent-gradient: linear-gradient(115deg, #171717 0%, #686868 100%);
+  --primary: #171717;
+  --primary-foreground: #ffffff;
 
   /* Charts and the vendored Sona components read these. */
-  --chart-1: #14130f;
-  --chart-2: #3d3a33;
-  --chart-3: #6b675e;
-  --chart-4: #97938a;
-  --chart-5: #c8c4bb;
-  --sidebar: #f3f1ed;
-  --sidebar-foreground: #14130f;
-  --sidebar-border: #e4e1da;
+  --chart-1: #171717;
+  --chart-2: #3a3a3a;
+  --chart-3: #686868;
+  --chart-4: #949494;
+  --chart-5: #bfbfbf;
+  --sidebar: #f4f4f4;
+  --sidebar-foreground: #171717;
+  --sidebar-border: #dedede;
 }
 
 /* ── Surfaces that were hardcoded ──────────────────────────────────────
@@ -1637,8 +1636,8 @@
    variables above and would stay black in light mode. */
 [data-theme="light"] html,
 [data-theme="light"] body {
-  background: #faf9f7;
-  color: #14130f;
+  background: #ffffff;
+  color: #171717;
 }
 
 [data-theme="light"] .mock,
@@ -1650,11 +1649,11 @@
 }
 
 [data-theme="light"] .code pre {
-  color: #2a2823;
+  color: #292929;
 }
 
 [data-theme="light"] .mock-row .v {
-  color: #2a2823;
+  color: #292929;
 }
 
 [data-theme="light"] .footer-panel {
@@ -1664,13 +1663,13 @@
 
 [data-theme="light"] .nav-pill {
   background: rgba(255, 255, 255, 0.82);
-  border-color: rgba(20, 19, 15, 0.1);
-  box-shadow: inset 0 1px rgba(255, 255, 255, 0.9), 0 8px 24px -12px rgba(20, 19, 15, 0.18);
+  border-color: rgba(23, 23, 23, 0.1);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.9), 0 8px 24px -12px rgba(23, 23, 23, 0.18);
 }
 
 [data-theme="light"] .ticker-suggest {
   background: #ffffff;
-  box-shadow: 0 18px 40px -12px rgba(20, 19, 15, 0.22);
+  box-shadow: 0 18px 40px -12px rgba(23, 23, 23, 0.22);
 }
 
 [data-theme="light"] .cluster-more button,
@@ -1682,14 +1681,14 @@
    The light shader draws transparent charcoal ribbons over the real paper
    colour. Keep its edges soft without turning the whole screen grey. */
 [data-theme="light"] .aurora-layer {
-  opacity: calc(0.8 * var(--aurora-fade, 1));
+  opacity: calc(0.9 * var(--aurora-fade, 1));
   filter: none;
 }
 
 [data-theme="light"] .aurora-layer .soft-aurora::before {
   background:
-    radial-gradient(ellipse 48% 24% at 24% 27%, rgba(20, 19, 15, 0.18), transparent 76%),
-    radial-gradient(ellipse 40% 27% at 76% 37%, rgba(20, 19, 15, 0.12), transparent 78%);
+    radial-gradient(ellipse 48% 24% at 24% 27%, rgba(23, 23, 23, 0.18), transparent 76%),
+    radial-gradient(ellipse 40% 27% at 76% 37%, rgba(23, 23, 23, 0.12), transparent 78%);
 }
 
 [data-theme="light"] .noise-overlay {
@@ -1698,18 +1697,18 @@
 
 [data-theme="light"] .grid-field line,
 [data-theme="light"] .grid-field path {
-  stroke: rgba(20, 19, 15, 0.09);
+  stroke: rgba(23, 23, 23, 0.09);
 }
 
 /* ── Shadows ───────────────────────────────────────────────────────────
    A dark-theme shadow is a black glow; on paper it has to be a soft cast. */
 [data-theme="light"] .code:hover {
-  box-shadow: 0 18px 48px -26px rgba(20, 19, 15, 0.28);
+  box-shadow: 0 18px 48px -26px rgba(23, 23, 23, 0.28);
 }
 
 [data-theme="light"] .live-response-panel {
   background: #ffffff;
-  box-shadow: 0 24px 60px -18px rgba(20, 19, 15, 0.25);
+  box-shadow: 0 24px 60px -18px rgba(23, 23, 23, 0.25);
 }
 
 /* ── The switcher ──────────────────────────────────────────────────────*/
@@ -1734,7 +1733,7 @@
 }
 
 [data-theme="light"] .theme-toggle:hover {
-  background: rgba(20, 19, 15, 0.06);
+  background: rgba(23, 23, 23, 0.06);
 }
 
 .theme-toggle svg {
@@ -1763,7 +1762,7 @@
 }
 
 [data-theme="light"] .mock-title {
-  color: #2a2823;
+  color: #292929;
 }
 
 [data-theme="light"] .hero-tiny,
@@ -1803,8 +1802,8 @@
    globals.css also sets it to #1e1e1e, which is why this needs the theme attribute
    rather than the variable alone. */
 [data-theme="light"] .eyebrow-tag {
-  background: rgba(20, 19, 15, 0.06);
-  border-color: rgba(20, 19, 15, 0.14);
+  background: rgba(23, 23, 23, 0.06);
+  border-color: rgba(23, 23, 23, 0.14);
   color: var(--text-primary);
 }
 
@@ -1831,7 +1830,7 @@
 
 [data-theme="light"] .catalog-search .ticker-search input::placeholder,
 [data-theme="light"] .ticker-search input::placeholder {
-  color: rgba(20, 19, 15, 0.42);
+  color: rgba(23, 23, 23, 0.42);
 }
 
 [data-theme="light"] .catalog-search .ticker-search input:focus {
@@ -1885,15 +1884,15 @@
 
 /* Small chrome details that were bare hexes. */
 [data-theme="light"] .mock-dots span {
-  background: #d9d6cf;
+  background: #d6d6d6;
 }
 
 [data-theme="light"] .mock-dots span:first-child {
-  background: #b9b5ac;
+  background: #b5b5b5;
 }
 
 [data-theme="light"] .calc input[type="range"] {
-  background: #e4e1da;
+  background: #dedede;
 }
 
 /* Text inside the dark mock terminals was a literal light grey. */
@@ -1901,7 +1900,7 @@
 [data-theme="light"] .beam-box,
 [data-theme="light"] .terminal-feed,
 [data-theme="light"] .pillar-mock {
-  color: #2a2823;
+  color: #292929;
 }
 
 /* ── Mini-visualisations in the feature cards ──────────────────────────
@@ -1910,36 +1909,36 @@
    with no words. The bar fill reads from --accent-gradient, which is ink on paper,
    so a filled bar is black on a light track: correct for a progress bar. */
 [data-theme="light"] .viz-line {
-  color: rgba(20, 19, 15, 0.72);
+  color: rgba(23, 23, 23, 0.72);
 }
 
 [data-theme="light"] .viz-key {
-  color: rgba(20, 19, 15, 0.92);
+  color: rgba(23, 23, 23, 0.92);
 }
 
 [data-theme="light"] .viz-val,
 [data-theme="light"] .viz-chip {
-  color: rgba(20, 19, 15, 0.6);
+  color: rgba(23, 23, 23, 0.6);
 }
 
 [data-theme="light"] .viz-dot {
-  background: #cdc9c0;
+  background: #c9c9c9;
 }
 
 [data-theme="light"] .viz-dot.on {
-  background: #14130f;
+  background: #171717;
 }
 
 [data-theme="light"] .viz-dots i {
-  background: #e4e1da;
+  background: #dedede;
 }
 
 [data-theme="light"] .viz-bar {
-  background: #ecebe6;
+  background: #ebebeb;
 }
 
 [data-theme="light"] .viz-bar i {
-  background: linear-gradient(90deg, #14130f 0%, #4a473f 100%);
+  background: linear-gradient(90deg, #171717 0%, #484848 100%);
 }
 
 /* ── Signal field cards ────────────────────────────────────────────────
@@ -1949,59 +1948,59 @@
    blur survives so the field still shows through. */
 [data-theme="light"] .signal-label {
   background: rgba(255, 255, 255, 0.9);
-  border-color: #dcd8d0;
-  box-shadow: 0 8px 24px -14px rgba(20, 19, 15, 0.3);
+  border-color: #d8d8d8;
+  box-shadow: 0 8px 24px -14px rgba(23, 23, 23, 0.3);
   backdrop-filter: blur(7px);
   -webkit-backdrop-filter: blur(7px);
 }
 
 [data-theme="light"] .signal-label:hover {
   background: #ffffff;
-  border-color: #14130f;
+  border-color: #171717;
   z-index: 5;
 }
 
 [data-theme="light"] .signal-label .tag {
-  color: rgba(20, 19, 15, 0.46);
+  color: rgba(23, 23, 23, 0.46);
 }
 
 [data-theme="light"] .signal-label .headline {
-  color: #14130f;
+  color: #171717;
 }
 
 [data-theme="light"] .signal-label .meta {
-  color: rgba(20, 19, 15, 0.54);
-  border-top-color: #ecebe6;
+  color: rgba(23, 23, 23, 0.54);
+  border-top-color: #ebebeb;
 }
 
 [data-theme="light"] .signal-empty {
-  color: rgba(20, 19, 15, 0.42);
+  color: rgba(23, 23, 23, 0.42);
 }
 
 /* The field's own gradient was near-black. */
 [data-theme="light"] .signal-field {
-  background: radial-gradient(120% 100% at 50% 0%, #ffffff 0%, #f7f6f2 70%);
+  background: radial-gradient(120% 100% at 50% 0%, #ffffff 0%, #f6f6f6 70%);
 }
 
 /* The active chip is an inverted pill: near-white on ink in dark mode, so it has to
    become ink on paper in light mode. Inverting only the label left white text on a
    white pill — visible as a chip with no name in it. */
 [data-theme="light"] .ticker-chip.active {
-  background: #14130f;
-  border-color: #14130f;
+  background: #171717;
+  border-color: #171717;
 }
 
 [data-theme="light"] .ticker-chip.active .c-tick,
 [data-theme="light"] .ticker-chip.active .c-name {
-  color: #faf9f7;
+  color: #ffffff;
 }
 
 [data-theme="light"] .signal-field .meta .stamp {
-  color: rgba(20, 19, 15, 0.5);
+  color: rgba(23, 23, 23, 0.5);
 }
 
 [data-theme="light"] .signal-field .meta .stamp.is-fresh {
-  color: #14130f;
+  color: #171717;
 }
 
 /* ── Selected option card ──────────────────────────────────────────────
@@ -2010,8 +2009,8 @@
    option looked exactly like the two unselected ones and the only cue left was
    the word "selected". Same treatment, inverted: an ink wash and an ink border. */
 [data-theme="light"] .connect-option.is-active {
-  background: rgba(20, 19, 15, 0.03);
-  border-color: rgba(20, 19, 15, 0.34);
+  background: rgba(23, 23, 23, 0.03);
+  border-color: rgba(23, 23, 23, 0.34);
 }
 
 [data-theme="light"] .connect-option.is-active .feature-title {
@@ -2024,7 +2023,7 @@
 
 /* The nav hover wash was 5% white — also nothing on paper. */
 [data-theme="light"] .nav-link:hover {
-  background: rgba(20, 19, 15, 0.06);
+  background: rgba(23, 23, 23, 0.06);
 }
 
 .headline-summary { margin-top: 24px; border: 1px solid var(--border-subtle); border-radius: 8px; padding: 18px 20px; }
@@ -2038,3 +2037,31 @@
 .headline-summary-list li a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 .headline-summary-note { margin: 16px 0 0; color: var(--text-muted); font-size: 12px; }
 @media (max-width: 600px) { .headline-summary-head { align-items: flex-start; flex-direction: column; } }
+
+/* White-to-grey depth across light mode. All animation remains theme-independent. */
+html[data-theme="light"] body {
+  background: linear-gradient(145deg, #ffffff 0%, #fafafa 52%, #f1f1f1 100%);
+  background-attachment: fixed;
+}
+[data-theme="light"] .grid-field {
+  background-image:
+    linear-gradient(to right, rgba(23, 23, 23, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(23, 23, 23, 0.055) 1px, transparent 1px);
+}
+[data-theme="light"] .aurora-layer .soft-aurora::before {
+  background:
+    radial-gradient(ellipse 48% 24% at 24% 27%, rgba(100, 100, 100, 0.22), transparent 76%),
+    radial-gradient(ellipse 40% 27% at 76% 37%, rgba(145, 145, 145, 0.18), transparent 78%);
+}
+[data-theme="light"] .nb-home.ni-home .landing-lookup,
+[data-theme="light"] .nb-feature-links > a,
+[data-theme="light"] .nb-agent-connection,
+[data-theme="light"] .nb-market-illustration,
+[data-theme="light"] .nb-check-record,
+[data-theme="light"] .footer-panel,
+[data-theme="light"] .bs-crypto-stage {
+  background: linear-gradient(145deg, #ffffff 0%, #fafafa 65%, #f3f3f3 100%);
+}
+[data-theme="light"] .docs-link.active {
+  background: linear-gradient(90deg, rgba(23, 23, 23, 0.06), transparent 70%);
+}
