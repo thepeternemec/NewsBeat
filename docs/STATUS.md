@@ -1,6 +1,6 @@
 # NewsBeat project status
 
-Updated **2026-11-06** from the current main-branch implementation. Counts describe the bundled catalog, not a guarantee of live article coverage.
+Updated **2026-11-07** from the current main-branch implementation. Counts describe the bundled catalog, not a guarantee of live article coverage.
 
 ## Product direction
 
@@ -17,13 +17,13 @@ NewsBeat is building meaningful signals for AI agents. The source-linked news fo
 | Change monitoring | Signed, asset-bound cursors; clients poll for newly indexed items |
 | Briefs | Up to three distinct ranked recent headlines verbatim, with source and UTC time |
 | Stories | Approximate headline grouping, ranked by relevance, with original reports and source links |
-| Summaries | Up to three short explanations based only on headlines; generated text or labeled original-headline fallback |
+| Question research | Evidence-led answers, conditional reasoning, unknowns and next checks across the catalog; missing market data explicit |
 | Batched watch | Up to 50 assets per request; each result can succeed or fail independently |
-| REST and function calling | 15 read operations plus explicit collection control and schemas at `/api/v2/tools` |
-| Hosted MCP | 16 tools over Streamable HTTP at `/api/mcp`, 15 research reads plus the explicit `newsbeat_collection` control |
+| REST and function calling | 16 research operations plus explicit collection control and schemas at `/api/v2/tools` |
+| Hosted MCP | 17 tools over Streamable HTTP at `/api/mcp`, 16 research operations plus the explicit `newsbeat_collection` control |
 | Supporting reference utilities | Sourced crypto prices, sentiment, chain readings, contract prices and positioning, retained through REST and MCP |
 | Intelligence workbench | Full-width measured market path, context selection, thesis/evidence inspector, timing reasons and forward observation cohorts. The former `/crypto` page redirects here. |
-| Web news explorer | Asset search, grouped stories, source expansion, Show more controls and on-demand headline summaries |
+| Web news explorer | Asset search, grouped stories, source expansion, Show more controls and on-demand research questions |
 | Self-serve keys | GitHub sign-in; signing in again rotates the existing key |
 | Account billing | Keyed REST usage is metered; anonymous reads are free and rate limited |
 | Ingestion | Google News RSS by default; Vercel cron configured every 10 minutes |
@@ -31,15 +31,13 @@ NewsBeat is building meaningful signals for AI agents. The source-linked news fo
 
 The scheduled worker uses a time budget and prioritizes overdue assets. A schedule is not proof that every fetch succeeded: inspect `status`, `last_success_at`, article counts and the cron’s deferred/error counts. Empty coverage can be legitimate for quiet assets.
 
-## Headline summaries and ranked coverage
+## Question research and ranked coverage
 
-Choose **Summarize headlines** in the [terminal](https://www.newsbeat.dev/dashboard), call `newsbeat_summary` over MCP, or use `GET /api/v2/summary?beat_id=…`. Resolve a company or ticker with the topic catalog first.
+Use `newsbeat_research` or `POST /api/v2/research` with the actual question. Identity resolution, relevant reporting and available market checks feed a direct answer, cited conditional reasoning, unknowns and next checks. The news catalog is available on demand; measured quantitative coverage stays at six assets. Ambiguous identities return candidates, and missing measurements cannot establish timing or a price reaction.
 
-The digest selects up to three distinct stories from a snapshot of the latest 200 reports within 24 hours. It favors headlines describing concrete developments and uses the existing ranking and diversity heuristics. It can return fewer than three items. This is approximate selection, not a prediction of market impact or a guarantee of relevance.
+Generation uses the existing gateway with an 18-second timeout, a 1,600-token output cap, a five-minute per-instance cache and bounded per-instance concurrency. Invalid, unavailable or failed model output returns evidence_only, never an invented successful answer. Existing GET intelligence reads remain stored reads. No collection session, schedule, notification or trade is created. [Details](RESEARCH.md).
 
-Every result reports `basis: "headlines_only"`, source reports with links and publication times, `freshness`, and `coverage_truncated`. `method: "generated"` means headline-based model generation succeeded and passed the output checks. `method: "extractive"` means original headlines are shown instead. Neither mode includes full article text.
-
-Generation runs on demand through Vercel AI Gateway. It uses server-side OIDC on Vercel or `AI_GATEWAY_API_KEY` in another runtime, with a 20-second timeout and an in-memory cache of up to five minutes per running instance. Model use consumes the project owner’s allowance or credits; it does not add a user checkout.
+Generated headline summarization is retired. The legacy summary route and tool remain deprecated compatibility reads returning verbatim headlines only.
 
 REST story snapshots scan 200 reports by default (`limit` 1–500). MCP returns up to 40 ranked groups from 200 reports. Grouping retains every report in the returned snapshot and can still miss paraphrases or combine unrelated coverage. Source counts describe coverage, not independent corroboration. Use article-level cursors for follow-up arrivals; group IDs can change as the snapshot rolls.
 
