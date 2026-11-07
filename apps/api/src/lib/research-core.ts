@@ -63,26 +63,27 @@ export function researchIntent(question: string) {
 }
 
 /** Citation membership and numeric grounding are enforced independently of model instructions. */
-export function validateResearchAnswer(raw: unknown, evidence: ResearchEvidence[]): ResearchAnswer | null {
+export function validateResearchAnswer(raw: unknown, evidence: ResearchEvidence[], onInvalid?: (reason: string) => void): ResearchAnswer | null {
+  const reject = (reason: string): null => { onInvalid?.(reason); return null; };
   const parsed = ResearchAnswerSchema.safeParse(raw);
-  if (!parsed.success) return null;
+  if (!parsed.success) return reject("invalid_shape");
   const answer = parsed.data;
-  if (!answer.reasoning.some(reason => reason.kind === "interpretation")) return null;
+  if (!answer.reasoning.some(reason => reason.kind === "interpretation")) return reject("missing_reasoning");
   const byId = new Map(evidence.filter(e => e.freshness === "fresh").map(e => [e.id, e]));
   const cited = new Set<string>();
   for (const reason of answer.reasoning) {
-    if (reason.evidence_ids.some(id => !byId.has(id))) return null;
+    if (reason.evidence_ids.some(id => !byId.has(id))) return reject("invalid_citation");
     reason.evidence_ids.forEach(id => cited.add(id));
     const sources = reason.evidence_ids.map(id => byId.get(id)!);
-    if (reason.kind === "observation" && (sources.length !== 1 || reason.claim !== sources[0]!.text)) return null;
-    if (reason.kind === "interpretation" && !/\b(?:may|might|could|if|potential|suggests?|consistent|unclear|cannot|evidence|supported|insufficient)\b/i.test(reason.claim)) return null;
+    if (reason.kind === "observation" && (sources.length !== 1 || reason.claim !== sources[0]!.text)) return reject("altered_observation");
+    if (reason.kind === "interpretation" && !/\b(?:may|might|could|if|potential|suggests?|consistent|unclear|cannot|evidence|supported|insufficient)\b/i.test(reason.claim)) return reject("unconditional_interpretation");
     const numbers = new Set(sources.flatMap(e => e.text.match(/\d+(?:[.,]\d+)*/g) ?? []));
-    if ((reason.claim.match(/\d+(?:[.,]\d+)*/g) ?? []).some(n => !numbers.has(n))) return null;
+    if ((reason.claim.match(/\d+(?:[.,]\d+)*/g) ?? []).some(n => !numbers.has(n))) return reject("unsupported_reasoning_figure");
   }
   const text = [answer.answer, ...answer.reasoning.map(r => r.claim), ...answer.unknowns, ...answer.next_checks].join(" ");
-  if (/[<>]/.test(text) || /https?:\/\/|www\./i.test(text)) return null;
-  if (/\b(?:buy|sell|short)\s+(?:now|today|immediately)\b|\bguaranteed\b|\bwill (?:rise|fall|rally|outperform)\b/i.test(text)) return null;
+  if (/[<>]/.test(text) || /https?:\/\/|www\./i.test(text)) return reject("unsupported_format_or_instruction");
+  if (/\b(?:buy|sell|short)\s+(?:now|today|immediately)\b|\bguaranteed\b|\bwill (?:rise|fall|rally|outperform)\b/i.test(text)) return reject("unsupported_instruction");
   const allNumbers = new Set([...cited].flatMap(id => byId.get(id)!.text.match(/\d+(?:[.,]\d+)*/g) ?? []));
-  if ((text.match(/\d+(?:[.,]\d+)*/g) ?? []).some(n => !allNumbers.has(n))) return null;
+  if ((text.match(/\d+(?:[.,]\d+)*/g) ?? []).some(n => !allNumbers.has(n))) return reject("unsupported_answer_figure");
   return answer;
 }

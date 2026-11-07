@@ -19,6 +19,8 @@ test("one bounded call returns validated reasoning and shares an evidence finger
     calls++;
     const body = JSON.parse(String(init?.body));
     assert.equal(body.max_tokens, 1600);
+    assert.equal(body.response_format.type, "json_schema");
+    assert.ok(JSON.stringify(body.response_format.json_schema.schema).includes("news:test"));
     assert.equal(body.messages[0].role, "system");
     assert.ok(init?.signal);
     return response(answer);
