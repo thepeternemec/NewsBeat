@@ -165,8 +165,10 @@ void main() {
     // The transparent gaps leave the actual page colour intact.
     float ribbons = max(glow1 * (0.7 + 0.3 * gradient1.r), 0.0)
                   + max(glow2 * (0.7 + 0.3 * gradient2.r), 0.0);
-    float ink = min(pow(ribbons * uBrightness, 1.25) * 0.26, 0.22);
-    gl_FragColor = vec4(vec3(0.12), ink);
+    // Keep the dark theme's moving ribbons, shaded only with neutral greys.
+    float shade = mix(0.38, 0.68, clamp(uv.y * 0.65 + gradient1.r * 0.35, 0.0, 1.0));
+    float ink = min(pow(ribbons * uBrightness, 1.1) * 0.30, 0.30);
+    gl_FragColor = vec4(vec3(shade), ink);
   } else {
     gl_FragColor = vec4(col, alpha);
   }
