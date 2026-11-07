@@ -2,9 +2,17 @@
 
 The integration guide for agents. For people: [connect your assistant](https://www.newsbeat.dev/docs/quickstart) and ask a stock or crypto news question in your own words.
 
+## Question-driven research
+
+Start with `newsbeat_research` or `POST /api/v2/research` and pass the user's actual `question`. Optionally supply one to three resolved `beat_ids` and `context` (`fundamentals`, `liquidity` or `risk`). The flow resolves the asset, retrieves relevant reporting, checks available market measurements, and returns a direct answer, cited reasoning, unknowns and observable next checks. It is available across the 2,030-asset news catalog; measured quantitative coverage remains the six-asset pilot. Comparisons are bounded to three assets.
+
+Read `status`, `method`, `assets` and `limitations`. A `partial` response can contain useful reasoning with missing market data. `needs_clarification` returns candidates instead of guessing an ambiguous identity. `evidence_only` means no validated model answer was produced. Missing prices cannot establish a market reaction, anomaly or entry time. Evidence is a bounded latest-day headline window, not full reporting or complete history.
+
+This explicit POST/MCP research call can generate one bounded interpretation through the existing gateway; it does not alter stored intelligence, start collection, schedule work, notify or trade. Existing GET intelligence reads continue to read stored results without model generation. Generated headline summarization is retired: `newsbeat_summary` and its GET route remain only as deprecated verbatim compatibility reads. See [research behavior and limits](https://github.com/thepeternemec/NewsBeat/blob/main/docs/RESEARCH.md).
+
 ## First contextual-signal pilot
 
-For NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum, call `newsbeat_intelligence` or `GET /v2/intelligence?beat_id=` to read stored event interpretations. These include an exact reported change, named entities, conditional implications with mechanisms, uncertainty, next checks and persistent event IDs. Reads do not run a model. Check pilot/status, analysis timestamps, source freshness and partial coverage; pending or unavailable output can include older event memory. This remains model inference from headlines, not verified causality. Other assets continue to use the news foundation.
+For NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum, call `newsbeat_intelligence` or `GET /v2/intelligence?beat_id=` to read stored event interpretations. These include an exact reported change, named entities, conditional implications with mechanisms, uncertainty, next checks and persistent event IDs. Reads do not run a model. Check pilot/status, analysis timestamps, source freshness and partial coverage; pending or unavailable output can include older event memory. This remains model inference from headlines, not verified causality. Other assets use question-driven research with explicit market-coverage limits.
 
 ## Contextual signal construction
 
@@ -22,7 +30,7 @@ A detected episode freezes its initial reference, fitted model and costs, then r
 
 ## Product direction and current capability
 
-NewsBeat is building meaningful signals for AI agents: what changed, why it may matter to a task, and what to investigate next. The live capabilities are a source-linked news foundation, approximate story grouping, headline-based summaries, freshness and change tracking. A six-asset pilot combines source-grounded hypotheses with measured market timing and prospective outcomes; broader verification and calibrated strategies remain planned. Reference prices, positioning and chain readings are supporting inputs, not meaningful signals by themselves.
+NewsBeat is building meaningful signals for AI agents: what changed, why it may matter to a task, and what to investigate next. The live capabilities are a source-linked news foundation, approximate story grouping, question-driven reasoning, freshness and change tracking. A six-asset pilot combines source-grounded hypotheses with measured market timing and prospective outcomes; broader verification and calibrated strategies remain planned. Reference prices, positioning and chain readings are supporting inputs, not meaningful signals by themselves.
 
 ## When to check the news
 
@@ -36,8 +44,7 @@ Tool selection and permission belong to the host. A lookup during an authorized 
 
 ## What this is, in one sentence
 
-You send a topic and a cursor, and receive either **"nothing moved"** or **a small pack of cited
-stories** that appeared since that cursor.
+Ask a question and receive an evidence-led answer, uncertainty and a next check. Cursor-based news reads remain available for exact new arrivals.
 
 ## How the feed works
 
@@ -175,7 +182,7 @@ topic fails only its own result, so re-baseline just that one with
 
 ## Grouped overview
 
-Use `newsbeat_summary` when someone asks what happened with an asset. It selects up to three distinct ranked story groups from the latest 200 reports in 24 hours, and returns short sentences with original report links and publication times. `basis` is `headlines_only`. `method` is `generated` when headline-based generation succeeds and `extractive` when the original headlines are shown instead. Read `freshness` and `coverage_truncated`, and never infer the contents of full articles or market effects.
+Use `newsbeat_research` for questions. The legacy `newsbeat_summary` route now returns original headlines only; it never runs summarization.
 
 Use `newsbeat_stories` for a feed grouped by similar headlines and ranked by headline relevance. Each group includes a verbatim `lead_article` and `reports` with original source links and timestamps. No stored articles are deleted. Matching is conservative and approximate; source counts measure coverage, not independent verification.
 
@@ -207,7 +214,7 @@ This is reference data. There is no price forecast anywhere in the API.
 | `newsbeat_token` | `GET /v2/token?asset=` | Token price by contract address |
 | `newsbeat_signals` | `GET /v2/signals` | Funding rates, DEX volume and stablecoin supply |
 
-For news research, resolve the topic and use the news, stories or changes tools first.
+For questions, use newsbeat_research first. Use original news and changes tools for exact reporting and cursor follow-ups.
 The optional `newsbeat_ask` utility combines news with reference market and chain context;
 its `notes` array states what was missing. Chain readings
 move every twelve seconds or less; none of this reads balances or quotes swaps.

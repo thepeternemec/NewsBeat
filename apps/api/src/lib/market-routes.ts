@@ -94,7 +94,7 @@ marketRoutes.get("/ask", async (c) => {
     return c.json({ error: { code: "invalid_request", message: "q is required, e.g. ?q=nvidia or ?q=0x…" } }, 400);
   }
   const payload = await ask(query);
-  // The slowest part sets the envelope: news is on a fifteen-minute cycle, chain on eight
+  // The slowest part sets the envelope: news is on a ten-minute cycle, chain on eight
   // seconds, so five seconds is a safe edge cache for the combined answer.
   attributed(c, "mixed", new Date().toISOString(), 5);
   return c.json(payload);

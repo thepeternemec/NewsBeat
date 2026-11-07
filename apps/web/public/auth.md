@@ -76,10 +76,11 @@ GET /v2/tools HTTP/1.1
 Host: www.newsbeat.dev
 ```
 
-Returns 15 read-only research calls plus one explicit collection-control call in OpenAI function-call shape:
+Returns 16 research calls plus one explicit collection-control call in OpenAI function-call shape:
 
 | Tool | Purpose | REST route |
 | --- | --- | --- |
+| `newsbeat_research` | Question → asset-specific evidence → cited answer, uncertainty and next checks. Explicit on-demand model call; quantitative coverage is limited. | `POST /v2/research` |
 | `newsbeat_collection` | Explicitly request one-minute collection for 15 minutes, read status, or stop with your token. | `GET/POST /v2/collection` |
 | `newsbeat_intelligence` | Stored event memory, conditional implications and follow-up checks for the six-asset pilot | `GET /v2/intelligence?beat_id=` |
 | `newsbeat_topics` | Find a supported stock or crypto asset. | `GET /v2/topics?q=…` |
@@ -87,7 +88,7 @@ Returns 15 read-only research calls plus one explicit collection-control call in
 | `newsbeat_changes` | Get new items since the saved cursor. | `GET /v2/changes?beat_id=…&cursor=…` |
 | `newsbeat_brief` | Read three relevant recent headlines verbatim. | `GET /v2/brief?beat_id=…` |
 | `newsbeat_stories` | Read grouped headlines and their sources. | `GET /v2/stories?beat_id=…` |
-| `newsbeat_summary` | Read a short headline-based explanation. | `GET /v2/summary?beat_id=…` |
+| `newsbeat_summary` | Deprecated verbatim compatibility read; no generated summary. | `GET /v2/summary?beat_id=…` |
 | `newsbeat_watch` | Check up to 50 topics once. | `POST /v2/watch` |
 | `newsbeat_ask` | Resolve an asset and gather news, prices and chain context. | `GET /v2/ask?q=bitcoin` |
 | `newsbeat_market` | Read a sourced crypto market overview. | `GET /v2/market` |

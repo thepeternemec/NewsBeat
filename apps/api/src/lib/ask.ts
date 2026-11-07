@@ -12,9 +12,11 @@
  */
 
 import type { AskNewsItem, AskPayload, Freshness, PricesPayload, Unavailable, ChainPulse, Sourced } from "@newsbeat/contracts";
-import { brief, topics } from "./news.js";
+import { brief, topics, topicById } from "./news.js";
 import { prices } from "./market.js";
 import { chainPulse, contractToken } from "./chain.js";
+import { resolveResearchAssets } from "./research-core.js";
+import { priceIdsForAsset } from "./research.js";
 
 function unavailable(error: string): Unavailable {
   return {
@@ -25,8 +27,11 @@ function unavailable(error: string): Unavailable {
 
 /** Maps a free-text query onto a catalog entry, or reports that there isn't one. */
 export async function resolveTopic(query: string) {
-  const page = await topics(query, 5, 0);
-  const match = page.topics[0];
+  const resolved = resolveResearchAssets(query);
+  if (resolved.issue || resolved.assets.length !== 1) return null;
+  const identity = resolved.assets[0]!;
+  const page = await topics(identity.ticker, 5, 0);
+  const match = page.topics.find(item => item.beat_id === identity.beat_id);
   if (!match) return null;
   return { beat_id: match.beat_id, label: match.label, asset: match.asset, status: match.status };
 }
@@ -42,10 +47,13 @@ export async function ask(query: string): Promise<AskPayload> {
     notes.push(`Coverage for ${topic.label} is ${topic.status}; the headlines below may be older than they look.`);
   }
 
+  const identity = topic ? topicById(topic.beat_id) : null;
+  const ids = priceIdsForAsset(identity);
+  const needsChain = identity?.asset === "crypto" && /\b(?:chain|gas|block|slot)\b/i.test(trimmed);
   const [newsResult, priceResult, chainResult] = await Promise.allSettled([
     topic ? brief(topic.beat_id) : Promise.reject(new Error("no topic resolved")),
-    prices(["bitcoin", "ethereum", "solana"]),
-    chainPulse(),
+    ids.length ? prices(ids) : Promise.reject(new Error("No asset-specific reference quote is mapped for this asset.")),
+    needsChain ? chainPulse() : Promise.reject(new Error("Chain state is not relevant to this asset lookup.")),
   ]);
 
   const news: Sourced<{ items: AskNewsItem[] }> | Unavailable =
@@ -54,7 +62,7 @@ export async function ask(query: string): Promise<AskPayload> {
           source: "google-news",
           source_url: "https://news.google.com",
           fetched_at: newsResult.value.freshness.last_success_at ?? new Date().toISOString(),
-          ttl_seconds: 900,
+          ttl_seconds: 600,
           freshness: {
             // Pass the source's own verdict through rather than flattening it: if the
             // topic's last successful check was hours ago, the caller should see "stale".
@@ -63,18 +71,18 @@ export async function ask(query: string): Promise<AskPayload> {
             age_seconds: newsResult.value.freshness.last_success_at
               ? Math.max(0, Math.round((Date.now() - Date.parse(newsResult.value.freshness.last_success_at)) / 1000))
               : 0,
-            refresh_in_seconds: 900,
-            upstream_cadence: "every fifteen minutes",
+            refresh_in_seconds: 600,
+            upstream_cadence: "every ten minutes",
           },
           data: { items: newsResult.value.items },
         }
       : unavailable(newsResult.reason instanceof Error ? newsResult.reason.message : "news unavailable");
 
   const market: Sourced<PricesPayload> | Unavailable =
-    priceResult.status === "fulfilled" ? priceResult.value : unavailable("price feed unavailable");
+    priceResult.status === "fulfilled" ? priceResult.value : unavailable("No current asset-specific reference quote is available; use question research for measured pilot context.");
 
   const chain: Sourced<ChainPulse> | Unavailable =
-    chainResult.status === "fulfilled" ? chainResult.value : unavailable("chain endpoints unavailable");
+    chainResult.status === "fulfilled" ? chainResult.value : unavailable("Chain state was not requested for a relevant crypto asset.");
 
   if (news instanceof Object && "error" in news) notes.push("Headlines are unavailable for this asset right now.");
   if ("error" in market) notes.push("Market prices are unavailable right now.");

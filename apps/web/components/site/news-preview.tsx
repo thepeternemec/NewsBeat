@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowRight, ArrowUpRight, Radio, RefreshCw, Search, Sparkles } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Radio, RefreshCw, Search } from "lucide-react";
 import RippleButton from "@/components/ui/ripple-button/ripple-button";
 import { API_BASE } from "./content";
+import ResearchQuestion from "./research-question";
 
 const ASSETS = [
   { label: "Nvidia", ticker: "NVDA", beatId: "b_bb964843350e" },
@@ -19,12 +20,6 @@ const CRYPTO_ASSETS = [
 ] as const;
 type Asset = { label: string; ticker: string; beatId: string };
 type Topic = { label: string; ticker: string; beat_id: string; asset: string; article_count: number };
-type Summary = {
-  basis: "headlines_only";
-  method: "generated" | "extractive";
-  freshness: Brief["freshness"];
-  items: Array<{ story_id: string; text: string; reports: Array<{ source: string; url: string; published_at: string }> }>;
-};
 interface Brief {
   items: Array<{
     lede: string;
@@ -62,9 +57,6 @@ export default function NewsPreview({ cryptoFirst = false }: { cryptoFirst?: boo
   const [searchState, setSearchState] = useState<{ status: "idle" | "loading" | "ready" | "error"; topics: Topic[] }>({ status: "idle", topics: [] });
   const [searchAttempt, setSearchAttempt] = useState(0);
   const [attempt, setAttempt] = useState(0);
-  const [summaryRequested, setSummaryRequested] = useState(false);
-  const [summaryAttempt, setSummaryAttempt] = useState(0);
-  const [summaryState, setSummaryState] = useState<{ status: "idle" | "loading" | "ready" | "error"; data: Summary | null }>({ status: "idle", data: null });
   const [state, setState] = useState<PreviewState>({
     status: "loading",
     data: null,
@@ -91,34 +83,11 @@ export default function NewsPreview({ cryptoFirst = false }: { cryptoFirst?: boo
     return () => { cancelled = true; controller.abort(); window.clearTimeout(timeout); };
   }, [search, searchAttempt]);
 
-  useEffect(() => {
-    if (!summaryRequested) return;
-    const controller = new AbortController();
-    let cancelled = false;
-    const timeout = window.setTimeout(() => controller.abort(), 25000);
-    void (async () => {
-      try {
-        const response = await fetch(`${API_BASE}/v2/summary?beat_id=${encodeURIComponent(asset.beatId)}`, { signal: controller.signal });
-        if (!response.ok) throw new Error("Summary unavailable");
-        const data = (await response.json()) as Summary;
-        if (data.basis !== "headlines_only" || !Array.isArray(data.items) || !data.freshness) throw new Error("Summary unavailable");
-        if (!cancelled) setSummaryState({ status: "ready", data });
-      } catch {
-        if (!cancelled) setSummaryState({ status: "error", data: null });
-      } finally {
-        window.clearTimeout(timeout);
-      }
-    })();
-    return () => { cancelled = true; controller.abort(); window.clearTimeout(timeout); };
-  }, [asset.beatId, summaryRequested, summaryAttempt]);
-
   function chooseAsset(next: Asset) {
     setAsset(next);
     setSearch("");
     setQuery("");
     setSearchState({ status: "idle", topics: [] });
-    setSummaryRequested(false);
-    setSummaryState({ status: "idle", data: null });
   }
 
   useEffect(() => {
@@ -273,24 +242,7 @@ export default function NewsPreview({ cryptoFirst = false }: { cryptoFirst?: boo
             ))}
           </ol>
         )}
-        {state.status === "ready" && state.data.items.length > 0 && !summaryRequested && (
-          <button className="news-preview-summarize" type="button" onClick={() => { setSummaryState({ status: "loading", data: null }); setSummaryRequested(true); }}>
-            <Sparkles size={14} /> Summarize what happened <ArrowRight size={13} />
-          </button>
-        )}
-        {summaryRequested && <div className="news-preview-summary" aria-busy={summaryState.status === "loading"}>
-          <div className="news-preview-summary-heading"><Sparkles size={14} /> HEADLINE SUMMARY</div>
-          {summaryState.status === "loading" && <p role="status">Putting the headlines together…</p>}
-          {summaryState.status === "error" && <p role="status">The summary couldn’t load. <button type="button" onClick={() => { setSummaryState({ status: "loading", data: null }); setSummaryAttempt((value) => value + 1); }}>Try again</button></p>}
-          {summaryState.status === "ready" && summaryState.data && <>
-            <ol>{summaryState.data.items.map((item) => <li key={item.story_id}>
-              <p>{item.text}</p>
-              {item.reports[0] && <a href={item.reports[0].url} target="_blank" rel="noreferrer">{item.reports[0].source} · {dateLabel(item.reports[0].published_at)} <ArrowUpRight size={12} /></a>}
-            </li>)}</ol>
-            <p className="news-preview-summary-note">Based on headlines only · {summaryState.data.method === "extractive" ? "Original headlines shown" : "Short summary"}. Check the linked reporting for details.</p>
-            {summaryState.data.freshness.status !== "fresh" && <p className="news-preview-freshness">{summaryState.data.freshness.last_success_at ? `Coverage may be out of date. Last successful check: ${dateLabel(summaryState.data.freshness.last_success_at)}.` : "Coverage freshness is unavailable."}</p>}
-          </>}
-        </div>}
+        <ResearchQuestion key={asset.beatId} beatIds={[asset.beatId]} label={asset.label} compact />
         <span className="news-preview-announcement" role="status">
           {state.status === "ready"
             ? `${state.data.items.length} headlines loaded for ${asset.label}.`
