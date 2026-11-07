@@ -8,7 +8,7 @@ const at = "2026-11-07T11:59:00Z";
 function fixture() {
   const market: MarketContext = {
     policy_version: "test", status: "ready", observed_at: at,
-    instrument: { id: "test", kind: "crypto", venue: "kraken", pair: "XBTUSD", source_url: "https://www.kraken.com", beat_id: "b_06c91290de1c" } as MarketContext["instrument"],
+    instrument: { id: "test", symbol: "BTC", underlying_ticker: "BTC", kind: "crypto", venue: "kraken", pair: "XBTUSD", base: "XBT", quote: "USD", status: "online", source_url: "https://www.kraken.com", mapping_url: "https://api.kraken.com", verified_at: at },
     benchmark: { label: "peer", methodology: "test", components: [] }, last_trade_at: at, last_bar_at: at, book: null,
     windows: [{ minutes: 15, start_at: "2026-11-07T11:44:00Z", end_at: at, asset_return: .02, benchmark_return: .01, excess_return: .01, residual_return: .008, residual_z: null, active_fraction: 1, trades: 50, volume: 20 }],
     fit: null, volume_ratio: 1.5, return_acceleration: null, curve: [], quality: [], limitations: [],
