@@ -42,3 +42,12 @@ test("a fresh read cannot make old market windows or held discovery fresh", () =
   assert.equal(researchFreshness("fresh", "2026-11-08T00:00:00Z", 600_000, now), "stale");
   assert.equal(researchFreshness("fresh", null, 600_000, now), "unavailable");
 });
+
+test("research retains the shortest measured horizon and identifies its comparison", () => {
+  const quant = fixture();
+  quant.market.windows = [5, 30, 60, 1440].map(minutes => ({ ...quant.market.windows[0]!, minutes }));
+  const facts = quantitativeResearchEvidence("b_06c91290de1c", quant, now);
+  assert.ok(facts.some(fact => fact.id === "market:b_06c91290de1c:5"));
+  assert.ok(facts.some(fact => fact.id === "market:b_06c91290de1c:1440"));
+  assert.ok(facts.filter(fact => fact.id.startsWith("market:")).every(fact => fact.text.includes("peer comparison return")));
+});
