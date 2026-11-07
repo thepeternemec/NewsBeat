@@ -36,7 +36,7 @@ A partial answer can be useful: news may support a conditional business mechanis
 
 For each asset it scans up to 200 latest-day reports and considers up to 40 ranked story groups. Up to eight entity-qualified leads are selected by question-term relevance and existing news ranking. Reporting remains original; grouping and ranking reduce noise rather than pretending to measure impact.
 
-Existing six-asset pilot measurements provide identified venue returns and comparisons when fresh. Bitcoin, Ethereum and Solana can also use their explicit CoinGecko reference mappings when no pilot instrument is attached. Other assets do not receive unrelated crypto prices. News freshness and measurement timestamps are evaluated separately. Old evidence stays visible but is excluded from generation.
+Existing six-asset pilot measurements provide identified venue returns, fitted residuals, participation and independent anomaly scans when fresh. Historical rarity is descriptive rather than a probability of future profit; stale windows and held discovery are excluded from reasoning. Bitcoin, Ethereum and Solana can also use their explicit CoinGecko reference mappings when no pilot instrument is attached. Other assets do not receive unrelated crypto prices. News freshness and measurement timestamps are evaluated separately. Old evidence stays visible but is excluded from generation.
 
 One bounded gateway call answers the question, distinguishes reports from interpretation, considers alternative explanations and names a next check. Schema validation, known fresh citation IDs, verbatim observations and numeric checks reject malformed or unsupported output. These checks do not prove semantic truth or causality; conditional reasoning still requires review.
 

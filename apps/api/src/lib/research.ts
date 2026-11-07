@@ -4,16 +4,11 @@ import { readIntelligence } from "./intelligence.js";
 import { prices } from "./market.js";
 import { assetView, qualifiesReport, researchIntent, resolveResearchAssets } from "./research-core.js";
 import { reasonAboutQuestion } from "./research-model.js";
+import { quantitativeResearchEvidence, researchFreshness as fresh } from "./research-market.js";
 
 const PRICE_IDS: Record<string, string> = { BTC: "bitcoin", ETH: "ethereum", SOL: "solana" };
 export const priceIdsForAsset = (asset: Pick<Beat, "ticker" | "asset"> | null) =>
   asset?.asset === "crypto" && PRICE_IDS[asset.ticker] ? [PRICE_IDS[asset.ticker]!] : [];
-
-function fresh(status: string, at: string | null, maxAge: number): ResearchEvidence["freshness"] {
-  if (!at) return "unavailable";
-  const age = Date.now() - Date.parse(at);
-  return status === "fresh" && Number.isFinite(age) && age >= -60_000 && age <= maxAge ? "fresh" : "stale";
-}
 
 async function gather(asset: Beat, question: string, context: "fundamentals" | "liquidity" | "risk") {
   const meta: ResearchAsset = { ...assetView(asset), news_status: "unavailable", market_status: "unavailable", reports_scanned: 0, coverage_truncated: false, limitations: [] };
@@ -45,16 +40,9 @@ async function gather(asset: Beat, question: string, context: "fundamentals" | "
   const quant = intelligence.status === "fulfilled" ? intelligence.value.quantitative : undefined;
   if (quant?.market.instrument) {
     const market = quant.market;
-    const status = fresh(market.status === "ready" ? "fresh" : market.status, market.observed_at, 10 * 60_000);
-    meta.market_status = status;
-    for (const window of market.windows.slice(-3)) {
-      const pct = (n: number) => (n * 100).toFixed(4);
-      const text = window.minutes + "-minute venue asset return: " + pct(window.asset_return) + "%; comparison return: " + pct(window.benchmark_return) + "%; excess return: " + pct(window.excess_return) + "%.";
-      evidence.push({ id: "market:" + asset.beat_id + ":" + window.minutes, beat_id: asset.beat_id, kind: "measurement",
-        text, source: "kraken " + market.instrument!.pair, url: market.instrument!.source_url,
-        observed_at: window.end_at, freshness: fresh(status, window.end_at, 10 * 60_000) });
-    }
-    if (!evidence.some(e => e.kind === "measurement" && e.freshness === "fresh")) meta.market_status = "stale";
+    const measured = quantitativeResearchEvidence(asset.beat_id, quant);
+    evidence.push(...measured);
+    meta.market_status = measured.some(item => item.freshness === "fresh") ? "fresh" : "stale";
     meta.limitations.push(...market.limitations.slice(0, 3));
     if (market.instrument!.kind === "tokenized_equity") meta.limitations.push("Stock measurements are identified tokenized-equity venue prices, not a consolidated underlying-share tape.");
   } else if (quote.status === "fulfilled" && quote.value) {
