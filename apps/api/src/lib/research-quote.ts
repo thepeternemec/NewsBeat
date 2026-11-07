@@ -1,8 +1,20 @@
 import type { ResearchAnswer, ResearchAsset, ResearchEvidence } from "@newsbeat/contracts";
+import { resolveResearchAssets } from "./research-core.js";
 
-export function isReferenceQuoteQuestion(question: string) {
-  return /\b(?:prices?|quotes?|bids?|asks?|mid)\b/i.test(question)
-    && !/\b(?:why|cause|explain|risk|outlook|compare|anomal\w*|target|forecast|predict\w*|reaction|impact|valuation|undervalued|overvalued|news|since|historical|yesterday|ago|change|changed|return|returns|buy|sell|hold|act|entry|exit|timing|should|will|could|would|future|sentiment|opinion|higher|lower|going|up|down)\b/i.test(question);
+const QUOTE_WORDS = new Set("what whats is are the current latest reference spot price prices quote quotes bid bids ask asks mid midpoint for of and or me show give tell please how much does do a an s in usd dollar dollars now today live source sources with at as observed observation timestamp timestamps time update updated when can you i".split(" "));
+const plain = (text: string) => text.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
+
+export function isReferenceQuoteQuestion(question: string, scopedAssets?: Array<Pick<ResearchAsset, "label" | "ticker">>) {
+  if (!/\b(?:prices?|quotes?|bids?|asks?|mid)\b/i.test(question)) return false;
+  const assets = scopedAssets ?? resolveResearchAssets(question).assets;
+  if (!assets.length) return false;
+  let remainder = " " + plain(question) + " ";
+  for (const asset of assets) for (const name of [asset.label, asset.ticker].sort((a, b) => b.length - a.length)) {
+    remainder = remainder.replaceAll(" " + plain(name) + " ", " ");
+  }
+  // Only the supported quote vocabulary can take this shortcut. Everything else
+  // (risk, news, history, liquidity, forecasts, etc.) continues through research.
+  return remainder.trim().split(/\s+/).every(word => QUOTE_WORDS.has(word));
 }
 
 /** A measured read should not depend on a language model reformatting trusted numeric values. */

@@ -22,7 +22,7 @@ test("current quote reads preserve values, attribution and time without model ge
 });
 
 test("price reasoning, history and forecasts do not take the current-quote shortcut", () => {
-  for (const question of ["Why is Bitcoin’s price moving?", "Compare AMD and NVIDIA price risk", "What was Bitcoin’s price yesterday?", "What price target could Bitcoin reach?", "What news affects the Bitcoin price?", "Should I buy Bitcoin at this price?", "Could Bitcoin’s price go higher?"]) {
+  for (const question of ["Why is Bitcoin’s price moving?", "Compare AMD and NVIDIA price risk", "What was Bitcoin’s price yesterday?", "What price target could Bitcoin reach?", "What news affects the Bitcoin price?", "Should I buy Bitcoin at this price?", "Could Bitcoin’s price go higher?", "What is Bitcoin’s price and volume?", "What is Bitcoin’s price and liquidity?"]) {
     assert.equal(isReferenceQuoteQuestion(question), false, question);
   }
 });

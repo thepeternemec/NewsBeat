@@ -84,7 +84,7 @@ export async function researchQuestion(raw: unknown, oidcToken?: string | null):
   base.flow.push({ step: "Retrieve question-relevant evidence", status: base.assets.every(a => a.news_status === "fresh") ? "complete" : "limited" },
     { step: "Check asset-specific market context", status: base.assets.every(a => a.market_status === "fresh") ? "complete" : "limited" });
   const usable = base.evidence.filter(e => e.freshness === "fresh");
-  if (isReferenceQuoteQuestion(input.question)) {
+  if (isReferenceQuoteQuestion(input.question, base.assets)) {
     base.answer = referenceQuoteAnswer(base.assets, usable);
     base.method = base.answer ? "measured" : "evidence_only";
     const quoted = new Set(usable.filter(item => /^(?:quote:|venue-quote:)/.test(item.id)).map(item => item.beat_id));
