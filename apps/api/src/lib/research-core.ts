@@ -70,6 +70,24 @@ export function researchFigures(text: string): string[] {
   });
 }
 
+/** Allow exact known observation times in prose without treating date components as quantities. */
+function figuresInClaim(text: string, sources: ResearchEvidence[]): string[] {
+  let prose = text.toLowerCase();
+  const known = new Set<string>();
+  for (const source of sources) {
+    const date = new Date(source.observed_at);
+    if (!Number.isFinite(date.getTime())) continue;
+    const iso = date.toISOString();
+    for (const value of [source.observed_at, iso, iso.slice(0, 19) + "Z", iso.slice(0, 19),
+      iso.slice(0, 19).replace("T", " "), iso.slice(0, 10), iso.slice(11, 19), iso.slice(11, 16)]) known.add(value.toLowerCase());
+    for (const locale of ["en-GB", "en-US"]) for (const month of ["short", "long"] as const) {
+      known.add(date.toLocaleDateString(locale, { timeZone: "UTC", year: "numeric", month, day: "numeric" }).toLowerCase());
+    }
+  }
+  for (const time of [...known].sort((a, b) => b.length - a.length)) prose = prose.replaceAll(time, "");
+  return researchFigures(prose);
+}
+
 /** Headline roles are retrieval heuristics, never a significance score or verification. */
 export function researchEvidenceRole(item: ResearchEvidence) {
   if (item.kind === "measurement") return "measurement";
@@ -95,12 +113,12 @@ export function validateResearchAnswer(raw: unknown, evidence: ResearchEvidence[
     const sources = reason.evidence_ids.map(id => byId.get(id)!);
     if (reason.kind === "observation" && (sources.length !== 1 || reason.claim !== sources[0]!.text)) return reject("altered_observation");
     const numbers = new Set(sources.flatMap(e => researchFigures(e.text)));
-    if (researchFigures(reason.claim).some(n => !numbers.has(n))) return reject("unsupported_reasoning_figure");
+    if (figuresInClaim(reason.claim, sources).some(n => !numbers.has(n))) return reject("unsupported_reasoning_figure");
   }
   const text = [answer.answer, ...answer.reasoning.map(r => r.claim), ...answer.unknowns, ...answer.next_checks].join(" ");
   if (/[<>]/.test(text) || /https?:\/\/|www\./i.test(text)) return reject("unsupported_format_or_instruction");
   if (/\b(?:buy|sell|short)\s+(?:now|today|immediately)\b|\bguaranteed\b|\bwill (?:rise|fall|rally|outperform)\b/i.test(text)) return reject("unsupported_instruction");
   const allNumbers = new Set([...cited].flatMap(id => researchFigures(byId.get(id)!.text)));
-  if (researchFigures(text).some(n => !allNumbers.has(n))) return reject("unsupported_answer_figure");
+  if (figuresInClaim(text, [...cited].map(id => byId.get(id)!)).some(n => !allNumbers.has(n))) return reject("unsupported_answer_figure");
   return answer;
 }

@@ -27,7 +27,7 @@ The catalog contains 2,030 identities. Ambiguous tickers return candidates; ques
 | assets | Per-asset news and market coverage, scan counts and truncation |
 | flow | Identity, retrieval, market checks and reasoning coverage |
 | status | ready, partial, needs_clarification or unavailable |
-| method | reasoned or evidence_only |
+| method | reasoned, measured (direct identified quote read), or evidence_only |
 | limitations | Missing measurements, source boundaries and incomplete coverage |
 | generation_error | A bounded failure code when no validated answer is returned; no credentials or raw model output |
 
@@ -41,7 +41,9 @@ Existing six-asset pilot measurements provide identified reference quotes, venue
 
 Source roles distinguish approximate ownership, opinion, price-commentary and reported-development evidence before generation. Explicit evidence-scope gates rule out fundamental-risk rankings without statements, expectation changes without consensus data, and reaction claims from generic return windows. A quiet news window cannot prove an asset has lower risk.
 
-One bounded gateway call answers the question, distinguishes reports from interpretation, considers alternative explanations and names a next check. Reasoning entries interpret cited evidence rather than repeating headline lists. Where no substantive catalyst is supported, the answer must explain that insufficient-evidence conclusion and the missing check. Schema validation, known fresh citation IDs, verbatim observations and numeric checks reject malformed or unsupported output. Numeric formatting normalizes thousands separators and trailing zeros while preserving signs and magnitudes. Interpretations are explicitly labeled; a valid evidence-limit conclusion need not contain a particular modal word. These checks do not prove semantic truth or causality; reasoning still requires review.
+Straightforward current-price questions read identified quotes directly, preserving numeric values, source and observation time without a model call. Historical, causal, risk, forecast and mixed news questions continue through reasoning. News headlines cannot substitute for a missing current quote.
+
+One bounded gateway call answers other research questions, distinguishes reports from interpretation, considers alternative explanations and names a next check. Reasoning entries interpret cited evidence rather than repeating headline lists. Where no substantive catalyst is supported, the answer must explain that insufficient-evidence conclusion and the missing check. Schema validation, known fresh citation IDs, verbatim observations and numeric checks reject malformed or unsupported output. Numeric formatting normalizes thousands separators and trailing zeros while preserving signs and magnitudes. Exact cited observation timestamps are recognized separately from market quantities. Interpretations are explicitly labeled; a valid evidence-limit conclusion need not contain a particular modal word. These checks do not prove semantic truth or causality; reasoning still requires review.
 
 ## Limits
 

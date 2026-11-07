@@ -109,3 +109,12 @@ test("reasoning input distinguishes ownership reports and market opinion from me
   assert.equal(researchEvidenceRole({ ...evidence[0]!, text: "AMD Maintained at Buy by Analysts" }), "opinion_or_valuation_commentary");
   assert.equal(researchEvidenceRole({ ...evidence[0]!, kind: "measurement" }), "measurement");
 });
+
+test("a cited observation timestamp is not mistaken for an invented market figure", () => {
+  const dated = { ...evidence[0]!, observed_at: "2026-11-07T23:03:55.000Z" };
+  const result = answer();
+  result.answer = "The source observation was recorded at 2026-11-07T23:03:55.000Z.";
+  assert.ok(validateResearchAnswer(result, [dated]));
+  result.answer = "The source observation was recorded at 2027-01-08T16:04:56.000Z.";
+  assert.equal(validateResearchAnswer(result, [dated]), null);
+});

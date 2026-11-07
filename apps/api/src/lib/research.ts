@@ -4,6 +4,7 @@ import { readIntelligence } from "./intelligence.js";
 import { prices } from "./market.js";
 import { assetView, qualifiesReport, researchIntent, resolveResearchAssets } from "./research-core.js";
 import { reasonAboutQuestion } from "./research-model.js";
+import { isReferenceQuoteQuestion, referenceQuoteAnswer } from "./research-quote.js";
 import { quantitativeResearchEvidence, researchFreshness as fresh } from "./research-market.js";
 
 const PRICE_IDS: Record<string, string> = { BTC: "bitcoin", ETH: "ethereum", SOL: "solana" };
@@ -83,6 +84,15 @@ export async function researchQuestion(raw: unknown, oidcToken?: string | null):
   base.flow.push({ step: "Retrieve question-relevant evidence", status: base.assets.every(a => a.news_status === "fresh") ? "complete" : "limited" },
     { step: "Check asset-specific market context", status: base.assets.every(a => a.market_status === "fresh") ? "complete" : "limited" });
   const usable = base.evidence.filter(e => e.freshness === "fresh");
+  if (isReferenceQuoteQuestion(input.question)) {
+    base.answer = referenceQuoteAnswer(base.assets, usable);
+    base.method = base.answer ? "measured" : "evidence_only";
+    const quoted = new Set(usable.filter(item => /^(?:quote:|venue-quote:)/.test(item.id)).map(item => item.beat_id));
+    base.status = base.answer ? (base.assets.every(asset => quoted.has(asset.beat_id)) ? "ready" : "partial") : "unavailable";
+    base.message = base.answer ? null : "No fresh, identified reference quote is available for the requested asset. News headlines cannot substitute for a current price.";
+    base.flow.push({ step: "Read identified reference quotes", status: base.answer ? "complete" : "limited" });
+    return base;
+  }
   if (!usable.length) {
     base.status = "unavailable";
     base.message = "There is not enough fresh evidence to answer this question reliably. The attached coverage states explain what is missing.";
