@@ -22,6 +22,10 @@ test("research resolves comparisons and preserves stock/crypto ambiguity", () =>
   assert.equal(resolveResearchAssets("What is happening in the market now?").assets.length, 0);
   assert.deepEqual(resolveResearchAssets("Why is NVIDIA moving now?").assets.map(a => a.ticker), ["NVDA"]);
   assert.deepEqual(resolveResearchAssets("Why is Bitcoin moving?").assets.map(a => a.ticker), ["BTC"]);
+  assert.deepEqual(resolveResearchAssets("What is driving Ethereum gas?").assets.map(a => a.ticker), ["ETH"]);
+  assert.deepEqual(resolveResearchAssets("Please request research for Bitcoin").assets.map(a => a.ticker), ["BTC"]);
+  assert.deepEqual(resolveResearchAssets("What changed for NVIDIA xStock?").assets.map(a => a.ticker), ["NVDAX"]);
+  assert.deepEqual(resolveResearchAssets("Compare NVIDIA and NVIDIA xStock").assets.map(a => a.ticker), ["NVDA", "NVDAX"]);
   assert.ok(resolveResearchAssets("Compare NVIDIA, Apple, Microsoft and Tesla").issue);
   assert.ok(resolveResearchAssets("What changed?", ["b_000000000000"]).issue);
 });
