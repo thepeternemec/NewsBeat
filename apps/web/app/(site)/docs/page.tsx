@@ -4,7 +4,7 @@ import DocsDeveloperStart from "@/components/site/docs-developer-start";
 
 export const metadata = {
   title: "NewsBeat docs — Build on the news foundation",
-  description: "Connect to stock and crypto news through MCP and REST. Copy working requests, discover 15 agent tools, and track changes with sources and freshness.",
+  description: "Connect to stock and crypto news through MCP and REST. Copy working requests, discover 17 agent tools, and track changes with sources and freshness.",
 };
 
 const QUESTIONS = [
@@ -31,7 +31,7 @@ export default function DocsOverview() {
 
       <section className="docs-section" aria-labelledby="developer-quickstart">
         <h2 id="developer-quickstart">Your first request.</h2>
-        <p>Try a public catalog lookup or add the remote MCP server to your client. 16 tools are available; news is collected on a ten-minute schedule.</p>
+        <p>Try a public catalog lookup or add the remote MCP server to your client. 17 tools are available; news is collected on a ten-minute schedule.</p>
         <DocsDeveloperStart />
       </section>
 
@@ -41,8 +41,8 @@ export default function DocsOverview() {
           <a className="docs-path-card" href="/docs/try">
             <span className="docs-path-icon"><Play size={20} aria-hidden="true" /></span>
             <span className="docs-path-label">SEE IT WORK</span>
-            <h3>Try live news</h3>
-            <p>Search a company, read the headlines and get a short update. Right in your browser.</p>
+            <h3>Ask NewsBeat</h3>
+            <p>Ask a research question. Inspect the answer, reasoning and next checks in your browser.</p>
             <span className="docs-path-action">Make your first lookup <ArrowRight size={15} aria-hidden="true" /></span>
           </a>
           <a className="docs-path-card" href="/docs/quickstart">
@@ -60,8 +60,8 @@ export default function DocsOverview() {
         <h2 id="how-it-works">One question. Useful context.</h2>
         <ol className="docs-flow">
           <li><span>01</span><div><h3>You ask in your own words</h3><p>A company name is enough. Your agent finds the matching stock or crypto asset.</p></div></li>
-          <li><span>02</span><div><h3>Your agent checks NewsBeat</h3><p>It retrieves headlines or a short headline-based summary, with publishers and dates.</p></div></li>
-          <li><span>03</span><div><h3>The news becomes part of your answer</h3><p>Your agent explains what was reported and how fresh the coverage is. Follow up when you need more.</p></div></li>
+          <li><span>02</span><div><h3>Your agent checks NewsBeat</h3><p>It selects relevant reporting and available market evidence, then tests possible explanations.</p></div></li>
+          <li><span>03</span><div><h3>The news becomes part of your answer</h3><p>Your agent answers the question with evidence, uncertainty and an observable next check.</p></div></li>
         </ol>
         <div className="docs-callout"><strong>Let your agent know when to check.</strong><p>Add our <a href="/docs/quickstart#agent-instruction">ready-to-use instruction</a> so it can choose NewsBeat when recent developments matter. Your assistant controls tool access and may ask for permission.</p></div>
       </section>

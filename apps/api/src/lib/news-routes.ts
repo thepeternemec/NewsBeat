@@ -9,6 +9,7 @@ import { ask } from "./ask.js";
 import { signals } from "./signals.js";
 import { readIntelligence } from "./intelligence.js";
 import { collectionControl } from "./collection.js";
+import { researchQuestion, researchCoverage } from "./research.js";
 export const newsRoutes = new Hono();
 newsRoutes.onError((error, c) => { if (error instanceof NewsError)
     return c.json({ error: { code: error.code, message: error.message } }, error.status as 400 | 404 | 410 | 503); console.error("news request failed", error.name); return c.json({ error: { code: "service_unavailable", message: "News is temporarily unavailable." } }, 503); });
@@ -16,6 +17,15 @@ const clamp = (raw: string | undefined, fallback: number, max: number) => {
     const n = Number.parseInt(raw ?? "", 10);
     return Number.isFinite(n) && n >= 0 ? Math.min(n, max) : fallback;
 };
+newsRoutes.get("/research", c => c.json({ ...researchCoverage, method: "POST", body: { question: "Why is NVIDIA moving, and what should I check next?" } }));
+newsRoutes.post("/research", async c => {
+    c.header("Cache-Control", "no-store");
+    if (Number(c.req.header("content-length") ?? 0) > 8192) throw new NewsError("invalid_request", "Research request is too large.", 413);
+    let body: unknown;
+    try { const raw = await c.req.text(); if (raw.length > 8192) throw new Error(); body = JSON.parse(raw); }
+    catch { throw new NewsError("invalid_request", "Expected a bounded JSON research request.", 400); }
+    return c.json(await researchQuestion(body, c.req.header("x-vercel-oidc-token")));
+});
 newsRoutes.get("/collection", async c => {
     c.header("Cache-Control", "no-store");
     return c.json(await collectionControl({ action: "status", beat_id: c.req.query("beat_id") }));
@@ -65,7 +75,9 @@ newsRoutes.get("/intelligence", async c => {
 newsRoutes.get("/summary", async (c) => {
     const beatId = (c.req.query("beat_id") ?? "").trim();
     if (!beatId) throw new NewsError("invalid_request", "beat_id is required.", 400);
-    return c.json(await headlineSummary(beatId, c.req.header("x-vercel-oidc-token")));
+    c.header("Deprecation", "true");
+    c.header("Link", '</api/v2/research>; rel="successor-version"');
+    return c.json(await headlineSummary(beatId));
 });
 newsRoutes.get("/brief", async (c) => {
     const beatId = (c.req.query("beat_id") ?? "").trim();
@@ -87,6 +99,7 @@ export async function callNewsTool(name: string, args: unknown, oidcToken?: stri
     // `newsgraph_*`, `newsbeat_*` and briefly `newsbeat_*`; all three resolve and the
     // advertised name is `newsbeat_*` again. Remove a prefix once its callers have moved.
     name = name.replace(/^(?:newsgraph|newsbeat)_/, "newsbeat_");
+    if (name === "newsbeat_research") return researchQuestion(args, oidcToken);
     if (name === "newsbeat_collection") return collectionControl(args);
     if (name === "newsbeat_topics") {
         const input = z.object({ query: z.string().max(200).optional() }).strict().parse(args);

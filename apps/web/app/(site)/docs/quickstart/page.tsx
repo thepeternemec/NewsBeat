@@ -5,11 +5,11 @@ import "./quickstart.css";
 
 export const metadata = { title: "Use NewsBeat with your assistant", description: "Connect NewsBeat in three steps. Add the connection address, ask a news question, and get sources and dates in your assistant." };
 const MCP_URL = "https://www.newsbeat.dev/api/mcp";
-const FIRST_QUESTION = "Use NewsBeat to find the latest news about Nvidia. Include sources and dates.";
+const FIRST_QUESTION = "Use NewsBeat to research what could change the outlook for Nvidia. Explain the evidence, missing market checks and what to watch next.";
 const questions = [
-  { label: "Follow a company", text: "What are the latest headlines about Apple?" },
+  { label: "Follow a company", text: "What are the main risks in Apple’s latest reporting?" },
   { label: "Compare the coverage", text: "Compare recent news about Nvidia and AMD. Keep each company’s sources separate." },
-  { label: "Get a quick briefing", text: "Give me a short Bitcoin briefing and tell me how recent the coverage is." },
+  { label: "Get a quick briefing", text: "Does Bitcoin’s latest news explain its market move? Separate evidence from possible explanations." },
   { label: "Pick up where you left off", text: "What is new since our previous Nvidia check?" },
 ];
 const help = [
@@ -30,7 +30,7 @@ export default function DocsQuickstart() {
       </header>
 
       <div className="quickstart-try">
-        <div><strong>Want to see the answer first?</strong><span>Search a company and request a headline summary in the browser. It takes no setup.</span></div>
+        <div><strong>Want to see the answer first?</strong><span>Ask a company or crypto question. See the answer, reasoning and next checks in your browser.</span></div>
         <a href="/docs/try">Try NewsBeat free <ArrowUpRight size={14} /></a>
       </div>
 

@@ -1,10 +1,11 @@
 import CopyButton from "@/components/site/copy-button";
 import AgentInstructions from "@/components/site/agent-instructions";
 
-export const metadata = { title: "Developer reference", description: "Connect NewsBeat through remote MCP, REST or function calling. 16 tools, current endpoints and working examples." };
+export const metadata = { title: "Developer reference", description: "Connect NewsBeat through remote MCP, REST or function calling. 17 tools, current endpoints and working examples." };
 const API = "https://www.newsbeat.dev/api";
 const MCP_CONFIG = JSON.stringify({ mcpServers: { newsbeat: { url: `${API}/mcp` } } }, null, 2);
 const TOOLS = [
+  ["newsbeat_research", "Answer a question with asset-specific evidence, conditional reasoning, unknowns and next checks.", "POST /v2/research"],
   ["newsbeat_collection", "Explicitly request one-minute collection for 15 minutes, read status, or stop your session.", "GET/POST /v2/collection"],
   ["newsbeat_intelligence", "Read stored event interpretations, evidence and follow-up checks for the six-asset pilot.", "GET /v2/intelligence?beat_id=…"],
   ["newsbeat_topics", "Find a supported company or crypto asset.", "GET /v2/topics?q=nvidia"],
@@ -12,7 +13,7 @@ const TOOLS = [
   ["newsbeat_changes", "Read newly indexed items after a saved cursor.", "GET /v2/changes?beat_id=…&cursor=…"],
   ["newsbeat_brief", "Get three relevant recent headlines verbatim with sources and times.", "GET /v2/brief?beat_id=…"],
   ["newsbeat_stories", "Read grouped headlines with every report’s source link.", "GET /v2/stories?beat_id=…"],
-  ["newsbeat_summary", "Get a short explanation from headlines with original source links.", "GET /v2/summary?beat_id=…"],
+  ["newsbeat_summary", "Deprecated original-headline compatibility read; no generated summary.", "GET /v2/summary?beat_id=…"],
   ["newsbeat_watch", "Check up to 50 assets in one request; does not create a schedule.", "POST /v2/watch"],
   ["newsbeat_ask","Resolve an asset and gather news, prices and chain context.","GET /v2/ask?q=bitcoin"],
   ["newsbeat_market","Read a sourced crypto market overview.","GET /v2/market"],
@@ -22,9 +23,9 @@ const TOOLS = [
   ["newsbeat_token","Read a reference price by contract address.","GET /v2/token?asset=…"],
   ["newsbeat_signals","Read funding, DEX volume and stablecoin supply.","GET /v2/signals"],
 ];
-const FIRST_REQUEST = `curl -s "${API}/v2/topics?q=nvidia"
-
-curl -s "${API}/v2/summary?beat_id=b_bb964843350e"`;
+const FIRST_REQUEST = `curl -X POST "${API}/v2/research" \\
+  -H "Content-Type: application/json" \\
+  -d '{"question":"What could change the outlook for NVIDIA?"}'`;
 
 export default function DocsConnect() {
   return (
@@ -51,7 +52,7 @@ export default function DocsConnect() {
         <pre>{MCP_CONFIG}</pre>
       </div>
       <p>
-        The server advertises 15 read-only research tools plus one explicit collection-control tool and guidance on when to use them. The host decides
+        The server advertises 16 research tools plus one explicit collection-control tool and guidance on when to use them. The host decides
         when tools run and enforces its own approvals. Custom remote connections are not available
         in every assistant or account; this endpoint does not imply directory approval.
       </p>
@@ -64,8 +65,8 @@ export default function DocsConnect() {
       </p>
       <AgentInstructions />
 
-      <h2 id="seven-tools-and-their-rest-routes">16 tools and their REST routes</h2>
-      <p>Prefix REST routes with <code>{API}</code>. Most reads use GET; batched watch uses POST.</p>
+      <h2 id="seven-tools-and-their-rest-routes">17 tools and their REST routes</h2>
+      <p>Prefix REST routes with <code>{API}</code>. Research and batched watch use POST bodies. GET /v2/research returns capability metadata without generating an answer. Research does not change stored intelligence or start collection.</p>
       <div className="table-scroll">
         <table>
           <thead><tr><th>Tool</th><th>Purpose</th><th>REST route</th></tr></thead>
@@ -78,7 +79,7 @@ export default function DocsConnect() {
       <h2 id="first-rest-requests">First REST requests</h2>
       <p>Catalog collection is scheduled every 10 minutes. Only when a user explicitly asks for one-minute news, call <code>newsbeat_collection</code> with <code>action: "start"</code>, the priority <code>beat_id</code> and <code>interval_seconds: 60</code>, or POST that body to <code>/v2/collection</code>. It lasts 15 minutes and never auto-renews. Save the returned private session token to stop early. GET status does not activate collection. Market measurements and model analysis retain five-minute schedules.</p>
       <div className="code">
-        <div className="code-bar">Find Nvidia, then request a short update <CopyButton text={FIRST_REQUEST} label="requests" /></div>
+        <div className="code-bar">Ask NewsBeat a research question <CopyButton text={FIRST_REQUEST} label="requests" /></div>
         <pre>{FIRST_REQUEST}</pre>
       </div>
       <p>
@@ -89,16 +90,10 @@ export default function DocsConnect() {
       </p>
 
       <h2 id="grouped-feed">Grouped feed</h2>
-      <p>
-        For a quick answer to “What happened with Nvidia?”, use <code>/v2/summary?beat_id=…</code>
-        or <code>newsbeat_summary</code>. It selects up to three distinct ranked stories and gives
-        short sentences with links to the original reports. <code>basis</code> is always
-        <code>headlines_only</code>. <code>method</code> is <code>generated</code> when headline
-        summarization succeeds; <code>extractive</code> shows original headlines when it cannot.
-        Check <code>freshness</code> and <code>coverage_truncated</code>; the service has not read
-        the complete articles and does not infer market impact.
-      </p>
-      <p>
+      <p>Use <code>newsbeat_research</code> with the actual question and optionally up to three resolved <code>beat_ids</code>.
+        The response includes an answer, cited reasoning, unknowns and next checks. <code>partial</code> can mean useful news reasoning with missing market measurements.
+        <code>evidence_only</code> means no validated generated answer. Quantitative measurements remain a six-asset pilot.
+        The deprecated <code>newsbeat_summary</code> and <code>/v2/summary</code> now return original headlines only.</p>     <p>
         Use <code>/v2/stories?beat_id=…</code> or <code>newsbeat_stories</code> for one lead per
         group of similar headlines. Groups include <code>lead_article</code> and <code>reports</code>:
         each report keeps its original headline, publisher, URL, publication time and indexing time.

@@ -33,13 +33,17 @@ flowchart TD
 
 The Hono app is mounted at `/api/*` by the Next.js catch-all route. REST uses `/api/v2/*`; MCP uses `/api/mcp`. An intelligence read does not invoke the analysis model.
 
+## On-demand question research
+
+Explicit POST `/api/v2/research` and MCP `newsbeat_research` resolve up to three catalog identities, retrieve bounded relevant reporting and available asset-specific measurements, then call the existing gateway for a validated answer. This path is separate from stored GET intelligence: it does not update signal memory, collect the catalog, send notifications or trade. A per-instance cache and concurrency bound limit duplicate work; failures return original evidence and gaps. See [research runtime and limits](RESEARCH.md).
+
 ## News foundation
 
 The default collector queries Google News RSS, matches supported asset names in headlines, normalizes records and persists source links and publication times. Duplicate URLs are not inserted twice for the same asset.
 
 News reads use signed, asset-bound cursors. Clients save the returned cursor and ask for later arrivals through the changes endpoint. An empty result is a successful check.
 
-Stories and summaries operate on bounded snapshots. Grouping is approximate; summaries and interpretations use headline metadata rather than full article text.
+Stories and question research operate on bounded snapshots. Grouping is approximate; interpretations use headline metadata rather than full article text. Generated headline summarization is retired; the legacy summary route is a verbatim compatibility read.
 
 ## Intelligence and market checks
 

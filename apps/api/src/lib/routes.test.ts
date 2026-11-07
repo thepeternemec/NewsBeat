@@ -184,13 +184,14 @@ test("every public route is mentioned in the docs", () => {
 /** POST is allowed only where a request body is the whole point, and writes nothing. */
 const POST_READS = new Set(["/v2/watch"]);
 
-test("research reads stay read-only; temporary collection control is an explicit exception", () => {
+test("stored reads stay GET; research generation and collection control are explicit POST exceptions", () => {
   // The contract is read-only. A mutating verb appearing here would be a product
   // change, not a refactor. `/v2/watch` is a POST because fifty cursors do not fit
   // in a URL — it reads, and the allowlist is explicit so the next one has to be
   // argued for rather than assumed.
   for (const route of served()) {
     if (!route.path.startsWith("/v2/")) continue;
+    if (route.path === "/v2/research") { assert.ok(["GET", "POST"].includes(route.method)); continue; }
     if (route.path === "/v2/collection") { assert.ok(["GET", "POST"].includes(route.method)); continue; }
     if (POST_READS.has(route.path)) {
       assert.equal(route.method, "POST", `${route.path} is in the POST allowlist but served as ${route.method}`);
@@ -213,4 +214,22 @@ test("the advertising documents name at least the core routes", () => {
 test("unknown signal contexts are rejected before analysis is read", async () => {
   const response = await app.request("/v2/intelligence?beat_id=b_bb964843350e&context=invented");
   assert.equal(response.status, 400);
+});
+
+test("research discovery does not generate, and POST validates its scope", async () => {
+  const discovery = await app.request("/v2/research");
+  assert.equal(discovery.status, 200);
+  const capability = await discovery.json() as { catalog_assets: number; maximum_assets_per_question: number };
+  assert.equal(capability.catalog_assets, 2030);
+  assert.equal(capability.maximum_assets_per_question, 3);
+  const ambiguous = await app.request("/v2/research", { method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ question: "What happened with SUI?" }) });
+  assert.equal(ambiguous.status, 200);
+  assert.equal(ambiguous.headers.get("cache-control"), "no-store");
+  const result = await ambiguous.json() as { status: string; answer: unknown; candidates: unknown[] };
+  assert.equal(result.status, "needs_clarification");
+  assert.equal(result.answer, null);
+  assert.equal(result.candidates.length, 2);
+  const invalid = await app.request("/v2/research", { method: "POST", body: JSON.stringify({ question: "ok", extra: true }) });
+  assert.equal(invalid.status, 400);
 });

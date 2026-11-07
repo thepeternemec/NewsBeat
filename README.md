@@ -85,19 +85,21 @@ Find an asset:
 curl "https://www.newsbeat.dev/api/v2/topics?q=nvidia&limit=5"
 ```
 
-Read NVIDIA's stored intelligence:
+Ask an evidence-led question:
 
 ```bash
-curl "https://www.newsbeat.dev/api/v2/intelligence?beat_id=b_bb964843350e&context=fundamentals"
+curl -X POST "https://www.newsbeat.dev/api/v2/research" \\
+  -H "Content-Type: application/json" \\
+  -d '{"question":"What could change the outlook for NVIDIA?"}'
 ```
 
-Use the returned `beat_id` for other assets. The intelligence pilot currently covers **NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum**. Other supported assets have news access.
+Use the returned `beat_id` for other assets. The intelligence pilot currently covers **NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum**. Question research works across the catalog; missing market measurements are explicit. [Research flow and limits](docs/RESEARCH.md).
 
 [More examples](examples/README.md) · [API and MCP reference](AGENTS.md) · [Live tool schemas](https://www.newsbeat.dev/api/v2/tools)
 
 ## How it works
 
-**Reporting → Context → Market checks → Your agent**
+**Your question → Relevant evidence → Market checks → Answer → Next check**
 
 NewsBeat collects source-linked headlines, reduces repeated coverage and tracks new information. The pilot builds a conditional interpretation, checks observed market activity and stores the result for agents to read.
 
@@ -131,7 +133,8 @@ NewsBeat also scans the market independently of reporting: it looks for unusual 
 
 | Stage | Available today |
 | --- | --- |
-| News foundation | A bundled catalog of 2,030 stock and crypto topics; headlines, grouping, summaries, freshness and change tracking |
+| News foundation | A bundled catalog of 2,030 stock and crypto topics; headlines, grouping, freshness and change tracking |
+| Question research | Direct answers, cited reasoning, unknowns and next checks across the catalog; available market checks included |
 | Agent access | Public MCP and REST interfaces; asset discovery and batched watchlist reads |
 | Intelligence pilot | Six assets, three contexts, persistent interpretations, market checks and a review-alert journal |
 | Independent discovery | 15/30/60-minute anomaly scans, past-only comparisons, volatility context and an episode journal |

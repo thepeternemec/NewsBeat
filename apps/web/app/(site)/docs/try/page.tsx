@@ -1,58 +1,41 @@
 import { ArrowRight } from "lucide-react";
-import NewsPreview from "@/components/site/news-preview";
+import ResearchQuestion from "@/components/site/research-question";
 import CopyButton from "@/components/site/copy-button";
-import "../../landing.css";
 import "./try.css";
 
 export const metadata = {
-  title: "Try NewsBeat for free",
-  description: "Search a stock or crypto asset, read live headlines and request a source-linked summary. No account, key or card needed.",
+  title: "Ask NewsBeat",
+  description: "Ask a stock or crypto research question. Get a direct answer, evidence, uncertainty and the next check.",
 };
-
-const REQUEST = 'curl "https://www.newsbeat.dev/api/v2/summary?beat_id=b_bb964843350e"';
+const REQUEST = `curl -X POST "https://www.newsbeat.dev/api/v2/research" \\
+  -H "Content-Type: application/json" \\
+  -d '{"question":"What could change the outlook for NVIDIA?"}'`;
 
 export default function TryNewsBeat() {
   return (
     <div className="try-guide">
       <header className="docs-head">
-        <span className="sec-eyebrow">A real lookup · no setup</span>
-        <h1>Try the news before you connect.</h1>
-        <p className="docs-lead">
-          Search a stock or crypto asset, read recent headlines, and ask for a short summary.
-          This uses the same public news service your agent can call. No NewsBeat account, API key
-          or credit card is needed.
-        </p>
+        <span className="sec-eyebrow">Your question · an evidence-led answer</span>
+        <h1>Understand the picture.</h1>
+        <p className="docs-lead">Ask what could matter, what the market confirms and what would change the view.
+          NewsBeat checks the available evidence and explains its answer. No account or key needed.</p>
       </header>
-
-      <NewsPreview />
-
-      <h2 id="three-things-to-try">Three things to try</h2>
+      <ResearchQuestion />
+      <h2>From a question to a next check</h2>
       <ol className="try-steps">
-        <li><strong>Choose a company.</strong> Try Apple, Bitcoin or a name or ticker you follow. Select the right match if several assets share a name or symbol.</li>
-        <li><strong>Read the coverage.</strong> Each headline links to its source and shows its publisher and publication time. A recent source check does not mean every headline is new.</li>
-        <li><strong>Summarize what happened.</strong> The summary is requested only when you click the button. It is based on headlines, so open the linked reporting for full context.</li>
+        <li><strong>Ask naturally.</strong> Name a company or crypto asset. Compare up to three. Ambiguous tickers need an exact match.</li>
+        <li><strong>Inspect the reasoning.</strong> The answer separates reporting from possible mechanisms and checks available market measurements. Expand the evidence to see sources and dates.</li>
+        <li><strong>Know what would change the view.</strong> Read the unknowns and observable next checks. Missing measurements cannot establish a price reaction or timing signal.</li>
       </ol>
-
-      <h2 id="want-to-ask-your-own-assistant">Want to ask your own assistant?</h2>
-      <p>
-        The lookup above shows NewsBeat’s data in your browser. To bring it into your chat, your
-        assistant needs to support a custom remote MCP connection. Follow the guide, add the
-        NewsBeat address, then ask “What happened with Nvidia? Include sources and dates.”
-      </p>
+      <p>News research covers the 2,030-asset catalog. Deeper measured market checks remain a six-asset pilot.
+        Questions requiring older history, full reports or unavailable market data will show those limits.</p>
+      <h2>Bring this flow into your agent</h2>
+      <p>Connect the remote MCP server and ask your assistant to use <code>newsbeat_research</code> with your actual question.
+        The browser above uses the same research flow.</p>
       <a className="try-next" href="/docs/quickstart">Connect your assistant <ArrowRight size={15} /></a>
-
-      <h2 id="prefer-to-test-the-api">Prefer to test the API?</h2>
-      <p>Run this public REST request. It returns a short headline-based update and report links as JSON, without a key.</p>
-      <div className="code">
-        <div className="code-bar">Nvidia summary <CopyButton text={REQUEST} label="request" /></div>
-        <pre>{REQUEST}</pre>
-      </div>
-      <p>
-        Public MCP and REST reads are free during early access, with a limit of 120 requests per
-        minute. The optional <a href="/keys">seven-day keyed REST trial</a> is for testing a
-        higher-limit agent workflow; it does not unlock different news. Your assistant or model
-        provider may have its own charges.
-      </p>
+      <h2>Use the API</h2>
+      <div className="code"><div className="code-bar">Question research <CopyButton text={REQUEST} label="request" /></div><pre>{REQUEST}</pre></div>
+      <p>Research runs on demand. It does not activate one-minute collection or send alerts. Public access is free during early access and rate limited.</p>
     </div>
   );
 }

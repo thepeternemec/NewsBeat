@@ -12,3 +12,5 @@ export * from "./market.js";
 export * from "./intelligence.js";
 export * from "./quantitative.js";
 export * from "./collection.js";
+
+export * from "./research.js";
