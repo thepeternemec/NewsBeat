@@ -3,57 +3,48 @@
 import { useEffect } from "react";
 import type LenisClass from "lenis";
 
-/**
- * Lenis smooth scrolling — the same library reactbits.dev uses.
- *
- * Lenis drives the *real* scroll position rather than faking it with a
- * transform, so `window.scrollY`, IntersectionObserver and CSS
- * `animation-timeline: view()` all keep working exactly as before.
- * `anchors: true` makes the in-page nav links glide to their section.
- *
- * Tuning: this is Lenis's own recommendation — the `lerp` path, not
- * `duration` + `easing`. A duration-based curve animates every wheel tick
- * over its full length and reads as sluggish; `lerp` instead eases the
- * current position toward the target every frame, so the page starts moving
- * immediately and simply settles smoothly.
- *
- *   lerp 0.06 → floatier / longer glide
- *   lerp 0.10 → Lenis default (used here)
- *   lerp 0.16 → tighter, closer to native
- *
- * Skipped entirely under `prefers-reduced-motion` (Lenis also respects it).
- */
+/** Smooth the document while keeping touch, nested panels and reduced motion native. */
 export default function SmoothScroll() {
   useEffect(() => {
-    const reduceMotion =
-      typeof window.matchMedia === "function" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduceMotion) return;
-
-    let cancelled = false;
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let disposed = false;
+    let generation = 0;
     let lenis: LenisClass | null = null;
 
-    (async () => {
-      let Lenis: typeof LenisClass;
-      try {
-        ({ default: Lenis } = await import("lenis"));
-      } catch {
-        return; // leave native scrolling in place
-      }
-      if (cancelled) return;
+    async function syncPreference() {
+      const current = ++generation;
+      lenis?.destroy();
+      lenis = null;
+      if (preference.matches) return;
 
+      const { default: Lenis } = await import("lenis");
+      if (disposed || current !== generation || preference.matches) return;
       lenis = new Lenis({
         autoRaf: true,
-        lerp: 0.1,
+        autoResize: true,
+        lerp: 0.14,
         smoothWheel: true,
-        wheelMultiplier: 1,
-        touchMultiplier: 1.6,
-        anchors: true,
+        syncTouch: false,
+        allowNestedScroll: true,
+        anchors: { offset: -96 },
       });
-    })();
+    }
+
+    // Images, fonts and restored browser pages can change the scrollable height.
+    const resize = () => lenis?.resize();
+    const sync = () => { void syncPreference().catch(() => { /* Native scrolling remains available. */ }); };
+    sync();
+    preference.addEventListener("change", sync);
+    window.addEventListener("load", resize);
+    window.addEventListener("pageshow", resize);
+    void document.fonts.ready.then(() => { if (!disposed) resize(); });
 
     return () => {
-      cancelled = true;
+      disposed = true;
+      generation++;
+      preference.removeEventListener("change", sync);
+      window.removeEventListener("load", resize);
+      window.removeEventListener("pageshow", resize);
       lenis?.destroy();
     };
   }, []);
