@@ -21,6 +21,14 @@ export function quantitativeResearchEvidence(beatId: string, quant: Pick<QuantBu
     source: "Kraken " + instrument.pair, url: instrument.source_url, observed_at: window.end_at,
     freshness: researchFreshness(status, window.end_at, 600_000, now),
   }));
+  if (market.book) evidence.push({
+    id: "venue-quote:" + beatId, beat_id: beatId, kind: "measurement",
+    text: instrument.symbol + " identified venue reference mid: USD " + market.book.mid
+      + "; bid: USD " + market.book.bid + "; ask: USD " + market.book.ask
+      + ". A reference mid is not an executable fill or a consolidated underlying-share quote.",
+    source: "Kraken " + instrument.pair, url: instrument.source_url, observed_at: market.book.observed_at,
+    freshness: researchFreshness(status, market.book.observed_at, 600_000, now),
+  });
   if (market.volume_ratio !== null) evidence.push({
     id: "participation:" + beatId, beat_id: beatId, kind: "measurement",
     text: "Observed venue volume relative to its comparison baseline: " + market.volume_ratio.toFixed(4) + " times. This is participation context, not an executable return.",

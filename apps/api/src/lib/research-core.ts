@@ -76,7 +76,6 @@ export function validateResearchAnswer(raw: unknown, evidence: ResearchEvidence[
     reason.evidence_ids.forEach(id => cited.add(id));
     const sources = reason.evidence_ids.map(id => byId.get(id)!);
     if (reason.kind === "observation" && (sources.length !== 1 || reason.claim !== sources[0]!.text)) return reject("altered_observation");
-    if (reason.kind === "interpretation" && !/\b(?:may|might|could|if|potential|suggests?|consistent|unclear|cannot|evidence|supported|insufficient)\b/i.test(reason.claim)) return reject("unconditional_interpretation");
     const numbers = new Set(sources.flatMap(e => e.text.match(/\d+(?:[.,]\d+)*/g) ?? []));
     if ((reason.claim.match(/\d+(?:[.,]\d+)*/g) ?? []).some(n => !numbers.has(n))) return reject("unsupported_reasoning_figure");
   }

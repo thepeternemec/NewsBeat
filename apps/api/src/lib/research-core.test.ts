@@ -81,3 +81,11 @@ test("invalid requests and unresolved scope cannot call the model or data servic
   assert.equal(result.answer, null);
   assert.equal(result.evidence.length, 0);
 });
+
+test("a cited evidence-limit conclusion does not require a modal buzzword", () => {
+  const result = answer();
+  result.reasoning[0]!.claim = "The cited report does not establish a new business catalyst or a measured market reaction.";
+  assert.ok(validateResearchAnswer(result, evidence));
+  result.reasoning[0]!.claim = "Shares will rise and outperform.";
+  assert.equal(validateResearchAnswer(result, evidence), null);
+});

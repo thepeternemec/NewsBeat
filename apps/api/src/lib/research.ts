@@ -45,7 +45,8 @@ async function gather(asset: Beat, question: string, context: "fundamentals" | "
     meta.market_status = measured.some(item => item.freshness === "fresh") ? "fresh" : "stale";
     meta.limitations.push(...market.limitations.slice(0, 3));
     if (market.instrument!.kind === "tokenized_equity") meta.limitations.push("Stock measurements are identified tokenized-equity venue prices, not a consolidated underlying-share tape.");
-  } else if (quote.status === "fulfilled" && quote.value) {
+  }
+  if (quote.status === "fulfilled" && quote.value) {
     const data = quote.value;
     const assetQuote = data.data.assets.find(a => a.id === PRICE_IDS[asset.ticker]);
     if (assetQuote) {
