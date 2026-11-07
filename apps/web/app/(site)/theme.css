@@ -1629,6 +1629,13 @@
   --sidebar: #f4f4f4;
   --sidebar-foreground: #171717;
   --sidebar-border: #dedede;
+  --sidebar-primary: #171717;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ededed;
+  --sidebar-accent-foreground: #171717;
+  --sidebar-ring: #bfbfbf;
+  --accent-foreground: #ffffff;
+  --destructive: #404040;
 }
 
 /* ── Surfaces that were hardcoded ──────────────────────────────────────
@@ -2039,6 +2046,7 @@
 @media (max-width: 600px) { .headline-summary-head { align-items: flex-start; flex-direction: column; } }
 
 /* White-to-grey depth across light mode. All animation remains theme-independent. */
+html[data-theme="light"] { background: #ffffff; }
 html[data-theme="light"] body {
   background: linear-gradient(145deg, #ffffff 0%, #fafafa 52%, #f1f1f1 100%);
   background-attachment: fixed;
