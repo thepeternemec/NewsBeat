@@ -62,6 +62,24 @@ export function researchIntent(question: string) {
   return "context";
 }
 
+/** Normalize presentation, not values: separators and trailing zeros may change; signs and magnitudes may not. */
+export function researchFigures(text: string): string[] {
+  return (text.match(/(?<!\d)[+-]?\d+(?:[.,]\d+)*/g) ?? []).map(token => {
+    const value = /^[+-]?\d{1,3}(?:,\d{3})+(?:\.\d+)?$/.test(token) ? token.replace(/,/g, "") : token;
+    return /^[+-]?\d+(?:\.\d+)?$/.test(value) && Number.isFinite(Number(value)) ? String(Number(value)) : value;
+  });
+}
+
+/** Headline roles are retrieval heuristics, never a significance score or verification. */
+export function researchEvidenceRole(item: ResearchEvidence) {
+  if (item.kind === "measurement") return "measurement";
+  if (/\b(?:shares? (?:of .{0,100} )?(?:sold|purchased)|(?:increases?|reduces?|sells?|buys?|boosts?|cuts?) (?:its? )?(?:stake|holdings|position)|ownership|13f|portfolio|holdings? in)\b/i.test(item.text)) return "ownership_filing";
+  if (/\b(?:analyst|maintained at|price target|rating|fair value|should you buy|buy the dip|looks (?:cheap|expensive)|is it (?:time|too late))\b/i.test(item.text)) return "opinion_or_valuation_commentary";
+  if (/\b(?:stock|shares?|bitcoin|ethereum)\b.{0,70}\b(?:rises?|falls?|rall(?:y|ies)|crash|surge|trillion club)\b/i.test(item.text)) return "price_commentary";
+  if (/\b(?:alleged|allegations?|reportedly|officials believe|suspected|accused|rumou?r)\b/i.test(item.text)) return "attributed_claim";
+  return "reported_development";
+}
+
 /** Citation membership and numeric grounding are enforced independently of model instructions. */
 export function validateResearchAnswer(raw: unknown, evidence: ResearchEvidence[], onInvalid?: (reason: string) => void): ResearchAnswer | null {
   const reject = (reason: string): null => { onInvalid?.(reason); return null; };
@@ -76,13 +94,13 @@ export function validateResearchAnswer(raw: unknown, evidence: ResearchEvidence[
     reason.evidence_ids.forEach(id => cited.add(id));
     const sources = reason.evidence_ids.map(id => byId.get(id)!);
     if (reason.kind === "observation" && (sources.length !== 1 || reason.claim !== sources[0]!.text)) return reject("altered_observation");
-    const numbers = new Set(sources.flatMap(e => e.text.match(/\d+(?:[.,]\d+)*/g) ?? []));
-    if ((reason.claim.match(/\d+(?:[.,]\d+)*/g) ?? []).some(n => !numbers.has(n))) return reject("unsupported_reasoning_figure");
+    const numbers = new Set(sources.flatMap(e => researchFigures(e.text)));
+    if (researchFigures(reason.claim).some(n => !numbers.has(n))) return reject("unsupported_reasoning_figure");
   }
   const text = [answer.answer, ...answer.reasoning.map(r => r.claim), ...answer.unknowns, ...answer.next_checks].join(" ");
   if (/[<>]/.test(text) || /https?:\/\/|www\./i.test(text)) return reject("unsupported_format_or_instruction");
   if (/\b(?:buy|sell|short)\s+(?:now|today|immediately)\b|\bguaranteed\b|\bwill (?:rise|fall|rally|outperform)\b/i.test(text)) return reject("unsupported_instruction");
-  const allNumbers = new Set([...cited].flatMap(id => byId.get(id)!.text.match(/\d+(?:[.,]\d+)*/g) ?? []));
-  if ((text.match(/\d+(?:[.,]\d+)*/g) ?? []).some(n => !allNumbers.has(n))) return reject("unsupported_answer_figure");
+  const allNumbers = new Set([...cited].flatMap(id => researchFigures(byId.get(id)!.text)));
+  if (researchFigures(text).some(n => !allNumbers.has(n))) return reject("unsupported_answer_figure");
   return answer;
 }

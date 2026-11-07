@@ -44,6 +44,7 @@ async function gather(asset: Beat, question: string, context: "fundamentals" | "
     evidence.push(...measured);
     meta.market_status = measured.some(item => item.freshness === "fresh") ? "fresh" : "stale";
     meta.limitations.push(...market.limitations.slice(0, 3));
+    if (!quant.research || quant.research.status !== "ready") meta.limitations.push("Independent anomaly comparison is not ready; current returns alone do not establish an unusual move.");
     if (market.instrument!.kind === "tokenized_equity") meta.limitations.push("Stock measurements are identified tokenized-equity venue prices, not a consolidated underlying-share tape.");
   }
   if (quote.status === "fulfilled" && quote.value) {

@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { SEED_BEATS, type ResearchEvidence } from "@newsbeat/contracts";
-import { qualifiesReport, resolveResearchAssets, validateResearchAnswer } from "./research-core.js";
+import { qualifiesReport, resolveResearchAssets, validateResearchAnswer, researchFigures, researchEvidenceRole } from "./research-core.js";
 import { researchQuestion, priceIdsForAsset } from "./research.js";
 
 test("every catalog identity can be researched by its stable ID", () => {
@@ -88,4 +88,24 @@ test("a cited evidence-limit conclusion does not require a modal buzzword", () =
   assert.ok(validateResearchAnswer(result, evidence));
   result.reasoning[0]!.claim = "Shares will rise and outperform.";
   assert.equal(validateResearchAnswer(result, evidence), null);
+});
+
+test("numeric grounding accepts equivalent formatting and preserves negative signs", () => {
+  assert.deepEqual(researchFigures("USD 75,636.1500 and -0.0300%"), ["75636.15", "-0.03"]);
+  const quote: ResearchEvidence = { ...evidence[0]!, text: "Reference price: USD 75636.15; excess return: -0.0300%." };
+  const valid = answer();
+  valid.answer = "The reference price is USD 75,636.15.";
+  valid.reasoning[0]!.claim = "The observed excess return is -0.03%; this does not establish a cause.";
+  assert.ok(validateResearchAnswer(valid, [quote]));
+  valid.reasoning[0]!.claim = "The observed excess return is 0.03%; this does not establish a cause.";
+  assert.equal(validateResearchAnswer(valid, [quote]), null);
+  valid.reasoning[0]!.claim = "The observed excess return is -0.03%; this does not establish a cause.";
+  valid.answer = "The reference price is USD 75,637.";
+  assert.equal(validateResearchAnswer(valid, [quote]), null);
+});
+
+test("reasoning input distinguishes ownership reports and market opinion from measurements", () => {
+  assert.equal(researchEvidenceRole({ ...evidence[0]!, text: "1,546 Shares of Advanced Micro Devices, Inc. Purchased by a Fund" }), "ownership_filing");
+  assert.equal(researchEvidenceRole({ ...evidence[0]!, text: "AMD Maintained at Buy by Analysts" }), "opinion_or_valuation_commentary");
+  assert.equal(researchEvidenceRole({ ...evidence[0]!, kind: "measurement" }), "measurement");
 });

@@ -19,6 +19,7 @@ test("one bounded call returns validated reasoning and shares an evidence finger
     calls++;
     const body = JSON.parse(String(init?.body));
     assert.equal(body.max_tokens, 1600);
+    assert.equal(JSON.parse(body.messages[1].content).evidence_scope.financial_statements, false);
     assert.equal(body.response_format.type, "json_schema");
     assert.ok(JSON.stringify(body.response_format.json_schema.schema).includes("news:test"));
     assert.deepEqual(body.response_format.json_schema.schema.properties.reasoning.items.properties.kind.enum, ["interpretation"]);
