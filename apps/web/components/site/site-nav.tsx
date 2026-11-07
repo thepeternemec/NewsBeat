@@ -7,8 +7,9 @@ import MobileNavigation from "./mobile-navigation";
 import "./mobile-navigation.css";
 
 const LINKS = [
-  { href: "/intelligence", label: "Intelligence", description: "The direction: meaningful signals for AI agents" },
-  { href: "/#build", label: "For agents", description: "Connect your agent to NewsBeat" },
+  { href: "/intelligence", label: "Intelligence", description: "Explore signals and their evidence" },
+  { href: "/market-checks", label: "Market checks", description: "How we check price moves, participation and timing" },
+  { href: "/for-agents", label: "For agents", description: "Connect, ask and follow what changed" },
   { href: "/docs", label: "Docs", description: "Start building with MCP and REST" },
   { href: "/status", label: "Status", description: "Check the current news service" },
 ];
