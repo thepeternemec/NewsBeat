@@ -51,3 +51,15 @@ test("research retains the shortest measured horizon and identifies its comparis
   assert.ok(facts.some(fact => fact.id === "market:b_06c91290de1c:1440"));
   assert.ok(facts.filter(fact => fact.id.startsWith("market:")).every(fact => fact.text.includes("peer comparison return")));
 });
+
+test("the question flow includes an identified current quote, not only return percentages", () => {
+  const quant = fixture();
+  quant.market.book = { observed_at: at, bid: 99, ask: 101, mid: 100, spread_bps: 200,
+    bid_depth_usd: 5000, ask_depth_usd: 5000, imbalance: 0, reference_notional_usd: 1000,
+    buy_impact_bps: 100, sell_impact_bps: 100 };
+  const quote = quantitativeResearchEvidence("b_06c91290de1c", quant, now).find(fact => fact.id.startsWith("venue-quote:"));
+  assert.ok(quote?.text.includes("reference mid: USD 100"));
+  assert.equal(quote?.freshness, "fresh");
+  quant.market.book.observed_at = "2026-11-07T10:00:00Z";
+  assert.equal(quantitativeResearchEvidence("b_06c91290de1c", quant, now).find(fact => fact.id.startsWith("venue-quote:"))?.freshness, "stale");
+});
