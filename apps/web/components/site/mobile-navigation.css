@@ -60,3 +60,13 @@
   .mobile-nav-dialog[open] .mobile-nav-panel { animation: none; }
   .mobile-nav-dialog * { transition: none; }
 }
+
+/* Keep the expanded product navigation on one line on small tablets. */
+@media (min-width: 701px) and (max-width: 900px) {
+  .nav-site .nav-pill { gap: 4px; padding: 8px 10px; }
+  .nav-site .nav-link { padding: 10px 8px; font-size: 12px; white-space: nowrap; }
+  .nav-site .nav-logo { font-size: 11px; gap: 8px; }
+  .nav-site .nav-cta-wide { display: none; }
+  .nav-site .nav-cta-compact { display: inline; }
+  .nav-site .nav-cta { white-space: nowrap; padding: 10px 16px; }
+}
