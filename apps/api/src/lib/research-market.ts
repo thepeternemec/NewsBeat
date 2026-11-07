@@ -13,9 +13,9 @@ export function quantitativeResearchEvidence(beatId: string, quant: Pick<QuantBu
   const instrument = market.instrument;
   const status = researchFreshness(market.status === "ready" ? "fresh" : market.status, market.observed_at, 600_000, now);
   const pct = (value: number) => (value * 100).toFixed(4);
-  const evidence: ResearchEvidence[] = market.windows.slice(-3).map(window => ({
+  const evidence: ResearchEvidence[] = market.windows.slice(0, 4).map(window => ({
     id: "market:" + beatId + ":" + window.minutes, beat_id: beatId, kind: "measurement",
-    text: window.minutes + "-minute venue asset return: " + pct(window.asset_return) + "%; comparison return: " + pct(window.benchmark_return) + "%; excess return: " + pct(window.excess_return) + "%"
+    text: window.minutes + "-minute venue asset return: " + pct(window.asset_return) + "%; " + market.benchmark.label + " comparison return: " + pct(window.benchmark_return) + "%; excess return: " + pct(window.excess_return) + "%"
       + (window.residual_return === null ? "." : "; fitted residual return: " + pct(window.residual_return) + "%.")
       + " Window trades: " + window.trades + ".",
     source: "Kraken " + instrument.pair, url: instrument.source_url, observed_at: window.end_at,
