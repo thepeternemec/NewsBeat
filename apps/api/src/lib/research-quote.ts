@@ -1,14 +1,14 @@
 import type { ResearchAnswer, ResearchAsset, ResearchEvidence } from "@newsbeat/contracts";
 
 export function isReferenceQuoteQuestion(question: string) {
-  return /\b(?:price|quote|bid|ask|mid)\b/i.test(question)
-    && !/\b(?:why|cause|explain|risk|outlook|compare|anomal\w*|target|forecast|predict\w*|reaction|impact|valuation|undervalued|overvalued|news|since|historical|yesterday|ago|change|changed|return|returns)\b/i.test(question);
+  return /\b(?:prices?|quotes?|bids?|asks?|mid)\b/i.test(question)
+    && !/\b(?:why|cause|explain|risk|outlook|compare|anomal\w*|target|forecast|predict\w*|reaction|impact|valuation|undervalued|overvalued|news|since|historical|yesterday|ago|change|changed|return|returns|buy|sell|hold|act|entry|exit|timing|should|will|could|would|future|sentiment|opinion|higher|lower|going|up|down)\b/i.test(question);
 }
 
 /** A measured read should not depend on a language model reformatting trusted numeric values. */
 export function referenceQuoteAnswer(assets: ResearchAsset[], evidence: ResearchEvidence[]): ResearchAnswer | null {
   const candidates = evidence.filter(item => item.kind === "measurement" && item.freshness === "fresh"
-    && /^(?:quote:|venue-quote:)/.test(item.id )).sort((a, b) => b.observed_at.localeCompare(a.observed_at));
+    && /^(?:quote:|venue-quote:)/.test(item.id)).sort((a, b) => b.observed_at.localeCompare(a.observed_at));
   const quotes = assets.map(asset => candidates.find(item => item.beat_id === asset.beat_id)).filter((item): item is ResearchEvidence => Boolean(item));
   if (!quotes.length) return null;
   const missing = assets.filter(asset => !quotes.some(item => item.beat_id === asset.beat_id));

@@ -11,6 +11,7 @@ const quote: ResearchEvidence = { id: "quote:" + asset.beat_id, beat_id: asset.b
 
 test("current quote reads preserve values, attribution and time without model generation", () => {
   assert.equal(isReferenceQuoteQuestion("What is Bitcoin’s current reference price?"), true);
+  assert.equal(isReferenceQuoteQuestion("What are the current prices for Bitcoin and Ethereum?"), true);
   const answer = referenceQuoteAnswer([asset], [quote])!;
   assert.ok(answer.answer.includes("USD 75636.15"));
   assert.ok(answer.answer.includes("CoinGecko"));
@@ -21,7 +22,7 @@ test("current quote reads preserve values, attribution and time without model ge
 });
 
 test("price reasoning, history and forecasts do not take the current-quote shortcut", () => {
-  for (const question of ["Why is Bitcoin’s price moving?", "Compare AMD and NVIDIA price risk", "What was Bitcoin’s price yesterday?", "What price target could Bitcoin reach?", "What news affects the Bitcoin price?"]) {
+  for (const question of ["Why is Bitcoin’s price moving?", "Compare AMD and NVIDIA price risk", "What was Bitcoin’s price yesterday?", "What price target could Bitcoin reach?", "What news affects the Bitcoin price?", "Should I buy Bitcoin at this price?", "Could Bitcoin’s price go higher?"]) {
     assert.equal(isReferenceQuoteQuestion(question), false, question);
   }
 });
