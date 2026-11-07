@@ -29,6 +29,7 @@ The catalog contains 2,030 identities. Ambiguous tickers return candidates; ques
 | status | ready, partial, needs_clarification or unavailable |
 | method | reasoned or evidence_only |
 | limitations | Missing measurements, source boundaries and incomplete coverage |
+| generation_error | A bounded failure code when no validated answer is returned; no credentials or raw model output |
 
 A partial answer can be useful: news may support a conditional business mechanism while current market measurements are missing. It cannot establish a measured move, anomaly or timing signal from headlines alone. An evidence_only response is deliberately not labeled a successful generated answer.
 

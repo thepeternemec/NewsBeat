@@ -70,7 +70,7 @@ export async function researchQuestion(raw: unknown, oidcToken?: string | null):
   const resolved = resolveResearchAssets(input.question, input.beat_ids);
   const base: ResearchResponse = { version: "question-research-v1", question: input.question, generated_at: new Date().toISOString(),
     status: "needs_clarification", method: "evidence_only", context: input.context, answer: null,
-    message: resolved.issue, assets: [], candidates: resolved.candidates, evidence: [], limitations: [],
+    message: resolved.issue, generation_error: null, assets: [], candidates: resolved.candidates, evidence: [], limitations: [],
     flow: [{ step: "Resolve assets", status: resolved.issue ? "limited" : "complete" }] };
   if (resolved.issue) return base;
   const gathered = await Promise.all(resolved.assets.map(asset => gather(asset, input.question, input.context)));
@@ -88,11 +88,11 @@ export async function researchQuestion(raw: unknown, oidcToken?: string | null):
     return base;
   }
   const answer = await reasonAboutQuestion({ question: input.question, intent: researchIntent(input.question), context: input.context,
-    assets: base.assets, evidence: usable, limitations: base.limitations }, oidcToken);
+    assets: base.assets, evidence: usable, limitations: base.limitations }, oidcToken, undefined, reason => { base.generation_error = reason; });
   base.answer = answer;
   base.method = answer ? "reasoned" : "evidence_only";
   base.status = answer && base.assets.every(a => a.news_status === "fresh" && a.market_status === "fresh") ? "ready" : "partial";
-  base.message = answer ? null : "Fresh evidence is available, but a validated interpretation could not be produced. Use the attached facts and coverage gaps; no generated answer is being passed off as intelligence.";
+  base.message = answer ? null : "The evidence is available, but NewsBeat could not validate an answer. Check the sources and try again.";
   base.flow.push({ step: "Reason and identify the next check", status: answer ? "complete" : "limited" });
   return base;
 }
