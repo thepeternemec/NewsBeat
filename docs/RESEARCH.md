@@ -39,7 +39,7 @@ For each asset it scans up to 200 latest-day reports and considers up to 40 rank
 
 Existing six-asset pilot measurements provide identified venue returns, fitted residuals, participation and independent anomaly scans when fresh. Historical rarity is descriptive rather than a probability of future profit; stale windows and held discovery are excluded from reasoning. Bitcoin, Ethereum and Solana can also use their explicit CoinGecko reference mappings when no pilot instrument is attached. Other assets do not receive unrelated crypto prices. News freshness and measurement timestamps are evaluated separately. Old evidence stays visible but is excluded from generation.
 
-One bounded gateway call answers the question, distinguishes reports from interpretation, considers alternative explanations and names a next check. Schema validation, known fresh citation IDs, verbatim observations and numeric checks reject malformed or unsupported output. These checks do not prove semantic truth or causality; conditional reasoning still requires review.
+One bounded gateway call answers the question, distinguishes reports from interpretation, considers alternative explanations and names a next check. Reasoning entries interpret cited evidence rather than repeating headline lists. Where no substantive catalyst is supported, the answer must explain that insufficient-evidence conclusion and the missing check. Schema validation, known fresh citation IDs, verbatim observations and numeric checks reject malformed or unsupported output. These checks do not prove semantic truth or causality; conditional reasoning still requires review.
 
 ## Limits
 

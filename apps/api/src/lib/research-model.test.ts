@@ -21,6 +21,7 @@ test("one bounded call returns validated reasoning and shares an evidence finger
     assert.equal(body.max_tokens, 1600);
     assert.equal(body.response_format.type, "json_schema");
     assert.ok(JSON.stringify(body.response_format.json_schema.schema).includes("news:test"));
+    assert.deepEqual(body.response_format.json_schema.schema.properties.reasoning.items.properties.kind.enum, ["interpretation"]);
     assert.equal(body.messages[0].role, "system");
     assert.ok(init?.signal);
     return response(answer);
