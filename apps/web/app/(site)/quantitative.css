@@ -20,3 +20,24 @@
 @media(max-width:1000px){.ni-quant-head{gap:30px}.ni-quant-copy h1{font-size:49px}.ni-quant-copy>p{font-size:15px}.ni-agent-questions{gap:32px}.ni-agent-value{font-size:12px}}
 @media(max-width:800px){.ni-quant-head{grid-template-columns:1fr;padding-top:112px;gap:35px;padding-bottom:40px}.ni-quant-copy h1{font-size:clamp(43px,7vw,65px)}.ni-quant-copy>p{font-size:16px;max-width:570px}.ni-quant-head>.signal-engine{max-width:620px;width:100%;justify-self:center}.ni-workspace-heading{grid-template-columns:1fr;gap:19px;padding-top:45px}.ni-workspace-heading>p{max-width:550px}.ni-agent-questions{grid-template-columns:1fr;gap:28px}.ni-method-link{align-items:flex-start;flex-direction:column;gap:13px}}
 @media(max-width:520px){.ni-quant-head{padding-top:108px;gap:30px}.ni-quant-copy h1{font-size:44px;margin:20px 0}.ni-quant-copy>p{font-size:15px;line-height:1.8;margin-bottom:24px}.ni-quant-copy .hero-cta{gap:14px}.ni-quant-copy>small{font-size:8px}.ni-agent-value{gap:9px;flex-direction:column;font-size:12px;padding-block:20px}.ni-workspace-heading h2{font-size:30px}.ni-workspace-heading>p{font-size:12px}.ni-quant-workspace{padding-bottom:45px}.ni-agent-questions{padding-block:36px 40px}.ni-question-cards article{padding:21px}.ni-method-link{padding-bottom:40px}}
+
+/* The shared aurora is behind main. Let it show through this page and keep
+   the reading surfaces subdued without lowering text or chart opacity. */
+.nb-home.ni-quant-home {
+  background: transparent;
+}
+.nb-home.ni-quant-home :is(.signal-engine, .signal-inspector) {
+  background-color: color-mix(in srgb, var(--bg-base) 85%, transparent);
+}
+body:has(.nb-home.ni-quant-home) .aurora-layer {
+  opacity: 0.42;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.85) 60%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.85) 60%, transparent 100%);
+}
+body:has(.nb-home.ni-quant-home) .aurora-layer .soft-aurora {
+  transform: none;
+  will-change: auto;
+}
+[data-theme="light"] body:has(.nb-home.ni-quant-home) .aurora-layer {
+  opacity: 0.6;
+}
