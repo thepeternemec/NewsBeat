@@ -66,3 +66,32 @@
 @media(max-width:600px){.landing-lookup{border-radius:16px}.landing-lookup-intro{padding:22px 20px 0}.landing-lookup-search{margin:20px 20px 0}.landing-lookup-input{padding-left:12px;gap:9px}.landing-lookup-input input{font-size:16px}.landing-lookup-input input::placeholder{font-size:12px}.landing-lookup-suggestions{margin:10px 20px 20px;gap:3px}.landing-lookup-suggestions button{padding:6px 8px}.landing-coverage{padding:0 20px}.landing-coverage-headline{font-size:14px}.landing-lookup-bridge{padding:17px 20px;gap:12px;flex-wrap:wrap;border-radius:0 0 16px 16px}}
 @media(prefers-reduced-motion:reduce){.landing-lookup *, .landing-lookup *::before{animation:none!important;transition:none!important}}
 .nb-home.ni-home .bs-hero-copy{align-self:start;padding-top:clamp(38px,6vw,84px)}
+
+/* A readable product preview, with room around the search and each report. */
+.landing-lookup-intro { padding: 32px 32px 0; }
+.landing-lookup-eyebrow { font: 500 11px/1.6 var(--font-sans); letter-spacing: .04em; }
+.landing-lookup-intro h2 { margin-top: 22px; font-size: 30px; font-weight: 600; letter-spacing: -.03em; }
+.landing-lookup-intro p { font-size: 15px; line-height: 1.6; }
+.landing-lookup-search { margin: 26px 32px 0; }
+.landing-lookup-input { min-height: 60px; border-radius: 14px; }
+.landing-lookup-input input { font-size: 16px; }
+.landing-lookup-suggestions { margin: 16px 32px 28px; font-size: 12px; }
+.landing-lookup-suggestions button { font-size: 12px; padding: 7px 10px; }
+.landing-coverage { padding-inline: 32px; }
+.landing-coverage-asset { padding-top: 24px; }
+.landing-coverage-asset h3 { font-size: 18px; }
+.landing-coverage-status { padding-block: 15px; font-size: 12px; }
+.landing-coverage-reports a { padding-block: 20px; }
+.landing-coverage-meta { font-size: 12px; }
+.landing-coverage-headline { margin-top: 10px; font-size: 16px; line-height: 1.6; letter-spacing: -.01em; }
+.landing-coverage-note { font-size: 12px; line-height: 1.7; padding-block: 4px 8px; }
+.landing-coverage-more { font-size: 14px; min-height: 44px; }
+@media (max-width: 600px) {
+  .landing-lookup-intro { padding: 28px 24px 0; }
+  .landing-lookup-intro h2 { font-size: 27px; }
+  .landing-lookup-search { margin-inline: 24px; }
+  .landing-lookup-input input::placeholder { font-size: 13px; }
+  .landing-lookup-suggestions { margin-inline: 24px; }
+  .landing-coverage { padding-inline: 24px; }
+  .landing-coverage-meta { flex-wrap: wrap; gap: 4px 10px; }
+}
