@@ -16,7 +16,7 @@ export default function MobileNavigation({ links, active }: { links: NavigationL
   useEffect(() => {
     const panel = dialog.current;
     if (!open || !panel) return;
-    const desktop = window.matchMedia("(min-width: 701px)");
+    const desktop = window.matchMedia("(min-width: 901px)");
     if (desktop.matches) { setOpen(false); return; }
     const previousOverflow = document.body.style.overflow;
     panel.showModal();

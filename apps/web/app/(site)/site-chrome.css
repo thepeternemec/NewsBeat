@@ -64,7 +64,7 @@ html .nav.nav-site .nav-cta {
   font-weight: 500;
   white-space: nowrap;
 }
-html .nav.nav-site .theme-toggle { width: 36px; height: 36px; margin: 0; }
+html .nav.nav-site .nav-desktop-theme .theme-toggle { width: 36px; height: 36px; margin: 0; }
 html :is(.bs-home, .nb-product-page, .interior-page) .btn-primary {
   min-height: 48px;
   border-radius: 999px;
