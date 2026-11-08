@@ -26,7 +26,7 @@ export default function SmoothScroll() {
         smoothWheel: true,
         syncTouch: false,
         allowNestedScroll: true,
-        anchors: { offset: -96 },
+        anchors: { offset: document.querySelector(".home-chapters") ? -144 : -96 },
       });
     }
 

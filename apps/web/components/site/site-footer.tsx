@@ -6,8 +6,9 @@ const COLUMNS = [
   {
     head: "Product",
     links: [
-      { href: "/intelligence", label: "Intelligence" },
-      { href: "/market-checks", label: "Market checks" },
+      { href: "/#agent-workflow", label: "How it works" },
+      { href: "/#market-timing", label: "Timing" },
+      { href: "/#real-intelligence", label: "Explore a signal" },
       { href: "/for-agents", label: "For agents" },
       { href: "/pricing", label: "Pricing" },
       { href: "/status", label: "Service status" },

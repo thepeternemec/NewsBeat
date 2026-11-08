@@ -44,7 +44,7 @@ export default function LandingMotion() {
           ], delay, 1050);
         }
       }, { threshold: .12 });
-      root.querySelectorAll(".bs-crypto-head > div, .clarity-flow, .nb-coverage-scope, .bs-section-head, .nb-feature-links > a, .bs-closing .wrap > *").forEach(node => observer.observe(node));
+      root.querySelectorAll(".bs-crypto-head > div, .clarity-flow, .nb-coverage-scope, [data-story-reveal], .bs-closing .wrap > *").forEach(node => observer.observe(node));
       let frame = 0;
       const updateScroll = () => {
         frame = 0;

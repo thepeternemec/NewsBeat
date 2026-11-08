@@ -1,0 +1,163 @@
+/* One product story, with each chapter adding a distinct part of the picture. */
+body:has(.home-chapters) { overflow-x: clip; }
+.home-chapters {
+  position: sticky;
+  top: 64px;
+  z-index: 40;
+  background: color-mix(in srgb, var(--bg-base) 92%, transparent);
+  border-block: 1px solid var(--border-subtle);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+.home-chapters > .wrap { display: flex; align-items: center; justify-content: space-between; min-height: 56px; gap: 28px; }
+.home-chapters > .wrap > span { color: var(--text-primary); font-size: 16px; font-weight: 600; letter-spacing: -.02em; white-space: nowrap; }
+.home-chapters .wrap > div { display: flex; align-items: center; gap: 32px; }
+.home-chapters a { display: inline-flex; align-items: center; min-height: 52px; font-size: 13px; color: var(--text-secondary); text-decoration: none; white-space: nowrap; }
+.home-chapters a[aria-current] { color: var(--text-primary); box-shadow: inset 0 -1px var(--text-primary); }
+.home-chapters > i { position: absolute; height: 1px; inset: auto 0 -1px; background: var(--text-primary); transform: scaleX(var(--chapter-progress, 0)); transform-origin: left; pointer-events: none; }
+.nb-home.ni-home #agent-workflow { padding-block: 120px 144px; scroll-margin-top: 144px; }
+.nb-home.ni-home .home-story-section { padding-block: 144px; scroll-margin-top: 144px; }
+.home-story-eyebrow { display: block; font: 500 12px/1.7 var(--font-sans); letter-spacing: .05em; text-transform: uppercase; color: var(--text-secondary); }
+.home-story-heading { max-width: 920px; margin-bottom: 80px; }
+.home-story-heading h2, .home-agent-copy > h2 { color: var(--text-primary); font-size: clamp(42px, 5vw, 68px); font-weight: 600; line-height: 1.1; letter-spacing: -.04em; margin: 26px 0 30px; text-wrap: balance; }
+.home-story-heading h2 > span, .home-agent-copy > h2 > span { color: var(--text-secondary); }
+.home-story-heading > p, .home-agent-copy > p { max-width: 53ch; font-size: 20px; line-height: 1.7; color: var(--text-secondary); margin: 0; }
+.home-story-link { display: inline-flex; align-items: center; gap: 9px; min-height: 44px; font-size: 16px; line-height: 1.5; color: var(--text-primary); text-decoration: none; }
+.home-story-link:hover { text-decoration: underline; text-underline-offset: 5px; }
+.home-story-scope { max-width: 80ch; margin: 56px 0 0; color: var(--text-secondary); font-size: 13px; line-height: 1.8; }
+.home-story-centered { text-align: center; margin-inline: auto; }
+.home-story-centered > p { margin-inline: auto; }
+
+/* The chart stays in view while the three checks unfold beside it. */
+.home-timing-section { background: color-mix(in srgb, var(--text-primary) 2%, transparent); }
+.home-timing-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); align-items: start; gap: clamp(48px, 7vw, 104px); }
+.home-timing-visual { position: sticky; top: 152px; min-width: 0; padding: 32px; margin: 0; border: 1px solid var(--border-default); border-radius: 28px; background: color-mix(in srgb, var(--bg-base) 95%, transparent); box-shadow: 0 28px 70px -55px #0005; }
+.timing-visual-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; font: 11px/1.5 var(--font-sans); letter-spacing: .04em; color: var(--text-secondary); }
+.timing-visual-heading > span:last-child { letter-spacing: 0; }
+.timing-graph { position: relative; margin-block: 32px 28px; }
+.timing-graph > svg { display: block; width: 100%; height: auto; color: var(--text-primary); overflow: visible; }
+.timing-grid { stroke: var(--border-default); stroke-width: 1; fill: none; }
+.timing-baseline { fill: none; stroke: var(--text-tertiary); stroke-width: 1.5; stroke-dasharray: 5 7; }
+.timing-asset { fill: none; stroke: var(--text-primary); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; transition: opacity .7s; }
+.timing-participation { fill: currentColor; opacity: .12; transition: opacity .7s; }
+.timing-window { fill: currentColor; opacity: 0; transform: translateX(25px); transition: opacity .8s, transform .8s; }
+.timing-marker { fill: none; stroke: currentColor; stroke-width: 1; stroke-dasharray: 3 5; opacity: 0; transition: opacity .7s; }
+.timing-dot { fill: currentColor; }
+.timing-legend { display: flex; align-items: center; gap: 24px; margin-top: 10px; color: var(--text-secondary); font-size: 12px; }
+.timing-legend > span { display: inline-flex; align-items: center; gap: 8px; }
+.timing-legend i { width: 16px; border-top: 2px solid var(--text-primary); }
+.timing-legend > span + span i { border-top: 1px dashed var(--text-tertiary); }
+.timing-window-label { position: absolute; top: 10%; right: 10%; font-size: 11px; color: var(--text-secondary); opacity: 0; transform: translateY(8px); transition: opacity .7s, transform .7s; }
+.home-timing-visual[data-stage="1"] .timing-participation { opacity: .75; }
+.home-timing-visual[data-stage="2"] .timing-window { opacity: .07; transform: none; }
+.home-timing-visual[data-stage="2"] .timing-marker { opacity: .5; }
+.home-timing-visual[data-stage="2"] .timing-window-label { opacity: 1; transform: none; }
+.home-timing-visual[data-stage="2"] .timing-asset { opacity: .65; }
+.timing-stage-picker { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; padding: 5px; border: 1px solid var(--border-default); border-radius: 999px; }
+.timing-stage-picker button { display: flex; align-items: center; justify-content: center; gap: 7px; min-height: 44px; padding: 8px 10px; border: 0; border-radius: 999px; background: transparent; color: var(--text-secondary); font: 13px/1.4 var(--font-sans); cursor: pointer; transition: color .3s, background .3s; }
+.timing-stage-picker button[aria-pressed="true"] { background: var(--text-primary); color: var(--bg-base); }
+.timing-stage-picker button > span { font-size: 10px; opacity: .65; }
+.timing-caption { min-height: 3.4em; margin: 26px 0 18px; color: var(--text-primary); font-size: 17px; line-height: 1.7; letter-spacing: -.01em; }
+.home-timing-visual figcaption { color: var(--text-secondary); font-size: 12px; line-height: 1.7; }
+.home-timing-steps { min-width: 0; }
+.home-timing-steps article { display: flex; flex-direction: column; justify-content: center; min-height: 360px; padding-block: 56px; border-top: 1px solid var(--border-default); }
+.home-timing-steps article:first-child { border-top: 0; }
+.home-timing-steps h3 { margin: 20px 0; font-size: clamp(28px, 2.7vw, 38px); line-height: 1.15; letter-spacing: -.035em; font-weight: 600; color: var(--text-primary); text-wrap: balance; }
+.home-timing-steps p { font-size: 18px; line-height: 1.75; margin: 0; color: var(--text-secondary); }
+.home-timing-steps small { margin-top: 24px; font-size: 13px; line-height: 1.8; color: var(--text-secondary); }
+.home-timing-steps article[data-active="true"] > .home-story-eyebrow { color: var(--text-primary); }
+
+/* The real workspace is loaded on demand; the page never initiates model work. */
+.home-real-section { border-block: 1px solid var(--border-subtle); }
+.home-real-section .home-story-heading { margin-bottom: 44px; }
+.home-live-actions { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 16px 32px; }
+.nb-home.ni-home .home-live-actions .btn-primary { padding: 14px 25px; font-size: 16px; }
+.home-live-actions .btn-primary svg { transition: transform .3s; }
+#home-signal-workspace:not([hidden]) { margin-top: 64px; scroll-margin-top: 144px; }
+.home-live-loading { padding: 48px 24px; border: 1px solid var(--border-default); border-radius: 24px; text-align: center; font-size: 17px; line-height: 1.7; color: var(--text-secondary); }
+.home-live-preview .signal-inspector { border-radius: 24px; }
+
+/* A concrete question makes the connection tangible without simulating output. */
+.home-agent-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; gap: 80px; }
+.home-agent-copy > h2 { font-size: clamp(36px, 4vw, 56px); }
+.home-agent-copy > p { font-size: 18px; }
+.home-connect-steps { padding: 0; margin: 44px 0 32px; list-style: none; display: grid; gap: 28px; }
+.home-connect-steps li { display: flex; align-items: start; gap: 18px; }
+.home-connect-steps li > span { display: grid; place-items: center; flex: none; width: 32px; height: 32px; border: 1px solid var(--border-strong); border-radius: 50%; font-size: 13px; color: var(--text-secondary); }
+.home-connect-steps strong { display: block; font-size: 19px; line-height: 1.5; letter-spacing: -.015em; font-weight: 500; color: var(--text-primary); }
+.home-connect-steps p { font-size: 15px; line-height: 1.7; margin: 6px 0 0; color: var(--text-secondary); }
+.home-agent-visual { margin: 0; padding: 40px; border: 1px solid var(--border-default); border-radius: 28px; background: color-mix(in srgb, var(--bg-base) 90%, transparent); }
+.home-agent-visual blockquote { margin: 28px 0 0; font-size: clamp(25px, 2.4vw, 33px); line-height: 1.35; letter-spacing: -.03em; font-weight: 500; color: var(--text-primary); text-wrap: balance; }
+.home-agent-handoff { display: flex; align-items: center; gap: 24px; margin-block: 48px; }
+.home-agent-handoff > svg { flex: none; border-radius: 10px; }
+.home-agent-handoff > div { display: grid; place-items: center; width: 62px; height: 62px; flex: none; border: 1px solid var(--border-strong); border-radius: 18px; color: var(--text-primary); }
+.home-agent-handoff > span { flex: 1; position: relative; height: 1px; background: var(--border-strong); overflow: hidden; }
+.home-agent-handoff i { position: absolute; inset: 0 auto 0 0; width: 22%; background: var(--text-primary); animation: home-context-travel 3.5s ease-in-out infinite; }
+.home-agent-payload-label { display: block; margin-bottom: 20px; font-size: 10px; letter-spacing: .04em; color: var(--text-secondary); }
+.home-agent-payload { display: grid; gap: 16px; }
+.home-agent-payload > span { display: flex; align-items: center; gap: 13px; font-size: 15px; line-height: 1.6; color: var(--text-primary); }
+.home-agent-payload svg { flex: none; color: var(--text-secondary); }
+.home-agent-visual figcaption { border-top: 1px solid var(--border-default); padding-top: 24px; margin-top: 32px; color: var(--text-secondary); font-size: 13px; line-height: 1.7; }
+.home-connect-endpoint { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px 24px; padding: 26px 32px; border: 1px solid var(--border-default); border-radius: 20px; }
+.home-connect-endpoint > span { font-size: 14px; color: var(--text-secondary); }
+.home-connect-endpoint code { min-width: 0; font: 13px/1.8 var(--font-mono); color: var(--text-primary); overflow-wrap: anywhere; }
+.home-connect-endpoint .copy-btn { margin: 0; min-height: 44px; }
+.home-chapters a:focus-visible, .home-story-section :is(a, button):focus-visible { outline: 2px solid var(--text-primary); outline-offset: 4px; }
+.is-scrolling .home-agent-handoff i { animation-play-state: paused; }
+@keyframes home-context-travel { 0%,15% { transform: translateX(-110%); opacity: 0; } 35%,70% { opacity: 1; } 90%,100% { transform: translateX(550%); opacity: 0; } }
+
+[data-theme="light"] .home-timing-section, [data-theme="light"] .home-agent-section { background: color-mix(in srgb, #f5f5f7 85%, transparent); }
+[data-theme="light"] .home-timing-visual, [data-theme="light"] .home-agent-visual { background: #ffffff; border-color: transparent; box-shadow: 0 20px 70px -48px rgba(29,29,31,.13); }
+[data-theme="light"] .home-connect-endpoint { background: color-mix(in srgb, #ffffff 85%, transparent); border-color: transparent; }
+
+@media (max-width: 999px) {
+  .home-timing-grid { grid-template-columns: 1fr; gap: 48px; }
+  .home-timing-visual { position: relative; top: auto; max-width: 720px; width: 100%; margin-inline: auto; }
+  .home-timing-steps article { min-height: 0; padding-block: 48px; }
+  .home-timing-steps h3, .home-timing-steps p { max-width: 38ch; }
+  .home-timing-steps h3 { font-size: 36px; }
+  .home-agent-layout { gap: 48px; }
+  .home-agent-visual { padding: 30px; }
+  .home-agent-handoff { gap: 16px; }
+}
+@media (max-width: 760px) {
+  .home-chapters > .wrap { min-height: 52px; }
+  .home-chapters > .wrap > span { display: none; }
+  .home-chapters .wrap > div { width: 100%; justify-content: space-between; gap: 14px; }
+  .home-chapters a { min-height: 50px; font-size: 12px; }
+  .nb-home.ni-home #agent-workflow { padding-block: 88px 96px; }
+  .nb-home.ni-home .home-story-section { padding-block: 96px; }
+  .home-story-heading { margin-bottom: 52px; }
+  .home-story-heading h2, .home-agent-copy > h2 { font-size: clamp(36px, 7.6vw, 54px); }
+  .home-story-heading > p { font-size: 18px; }
+  .home-agent-layout { grid-template-columns: 1fr; gap: 52px; }
+  .home-agent-visual { max-width: 640px; width: 100%; }
+  .home-agent-copy > p { max-width: 48ch; }
+  .home-connect-endpoint { padding: 24px; justify-content: flex-start; }
+  .home-connect-endpoint > span { width: 100%; }
+  .home-connect-endpoint .copy-btn { margin-left: auto; }
+}
+@media (max-width: 520px) {
+  .home-timing-visual { padding: 24px 20px; border-radius: 22px; }
+  .timing-visual-heading { font-size: 10px; }
+  .timing-graph { margin-block: 24px; }
+  .timing-legend { font-size: 11px; gap: 16px; }
+  .timing-stage-picker { gap: 2px; padding: 3px; }
+  .timing-stage-picker button { font-size: 12px; padding: 8px 5px; }
+  .timing-stage-picker button > span { display: none; }
+  .timing-caption { font-size: 16px; min-height: 5.1em; }
+  .timing-window-label { top: 0; right: 2%; font-size: 10px; }
+  .home-timing-steps h3 { font-size: 32px; }
+  .home-timing-steps p { font-size: 17px; }
+  .home-story-scope { margin-top: 40px; font-size: 12px; }
+  .home-agent-visual { padding: 30px 24px; }
+  .home-agent-visual blockquote { font-size: 26px; }
+  .home-connect-endpoint code { font-size: 11px; }
+  .home-live-actions { flex-direction: column; gap: 12px; }
+  #home-signal-workspace:not([hidden]) { margin-top: 40px; }
+}
+@media (min-width: 1000px) and (max-height: 740px) { .home-timing-visual { position: relative; top: auto; } }
+@media (prefers-reduced-motion: reduce) {
+  .home-agent-handoff i { animation: none; transform: translateX(160%); }
+  .home-story-section *, .home-story-section *::before { transition: none !important; }
+}
