@@ -74,3 +74,18 @@ jobs:
           node-version: 22
       - name: Verify deployed read path and scheduled analysis
         run: node .github/scripts/intelligence-live.mjs
+
+  mcp-live-read:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [build-test]
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify deployed MCP initialization, tools and research
+        run: node .github/scripts/mcp-live.mjs
