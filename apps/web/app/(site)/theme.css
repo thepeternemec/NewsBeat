@@ -1577,47 +1577,47 @@
   /* Neutral white surfaces with grey depth; no warm paper tint. */
   --bg: #ffffff;
   --bg-base: #ffffff;
-  --bg-soft: #f4f4f4;
-  --bg-raised: #ffffff;
-  --bg-input: #ffffff;
+  --bg-soft: #f5f5f7;
+  --bg-raised: #f5f5f7;
+  --bg-input: #f5f5f7;
   --panel: #ffffff;
-  --panel-raised: #ffffff;
+  --panel-raised: #f5f5f7;
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1d1d1f;
   --card: #ffffff;
-  --card-foreground: #171717;
+  --card-foreground: #1d1d1f;
   --popover: #ffffff;
-  --popover-foreground: #171717;
-  --secondary: #f4f4f4;
-  --secondary-foreground: #171717;
-  --muted: #f4f4f4;
-  --muted-foreground: #5c5c5c;
+  --popover-foreground: #1d1d1f;
+  --secondary: #f5f5f7;
+  --secondary-foreground: #1d1d1f;
+  --muted: #f5f5f7;
+  --muted-foreground: #6e6e73;
   --input: #d6d6d6;
   --ring: #171717;
 
   /* Text */
-  --text: #171717;
-  --text-primary: #171717;
-  --text-secondary: rgba(23, 23, 23, 0.86);
-  --text-tertiary: rgba(23, 23, 23, 0.66);
-  --text-muted: rgba(23, 23, 23, 0.56);
-  --text-ghost: rgba(23, 23, 23, 0.4);
+  --text: #1d1d1f;
+  --text-primary: #1d1d1f;
+  --text-secondary: #515154;
+  --text-tertiary: #6e6e73;
+  --text-muted: #6e6e73;
+  --text-ghost: #6e6e73;
 
   /* Lines */
-  --border: #dedede;
-  --border-default: #dedede;
-  --border-subtle: #ededed;
-  --border-strong: #bfbfbf;
-  --soft-line: #d2d2d2;
+  --border: #d2d2d7;
+  --border-default: #e5e5e7;
+  --border-subtle: #ededf0;
+  --border-strong: #b8b8bd;
+  --soft-line: #d2d2d7;
 
   /* Accent: the ink, so buttons and figures read on paper. */
-  --accent: #171717;
-  --accent-primary: #171717;
+  --accent: #1d1d1f;
+  --accent-primary: #1d1d1f;
   --accent-dim: rgba(23, 23, 23, 0.62);
   --accent-ink: #ffffff;
   --accent-hover: #2b2b2b;
   --accent-gradient: linear-gradient(115deg, #171717 0%, #686868 100%);
-  --primary: #171717;
+  --primary: #1d1d1f;
   --primary-foreground: #ffffff;
 
   /* Charts and the vendored Sona components read these. */
@@ -1626,7 +1626,7 @@
   --chart-3: #686868;
   --chart-4: #949494;
   --chart-5: #bfbfbf;
-  --sidebar: #f4f4f4;
+  --sidebar: #f5f5f7;
   --sidebar-foreground: #171717;
   --sidebar-border: #dedede;
   --sidebar-primary: #171717;
@@ -2048,18 +2048,18 @@
 /* White-to-grey depth across light mode. All animation remains theme-independent. */
 html[data-theme="light"] { background: #ffffff; }
 html[data-theme="light"] body {
-  background: linear-gradient(145deg, #ffffff 0%, #fafafa 52%, #f1f1f1 100%);
-  background-attachment: fixed;
+  background: #ffffff;
+  color: var(--text-primary);
 }
 [data-theme="light"] .grid-field {
   background-image:
-    linear-gradient(to right, rgba(23, 23, 23, 0.055) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(23, 23, 23, 0.055) 1px, transparent 1px);
+    linear-gradient(to right, rgba(29, 29, 31, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(29, 29, 31, 0.035) 1px, transparent 1px);
 }
 [data-theme="light"] .aurora-layer .soft-aurora::before {
   background:
-    radial-gradient(ellipse 48% 24% at 24% 27%, rgba(100, 100, 100, 0.22), transparent 76%),
-    radial-gradient(ellipse 40% 27% at 76% 37%, rgba(145, 145, 145, 0.18), transparent 78%);
+    radial-gradient(ellipse 48% 24% at 24% 27%, rgba(110, 110, 115, 0.16), transparent 76%),
+    radial-gradient(ellipse 40% 27% at 76% 37%, rgba(145, 145, 150, 0.12), transparent 78%);
 }
 [data-theme="light"] .nb-home.ni-home .landing-lookup,
 [data-theme="light"] .nb-feature-links > a,
@@ -2068,7 +2068,7 @@ html[data-theme="light"] body {
 [data-theme="light"] .nb-check-record,
 [data-theme="light"] .footer-panel,
 [data-theme="light"] .bs-crypto-stage {
-  background: linear-gradient(145deg, #ffffff 0%, #fafafa 65%, #f3f3f3 100%);
+  background: linear-gradient(145deg, #ffffff 0%, #ffffff 65%, #fafafc 100%);
 }
 [data-theme="light"] .docs-link.active {
   background: linear-gradient(90deg, rgba(23, 23, 23, 0.06), transparent 70%);

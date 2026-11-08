@@ -7,6 +7,7 @@ import "./theme.css";
 import "./interior.css";
 import "./refinement.css";
 import "./newsbeat-brand.css";
+import "./site-chrome.css";
 import SoftAurora from "@/components/soft-aurora";
 import ScrollReveal from "@/components/scroll-reveal";
 import SmoothScroll from "@/components/smooth-scroll";

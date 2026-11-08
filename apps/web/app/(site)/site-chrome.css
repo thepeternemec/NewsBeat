@@ -1,0 +1,185 @@
+/* Shared presentation: native typography, quiet surfaces and room to read.
+   Product-specific charts and the Intelligence workspace retain their layouts. */
+body {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* A single unobtrusive navigation bar, with the same actions on every page. */
+html .nav.nav-site {
+  top: 0;
+  min-height: 64px;
+  padding: 0;
+  background: color-mix(in srgb, var(--bg-base) 90%, transparent);
+  border-bottom: 1px solid var(--border-subtle);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+html .nav.nav-site .nav-pill {
+  width: 100%;
+  max-width: 1240px;
+  min-height: 64px;
+  gap: 10px;
+  padding: 8px 32px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+html .nav.nav-site .nav-logo {
+  margin-right: auto;
+  padding: 0;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  letter-spacing: .09em;
+}
+html .nav.nav-site .brand-beat { width: 30px; height: 30px; }
+html .nav.nav-site .nav-link {
+  min-height: 44px;
+  padding: 10px 11px;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--text-secondary);
+  background: transparent;
+}
+html .nav.nav-site .nav-link:hover,
+html .nav.nav-site .nav-link[aria-current="page"] { color: var(--text-primary); }
+html .nav.nav-site .nav-link[aria-current="page"] { font-weight: 600; }
+html .nav.nav-site .nav-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  margin-left: 0;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+html .nav.nav-site .nav-desktop-theme .theme-toggle { width: 36px; height: 36px; margin: 0; }
+html :is(.bs-home, .nb-product-page, .interior-page) .btn-primary {
+  min-height: 48px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 500;
+  box-shadow: none;
+}
+html .bs-home .bs-kicker,
+html .nb-product-page .nb-product-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.6;
+  font-weight: 500;
+  letter-spacing: .05em;
+}
+
+/* White remains white. Grey belongs to quiet sections and secondary surfaces. */
+html[data-theme="light"] .noise-overlay { opacity: .004; }
+html[data-theme="light"] .grid-field { opacity: .2; }
+html[data-theme="light"] body:has(.nb-home.ni-home) .aurora-layer { opacity: .38; }
+html[data-theme="light"] .interior-page {
+  --interior-panel: color-mix(in srgb, #ffffff 94%, transparent);
+  --interior-shadow: 0 20px 60px -40px rgba(29, 29, 31, .12);
+}
+
+/* Feature pages use larger reading type without enlarging data or code. */
+html .nb-product-page { padding-top: 180px; padding-bottom: 128px; }
+html .nb-product-page .nb-product-hero { gap: 80px; padding-bottom: 128px; }
+html .nb-product-page h1 {
+  font-size: clamp(48px, 5vw, 72px);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -.04em;
+  margin-block: 28px;
+}
+html .nb-product-page h2 {
+  font-size: clamp(34px, 3.5vw, 48px);
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -.035em;
+  margin-bottom: 36px;
+}
+html .nb-product-page p { font-size: 18px; line-height: 1.75; }
+html .nb-product-page .nb-product-small { font-size: 13px; }
+html .nb-product-page .nb-product-cards { gap: 24px; }
+html .nb-product-page .nb-product-cards article { padding: 36px 30px; border-radius: 24px; }
+html .nb-product-page .nb-product-cards p,
+html .nb-product-page .nb-product-details p { font-size: 16px; line-height: 1.75; }
+html .nb-product-page .nb-product-cards h3 { font-size: 24px; }
+html .nb-product-page .nb-checks-section { padding-top: 64px; padding-bottom: 104px; }
+html .nb-product-page .nb-product-details { padding-top: 80px; gap: 80px; }
+html .nb-product-page :is(.nb-agent-connection, .nb-market-illustration, .nb-check-record) { padding: 36px; }
+html .nb-product-page .nb-agent-connection h2 { font-size: 30px; }
+html .nb-product-page .nb-market-illustration > p { font-size: 14px; }
+
+/* Documentation keeps its bounded reading column and scrollable code. */
+html .documentation-page .docs-head h1 { letter-spacing: -.035em; line-height: 1.12; }
+html .documentation-page .docs-body :is(p, li) { font-size: 16px; line-height: 1.8; }
+html .documentation-page .docs-body .docs-lead { font-size: 19px; line-height: 1.65; }
+html .documentation-page .docs-body h2 { margin-bottom: 22px; }
+html .documentation-page .docs-body h3 { line-height: 1.4; }
+html .documentation-page .docs-link { font-size: 14px; line-height: 1.5; padding-block: 10px; }
+html .documentation-page .docs-head { padding-bottom: 40px; margin-bottom: 40px; }
+html .documentation-page .docs-section + .docs-section { margin-top: 56px; padding-top: 40px; }
+html .documentation-page .docs-start-grid { gap: 20px; }
+html .documentation-page .docs-path-card { padding: 28px; border-radius: 20px; }
+html .documentation-page .docs-body .docs-caption { font-size: 13px; }
+
+/* More breathing room around status, with its availability chart unchanged. */
+html .status-page { padding-top: 150px; padding-bottom: 88px; }
+html .status-page .status-heading { margin-bottom: 40px; }
+html .status-page .status-heading h1 { font-size: clamp(36px, 4.3vw, 52px); letter-spacing: -.035em; }
+html .status-page .status-heading p { font-size: 16px; }
+html .status-page .status-components { gap: 18px; }
+html .status-page .status-component { padding: 24px; border-radius: 16px; }
+html .status-page .status-service-identity h3 { font-size: 17px; }
+
+/* A quiet full-width footer instead of another framed card. */
+html footer.site { padding: 64px 0 0; border-top: 1px solid var(--border-subtle); }
+html footer.site .footer-panel { margin: 0; padding: 0 0 26px; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+html footer.site .footer-grid { gap: 36px; }
+html footer.site .footer-head { font: 600 12px/1.6 var(--font-sans); letter-spacing: 0; text-transform: none; color: var(--text-primary); }
+html footer.site .footer-col a { font-size: 13px; line-height: 1.6; }
+html footer.site .footer-tag { font-size: 14px; line-height: 1.65; }
+html[data-theme="light"] footer.site { background: #f5f5f7; }
+
+@media (max-width: 1000px) {
+  html .nb-product-page .nb-product-hero,
+  html .nb-product-page .nb-product-details { gap: 40px; }
+  html .nb-product-page .nb-product-cards article { padding: 28px 24px; }
+}
+@media (max-width: 900px) {
+  html .nav.nav-site .nav-pill { gap: 10px; padding-inline: 24px; }
+  html .nav.nav-site .nav-logo { flex: 1; min-width: 0; min-height: 44px; }
+  html .nav.nav-site :is(.nav-links, .nav-desktop-theme, .nav-cta-wide) { display: none; }
+  html .nav.nav-site .nav-cta-compact { display: inline; }
+  html .nav.nav-site .nav-menu-toggle { display: inline-flex; border: 0; border-radius: 50%; }
+  html .nav.nav-site .nav-cta { min-height: 40px; padding: 9px 18px; }
+}
+@media (max-width: 700px) {
+  html .nb-product-page { padding-top: 128px; padding-bottom: 80px; }
+  html .nb-product-page h1 { font-size: clamp(42px, 10vw, 60px); }
+  html .nb-product-page h2 { font-size: 34px; }
+  html .nb-product-page .nb-product-hero { padding-bottom: 80px; }
+  html .nb-product-page .nb-checks-section { padding-top: 48px; padding-bottom: 64px; }
+  html .nb-product-page .nb-product-details { padding-top: 56px; }
+  html .nb-product-page :is(.nb-agent-connection, .nb-market-illustration, .nb-check-record) { padding: 28px; }
+  html .documentation-page .docs-body :is(p, li) { font-size: 16px; }
+  html .documentation-page .docs-body .docs-lead { font-size: 18px; }
+  html .documentation-page .docs-path-card { padding: 24px; }
+  html .documentation-page .docs-section + .docs-section { margin-top: 40px; padding-top: 32px; }
+  html .status-page { padding-top: 124px; padding-bottom: 64px; }
+  html .status-page .status-heading { margin-bottom: 28px; }
+  html .status-page .status-component { padding: 20px; }
+  html footer.site { padding-top: 36px; }
+  html footer.site .footer-grid { gap: 0; }
+  html footer.site .footer-panel { padding-bottom: 16px; }
+}
