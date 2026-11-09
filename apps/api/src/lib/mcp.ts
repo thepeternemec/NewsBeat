@@ -5,6 +5,10 @@ import { env } from "@newsbeat/db";
 import { NEWS_TOOLS, NEWS_AGENT_INSTRUCTIONS } from "@newsbeat/contracts";
 import { callNewsTool } from "./news-routes.js";
 import { NewsError } from "./news.js";
+import { recordServiceCall } from "./telemetry.js";
+
+const knownTools = new Set<string>(NEWS_TOOLS.map(tool => tool.name));
+
 export async function mcpResponse(request: Request) {
     const oidcToken = request.headers.get("x-vercel-oidc-token");
     const origin = request.headers.get("origin");
@@ -15,13 +19,22 @@ export async function mcpResponse(request: Request) {
         return new Response("Request too large", { status: 413 });
     const server = new Server({ name: "newsbeat", version: "0.3.0" }, { capabilities: { tools: {} }, instructions: NEWS_AGENT_INSTRUCTIONS });
     server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools: NEWS_TOOLS.map(tool => ({ ...tool, inputSchema: { ...tool.inputSchema, type: "object" as const }, annotations: { readOnlyHint: tool.name !== "newsbeat_collection", destructiveHint: false, openWorldHint: true } })) }));
-    server.setRequestHandler(CallToolRequestSchema, async (request: CallToolRequest) => {
+    server.setRequestHandler(CallToolRequestSchema, async (call: CallToolRequest) => {
+        const startedAt = performance.now();
+        const toolName = call.params.name.replace(/^newsgraph_/, "newsbeat_");
+        const operation = knownTools.has(toolName) ? toolName : "unknown";
+        let outcome: "success" | "tool_error" = "tool_error";
         try {
-            const result = await callNewsTool(request.params.name, request.params.arguments ?? {}, oidcToken);
-            return { content: [{ type: "text", text: JSON.stringify(result) }], structuredContent: result };
+            const result = await callNewsTool(call.params.name, call.params.arguments ?? {}, oidcToken);
+            const text = JSON.stringify(result);
+            outcome = "success";
+            return { content: [{ type: "text", text }], structuredContent: result };
         }
         catch (error) {
             return { isError: true, content: [{ type: "text", text: JSON.stringify({ error: error instanceof NewsError ? error.code : "request_failed", message: error instanceof NewsError ? error.message : "Unable to complete the news request. Check arguments and retry." }) }] };
+        }
+        finally {
+            recordServiceCall(request, "mcp", operation, outcome, startedAt);
         }
     });
     const transport = new WebStandardStreamableHTTPServerTransport({ sessionIdGenerator: undefined, enableJsonResponse: true });

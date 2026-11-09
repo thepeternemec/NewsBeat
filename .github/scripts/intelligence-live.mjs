@@ -5,7 +5,7 @@ const origin = "https://www.newsbeat.dev";
 const expected = readFileSync(new URL("../../packages/contracts/src/intelligence.ts", import.meta.url), "utf8").match(/INTELLIGENCE_VERSION = "([^"]+)"/)[1];
 const policy = readFileSync(new URL("../../packages/contracts/src/quantitative.ts", import.meta.url), "utf8").match(/QUANT_POLICY_VERSION = "([^"]+)"/)[1];
 const read = async path => {
-  const response = await fetch(origin + path, { signal: AbortSignal.timeout(15000) });
+  const response = await fetch(origin + path, { signal: AbortSignal.timeout(15000), headers: { "X-NewsBeat-Traffic": "synthetic" } });
   assert.equal(response.status, 200); return response.json();
 };
 function verifyMarket(data, kind) {
@@ -64,7 +64,7 @@ for (let attempt = 0; attempt < 32; attempt++) {
       const topics = await read("/api/v2/topics?q=ethereum&limit=5");
       const eth = topics.topics.find(item => item.ticker === "ETH"); assert.ok(eth);
       verifyMarket(await read("/api/v2/intelligence?beat_id=" + eth.beat_id), "crypto");
-      const invalid = await fetch(origin + "/api/v2/intelligence?beat_id=b_bb964843350e&context=invented"); assert.equal(invalid.status, 400);
+      const invalid = await fetch(origin + "/api/v2/intelligence?beat_id=b_bb964843350e&context=invented", { headers: { "X-NewsBeat-Traffic": "synthetic" } }); assert.equal(invalid.status, 400);
       for (const route of ["intelligence", "market-intelligence", "priority-news"]) {
         const cron = await fetch(origin + "/api/cron/" + route); assert.equal(cron.status, 401);
       }

@@ -10,6 +10,7 @@ async function call(method, params) {
       "Content-Type": "application/json",
       Accept: "application/json, text/event-stream",
       "MCP-Protocol-Version": protocolVersion,
+      "X-NewsBeat-Traffic": "synthetic",
     },
     body: JSON.stringify({ jsonrpc: "2.0", id: ++id, method, params }),
     signal: AbortSignal.timeout(20000),

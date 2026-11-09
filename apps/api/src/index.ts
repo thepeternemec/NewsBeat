@@ -17,11 +17,17 @@ import { keyRoutes } from "./lib/key-routes.js";
 import { mcpResponse } from "./lib/mcp.js";
 import { marketplaceRoutes } from "./lib/marketplace.js";
 import { operationRoutes } from "./lib/operations.js";
+import { recordServiceCall } from "./lib/telemetry.js";
 export { runIntelligence } from "./lib/intelligence.js";
 export { runMarketIntelligence } from "./lib/quant-store.js";
 export { runOperationalCheck } from "./lib/operations.js";
 
 const app = new Hono();
+const restOperations = new Set(
+  [...newsRoutes.routes, ...marketRoutes.routes]
+    .filter(route => route.method === "GET" || route.method === "POST")
+    .map(route => `${route.method} /v2${route.path}`),
+);
 
 app.use("*", async (c, next) => {
   c.header("Access-Control-Allow-Origin", "*");
@@ -39,6 +45,19 @@ app.use("*", async (c, next) => {
 app.route("/status", operationRoutes);
 // Authenticated GitHub deliveries must not depend on news quotas or account balances.
 app.route("/webhooks/github/marketplace", marketplaceRoutes);
+app.use("/v2/*", async (c, next) => {
+  const operation = `${c.req.method} ${c.req.path.replace(/^\/api\//, "/")}`;
+  if (!restOperations.has(operation)) return next();
+
+  const startedAt = performance.now();
+  try {
+    await next();
+  } finally {
+    const status = c.res.status;
+    const outcome = c.error || status >= 500 ? "server_error" : status >= 400 ? "client_error" : "success";
+    recordServiceCall(c.req.raw, "rest", operation, outcome, startedAt);
+  }
+});
 app.use("*", rateLimit);
 
 app.get("/health", (c) => c.json({ ok: true, service: "newsbeat", version: "0.3.0" }));
