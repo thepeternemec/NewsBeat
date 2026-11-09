@@ -45,7 +45,7 @@ app.use("*", async (c, next) => {
 app.route("/status", operationRoutes);
 // Authenticated GitHub deliveries must not depend on news quotas or account balances.
 app.route("/webhooks/github/marketplace", marketplaceRoutes);
-app.use("/v2/*", async (c, next) => {
+app.use("*", async (c, next) => {
   const operation = `${c.req.method} ${c.req.path.replace(/^\/api\//, "/")}`;
   if (!restOperations.has(operation)) return next();
 
