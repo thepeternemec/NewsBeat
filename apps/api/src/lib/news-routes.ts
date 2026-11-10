@@ -10,6 +10,7 @@ import { signals } from "./signals.js";
 import { readIntelligence } from "./intelligence.js";
 import { collectionControl } from "./collection.js";
 import { researchQuestion, researchCoverage } from "./research.js";
+import { readOpportunities } from "./opportunities.js";
 export const newsRoutes = new Hono();
 newsRoutes.onError((error, c) => { if (error instanceof NewsError)
     return c.json({ error: { code: error.code, message: error.message } }, error.status as 400 | 404 | 410 | 503); console.error("news request failed", error.name); return c.json({ error: { code: "service_unavailable", message: "News is temporarily unavailable." } }, 503); });
@@ -72,6 +73,14 @@ newsRoutes.get("/intelligence", async c => {
     if (!context.success) throw new NewsError("invalid_request", "context must be fundamentals, liquidity or risk.", 400);
     return c.json(await readIntelligence(beatId, context.data));
 });
+newsRoutes.get("/opportunities", async c => {
+    c.header("Cache-Control", "no-store");
+    const limit = c.req.query("limit");
+    return c.json(await readOpportunities({
+        context: c.req.query("context"),
+        limit: limit === undefined ? undefined : Number(limit),
+    }));
+});
 newsRoutes.get("/summary", async (c) => {
     const beatId = (c.req.query("beat_id") ?? "").trim();
     if (!beatId) throw new NewsError("invalid_request", "beat_id is required.", 400);
@@ -101,6 +110,7 @@ export async function callNewsTool(name: string, args: unknown, oidcToken?: stri
     name = name.replace(/^(?:newsgraph|newsbeat)_/, "newsbeat_");
     if (name === "newsbeat_research") return researchQuestion(args, oidcToken);
     if (name === "newsbeat_collection") return collectionControl(args);
+    if (name === "newsbeat_opportunities") return readOpportunities(args);
     if (name === "newsbeat_topics") {
         const input = z.object({ query: z.string().max(200).optional() }).strict().parse(args);
         // MCP callers have no way to page, so this surface asks for the whole

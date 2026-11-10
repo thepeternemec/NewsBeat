@@ -6,6 +6,7 @@ import { INTELLIGENCE_VERSION, type IntelligenceSignal, type MarketSnapshot, typ
 import { quantitativeFixture } from "./quant-fixtures.js";
 import { runMarketIntelligence } from "./quant-store.js";
 import { readIntelligence } from "./intelligence.js";
+import { readOpportunities } from "./opportunities.js";
 
 const connection = process.env.NEWSBEAT_INTELLIGENCE_TEST_DATABASE_URL;
 if (connection) {
@@ -77,10 +78,16 @@ test("Postgres persists measured timing, immutable forward snapshots, alert idem
     assert.equal(response.constructions[0]!.action, "review_now", JSON.stringify(response.constructions));
     assert.equal(response.constructions[0]!.market_reaction.status, "observed");
     assert.equal(response.alerts.length, 1); const alertId = response.alerts[0]!.id;
+    const brief = await readOpportunities({});
+    assert.equal(brief.status, "partial");
+    assert.equal(brief.review[0]?.alert_id, alertId);
+    assert.equal(brief.review[0]?.evidence[0]?.id, firstId);
+    assert.equal(brief.review[0]?.review_cost_scenario?.pending, 1);
     assert.equal((await readIntelligence(f.profile.beat_id!, "liquidity")).constructions[0]!.action, "no_alert");
     assert.equal((await readIntelligence(f.profile.beat_id!, "liquidity")).alerts.length, 0);
     const observations = await sql.unsafe<Array<{ record: QuantEvaluationRecord }>>("select record from public.newsbeat_quant_evaluations where context_id='fundamentals' and cohort='all_constructions'");
     const frozen = observations[0]!.record;
+    assert.equal(frozen.reference_book_cost_bps, 2);
     assert.ok(frozen.outcomes.every(row => row.status === "pending"));
     const beforeReads = fetches;
     await readIntelligence(f.profile.beat_id!); await readIntelligence(f.profile.beat_id!);
@@ -95,6 +102,7 @@ test("Postgres persists measured timing, immutable forward snapshots, alert idem
     response = await readIntelligence(f.profile.beat_id!);
     assert.equal(response.status, "pending", "new unprocessed rows are detected before the model scheduler updates its watermark");
     assert.notEqual(response.constructions[0]!.action, "review_now");
+    assert.equal((await readOpportunities({})).review.length, 0);
     assert.equal((await runMarketIntelligence(dependencies)).alerts, 0);
     await sql.unsafe("update public.newsbeat_intelligence_jobs set processed_article_id=$2,requested_article_id=$2 where beat_id=$1", [f.profile.beat_id!, duplicateId]);
 

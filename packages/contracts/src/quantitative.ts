@@ -65,10 +65,29 @@ export interface QuantEvaluationRecord {
   reference_quotes_at: Record<string, string>;
   reference_benchmark_prices: Record<string, number>; frozen_beta: number | null;
   frozen_intercept: number | null; decision: QuantSignalDecision; outcomes: ForwardOutcome[];
+  reference_book_cost_bps?: number | null;
 }
 export interface QuantEvaluationSummary {
   observations: number; alerts: number;
   horizons: QuantHorizonSummary[]; review_horizons: QuantHorizonSummary[];
+  note: string;
+  review_cost_scenario?: ReviewCostScenario;
+}
+export interface ReviewCostScenario {
+  status: "collecting" | "descriptive";
+  horizon_minutes: 60;
+  lookback_days: 30;
+  reference_notional_usd: 1000;
+  assumed_fee_bps_per_side: 25;
+  eligible: number;
+  scored: number;
+  missing_cost: number;
+  missing_outcome: number;
+  pending: number;
+  overlapping: number;
+  truncated: boolean;
+  mean_adjusted_return_bps: number | null;
+  positive_fraction: number | null;
   note: string;
 }
 export interface QuantHorizonSummary {

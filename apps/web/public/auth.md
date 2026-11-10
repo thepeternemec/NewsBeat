@@ -83,6 +83,7 @@ Returns 16 research calls plus one explicit collection-control call in OpenAI fu
 | `newsbeat_research` | Question → asset-specific evidence → cited answer, uncertainty and next checks. Explicit on-demand model call; quantitative coverage is limited. | `POST /v2/research` |
 | `newsbeat_collection` | Explicitly request one-minute collection for 15 minutes, read status, or stop with your token. | `GET/POST /v2/collection` |
 | `newsbeat_intelligence` | Stored event memory, conditional implications and follow-up checks for the six-asset pilot | `GET /v2/intelligence?beat_id=` |
+| `newsbeat_opportunities` | Review and watch shortlist across the six measured assets | `GET /v2/opportunities` |
 | `newsbeat_topics` | Find a supported stock or crypto asset. | `GET /v2/topics?q=…` |
 | `newsbeat_news` | Read headlines and establish a baseline cursor. | `GET /v2/news?beat_id=…` |
 | `newsbeat_changes` | Get new items since the saved cursor. | `GET /v2/changes?beat_id=…&cursor=…` |

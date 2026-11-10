@@ -17,6 +17,8 @@ This explicit POST/MCP research call can generate one bounded interpretation thr
 
 ## First contextual-signal pilot
 
+For a shortlist across the six measured assets, call `newsbeat_opportunities` or `GET /v2/opportunities`. Read the review and watch lanes separately and use the per-asset coverage to interpret empty lists. Review items include evidence and invalidation. Watch items are unusual moves to investigate.
+
 For NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum, call `newsbeat_intelligence` or `GET /v2/intelligence?beat_id=` to read stored event interpretations. These include an exact reported change, named entities, conditional implications with mechanisms, uncertainty, next checks and persistent event IDs. Reads do not run a model. Check pilot/status, analysis timestamps, source freshness and partial coverage; pending or unavailable output can include older event memory. This remains model inference from headlines, not verified causality. Other assets use question-driven research with explicit market-coverage limits.
 
 ## Contextual signal construction
