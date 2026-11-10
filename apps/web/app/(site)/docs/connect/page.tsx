@@ -1,13 +1,14 @@
 import CopyButton from "@/components/site/copy-button";
 import AgentInstructions from "@/components/site/agent-instructions";
 
-export const metadata = { title: "Developer reference", description: "Connect NewsBeat through remote MCP, REST or function calling. 17 tools, current endpoints and working examples." };
+export const metadata = { title: "Developer reference", description: "Connect NewsBeat through remote MCP, REST or function calling. Current endpoints and working examples." };
 const API = "https://www.newsbeat.dev/api";
 const MCP_CONFIG = JSON.stringify({ mcpServers: { newsbeat: { url: `${API}/mcp` } } }, null, 2);
 const TOOLS = [
   ["newsbeat_research", "Answer a question with asset-specific evidence, conditional reasoning, unknowns and next checks.", "POST /v2/research"],
   ["newsbeat_collection", "Explicitly request one-minute collection for 15 minutes, read status, or stop your session.", "GET/POST /v2/collection"],
   ["newsbeat_intelligence", "Read stored event interpretations, evidence and follow-up checks for the six-asset pilot.", "GET /v2/intelligence?beat_id=…"],
+  ["newsbeat_opportunities", "Read the current review and watch shortlist for the six measured assets.", "GET /v2/opportunities"],
   ["newsbeat_topics", "Find a supported company or crypto asset.", "GET /v2/topics?q=nvidia"],
   ["newsbeat_news", "Read latest headlines and establish a baseline cursor.", "GET /v2/news?beat_id=…"],
   ["newsbeat_changes", "Read newly indexed items after a saved cursor.", "GET /v2/changes?beat_id=…&cursor=…"],
@@ -65,7 +66,7 @@ export default function DocsConnect() {
       </p>
       <AgentInstructions />
 
-      <h2 id="seven-tools-and-their-rest-routes">17 tools and their REST routes</h2>
+      <h2 id="seven-tools-and-their-rest-routes">Tools and their REST routes</h2>
       <p>Prefix REST routes with <code>{API}</code>. Research and batched watch use POST bodies. GET /v2/research returns capability metadata without generating an answer. Research does not change stored intelligence or start collection.</p>
       <div className="table-scroll">
         <table>

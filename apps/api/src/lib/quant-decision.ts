@@ -8,6 +8,12 @@ import { benchmarkFor, type MarketProfile } from "./quant-market.js";
 
 const iso = (time: number) => new Date(time).toISOString();
 const display = (value: number | null, digits = 2) => value === null || !Number.isFinite(value) ? "unavailable" : value.toFixed(digits);
+
+export function bookCost(book: MarketContext["book"]): number | null {
+  if (!book || book.buy_impact_bps === null || book.sell_impact_bps === null) return null;
+  const cost = book.buy_impact_bps + book.sell_impact_bps;
+  return Number.isFinite(cost) && cost >= 0 ? cost : null;
+}
 export function decideTiming(signal: IntelligenceSignal, previous: IntelligenceSignal | null, base: ConstructedSignal,
   market: MarketContext, profile: MarketProfile, snapshots: Map<string, MarketSnapshot>, now: number): QuantSignalDecision {
   const delta = informationDelta(signal, previous), known = Date.parse(delta.known_at);
@@ -26,8 +32,7 @@ export function decideTiming(signal: IntelligenceSignal, previous: IntelligenceS
   const z = recent?.residual_z !== null && recent?.residual_z !== undefined ? sign * recent.residual_z : null;
   const preZ = before?.residual_z !== null && before?.residual_z !== undefined ? sign * before.residual_z : null;
   const residualBps = recent?.residual_return !== null && recent?.residual_return !== undefined ? sign * recent.residual_return * 10000 : null;
-  const cost = market.book?.buy_impact_bps !== null && market.book?.buy_impact_bps !== undefined && market.book.sell_impact_bps !== null
-    ? market.book.buy_impact_bps + market.book.sell_impact_bps : null;
+  const cost = bookCost(market.book);
   const basePassed = (id: string) => base.checks.find(check => check.id === id)?.passed ?? false;
   const marketPassed = (id: string) => market.quality.find(check => check.id === id)?.passed ?? false;
   const checks: QuantSignalDecision["checks"] = [
@@ -123,6 +128,7 @@ export function beginEvaluation(signal: IntelligenceSignal, decision: QuantSigna
   return { id: "qeval_" + hash([signal.id, signal.version, decision.context_id, cohort, QUANT_POLICY_VERSION]).slice(0, 24),
     source_signal_id: signal.id, signal_version: signal.version, context_id: decision.context_id, cohort, policy_version: QUANT_POLICY_VERSION,
     decision_at: decision.evaluated_at, reference_at: decision.evaluated_at, reference_basis: "snapshot_mid", reference_price: asset.book.mid,
+    reference_book_cost_bps: asset.book.reference_notional_usd === 1000 ? bookCost(asset.book) : null,
     reference_quotes_at: Object.fromEntries(required.map(id => [id, snapshots.get(id)!.book!.observed_at])),
     reference_benchmark_prices: Object.fromEntries(benchmark.components.map(part => [part.instrument_id, snapshots.get(part.instrument_id)!.book!.mid])),
     frozen_beta: decision.fit?.beta ?? null, frozen_intercept: decision.fit?.intercept ?? null, decision,

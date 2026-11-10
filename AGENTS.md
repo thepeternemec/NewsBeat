@@ -12,6 +12,8 @@ This explicit POST/MCP research call can generate one bounded interpretation thr
 
 ## First contextual-signal pilot
 
+For “what should I investigate now?”, call `newsbeat_opportunities` or `GET /v2/opportunities`. The six-asset shortlist separates fresh recorded reviews from independent anomaly watches. Use `context` to select fundamentals, liquidity or risk and `limit` (1–6) to cap each lane. Read coverage before interpreting an empty result. The optional 60-minute scorecard describes a cost scenario for supportive reviews, with sample counts and assumptions. Use the evidence, invalidation and next check to investigate each item.
+
 For NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum, call `newsbeat_intelligence` or `GET /v2/intelligence?beat_id=` to read stored event interpretations. These include an exact reported change, named entities, conditional implications with mechanisms, uncertainty, next checks and persistent event IDs. Reads do not run a model. Check pilot/status, analysis timestamps, source freshness and partial coverage; pending or unavailable output can include older event memory. This remains model inference from headlines, not verified causality. Other assets use question-driven research with explicit market-coverage limits.
 
 ## Contextual signal construction
@@ -80,7 +82,7 @@ Every response carries a new cursor. Use the newest one, always for the same top
 
 ## Endpoints
 
-There are 15 read-only MCP tools: seven news operations, seven asset/crypto context operations and the signal-construction pilot. The explicit `newsbeat_collection` control is additionally available for user-requested temporary one-minute collection. All tools are available through REST; their routes are listed below.
+MCP tools are also available through REST. The explicit `newsbeat_collection` control supports user-requested temporary one-minute collection.
 
 Base: `https://www.newsbeat.dev/api`
 
@@ -94,6 +96,7 @@ Base: `https://www.newsbeat.dev/api`
 | `GET /v2/brief?beat_id=` | Three relevant recent headlines verbatim, each with source and UTC time |
 | `GET /v2/stories?beat_id=` | The events behind a topic, not the coverage — near-identical headlines grouped |
 | `GET /v2/intelligence?beat_id=` | Stored event interpretations, implications, uncertainty and event memory for the pilot |
+| `GET /v2/opportunities` | Current review and watch shortlist for the six measured assets |
 | `GET /v2/summary?beat_id=` | Up to three short, source-linked explanations based on recent headlines |
 | `POST /v2/watch` | Up to 50 topics in one call, each with its own cursor |
 | `GET /v2/tools` | The same tools in OpenAI function-call shape |
