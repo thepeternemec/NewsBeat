@@ -10,6 +10,7 @@ import { signals } from "./signals.js";
 import { readIntelligence } from "./intelligence.js";
 import { collectionControl } from "./collection.js";
 import { researchQuestion, researchCoverage } from "./research.js";
+import { readInvestmentBrief } from "./investment.js";
 import { readOpportunities } from "./opportunities.js";
 import { readCatalysts } from "./catalysts.js";
 export const newsRoutes = new Hono();
@@ -20,6 +21,17 @@ const clamp = (raw: string | undefined, fallback: number, max: number) => {
     return Number.isFinite(n) && n >= 0 ? Math.min(n, max) : fallback;
 };
 newsRoutes.get("/research", c => c.json({ ...researchCoverage, method: "POST", body: { question: "Why is NVIDIA moving, and what should I check next?" } }));
+newsRoutes.post("/investment", async c => {
+    c.header("Cache-Control", "no-store");
+    if (Number(c.req.header("content-length") ?? 0) > 2048) throw new NewsError("invalid_request", "Ticker request is too large.", 413);
+    let body: unknown;
+    try {
+        const raw = await c.req.text();
+        if (raw.length > 2048) throw new Error();
+        body = JSON.parse(raw);
+    } catch { throw new NewsError("invalid_request", "Expected a JSON ticker request.", 400); }
+    return c.json(await readInvestmentBrief(body, c.req.header("x-vercel-oidc-token")));
+});
 newsRoutes.post("/research", async c => {
     c.header("Cache-Control", "no-store");
     if (Number(c.req.header("content-length") ?? 0) > 8192) throw new NewsError("invalid_request", "Research request is too large.", 413);
@@ -115,6 +127,7 @@ export async function callNewsTool(name: string, args: unknown, oidcToken?: stri
     // advertised name is `newsbeat_*` again. Remove a prefix once its callers have moved.
     name = name.replace(/^(?:newsgraph|newsbeat|rarebird)_/, "newsbeat_");
     if (name === "newsbeat_research") return researchQuestion(args, oidcToken);
+    if (name === "newsbeat_investment") return readInvestmentBrief(args, oidcToken);
     if (name === "newsbeat_collection") return collectionControl(args);
     if (name === "newsbeat_opportunities") return readOpportunities(args);
     if (name === "newsbeat_catalysts") return readCatalysts(args);

@@ -182,7 +182,7 @@ test("every public route is mentioned in the docs", () => {
 });
 
 /** POST is allowed only where a request body is the whole point, and writes nothing. */
-const POST_READS = new Set(["/v2/watch"]);
+const POST_READS = new Set(["/v2/watch", "/v2/investment"]);
 
 test("stored reads stay GET; research generation and collection control are explicit POST exceptions", () => {
   // The contract is read-only. A mutating verb appearing here would be a product

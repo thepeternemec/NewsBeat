@@ -1,0 +1,36 @@
+.investment-page { padding: clamp(7rem, 14vw, 11rem) 0 6rem; color: var(--text-primary); }
+.investment-shell { width: min(880px, calc(100% - 2.5rem)); margin: 0 auto; }
+.investment-page h1 { max-width: 13ch; margin: 0; font-size: clamp(2.9rem, 8vw, 6.25rem); font-weight: 620; line-height: .98; letter-spacing: -.062em; }
+.investment-lead { max-width: 38rem; margin: 1.35rem 0 2.75rem; color: var(--text-secondary); font-size: clamp(1rem, 2.4vw, 1.24rem); line-height: 1.65; }
+.investment-lookup { display: grid; gap: 1.25rem; }
+.investment-search, .investment-report { border: 1px solid var(--border-default); border-radius: 18px; background: var(--bg-base); padding: clamp(1.1rem, 4vw, 2.15rem); }
+.investment-search label { display: block; margin-bottom: .65rem; font-weight: 650; }
+.investment-field { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .7rem; }
+.investment-field input { min-width: 0; min-height: 54px; border: 1px solid var(--border-strong); border-radius: 10px; background: var(--bg-raised); color: var(--text-primary); padding: .75rem 1rem; font: 600 1rem var(--font-mono); }
+.investment-field button, .investment-share { display: inline-flex; align-items: center; justify-content: center; gap: .55rem; padding: .7rem 1.05rem; background: var(--text-primary); color: var(--bg-base); border: 0; border-radius: 10px; font-weight: 650; cursor: pointer; text-decoration: none; }
+.investment-field button:disabled { opacity: .5; cursor: default; }
+.investment-examples { display: flex; gap: .55rem; flex-wrap: wrap; margin-top: .85rem; }
+.investment-examples button { min-height: 36px; padding: .3rem .7rem; border: 1px solid var(--border-default); border-radius: 7px; background: var(--bg-raised); color: var(--text-primary); font: 600 .8rem var(--font-mono); cursor: pointer; }
+.investment-field :focus-visible, .investment-examples button:focus-visible, .investment-share:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 3px; }
+.investment-note, .investment-progress, .investment-report p, .investment-report dd { color: var(--text-secondary); line-height: 1.6; }
+.investment-note { margin: 1rem 0 0; font-size: .87rem; }
+.investment-lookup > div:empty { display: none; }
+.investment-progress { margin: 0; }
+.investment-report-heading { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: .65rem; }
+.investment-eyebrow, .investment-stamp { font: .75rem/1.5 var(--font-mono); color: var(--text-secondary); }
+.investment-eyebrow { margin: 0 0 .4rem; }
+.investment-stamp { border: 1px solid var(--border-default); padding: .32rem .55rem; border-radius: 6px; }
+.investment-report h2 { margin: 0; font-size: clamp(1.5rem, 4vw, 2.1rem); letter-spacing: -.035em; }
+.investment-stance { margin: 1.2rem 0; padding: 1rem 1.15rem; border-left: 2px solid var(--text-primary); background: var(--bg-raised); border-radius: 0 9px 9px 0; }
+.investment-stance h3 { font-size: 1.22rem; margin: 0 0 .28rem; }
+.investment-stance p, .investment-trigger p { margin: 0; }
+.investment-stance small { display: inline-block; margin-top: .45rem; color: var(--text-secondary); }
+.investment-trigger { margin: 1rem 0; }
+.investment-trigger a { color: var(--text-primary); }
+.investment-example-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 0; }
+.investment-example-grid dt { font-weight: 650; margin-bottom: .38rem; }
+.investment-example-grid dd { margin: 0; font-size: .9rem; }
+.investment-share { margin-top: 1.25rem; min-height: 44px; }
+.investment-links { display: flex; gap: 1rem 1.5rem; flex-wrap: wrap; margin-top: 1.7rem; }
+.investment-links a { color: var(--text-primary); text-underline-offset: 4px; }
+@media (max-width: 570px) { .investment-field, .investment-example-grid { grid-template-columns: 1fr; } .investment-shell { width: calc(100% - 1.75rem); } }
