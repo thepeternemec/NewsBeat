@@ -100,7 +100,7 @@ export default function InvestmentLookup({ initialTicker, initialBeat }: { initi
         <p>{result.timing.trigger.source} · {new Date(result.timing.trigger.published_at).toLocaleString()}</p>
         {result.timing.invalidation ? <p>What would change the timing view · {result.timing.invalidation}</p> : null}
       </div> : null}
-      <div className="research-question-result"><ResearchDetails result={result.research} onSelect={beatId => void lookup(result.ticker, beatId)} /></div>
+      <div className="research-question-result"><ResearchDetails result={result.research} showReasoning onSelect={beatId => void lookup(result.ticker, beatId)} /></div>
       {shareLink ? <a className="investment-share" href={shareLink} target="_blank" rel="noreferrer"><Send size={16} aria-hidden="true" /> Share to Telegram</a> : null}
     </section> : null}
   </div>;

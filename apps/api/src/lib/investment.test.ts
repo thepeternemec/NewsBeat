@@ -4,7 +4,7 @@ import { test } from "node:test";
 import { QUANT_POLICY_VERSION, type IntelligenceResponse, type InvestmentBrief, type ResearchResponse } from "@newsbeat/contracts";
 import { closeDb, db } from "@newsbeat/db";
 import app from "../index.js";
-import { investmentStance } from "./investment.js";
+import { investmentEvidenceAnswer, investmentStance } from "./investment.js";
 import { buildMarketContext } from "./quant-engine.js";
 import { quantitativeFixture } from "./quant-fixtures.js";
 import { formatTelegramBrief, handleTelegramUpdate, telegramTicker } from "./telegram.js";
@@ -45,6 +45,34 @@ test("even fresh prices cannot upgrade a pending or expired investment stance", 
   assert.equal(stale.stance?.state, "wait");
   assert.equal(stale.timing?.market, "held");
   assert.equal(investmentStance({ ...research, answer: null }, output, fixture.now).stance?.state, "wait");
+});
+
+test("investment analysis failures return fresh sourced observations and a concrete next check", () => {
+  const beat_id = "b_06c91290de1c";
+  const now = new Date().toISOString();
+  const evidence = (id: string, kind: "report" | "measurement", text: string) => ({
+    beat_id, id, kind, text, source: "Test source", url: "https://example.com/evidence", observed_at: now, freshness: "fresh" as const,
+  });
+  const research: ResearchResponse = {
+    version: "question-research-v1", question: "Investment case for BTC", generated_at: now, status: "partial", method: "evidence_only",
+    context: "fundamentals", message: null, generation_error: "invalid_shape", assets: [{
+      beat_id, ticker: "BTC", label: "Bitcoin", asset: "crypto", news_status: "fresh", market_status: "fresh",
+      coverage_truncated: false, reports_scanned: 1, limitations: [],
+    }], candidates: [], limitations: [], flow: [], answer: null,
+    evidence: [
+      { ...evidence("old", "report", "A historical headline"), freshness: "stale" },
+      evidence("news:" + beat_id, "report", "Bitcoin fund reports new redemptions"),
+      evidence("market:" + beat_id + ":60", "measurement", "60-minute venue asset return: 0.54%"),
+      evidence("market:" + beat_id + ":1440", "measurement", "1440-minute venue asset return: -0.78%"),
+    ],
+  };
+  const answer = investmentEvidenceAnswer(research);
+  assert.ok(answer);
+  assert.match(answer.answer, /Wait for a verified investment case/);
+  assert.deepEqual(answer.reasoning.slice(0, 2).map(item => item.claim), [research.evidence[1]?.text, research.evidence[3]?.text]);
+  assert.ok(answer.reasoning.flatMap(item => item.evidence_ids).every(id => id !== "old"));
+  assert.match(answer.next_checks[0] ?? "", /primary source/);
+  assert.equal(investmentEvidenceAnswer({ ...research, evidence: research.evidence.slice(0, 1) }), null);
 });
 
 test("Telegram commands normalize tickers and ignore commands addressed to another bot", () => {

@@ -76,11 +76,14 @@ export default function ResearchQuestion({ beatIds, label, compact = false }: {
   );
 }
 
-export function ResearchDetails({ result, onSelect }: { result: ResearchResponse; onSelect?: (beatId: string) => void }) {
+export function ResearchDetails({ result, onSelect, showReasoning = false }: {
+  result: ResearchResponse; onSelect?: (beatId: string) => void; showReasoning?: boolean;
+}) {
   return <>
           {result.answer ? <>
             <h3>The answer</h3><p className="research-question-answer">{result.answer.answer}</p>
-            <details><summary>Why this view</summary>
+            {result.message && <p className="research-question-coverage">{result.message}</p>}
+            <details open={showReasoning || undefined}><summary>Why this view</summary>
               {result.answer.reasoning.map((reason, index) => <div className="research-question-reason" key={index}>
                 <span>{reason.kind === "observation" ? "Reported / measured" : "Possible interpretation"}</span>
                 <p>{reason.claim}</p><div className="research-question-sources">{reason.evidence_ids.map(eid => {
