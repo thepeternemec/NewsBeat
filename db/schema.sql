@@ -327,3 +327,13 @@ create index if not exists newsbeat_market_anomalies_recent_idx on public.newsbe
 
 -- Explicit temporary one-minute news collection; one bounded row per priority asset.
 create table if not exists public.newsbeat_fast_collection (beat_id text primary key,token_hash text not null,requested_at timestamptz not null,expires_at timestamptz not null,lease_token text,lease_until timestamptz,last_attempt_at timestamptz,last_success_at timestamptz,last_error text);
+-- Persisted official issuer evidence. Only the authenticated intelligence scheduler refreshes it.
+create table if not exists public.newsbeat_official_evidence (
+  beat_id text primary key,
+  snapshot jsonb,
+  checked_at timestamptz,
+  last_attempt_at timestamptz,
+  last_error text,
+  lease_token text,
+  lease_until timestamptz
+);

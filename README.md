@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://www.newsbeat.dev">
-    <img src="brand/newsbeat-github.svg" alt="NewsBeat — Meaningful signals. Built for agents. News becomes context your agent can use." width="100%">
+    <img src="brand/newsbeat-github.svg" alt="Rarebird — Meaningful signals. Built for agents. News becomes context your agent can use." width="100%">
   </a>
 </p>
 
@@ -15,7 +15,7 @@
 </p>
 
 <p align="center">
-  <a href="https://www.newsbeat.dev"><strong>Try NewsBeat</strong></a> ·
+  <a href="https://www.newsbeat.dev"><strong>Try Rarebird</strong></a> ·
   <a href="https://www.newsbeat.dev/intelligence">Explore a signal</a> ·
   <a href="https://www.newsbeat.dev/docs/quickstart">Connect your agent</a> ·
   <a href="https://www.newsbeat.dev/docs">Docs</a> ·
@@ -24,13 +24,13 @@
 
 ---
 
-NewsBeat is an open-source intelligence layer for AI agents. It brings together stock and crypto reporting, the context behind a development, and market checks that help an agent decide whether to investigate, keep watching or reassess.
+Rarebird, formerly NewsBeat, is an open-source intelligence layer for AI agents. It brings together stock and crypto reporting, issuer filings and market checks that help an agent decide what to investigate. The [opportunity brief](https://www.newsbeat.dev/intelligence#opportunities) shows recent filings and the evidence behind market candidates.
 
 **Built in the open since September 2026.** The news foundation is live. Signal construction and market timing are an evolving six-asset research pilot. Contributions, questions and real-world feedback are welcome.
 
 [Get started](#get-started) · [How it works](#how-it-works) · [Project status](#project-status) · [Run locally](#run-locally) · [Contribute](#contribute)
 
-## Why NewsBeat?
+## Why Rarebird?
 
 A headline tells your agent something happened. A useful signal helps it understand what deserves attention.
 
@@ -75,7 +75,7 @@ Configuration varies by client. Follow the [connection guide](https://www.newsbe
 
 Then ask:
 
-> Use NewsBeat to check NVIDIA. What changed, why could it matter, and what still needs confirmation?
+> Use Rarebird to check NVIDIA. What changed, why could it matter, and what still needs confirmation?
 
 ### 3. Make an API request
 
@@ -101,7 +101,7 @@ Use the returned `beat_id` for other assets. The intelligence pilot currently co
 
 **Your question → Relevant evidence → Market checks → Answer → Next check**
 
-NewsBeat collects source-linked headlines, reduces repeated coverage and tracks new information. The pilot builds a conditional interpretation, checks observed market activity and stores the result for agents to read.
+Rarebird collects source-linked headlines, reduces repeated coverage and tracks new information. The pilot builds a conditional interpretation, checks observed market activity and stores the result for agents to read.
 
 | Your agent receives | What it helps answer |
 | --- | --- |
@@ -119,13 +119,13 @@ A signal can say **review**, **keep watching**, **no alert** or **reassess**. Wa
 - The stock pilot observes Kraken xStock markets against QQQx. Bitcoin and Ethereum use crypto venue data and peer comparisons. These are venue observations, not consolidated stock prices or verified token redemption values.
 - Timing checks include relative market moves, participation, liquidity and data freshness. Thresholds are research heuristics awaiting calibration.
 - Prospective outcome records help evaluate constructions and review alerts over time. They do not establish profitable performance or executable returns.
-- NewsBeat records qualifying review alerts. Notification delivery and trade execution are not connected.
+- Rarebird records qualifying review alerts. Notification delivery and trade execution are not connected.
 
 See the [methodology](docs/QUANTITATIVE.md) for the measurements, thresholds and limitations.
 
 </details>
 
-NewsBeat also scans the market independently of reporting: it looks for unusual relative moves, compares them with earlier behavior and records what happened next. The same existing venue data powers this discovery layer; a headline is not required to start an investigation. [How discovery works](docs/QUANTITATIVE.md#independent-discovery-market-discovery-v1)
+Rarebird also scans the market independently of reporting: it looks for unusual relative moves, compares them with earlier behavior and records what happened next. The same existing venue data powers this discovery layer; a headline is not required to start an investigation. [How discovery works](docs/QUANTITATIVE.md#independent-discovery-market-discovery-v1)
 
 ## Project status
 
@@ -152,7 +152,7 @@ Use **Node.js 22 or 24** and npm.
 
 ```bash
 git clone https://github.com/thepeternemec/NewsBeat.git
-cd NewsBeat
+cd Rarebird
 npm ci
 npm run build
 npm test
@@ -161,7 +161,7 @@ npm run dev
 
 Open **http://localhost:3000**. You can build, run the standard tests and work on the interface without service credentials. Local news reads need a development PostgreSQL database and cursor secret.
 
-Follow the [development guide](docs/DEVELOPMENT.md) to configure local data, run ingestion and test the API. Hosted public reads are the fastest way to try NewsBeat.
+Follow the [development guide](docs/DEVELOPMENT.md) to configure local data, run ingestion and test the API. Hosted public reads are the fastest way to try Rarebird.
 
 <details>
 <summary>Repository map</summary>
@@ -193,7 +193,7 @@ Optional account keys offer a seven-day REST evaluation, starting on the first m
 
 ## Contribute
 
-NewsBeat is young, and there is room to help shape it. Good places to start:
+Rarebird is young, and there is room to help shape it. Good places to start:
 
 - Improve a setup step, example or explanation.
 - Report a confusing signal or asset match, including the source and time.

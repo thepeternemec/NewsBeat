@@ -18,12 +18,12 @@ import "./landing-cadence.css";
 import "./landing-experience.css";
 import "./home-story.css";
 
-const DESCRIPTION = "NewsBeat connects reporting with available market evidence so your AI agent can explain what changed, what could matter and what to check next.";
-const TITLE = "NewsBeat — Meaningful signals for AI agents";
+const DESCRIPTION = "Rarebird connects reporting with available market evidence so your AI agent can explain what changed, what could matter and what to check next.";
+const TITLE = "Rarebird — Meaningful signals for AI agents";
 export const metadata = {
   title: TITLE, description: DESCRIPTION,
   alternates: { canonical: "https://www.newsbeat.dev" },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: "https://www.newsbeat.dev", siteName: "NewsBeat", type: "website" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: "https://www.newsbeat.dev", siteName: "Rarebird", type: "website" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
@@ -37,7 +37,7 @@ export default function Home() {
           <div className="bs-hero-copy">
             <span className="bs-kicker"><span /> MARKET INTELLIGENCE FOR YOUR AGENT</span>
             <h1><span className="nb-headline-line" data-hero-line>Connect the dots.</span><span className="nb-headline-line nb-headline-muted" data-hero-line>See the bigger picture.</span></h1>
-            <p className="bs-lede">NewsBeat connects reporting with market evidence so your agent can explain what changed, why it could matter, and whether to investigate now or wait.</p>
+            <p className="bs-lede">Rarebird connects reporting with market evidence so your agent can explain what changed, why it could matter, and whether to investigate now or wait.</p>
             <div className="hero-cta">
               <a className="btn-primary" href="/docs/try">Try a question <ArrowRight size={16} /></a>
               <a className="bs-text-link" href="/for-agents">Connect your agent <ArrowUpRight size={16} /></a>
@@ -80,7 +80,8 @@ export default function Home() {
           <div className="home-story-heading home-story-centered" data-story-reveal>
             <span className="home-story-eyebrow">03 / IN PRACTICE</span>
             <h2 id="home-real-title">The story and the market.<br /><span>In the same picture.</span></h2>
-            <p>Choose an asset. Follow a reported change, see the market context and explore the reason to review, wait or reassess. The reasoning and numbers open when you want them.</p>
+            <p>Choose an asset. Follow a reported change, see the market context and explore the reason to review, wait or reassess.</p>
+            <a className="home-story-link" href="/intelligence#opportunities">Open the opportunity brief <ArrowUpRight size={17} aria-hidden="true" /></a>
           </div>
           <LandingLiveSignal />
         </div>
@@ -91,9 +92,9 @@ export default function Home() {
           <div className="home-agent-copy" data-story-reveal>
             <span className="home-story-eyebrow">04 / YOUR AGENT</span>
             <h2 id="home-agent-title">Bring the whole picture<br /><span>into the conversation.</span></h2>
-            <p>NewsBeat brings the evidence and its limits into the assistant you already use. Ask a stock or crypto question in your own words.</p>
+            <p>Rarebird brings the evidence and its limits into the assistant you already use. Ask a stock or crypto question in your own words.</p>
             <ol className="home-connect-steps">
-              <li><span>1</span><div><strong>Add NewsBeat.</strong><p>One connection through MCP or REST.</p></div></li>
+              <li><span>1</span><div><strong>Add Rarebird.</strong><p>One connection through MCP or REST.</p></div></li>
               <li><span>2</span><div><strong>Ask what matters to you.</strong><p>A company, a move, a change in the story.</p></div></li>
               <li><span>3</span><div><strong>Follow the next check.</strong><p>Keep the sources, context and open questions together.</p></div></li>
             </ol>
@@ -103,7 +104,7 @@ export default function Home() {
             <span className="home-story-eyebrow">A QUESTION, IN YOUR OWN WORDS</span>
             <blockquote>“What changed with NVIDIA—and what should I look at next?”</blockquote>
             <div className="home-agent-handoff" aria-hidden="true"><BrandMark size={62} /><span><i /></span><div><Bot size={32} /></div></div>
-            <span className="home-agent-payload-label">WHAT NEWSBEAT CAN BRING TO THE ANSWER</span>
+            <span className="home-agent-payload-label">WHAT RAREBIRD CAN BRING TO THE ANSWER</span>
             <div className="home-agent-payload"><span><FileText size={17} /> The reported change</span><span><ScanLine size={17} /> Available market evidence</span><span><HelpCircle size={17} /> What’s still uncertain</span><span><Check size={17} /> An observable next check</span></div>
             <figcaption>The context travels with the answer.</figcaption>
           </figure>
@@ -113,7 +114,7 @@ export default function Home() {
 
       <section className="bs-closing" id="community" aria-labelledby="closing-title">
         <div className="wrap">
-          <span className="bs-kicker">NEWSBEAT / AGENT INTELLIGENCE</span>
+          <span className="bs-kicker">RAREBIRD / AGENT INTELLIGENCE</span>
           <h2 id="closing-title">Your next question.<br />A clearer starting point.</h2>
           <div className="hero-cta"><a className="btn-primary" href="/docs/try">Try a question <ArrowRight size={16} /></a><a className="bs-text-link" href="/for-agents">Connect your agent <ArrowUpRight size={15} /></a></div>
           <p className="bs-closing-fine">Evidence you can follow. Uncertainty you can see. A next check you can use.</p>

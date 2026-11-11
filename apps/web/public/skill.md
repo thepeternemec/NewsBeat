@@ -2,7 +2,7 @@
 name: newsbeat-news
 description: Use recent stock and crypto news when it helps answer the user’s question, with sources, dates and freshness.
 ---
-Use the NewsBeat MCP connection or its public HTTPS API. This instruction file alone does not connect an account or install an MCP server.
+Use the Rarebird MCP connection or its public HTTPS API. This instruction file alone does not connect an account or install an MCP server.
 
 Base: https://www.newsbeat.dev/api
 MCP: https://www.newsbeat.dev/api/mcp
@@ -16,6 +16,8 @@ Read `status`, `method`, `assets` and `limitations`. A `partial` response can co
 This explicit POST/MCP research call can generate one bounded interpretation through the existing gateway; it does not alter stored intelligence, start collection, schedule work, notify or trade. Existing GET intelligence reads continue to read stored results without model generation. Generated headline summarization is retired: `newsbeat_summary` and its GET route remain only as deprecated verbatim compatibility reads. See [research behavior and limits](https://github.com/thepeternemec/NewsBeat/blob/main/docs/RESEARCH.md).
 
 ## First contextual-signal pilot
+
+Use `newsbeat_catalysts` or `GET /v2/catalysts` for official SEC records and comparable prior-year results for NVIDIA, Apple, Microsoft and Alphabet. The `catalysts` field on the opportunity brief includes the same evidence. Cite both original filings when comparing figures and report the coverage timestamp. `rarebird_*` aliases are supported alongside published `newsbeat_*` tool IDs.
 
 For a shortlist across the six measured assets, call `newsbeat_opportunities` or `GET /v2/opportunities`. Read the review and watch lanes separately and use the per-asset coverage to interpret empty lists. Review items include evidence and invalidation. Watch items are unusual moves to investigate.
 
@@ -31,17 +33,17 @@ The pilot adds `quantitative`: verified Kraken xStock/crypto prices, five-minute
 
 ## Product direction and current capability
 
-NewsBeat is building meaningful signals for AI agents: what changed, why it may matter to a task, and what to investigate next. The live capabilities are a source-linked news foundation, approximate story grouping, question-driven reasoning, freshness and change tracking. A six-asset pilot combines source-grounded hypotheses with measured market timing and prospective outcomes; broader verification and calibrated strategies remain planned. Reference prices, positioning and chain readings are supporting inputs, not meaningful signals by themselves.
+Rarebird is building meaningful signals for AI agents: what changed, why it may matter to a task, and what to investigate next. The live capabilities are a source-linked news foundation, approximate story grouping, question-driven reasoning, freshness and change tracking. A six-asset pilot combines source-grounded hypotheses with measured market timing and prospective outcomes; broader verification and calibrated strategies remain planned. Reference prices, positioning and chain readings are supporting inputs, not meaningful signals by themselves.
 
-## When to use NewsBeat
+## When to use Rarebird
 
-Use the connected tools when recent company or crypto news would help with the user's current task, even if they do not mention NewsBeat. Examples: "What is happening with Nvidia?", a company research brief, or "What changed since our last check?" Do not rely only on memory for recent developments. Static definitions and unrelated tasks do not need a news lookup.
+Use the connected tools when recent company or crypto news would help with the user's current task, even if they do not mention Rarebird. Examples: "What is happening with Nvidia?", a company research brief, or "What changed since our last check?" Do not rely only on memory for recent developments. Static definitions and unrelated tasks do not need a news lookup.
 
-Respect the host's permissions. Resolve the correct asset; if a name is ambiguous, clarify it. If coverage is unsupported, say so. Explain the answer in plain language with sources, dates and freshness; do not claim to have read full articles or add details beyond the evidence. NewsBeat responds when invoked. It does not schedule itself or send alerts; recurring checks need the user's request and a host that supports them.
+Respect the host's permissions. Resolve the correct asset; if a name is ambiguous, clarify it. If coverage is unsupported, say so. Explain the answer in plain language with sources, dates and freshness; do not claim to have read full articles or add details beyond the evidence. Rarebird responds when invoked. It does not schedule itself or send alerts; recurring checks need the user's request and a host that supports them.
 
 ## Available interfaces
 
-NewsBeat exposes 16 research tools plus one explicit collection-control tool over MCP and REST. Research is the default question flow; the news tools provide discovery, original headlines, grouped evidence, changes and batch checks. Asset and crypto context is available through `newsbeat_ask`, `newsbeat_market`, `newsbeat_prices`, `newsbeat_fear_greed`, `newsbeat_chain`, `newsbeat_token` and `newsbeat_signals`. Read each result’s sources and freshness. Pilot venue pairs are verified against the exchange directory; onchain token-to-stock identity and redemption verification remain planned.
+Rarebird exposes 16 research tools plus one explicit collection-control tool over MCP and REST. Research is the default question flow; the news tools provide discovery, original headlines, grouped evidence, changes and batch checks. Asset and crypto context is available through `newsbeat_ask`, `newsbeat_market`, `newsbeat_prices`, `newsbeat_fear_greed`, `newsbeat_chain`, `newsbeat_token` and `newsbeat_signals`. Read each result’s sources and freshness. Pilot venue pairs are verified against the exchange directory; onchain token-to-stock identity and redemption verification remain planned.
 
 ## How to retrieve news
 

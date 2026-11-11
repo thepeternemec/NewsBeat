@@ -95,6 +95,18 @@ for (let attempt = 0; attempt < 32; attempt++) {
       }
       const workspace = await fetch(origin + "/intelligence?verify=readiness").then(result => result.text());
       assert.ok(workspace.includes("Reading the stored signal."), "the readable readiness update is deployed");
+      assert.ok(workspace.includes("What to investigate now"), "the opportunity brief is rendered");
+      const brief = await read("/api/v2/opportunities");
+      assert.equal(brief.coverage.length, 6);
+      assert.ok(brief.coverage.every(asset => Array.isArray(asset.holds)));
+      const official = await read("/api/v2/catalysts");
+      assert.equal(official.coverage.length, 4);
+      assert.equal(brief.catalysts.coverage.length, 4);
+      for (const asset of official.coverage) for (const filing of asset.snapshot?.filings ?? []) {
+        assert.equal(new URL(filing.url).origin, "https://www.sec.gov");
+        assert.ok(Date.parse(filing.accepted_at) <= Date.now());
+      }
+      console.log(JSON.stringify({ official_issuer_checks: official.coverage.map(asset => ({ label: asset.label, status: asset.status, error: asset.error, comparisons: asset.snapshot?.comparisons.length ?? 0 })), filings: official.items.length, review: brief.review.length, watch: brief.watch.length }));
       console.log("Verified measured xStock/crypto context, grounded analysis, timing safety, outcome records, context selection, discovery and authenticated workers.");
       process.exit(0);
     }

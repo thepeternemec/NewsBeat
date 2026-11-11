@@ -1,4 +1,4 @@
-# NewsBeat
+# Rarebird
 
 > Evidence-led answers for AI agents following stocks and crypto. Ask a question;
 > inspect the reasoning, missing evidence and next check. No credential required.
@@ -21,16 +21,16 @@ For NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum, call `newsbeat_int
 
 ## Product direction and current capability
 
-NewsBeat is building meaningful signals for AI agents: what changed, why it may matter to a task, and what to investigate next. The live capabilities are a source-linked news foundation, approximate story grouping, question-driven reasoning, freshness and change tracking. The six-asset pilot adds measured market timing, information deltas and prospective outcomes; broader verification and calibrated strategies remain planned. Reference prices, positioning and chain readings are supporting inputs, not meaningful signals by themselves.
+Rarebird is building meaningful signals for AI agents: what changed, why it may matter to a task, and what to investigate next. The live capabilities are a source-linked news foundation, approximate story grouping, question-driven reasoning, freshness and change tracking. The six-asset pilot adds measured market timing, information deltas and prospective outcomes; broader verification and calibrated strategies remain planned. Reference prices, positioning and chain readings are supporting inputs, not meaningful signals by themselves.
 
 ## When to use it
 
-Use NewsBeat when recent company or crypto news helps answer the user's current task,
+Use Rarebird when recent company or crypto news helps answer the user's current task,
 even if they do not explicitly ask for a news lookup. Examples include "What is happening
 with Nvidia?" and company research. Resolve the supported asset first. Explain missing
 coverage, include sources and dates, and do not infer details beyond the headlines.
 Static definitions and unrelated tasks do not need a lookup. Respect host permissions.
-NewsBeat does not run the agent in the background; recurring checks need a user-requested
+Rarebird does not run the agent in the background; recurring checks need a user-requested
 schedule in the host application.
 
 For people: https://www.newsbeat.dev/docs/quickstart
@@ -55,6 +55,8 @@ An empty page is a success. Report "nothing new" and do not retry it.
 - Legacy verbatim compatibility read, deprecated — https://www.newsbeat.dev/api/v2/summary?beat_id=b_bb964843350e
 - Watch, up to 50 topics in one call — https://www.newsbeat.dev/api/v2/watch
 - Tool definitions — https://www.newsbeat.dev/api/v2/tools
+- Opportunity brief — https://www.newsbeat.dev/api/v2/opportunities
+- SEC filings and comparable reported results — https://www.newsbeat.dev/api/v2/catalysts
 - MCP, Streamable HTTP — https://www.newsbeat.dev/api/mcp
 
 Tools, for frameworks that would rather be handed a schema than a URL:
@@ -116,7 +118,7 @@ shown once. That is a browser flow and needs a human.
 - Source — https://github.com/thepeternemec/NewsBeat
 
 ## Mission
-NewsBeat is a news feed for AI agents following stocks and crypto. It exposes 16 research tools plus one explicit collection-control tool over MCP and REST, including the signal-construction pilot. Verified tokenized-asset mapping is planned; current news resolves the underlying company or cryptocurrency.
+Rarebird is a news feed for AI agents following stocks and crypto. It exposes 16 research tools plus one explicit collection-control tool over MCP and REST, including the signal-construction pilot. Verified tokenized-asset mapping is planned; current news resolves the underlying company or cryptocurrency.
 
 ### Ask, chain and contracts
 

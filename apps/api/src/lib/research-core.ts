@@ -90,6 +90,8 @@ function figuresInClaim(text: string, sources: ResearchEvidence[]): string[] {
 
 /** Headline roles are retrieval heuristics, never a significance score or verification. */
 export function researchEvidenceRole(item: ResearchEvidence) {
+  if (item.id.startsWith("sec:") && item.source === "SEC EDGAR issuer record") return "official_filing_metadata";
+  if (item.id.startsWith("sec:") && item.source === "SEC EDGAR US-GAAP XBRL") return "reported_financial_measurement";
   if (item.kind === "measurement") return "measurement";
   if (/\b(?:shares? (?:of .{0,100} )?(?:sold|purchased)|(?:increases?|reduces?|sells?|buys?|boosts?|cuts?) (?:its? )?(?:stake|holdings|position)|ownership|13f|portfolio|holdings? in)\b/i.test(item.text)) return "ownership_filing";
   if (/\b(?:analyst|maintained at|price target|rating|fair value|should you buy|buy the dip|looks (?:cheap|expensive)|is it (?:time|too late))\b/i.test(item.text)) return "opinion_or_valuation_commentary";

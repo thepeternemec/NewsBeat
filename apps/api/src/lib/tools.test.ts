@@ -54,3 +54,10 @@ test("legacy tool names still reach a handler", async () => {
     });
   }
 });
+
+test("Rarebird tool aliases reach the same read handlers", async () => {
+  for (const name of ["catalysts", "opportunities"]) {
+    const result = await callNewsTool("rarebird_" + name, {});
+    assert.ok(result && typeof result === "object");
+  }
+});

@@ -8,6 +8,7 @@ import "./mobile-navigation.css";
 
 const LINKS = [
   { href: "/#agent-workflow", label: "How it works", description: "News, intelligence and timing—in one guided view" },
+  { href: "/intelligence", label: "Intelligence", description: "Check current opportunities and their evidence" },
   { href: "/for-agents", label: "For agents", description: "Connect, ask and follow what changed" },
   { href: "/docs", label: "Docs", description: "Start building with MCP and REST" },
   { href: "/status", label: "Status", description: "Check the current news service" },
@@ -17,9 +18,9 @@ export default function SiteNav({ active }: { active?: string }) {
   return (
     <nav className="nav nav-site" aria-label="Main navigation">
       <div className="nav-pill">
-        <a className="nav-logo" href="/" aria-label="NewsBeat home">
+        <a className="nav-logo" href="/" aria-label="Rarebird home">
           <BrandMark className="brand-beat" />
-          NEWSBEAT
+          RAREBIRD
         </a>
         <span className="nav-links">
           {LINKS.map(link => (

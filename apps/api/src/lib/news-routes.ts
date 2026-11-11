@@ -11,6 +11,7 @@ import { readIntelligence } from "./intelligence.js";
 import { collectionControl } from "./collection.js";
 import { researchQuestion, researchCoverage } from "./research.js";
 import { readOpportunities } from "./opportunities.js";
+import { readCatalysts } from "./catalysts.js";
 export const newsRoutes = new Hono();
 newsRoutes.onError((error, c) => { if (error instanceof NewsError)
     return c.json({ error: { code: error.code, message: error.message } }, error.status as 400 | 404 | 410 | 503); console.error("news request failed", error.name); return c.json({ error: { code: "service_unavailable", message: "News is temporarily unavailable." } }, 503); });
@@ -81,6 +82,11 @@ newsRoutes.get("/opportunities", async c => {
         limit: limit === undefined ? undefined : Number(limit),
     }));
 });
+newsRoutes.get("/catalysts", async c => {
+    c.header("Cache-Control", "no-store");
+    const limit = c.req.query("limit");
+    return c.json(await readCatalysts({ beat_id: c.req.query("beat_id"), limit: limit === undefined ? undefined : Number(limit) }));
+});
 newsRoutes.get("/summary", async (c) => {
     const beatId = (c.req.query("beat_id") ?? "").trim();
     if (!beatId) throw new NewsError("invalid_request", "beat_id is required.", 400);
@@ -107,10 +113,11 @@ export async function callNewsTool(name: string, args: unknown, oidcToken?: stri
     // Old clients keep their cached tool names working. The API has been through
     // `newsgraph_*`, `newsbeat_*` and briefly `newsbeat_*`; all three resolve and the
     // advertised name is `newsbeat_*` again. Remove a prefix once its callers have moved.
-    name = name.replace(/^(?:newsgraph|newsbeat)_/, "newsbeat_");
+    name = name.replace(/^(?:newsgraph|newsbeat|rarebird)_/, "newsbeat_");
     if (name === "newsbeat_research") return researchQuestion(args, oidcToken);
     if (name === "newsbeat_collection") return collectionControl(args);
     if (name === "newsbeat_opportunities") return readOpportunities(args);
+    if (name === "newsbeat_catalysts") return readCatalysts(args);
     if (name === "newsbeat_topics") {
         const input = z.object({ query: z.string().max(200).optional() }).strict().parse(args);
         // MCP callers have no way to page, so this surface asks for the whole
