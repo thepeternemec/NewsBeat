@@ -13,7 +13,7 @@ async function call(method, params) {
       "X-NewsBeat-Traffic": "synthetic",
     },
     body: JSON.stringify({ jsonrpc: "2.0", id: ++id, method, params }),
-    signal: AbortSignal.timeout(20000),
+    signal: AbortSignal.timeout(30000),
   });
   assert.equal(response.status, 200, method + " HTTP status");
   const body = await response.json();
@@ -42,5 +42,30 @@ assert.notEqual(called.isError, true);
 assert.equal(called.structuredContent.status, "needs_clarification");
 assert.equal(called.structuredContent.answer, null);
 assert.deepEqual(called.structuredContent.candidates.map(asset => asset.asset).sort(), ["crypto", "equity"]);
+
+const start = Date.now();
+const bitcoin = await call("tools/call", { name: "newsbeat_investment", arguments: { ticker: "BTC" } });
+assert.notEqual(bitcoin.isError, true);
+const brief = bitcoin.structuredContent;
+const research = brief.research;
+assert.equal(brief.ticker, "BTC");
+assert.equal(research.assets[0].ticker, "BTC");
+assert.ok(brief.stance);
+const fresh = new Set(research.evidence.filter(item => item.freshness === "fresh").map(item => item.id));
+console.log(JSON.stringify({ case: "BTC investment brief", method: research.method, coverage: research.assets[0].news_status,
+  market: research.assets[0].market_status, failure: research.generation_error, fresh_evidence: fresh.size, elapsed_ms: Date.now() - start }));
+if (fresh.size) {
+  assert.equal(research.method, "reasoned", "fresh evidence should produce validated reasoning");
+  assert.equal(research.generation_error, null);
+  assert.ok(research.answer.answer.trim());
+  assert.ok(research.answer.next_checks.length);
+  for (const claim of research.answer.reasoning) {
+    assert.ok(claim.evidence_ids.length);
+    assert.ok(claim.evidence_ids.every(id => fresh.has(id)), "reasoning cites fresh supplied evidence");
+  }
+} else {
+  assert.equal(brief.stance.state, "wait");
+  assert.equal(research.answer, null);
+}
 console.log(JSON.stringify({ service: initialized.serverInfo.name, protocolVersion,
   tools: catalog.tools.length, research: "callable", ambiguity: "preserved" }));

@@ -23,39 +23,62 @@ export function researchOutputSchema(evidence: ResearchEvidence[]) {
   });
 }
 
-const cache = new Map<string, { expires: number; task: Promise<ResearchAnswer | null> }>();
+const NUMBER_GUIDANCE = " Use figures in prose only when the question needs an exact value. Preserve the source's value, sign, and time window. Leave optional figures in the cited evidence.";
+const REPAIR_GUIDANCE = " Rewrite from the supplied evidence. Omit numeric details throughout the prose, including dates and time-window lengths. Use qualitative descriptions of direction and comparison. Cite the evidence IDs for exact values. Explain what the evidence supports, what is unknown, and what to check next.";
+
+type Outcome = { answer: ResearchAnswer | null; error: string | null };
+const cache = new Map<string, { expires: number; task: Promise<Outcome> }>();
 let inFlight = 0;
 
-/** One bounded generation per question/evidence fingerprint, never a catalog-wide background run. */
+/** One bounded analysis per question/evidence fingerprint, with a targeted repair for numeric errors. */
 export async function reasonAboutQuestion(input: { question: string; intent: string; context: string; assets: unknown[]; evidence: ResearchEvidence[]; limitations: string[] },
   oidcToken?: string | null, request: typeof fetch = fetch, onFailure?: (reason: string) => void): Promise<ResearchAnswer | null> {
   const credential = env("AI_GATEWAY_API_KEY") || oidcToken || env("VERCEL_OIDC_TOKEN");
   if (!credential || !input.evidence.length) { onFailure?.(!credential ? "not_configured" : "no_evidence"); return null; }
   const key = createHash("sha256").update(JSON.stringify(input)).digest("hex");
   const existing = cache.get(key);
-  if (existing && existing.expires > Date.now()) return existing.task;
+  if (existing && existing.expires > Date.now()) {
+    const result = await existing.task;
+    if (result.error) onFailure?.(result.error);
+    return result.answer;
+  }
   if (inFlight >= 4) { onFailure?.("busy"); return null; }
-  const task = (async () => {
+  const task = (async (): Promise<Outcome> => {
     inFlight++;
+    const signal = AbortSignal.timeout(18_000);
+    const schema = researchOutputSchema(input.evidence);
+    const userContent = JSON.stringify({ ...input, evidence_roles: Object.fromEntries(input.evidence.map(item => [item.id, researchEvidenceRole(item)])), evidence_scope: { full_articles: false, financial_statements: false, reported_financial_figures: input.evidence.some(item => researchEvidenceRole(item) === "reported_financial_measurement"), consensus_expectations: false, event_aligned_reaction_test: false, absence_of_reporting_proves_absence_of_risk: false } });
+    const attempt = async (guidance: string): Promise<Outcome> => {
+      const failure = (error: string): Outcome => ({ answer: null, error });
+      try {
+        const response = await request("https://ai-gateway.vercel.sh/v1/chat/completions", {
+          method: "POST", headers: { Authorization: "Bearer " + credential, "Content-Type": "application/json" },
+          body: JSON.stringify({ model: RESEARCH_MODEL, temperature: 0, max_tokens: 1600,
+            response_format: { type: "json_schema", json_schema: { name: "newsbeat_question_answer", strict: true, schema } },
+            messages: [{ role: "system", content: PROMPT + guidance }, { role: "user", content: userContent }] }),
+          signal,
+        });
+        if (!response.ok) return failure("provider_" + response.status);
+        const body = await response.json() as { choices?: Array<{ finish_reason?: string; message?: { content?: string } }> };
+        const choice = body.choices?.[0];
+        if (choice?.finish_reason === "length" || !choice?.message?.content) return failure(choice?.finish_reason === "length" ? "truncated" : "empty_output");
+        let error: string | null = null;
+        const answer = validateResearchAnswer(JSON.parse(choice.message.content.trim().replace(/^```(?:json)?\s*|\s*```$/g, "")), input.evidence, reason => { error = reason; });
+        return { answer, error };
+      } catch {
+        return failure(signal.aborted ? "generation_timeout" : "generation_failed");
+      }
+    };
     try {
-      const response = await request("https://ai-gateway.vercel.sh/v1/chat/completions", {
-        method: "POST", headers: { Authorization: "Bearer " + credential, "Content-Type": "application/json" },
-        body: JSON.stringify({ model: RESEARCH_MODEL, temperature: 0, max_tokens: 1600,
-          response_format: { type: "json_schema", json_schema: { name: "newsbeat_question_answer", strict: true, schema: researchOutputSchema(input.evidence) } },
-          messages: [{ role: "system", content: PROMPT }, { role: "user", content: JSON.stringify({ ...input, evidence_roles: Object.fromEntries(input.evidence.map(item => [item.id, researchEvidenceRole(item)])), evidence_scope: { full_articles: false, financial_statements: false, reported_financial_figures: input.evidence.some(item => researchEvidenceRole(item) === "reported_financial_measurement"), consensus_expectations: false, event_aligned_reaction_test: false, absence_of_reporting_proves_absence_of_risk: false } }) }] }),
-        signal: AbortSignal.timeout(18_000),
-      });
-      if (!response.ok) { onFailure?.("provider_" + response.status); return null; }
-      const body = await response.json() as { choices?: Array<{ finish_reason?: string; message?: { content?: string } }> };
-      const choice = body.choices?.[0];
-      if (choice?.finish_reason === "length" || !choice?.message?.content) { onFailure?.(choice?.finish_reason === "length" ? "truncated" : "empty_output"); return null; }
-      return validateResearchAnswer(JSON.parse(choice.message.content.trim().replace(/^```(?:json)?\s*|\s*```$/g, "")), input.evidence, onFailure);
-    } catch { onFailure?.("generation_failed"); return null; }
-    finally { inFlight--; }
+      const first = await attempt(NUMBER_GUIDANCE);
+      const repair = !signal.aborted && (first.error === "unsupported_reasoning_figure" || first.error === "unsupported_answer_figure");
+      return repair ? await attempt(REPAIR_GUIDANCE) : first;
+    } finally { inFlight--; }
   })();
   cache.set(key, { expires: Date.now() + 300_000, task });
   if (cache.size > 128) cache.delete(cache.keys().next().value!);
-  const value = await task;
-  if (!value) cache.delete(key);
-  return value;
+  const result = await task;
+  if (!result.answer && cache.get(key)?.task === task) cache.delete(key);
+  if (result.error) onFailure?.(result.error);
+  return result.answer;
 }
