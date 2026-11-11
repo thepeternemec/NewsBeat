@@ -4,6 +4,8 @@ The integration guide for agents. For people: [connect your assistant](https://w
 
 ## Question-driven research
 
+For a token identified by contract, call `newsbeat_token_intelligence` or `GET /api/v2/tokens?asset=…` with an explicit chain and address. Inspect pool-level coverage and fetch time. Issuer records are matched by both chain and contract, and underlying company headlines are separate from token market evidence. Use [Token intelligence](https://www.newsbeat.dev/tokens) to try the same lookup.
+
 For a ticker investment brief, call `newsbeat_investment` (alias `rarebird_investment`) or `POST /api/v2/investment` with `ticker` and an optional `beat_id`. The stance is asset-level. A supportive or adverse stance requires validated research and a current review. During generation failures the brief can contain fresh sourced observations and next checks with `method: "evidence_only"` and a wait stance. Visitors can use [Ask Rarebird](https://www.newsbeat.dev/ask), and configured Telegram groups can use `/ask BTC`.
 
 Start with `newsbeat_research` or `POST /api/v2/research` and pass the user's actual `question`. Optionally supply one to three resolved `beat_ids` and `context` (`fundamentals`, `liquidity` or `risk`). The flow resolves the asset, retrieves relevant reporting, checks available market measurements, and returns a direct answer, cited reasoning, unknowns and observable next checks. It is available across the 2,030-asset news catalog; measured quantitative coverage remains the six-asset pilot. Comparisons are bounded to three assets.

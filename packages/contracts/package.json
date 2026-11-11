@@ -9,6 +9,10 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./token-intelligence": {
+      "types": "./dist/token-intelligence.d.ts",
+      "import": "./dist/token-intelligence.js"
     }
   },
   "files": [

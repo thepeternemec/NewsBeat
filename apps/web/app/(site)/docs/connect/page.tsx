@@ -23,6 +23,7 @@ const TOOLS = [
   ["newsbeat_fear_greed","Read the daily fear and greed index.","GET /v2/sentiment"],
   ["newsbeat_chain","Read Ethereum and Solana chain state.","GET /v2/chain"],
   ["newsbeat_token","Read a reference price by contract address.","GET /v2/token?asset=…"],
+  ["newsbeat_token_intelligence","Read exact-contract DEX pools, issuer records and available underlying company reporting.","GET /v2/tokens?asset=…"],
   ["newsbeat_signals","Read funding, DEX volume and stablecoin supply.","GET /v2/signals"],
 ];
 const FIRST_REQUEST = `curl -X POST "${API}/v2/research" \\
@@ -87,6 +88,9 @@ export default function DocsConnect() {
       <h2 id="telegram">Telegram groups</h2>
       <p>Use <strong>Share to Telegram</strong> on a live brief to open Telegram’s chat picker. In a configured group, send <code>/ask BTC</code> or address the bot with <code>/ask@YourBot BTC</code>. The reply includes the stance, reasoning, sources and a link to open the full ticker view. A group admin can configure the daily ticker feed using the <a href="https://github.com/thepeternemec/NewsBeat/blob/main/docs/TELEGRAM.md">Telegram setup guide</a>.</p>
 
+      <h2 id="token-intelligence">Token intelligence</h2>
+      <p>Open <a href="/tokens">Token intelligence</a> or call <code>newsbeat_token_intelligence</code> with <code>asset</code> in the form <code>chain:address</code>. The REST equivalent is <code>GET /v2/tokens?asset=…</code>. Supported chains are Solana, Ethereum, Base and Arbitrum.</p>
+      <p>Pool readings include DEX Screener fetch time, venue links, and coverage status. The issuer pilot links exact native deployments of NVIDIA, Apple and Robinhood xStocks to underlying company reporting. Review the issuer link and keep the token’s pool price separate from the underlying security’s price.</p>
       <h2 id="first-rest-requests">First REST requests</h2>
       <p>Catalog collection is scheduled every 10 minutes. Only when a user explicitly asks for one-minute news, call <code>newsbeat_collection</code> with <code>action: "start"</code>, the priority <code>beat_id</code> and <code>interval_seconds: 60</code>, or POST that body to <code>/v2/collection</code>. It lasts 15 minutes and never auto-renews. Save the returned private session token to stop early. GET status does not activate collection. Market measurements and model analysis retain five-minute schedules.</p>
       <div className="code">

@@ -45,7 +45,7 @@ Respect the host's permissions. Resolve the correct asset; if a name is ambiguou
 
 ## Available interfaces
 
-Rarebird exposes 16 research tools plus one explicit collection-control tool over MCP and REST. Research is the default question flow; the news tools provide discovery, original headlines, grouped evidence, changes and batch checks. Asset and crypto context is available through `newsbeat_ask`, `newsbeat_market`, `newsbeat_prices`, `newsbeat_fear_greed`, `newsbeat_chain`, `newsbeat_token` and `newsbeat_signals`. Read each result’s sources and freshness. Pilot venue pairs are verified against the exchange directory; onchain token-to-stock identity and redemption verification remain planned.
+Rarebird exposes research and explicit collection control over MCP and REST. Use `newsbeat_research` for a question and `newsbeat_token_intelligence` or `GET /v2/tokens?asset=` for an explicit chain and contract. The token lookup returns exact-address DEX pool data and a pilot issuer mapping for NVIDIA, Apple and Robinhood xStocks. Keep pool measurements and underlying company reporting distinct. Read each result’s sources and freshness.
 
 ## How to retrieve news
 
