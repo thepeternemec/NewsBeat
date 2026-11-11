@@ -50,6 +50,7 @@ export function formatTelegramBrief(brief: InvestmentBrief) {
     stance ? `${stance.label}\n${stance.reason}` : research.message ?? "Check the ticker on Rarebird.",
     stance?.valid_until ? `Timing evidence through ${stance.valid_until.replace("T", " ").slice(0, 16)} UTC` : "",
     cut(research.answer?.answer ?? (stance ? research.message ?? "" : ""), 600),
+    research.answer && research.message ? cut(research.message, 175) : "",
     ...(research.answer?.reasoning.slice(0, 2).map(row => `• ${cut(row.claim, 220)}`) ?? []),
     research.answer?.unknowns[0] ? `Open question · ${cut(research.answer.unknowns[0], 175)}` : "",
     research.answer?.next_checks[0] ? `Next check · ${cut(research.answer.next_checks[0], 175)}` : "",

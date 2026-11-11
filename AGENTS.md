@@ -4,6 +4,8 @@ The integration guide for agents. For people: [connect your assistant](https://w
 
 ## Question-driven research
 
+For a ticker investment brief, call `newsbeat_investment` (alias `rarebird_investment`) or `POST /api/v2/investment` with `ticker` and an optional `beat_id`. The stance is asset-level. A supportive or adverse stance requires validated research and a current review. During generation failures the brief can contain fresh sourced observations and next checks with `method: "evidence_only"` and a wait stance. Visitors can use [Ask Rarebird](https://www.newsbeat.dev/ask), and configured Telegram groups can use `/ask BTC`.
+
 Start with `newsbeat_research` or `POST /api/v2/research` and pass the user's actual `question`. Optionally supply one to three resolved `beat_ids` and `context` (`fundamentals`, `liquidity` or `risk`). The flow resolves the asset, retrieves relevant reporting, checks available market measurements, and returns a direct answer, cited reasoning, unknowns and observable next checks. It is available across the 2,030-asset news catalog; measured quantitative coverage remains the six-asset pilot. Comparisons are bounded to three assets.
 
 Read `status`, `method`, `assets` and `limitations`. A `partial` response can contain useful reasoning with missing market data. `needs_clarification` returns candidates instead of guessing an ambiguous identity. `evidence_only` means no validated model answer was produced. Missing prices cannot establish a market reaction, anomaly or entry time. Evidence is a bounded latest-day headline window, not full reporting or complete history.
