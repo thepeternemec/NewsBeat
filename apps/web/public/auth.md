@@ -12,7 +12,7 @@ Host: `www.newsbeat.dev` · API base: `https://www.newsbeat.dev/api`
 Skip this step. There is no `/agent/identity`, no `/oauth2/token`, and no claim
 ceremony. `POST` to any of them returns `404`.
 
-NewsBeat provides public read-only research and an explicit temporary collection-control endpoint. Access is not gated, so there is no
+Rarebird provides public read-only research and an explicit temporary collection-control endpoint. Access is not gated, so there is no
 user to register and no scoped token to mint. An agent may call it on first use,
 with no setup and no operator involvement.
 
@@ -34,7 +34,7 @@ Anonymous callers get **120 requests a minute**, identified by calling address �
 hashed, never stored. That ceiling is high enough for the intended loop: one
 `changes` call per topic per schedule, not a poll.
 
-A key lets you run a **seven-day trial** of NewsBeat in your agent, beginning
+A key lets you run a **seven-day trial** of Rarebird in your agent, beginning
 with its first metered REST request. It includes **up to $6 in usage credit**
 and a ceiling of 1200 requests a minute. A check that found nothing is $0.0005,
 one that moved is $0.004, and a brief is $0.03. The credit covers up to twelve
@@ -84,6 +84,7 @@ Returns 16 research calls plus one explicit collection-control call in OpenAI fu
 | `newsbeat_collection` | Explicitly request one-minute collection for 15 minutes, read status, or stop with your token. | `GET/POST /v2/collection` |
 | `newsbeat_intelligence` | Stored event memory, conditional implications and follow-up checks for the six-asset pilot | `GET /v2/intelligence?beat_id=` |
 | `newsbeat_opportunities` | Review and watch shortlist across the six measured assets | `GET /v2/opportunities` |
+| `newsbeat_catalysts` | Recent SEC filings and comparable reported results for four issuers | `GET /v2/catalysts` |
 | `newsbeat_topics` | Find a supported stock or crypto asset. | `GET /v2/topics?q=…` |
 | `newsbeat_news` | Read headlines and establish a baseline cursor. | `GET /v2/news?beat_id=…` |
 | `newsbeat_changes` | Get new items since the saved cursor. | `GET /v2/changes?beat_id=…&cursor=…` |

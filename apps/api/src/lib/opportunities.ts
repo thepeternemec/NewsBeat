@@ -7,6 +7,7 @@ import { PILOT_BEATS, readIntelligence } from "./intelligence.js";
 import { NewsError } from "./news.js";
 import { bookCost } from "./quant-decision.js";
 import { TIMING_POLICY } from "./quant-engine.js";
+import { readCatalysts } from "./catalysts.js";
 
 const inputSchema = z.object({
   context: SignalContextIdSchema.default("fundamentals"),
@@ -35,6 +36,13 @@ function candidatesFor(output: IntelligenceResponse, now: number) {
     analysis: output.status,
     source_freshness: output.freshness.status,
     review_cost_scenario: bundle?.evaluation.review_cost_scenario ?? null,
+    holds: [
+      ...(!marketCurrent ? ["Current market evidence is incomplete, stale or held."] : []),
+      ...(output.status !== "ready" ? ["Stored analysis is " + output.status + "."] : []),
+      ...(output.freshness.status !== "fresh" ? ["Reporting collection is " + output.freshness.status + "."] : []),
+      ...output.constructions.flatMap(construction => construction.checks.filter(check => !check.passed).map(check => check.reason)),
+      ...output.constructions.flatMap(construction => construction.quantitative?.checks.filter(check => !check.passed).map(check => check.reason) ?? []),
+    ].filter((value, index, all) => all.indexOf(value) === index).slice(0, 8),
   };
   if (!marketCurrent || !market?.instrument) return { coverage };
 
@@ -146,6 +154,11 @@ export async function readOpportunities(input: unknown) {
   const parsed = inputSchema.safeParse(input);
   if (!parsed.success) throw new NewsError("invalid_request", "Use a valid context and an integer limit from 1 to 6.", 400);
   const { context, limit } = parsed.data;
-  const outputs = await Promise.all(PILOT_BEATS.map(beat => readIntelligence(beat.beat_id, context)));
-  return buildOpportunityBrief(outputs, context, limit, Date.now());
+  const [outputs, catalysts] = await Promise.all([
+    Promise.all(PILOT_BEATS.map(beat => readIntelligence(beat.beat_id, context))),
+    readCatalysts({ limit }),
+  ]);
+  return { ...buildOpportunityBrief(outputs, context, limit, Date.now()), catalysts };
 }
+
+export type OpportunityBrief = Awaited<ReturnType<typeof readOpportunities>>;

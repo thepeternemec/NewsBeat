@@ -1,27 +1,27 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { NEWS_TOOLS, type ResearchResponse } from "@newsbeat/contracts";
+import { NEWS_TOOLS, type CatalystRadar, type ResearchResponse } from "@newsbeat/contracts";
 import { mcpResponse } from "./mcp.js";
 
-type RpcBody = {
+type RpcBody<T> = {
   error?: unknown;
   result?: {
-    serverInfo?: { name: string };
+    serverInfo?: { name: string; title?: string };
     instructions?: string;
     tools?: Array<{ name: string }>;
-    structuredContent?: ResearchResponse;
+    structuredContent?: T;
     isError?: boolean;
   };
 };
 
-async function call(method: string, params: unknown) {
+async function call<T = ResearchResponse>(method: string, params: unknown) {
   const response = await mcpResponse(new Request("https://www.newsbeat.dev/api/mcp", {
     method: "POST",
     headers: { "Content-Type": "application/json", Accept: "application/json, text/event-stream", "MCP-Protocol-Version": "2025-03-26" },
     body: JSON.stringify({ jsonrpc: "2.0", id: 1, method, params }),
   }));
   assert.equal(response.status, 200);
-  const body = await response.json() as RpcBody;
+  const body = await response.json() as RpcBody<T>;
   assert.equal(body.error, undefined);
   return body.result;
 }
@@ -29,6 +29,7 @@ async function call(method: string, params: unknown) {
 test("MCP initializes through the Streamable HTTP transport and publishes research guidance", { timeout: 10000 }, async () => {
   const result = await call("initialize", { protocolVersion: "2025-03-26", capabilities: {}, clientInfo: { name: "newsbeat-test", version: "1.0" } });
   assert.equal(result?.serverInfo?.name, "newsbeat");
+  assert.equal(result?.serverInfo?.title, "Rarebird");
   assert.ok(result?.instructions?.includes("newsbeat_research"));
 });
 
@@ -49,4 +50,11 @@ test("MCP research preserves ambiguous identities without storage or generation"
 test("MCP transport distinguishes application tool failures from protocol failures", { timeout: 10000 }, async () => {
   const result = await call("tools/call", { name: "newsbeat_nonexistent", arguments: {} });
   assert.equal(result?.isError, true);
+});
+
+test("MCP exposes filing coverage through the Rarebird alias", { timeout: 10000 }, async () => {
+  const result = await call<CatalystRadar>("tools/call", { name: "rarebird_catalysts", arguments: { beat_id: "b_06c91290de1c" } });
+  assert.notEqual(result?.isError, true);
+  assert.equal(result?.structuredContent?.coverage[0]?.status, "unsupported");
+  assert.deepEqual(result?.structuredContent?.items, []);
 });

@@ -17,11 +17,11 @@ export async function mcpResponse(request: Request) {
         return new Response("Origin not allowed", { status: 403 });
     if (Number(request.headers.get("content-length") ?? 0) > 16384)
         return new Response("Request too large", { status: 413 });
-    const server = new Server({ name: "newsbeat", version: "0.3.0" }, { capabilities: { tools: {} }, instructions: NEWS_AGENT_INSTRUCTIONS });
+    const server = new Server({ name: "newsbeat", title: "Rarebird", version: "0.3.0" }, { capabilities: { tools: {} }, instructions: NEWS_AGENT_INSTRUCTIONS });
     server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools: NEWS_TOOLS.map(tool => ({ ...tool, inputSchema: { ...tool.inputSchema, type: "object" as const }, annotations: { readOnlyHint: tool.name !== "newsbeat_collection", destructiveHint: false, openWorldHint: true } })) }));
     server.setRequestHandler(CallToolRequestSchema, async (call: CallToolRequest) => {
         const startedAt = performance.now();
-        const toolName = call.params.name.replace(/^newsgraph_/, "newsbeat_");
+        const toolName = call.params.name.replace(/^(?:newsgraph|rarebird)_/, "newsbeat_");
         const operation = knownTools.has(toolName) ? toolName : "unknown";
         let outcome: "success" | "tool_error" = "tool_error";
         try {

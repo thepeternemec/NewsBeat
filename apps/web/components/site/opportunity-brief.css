@@ -1,0 +1,55 @@
+.opportunity-brief {
+  margin: 0 0 clamp(36px, 6vw, 74px);
+  padding: clamp(18px, 3vw, 34px);
+  border: 1px solid var(--border-strong);
+  border-radius: 20px;
+  background: var(--bg-base);
+  color: var(--text-primary);
+}
+.opportunity-brief-header, .opportunity-lane a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.opportunity-brief-header { flex-wrap: wrap; }
+.opportunity-brief-header h2 { margin: 0; font-size: clamp(24px, 4vw, 36px); letter-spacing: -.035em; }
+.opportunity-brief p { margin: 8px 0 0; color: var(--text-secondary); font-size: 14px; line-height: 1.6; }
+.opportunity-brief .opportunity-status { margin: 12px 0 16px; font-size: 12px; }
+.opportunity-refresh {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  min-height: 40px;
+  padding: 8px 12px;
+  color: var(--text-primary);
+  background: var(--bg-raised);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.opportunity-refresh:disabled { opacity: .6; cursor: default; }
+.opportunity-lanes, .opportunity-asset-grid { display: grid; gap: 12px; }
+.opportunity-lanes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.opportunity-lane, .opportunity-asset-grid > li {
+  min-width: 0;
+  border: 1px solid var(--border-default);
+  border-radius: 12px;
+  padding: 16px;
+  background: var(--bg-raised);
+}
+.opportunity-lane h3, .opportunity-asset-grid h3 { margin: 0; font-size: 16px; }
+.opportunity-lane ul, .opportunity-asset-grid, .opportunity-figures { margin: 12px 0 0; padding: 0; list-style: none; }
+.opportunity-lane li + li { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-default); }
+.opportunity-lane time, .opportunity-lane li > span { display: block; margin-top: 8px; color: var(--text-secondary); font-size: 12px; }
+.opportunity-lane a, .opportunity-figure a { color: var(--text-primary); text-decoration: underline; text-underline-offset: 3px; }
+.opportunity-lane a svg { flex: none; }
+.opportunity-coverage { margin-top: 16px; border-top: 1px solid var(--border-default); padding-top: 14px; }
+.opportunity-coverage summary { cursor: pointer; font-weight: 600; }
+.opportunity-asset-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.opportunity-holds { padding-left: 18px; color: var(--text-secondary); font-size: 13px; line-height: 1.55; }
+.opportunity-figure { display: grid; gap: 4px; padding: 10px 0; border-top: 1px solid var(--border-default); font-size: 13px; }
+.opportunity-figure span { color: var(--text-secondary); }
+@media (max-width: 760px) {
+  .opportunity-lanes, .opportunity-asset-grid { grid-template-columns: minmax(0, 1fr); }
+}

@@ -6,6 +6,7 @@ import { assetView, qualifiesReport, researchIntent, resolveResearchAssets } fro
 import { reasonAboutQuestion } from "./research-model.js";
 import { isReferenceQuoteQuestion, referenceQuoteAnswer } from "./research-quote.js";
 import { quantitativeResearchEvidence, researchFreshness as fresh } from "./research-market.js";
+import { officialResearchEvidence, readCatalysts } from "./catalysts.js";
 
 const PRICE_IDS: Record<string, string> = { BTC: "bitcoin", ETH: "ethereum", SOL: "solana" };
 export const priceIdsForAsset = (asset: Pick<Beat, "ticker" | "asset"> | null) =>
@@ -14,11 +15,18 @@ export const priceIdsForAsset = (asset: Pick<Beat, "ticker" | "asset"> | null) =
 async function gather(asset: Beat, question: string, context: "fundamentals" | "liquidity" | "risk") {
   const meta: ResearchAsset = { ...assetView(asset), news_status: "unavailable", market_status: "unavailable", reports_scanned: 0, coverage_truncated: false, limitations: [] };
   const evidence: ResearchEvidence[] = [];
-  const [news, intelligence, quote] = await Promise.allSettled([
+  const [news, intelligence, quote, official] = await Promise.allSettled([
     stories(asset.beat_id, 40, 200),
     readIntelligence(asset.beat_id, context),
     priceIdsForAsset(asset).length ? prices(priceIdsForAsset(asset)) : Promise.resolve(null),
+    readCatalysts({ beat_id: asset.beat_id }),
   ]);
+  const issuer = official.status === "fulfilled" ? official.value.coverage[0] : undefined;
+  if (issuer?.status === "fresh") {
+    evidence.push(...officialResearchEvidence(issuer));
+    meta.limitations.push("SEC evidence covers filing metadata and any comparable reported figures shown. Guidance changes and consensus surprise require separate evidence.");
+    if (issuer.snapshot?.missing_concepts.length) meta.limitations.push("Some financial concepts have no validated comparable prior-year period.");
+  } else if (issuer?.status !== "unsupported") meta.limitations.push("Current official issuer evidence is unavailable or stale.");
   if (news.status === "fulfilled") {
     meta.news_status = news.value.freshness.status;
     meta.reports_scanned = news.value.articles_read;
@@ -80,7 +88,7 @@ export async function researchQuestion(raw: unknown, oidcToken?: string | null):
   base.assets = gathered.map(g => g.asset);
   base.evidence = gathered.flatMap(g => g.evidence);
   base.limitations = [...new Set(gathered.flatMap(g => g.asset.limitations))];
-  base.limitations.push("Evidence uses a bounded latest-day headline window and identified measurements, not full articles, complete historical research or verified causality.");
+  base.limitations.push("Evidence covers a bounded latest-day headline window, available issuer records and identified measurements. Causal claims require event-specific evidence.");
   base.flow.push({ step: "Retrieve question-relevant evidence", status: base.assets.every(a => a.news_status === "fresh") ? "complete" : "limited" },
     { step: "Check asset-specific market context", status: base.assets.every(a => a.market_status === "fresh") ? "complete" : "limited" });
   const usable = base.evidence.filter(e => e.freshness === "fresh");

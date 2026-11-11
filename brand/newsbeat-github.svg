@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="440" viewBox="0 0 1280 440" role="img" aria-labelledby="title desc">
-  <title id="title">NewsBeat — Meaningful signals. Built for agents.</title>
-  <desc id="desc">A monochrome NewsBeat banner. Reporting connects to context, market checks and your agent.</desc>
+  <title id="title">Rarebird — Meaningful signals. Built for agents.</title>
+  <desc id="desc">A monochrome Rarebird banner. Reporting connects to context, market checks and your agent.</desc>
   <defs>
     <radialGradient id="glow" cx="82%" cy="38%" r="75%">
       <stop offset="0" stop-color="#242424"/>
@@ -17,7 +17,7 @@
     <rect x="13" width="8" height="40" rx="4"/>
     <rect x="26" y="7" width="8" height="26" rx="4"/>
   </g>
-  <text x="105" y="78" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="700" letter-spacing="3">NEWSBEAT</text>
+  <text x="105" y="78" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="700" letter-spacing="3">RAREBIRD</text>
   <rect x="1026" y="49" width="199" height="32" rx="16" fill="#fff" fill-opacity=".035" stroke="#444"/>
   <circle cx="1047" cy="65" r="3" fill="#eee"/>
   <text x="1060" y="69" fill="#ccc" font-family="Arial,Helvetica,sans-serif" font-size="11" letter-spacing="1.7">BUILDING IN THE OPEN</text>

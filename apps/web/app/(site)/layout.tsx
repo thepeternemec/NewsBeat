@@ -17,22 +17,22 @@ import GridField from "@/components/site/grid-field";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.newsbeat.dev"),
-  title: "NewsBeat — Meaningful signals for AI agents",
+  title: "Rarebird — Meaningful signals for AI agents",
   description:
-    "NewsBeat is building an intelligence layer for AI agents. Source-linked news is the foundation for meaningful signals, relevant context and clearer understanding.",
+    "Rarebird connects company filings, market measurements and source-linked news for AI agents researching stocks and crypto.",
   openGraph: {
     type: "website",
     url: "https://www.newsbeat.dev",
-    siteName: "NewsBeat",
-    title: "NewsBeat — Meaningful signals for AI agents",
+    siteName: "Rarebird",
+    title: "Rarebird — Meaningful signals for AI agents",
     description:
-      "From reporting to meaningful signals. A source-linked news foundation today, with deeper agent intelligence as the next stage.",
+      "Explore issuer filings, measured market moves and the evidence behind review candidates.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "NewsBeat — Meaningful signals for AI agents",
+    title: "Rarebird — Meaningful signals for AI agents",
     description:
-      "Agent intelligence, grounded in evidence. News foundation live; deeper signal intelligence planned.",
+      "Read current market evidence and see what your agent should investigate next.",
   },
 };
 

@@ -1,7 +1,7 @@
 import CopyButton from "@/components/site/copy-button";
 import AgentInstructions from "@/components/site/agent-instructions";
 
-export const metadata = { title: "Developer reference", description: "Connect NewsBeat through remote MCP, REST or function calling. Current endpoints and working examples." };
+export const metadata = { title: "Developer reference", description: "Connect Rarebird through remote MCP, REST or function calling. Current endpoints and working examples." };
 const API = "https://www.newsbeat.dev/api";
 const MCP_CONFIG = JSON.stringify({ mcpServers: { newsbeat: { url: `${API}/mcp` } } }, null, 2);
 const TOOLS = [
@@ -32,7 +32,7 @@ export default function DocsConnect() {
   return (
     <>
       <div className="docs-head">
-        <span className="sec-eyebrow">Build with NewsBeat</span>
+        <span className="sec-eyebrow">Build with Rarebird</span>
         <h1>MCP &amp; API reference</h1>
         <p className="docs-lead">
           Connect through MCP, REST or function calling. If you just want to ask your assistant
@@ -53,7 +53,7 @@ export default function DocsConnect() {
         <pre>{MCP_CONFIG}</pre>
       </div>
       <p>
-        The server advertises 16 research tools plus one explicit collection-control tool and guidance on when to use them. The host decides
+        The server advertises research tools and an explicit collection-control tool. The host decides
         when tools run and enforces its own approvals. Custom remote connections are not available
         in every assistant or account; this endpoint does not imply directory approval.
       </p>
@@ -77,10 +77,13 @@ export default function DocsConnect() {
         </table>
       </div>
 
+      <h2 id="official-filings">Official filings and reported results</h2>
+      <p>Call <code>newsbeat_catalysts</code> or <code>GET /v2/catalysts</code> for SEC filing records for NVIDIA, Apple, Microsoft and Alphabet. Add a <code>beat_id</code> to select an issuer. Each comparison links its current and prior-year filings. Check the issuer status and fiscal periods before quoting a change. The opportunity brief includes the same filing evidence alongside market candidates.</p>
+
       <h2 id="first-rest-requests">First REST requests</h2>
       <p>Catalog collection is scheduled every 10 minutes. Only when a user explicitly asks for one-minute news, call <code>newsbeat_collection</code> with <code>action: "start"</code>, the priority <code>beat_id</code> and <code>interval_seconds: 60</code>, or POST that body to <code>/v2/collection</code>. It lasts 15 minutes and never auto-renews. Save the returned private session token to stop early. GET status does not activate collection. Market measurements and model analysis retain five-minute schedules.</p>
       <div className="code">
-        <div className="code-bar">Ask NewsBeat a research question <CopyButton text={FIRST_REQUEST} label="requests" /></div>
+        <div className="code-bar">Ask Rarebird a research question <CopyButton text={FIRST_REQUEST} label="requests" /></div>
         <pre>{FIRST_REQUEST}</pre>
       </div>
       <p>
