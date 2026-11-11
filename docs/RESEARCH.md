@@ -43,7 +43,7 @@ Source roles distinguish approximate ownership, opinion, price-commentary and re
 
 Straightforward current-price questions read identified quotes directly, preserving numeric values, source and observation time without a model call. Historical, causal, risk, forecast and mixed news questions continue through reasoning. News headlines cannot substitute for a missing current quote.
 
-One bounded gateway call answers other research questions, distinguishes reports from interpretation, considers alternative explanations and names a next check. Reasoning entries interpret cited evidence rather than repeating headline lists. Where no substantive catalyst is supported, the answer must explain that insufficient-evidence conclusion and the missing check. Schema validation, known fresh citation IDs, verbatim observations and numeric checks reject malformed or unsupported output. Numeric formatting normalizes thousands separators and trailing zeros while preserving signs and magnitudes. Exact cited observation timestamps are recognized separately from market quantities. Interpretations are explicitly labeled; a valid evidence-limit conclusion need not contain a particular modal word. These checks do not prove semantic truth or causality; reasoning still requires review.
+For other research questions the model distinguishes reports from interpretation, considers alternative explanations and names a next check. Each interpretation cites the evidence it uses. Where no substantive catalyst is supported, the answer explains which check is missing. Schema validation, known fresh citation IDs, verbatim observations and numeric checks reject malformed or unsupported output. Numeric formatting normalizes thousands separators and trailing zeros while preserving signs and magnitudes. Exact cited observation timestamps are recognized separately from market quantities. A numeric validation failure can trigger one rewrite that asks for qualitative reasoning and leaves the figures in the sources. The rewrite passes the same validation checks.
 
 ## Limits
 
@@ -53,9 +53,15 @@ This is not a profitable-performance claim. Review alerts, notification delivery
 
 ## Runtime
 
-Research is explicit POST/MCP work and uses Vercel AI Gateway. The question path defaults to the full GPT-4.1 model for evidence reasoning, independently of the scheduled pilot model; set NEWSBEAT_RESEARCH_MODEL to a verified Gateway model ID to override it. Full-model requests cost more than the mini model. Provider pricing and availability must be checked before changing the deployment setting. No new database or provider is required. One generation has an 18-second timeout and 1,600-token output cap. Identical question/evidence fingerprints share a five-minute in-memory cache; at most four generations run concurrently per instance. Cache and concurrency are per server instance, not a global spend budget. Existing public request limits apply. A missing credential, provider failure, timeout or validation failure returns evidence_only without inventing an answer.
+Research is explicit POST/MCP work and uses Vercel AI Gateway. The question path defaults to the full GPT-4.1 model for evidence reasoning, independently of the scheduled pilot model; set NEWSBEAT_RESEARCH_MODEL to a verified Gateway model ID to override it. Full-model requests cost more than the mini model. Provider pricing and availability must be checked before changing the deployment setting. Both attempts share an 18-second deadline, and each has a 1,600-token output cap. Identical question/evidence fingerprints share a five-minute in-memory cache and one in-flight request chain. At most four analyses run concurrently per instance. Existing public request limits apply. A missing credential, provider failure, timeout or unresolved validation failure returns evidence_only.
 
 GET intelligence remains a stored read. Research does not generate or mutate stored signal constructions, start fast collection, create a schedule, send notifications or place trades.
+
+## Repeatable quality checks
+
+Run `node .github/scripts/mcp-live.mjs` to check the deployed MCP tool catalog, a ticker collision and a Bitcoin investment brief. The Bitcoin check records elapsed time, coverage and the validation outcome. With fresh evidence it requires a reasoned answer with fresh citations and a next check. During a coverage gap it requires a wait stance.
+
+For a head-to-head review, ask each assistant the same question in a fresh conversation within the same market window. Record model, timestamp, elapsed time, answer and source links. Review whether each answer identifies the asset, attributes claims to the right sources, preserves numbers and time windows, separates observation from inference, and gives a check that could change the conclusion.
 
 ## Compatibility
 
