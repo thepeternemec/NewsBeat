@@ -112,7 +112,7 @@ export async function researchQuestion(raw: unknown, oidcToken?: string | null):
   base.answer = answer;
   base.method = answer ? "reasoned" : "evidence_only";
   base.status = answer && base.assets.every(a => a.news_status === "fresh" && a.market_status === "fresh") ? "ready" : "partial";
-  base.message = answer ? null : "The evidence is available, but NewsBeat could not validate an answer. Check the sources and try again.";
+  base.message = answer ? null : "The evidence is available, but Rarebird could not validate an answer. Check the sources and try again.";
   base.flow.push({ step: "Reason and identify the next check", status: answer ? "complete" : "limited" });
   return base;
 }

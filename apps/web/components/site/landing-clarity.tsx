@@ -56,7 +56,7 @@ export default function LandingClarity() {
           <div className="clarity-report"><FileText size={17} /><div><span>RELATED COVERAGE</span><strong>The same update. More headlines.</strong><small>Repeated reporting grouped together</small></div></div>
           <div className="clarity-report"><ScanLine size={17} /><div><span>MARKET OBSERVATIONS</span><strong>What did the market do?</strong><small>Available measurements, checked separately</small></div></div>
         </div>
-        <div className="clarity-hub"><i /><BrandMark size={43} /><span>NEWSBEAT</span></div>
+        <div className="clarity-hub"><i /><BrandMark size={43} /><span>RAREBIRD</span></div>
         <div className="clarity-market">
           <div><span>EXAMPLE MARKET COMPARISON</span><ScanLine size={16} /></div>
           <svg viewBox="0 0 440 130" preserveAspectRatio="none">
