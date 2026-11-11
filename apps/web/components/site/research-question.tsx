@@ -68,6 +68,16 @@ export default function ResearchQuestion({ beatIds, label, compact = false }: {
         {result && <div className="research-question-result">
           <div className="research-question-flow" aria-label="Research coverage">{result.flow.map(step =>
             <span key={step.step} data-state={step.status}><i aria-hidden="true" />{step.step}</span>)}</div>
+          <ResearchDetails result={result} onSelect={beatId => void research(result.question, [beatId])} />
+        </div>}
+      </div>
+      {!compact && <p className="research-question-note">Question research across 2,030 stock and crypto assets. Measured market checks cover a six-asset pilot; missing evidence stays visible.</p>}
+    </section>
+  );
+}
+
+export function ResearchDetails({ result, onSelect }: { result: ResearchResponse; onSelect?: (beatId: string) => void }) {
+  return <>
           {result.answer ? <>
             <h3>The answer</h3><p className="research-question-answer">{result.answer.answer}</p>
             <details><summary>Why this view</summary>
@@ -82,8 +92,8 @@ export default function ResearchQuestion({ beatIds, label, compact = false }: {
             {result.answer.unknowns.length > 0 && <details><summary>What remains uncertain</summary><ul>{result.answer.unknowns.map(text => <li key={text}>{text}</li>)}</ul></details>}
             <div className="research-question-next"><h4>What to check next</h4><ul>{result.answer.next_checks.map(text => <li key={text}>{text}</li>)}</ul></div>
           </> : <p role="status">{result.message}</p>}
-          {result.candidates.length > 0 && <div className="research-question-candidates">{result.candidates.map(asset =>
-            <button type="button" key={asset.beat_id} onClick={() => void research(result.question, [asset.beat_id])}>{asset.label} · {asset.ticker} · {asset.asset === "crypto" ? "Crypto" : "Stock"}</button>)}</div>}
+          {onSelect && result.candidates.length > 0 && <div className="research-question-candidates">{result.candidates.map(asset =>
+            <button type="button" key={asset.beat_id} onClick={() => void onSelect?.(asset.beat_id)}>{asset.label} · {asset.ticker} · {asset.asset === "crypto" ? "Crypto" : "Stock"}</button>)}</div>}
           {result.assets.length > 0 && <p className="research-question-coverage">{result.assets.map(asset => asset.label + ": news " + asset.news_status + ", market " + asset.market_status).join(" · ")}</p>}
           <details><summary>Evidence and coverage</summary>
             {result.evidence.map(item => <div className="research-question-evidence" key={item.id}>
@@ -92,9 +102,5 @@ export default function ResearchQuestion({ beatIds, label, compact = false }: {
             </div>)}
             <ul>{result.limitations.map(text => <li key={text}>{text}</li>)}</ul>
           </details>
-        </div>}
-      </div>
-      {!compact && <p className="research-question-note">Question research across 2,030 stock and crypto assets. Measured market checks cover a six-asset pilot; missing evidence stays visible.</p>}
-    </section>
-  );
+  </>;
 }

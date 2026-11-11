@@ -12,12 +12,12 @@ const PRICE_IDS: Record<string, string> = { BTC: "bitcoin", ETH: "ethereum", SOL
 export const priceIdsForAsset = (asset: Pick<Beat, "ticker" | "asset"> | null) =>
   asset?.asset === "crypto" && PRICE_IDS[asset.ticker] ? [PRICE_IDS[asset.ticker]!] : [];
 
-async function gather(asset: Beat, question: string, context: "fundamentals" | "liquidity" | "risk") {
+async function gather(asset: Beat, question: string, context: "fundamentals" | "liquidity" | "risk", intelligenceRead: typeof readIntelligence) {
   const meta: ResearchAsset = { ...assetView(asset), news_status: "unavailable", market_status: "unavailable", reports_scanned: 0, coverage_truncated: false, limitations: [] };
   const evidence: ResearchEvidence[] = [];
   const [news, intelligence, quote, official] = await Promise.allSettled([
     stories(asset.beat_id, 40, 200),
-    readIntelligence(asset.beat_id, context),
+    intelligenceRead(asset.beat_id, context),
     priceIdsForAsset(asset).length ? prices(priceIdsForAsset(asset)) : Promise.resolve(null),
     readCatalysts({ beat_id: asset.beat_id }),
   ]);
@@ -74,7 +74,7 @@ async function gather(asset: Beat, question: string, context: "fundamentals" | "
 }
 
 /** Question -> identity -> relevant reporting + measured context -> reasoning -> next check. */
-export async function researchQuestion(raw: unknown, oidcToken?: string | null): Promise<ResearchResponse> {
+export async function researchQuestion(raw: unknown, oidcToken?: string | null, intelligenceRead = readIntelligence): Promise<ResearchResponse> {
   const parsed = ResearchRequestSchema.safeParse(raw);
   if (!parsed.success) throw new NewsError("invalid_request", "Provide a question of 3–600 characters and optionally one to three supported beat_ids.", 400);
   const input = parsed.data;
@@ -84,7 +84,7 @@ export async function researchQuestion(raw: unknown, oidcToken?: string | null):
     message: resolved.issue, generation_error: null, assets: [], candidates: resolved.candidates, evidence: [], limitations: [],
     flow: [{ step: "Resolve assets", status: resolved.issue ? "limited" : "complete" }] };
   if (resolved.issue) return base;
-  const gathered = await Promise.all(resolved.assets.map(asset => gather(asset, input.question, input.context)));
+  const gathered = await Promise.all(resolved.assets.map(asset => gather(asset, input.question, input.context, intelligenceRead)));
   base.assets = gathered.map(g => g.asset);
   base.evidence = gathered.flatMap(g => g.evidence);
   base.limitations = [...new Set(gathered.flatMap(g => g.asset.limitations))];

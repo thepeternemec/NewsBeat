@@ -9,6 +9,8 @@ MCP: https://www.newsbeat.dev/api/mcp
 
 ## Question-driven research
 
+For an investment brief by ticker, call `newsbeat_investment` with `ticker`. A shared symbol returns candidates for selection by `beat_id`. Preserve the stance, cited evidence, expiry and coverage gaps when sharing the brief.
+
 Start with `newsbeat_research` or `POST /api/v2/research` and pass the user's actual `question`. Optionally supply one to three resolved `beat_ids` and `context` (`fundamentals`, `liquidity` or `risk`). The flow resolves the asset, retrieves relevant reporting, checks available market measurements, and returns a direct answer, cited reasoning, unknowns and observable next checks. It is available across the 2,030-asset news catalog; measured quantitative coverage remains the six-asset pilot. Comparisons are bounded to three assets.
 
 Read `status`, `method`, `assets` and `limitations`. A `partial` response can contain useful reasoning with missing market data. `needs_clarification` returns candidates instead of guessing an ambiguous identity. `evidence_only` means no validated model answer was produced. Missing prices cannot establish a market reaction, anomaly or entry time. Evidence is a bounded latest-day headline window, not full reporting or complete history.

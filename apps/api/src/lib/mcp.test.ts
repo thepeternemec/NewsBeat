@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { NEWS_TOOLS, type CatalystRadar, type ResearchResponse } from "@newsbeat/contracts";
+import { NEWS_TOOLS, type CatalystRadar, type InvestmentBrief, type ResearchResponse } from "@newsbeat/contracts";
 import { mcpResponse } from "./mcp.js";
 
 type RpcBody<T> = {
@@ -57,4 +57,10 @@ test("MCP exposes filing coverage through the Rarebird alias", { timeout: 10000 
   assert.notEqual(result?.isError, true);
   assert.equal(result?.structuredContent?.coverage[0]?.status, "unsupported");
   assert.deepEqual(result?.structuredContent?.items, []);
+});
+
+test("MCP ticker lookup asks users to disambiguate a shared symbol", async () => {
+  const result = await call<InvestmentBrief>("tools/call", { name: "rarebird_investment", arguments: { ticker: "SUI" } });
+  assert.equal(result?.structuredContent?.stance, null);
+  assert.deepEqual(result?.structuredContent?.research.candidates.map(asset => asset.asset).sort(), ["crypto", "equity"]);
 });

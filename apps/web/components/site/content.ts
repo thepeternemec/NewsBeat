@@ -115,7 +115,7 @@ export const FAQ = [
   },
   {
     "q": "Can I use it in Telegram or Discord?",
-    "a": "Developers can use the API in their own bots today. Ready-to-use Telegram and Discord integrations are planned. Connecting NewsBeat to an assistant does not automatically create a messaging bot."
+    "a": "Share a live brief from Ask Rarebird to Telegram. In a configured group, use /ask BTC or /ask NVDA for the same sourced research. Developers can connect other chat apps through the API."
   }
 ];
 

@@ -337,3 +337,8 @@ create table if not exists public.newsbeat_official_evidence (
   lease_token text,
   lease_until timestamptz
 );
+-- Delivery claims deduplicate Telegram group replies and opt-in ticker posts.
+create table if not exists public.newsbeat_telegram_deliveries (
+  delivery_key text primary key,
+  claimed_at timestamptz not null default now()
+);

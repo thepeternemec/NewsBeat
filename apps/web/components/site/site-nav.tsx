@@ -28,9 +28,9 @@ export default function SiteNav({ active }: { active?: string }) {
           ))}
         </span>
         <span className="nav-desktop-theme"><ThemeToggle /></span>
-        <a className="nav-cta" href="/docs/quickstart">
-          <span className="nav-cta-wide">Connect your agent</span>
-          <span className="nav-cta-compact">Connect</span>
+        <a className="nav-cta" href="/ask" aria-current={active === "/ask" ? "page" : undefined}>
+          <span className="nav-cta-wide">Ask Rarebird</span>
+          <span className="nav-cta-compact">Ask</span>
         </a>
         <MobileNavigation links={LINKS} active={active} />
       </div>

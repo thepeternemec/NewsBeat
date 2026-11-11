@@ -39,7 +39,7 @@ export default function Home() {
             <h1><span className="nb-headline-line" data-hero-line>Connect the dots.</span><span className="nb-headline-line nb-headline-muted" data-hero-line>See the bigger picture.</span></h1>
             <p className="bs-lede">Rarebird connects reporting with market evidence so your agent can explain what changed, why it could matter, and whether to investigate now or wait.</p>
             <div className="hero-cta">
-              <a className="btn-primary" href="/docs/try">Try a question <ArrowRight size={16} /></a>
+              <a className="btn-primary" href="/ask">Ask Rarebird <ArrowRight size={16} /></a>
               <a className="bs-text-link" href="/for-agents">Connect your agent <ArrowUpRight size={16} /></a>
             </div>
             <p className="nb-home-cadence">News archive · 10-minute checks <span aria-hidden="true">/</span> <a href="/for-agents#collection">1-minute checks on request <ArrowUpRight size={12} /></a></p>
@@ -116,7 +116,7 @@ export default function Home() {
         <div className="wrap">
           <span className="bs-kicker">RAREBIRD / AGENT INTELLIGENCE</span>
           <h2 id="closing-title">Your next question.<br />A clearer starting point.</h2>
-          <div className="hero-cta"><a className="btn-primary" href="/docs/try">Try a question <ArrowRight size={16} /></a><a className="bs-text-link" href="/for-agents">Connect your agent <ArrowUpRight size={15} /></a></div>
+          <div className="hero-cta"><a className="btn-primary" href="/ask">Ask Rarebird <ArrowRight size={16} /></a><a className="bs-text-link" href="/for-agents">Connect your agent <ArrowUpRight size={15} /></a></div>
           <p className="bs-closing-fine">Evidence you can follow. Uncertainty you can see. A next check you can use.</p>
         </div>
       </section>

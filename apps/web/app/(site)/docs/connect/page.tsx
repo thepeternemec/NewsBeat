@@ -5,6 +5,7 @@ export const metadata = { title: "Developer reference", description: "Connect Ra
 const API = "https://www.newsbeat.dev/api";
 const MCP_CONFIG = JSON.stringify({ mcpServers: { newsbeat: { url: `${API}/mcp` } } }, null, 2);
 const TOOLS = [
+  ["newsbeat_investment", "Get the same ticker brief shown on Ask Rarebird, with a stance and its evidence.", "POST /v2/investment"],
   ["newsbeat_research", "Answer a question with asset-specific evidence, conditional reasoning, unknowns and next checks.", "POST /v2/research"],
   ["newsbeat_collection", "Explicitly request one-minute collection for 15 minutes, read status, or stop your session.", "GET/POST /v2/collection"],
   ["newsbeat_intelligence", "Read stored event interpretations, evidence and follow-up checks for the six-asset pilot.", "GET /v2/intelligence?beat_id=…"],
@@ -79,6 +80,12 @@ export default function DocsConnect() {
 
       <h2 id="official-filings">Official filings and reported results</h2>
       <p>Call <code>newsbeat_catalysts</code> or <code>GET /v2/catalysts</code> for SEC filing records for NVIDIA, Apple, Microsoft and Alphabet. Add a <code>beat_id</code> to select an issuer. Each comparison links its current and prior-year filings. Check the issuer status and fiscal periods before quoting a change. The opportunity brief includes the same filing evidence alongside market candidates.</p>
+
+      <h2 id="investment-briefs">Investment briefs by ticker</h2>
+      <p>Open <a href="/ask">Ask Rarebird</a> to see an example and run a live lookup. Agents can call <code>rarebird_investment</code> or send <code>{'{"ticker":"BTC"}'}</code> to <code>POST /v2/investment</code>. When a ticker is ambiguous, choose a returned candidate and send its <code>beat_id</code> with the ticker. The stance reflects Rarebird’s current asset-level research and short-horizon review checks. Time horizon, risk tolerance and portfolio fit remain individual decisions.</p>
+
+      <h2 id="telegram">Telegram groups</h2>
+      <p>Use <strong>Share to Telegram</strong> on a live brief to open Telegram’s chat picker. In a configured group, send <code>/ask BTC</code> or address the bot with <code>/ask@YourBot BTC</code>. The reply includes the stance, reasoning, sources and a link to open the full ticker view. A group admin can configure the daily ticker feed using the <a href="https://github.com/thepeternemec/NewsBeat/blob/main/docs/TELEGRAM.md">Telegram setup guide</a>.</p>
 
       <h2 id="first-rest-requests">First REST requests</h2>
       <p>Catalog collection is scheduled every 10 minutes. Only when a user explicitly asks for one-minute news, call <code>newsbeat_collection</code> with <code>action: "start"</code>, the priority <code>beat_id</code> and <code>interval_seconds: 60</code>, or POST that body to <code>/v2/collection</code>. It lasts 15 minutes and never auto-renews. Save the returned private session token to stop early. GET status does not activate collection. Market measurements and model analysis retain five-minute schedules.</p>
