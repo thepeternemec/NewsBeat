@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import BrandMark from "@/components/site/brand-mark";
 
-export const alt = "NewsBeat — Meaningful signals for AI agents.";
+export const alt = "Rarebird — Meaningful signals for AI agents.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -21,7 +21,7 @@ export default function OpenGraphImage() {
     >
       <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
         <BrandMark size={52} />
-        <span style={{ fontSize: 24, fontWeight: 700, letterSpacing: 5 }}>NEWSBEAT</span>
+        <span style={{ fontSize: 24, fontWeight: 700, letterSpacing: 5 }}>RAREBIRD</span>
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", marginTop: 60 }}>

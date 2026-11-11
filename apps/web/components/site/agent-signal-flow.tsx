@@ -7,7 +7,7 @@ import "./agent-signal-flow.css";
 
 const STEPS = [
   { label: "News", title: "A company changes its outlook.", text: "Reporting arrives with its source attached." },
-  { label: "Context", title: "Has the picture changed?", text: "NewsBeat checks what is new and how the market responds." },
+  { label: "Context", title: "Has the picture changed?", text: "Rarebird checks what is new and how the market responds." },
   { label: "Your agent", title: "A reason to watch. A next check.", text: "Your agent receives the evidence, the interpretation and the limits." },
 ] as const;
 
@@ -36,7 +36,7 @@ export default function AgentSignalFlow() {
     return () => window.clearInterval(timer);
   }, [playing]);
   return <figure className="signal-engine" ref={root} data-step={step} data-playing={playing} aria-label="Illustrative news-to-agent workflow">
-    <div className="signal-engine-top"><span><i /> NEWSBEAT IN MOTION</span><button type="button" disabled={reduced} onClick={() => setPaused(value => !value)} aria-label={reduced ? "Animation disabled by your motion preference" : paused ? "Play illustration" : "Pause illustration"} title={reduced ? "Motion disabled by your system preference" : paused ? "Play" : "Pause"}>{paused || reduced ? <Play size={13} /> : <Pause size={13} />}</button></div>
+    <div className="signal-engine-top"><span><i /> RAREBIRD IN MOTION</span><button type="button" disabled={reduced} onClick={() => setPaused(value => !value)} aria-label={reduced ? "Animation disabled by your motion preference" : paused ? "Play illustration" : "Pause illustration"} title={reduced ? "Motion disabled by your system preference" : paused ? "Play" : "Pause"}>{paused || reduced ? <Play size={13} /> : <Pause size={13} />}</button></div>
     <div className="signal-engine-scene">
       <svg className="signal-engine-links" viewBox="0 0 640 290" preserveAspectRatio="none" aria-hidden="true">
         <g className="signal-engine-rail" data-active={step === 0}><path d="M160 68 C240 68 228 145 320 145" /><path d="M160 145 H320" /><path d="M160 222 C240 222 228 145 320 145" /><path className="signal-engine-packet" d="M160 68 C240 68 228 145 320 145" /><path className="signal-engine-packet packet-later" d="M160 222 C240 222 228 145 320 145" /></g>

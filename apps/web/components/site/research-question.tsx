@@ -50,8 +50,8 @@ export default function ResearchQuestion({ beatIds, label, compact = false }: {
     }
   }
   return (
-    <section className={"research-question" + (compact ? " research-question-compact" : "")} aria-label="Ask NewsBeat">
-      <div className="research-question-heading"><Sparkles size={15} aria-hidden="true" /><span>ASK NEWSBEAT{label ? " · " + label : ""}</span></div>
+    <section className={"research-question" + (compact ? " research-question-compact" : "")} aria-label="Ask Rarebird">
+      <div className="research-question-heading"><Sparkles size={15} aria-hidden="true" /><span>ASK RAREBIRD{label ? " · " + label : ""}</span></div>
       <form onSubmit={event => { event.preventDefault(); void research(question); }}>
         <label htmlFor={id}>{compact ? "What do you want to understand?" : "Ask about a company, a market move or a risk."}</label>
         <div className="research-question-input">
