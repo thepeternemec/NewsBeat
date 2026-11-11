@@ -13,6 +13,7 @@ import { researchQuestion, researchCoverage } from "./research.js";
 import { readInvestmentBrief } from "./investment.js";
 import { readOpportunities } from "./opportunities.js";
 import { readCatalysts } from "./catalysts.js";
+import { readTokenIntelligence } from "./token-intelligence.js";
 export const newsRoutes = new Hono();
 newsRoutes.onError((error, c) => { if (error instanceof NewsError)
     return c.json({ error: { code: error.code, message: error.message } }, error.status as 400 | 404 | 410 | 503); console.error("news request failed", error.name); return c.json({ error: { code: "service_unavailable", message: "News is temporarily unavailable." } }, 503); });
@@ -21,6 +22,10 @@ const clamp = (raw: string | undefined, fallback: number, max: number) => {
     return Number.isFinite(n) && n >= 0 ? Math.min(n, max) : fallback;
 };
 newsRoutes.get("/research", c => c.json({ ...researchCoverage, method: "POST", body: { question: "Why is NVIDIA moving, and what should I check next?" } }));
+newsRoutes.get("/tokens", async c => {
+    c.header("Cache-Control", "no-store");
+    return c.json(await readTokenIntelligence(c.req.query("asset") ?? ""));
+});
 newsRoutes.post("/investment", async c => {
     c.header("Cache-Control", "no-store");
     if (Number(c.req.header("content-length") ?? 0) > 2048) throw new NewsError("invalid_request", "Ticker request is too large.", 413);
@@ -128,6 +133,10 @@ export async function callNewsTool(name: string, args: unknown, oidcToken?: stri
     name = name.replace(/^(?:newsgraph|newsbeat|rarebird)_/, "newsbeat_");
     if (name === "newsbeat_research") return researchQuestion(args, oidcToken);
     if (name === "newsbeat_investment") return readInvestmentBrief(args, oidcToken);
+    if (name === "newsbeat_token_intelligence") {
+        const input = z.object({ asset: z.string().max(80) }).strict().parse(args);
+        return readTokenIntelligence(input.asset);
+    }
     if (name === "newsbeat_collection") return collectionControl(args);
     if (name === "newsbeat_opportunities") return readOpportunities(args);
     if (name === "newsbeat_catalysts") return readCatalysts(args);

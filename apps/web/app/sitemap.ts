@@ -8,6 +8,7 @@ const PAGES = [
   "/connect",
   "/intelligence",
   "/ask",
+  "/tokens",
   "/market-checks",
   "/for-agents",
   "/docs",

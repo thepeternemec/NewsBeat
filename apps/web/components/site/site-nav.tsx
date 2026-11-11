@@ -9,6 +9,7 @@ import "./mobile-navigation.css";
 const LINKS = [
   { href: "/#agent-workflow", label: "How it works", description: "News, intelligence and timing—in one guided view" },
   { href: "/intelligence", label: "Intelligence", description: "Check current opportunities and their evidence" },
+  { href: "/tokens", label: "Tokens", description: "Research a token by chain and contract" },
   { href: "/for-agents", label: "For agents", description: "Connect, ask and follow what changed" },
   { href: "/docs", label: "Docs", description: "Start building with MCP and REST" },
   { href: "/status", label: "Status", description: "Check the current news service" },
