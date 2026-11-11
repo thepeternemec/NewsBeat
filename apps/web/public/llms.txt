@@ -127,6 +127,7 @@ Rarebird is a news feed for AI agents following stocks and crypto. It exposes 16
 | `newsbeat_ask` | `GET /v2/ask?q=` | Identity, headlines, prices and chain state in one attributed call |
 | `newsbeat_chain` | `GET /v2/chain` | Ethereum block and base fee, Solana slot |
 | `newsbeat_token` | `GET /v2/token?asset=` | Token price by contract address |
+| `newsbeat_token_intelligence` | `GET /v2/tokens?asset=` | Contract-specific DEX pools and selected issuer mappings |
 | `newsbeat_signals` | `GET /v2/signals` | Funding rates, DEX volume and stablecoin supply |
 
 For questions, use newsbeat_research first. Use original news and changes tools for exact reporting and cursor follow-ups.

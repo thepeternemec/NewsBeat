@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { parseTokenAsset, TOKEN_ADDRESS_ERROR, TOKEN_CHAINS, TOKENIZED_EQUITIES,
-  type TokenChain, type TokenIntelligence } from "@newsbeat/contracts";
+  type TokenChain, type TokenIntelligence } from "@newsbeat/contracts/token-intelligence";
 import CopyButton from "./copy-button";
 import { API_BASE } from "./content";
 import "./token-lookup.css";
