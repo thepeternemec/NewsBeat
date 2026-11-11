@@ -5,7 +5,7 @@ import "./quickstart.css";
 
 export const metadata = { title: "Use Rarebird with your assistant", description: "Connect Rarebird in three steps. Add the connection address, ask a news question, and get sources and dates in your assistant." };
 const MCP_URL = "https://www.newsbeat.dev/api/mcp";
-const FIRST_QUESTION = "Use Rarebird to research what could change the outlook for Nvidia. Explain the evidence, missing market checks and what to watch next.";
+const FIRST_QUESTION = "Use Rarebird. What could explain Bitcoin’s latest move, and what should I check next?";
 const questions = [
   { label: "Follow a company", text: "What are the main risks in Apple’s latest reporting?" },
   { label: "Compare the coverage", text: "Compare recent news about Nvidia and AMD. Keep each company’s sources separate." },
@@ -25,13 +25,13 @@ export default function DocsQuickstart() {
       <header className="docs-head quickstart-head">
         <div className="quickstart-eyebrow"><span>QUICKSTART</span><span>Free public access</span></div>
         <h1>Connect once.<br /><span>Ask naturally.</span></h1>
-        <p className="docs-lead">The next time you ask “What is happening with Nvidia?”, let your assistant bring the news, sources and dates into the conversation.</p>
+        <p className="docs-lead">Add Rarebird to your AI assistant. Ask about Bitcoin, a stock on your watchlist, or a move you want to understand, and get recent reporting with sources.</p>
         <div className="quickstart-assurances"><span><Check size={13} /> No Rarebird account</span><span><Check size={13} /> No API key</span></div>
       </header>
 
       <div className="quickstart-try">
-        <div><strong>Want to see the answer first?</strong><span>Ask a company or crypto question. See the answer, reasoning and next checks in your browser.</span></div>
-        <a href="/docs/try">Try Rarebird free <ArrowUpRight size={14} /></a>
+        <div><strong>Want to see the answer first?</strong><span>Enter a stock or crypto ticker for a source-linked brief in your browser.</span></div>
+        <a href="/ask">Try a live brief <ArrowUpRight size={14} aria-hidden="true" /></a>
       </div>
 
       <nav className="quickstart-route" aria-label="Setup steps">

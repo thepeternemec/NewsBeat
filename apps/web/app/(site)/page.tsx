@@ -18,8 +18,8 @@ import "./landing-cadence.css";
 import "./landing-experience.css";
 import "./home-story.css";
 
-const DESCRIPTION = "Rarebird connects reporting with available market evidence so your AI agent can explain what changed, what could matter and what to check next.";
-const TITLE = "Rarebird — Meaningful signals for AI agents";
+const DESCRIPTION = "Connect Rarebird to your AI agent for fresh crypto and stock news, source links, and market context. Try a live ticker brief for free.";
+const TITLE = "Rarebird — The story behind the market move";
 export const metadata = {
   title: TITLE, description: DESCRIPTION,
   alternates: { canonical: "https://www.newsbeat.dev" },
@@ -35,16 +35,16 @@ export default function Home() {
       <section className="bs-hero" id="top">
         <div className="wrap bs-hero-grid">
           <div className="bs-hero-copy">
-            <span className="bs-kicker"><span /> MARKET INTELLIGENCE FOR YOUR AGENT</span>
-            <h1><span className="nb-headline-line" data-hero-line>Connect the dots.</span><span className="nb-headline-line nb-headline-muted" data-hero-line>See the bigger picture.</span></h1>
-            <p className="bs-lede">Rarebird connects reporting with market evidence so your agent can explain what changed, why it could matter, and whether to investigate now or wait.</p>
+            <span className="bs-kicker"><span /> CRYPTO + STOCK RESEARCH FOR YOUR AGENT</span>
+            <h1><span className="nb-headline-line" data-hero-line>The market moved.</span><span className="nb-headline-line nb-headline-muted" data-hero-line>Know what changed.</span></h1>
+            <p className="bs-lede">Give your AI agent fresh crypto and stock news, links to the evidence, and market context before your next trade.</p>
             <div className="hero-cta">
-              <a className="btn-primary" href="/ask">Ask Rarebird <ArrowRight size={16} /></a>
-              <a className="bs-text-link" href="/for-agents">Connect your agent <ArrowUpRight size={16} /></a>
+              <a className="btn-primary" href="/docs/quickstart">Add Rarebird to your agent <ArrowRight size={16} aria-hidden="true" /></a>
+              <a className="bs-text-link" href="/ask">Try a live brief <ArrowUpRight size={16} aria-hidden="true" /></a>
             </div>
-            <p className="nb-home-cadence">News archive · 10-minute checks <span aria-hidden="true">/</span> <a href="/for-agents#collection">1-minute checks on request <ArrowUpRight size={12} /></a></p>
-            <p className="ni-stage-note">Stocks + crypto · Evidence + context · MCP + API</p>
-            <a className="nb-flow-cue" href="#agent-workflow"><span aria-hidden="true" /> See how the picture comes together <ArrowRight size={13} aria-hidden="true" /></a>
+            <p className="nb-home-cadence">Free public access · No API key · Compatible MCP apps</p>
+            <p className="ni-stage-note">Trade on fomo, Robinhood, or elsewhere? Start with BTC, ETH, or a stock on your watchlist.</p>
+            <a className="nb-flow-cue" href="#agent-workflow"><span aria-hidden="true" /> See how Rarebird checks a move <ArrowRight size={13} aria-hidden="true" /></a>
           </div>
           <div className="ni-hero-model nb-live-stage"><span className="nb-live-stage-orbit" aria-hidden="true" /><LandingNewsLookup /></div>
         </div>
@@ -91,18 +91,18 @@ export default function Home() {
         <div className="wrap home-agent-layout">
           <div className="home-agent-copy" data-story-reveal>
             <span className="home-story-eyebrow">04 / YOUR AGENT</span>
-            <h2 id="home-agent-title">Bring the whole picture<br /><span>into the conversation.</span></h2>
-            <p>Rarebird brings the evidence and its limits into the assistant you already use. Ask a stock or crypto question in your own words.</p>
+            <h2 id="home-agent-title">Connect once.<br /><span>Ask when it moves.</span></h2>
+            <p>Add Rarebird to a compatible AI assistant and ask about the assets you follow.</p>
             <ol className="home-connect-steps">
-              <li><span>1</span><div><strong>Add Rarebird.</strong><p>One connection through MCP or REST.</p></div></li>
-              <li><span>2</span><div><strong>Ask what matters to you.</strong><p>A company, a move, a change in the story.</p></div></li>
-              <li><span>3</span><div><strong>Follow the next check.</strong><p>Keep the sources, context and open questions together.</p></div></li>
+              <li><span>1</span><div><strong>Add Rarebird.</strong><p>Paste the MCP address into your assistant’s connector settings.</p></div></li>
+              <li><span>2</span><div><strong>Ask about a ticker.</strong><p>Start with a price move, a headline, or a risk you’re watching.</p></div></li>
+              <li><span>3</span><div><strong>Check the evidence.</strong><p>Open the sources and see what could change the answer.</p></div></li>
             </ol>
-            <a className="home-story-link" href="/docs/quickstart">Connect your agent <ArrowUpRight size={17} /></a>
+            <a className="home-story-link" href="/docs/quickstart">Add Rarebird to your agent <ArrowUpRight size={17} aria-hidden="true" /></a>
           </div>
           <figure className="home-agent-visual" data-story-reveal>
             <span className="home-story-eyebrow">A QUESTION, IN YOUR OWN WORDS</span>
-            <blockquote>“What changed with NVIDIA—and what should I look at next?”</blockquote>
+            <blockquote>“Use Rarebird. What could explain Bitcoin’s latest move, and what should I check next?”</blockquote>
             <div className="home-agent-handoff" aria-hidden="true"><BrandMark size={62} /><span><i /></span><div><Bot size={32} /></div></div>
             <span className="home-agent-payload-label">WHAT RAREBIRD CAN BRING TO THE ANSWER</span>
             <div className="home-agent-payload"><span><FileText size={17} /> The reported change</span><span><ScanLine size={17} /> Available market evidence</span><span><HelpCircle size={17} /> What’s still uncertain</span><span><Check size={17} /> An observable next check</span></div>
@@ -114,10 +114,9 @@ export default function Home() {
 
       <section className="bs-closing" id="community" aria-labelledby="closing-title">
         <div className="wrap">
-          <span className="bs-kicker">RAREBIRD / AGENT INTELLIGENCE</span>
-          <h2 id="closing-title">Your next question.<br />A clearer starting point.</h2>
-          <div className="hero-cta"><a className="btn-primary" href="/ask">Ask Rarebird <ArrowRight size={16} /></a><a className="bs-text-link" href="/for-agents">Connect your agent <ArrowUpRight size={15} /></a></div>
-          <p className="bs-closing-fine">Evidence you can follow. Uncertainty you can see. A next check you can use.</p>
+          <h2 id="closing-title">Check the story<br />before your next trade.</h2>
+          <div className="hero-cta"><a className="btn-primary" href="/docs/quickstart">Add Rarebird to your agent <ArrowRight size={16} aria-hidden="true" /></a><a className="bs-text-link" href="/ask">Try a live brief <ArrowUpRight size={15} aria-hidden="true" /></a></div>
+          <p className="bs-closing-fine">Ask about a ticker. Get the sources and a next check.</p>
         </div>
       </section>
     </main>
