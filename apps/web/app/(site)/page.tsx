@@ -43,7 +43,7 @@ export default function Home() {
               <a className="bs-text-link" href="/ask">Try a live brief <ArrowUpRight size={16} aria-hidden="true" /></a>
             </div>
             <p className="nb-home-cadence">Free public access · No API key · Compatible MCP apps</p>
-            <p className="ni-stage-note">Trade on fomo, Robinhood, or elsewhere? <a href="/tokens">Check a token by contract</a>.</p>
+            <p className="ni-stage-note">Trade on fomo, Robinhood, or elsewhere? <a href="/crypto">See the crypto market overview</a> or <a href="/tokens">check a token by contract</a>.</p>
             <a className="nb-flow-cue" href="#agent-workflow"><span aria-hidden="true" /> See how Rarebird checks a move <ArrowRight size={13} aria-hidden="true" /></a>
           </div>
           <div className="ni-hero-model nb-live-stage"><span className="nb-live-stage-orbit" aria-hidden="true" /><LandingNewsLookup /></div>
