@@ -100,6 +100,7 @@ Returns 16 research calls plus one explicit collection-control call in OpenAI fu
 | `newsbeat_chain` | Read Ethereum and Solana chain state. | `GET /v2/chain` |
 | `newsbeat_token` | Read a reference price by contract address. | `GET /v2/token?asset=…` |
 | `newsbeat_token_intelligence` | Read exact-contract pool data, issuer mappings and available underlying reporting. | `GET /v2/tokens?asset=…` |
+| `newsbeat_market_briefing` | Read the current crypto briefing and its sources. | `GET /v2/briefing` |
 | `newsbeat_signals` | Read funding, DEX volume and stablecoin supply. | `GET /v2/signals` |
 
 `GET /v2/topics?q=` searches by ticker or company name across +2000 topics —

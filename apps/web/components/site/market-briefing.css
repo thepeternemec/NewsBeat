@@ -1,0 +1,44 @@
+.rb-brief {
+  min-width: 0;
+  padding: clamp(19px, 3vw, 30px);
+  border: 1px solid var(--border-default);
+  border-radius: 22px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+.rb-brief header > p, .rb-brief dt {
+  color: var(--text-secondary);
+  font: 11px/1.5 var(--font-mono);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.rb-brief header h2 {
+  font-size: clamp(24px, 3.5vw, 37px);
+  line-height: 1.08;
+  letter-spacing: -.04em;
+  margin: 9px 0 8px;
+}
+.rb-brief header > time, .rb-brief-source {
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+.rb-brief-evidence { margin: 18px 0 0; }
+.rb-brief-evidence > div { padding: 12px 0; border-top: 1px solid var(--border-default); }
+.rb-brief-evidence dd { margin: 5px 0 0; font-size: 14px; line-height: 1.5; overflow-wrap: anywhere; }
+.rb-brief-evidence dd p { margin: 0; }
+.rb-brief-source, .rb-brief-detail {
+  display: inline-block;
+  margin-top: 6px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.rb-brief-detail { font-size: 13px; }
+.rb-brief a svg { display: inline-block; vertical-align: middle; }
+.crypto-overview .rb-brief { margin-bottom: 22px; }
+.crypto-overview .rb-brief-evidence { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 700px) {
+  .crypto-overview .rb-brief-evidence { grid-template-columns: 1fr; gap: 0; }
+}
+.rb-brief-search { margin-block: 24px 0; }
+.rb-brief-search summary { cursor: pointer; margin-bottom: 12px; font-size: 14px; }

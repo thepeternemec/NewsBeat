@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
+import MarketBriefingCard from "@/components/site/market-briefing";
 import CryptoOverview from "@/components/site/crypto-overview";
 import "./crypto.css";
 
@@ -23,6 +24,7 @@ export default function CryptoPage() {
           </div>
           <a href="/tokens">Look up a token contract <ArrowUpRight size={16} aria-hidden="true" /></a>
         </header>
+        <MarketBriefingCard />
         <CryptoOverview />
       </div>
     </main>

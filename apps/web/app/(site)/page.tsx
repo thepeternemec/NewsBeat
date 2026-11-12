@@ -1,6 +1,7 @@
 import { ArrowRight, ArrowUpRight, Bot, Check, FileText, HelpCircle, ScanLine } from "lucide-react";
 import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
+import MarketBriefingCard from "@/components/site/market-briefing";
 import LandingNewsLookup from "@/components/site/landing-news-lookup";
 import LandingClarity from "@/components/site/landing-clarity";
 import LandingMotion from "@/components/site/landing-motion";
@@ -37,16 +38,16 @@ export default function Home() {
           <div className="bs-hero-copy">
             <span className="bs-kicker"><span /> CRYPTO + STOCK RESEARCH FOR YOUR AGENT</span>
             <h1><span className="nb-headline-line" data-hero-line>The market moved.</span><span className="nb-headline-line nb-headline-muted" data-hero-line>Know what changed.</span></h1>
-            <p className="bs-lede">Give your AI agent fresh crypto and stock news, links to the evidence, and market context before your next trade.</p>
+            <p className="bs-lede">Open Rarebird for a crypto market briefing with the biggest moves, source-linked reporting, and what’s worth watching.</p>
             <div className="hero-cta">
               <a className="btn-primary" href="/docs/quickstart">Add Rarebird to your agent <ArrowRight size={16} aria-hidden="true" /></a>
-              <a className="bs-text-link" href="/ask">Try a live brief <ArrowUpRight size={16} aria-hidden="true" /></a>
+              <a className="bs-text-link" href="/ask">Research a ticker <ArrowUpRight size={16} aria-hidden="true" /></a>
             </div>
             <p className="nb-home-cadence">Free public access · No API key · Compatible MCP apps</p>
             <p className="ni-stage-note">Trade on fomo, Robinhood, or elsewhere? <a href="/crypto">See the crypto market overview</a> or <a href="/tokens">check a token by contract</a>.</p>
             <a className="nb-flow-cue" href="#agent-workflow"><span aria-hidden="true" /> See how Rarebird checks a move <ArrowRight size={13} aria-hidden="true" /></a>
           </div>
-          <div className="ni-hero-model nb-live-stage"><span className="nb-live-stage-orbit" aria-hidden="true" /><LandingNewsLookup /></div>
+          <div className="ni-hero-model nb-live-stage"><span className="nb-live-stage-orbit" aria-hidden="true" /><MarketBriefingCard compact /></div>
         </div>
       </section>
 
@@ -59,6 +60,7 @@ export default function Home() {
             <div className="bs-crypto-intro"><p>Bring the reported change, its sources and the open questions into one view. Your agent can follow the reasoning and see what could change it.</p><a className="bs-text-link" href="#market-timing">Next, read the market <ArrowRight size={17} /></a></div>
           </div>
           <LandingClarity />
+          <details className="wrap rb-brief-search"><summary>Search stock and crypto news</summary><LandingNewsLookup /></details>
           <p className="nb-coverage-scope">News research across 2,030 stock and crypto assets. Measured market checks are currently a six-asset pilot.</p>
         </div>
       </section>
