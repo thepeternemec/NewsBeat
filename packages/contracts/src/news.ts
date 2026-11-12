@@ -34,6 +34,8 @@ export const NEWS_TOOLS = [
 
     { name: "newsbeat_token_intelligence", description: "Inspect a token by an explicit chain and contract or mint. Returns exact-address DEX pool observations with liquidity, volume and fetch time. Selected xStocks include an issuer record and separately attributed underlying-company headlines. Preserve each source and coverage status. Pool metadata does not verify a token's issuer and the pool price is not an underlying share price.", inputSchema: { type: "object", properties: { asset: { type: "string", minLength: 3, maxLength: 80, description: "solana:mint, ethereum:address, base:address or arbitrum:address" } }, required: ["asset"], additionalProperties: false } },
 
+    { name: "newsbeat_market_briefing", description: "Read the current crypto briefing without a ticker or question. Returns breadth and largest absolute 24-hour move in a 12-asset basket, a recent headline, and the first active review or anomaly if the BTC/ETH pilot has one. Each section gives its own sources or coverage counts. Report missing evidence and never infer that the headline caused the move.", inputSchema: { type: "object", properties: {}, additionalProperties: false } },
+
     // ── Market and sentiment ────────────────────────────────────────────
     // Same envelope as the news tools: every number carries its source, the time we
     // fetched it and how long it stays good for, so an agent can always say where a

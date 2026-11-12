@@ -16,4 +16,5 @@ export * from "./collection.js";
 export * from "./research.js";
 export * from "./investment.js";
 export * from "./token-intelligence.js";
+export * from "./market-briefing.js";
 export * from "./catalysts.js";
