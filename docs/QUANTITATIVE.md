@@ -100,3 +100,29 @@ Each newly detected instrument/horizon/direction episode freezes a fresh midpoin
 The model measures RSI (14-period simple averages), distance to EMA (20 periods), 30-minute momentum, ATR (14-period simple average divided by price), and relative 30-minute volume versus the median of the previous eight half hours. These features describe similarity, with changes in price expressed relative to recent range. It searches up to 30 days of past whole-hour windows with outcomes observable as of the reference. At least 36 complete examples and 12 close matches are required. The estimate mixes up to 24 matches with 20 observations' worth of the full-sample historical rate. Reported return percentiles describe the matches and are not predictive intervals. An empty slot can indicate stale, sparse, or unfamiliar market data.
 
 Each call records its probability, equally timed historical base-rate forecast and reference before the target. Both forecasts are scored by mean squared probability error (Brier score) on the same settled calls. The scorecard separates pending and missing outcomes. The exact target candle must contain a trade and be observed within six hours. Missing targets are never replaced with later prices. These are single-venue directional estimates and do not model fees, execution, or profitability.
+
+## Hourly move risk
+
+The default forecast estimates whether the exact next Kraken spot hourly close will be at least 1% above or below the reference. The reference is the preceding closed five-minute candle. An intrahour touch alone does not qualify. The feature is past-hour realized volatility, the square root of the sum of twelve squared five-minute log returns. The buckets are separated at 0.3%, 0.5%, 0.8%, and 1.2% and require twelve consecutive traded changes. Over up to thirty prior days, the model mixes the same-bucket event rate with twenty observations' worth of the overall base rate. At least 240 past eligible hours are required. The existing eight-minute issuance window and exact-close settlement apply separately to both forecasts and their scorecards.
+
+### Historical replay
+
+The replay evaluates the same code used for live move risk. Each hour uses observations whose targets end by its reference time. The baseline is the rolling 30-day event rate on the same eligible windows. Kraken USD spot was the deployment-market replay. Binance USDT spot is a second venue check over substantially the same market regime. Correlated markets and model selection limit what the replay can establish. Treat these as research results pending prospective confirmation.
+
+| Venue and pair | 2026 test period in UTC | Scored hours | Move risk Brier | Base rate Brier |
+| --- | --- | ---: | ---: | ---: |
+| Kraken BTC/USD | Jul–Sep | 2,206 | 0.02022 | 0.02049 |
+| Kraken ETH/USD | Jul–Sep | 2,206 | 0.04517 | 0.04590 |
+| Binance BTC/USDT | Jul–Oct | 2,952 | 0.02046 | 0.02062 |
+| Binance ETH/USDT | Jul–Oct | 2,952 | 0.04326 | 0.04437 |
+
+A separate directional benchmark took a simulated long observation only when the probability from a rolling sign-of-last-hour model was at least 55%. It used the first trade in the five-minute candle starting ten minutes after the reference as an entry proxy and used the exact hourly close as the exit proxy. All four evaluations were negative at even a 20-basis-point round-trip cost assumption, the least costly scenario tested. This is an illustrative scenario using candle prices and fixed costs. It does not simulate fills, market impact, or profitability for the move-risk forecast.
+
+To reproduce, build the API, extract the exchange archives, then run:
+
+```sh
+node scripts/replay-move-risk.mjs kraken <csv-directory> 2026-07-01 2026-10-01
+node scripts/replay-move-risk.mjs binance <csv-directory> 2026-07-01 2026-11-01
+```
+
+Use the Kraken Q2 and Q3 five-minute CSVs for XBTUSD and ETHUSD and name quarterly copies `kraken-2-XBTUSD_5.csv`, `kraken-3-XBTUSD_5.csv`, and equivalent ETH files. Use the Binance monthly five-minute BTCUSDT and ETHUSDT CSVs from May through October inclusive for price history. The command takes an exclusive end date. Sources are the [Kraken historical archive](https://support.kraken.com/articles/360047124832-downloadable-historical-ohlcvt-open-high-low-close-volume-trades-data) and [Binance public spot archive](https://github.com/binance/binance-public-data).

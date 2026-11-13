@@ -181,19 +181,24 @@ test("hourly forecast is issued once and scored from only the exact closed targe
   source.instrument = { ...source.instrument, id: "kraken:XBTUSD", symbol: "BTC/USD", pair: "XBTUSD", base: "BTC", underlying_ticker: "BTC", kind: "crypto" };
   source.book = null;
   source.error = "market_book_unavailable";
-  source.bars = Array.from({ length: 720 }, (_, index) => {
-    const close = 100 + index * 0.01 + 0.3 * Math.sin(index / 5);
-    return { time: reference - (720 - index) * MARKET_INTERVAL_MS, open: close, close, high: close + 0.05, low: close - 0.05, trades: 10, volume: 20 };
+  const count = 260 * 12;
+  source.bars = Array.from({ length: count }, (_, index) => {
+    const close = 100 + index * 0.002 + 0.3 * Math.sin(index / 5);
+    return { time: reference - (count - index) * MARKET_INTERVAL_MS, open: close, close, high: close + 0.05, low: close - 0.05, trades: 10, volume: 20 };
   });
   const deps = { now: () => clock, fetchMarkets: async () => [{ id: source.instrument.id, snapshot: { ...source, observed_at: new Date(clock).toISOString() } }] };
   try {
     await sql.unsafe(readFileSync(new URL("../../../../db/schema.sql", import.meta.url), "utf8"));
     await sql.unsafe(truncate);
+    await sql.unsafe("alter table public.newsbeat_market_forecasts drop constraint newsbeat_market_forecasts_version_pkey, add constraint newsbeat_market_forecasts_pkey primary key(instrument_id,reference_at)");
     await runMarketIntelligence(deps);
     const initial = (await readMarketForecasts(clock)).assets[0]!;
     assert.ok(initial.forecast);
     assert.equal(initial.scorecard.issued, 1);
     assert.equal(initial.scorecard.pending, 1);
+    const risk = initial.move_risk?.forecast;
+    assert.ok(risk);
+    assert.equal(initial.move_risk?.scorecard.pending, 1);
     await runMarketIntelligence(deps);
     assert.deepEqual((await readMarketForecasts(clock)).assets[0], initial);
 
@@ -203,17 +208,24 @@ test("hourly forecast is issued once and scored from only the exact closed targe
     await runMarketIntelligence(deps);
     const pending = (await readMarketForecasts(clock)).assets[0]!;
     assert.equal(pending.forecast, null);
+    assert.equal(pending.move_risk?.forecast, null);
+    assert.equal(pending.move_risk?.scorecard.scored, 0);
     assert.equal(pending.scorecard.scored, 0, "a later candle cannot substitute for the target");
-    const close = last.close * 1.02;
+    const close = last.close * 0.98;
     source.bars.splice(-1, 0, { ...last, time: target - MARKET_INTERVAL_MS, open: close, high: close, low: close, close });
     await runMarketIntelligence(deps);
     const settled = (await readMarketForecasts(clock)).assets[0]!;
     assert.equal(settled.scorecard.issued, 1);
     assert.equal(settled.scorecard.pending, 0);
     assert.equal(settled.scorecard.scored, 1);
-    assert.equal(settled.scorecard.model_brier, (1 - initial.forecast.probability_above) ** 2);
-    assert.equal(settled.scorecard.baseline_brier, (1 - initial.forecast.baseline_probability) ** 2);
-    assert.equal(settled.recent[0]?.outcome, "above");
+    assert.equal(settled.scorecard.model_brier, initial.forecast.probability_above ** 2);
+    assert.equal(settled.scorecard.baseline_brier, initial.forecast.baseline_probability ** 2);
+    assert.equal(settled.move_risk?.scorecard.scored, 1);
+    assert.equal(settled.move_risk?.scorecard.model_brier, (1 - risk.probability) ** 2);
+    assert.equal(settled.move_risk?.scorecard.baseline_brier, (1 - risk.baseline_probability) ** 2);
+    assert.equal(settled.move_risk?.recent[0]?.outcome, "moved");
+    assert.equal(settled.move_risk?.recent[0]?.target_price_usd, close);
+    assert.equal(settled.recent[0]?.outcome, "at_or_below");
     assert.equal(settled.recent[0]?.target_price_usd, close);
   } finally { await closeDb(); }
 });

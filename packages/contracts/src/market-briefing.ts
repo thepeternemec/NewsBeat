@@ -33,6 +33,30 @@ export interface MarketForecast {
   source: BriefingSource;
 }
 
+export interface MoveRiskForecast {
+  issued_at: string;
+  reference_at: string;
+  target_at: string;
+  reference_price_usd: number;
+  threshold_fraction: number;
+  probability: number;
+  baseline_probability: number;
+  realized_volatility_1h: number;
+  sample_size: number;
+  matched_windows: number;
+  matched_moves: number;
+  source: BriefingSource;
+}
+
+export interface ForecastScorecard {
+  issued: number;
+  pending: number;
+  scored: number;
+  missing: number;
+  model_brier: number | null;
+  baseline_brier: number | null;
+}
+
 export interface MarketForecasts {
   generated_at: string;
   status: "ready" | "warming_up" | "unavailable";
@@ -43,13 +67,15 @@ export interface MarketForecasts {
     ticker: string;
     pair: string;
     forecast: MarketForecast | null;
-    scorecard: {
-      issued: number;
-      pending: number;
-      scored: number;
-      missing: number;
-      model_brier: number | null;
-      baseline_brier: number | null;
+    scorecard: ForecastScorecard;
+    move_risk?: {
+      model_version: string;
+      forecast: MoveRiskForecast | null;
+      scorecard: ForecastScorecard;
+      recent: Array<Pick<MoveRiskForecast, "target_at" | "probability" | "reference_price_usd"> & {
+        outcome: "moved" | "inside_threshold" | "missing";
+        target_price_usd: number | null;
+      }>;
     };
     recent: Array<Pick<MarketForecast, "target_at" | "probability_above" | "reference_price_usd"> & {
       outcome: "above" | "at_or_below" | "missing";
