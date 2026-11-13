@@ -7,6 +7,10 @@
 Google News RSS, refreshed every ten minutes over a 24-hour window. A "topic" is
 one asset you follow, addressed by a stable `beat_id`.
 
+## Hourly BTC and ETH forecasts
+
+Read `GET /api/v2/forecasts` or the `forecasts` field from `newsbeat_market_briefing`. Rarebird estimates whether the next hour's Kraken spot close will exceed the stated reference price. Quote the target, base rate, matching sample count and source. A null forecast means the current hour has no recorded call. The forward scorecard compares the model and historical base rate on the same resolved observations. Historical matches are descriptive and the probabilities are experimental.
+
 ## Question-driven research
 
 Start with `newsbeat_research` or `POST /api/v2/research` and pass the user's actual `question`. Optionally supply one to three resolved `beat_ids` and `context` (`fundamentals`, `liquidity` or `risk`). The flow resolves the asset, retrieves relevant reporting, checks available market measurements, and returns a direct answer, cited reasoning, unknowns and observable next checks. It is available across the 2,030-asset news catalog; measured quantitative coverage remains the six-asset pilot. Comparisons are bounded to three assets.
@@ -78,7 +82,7 @@ Read `freshness.status` before quoting a number, and quote the time with the pri
 Prices take CoinGecko ids (`bitcoin`, `ethereum`, `solana`), not tickers, because a
 ticker is ambiguous across chains. These are public endpoints read through a cache, so
 a value may be a few minutes old; `refresh_in_seconds` says when it will be re-read.
-This is reference data. There is no price forecast anywhere in the API.
+These market readings are reference data. Hourly BTC/USD and ETH/USD forecasts are available separately.
 
 
 ## Grouped overview

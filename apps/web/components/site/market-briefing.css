@@ -43,3 +43,25 @@
 }
 .rb-brief-search { margin-block: 24px 0; }
 .rb-brief-search summary { cursor: pointer; margin-bottom: 12px; font-size: 14px; }
+
+.rb-forecast { padding-bottom: 19px; margin-bottom: 19px; border-bottom: 1px solid var(--border-default); }
+.rb-forecast header h2 { margin-bottom: 13px; }
+.rb-forecast-assets { display: grid; gap: 10px; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+.rb-forecast-asset { min-width: 0; padding: 13px; border: 1px solid var(--border-default); border-radius: 12px; }
+.rb-forecast-asset h3 { font: 12px/1.3 var(--font-mono); margin: 0 0 7px; }
+.rb-forecast-call { font-size: 13px; margin: 0; line-height: 1.35; overflow-wrap: anywhere; }
+.rb-forecast-call strong { display: block; font-size: clamp(26px, 4vw, 35px); letter-spacing: -.045em; }
+.rb-forecast-meta { color: var(--text-secondary); font-size: 12px; line-height: 1.45; margin: 5px 0 0; }
+.rb-forecast-asset details { margin-top: 8px; font-size: 12px; }
+.rb-forecast-asset summary { cursor: pointer; padding-block: 5px; }
+.rb-forecast-asset h4 { font-size: 13px; margin: 12px 0 4px; }
+.rb-forecast-stats { margin: 9px 0; display: grid; gap: 4px; }
+.rb-forecast-stats div { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 3px 6px; }
+.rb-forecast-stats dt { font-size: 11px; letter-spacing: 0; text-transform: none; }
+.rb-forecast-stats dd { margin: 0; font-variant-numeric: tabular-nums; }
+.rb-forecast-results { margin: 8px 0 0; padding: 0; list-style: none; }
+.rb-forecast-results li { display: grid; gap: 2px; border-top: 1px solid var(--border-default); padding: 5px 0; }
+.rb-forecast-results time { color: var(--text-secondary); }
+@media (max-width: 460px) {
+  .rb-forecast-assets { grid-template-columns: 1fr; }
+}

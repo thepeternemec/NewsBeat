@@ -14,6 +14,7 @@ import { readInvestmentBrief } from "./investment.js";
 import { readOpportunities } from "./opportunities.js";
 import { readCatalysts } from "./catalysts.js";
 import { readTokenIntelligence } from "./token-intelligence.js";
+import { readMarketForecasts } from "./forecast-store.js";
 import { readMarketBriefing } from "./market-briefing.js";
 export const newsRoutes = new Hono();
 newsRoutes.onError((error, c) => { if (error instanceof NewsError)
@@ -26,6 +27,10 @@ newsRoutes.get("/research", c => c.json({ ...researchCoverage, method: "POST", b
 newsRoutes.get("/briefing", async c => {
     c.header("Cache-Control", "public, max-age=0, s-maxage=30");
     return c.json(await readMarketBriefing());
+});
+newsRoutes.get("/forecasts", async c => {
+    c.header("Cache-Control", "public, max-age=0, s-maxage=30");
+    return c.json(await readMarketForecasts());
 });
 newsRoutes.get("/tokens", async c => {
     c.header("Cache-Control", "no-store");

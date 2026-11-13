@@ -2,6 +2,10 @@
 
 The integration guide for agents. For people: [connect your assistant](https://www.newsbeat.dev/docs/quickstart) and ask a stock or crypto news question in your own words.
 
+## Hourly BTC and ETH forecasts
+
+Read `GET /api/v2/forecasts` or the `forecasts` field from `newsbeat_market_briefing`. Rarebird estimates whether the next hour's Kraken spot close will exceed the stated reference price. Quote the target, base rate, matching sample count and source. A null forecast means the current hour has no recorded call. The forward scorecard compares the model and historical base rate on the same resolved observations. Historical matches are descriptive and the probabilities are experimental.
+
 ## Question-driven research
 
 For an opening crypto briefing, call `newsbeat_market_briefing` or `GET /api/v2/briefing` without arguments. Lead with the current breadth or largest tracked move, then the attributed headline and any current six-asset pilot watch. Use the coverage counts and watch expiry to qualify the answer. A nearby headline and price move do not establish a cause.
@@ -215,7 +219,7 @@ Read `freshness.status` before quoting a number, and quote the time with the pri
 Prices take CoinGecko ids (`bitcoin`, `ethereum`, `solana`), not tickers, because a
 ticker is ambiguous across chains. These are public endpoints read through a cache, so
 a value may be a few minutes old; `refresh_in_seconds` says when it will be re-read.
-This is reference data. There is no price forecast anywhere in the API.
+These market readings are reference data. Hourly BTC/USD and ETH/USD forecasts are available separately.
 
 ### Ask, chain and contracts
 

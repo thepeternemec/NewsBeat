@@ -14,4 +14,19 @@ export const QUANT_SCHEMA = [
   "create table if not exists public.newsbeat_quant_alerts (id text primary key, beat_id text not null, event_id text not null, signal_version integer not null, context_id text not null, policy_version text not null, triggered_at timestamptz not null, resolved_at timestamptz, resolution text, construction jsonb not null, unique(event_id,context_id,signal_version,policy_version))",
   "create index if not exists newsbeat_quant_alerts_context_time_idx on public.newsbeat_quant_alerts(beat_id,context_id,triggered_at desc)",
   "create table if not exists public.newsbeat_quant_worker (id text primary key, lease_token text, lease_until timestamptz, last_started_at timestamptz, last_success_at timestamptz, last_error text)",
+  `create table if not exists public.newsbeat_market_forecasts (
+  instrument_id text not null,
+  version text not null,
+  issued_at timestamptz not null,
+  reference_at timestamptz not null,
+  target_at timestamptz not null,
+  forecast jsonb not null,
+  outcome text not null default 'pending' check (outcome in ('pending','above','at_or_below','missing')),
+  target_price_usd double precision,
+  primary key(instrument_id,reference_at),
+  check (target_at=reference_at+interval '1 hour'),
+  check (issued_at>=reference_at and issued_at<=reference_at+interval '8 minutes')
+)`,
+  "create index if not exists newsbeat_market_forecasts_due_idx on public.newsbeat_market_forecasts(target_at) where outcome='pending'",
+  "create index if not exists newsbeat_market_forecasts_scorecard_idx on public.newsbeat_market_forecasts(version,issued_at desc)",
 ].join(";\n") + ";";
