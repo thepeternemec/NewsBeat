@@ -11,6 +11,7 @@ import { buildMarketContext } from "./quant-engine.js";
 import { applyTiming, beginEvaluation, decideTiming, updateOutcomes } from "./quant-decision.js";
 import { QUANT_SCHEMA } from "./quant-schema.js";
 import { ANOMALY_VERSION, discoverMarket, freezeAnomaly } from "./quant-anomaly.js";
+import { refreshMarketForecasts } from "./forecast-store.js";
 import { readReviewCosts } from "./quant-scorecard.js";
 
 const decode = <T>(value: unknown): T => (typeof value === "string" ? JSON.parse(value) : value) as T;
@@ -99,6 +100,12 @@ export async function runMarketIntelligence(dependencies: WorkerDependencies = {
       }
     });
     const snapshots = await loadSnapshots(sql, now);
+    const forecastCount = await refreshMarketForecasts(
+      sql, token, snapshots, new Set(refresh.filter(item => item.snapshot).map(item => item.id)), dependencies.now ?? Date.now,
+    ).catch(error => {
+      console.warn("market forecast refresh unavailable", error instanceof Error ? error.name : "unknown");
+      return 0;
+    });
     const dueAnomalies = await sql.unsafe<Array<{ id: string; record: unknown }>>("select id,record from public.newsbeat_market_anomalies where next_due_at<=to_timestamp($1) order by next_due_at limit 200", [now / 1000]);
     for (const row of dueAnomalies) {
       const record = decode<MarketAnomalyRecord>(row.record), profile = MARKET_PROFILES.find(p => p.id === record.instrument_id);
@@ -192,7 +199,7 @@ export async function runMarketIntelligence(dependencies: WorkerDependencies = {
     }
     await sql.unsafe("delete from public.newsbeat_market_bars where started_at<to_timestamp($1)-interval '30 days'", [now / 1000]);
     await sql.unsafe("update public.newsbeat_quant_worker set lease_token=null,lease_until=null,last_success_at=$2,last_error=$3 where id='market-intelligence' and lease_token=$1", [token, nowIso, sources ? null : "market_sources_unavailable"]);
-    return { status: sources ? "processed" : "sources_unavailable", instruments: sources, constructions: decisions, alerts: newAlerts };
+    return { status: sources ? "processed" : "sources_unavailable", instruments: sources, constructions: decisions, alerts: newAlerts, forecasts: forecastCount };
   } catch (error) {
     console.error("market intelligence worker failed", error instanceof Error ? error.name : "unknown");
     await sql.unsafe("update public.newsbeat_quant_worker set lease_token=null,lease_until=null,last_error='processing_failed' where id='market-intelligence' and lease_token=$1", [token]);

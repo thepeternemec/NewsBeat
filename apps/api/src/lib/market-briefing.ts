@@ -5,6 +5,7 @@ import { stories } from "./news.js";
 import { buildOpportunityBrief } from "./opportunities.js";
 import { qualifiesReport } from "./research-core.js";
 import { TIMING_POLICY } from "./quant-engine.js";
+import { readMarketForecasts } from "./forecast-store.js";
 
 const NEWS_TICKERS = ["BTC", "ETH", "SOL"];
 const newsAssets = SEED_BEATS.filter(beat => beat.asset === "crypto" && NEWS_TICKERS.includes(beat.ticker));
@@ -35,10 +36,11 @@ export function briefingMarket(reading: Sourced<PricesPayload> | null, now: numb
 }
 
 export async function readMarketBriefing(): Promise<MarketBriefing> {
-  const [market, reporting, intelligence] = await Promise.all([
+  const [market, reporting, intelligence, forecasts] = await Promise.all([
     prices().catch(() => null),
     Promise.allSettled(newsAssets.map(asset => stories(asset.beat_id, 5, 100))),
     Promise.allSettled(measuredAssets.map(asset => readIntelligence(asset.beat_id))),
+    readMarketForecasts(),
   ]);
   const now = Date.now();
   const currentNews = reporting.flatMap((result, index) => {
@@ -73,6 +75,7 @@ export async function readMarketBriefing(): Promise<MarketBriefing> {
 
   return {
     generated_at: new Date(now).toISOString(),
+    forecasts,
     market: briefingMarket(market, now),
     reporting: { checked: currentNews.length, total: newsAssets.length, lead: latest ?? null },
     watch: { checked: checks.coverage.filter(item => item.market === "current").length, total: measuredAssets.length, lead },

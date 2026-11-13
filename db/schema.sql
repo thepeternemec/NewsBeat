@@ -325,6 +325,23 @@ create unique index if not exists newsbeat_market_anomalies_episode_idx on publi
 create index if not exists newsbeat_market_anomalies_due_idx on public.newsbeat_market_anomalies(next_due_at) where next_due_at is not null;
 create index if not exists newsbeat_market_anomalies_recent_idx on public.newsbeat_market_anomalies(instrument_id,opened_at desc);
 
+-- Hourly spot forecasts and prospective outcomes.
+create table if not exists public.newsbeat_market_forecasts (
+  instrument_id text not null,
+  version text not null,
+  issued_at timestamptz not null,
+  reference_at timestamptz not null,
+  target_at timestamptz not null,
+  forecast jsonb not null,
+  outcome text not null default 'pending' check (outcome in ('pending','above','at_or_below','missing')),
+  target_price_usd double precision,
+  primary key(instrument_id,reference_at),
+  check (target_at=reference_at+interval '1 hour'),
+  check (issued_at>=reference_at and issued_at<=reference_at+interval '8 minutes')
+);
+create index if not exists newsbeat_market_forecasts_due_idx on public.newsbeat_market_forecasts(target_at) where outcome='pending';
+create index if not exists newsbeat_market_forecasts_scorecard_idx on public.newsbeat_market_forecasts(version,issued_at desc);
+
 -- Explicit temporary one-minute news collection; one bounded row per priority asset.
 create table if not exists public.newsbeat_fast_collection (beat_id text primary key,token_hash text not null,requested_at timestamptz not null,expires_at timestamptz not null,lease_token text,lease_until timestamptz,last_attempt_at timestamptz,last_success_at timestamptz,last_error text);
 -- Persisted official issuer evidence. Only the authenticated intelligence scheduler refreshes it.

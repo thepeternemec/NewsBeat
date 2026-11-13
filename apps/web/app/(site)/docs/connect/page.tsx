@@ -91,6 +91,7 @@ export default function DocsConnect() {
 
       <h2 id="market-briefing">Market briefing</h2>
       <p>Use <code>newsbeat_market_briefing</code> or <code>GET /v2/briefing</code> when a visitor needs the latest crypto picture without a question. It combines current readings from a 12-asset basket, a selected recent headline from Bitcoin, Ethereum or Solana, and any active watch from the six-asset pilot. Check the coverage counts and the watch’s <code>valid_until</code> before presenting it.</p>
+      <p>For hourly Bitcoin and Ethereum forecasts, use <code>GET /v2/forecasts</code> or read <code>forecasts</code> in the market briefing. Include the target time, historical base rate and sample size with the estimated probability. The live scorecard reports both forecasts and the baseline on the same resolved calls.</p>
       <h2 id="token-intelligence">Token intelligence</h2>
       <p>Open <a href="/tokens">Token intelligence</a> or call <code>newsbeat_token_intelligence</code> with <code>asset</code> in the form <code>chain:address</code>. The REST equivalent is <code>GET /v2/tokens?asset=…</code>. Supported chains are Solana, Ethereum, Base and Arbitrum.</p>
       <p>Pool readings include DEX Screener fetch time, venue links, and coverage status. The issuer pilot links exact native deployments of NVIDIA, Apple and Robinhood xStocks to underlying company reporting. Review the issuer link and keep the token’s pool price separate from the underlying security’s price.</p>

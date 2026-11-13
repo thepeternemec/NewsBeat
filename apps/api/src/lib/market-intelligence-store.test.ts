@@ -2,18 +2,20 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import { db, closeDb } from "@newsbeat/db";
-import { INTELLIGENCE_VERSION, type IntelligenceSignal, type MarketSnapshot, type QuantEvaluationRecord, type MarketAnomalyRecord } from "@newsbeat/contracts";
+import { INTELLIGENCE_VERSION, MARKET_INTERVAL_MS, type IntelligenceSignal, type MarketSnapshot, type QuantEvaluationRecord, type MarketAnomalyRecord } from "@newsbeat/contracts";
 import { quantitativeFixture } from "./quant-fixtures.js";
 import { runMarketIntelligence } from "./quant-store.js";
 import { readIntelligence } from "./intelligence.js";
 import { readOpportunities } from "./opportunities.js";
+import { readMarketForecasts } from "./forecast-store.js";
+import { FORECAST_HOUR } from "./forecast.js";
 
 const connection = process.env.NEWSBEAT_INTELLIGENCE_TEST_DATABASE_URL;
 if (connection) {
   const url = new URL(connection);
   if (!["localhost", "127.0.0.1"].includes(url.hostname) || url.pathname !== "/newsbeat_intelligence_test") throw new Error("Quantitative tests require the dedicated localhost database.");
 }
-const truncate = "truncate public.newsbeat_market_anomalies,public.newsbeat_quant_alerts,public.newsbeat_quant_evaluations,public.newsbeat_quant_contexts,public.newsbeat_quant_worker,public.newsbeat_market_bars,public.newsbeat_market_sources,public.newsbeat_signal_alerts,public.newsbeat_intelligence_revisions,public.newsbeat_intelligence_events,public.newsbeat_intelligence_jobs,public.news_articles,public.news_ingestion_status restart identity";
+const truncate = "truncate public.newsbeat_market_forecasts,public.newsbeat_market_anomalies,public.newsbeat_quant_alerts,public.newsbeat_quant_evaluations,public.newsbeat_quant_contexts,public.newsbeat_quant_worker,public.newsbeat_market_bars,public.newsbeat_market_sources,public.newsbeat_signal_alerts,public.newsbeat_intelligence_revisions,public.newsbeat_intelligence_events,public.newsbeat_intelligence_jobs,public.news_articles,public.news_ingestion_status restart identity";
 
 test("market discovery persists without news, deduplicates active episodes and scores frozen future observations", { skip: !connection, timeout: 45000 }, async () => {
   process.env.DATABASE_URL = connection!;
@@ -168,5 +170,50 @@ test("a concurrent market collector cannot bypass the active lease", { skip: !co
       const second = await runMarketIntelligence({ fetchMarkets: async () => { called = true; return []; } });
       assert.equal(second.status, "leased"); assert.equal(called, false);
     } finally { release(); await running; }
+  } finally { await closeDb(); }
+});
+
+test("hourly forecast is issued once and scored from only the exact closed target candle", { skip: !connection, timeout: 45000 }, async () => {
+  process.env.DATABASE_URL = connection!;
+  const sql = db(), reference = Date.UTC(2026, 10, 13, 13), target = reference + FORECAST_HOUR;
+  let clock = reference + 120_000;
+  const source = structuredClone(quantitativeFixture().asset);
+  source.instrument = { ...source.instrument, id: "kraken:XBTUSD", symbol: "BTC/USD", pair: "XBTUSD", base: "BTC", underlying_ticker: "BTC", kind: "crypto" };
+  source.book = null;
+  source.error = "market_book_unavailable";
+  source.bars = Array.from({ length: 720 }, (_, index) => {
+    const close = 100 + index * 0.01 + 0.3 * Math.sin(index / 5);
+    return { time: reference - (720 - index) * MARKET_INTERVAL_MS, open: close, close, high: close + 0.05, low: close - 0.05, trades: 10, volume: 20 };
+  });
+  const deps = { now: () => clock, fetchMarkets: async () => [{ id: source.instrument.id, snapshot: { ...source, observed_at: new Date(clock).toISOString() } }] };
+  try {
+    await sql.unsafe(readFileSync(new URL("../../../../db/schema.sql", import.meta.url), "utf8"));
+    await sql.unsafe(truncate);
+    await runMarketIntelligence(deps);
+    const initial = (await readMarketForecasts(clock)).assets[0]!;
+    assert.ok(initial.forecast);
+    assert.equal(initial.scorecard.issued, 1);
+    assert.equal(initial.scorecard.pending, 1);
+    await runMarketIntelligence(deps);
+    assert.deepEqual((await readMarketForecasts(clock)).assets[0], initial);
+
+    const last = source.bars.at(-1)!;
+    clock = target + 2 * MARKET_INTERVAL_MS;
+    source.bars.push({ ...last, time: target, close: last.close * 0.99 });
+    await runMarketIntelligence(deps);
+    const pending = (await readMarketForecasts(clock)).assets[0]!;
+    assert.equal(pending.forecast, null);
+    assert.equal(pending.scorecard.scored, 0, "a later candle cannot substitute for the target");
+    const close = last.close * 1.02;
+    source.bars.splice(-1, 0, { ...last, time: target - MARKET_INTERVAL_MS, open: close, high: close, low: close, close });
+    await runMarketIntelligence(deps);
+    const settled = (await readMarketForecasts(clock)).assets[0]!;
+    assert.equal(settled.scorecard.issued, 1);
+    assert.equal(settled.scorecard.pending, 0);
+    assert.equal(settled.scorecard.scored, 1);
+    assert.equal(settled.scorecard.model_brier, (1 - initial.forecast.probability_above) ** 2);
+    assert.equal(settled.scorecard.baseline_brier, (1 - initial.forecast.baseline_probability) ** 2);
+    assert.equal(settled.recent[0]?.outcome, "above");
+    assert.equal(settled.recent[0]?.target_price_usd, close);
   } finally { await closeDb(); }
 });

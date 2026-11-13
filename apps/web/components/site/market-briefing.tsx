@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import type { BriefingSource, MarketBriefing } from "@newsbeat/contracts";
+import { MarketForecastPanel } from "./market-forecast";
 import { API_BASE } from "./content";
 import "./market-briefing.css";
 
@@ -62,6 +63,7 @@ export default function MarketBriefingCard({ compact = false }: { compact?: bool
   const measured = current ? current.up + current.down + current.flat : 0;
   const latest = reporting?.lead && now - Date.parse(reporting.lead.source.observed_at) <= 86400000 ? reporting.lead : null;
   return <section className="rb-brief" aria-labelledby="rb-market-brief-title">
+    <MarketForecastPanel outlook={brief?.forecasts} now={now} unavailable={failed || !!brief} />
     <header aria-live="polite">
       <p>Live market briefing</p>
       <h2 id="rb-market-brief-title">{activeWatch

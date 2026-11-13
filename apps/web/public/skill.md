@@ -7,6 +7,10 @@ Use the Rarebird MCP connection or its public HTTPS API. This instruction file a
 Base: https://www.newsbeat.dev/api
 MCP: https://www.newsbeat.dev/api/mcp
 
+## Hourly BTC and ETH forecasts
+
+Read `GET /api/v2/forecasts` or the `forecasts` field from `newsbeat_market_briefing`. Rarebird estimates whether the next hour's Kraken spot close will exceed the stated reference price. Quote the target, base rate, matching sample count and source. A null forecast means the current hour has no recorded call. The forward scorecard compares the model and historical base rate on the same resolved observations. Historical matches are descriptive and the probabilities are experimental.
+
 ## Question-driven research
 
 For an investment brief by ticker, call `newsbeat_investment` with `ticker`. A shared symbol returns candidates for selection by `beat_id`. Preserve the stance, cited evidence, expiry and coverage gaps when sharing the brief.
@@ -66,7 +70,7 @@ Rarebird exposes research and explicit collection control over MCP and REST. Use
 3e. Need market context? `newsbeat_market` returns sentiment, DeFi TVL and prices in
     one call, each with its source and fetch time. Use `newsbeat_prices` for specific
     assets — pass CoinGecko ids (`bitcoin`), not tickers. Quote the fetch time with the
-    number, and treat these as reference data: there is no price forecast anywhere.
+    number. Hourly BTC/USD and ETH/USD forecasts are available separately.
 
 3d. Watching many topics? Use newsbeat_watch (POST /v2/watch) with the cursors you
     hold and get every topic's answer in one call, up to fifty. Each entry is
