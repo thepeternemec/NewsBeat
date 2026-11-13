@@ -37,7 +37,7 @@ export default function MobileNavigation({ links, active }: { links: NavigationL
       <dialog ref={dialog} id={id} className="mobile-nav-dialog" aria-labelledby={id + "-title"} data-lenis-prevent onCancel={() => setOpen(false)} onClose={() => setOpen(false)} onClick={event => { if (event.target === event.currentTarget) setOpen(false); }}>
         <div className="mobile-nav-panel">
           <div className="mobile-nav-heading">
-            <a className="nav-logo" href="/" onClick={() => setOpen(false)}>NEWSBEAT</a>
+            <a className="nav-logo" href="/" onClick={() => setOpen(false)}>RAREBIRD</a>
             <h2 id={id + "-title"} className="mobile-nav-title">Navigation</h2>
             <button type="button" className="nav-menu-close" aria-label="Close navigation menu" onClick={() => setOpen(false)} autoFocus><X size={20} aria-hidden="true" /></button>
           </div>
@@ -49,7 +49,7 @@ export default function MobileNavigation({ links, active }: { links: NavigationL
             ))}
           </nav>
           <div className="mobile-nav-bottom">
-            <a className="mobile-nav-primary" href="/docs/quickstart" onClick={() => setOpen(false)}>Connect your agent<ArrowRight size={16} aria-hidden="true" /></a>
+            <a className="mobile-nav-primary" href="/#real-intelligence" onClick={() => setOpen(false)}>Read the live briefing<ArrowRight size={16} aria-hidden="true" /></a>
             <div className="mobile-nav-appearance"><span>Appearance</span><ThemeToggle /></div>
           </div>
         </div>

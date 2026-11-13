@@ -7,13 +7,9 @@ import MobileNavigation from "./mobile-navigation";
 import "./mobile-navigation.css";
 
 const LINKS = [
-  { href: "/#agent-workflow", label: "How it works", description: "News, intelligence and timing—in one guided view" },
-  { href: "/intelligence", label: "Intelligence", description: "Check current opportunities and their evidence" },
-  { href: "/crypto", label: "Crypto", description: "See the market, activity and crypto reporting" },
-  { href: "/tokens", label: "Tokens", description: "Research a token by chain and contract" },
-  { href: "/for-agents", label: "For agents", description: "Connect, ask and follow what changed" },
-  { href: "/docs", label: "Docs", description: "Start building with MCP and REST" },
-  { href: "/status", label: "Status", description: "Check the current news service" },
+  { href: "/intelligence", label: "Market checks", description: "See which developments passed the market checks" },
+  { href: "/pricing", label: "Pricing", description: "See the Rarebird Pro membership" },
+  { href: "/docs", label: "Developers", description: "Connect with MCP and REST" },
 ];
 
 export default function SiteNav({ active }: { active?: string }) {
@@ -30,9 +26,9 @@ export default function SiteNav({ active }: { active?: string }) {
           ))}
         </span>
         <span className="nav-desktop-theme"><ThemeToggle /></span>
-        <a className="nav-cta" href="/ask" aria-current={active === "/ask" ? "page" : undefined}>
-          <span className="nav-cta-wide">Ask Rarebird</span>
-          <span className="nav-cta-compact">Ask</span>
+        <a className="nav-cta" href="/#real-intelligence">
+          <span className="nav-cta-wide">Live briefing</span>
+          <span className="nav-cta-compact">Briefing</span>
         </a>
         <MobileNavigation links={LINKS} active={active} />
       </div>

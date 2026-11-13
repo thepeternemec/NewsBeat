@@ -63,33 +63,37 @@ export default function MarketBriefingCard({ compact = false }: { compact?: bool
   const latest = reporting?.lead && now - Date.parse(reporting.lead.source.observed_at) <= 86400000 ? reporting.lead : null;
   return <section className="rb-brief" aria-labelledby="rb-market-brief-title">
     <header aria-live="polite">
-      <p>Crypto market briefing</p>
-      <h2 id="rb-market-brief-title">{current ? (
-        current.up === 0 && current.down === 0 ? "Tracked prices were flat." :
-          current.up === current.down ? "Tracked prices are split." :
-            (current.up > current.down ? current.up + " rising" : current.down + " falling") + " out of " + measured + " measured."
-      ) : brief ? "Fresh prices are limited." : failed ? "Briefing temporarily unavailable." : "Checking the market…"}</h2>
+      <p>Live market briefing</p>
+      <h2 id="rb-market-brief-title">{activeWatch
+        ? activeWatch.asset + (activeWatch.kind === "review" ? " is worth a closer look." : " made an unusual move.")
+        : brief ? watch?.lead ? "The last watch expired." : watch?.checked ? "No active watch passed the checks." : "Current watch checks are unavailable."
+          : failed ? "Briefing temporarily unavailable." : "Checking the market…"}</h2>
       {brief && <time dateTime={brief.generated_at}>Briefed {timestamp(brief.generated_at)}</time>}
     </header>
     {brief && <dl className="rb-brief-evidence">
-      <div><dt>What moved</dt><dd>{current ? <>
-        <p>{current.leader.name} had the largest absolute 24-hour move ({change.format(current.leader.change_24h)}) among {measured} current readings from the {current.tracked}-asset basket.</p>
-        <Source source={current.leader.source} />
-      </> : <p>No current price readings support a breadth summary.</p>}</dd></div>
-      <div><dt>What’s being reported</dt><dd>{latest ? <>
-        <p>{latest.asset} · {latest.title}</p><Source source={latest.source} />
-      </> : <p>{reporting?.checked ? "No qualifying headline in the available snapshot." : "Current headline coverage is unavailable."}</p>}</dd></div>
-      <div><dt>What to watch</dt><dd>{activeWatch ? <>
-        <p><strong>{activeWatch.asset}.</strong> {activeWatch.detail} {activeWatch.next_check}</p><Source source={activeWatch.source} />
+      {activeWatch ? <>
+        <div><dt>What changed</dt><dd><p>{activeWatch.detail}</p><Source source={activeWatch.source} /></dd></div>
+        <div><dt>Why look now</dt><dd><p>{activeWatch.why_now}</p>
+          <a className="rb-brief-source" href={activeWatch.market_url} target="_blank" rel="noreferrer">
+            {activeWatch.ticker} market data <ArrowUpRight size={12} aria-hidden="true" />
+          </a>
+        </dd></div>
+        <div><dt>What to check next</dt><dd><p>{activeWatch.next_check}</p>
+          {activeWatch.invalidation && <p className="rb-brief-note">Reassess if {activeWatch.invalidation}</p>}
+          <p className="rb-brief-note">Market evidence through <time dateTime={activeWatch.valid_until}>{timestamp(activeWatch.valid_until)}</time></p>
+        </dd></div>
       </> : <>
-        <p>{watch?.lead ? "The previous watch window has expired." : watch?.checked
-          ? "No active BTC or ETH watch passed the market checks." : "Current BTC and ETH market checks are unavailable."}
-          {watch && " " + watch.checked + " of " + watch.total + " pilot markets current at briefing."}</p>
-        {current && current.leader.change_24h !== 0 && <a className="rb-brief-source" href={"/ask?" + new URLSearchParams({ ticker: current.leader.ticker })}>
-          Research the {current.leader.ticker} move <ArrowUpRight size={12} aria-hidden="true" />
-        </a>}
-      </>}</dd></div>
+        <div><dt>Market context</dt><dd>{current ? <>
+          <p>{current.up} up, {current.down} down, {current.flat} flat in {measured} fresh readings from the {current.tracked}-asset crypto basket.
+            {current.leader.change_24h !== 0 && <> {current.leader.name} had the largest 24-hour move ({change.format(current.leader.change_24h)}).</>}</p>
+          <Source source={current.leader.source} />
+        </> : <p>No current price readings support a breadth summary.</p>}</dd></div>
+        <div><dt>Recent reporting</dt><dd>{latest ? <>
+          <p>{latest.asset} · {latest.title}</p><Source source={latest.source} />
+        </> : <p>{reporting?.checked ? "No qualifying headline in the available snapshot." : "Current headline coverage is unavailable."}</p>}</dd></div>
+      </>}
     </dl>}
-    {compact && <a className="rb-brief-detail" href="/crypto">Open crypto market overview <ArrowUpRight size={14} aria-hidden="true" /></a>}
+    {watch && <p className="rb-brief-note">{watch.checked} of {watch.total} pilot markets current at briefing.</p>}
+    {compact && <a className="rb-brief-detail" href="/intelligence#opportunities">See all market checks <ArrowUpRight size={14} aria-hidden="true" /></a>}
   </section>;
 }

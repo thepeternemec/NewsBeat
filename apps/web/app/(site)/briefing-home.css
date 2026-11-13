@@ -1,0 +1,46 @@
+.rb-focus-home :is(#real-intelligence, #agent-workflow, #market-timing, #connect-agent, #community) {
+  scroll-margin-top: 90px;
+}
+.rb-focus-home.ni-home .bs-hero-grid { align-items: center; }
+.rb-focus-home.ni-home .bs-hero .bs-hero-copy { padding-top: 0; }
+.rb-focus-home.ni-home #agent-workflow,
+.rb-focus-home .rb-focus-tools,
+.rb-focus-home .rb-focus-pricing {
+  padding-block: clamp(30px, 5vw, 58px);
+  border-top: 1px solid var(--border-default);
+}
+.rb-focus-home :is(.rb-focus-method, .rb-focus-tools, .rb-focus-pricing) h2 {
+  font-size: clamp(25px, 4vw, 41px);
+  line-height: 1.14;
+  letter-spacing: -.045em;
+  margin: 0 0 16px;
+}
+.rb-focus-method dl {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px 24px;
+  margin: 24px 0 16px;
+}
+.rb-focus-method dt { font-weight: 600; }
+.rb-focus-method dd { margin: 5px 0 0; }
+.rb-focus-method dd, .rb-focus-method > p, .rb-focus-pricing p {
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.55;
+}
+.rb-focus-tools nav, .rb-focus-pricing {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+.rb-focus-tools a { font-size: 14px; text-decoration: underline; text-underline-offset: 4px; }
+.rb-focus-tools a svg { display: inline; vertical-align: -.16em; }
+.rb-focus-pricing { justify-content: space-between; align-items: center; }
+.rb-focus-pricing p { margin: 0; }
+.rb-focus-home .rb-brief-search { margin-top: 20px; }
+
+@media (max-width: 650px) {
+  .rb-focus-home.ni-home .bs-hero { padding-top: 106px; }
+  .rb-focus-home.ni-home .bs-hero-grid { gap: 30px; }
+  .rb-focus-method dl { grid-template-columns: 1fr; gap: 18px; }
+}

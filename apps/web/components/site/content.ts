@@ -6,29 +6,6 @@
 /** The public, read-only news API. */
 export const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? "/api";
 
-export const PRICES = [
-  {
-    "label": "daily rate",
-    "price": "$0.20",
-    "desc": "Per day for up to fifty tickers, checked on the fifteen-minute refresh schedule. No seat licences."
-  },
-  {
-    "label": "prepaid · 30 days",
-    "price": "$6",
-    "desc": "Thirty days of access at the same daily rate. A simple starting point for your agent workflow."
-  },
-  {
-    "label": "prepaid · 90 days",
-    "price": "$18",
-    "desc": "Ninety days of access for agents you run regularly. Same rate, fewer top-ups."
-  },
-  {
-    "label": "prepaid · 300 days",
-    "price": "$60",
-    "desc": "Three hundred days of access for ongoing market research and monitoring."
-  }
-];
-
 export const ROADMAP = [
   {
     "when": "Available today",

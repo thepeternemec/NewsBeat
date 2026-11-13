@@ -19,7 +19,7 @@ const TOOLS = [
   ["newsbeat_watch", "Check up to 50 assets in one request; does not create a schedule.", "POST /v2/watch"],
   ["newsbeat_ask","Resolve an asset and gather news, prices and chain context.","GET /v2/ask?q=bitcoin"],
   ["newsbeat_market","Read a sourced crypto market overview.","GET /v2/market"],
-  ["newsbeat_market_briefing","Read tracked crypto breadth, recent reporting, and any active BTC or ETH watch.","GET /v2/briefing"],
+  ["newsbeat_market_briefing","Read tracked crypto breadth, recent reporting, and any active watch from the six-asset pilot.","GET /v2/briefing"],
   ["newsbeat_prices","Read crypto prices by CoinGecko ID.","GET /v2/prices?ids=bitcoin"],
   ["newsbeat_fear_greed","Read the daily fear and greed index.","GET /v2/sentiment"],
   ["newsbeat_chain","Read Ethereum and Solana chain state.","GET /v2/chain"],
@@ -90,7 +90,7 @@ export default function DocsConnect() {
       <p>Use <strong>Share to Telegram</strong> on a live brief to open Telegram’s chat picker. In a configured group, send <code>/ask BTC</code> or address the bot with <code>/ask@YourBot BTC</code>. The reply includes the stance, reasoning, sources and a link to open the full ticker view. A group admin can configure the daily ticker feed using the <a href="https://github.com/thepeternemec/NewsBeat/blob/main/docs/TELEGRAM.md">Telegram setup guide</a>.</p>
 
       <h2 id="market-briefing">Market briefing</h2>
-      <p>Use <code>newsbeat_market_briefing</code> or <code>GET /v2/briefing</code> when a visitor needs the latest crypto picture without a question. It combines current readings from a 12-asset basket, a selected recent headline from Bitcoin, Ethereum or Solana, and any active BTC or ETH watch. Check the coverage counts and the watch’s <code>valid_until</code> before presenting it.</p>
+      <p>Use <code>newsbeat_market_briefing</code> or <code>GET /v2/briefing</code> when a visitor needs the latest crypto picture without a question. It combines current readings from a 12-asset basket, a selected recent headline from Bitcoin, Ethereum or Solana, and any active watch from the six-asset pilot. Check the coverage counts and the watch’s <code>valid_until</code> before presenting it.</p>
       <h2 id="token-intelligence">Token intelligence</h2>
       <p>Open <a href="/tokens">Token intelligence</a> or call <code>newsbeat_token_intelligence</code> with <code>asset</code> in the form <code>chain:address</code>. The REST equivalent is <code>GET /v2/tokens?asset=…</code>. Supported chains are Solana, Ethereum, Base and Arbitrum.</p>
       <p>Pool readings include DEX Screener fetch time, venue links, and coverage status. The issuer pilot links exact native deployments of NVIDIA, Apple and Robinhood xStocks to underlying company reporting. Review the issuer link and keep the token’s pool price separate from the underlying security’s price.</p>

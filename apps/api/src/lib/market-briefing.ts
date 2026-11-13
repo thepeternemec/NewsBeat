@@ -8,7 +8,7 @@ import { TIMING_POLICY } from "./quant-engine.js";
 
 const NEWS_TICKERS = ["BTC", "ETH", "SOL"];
 const newsAssets = SEED_BEATS.filter(beat => beat.asset === "crypto" && NEWS_TICKERS.includes(beat.ticker));
-const measuredAssets = PILOT_BEATS.filter(beat => beat.asset === "crypto");
+const measuredAssets = PILOT_BEATS;
 
 function current(value: string | null | undefined, now: number, maxAge: number) {
   const age = now - Date.parse(value ?? "");
@@ -53,16 +53,21 @@ export async function readMarketBriefing(): Promise<MarketBriefing> {
     return [{ asset: asset.label, title: article.title, source: { name: article.source, url: article.url, observed_at: article.published_at } }];
   })).sort((a, b) => Date.parse(b.source.observed_at) - Date.parse(a.source.observed_at))[0];
 
-  const checks = buildOpportunityBrief(intelligence.flatMap(result => result.status === "fulfilled" ? [result.value] : []), "fundamentals", 2, now);
+  const checks = buildOpportunityBrief(intelligence.flatMap(result => result.status === "fulfilled" ? [result.value] : []), "fundamentals", 1, now);
   const [review] = checks.review;
   const [anomaly] = checks.watch;
-  const lead = review ? {
-    asset: review.label, detail: review.what_changed, next_check: review.next_check ?? "Check the recorded review and its invalidation.",
+  const lead: MarketBriefing["watch"]["lead"] = review ? {
+    kind: "review", asset: review.label, ticker: review.instrument.symbol,
+    detail: review.what_changed, why_now: review.why_now,
+    next_check: review.next_check ?? "Check the recorded review and its invalidation.", invalidation: review.invalidation,
     source: { name: review.evidence[0]?.source ?? "Rarebird", url: review.evidence[0]?.url ?? review.instrument.source_url, observed_at: review.evidence[0]?.published_at ?? review.triggered_at },
-    valid_until: review.market_evidence_until,
+    market_url: review.instrument.source_url, valid_until: review.market_evidence_until,
   } : anomaly ? {
-    asset: anomaly.label, detail: "An unusual " + anomaly.minutes + "-minute relative move passed the market checks.",
+    kind: "anomaly", asset: anomaly.label, ticker: anomaly.instrument.symbol,
+    detail: "Rarebird detected an unusual " + anomaly.minutes + "-minute relative move.",
+    why_now: "The move passed the historical rarity and market-data checks.",
     next_check: anomaly.next_check, source: { name: "Kraken", url: anomaly.instrument.source_url, observed_at: anomaly.end_at },
+    invalidation: null, market_url: anomaly.instrument.source_url,
     valid_until: new Date(Date.parse(anomaly.end_at) + TIMING_POLICY.max_snapshot_age_ms).toISOString(),
   } : null;
 
