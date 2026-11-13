@@ -9,7 +9,7 @@ MCP: https://www.newsbeat.dev/api/mcp
 
 ## Hourly BTC and ETH forecasts
 
-Read `GET /api/v2/forecasts` or the `forecasts` field from `newsbeat_market_briefing`. Rarebird estimates whether the next hour's Kraken spot close will exceed the stated reference price. Quote the target, base rate, matching sample count and source. A null forecast means the current hour has no recorded call. The forward scorecard compares the model and historical base rate on the same resolved observations. Historical matches are descriptive and the probabilities are experimental.
+Read `GET /api/v2/forecasts` or the `forecasts` field from `newsbeat_market_briefing`. Rarebird estimates the chance that the next Kraken hour closes at least 1% away from the reference in either direction under `assets[].move_risk`. The existing directional forecast and its scorecard are reported separately. Quote the target, base rate, matching sample count and source. A null forecast means the current hour has no recorded call. The forward scorecard compares the model and historical base rate on the same resolved observations. Historical matches are descriptive and the probabilities are experimental.
 
 ## Question-driven research
 

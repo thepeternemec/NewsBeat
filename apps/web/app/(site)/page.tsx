@@ -32,7 +32,7 @@ export default function Home() {
           <div className="bs-hero-copy">
             <span className="bs-kicker"><span /> Market intelligence for crypto and tokenized stocks</span>
             <h1 id="home-title"><span className="nb-headline-line" data-hero-line>Know what’s</span><span className="nb-headline-line nb-headline-muted" data-hero-line>worth watching.</span></h1>
-            <p className="bs-lede">See Rarebird’s next-hour Bitcoin and Ethereum forecasts, the indicators behind them, and how past calls scored.</p>
+            <p className="bs-lede">See the odds of a 1% move in Bitcoin or Ethereum by the next hourly close, and how Rarebird’s forecasts compare with the historical base rate.</p>
             <div className="hero-cta">
               <a className="btn-primary" href="#real-intelligence">See the live forecast <ArrowRight size={16} aria-hidden="true" /></a>
               <a className="bs-text-link" href="/pricing#later">See the $8.99 plan <ArrowUpRight size={16} aria-hidden="true" /></a>

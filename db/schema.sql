@@ -335,10 +335,22 @@ create table if not exists public.newsbeat_market_forecasts (
   forecast jsonb not null,
   outcome text not null default 'pending' check (outcome in ('pending','above','at_or_below','missing')),
   target_price_usd double precision,
-  primary key(instrument_id,reference_at),
+  constraint newsbeat_market_forecasts_version_pkey primary key(version,instrument_id,reference_at),
   check (target_at=reference_at+interval '1 hour'),
   check (issued_at>=reference_at and issued_at<=reference_at+interval '8 minutes')
 );
+do $forecast$
+begin
+  if exists (
+    select 1 from pg_constraint where conrelid='public.newsbeat_market_forecasts'::regclass
+      and conname='newsbeat_market_forecasts_pkey' and contype='p'
+  ) then
+    alter table public.newsbeat_market_forecasts
+      drop constraint newsbeat_market_forecasts_pkey,
+      add constraint newsbeat_market_forecasts_version_pkey primary key(version,instrument_id,reference_at);
+  end if;
+end
+$forecast$;
 create index if not exists newsbeat_market_forecasts_due_idx on public.newsbeat_market_forecasts(target_at) where outcome='pending';
 create index if not exists newsbeat_market_forecasts_scorecard_idx on public.newsbeat_market_forecasts(version,issued_at desc);
 
