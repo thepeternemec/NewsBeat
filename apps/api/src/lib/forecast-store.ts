@@ -13,6 +13,7 @@ const iso = (time: number) => new Date(time).toISOString();
 
 export async function readMarketForecasts(now = Date.now()): Promise<MarketForecasts> {
   let scores: ScoreRow[] = [], active: ForecastRow[] = [], recent: OutcomeRow[] = [];
+  let status: MarketForecasts["status"] = "unavailable";
   if (hasDatabaseEnv()) {
     try {
       const sql = db(), at = iso(now), since = iso(now - FORECAST_LOOKBACK_DAYS * 24 * FORECAST_HOUR);
@@ -41,12 +42,14 @@ export async function readMarketForecasts(now = Date.now()): Promise<MarketForec
           ) results order by instrument_id,(forecast->>'target_at') desc
         `, [FORECAST_VERSION, since, at, ids]),
       ]);
+      status = scores.length ? "ready" : "warming_up";
     } catch (error) {
-      if ((error as { code?: string }).code !== "42P01") console.warn("market forecast read unavailable");
+      if ((error as { code?: string }).code === "42P01") status = "warming_up";
+      else console.warn("market forecast read unavailable");
     }
   }
   return {
-    generated_at: iso(now), model_version: FORECAST_VERSION, horizon_minutes: 60, scorecard_days: FORECAST_LOOKBACK_DAYS,
+    generated_at: iso(now), status, model_version: FORECAST_VERSION, horizon_minutes: 60, scorecard_days: FORECAST_LOOKBACK_DAYS,
     assets: FORECAST_MARKETS.map(market => {
       const score = scores.find(row => row.instrument_id === market.id);
       return {

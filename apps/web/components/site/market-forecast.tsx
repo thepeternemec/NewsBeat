@@ -13,7 +13,7 @@ export function MarketForecastPanel({ outlook, now, unavailable }: { outlook?: M
       <p>Hourly forecast · Experimental</p>
       <h2>Where could BTC and ETH close?</h2>
     </header>
-    {outlook ? <div className="rb-forecast-assets">
+    {outlook && outlook.status !== "unavailable" ? <div className="rb-forecast-assets">
       {outlook.assets.map(({ ticker, pair, forecast, scorecard, recent }) => {
         const active = forecast && Date.parse(forecast.target_at) > now ? forecast : null;
         return <article key={ticker} className="rb-forecast-asset">
@@ -54,6 +54,6 @@ export function MarketForecastPanel({ outlook, now, unavailable }: { outlook?: M
           </details>
         </article>;
       })}
-    </div> : <p className="rb-forecast-meta">{unavailable ? "Forecasts temporarily unavailable." : "Checking the latest forecasts…"}</p>}
+    </div> : <p className="rb-forecast-meta">{unavailable || outlook?.status === "unavailable" ? "Forecasts temporarily unavailable." : "Checking the latest forecasts…"}</p>}
   </section>;
 }

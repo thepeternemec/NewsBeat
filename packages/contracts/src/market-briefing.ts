@@ -35,6 +35,7 @@ export interface MarketForecast {
 
 export interface MarketForecasts {
   generated_at: string;
+  status: "ready" | "warming_up" | "unavailable";
   model_version: string;
   horizon_minutes: 60;
   scorecard_days: 30;
