@@ -95,9 +95,8 @@ export default function Terms() {
             <p>
               An account receives <strong>up to $6.00 of trial credit for seven days</strong>,
               starting with its first metered call. Unused trial credit expires at the end of that
-              period. That is a grant, not a payment or plan. <strong>Planned prepaid access starts at $6</strong> — 30 days at
-              $0.20 a day — with $18 for 90 days and $60 for 300 days. The schedule on{" "}
-              <a href="/pricing">the pricing page</a> prevails over this summary if the two differ.
+              period. The credit is provided as part of the developer trial. See{" "}
+              <a href="/pricing">pricing</a> for the status of Rarebird Pro.
             </p>
             <p>
               Keys are self-served through GitHub, requesting the <code>read:user</code> scope only.

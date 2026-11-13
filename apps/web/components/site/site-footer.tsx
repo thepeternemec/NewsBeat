@@ -6,10 +6,11 @@ const COLUMNS = [
   {
     head: "Product",
     links: [
-      { href: "/#agent-workflow", label: "How it works" },
-      { href: "/#market-timing", label: "Timing" },
-      { href: "/#real-intelligence", label: "Explore a signal" },
-      { href: "/for-agents", label: "For agents" },
+      { href: "/#real-intelligence", label: "Live briefing" },
+      { href: "/intelligence#opportunities", label: "Market checks" },
+      { href: "/crypto", label: "Crypto overview" },
+      { href: "/tokens", label: "Token contracts" },
+      { href: "/ask", label: "Ticker research" },
       { href: "/pricing", label: "Pricing" },
       { href: "/status", label: "Service status" },
     ],
@@ -60,10 +61,7 @@ export default function SiteFooter() {
                 <span className="footer-co">RAREBIRD</span>
                 <a className="footer-mobile-contact" href="mailto:contact@newsbeat.dev">Contact <span aria-hidden="true">↗</span></a>
               </div>
-              <p className="footer-tag">Meaningful signals for AI agents.</p>
-              <p className="footer-address">
-                Signals built from context.
-              </p>
+              <p className="footer-tag">Know what’s worth watching.</p>
             </div>
 
             {COLUMNS.map((column) => (

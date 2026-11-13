@@ -17,20 +17,20 @@ import GridField from "@/components/site/grid-field";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.newsbeat.dev"),
-  title: "Rarebird — Meaningful signals for AI agents",
+  title: "Rarebird — Know what’s worth watching",
   description:
-    "Rarebird connects company filings, market measurements and source-linked news for AI agents researching stocks and crypto.",
+    "Follow current market checks and source-linked developments in crypto and tokenized stocks.",
   openGraph: {
     type: "website",
     url: "https://www.newsbeat.dev",
     siteName: "Rarebird",
-    title: "Rarebird — Meaningful signals for AI agents",
+    title: "Rarebird — Know what’s worth watching",
     description:
       "Explore issuer filings, measured market moves and the evidence behind review candidates.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rarebird — Meaningful signals for AI agents",
+    title: "Rarebird — Know what’s worth watching",
     description:
       "Read current market evidence and see what your agent should investigate next.",
   },

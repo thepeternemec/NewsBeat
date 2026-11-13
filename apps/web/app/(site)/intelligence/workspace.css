@@ -1,0 +1,9 @@
+.rb-market-workspace { padding-block: 122px 76px; }
+.rb-market-workspace > header h1 { font-size: clamp(39px, 7vw, 78px); line-height: 1.05; letter-spacing: -.06em; margin: 0; }
+.rb-market-workspace > header p { color: var(--text-secondary); margin: 12px 0 25px; }
+.rb-market-workspace #opportunities { margin-top: 22px; scroll-margin-top: 80px; }
+.rb-market-workspace .ni-quant-workspace { margin-top: 24px; padding-block: 30px; }
+.rb-market-workspace .ni-quant-workspace > h2 { margin: 0 0 18px; }
+.rb-workspace-links { display: flex; flex-wrap: wrap; gap: 10px 20px; font-size: 14px; }
+.rb-workspace-links a { text-decoration: underline; text-underline-offset: 4px; }
+.rb-workspace-links svg { display: inline; vertical-align: -.15em; }

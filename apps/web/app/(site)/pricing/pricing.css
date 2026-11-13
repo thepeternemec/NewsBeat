@@ -1,0 +1,29 @@
+.rb-pricing { padding-block: 125px 80px; }
+.rb-pricing .rb-pricing-intro { padding-bottom: 32px; }
+.rb-pricing .rb-pricing-intro .sec-sub { max-width: 55ch; margin-inline: 0; margin-bottom: 20px; }
+.rb-pricing-offer { scroll-margin-top: 96px; }
+.rb-price-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 22px 40px;
+  border: 1px solid var(--border-default);
+  border-radius: 22px;
+  padding: clamp(22px, 4vw, 48px);
+  color: var(--text-primary);
+  background: var(--bg-primary);
+}
+.rb-price-card h2 { margin: 3px 0 10px; font-size: clamp(27px, 4vw, 40px); letter-spacing: -.04em; }
+.rb-price-card .rb-price { margin: 10px 0; font-variant-numeric: tabular-nums; }
+.rb-price strong { font-size: clamp(35px, 6vw, 66px); letter-spacing: -.06em; line-height: 1; }
+.rb-price span, .rb-price-status, .rb-pricing-dev p { color: var(--text-secondary); }
+.rb-price-status { font-size: 13px; }
+.rb-price-card ul { padding-left: 20px; margin: 0 0 20px; }
+.rb-price-card li + li { margin-top: 8px; }
+.rb-price-card .btn-primary { white-space: normal; }
+.rb-pricing-dev { margin-top: 35px; }
+.rb-pricing-dev h2 { font-size: 21px; letter-spacing: -.025em; }
+.rb-pricing-dev a { text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 650px) {
+  .rb-pricing { padding-block: 100px 60px; }
+  .rb-price-card { grid-template-columns: 1fr; }
+}

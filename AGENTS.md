@@ -4,7 +4,7 @@ The integration guide for agents. For people: [connect your assistant](https://w
 
 ## Question-driven research
 
-For an opening crypto briefing, call `newsbeat_market_briefing` or `GET /api/v2/briefing` without arguments. Lead with the current breadth or largest tracked move, then the attributed headline and any current BTC/ETH pilot watch. Use the coverage counts and watch expiry to qualify the answer. A nearby headline and price move do not establish a cause.
+For an opening crypto briefing, call `newsbeat_market_briefing` or `GET /api/v2/briefing` without arguments. Lead with the current breadth or largest tracked move, then the attributed headline and any current six-asset pilot watch. Use the coverage counts and watch expiry to qualify the answer. A nearby headline and price move do not establish a cause.
 
 For a token identified by contract, call `newsbeat_token_intelligence` or `GET /api/v2/tokens?asset=…` with an explicit chain and address. Inspect pool-level coverage and fetch time. Issuer records are matched by both chain and contract, and underlying company headlines are separate from token market evidence. Use [Token intelligence](https://www.newsbeat.dev/tokens) to try the same lookup.
 
