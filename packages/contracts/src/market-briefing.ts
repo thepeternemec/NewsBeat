@@ -72,6 +72,10 @@ export interface MarketForecasts {
       model_version: string;
       forecast: MoveRiskForecast | null;
       scorecard: ForecastScorecard;
+      recent: Array<Pick<MoveRiskForecast, "target_at" | "probability" | "reference_price_usd"> & {
+        outcome: "moved" | "inside_threshold" | "missing";
+        target_price_usd: number | null;
+      }>;
     };
     recent: Array<Pick<MarketForecast, "target_at" | "probability_above" | "reference_price_usd"> & {
       outcome: "above" | "at_or_below" | "missing";

@@ -223,6 +223,8 @@ test("hourly forecast is issued once and scored from only the exact closed targe
     assert.equal(settled.move_risk?.scorecard.scored, 1);
     assert.equal(settled.move_risk?.scorecard.model_brier, (1 - risk.probability) ** 2);
     assert.equal(settled.move_risk?.scorecard.baseline_brier, (1 - risk.baseline_probability) ** 2);
+    assert.equal(settled.move_risk?.recent[0]?.outcome, "moved");
+    assert.equal(settled.move_risk?.recent[0]?.target_price_usd, close);
     assert.equal(settled.recent[0]?.outcome, "at_or_below");
     assert.equal(settled.recent[0]?.target_price_usd, close);
   } finally { await closeDb(); }

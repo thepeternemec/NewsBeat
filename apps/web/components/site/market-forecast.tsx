@@ -5,7 +5,7 @@ const usd = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" 
 const percent = new Intl.NumberFormat("en-US", { style: "percent", maximumFractionDigits: 1 });
 const change = new Intl.NumberFormat("en-US", { style: "percent", signDisplay: "exceptZero", maximumFractionDigits: 2 });
 const stamp = (value: string) => new Date(value).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" });
-const score = (value: number | null) => value === null ? "—" : value.toFixed(3);
+const score = (value: number | null) => value === null ? "—" : value.toFixed(5);
 
 function Scorecard({ title, data }: { title: string; data: ForecastScorecard }) {
   return <div className="rb-forecast-score">
@@ -41,6 +41,12 @@ export function MarketForecastPanel({ outlook, now, unavailable }: { outlook?: M
             <summary>Forecast evidence and results</summary>
             {risk && <p className="rb-forecast-meta">Past-hour realized volatility was {percent.format(risk.realized_volatility_1h)}. A 1% move followed {risk.matched_moves} of {risk.matched_windows} hours with similar volatility in {risk.sample_size} usable hours. The model blends that rate with the 30-day base rate.</p>}
             {move_risk && <Scorecard title={outlook.scorecard_days + "-day move risk scorecard"} data={move_risk.scorecard} />}
+            {!!move_risk?.recent?.length && <ul className="rb-forecast-results">{move_risk.recent.map(result => <li key={result.target_at}>
+              <time dateTime={result.target_at}>{stamp(result.target_at)}</time>
+              <span>{percent.format(result.probability)} forecast · {result.outcome === "missing" || result.target_price_usd === null
+                ? "Close missing"
+                : change.format(result.target_price_usd / result.reference_price_usd - 1) + " at close"}</span>
+            </li>)}</ul>}
             {active && <p className="rb-forecast-meta">Experimental direction forecast · {percent.format(active.probability_above)} estimated chance of closing above {usd.format(active.reference_price_usd)} at <time dateTime={active.target_at}>{stamp(active.target_at)}</time>.</p>}
             {active && <>
               <p className="rb-forecast-meta">Issued <time dateTime={active.issued_at}>{stamp(active.issued_at)}</time> using candles through <time dateTime={active.reference_at}>{stamp(active.reference_at)}</time>.</p>

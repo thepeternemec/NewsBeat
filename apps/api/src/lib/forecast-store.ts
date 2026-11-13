@@ -4,12 +4,12 @@ import {
   buildHourlyForecast, FORECAST_HOUR, FORECAST_ISSUE_WINDOW, FORECAST_LOOKBACK_DAYS, FORECAST_MARKETS,
   FORECAST_MISSING_AFTER_HOURS, FORECAST_VERSION,
 } from "./forecast.js";
-import { buildMoveRisk, moveRiskHistory, MOVE_RISK_VERSION, MOVE_THRESHOLD } from "./move-risk.js";
+import { buildMoveRisk, isLargeMove, moveRiskHistory, MOVE_RISK_VERSION, MOVE_THRESHOLD } from "./move-risk.js";
 
 type ForecastAsset = MarketForecasts["assets"][number];
 type ScoreRow = ForecastAsset["scorecard"] & { instrument_id: string; version: string };
 type ForecastRow<T = MarketForecast> = { instrument_id: string; forecast: T; version: string };
-type OutcomeRow = ForecastRow & Pick<ForecastAsset["recent"][number], "outcome" | "target_price_usd">;
+type OutcomeRow = ForecastRow<MarketForecast | MoveRiskForecast> & Pick<ForecastAsset["recent"][number], "outcome" | "target_price_usd">;
 const iso = (time: number) => new Date(time).toISOString();
 
 export async function readMarketForecasts(now = Date.now()): Promise<MarketForecasts> {
@@ -43,12 +43,13 @@ export async function readMarketForecasts(now = Date.now()): Promise<MarketForec
           [FORECAST_VERSION, iso(now - FORECAST_HOUR), at, ids, MOVE_RISK_VERSION]),
         sql.unsafe<OutcomeRow[]>(`
           select instrument_id,version,forecast,outcome,target_price_usd from unnest($4::text[]) as markets(id)
+          cross join (values ($1::text), ($5::text)) as versions(id)
           cross join lateral (
             select instrument_id,version,forecast,outcome,target_price_usd from public.newsbeat_market_forecasts
-            where instrument_id=markets.id and version=$1 and issued_at between $2 and $3 and outcome<>'pending'
+            where instrument_id=markets.id and version=versions.id and issued_at between $2 and $3 and outcome<>'pending'
             order by reference_at desc limit 5
           ) results order by instrument_id,(forecast->>'target_at') desc
-        `, [FORECAST_VERSION, since, at, ids]),
+        `, [FORECAST_VERSION, since, at, ids, MOVE_RISK_VERSION]),
       ]);
       status = scores.length ? "ready" : "warming_up";
     } catch (error) {
@@ -69,11 +70,22 @@ export async function readMarketForecasts(now = Date.now()): Promise<MarketForec
       return {
         ticker: market.ticker, pair: market.pair, forecast: direction && "probability_above" in direction ? direction : null,
         scorecard: scorecard(FORECAST_VERSION),
-        move_risk: { model_version: MOVE_RISK_VERSION, forecast: risk && "probability" in risk ? risk : null, scorecard: scorecard(MOVE_RISK_VERSION) },
-        recent: recent.filter(row => row.instrument_id === market.id).map(({ forecast, outcome, target_price_usd }) => ({
-          target_at: forecast.target_at, probability_above: forecast.probability_above,
-          reference_price_usd: forecast.reference_price_usd, outcome, target_price_usd,
-        })),
+        move_risk: {
+          model_version: MOVE_RISK_VERSION, forecast: risk && "probability" in risk ? risk : null,
+          scorecard: scorecard(MOVE_RISK_VERSION),
+          recent: recent.flatMap(({ instrument_id, forecast, target_price_usd, outcome, version }) =>
+            instrument_id === market.id && version === MOVE_RISK_VERSION && "probability" in forecast ? [{
+              target_at: forecast.target_at, probability: forecast.probability,
+              reference_price_usd: forecast.reference_price_usd, target_price_usd,
+              outcome: outcome === "missing" || target_price_usd === null ? "missing" as const
+                : isLargeMove(forecast.reference_price_usd, target_price_usd) ? "moved" as const : "inside_threshold" as const,
+            }] : []),
+        },
+        recent: recent.flatMap(({ instrument_id, forecast, outcome, target_price_usd, version }) =>
+          instrument_id === market.id && version === FORECAST_VERSION && "probability_above" in forecast ? [{
+            target_at: forecast.target_at, probability_above: forecast.probability_above,
+            reference_price_usd: forecast.reference_price_usd, outcome, target_price_usd,
+          }] : []),
       };
     }),
   };
