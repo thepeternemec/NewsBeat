@@ -46,6 +46,18 @@ function verifyMarket(data, kind) {
 let last = "deployment not ready";
 for (let attempt = 0; attempt < 32; attempt++) {
   try {
+    const discovery = await read("/api/v2/discovery");
+    assert.ok(["ready", "partial"].includes(discovery.status), "catalog discovery has run");
+    assert.ok(discovery.coverage.catalog_total >= 2000);
+    const lastScan = Date.now() - Date.parse(discovery.coverage.scanned_at);
+    assert.ok(lastScan >= 0 && lastScan < 5 * 60000, "catalog discovery cron has run recently");
+    for (const event of discovery.events) {
+      assert.ok(event.assets.length && event.evidence.length);
+      assert.ok(Date.parse(event.first_recorded_at) <= Date.parse(discovery.generated_at));
+      assert.ok(event.evidence.every(source => /^https?:\/\//.test(source.url)));
+    }
+    console.log(JSON.stringify({ discovery: discovery.status, scanned_at: discovery.coverage.scanned_at,
+      news_feeds_current: discovery.coverage.fresh_news_feeds, events: discovery.events.length }));
     const data = await read("/api/v2/intelligence?beat_id=b_bb964843350e&check=" + Date.now());
     assert.equal(data.beat_id, "b_bb964843350e"); assert.equal(data.pilot, true); assert.equal(data.context.id, "fundamentals");
     assert.ok(Array.isArray(data.constructions)); assert.ok(Array.isArray(data.alerts));
@@ -65,7 +77,7 @@ for (let attempt = 0; attempt < 32; attempt++) {
       const eth = topics.topics.find(item => item.ticker === "ETH"); assert.ok(eth);
       verifyMarket(await read("/api/v2/intelligence?beat_id=" + eth.beat_id), "crypto");
       const invalid = await fetch(origin + "/api/v2/intelligence?beat_id=b_bb964843350e&context=invented", { headers: { "X-NewsBeat-Traffic": "synthetic" } }); assert.equal(invalid.status, 400);
-      for (const route of ["intelligence", "market-intelligence", "priority-news"]) {
+      for (const route of ["intelligence", "market-intelligence", "priority-news", "discovery"]) {
         const cron = await fetch(origin + "/api/cron/" + route); assert.equal(cron.status, 401);
       }
       const tools = await read("/api/v2/tools");
@@ -79,6 +91,7 @@ for (let attempt = 0; attempt < 32; attempt++) {
       assert.equal(collection.session_token, undefined, "status reads never reveal cancellation tokens");
       const home = await fetch(origin + "/?verify=timing").then(result => result.text());
       assert.ok(!/event.intelligence/i.test(home)); assert.ok(home.includes('id="agent-workflow"'));
+      assert.ok(home.includes("Open live discovery"), "catalog discovery is the homepage entry point");
       assert.ok(home.includes('id="landing-company-query"'), "live company search remains available");
       assert.ok(home.includes('href="/ask"'), "visitors can open the ticker lookup");
       const pilots = [["NVDA", "b_bb964843350e"], ["AAPL", "b_7d5acdda6186"], ["MSFT", "b_a723a1d2787f"],
