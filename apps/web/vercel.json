@@ -18,6 +18,10 @@
       "schedule": "1-59/5 * * * *"
     },
     {
+      "path": "/api/cron/discovery",
+      "schedule": "* * * * *"
+    },
+    {
       "path": "/api/cron/priority-news",
       "schedule": "* * * * *"
     },

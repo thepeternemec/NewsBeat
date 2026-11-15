@@ -2,6 +2,10 @@
 
 The integration guide for agents. For people: [connect your assistant](https://www.newsbeat.dev/docs/quickstart) and ask a stock or crypto news question in your own words.
 
+## Catalog discovery
+
+Call `newsbeat_discovery` or `GET /api/v2/discovery` to read developments recorded by the scheduled stock and token scan. Optional inputs are `asset` (`equity` or `crypto`), `beat_id` and `limit` (1–20). Link the evidence and keep its timestamps. A press publication timestamp describes the article. A filing acceptance timestamp describes the official disclosure. `first_recorded_at` measures when the discovery worker recorded qualifying evidence. Catalog news checks cover 2,030 assets and direct filing checks cover four pilot issuers.
+
 ## Hourly BTC and ETH forecasts
 
 Read `GET /api/v2/forecasts` or the `forecasts` field from `newsbeat_market_briefing`. Rarebird estimates the chance that the next Kraken hour closes at least 1% away from the reference in either direction under `assets[].move_risk`. The existing directional forecast and its scorecard are reported separately. Quote the target, base rate, matching sample count and source. A null forecast means the current hour has no recorded call. The forward scorecard compares the model and historical base rate on the same resolved observations. Historical matches are descriptive and the probabilities are experimental.

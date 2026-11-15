@@ -1,7 +1,7 @@
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
-import MarketBriefingCard from "@/components/site/market-briefing";
+import MarketDiscovery from "@/components/site/market-discovery";
 import LandingNewsLookup from "@/components/site/landing-news-lookup";
 import LandingMotion from "@/components/site/landing-motion";
 import "./landing.css";
@@ -13,8 +13,8 @@ import "./landing-experience.css";
 import "./home-story.css";
 import "./briefing-home.css";
 
-const DESCRIPTION = "Rarebird monitors selected crypto and tokenized stocks for developments worth investigating. Get the market evidence, source links, and a clear next check.";
-const TITLE = "Rarebird — Know what’s worth watching";
+const DESCRIPTION = "Get a live feed of developments across 2,030 stocks and crypto assets, with evidence links, first-recorded times and a clear next check.";
+const TITLE = "Rarebird — See what just changed";
 export const metadata = {
   title: TITLE, description: DESCRIPTION,
   alternates: { canonical: "https://www.newsbeat.dev" },
@@ -30,29 +30,29 @@ export default function Home() {
       <section className="bs-hero" id="top">
         <div className="wrap bs-hero-grid">
           <div className="bs-hero-copy">
-            <span className="bs-kicker"><span /> Market intelligence for crypto and tokenized stocks</span>
-            <h1 id="home-title"><span className="nb-headline-line" data-hero-line>Know what’s</span><span className="nb-headline-line nb-headline-muted" data-hero-line>worth watching.</span></h1>
-            <p className="bs-lede">See the odds of a 1% move in Bitcoin or Ethereum by the next hourly close, and how Rarebird’s forecasts compare with the historical base rate.</p>
+            <span className="bs-kicker"><span /> Market discovery across 2,030 assets</span>
+            <h1 id="home-title"><span className="nb-headline-line" data-hero-line>See what</span><span className="nb-headline-line nb-headline-muted" data-hero-line>just changed.</span></h1>
+            <p className="bs-lede">Rarebird scans for earnings, guidance changes, deals and market disruptions across stocks and crypto. See the evidence and when Rarebird first recorded it.</p>
             <div className="hero-cta">
-              <a className="btn-primary" href="#real-intelligence">See the live forecast <ArrowRight size={16} aria-hidden="true" /></a>
+              <a className="btn-primary" href="#real-intelligence">Open live discovery <ArrowRight size={16} aria-hidden="true" /></a>
               <a className="bs-text-link" href="/pricing#later">See the $8.99 plan <ArrowUpRight size={16} aria-hidden="true" /></a>
             </div>
           </div>
           <div className="ni-hero-model nb-live-stage" id="real-intelligence">
             <span className="nb-live-stage-orbit" aria-hidden="true" />
-            <MarketBriefingCard compact />
+            <MarketDiscovery compact />
           </div>
         </div>
       </section>
 
       <section className="wrap rb-focus-method" id="agent-workflow" aria-labelledby="workflow-title">
-        <h2 id="workflow-title">How a development earns your attention</h2>
+        <h2 id="workflow-title">How Rarebird flags a development</h2>
         <dl>
-          <div><dt>What changed</dt><dd>Read the original report or market observation and see when it appeared.</dd></div>
-          <div id="market-timing"><dt>Why look now</dt><dd>Check whether the move is unusual and whether current market data supports a closer look.</dd></div>
-          <div><dt>What to check next</dt><dd>See which evidence would strengthen the case or make it worth reassessing.</dd></div>
+          <div><dt>Match the asset</dt><dd>Check the name and context before attaching a report to a stock or token.</dd></div>
+          <div id="market-timing"><dt>Record the timing</dt><dd>See when a source published and when Rarebird first recorded the development.</dd></div>
+          <div><dt>Follow the evidence</dt><dd>Open the report or filing and see the next check for that type of development.</dd></div>
         </dl>
-        <p>Market checks cover Bitcoin, Ethereum, and Kraken xStocks for NVIDIA, Apple, Microsoft, and Alphabet.</p>
+        <p>News discovery covers the full catalog. Direct SEC filing checks cover four pilot issuers.</p>
       </section>
 
       <section className="wrap rb-focus-tools" id="connect-agent" aria-labelledby="tools-title">

@@ -84,6 +84,7 @@ Returns 16 research calls plus one explicit collection-control call in OpenAI fu
 | `newsbeat_investment` | The ticker brief shown on Ask Rarebird, with its stance, supporting evidence and limits. | `POST /v2/investment` |
 | `newsbeat_collection` | Explicitly request one-minute collection for 15 minutes, read status, or stop with your token. | `GET/POST /v2/collection` |
 | `newsbeat_intelligence` | Stored event memory, conditional implications and follow-up checks for the six-asset pilot | `GET /v2/intelligence?beat_id=` |
+| `newsbeat_discovery` | Scheduled catalog discoveries with source links and first-recorded times | `GET /v2/discovery` |
 | `newsbeat_opportunities` | Review and watch shortlist across the six measured assets | `GET /v2/opportunities` |
 | `newsbeat_catalysts` | Recent SEC filings and comparable reported results for four issuers | `GET /v2/catalysts` |
 | `newsbeat_topics` | Find a supported stock or crypto asset. | `GET /v2/topics?q=…` |

@@ -371,3 +371,22 @@ create table if not exists public.newsbeat_telegram_deliveries (
   delivery_key text primary key,
   claimed_at timestamptz not null default now()
 );
+
+-- Scheduled market discovery receipts. Rolling reads do not insert or change these timestamps.
+create table if not exists public.newsbeat_discovery_observations (
+  id text primary key,
+  beat_id text not null,
+  asset text not null check (asset in ('equity','crypto')),
+  published_at timestamptz not null,
+  recorded_at timestamptz not null default now(),
+  evidence_type text not null check (evidence_type in ('press','official_filing')),
+  observation jsonb not null
+);
+create index if not exists newsbeat_discovery_published_idx on public.newsbeat_discovery_observations(published_at desc);
+create table if not exists public.newsbeat_discovery_scans (
+  id text primary key,
+  cursor_at timestamptz not null,
+  cursor_id bigint not null,
+  scanned_at timestamptz not null,
+  backlog boolean not null
+);

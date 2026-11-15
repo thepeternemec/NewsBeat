@@ -1,0 +1,39 @@
+.rb-discovery {
+  min-width: 0;
+  padding: clamp(18px, 3vw, 28px);
+  border: 1px solid var(--border-default);
+  border-radius: 20px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+.rb-discovery h2 { margin: 0 0 7px; font-size: clamp(23px, 3.5vw, 33px); line-height: 1.1; letter-spacing: -.035em; }
+.rb-discovery-meta { margin: 6px 0; color: var(--text-secondary); font-size: 12px; line-height: 1.5; }
+.rb-discovery-list { list-style: none; padding: 0; margin: 13px 0 0; }
+.rb-discovery-list li { padding: 13px 0; border-top: 1px solid var(--border-default); }
+.rb-discovery-tags, .rb-discovery-times { display: flex; gap: 4px 12px; flex-wrap: wrap; }
+.rb-discovery-tags { font-size: 11px; color: var(--text-secondary); }
+.rb-discovery-tags > :first-child { color: var(--text-primary); font-family: var(--font-mono); font-weight: 600; }
+.rb-discovery-new { border: 1px solid var(--border-default); border-radius: 5px; padding-inline: 4px; }
+.rb-discovery-list h3 { margin: 5px 0; font-size: 15px; line-height: 1.36; font-weight: 620; overflow-wrap: anywhere; }
+.rb-discovery-source, .rb-discovery-more, .rb-discovery details a {
+  font-size: 12px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.rb-discovery a svg { display: inline; vertical-align: -.12em; }
+.rb-discovery-times { margin-top: 5px; color: var(--text-secondary); font-size: 11px; }
+.rb-discovery details { margin-top: 6px; font-size: 12px; }
+.rb-discovery summary { cursor: pointer; width: fit-content; padding-block: 4px; }
+.rb-discovery details p { margin: 3px 0; line-height: 1.45; }
+.rb-discovery-more { display: inline-block; margin-top: 8px; font-weight: 600; }
+.rb-discovery-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 13px 0 10px; }
+.rb-discovery-tabs button {
+  padding: 5px 10px;
+  border: 1px solid var(--border-default);
+  border-radius: 6px;
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  font-size: 12px;
+  cursor: pointer;
+}
+.rb-discovery-tabs button[aria-pressed="true"] { background: var(--text-primary); color: var(--bg-primary); border-color: var(--text-primary); }
