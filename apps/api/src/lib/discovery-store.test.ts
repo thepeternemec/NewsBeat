@@ -37,3 +37,24 @@ test("scheduled discovery persists first observations, includes non-pilot assets
     assert.deepEqual((await readDiscovery({ asset: "crypto" })).events.map(event => event.assets[0]?.ticker), ["SOL"]);
   } finally { await closeDb(); }
 });
+
+test("discovery backlog resumes at the numeric article ID for tied timestamps", { skip: !connection, timeout: 20000 }, async () => {
+  process.env.DATABASE_URL = connection!;
+  const sql = db();
+  try {
+    await sql.unsafe(readFileSync(new URL("../../../../db/schema.sql", import.meta.url), "utf8"));
+    await sql.unsafe("truncate public.newsbeat_discovery_observations, public.newsbeat_discovery_scans, public.news_articles");
+    await sql.unsafe(`insert into public.news_articles(id,beat_id,provider_uri,title,excerpt,url,source,published_at,first_indexed_at)
+      select i,'b_bb964843350e','bulk-' || i,
+        case when i=99 then 'Nvidia cuts full-year revenue outlook' else 'Ordinary headline' end,
+        '','https://example.com/bulk/' || i,'Publisher',now() - interval '5 minutes',now() - interval '5 minutes'
+      from generate_series(1,4001) i`);
+    const first = await runDiscovery();
+    assert.equal(first.status, "catching_up");
+    assert.equal(first.inserted, 1);
+    const second = await runDiscovery();
+    assert.equal(second.status, "processed");
+    assert.equal(second.scanned, 1);
+    assert.equal(second.inserted, 0);
+  } finally { await closeDb(); }
+});
