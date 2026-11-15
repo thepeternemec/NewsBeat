@@ -56,7 +56,7 @@ export async function runDiscovery() {
       where published_at between ${new Date(floor).toISOString()}::timestamptz and ${scanAt}::timestamptz
         and first_indexed_at <= ${scanAt}::timestamptz
         and (first_indexed_at, id) > (${since}::timestamptz, ${continuation?.cursor_id ?? "0"}::bigint)
-      order by first_indexed_at,id limit ${BATCH_SIZE + 1}`;
+      order by first_indexed_at,news_articles.id limit ${BATCH_SIZE + 1}`;
     const filings = await tx<FilingRow[]>`select beat_id,snapshot,checked_at from public.newsbeat_official_evidence
       where beat_id in ${tx(officialIds)} and last_error is null
         and checked_at between ${new Date(now - OFFICIAL_FRESH_MS).toISOString()}::timestamptz and ${scanAt}::timestamptz`;
