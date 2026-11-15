@@ -48,14 +48,14 @@ export async function runDiscovery() {
       from public.newsbeat_discovery_scans where id=${key}`;
     const floor = now - DISCOVERY_PRESS_HOURS * HOUR;
     const continuation = previous?.backlog && Date.parse(previous.cursor_at) >= floor ? previous : null;
-    // The regular scan overlaps recently committed writes. A bounded backlog resumes at its exact DB timestamp and ID.
+    // Overlap recent commits after a completed scan. Preserve microseconds in backlog cursors by binding them as text.
     const since = continuation ? continuation.cursor_at
       : new Date(previous ? Math.max(floor, Date.parse(previous.cursor_at) - 3 * MINUTE) : floor).toISOString();
     const articles = await tx<Article[]>`select id::text, beat_id, title, url, source, published_at, first_indexed_at as indexed_at, first_indexed_at::text as cursor_at
       from public.news_articles
       where published_at between ${new Date(floor).toISOString()}::timestamptz and ${scanAt}::timestamptz
         and first_indexed_at <= ${scanAt}::timestamptz
-        and (first_indexed_at, id) > (${since}::timestamptz, ${continuation?.cursor_id ?? "0"}::bigint)
+        and (first_indexed_at, id) > (${since}::text::timestamptz, ${continuation?.cursor_id ?? "0"}::text::bigint)
       order by first_indexed_at,news_articles.id limit ${BATCH_SIZE + 1}`;
     const filings = await tx<FilingRow[]>`select beat_id,snapshot,checked_at from public.newsbeat_official_evidence
       where beat_id in ${tx(officialIds)} and last_error is null
@@ -87,7 +87,7 @@ export async function runDiscovery() {
     const backlog = articles.length > BATCH_SIZE;
     const tail = backlog ? articles[BATCH_SIZE - 1]! : undefined;
     await tx`insert into public.newsbeat_discovery_scans(id,cursor_at,cursor_id,scanned_at,backlog)
-      values (${key},${tail?.cursor_at ?? clock!.exact}::timestamptz,${tail?.id ?? "0"}::bigint,${scanAt}::timestamptz,${backlog})
+      values (${key},${tail?.cursor_at ?? clock!.exact}::text::timestamptz,${tail?.id ?? "0"}::text::bigint,${scanAt}::timestamptz,${backlog})
       on conflict(id) do update set cursor_at=excluded.cursor_at,cursor_id=excluded.cursor_id,scanned_at=excluded.scanned_at,backlog=excluded.backlog`;
     await tx`delete from public.newsbeat_discovery_observations where published_at < ${new Date(now - 7 * 24 * HOUR).toISOString()}::timestamptz`;
     return { status: backlog ? "catching_up" : "processed", classified: observations.length, inserted, scanned: Math.min(BATCH_SIZE, articles.length) };
