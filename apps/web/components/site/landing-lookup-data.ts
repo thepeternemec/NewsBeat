@@ -3,11 +3,19 @@ export type LookupArticle = { id: string; beat_id: string; title: string; source
 export type LookupNews = { items: LookupArticle[]; freshness: { status: "fresh" | "stale" | "unavailable"; last_success_at: string | null } };
 
 export async function findAssets(base: string, query: string, signal: AbortSignal): Promise<LookupAsset[]> {
-  const response = await fetch(`${base}/v2/topics?q=${encodeURIComponent(query.trim())}&limit=6`, { signal, cache: "no-store" });
+  const response = await fetch(`${base}/v2/topics?q=${encodeURIComponent(query.trim())}&limit=6&view=identity`, { signal, cache: "no-store" });
   if (!response.ok) throw new Error("Search unavailable");
   const data = await response.json();
   if (!Array.isArray(data.topics) || !data.topics.every((topic: LookupAsset) => topic && /^b_[a-f0-9]{12}$/.test(topic.beat_id) && [topic.label, topic.ticker, topic.asset].every(value => typeof value === "string"))) throw new Error("Invalid search response");
   return data.topics.slice(0, 6);
+}
+
+export function chooseSearchResult(topics: LookupAsset[], query: string, index: number) {
+  if (topics[index]) return topics[index];
+  const term = query.normalize("NFKC").trim().replace(/^\$/, "").toLowerCase();
+  const symbol = (value: string) => value.toLowerCase().replace(/-([a-z])$/, ".$1");
+  const exact = topics.filter(topic => symbol(topic.ticker) === symbol(term) || topic.label.toLowerCase() === term);
+  return exact.length === 1 ? exact[0] : topics.length === 1 ? topics[0] : undefined;
 }
 
 export async function readCoverage(base: string, beatId: string, signal: AbortSignal): Promise<LookupNews> {
