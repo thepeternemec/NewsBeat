@@ -18,3 +18,4 @@ export * from "./investment.js";
 export * from "./token-intelligence.js";
 export * from "./market-briefing.js";
 export * from "./catalysts.js";
+export * from "./discovery.js";

@@ -9,6 +9,7 @@ const TOOLS = [
   ["newsbeat_research", "Answer a question with asset-specific evidence, conditional reasoning, unknowns and next checks.", "POST /v2/research"],
   ["newsbeat_collection", "Explicitly request one-minute collection for 15 minutes, read status, or stop your session.", "GET/POST /v2/collection"],
   ["newsbeat_intelligence", "Read stored event interpretations, evidence and follow-up checks for the six-asset pilot.", "GET /v2/intelligence?beat_id=…"],
+  ["newsbeat_discovery", "Read the scheduled catalog discovery feed with evidence and recording times.", "GET /v2/discovery"],
   ["newsbeat_opportunities", "Read the current review and watch shortlist for the six measured assets.", "GET /v2/opportunities"],
   ["newsbeat_topics", "Find a supported company or crypto asset.", "GET /v2/topics?q=nvidia"],
   ["newsbeat_news", "Read latest headlines and establish a baseline cursor.", "GET /v2/news?beat_id=…"],
@@ -89,6 +90,8 @@ export default function DocsConnect() {
       <h2 id="telegram">Telegram groups</h2>
       <p>Use <strong>Share to Telegram</strong> on a live brief to open Telegram’s chat picker. In a configured group, send <code>/ask BTC</code> or address the bot with <code>/ask@YourBot BTC</code>. The reply includes the stance, reasoning, sources and a link to open the full ticker view. A group admin can configure the daily ticker feed using the <a href="https://github.com/thepeternemec/NewsBeat/blob/main/docs/TELEGRAM.md">Telegram setup guide</a>.</p>
 
+      <h2 id="catalog-discovery">Catalog discovery</h2>
+      <p>Use <code>newsbeat_discovery</code> or <code>GET /v2/discovery</code> for ranked stock and token developments. Supply an optional <code>asset</code> (<code>equity</code> or <code>crypto</code>), <code>beat_id</code>, or <code>limit</code> (1–20). Each card links its evidence and records publication or filing acceptance, indexing or source-check time, and when the discovery worker first recorded the event. Direct filing checks span four issuers. Use the coverage fields when interpreting sparse results.</p>
       <h2 id="market-briefing">Market briefing</h2>
       <p>Use <code>newsbeat_market_briefing</code> or <code>GET /v2/briefing</code> when a visitor needs the latest crypto picture without a question. It combines current readings from a 12-asset basket, a selected recent headline from Bitcoin, Ethereum or Solana, and any active watch from the six-asset pilot. Check the coverage counts and the watch’s <code>valid_until</code> before presenting it.</p>
       <p>For hourly Bitcoin and Ethereum forecasts, use <code>GET /v2/forecasts</code> or read <code>forecasts</code> in the market briefing. Read <code>assets[].move_risk</code> for the estimated chance of closing at least 1% away from the reference in either direction. Include the target time, historical base rate and sample size with the probability. Move risk and direction each have a separate live scorecard.</p>

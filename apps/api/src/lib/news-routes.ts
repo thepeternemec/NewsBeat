@@ -16,6 +16,7 @@ import { readCatalysts } from "./catalysts.js";
 import { readTokenIntelligence } from "./token-intelligence.js";
 import { readMarketForecasts } from "./forecast-store.js";
 import { readMarketBriefing } from "./market-briefing.js";
+import { readDiscovery } from "./discovery.js";
 export const newsRoutes = new Hono();
 newsRoutes.onError((error, c) => { if (error instanceof NewsError)
     return c.json({ error: { code: error.code, message: error.message } }, error.status as 400 | 404 | 410 | 503); console.error("news request failed", error.name); return c.json({ error: { code: "service_unavailable", message: "News is temporarily unavailable." } }, 503); });
@@ -24,6 +25,12 @@ const clamp = (raw: string | undefined, fallback: number, max: number) => {
     return Number.isFinite(n) && n >= 0 ? Math.min(n, max) : fallback;
 };
 newsRoutes.get("/research", c => c.json({ ...researchCoverage, method: "POST", body: { question: "Why is NVIDIA moving, and what should I check next?" } }));
+newsRoutes.get("/discovery", async c => {
+    const limit = c.req.query("limit");
+    c.header("Cache-Control", "public, max-age=0, s-maxage=30");
+    return c.json(await readDiscovery({ asset: c.req.query("asset"), beat_id: c.req.query("beat_id"),
+        limit: limit === undefined ? undefined : Number(limit) }));
+});
 newsRoutes.get("/briefing", async c => {
     c.header("Cache-Control", "public, max-age=0, s-maxage=30");
     return c.json(await readMarketBriefing());
@@ -141,6 +148,7 @@ export async function callNewsTool(name: string, args: unknown, oidcToken?: stri
     // `newsgraph_*`, `newsbeat_*` and briefly `newsbeat_*`; all three resolve and the
     // advertised name is `newsbeat_*` again. Remove a prefix once its callers have moved.
     name = name.replace(/^(?:newsgraph|newsbeat|rarebird)_/, "newsbeat_");
+    if (name === "newsbeat_discovery") return readDiscovery(args);
     if (name === "newsbeat_research") return researchQuestion(args, oidcToken);
     if (name === "newsbeat_investment") return readInvestmentBrief(args, oidcToken);
     if (name === "newsbeat_market_briefing") {
