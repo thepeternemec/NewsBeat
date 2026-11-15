@@ -9,7 +9,7 @@ const module = { exports: {} };
 let response;
 const calls = [];
 new Function("exports", "fetch", outputText)(module.exports, async (url, options) => { calls.push({ url, options }); return { ok: true, json: async () => response }; });
-const { findAssets, readCoverage, coverageLabel } = module.exports;
+const { findAssets, chooseSearchResult, readCoverage, coverageLabel } = module.exports;
 const signal = new AbortController().signal;
 const id = "b_bb964843350e";
 const fresh = { status: "fresh", last_success_at: "2026-11-05T20:00:00Z" };
@@ -20,8 +20,16 @@ test("search preserves distinct stock and crypto identities for an ambiguous tic
   const results = await findAssets("/api", " SUI & partners ", signal);
   assert.equal(results.length, 2);
   assert.notEqual(results[0].beat_id, results[1].beat_id);
-  assert.equal(calls.at(-1).url, "/api/v2/topics?q=SUI%20%26%20partners&limit=6");
+  assert.equal(calls.at(-1).url, "/api/v2/topics?q=SUI%20%26%20partners&limit=6&view=identity");
   assert.equal(calls.at(-1).options.signal, signal);
+});
+test("Enter resolves unique exact results and leaves shared symbols for the user to choose", () => {
+  const stock = { beat_id: "b_012345678901", ticker: "SUI", label: "Sun Communities", asset: "equity" };
+  const coin = { beat_id: "b_012345678902", ticker: "SUI", label: "Sui", asset: "crypto" };
+  const ford = { beat_id: "b_012345678903", ticker: "F", label: "Ford", asset: "equity" };
+  assert.equal(chooseSearchResult([stock, coin], "$SUI", -1), undefined);
+  assert.equal(chooseSearchResult([stock, coin], "SUI", 1), coin);
+  assert.equal(chooseSearchResult([stock, coin, ford], "ford", -1), ford);
 });
 test("empty coverage is a valid result, while a report for another company is rejected", async () => {
   response = { items: [], freshness: fresh };

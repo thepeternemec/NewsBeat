@@ -55,21 +55,39 @@ export const TOPIC_PAGE_DEFAULT = 100;
  */
 export const TOPIC_PAGE_MAX = Math.max(2000, SEED_BEATS.length);
 
-/** Put an exact company or ticker first so small search menus do not bury it. */
+const SEARCH_STOP_WORDS = new Set(["the", "and", "news", "about", "latest", "follow", "keep", "with", "what", "changes", "tell"]);
+const searchPhrase = (value: string) => value.normalize("NFKC").toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
+const searchTicker = (value: string) => value.normalize("NFKC").toLowerCase().replace(/^\$/, "").replace(/-([a-z])$/, ".$1");
+const topicDirectory = SEED_BEATS.map(topic => ({
+    topic,
+    ticker: searchTicker(topic.ticker),
+    names: [topic.label, ...topic.keywords].map(searchPhrase).filter(Boolean),
+}));
+
+/** Exact symbols and full names (including catalog aliases) lead partial matches. */
 export function matchingTopics(query: string) {
-    const terms = query.toLowerCase().split(/[^\p{L}\p{N}]+/u).filter(w => w.length >= 2 && !new Set(["the", "and", "news", "about", "latest", "follow", "keep", "with", "what", "changes", "tell"]).has(w));
-    if (!terms.length) return SEED_BEATS;
-    const score = (topic: (typeof SEED_BEATS)[number]) => {
-        const label = topic.label.toLowerCase();
-        const ticker = topic.ticker.toLowerCase().replace(/\.[a-z]$/, "");
-        return Math.min(...terms.map(term => ticker === term || label === term ? 0
-            : ticker.startsWith(term) || label.startsWith(term) ? 1
-            : ticker.includes(term) || label.includes(term) ? 2 : 3));
-    };
-    return SEED_BEATS.map((topic, index) => ({ topic, index, rank: score(topic) }))
-        .filter(entry => entry.rank < 3)
-        .sort((a, b) => a.rank - b.rank || a.index - b.index)
-        .map(entry => entry.topic);
+    const value = query.trim();
+    if (!value) return SEED_BEATS;
+    const phrase = searchPhrase(value);
+    const symbol = searchTicker(value);
+    const terms = phrase.split(" ").filter(term => term.length >= 2 && !SEARCH_STOP_WORDS.has(term));
+    const ordered: Array<Array<(typeof SEED_BEATS)[number]>> = [[], [], [], []];
+    for (const { topic, ticker, names } of topicDirectory) {
+        if (ticker === symbol || names.includes(phrase)) ordered[0]!.push(topic);
+        else if (phrase && (ticker.startsWith(symbol) || names.some(name => name.startsWith(phrase)))) ordered[1]!.push(topic);
+        else if (terms.some(term => ticker === term || names.includes(term))) ordered[2]!.push(topic);
+        else if (terms.some(term => ticker.includes(term) || names.some(name => name.includes(term)))) ordered[3]!.push(topic);
+    }
+    return ordered.flat();
+}
+
+/** Search suggestions need only catalog identities, so typing never scans article counts. */
+export function topicIdentities(query: string, limit: number, offset: number) {
+    const matches = matchingTopics(query);
+    const topics = matches.slice(offset, offset + limit).map(({ beat_id, label, ticker, asset }) => ({ beat_id, label, ticker, asset: asset ?? "equity" }));
+    const consumed = offset + topics.length;
+    return { topics, total: matches.length, limit, offset, has_more: consumed < matches.length,
+        next_offset: consumed < matches.length ? consumed : null };
 }
 
 export async function topics(query = "", limit = TOPIC_PAGE_DEFAULT, offset = 0) {

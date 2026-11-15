@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { SEED_BEATS } from "@newsbeat/contracts";
-import { TOPIC_PAGE_MAX, matchingTopics } from "./news.js";
+import { TOPIC_PAGE_MAX, matchingTopics, topicIdentities } from "./news.js";
 import { boundedPage, readCursor, signCursor } from "./news.js";
 import { mcpResponse } from "./mcp.js";
 process.env.NEWSBEAT_CURSOR_SECRET = "unit-test-key-never-for-production";
@@ -58,6 +58,18 @@ test("one page can reach every topic", () => {
 test("search places an exact ticker or company ahead of partial matches", () => {
   assert.equal(matchingTopics("NVDA")[0]?.ticker, "NVDA");
   assert.equal(matchingTopics("Apple")[0]?.ticker, "AAPL");
+  assert.equal(matchingTopics("F")[0]?.ticker, "F");
+  assert.equal(matchingTopics("Google")[0]?.ticker, "GOOGL");
+  assert.equal(matchingTopics("$BRK-B")[0]?.ticker, "BRK.B");
+  assert.equal(matchingTopics("Sun Communities")[0]?.asset ?? "equity", "equity");
+  assert.equal(matchingTopics("Sun Communities")[0]?.ticker, "SUI");
   assert.equal(matchingTopics("about Bitcoin news")[0]?.ticker, "BTC");
   assert.equal(matchingTopics("").length, SEED_BEATS.length);
+});
+
+test("the identity view preserves colliding symbols and returns catalog fields only", () => {
+    const page = topicIdentities("SUI", 2, 0);
+    assert.deepEqual(page.topics.map(topic => [topic.ticker, topic.asset]), [["SUI", "equity"], ["SUI", "crypto"]]);
+    assert.deepEqual(Object.keys(page.topics[0]!).sort(), ["asset", "beat_id", "label", "ticker"]);
+    assert.equal(page.next_offset, 2);
 });

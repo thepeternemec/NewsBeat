@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { z } from "zod";
 import { NEWS_TOOLS, SignalContextIdSchema } from "@newsbeat/contracts";
-import { NewsError, topics, newsPage, brief, stories, watchMany, WATCH_LIMIT, TOPIC_PAGE_DEFAULT, TOPIC_PAGE_MAX } from "./news.js";
+import { NewsError, topics, topicIdentities, newsPage, brief, stories, watchMany, WATCH_LIMIT, TOPIC_PAGE_DEFAULT, TOPIC_PAGE_MAX } from "./news.js";
 import { headlineSummary } from "./headline-summary.js";
 import { fearGreed, overview, prices, DEFAULT_PRICE_IDS } from "./market.js";
 import { chainPulse, contractToken } from "./chain.js";
@@ -137,7 +137,9 @@ newsRoutes.get("/brief", async (c) => {
 newsRoutes.get("/topics", async (c) => {
     const limit = clamp(c.req.query("limit"), TOPIC_PAGE_DEFAULT, TOPIC_PAGE_MAX) || TOPIC_PAGE_DEFAULT;
     const offset = clamp(c.req.query("offset"), 0, Number.MAX_SAFE_INTEGER);
-    return c.json(await topics((c.req.query("q") ?? "").slice(0, 200), limit, offset));
+    const query = (c.req.query("q") ?? "").slice(0, 200);
+    if (c.req.query("view") === "identity") return c.json(topicIdentities(query, limit, offset));
+    return c.json(await topics(query, limit, offset));
 });
 newsRoutes.get("/news", async (c) => c.json(await newsPage(c.req.query("beat_id") ?? "", c.req.query("before"), !!c.req.query("before"))));
 newsRoutes.get("/changes", async (c) => { const cursor = c.req.query("cursor"); if (!cursor)

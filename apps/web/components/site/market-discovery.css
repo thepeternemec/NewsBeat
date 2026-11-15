@@ -26,14 +26,59 @@
 .rb-discovery summary { cursor: pointer; width: fit-content; padding-block: 4px; }
 .rb-discovery details p { margin: 3px 0; line-height: 1.45; }
 .rb-discovery-more { display: inline-block; margin-top: 8px; font-weight: 600; }
-.rb-discovery-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 13px 0 10px; }
-.rb-discovery-tabs button {
-  padding: 5px 10px;
-  border: 1px solid var(--border-default);
-  border-radius: 6px;
-  background: var(--bg-primary);
+.rb-discovery-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  margin: 14px 0 10px;
+}
+.rb-discovery-search {
+  width: min(100%, 330px);
+  --catalog-background: #fafafa;
+  --catalog-ink: #161616;
+  --catalog-muted: #535353;
+  --catalog-border: #dedede;
+}
+.rb-discovery-tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+.rb-discovery-tabs button, .rb-discovery-selection button {
+  min-height: 42px;
+  padding-inline: 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  background: transparent;
   color: var(--text-secondary);
-  font-size: 12px;
+  font-size: 13px;
   cursor: pointer;
 }
-.rb-discovery-tabs button[aria-pressed="true"] { background: var(--text-primary); color: var(--bg-primary); border-color: var(--text-primary); }
+.rb-discovery-tabs button[aria-pressed="true"] {
+  background: color-mix(in srgb, var(--text-primary) 10%, var(--bg-base));
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
+}
+.rb-discovery-tabs button:focus-visible,
+.rb-discovery-selection :is(a, button):focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 2px;
+}
+.rb-discovery-selection {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  width: fit-content;
+  max-width: 100%;
+  padding: 5px 8px 5px 11px;
+  margin-bottom: 11px;
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+.rb-discovery-selection-name { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; }
+.rb-discovery-selection-name strong { font-family: var(--font-mono); color: var(--text-primary); }
+.rb-discovery-selection a { text-decoration: underline; text-underline-offset: 3px; color: var(--text-primary); }
+.rb-discovery-selection button { display: grid; place-items: center; min-height: 34px; min-width: 34px; padding: 0; }
+@media (max-width: 600px) {
+  .rb-discovery-search { width: 100%; }
+}
