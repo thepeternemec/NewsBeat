@@ -27,7 +27,7 @@ function useCryptoMarkets() {
       const timeout = window.setTimeout(() => request.abort("timeout"), 20_000);
       setState(previous => ({ ...previous, loading: true, now: Date.now() }));
       try {
-        const response = await fetch(API_BASE + "/v2/crypto-markets", { signal: request.signal });
+        const response = await fetch(API_BASE + "/v2/markets", { signal: request.signal });
         if (!response.ok) throw new Error("Crypto prices unavailable");
         const snapshot: Markets = await response.json();
         if (!Array.isArray(snapshot.data?.assets)) throw new Error("Invalid market snapshot");

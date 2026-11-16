@@ -226,10 +226,10 @@ export default function DocsConnect() {
         <li><code>GET /v2/sentiment?limit=7</code> — the daily index and recent history.</li>
         <li><code>GET /v2/tvl?limit=12</code> — chain TVL with a 24-hour change.</li>
         <li><code>GET /v2/prices?ids=bitcoin,ethereum</code> — prices by CoinGecko id.</li>
+        <li><code>GET /v2/markets</code> returns up to 50 coins ranked by market cap, with USD prices, 24-hour volume and seven-day price history. A tracked-basket fallback leaves ranks and chart values empty.</li>
       </ul>
       <p>
-        These are public endpoints read through a cache, and the values are reference data,
-        not advice. There is no price forecast anywhere in the API.
+        These public endpoints serve cached reference data. Experimental BTC and ETH forecasts have their own scorecards.
       </p>
 
       <h2>Ask, chain and contracts</h2>

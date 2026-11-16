@@ -78,7 +78,7 @@ marketRoutes.get("/chain", async (c) => {
   return c.json(payload);
 });
 
-marketRoutes.get("/crypto-markets", async (c) => {
+marketRoutes.get("/markets", async (c) => {
   const payload = await cryptoMarkets();
   attributed(c, payload.source, payload.fetched_at, payload.ttl_seconds);
   return c.json(payload);
