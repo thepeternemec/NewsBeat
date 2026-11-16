@@ -1,8 +1,8 @@
-# NewsBeat architecture
+# Rarebird architecture
 
 [Documentation](README.md) · [Development](DEVELOPMENT.md) · [Methodology](QUANTITATIVE.md)
 
-NewsBeat runs its website, REST API and MCP endpoint in one Next.js deployment. PostgreSQL stores the reporting, analysis state, signal revisions and evaluation records. Scheduled routes perform collection and analysis; public intelligence reads use stored results.
+Rarebird runs its website, REST API and MCP endpoint in one Next.js deployment. PostgreSQL stores the reporting, analysis state, signal revisions and evaluation records. Scheduled routes perform collection and analysis; public intelligence reads use stored results.
 
 ## Components
 

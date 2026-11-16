@@ -148,7 +148,7 @@ For preview deployments, the callback is derived from the request origin, so eac
 deployment serves its own `/api/keys/callback`. GitHub allows one callback URL per
 OAuth app, so a preview will refuse the redirect unless you register a second app.
 
-## NewsBeat production domain
+## Rarebird production domain
 
 The repository is https://github.com/thepeternemec/NewsBeat. The live primary domain is **https://www.newsbeat.dev**; `https://news-beat.vercel.app` remains an alternate host.
 

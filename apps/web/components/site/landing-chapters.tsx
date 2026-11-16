@@ -38,8 +38,8 @@ export default function LandingChapters() {
     };
   }, []);
 
-  return <nav className="home-chapters" ref={nav} aria-label="Explore NewsBeat features">
-    <div className="wrap"><span>Inside NewsBeat</span><div>{CHAPTERS.map((chapter, index) => <a key={chapter.id} href={"#" + chapter.id} aria-current={active === index ? "location" : undefined}>{chapter.label}</a>)}</div></div>
+  return <nav className="home-chapters" ref={nav} aria-label="Explore Rarebird features">
+    <div className="wrap"><span>Inside Rarebird</span><div>{CHAPTERS.map((chapter, index) => <a key={chapter.id} href={"#" + chapter.id} aria-current={active === index ? "location" : undefined}>{chapter.label}</a>)}</div></div>
     <i aria-hidden="true" />
   </nav>;
 }

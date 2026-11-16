@@ -18,7 +18,7 @@ const EXAMPLES = [
   "https://www.newsbeat.dev/api/v2/topics?q=bitcoin&limit=5"
 );
 if (!response.ok) {
-  throw new Error(\`NewsBeat: HTTP \${response.status}\`);
+  throw new Error(\`Rarebird: HTTP \${response.status}\`);
 }
 const catalog = await response.json();
 console.log(catalog.topics);`,

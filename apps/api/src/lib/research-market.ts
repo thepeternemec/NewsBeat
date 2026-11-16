@@ -32,7 +32,7 @@ export function quantitativeResearchEvidence(beatId: string, quant: Pick<QuantBu
   if (market.volume_ratio !== null) evidence.push({
     id: "participation:" + beatId, beat_id: beatId, kind: "measurement",
     text: "Observed venue volume relative to its comparison baseline: " + market.volume_ratio.toFixed(4) + " times. This is participation context, not an executable return.",
-    source: "NewsBeat / Kraken " + instrument.pair, url: instrument.source_url,
+    source: "Rarebird / Kraken " + instrument.pair, url: instrument.source_url,
     observed_at: market.last_bar_at ?? market.observed_at ?? "", freshness: researchFreshness(status, market.last_bar_at, 600_000, now),
   });
   const research = quant.research;
@@ -44,7 +44,7 @@ export function quantitativeResearchEvidence(beatId: string, quant: Pick<QuantBu
         + "; historical comparison windows: " + window.historical_windows + "; regime: " + window.regime + "."
         + (window.empirical_tail_fraction === null ? " No usable historical rarity estimate." : " Descriptive historical tail fraction: " + window.empirical_tail_fraction.toFixed(4) + ".")
         + " Historical rarity is not a probability of future profit.",
-      source: "NewsBeat deterministic discovery / Kraken " + instrument.pair,
+      source: "Rarebird deterministic discovery / Kraken " + instrument.pair,
       url: "https://www.newsbeat.dev/api/v2/intelligence?beat_id=" + beatId,
       observed_at: window.end_at, freshness: researchFreshness(discoveryStatus, window.end_at, 600_000, now),
     });

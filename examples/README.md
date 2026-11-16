@@ -1,6 +1,6 @@
-# NewsBeat examples
+# Rarebird examples
 
-[Back to NewsBeat](../README.md) · [API reference](../AGENTS.md) · [Connect with MCP](https://www.newsbeat.dev/docs/quickstart)
+[Back to Rarebird](../README.md) · [API reference](../AGENTS.md) · [Connect with MCP](https://www.newsbeat.dev/docs/quickstart)
 
 Start with the public API. These requests need no installation, account or API key.
 
@@ -45,7 +45,7 @@ const base = "https://www.newsbeat.dev/api";
 const response = await fetch(
   `${base}/v2/intelligence?beat_id=b_bb964843350e&context=fundamentals`
 );
-if (!response.ok) throw new Error(`NewsBeat returned ${response.status}`);
+if (!response.ok) throw new Error(`Rarebird returned ${response.status}`);
 
 const result = await response.json();
 console.log(result.status, result.analysis);
@@ -71,7 +71,7 @@ https://www.newsbeat.dev/api/mcp
 
 No example script is required. Follow the [quickstart](https://www.newsbeat.dev/docs/quickstart) and try:
 
-> Use NewsBeat to check Ethereum. Does the recent reporting change the view, and what is still unconfirmed?
+> Use Rarebird to check Ethereum. Does the recent reporting change the view, and what is still unconfirmed?
 
 <details>
 <summary>Reference OpenRouter adapter — limited news-tool coverage</summary>

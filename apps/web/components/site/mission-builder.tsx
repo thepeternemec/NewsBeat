@@ -35,10 +35,10 @@ export default function MissionBuilder() {
   const action = mission === "brief"
     ? "Find recent reporting about this asset and provide a short briefing of the main developments. Group repeated coverage, cite individual source links and publication times, and distinguish reported facts from possible implications."
     : mission === "changes"
-      ? "Check for new reports since my last saved NewsBeat cursor. If I do not have a cursor, establish a baseline now and say that a previous interval cannot be reconstructed. Return only new arrivals on subsequent checks, with source links and timestamps. No new reports does not prove that no event occurred."
+      ? "Check for new reports since my last saved Rarebird cursor. If I do not have a cursor, establish a baseline now and say that a previous interval cannot be reconstructed. Return only new arrivals on subsequent checks, with source links and timestamps. No new reports does not prove that no event occurred."
       : "Evaluate the thesis below against current reporting. Separate supporting evidence, conflicting evidence and unanswered questions. Ask me for a thesis if none is provided. Do not treat a headline as proof of price direction.";
   const prompt = [
-    `Use the connected NewsBeat MCP news tools to research ${asset.label} (${asset.ticker}). First resolve the supported topic from the catalog.`,
+    `Use the connected Rarebird MCP news tools to research ${asset.label} (${asset.ticker}). First resolve the supported topic from the catalog.`,
     action,
     mission === "challenge" && thesis.trim() ? `My thesis: ${thesis.trim()}` : "",
     "Show coverage freshness, the last successful collection time and any unavailable or incomplete coverage. Include publishers, publication times and links so I can check the evidence. Summaries are based on headline metadata, not full article text.",
@@ -50,7 +50,7 @@ export default function MissionBuilder() {
 
   return (
     <aside className="mission-builder" aria-label="Build a research prompt for your agent">
-      <div className="mission-top"><span><i aria-hidden="true" /> NEWSBEAT / PROMPT BUILDER</span><span>TRY A QUESTION</span></div>
+      <div className="mission-top"><span><i aria-hidden="true" /> RAREBIRD / PROMPT BUILDER</span><span>TRY A QUESTION</span></div>
       <div className="mission-body">
         <div className="mission-heading"><span>01 / CHOOSE AN ASSET</span><strong>What would you like to know?</strong><p>Pick a stock or crypto asset and a question. Copy the prompt to your connected assistant.</p></div>
         <div className="mission-assets" role="group" aria-label="Choose an asset">
@@ -72,7 +72,7 @@ export default function MissionBuilder() {
           <details className="mission-prompt"><summary>Inspect the full prompt</summary><pre>{prompt}</pre></details>
         </div>
         <div className="mission-actions"><CopyButton text={prompt} label="Copy research prompt" /><a href="/docs/quickstart">Connect MCP <ArrowUpRight size={14} aria-hidden="true" /></a></div>
-        <p className="mission-note">Copying a prompt does not run a lookup. Connect NewsBeat in your assistant, then paste the prompt to start.</p>
+        <p className="mission-note">Copying a prompt does not run a lookup. Connect Rarebird in your assistant, then paste the prompt to start.</p>
       </div>
     </aside>
   );

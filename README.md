@@ -24,7 +24,7 @@
 
 ---
 
-Rarebird, formerly NewsBeat, is an open-source intelligence layer for AI agents. It brings together stock and crypto reporting, issuer filings and market checks that help an agent decide what to investigate. The [opportunity brief](https://www.newsbeat.dev/intelligence#opportunities) shows recent filings and the evidence behind market candidates.
+Rarebird is an open-source intelligence layer for AI agents. It brings together stock and crypto reporting, issuer filings and market checks that help an agent decide what to investigate. The [opportunity brief](https://www.newsbeat.dev/intelligence#opportunities) shows recent filings and the evidence behind market candidates.
 
 **Built in the open since September 2026.** The news foundation is live. Signal construction and market timing are an evolving six-asset research pilot. Contributions, questions and real-world feedback are welcome.
 

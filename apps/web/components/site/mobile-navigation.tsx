@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import { ArrowRight, Menu, X } from "lucide-react";
+import BrandMark from "./brand-mark";
 import ThemeToggle from "./theme-toggle";
 
 type NavigationLink = { href: string; label: string; description: string };
@@ -37,7 +38,7 @@ export default function MobileNavigation({ links, active }: { links: NavigationL
       <dialog ref={dialog} id={id} className="mobile-nav-dialog" aria-labelledby={id + "-title"} data-lenis-prevent onCancel={() => setOpen(false)} onClose={() => setOpen(false)} onClick={event => { if (event.target === event.currentTarget) setOpen(false); }}>
         <div className="mobile-nav-panel">
           <div className="mobile-nav-heading">
-            <a className="nav-logo" href="/" onClick={() => setOpen(false)}>RAREBIRD</a>
+            <a className="nav-logo" href="/" onClick={() => setOpen(false)}><BrandMark className="brand-beat" size={28} />RAREBIRD</a>
             <h2 id={id + "-title"} className="mobile-nav-title">Navigation</h2>
             <button type="button" className="nav-menu-close" aria-label="Close navigation menu" onClick={() => setOpen(false)} autoFocus><X size={20} aria-hidden="true" /></button>
           </div>

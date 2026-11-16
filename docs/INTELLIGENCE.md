@@ -1,6 +1,6 @@
 # Contextual signal construction
 
-NewsBeat is building signals that explain potential market drivers and define when context warrants attention. Summaries and duplicate reduction prepare evidence; signal construction adds a hypothesis, trigger, invalidation and a decision to review, watch, suppress or reassess.
+Rarebird is building signals that explain potential market drivers and define when context warrants attention. Summaries and duplicate reduction prepare evidence; signal construction adds a hypothesis, trigger, invalidation and a decision to review, watch, suppress or reassess.
 
 ## First implementation
 
