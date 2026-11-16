@@ -27,6 +27,7 @@ const COLUMNS = [
   {
     head: "More",
     links: [
+      { href: "/#build-history", label: "Build history" },
       { href: "/faq", label: "FAQ" },
       { href: "/keys", label: "Get a key" },
       { href: "https://github.com/thepeternemec/NewsBeat", label: "GitHub" },

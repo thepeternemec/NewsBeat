@@ -5,8 +5,8 @@
 </p>
 
 <p align="center">
-  <strong>Give your AI agent a clearer view of stocks and crypto.</strong><br>
-  What changed. Why it could matter. What to check next.
+  <strong>Open-source market intelligence for AI agents.</strong><br>
+  What changed across stocks and crypto, the evidence behind it, and what to check next.
 </p>
 
 <p align="center">
@@ -26,9 +26,9 @@
 
 Rarebird is an open-source intelligence layer for AI agents. It brings together stock and crypto reporting, issuer filings and market checks that help an agent decide what to investigate. The [opportunity brief](https://www.newsbeat.dev/intelligence#opportunities) shows recent filings and the evidence behind market candidates.
 
-**Built in the open since September 2026.** The news foundation is live. Signal construction and market timing are an evolving six-asset research pilot. Contributions, questions and real-world feedback are welcome.
+**Live preview now. Public launch planned for late November 2026.** Rarebird is built in the open and shaped by requests to find market changes sooner, check their evidence, and measure what happens next.
 
-[Get started](#get-started) · [How it works](#how-it-works) · [Project status](#project-status) · [Run locally](#run-locally) · [Contribute](#contribute)
+[Get started](#get-started) · [How it works](#how-it-works) · [Build history](#build-history) · [Project status](#project-status) · [Run locally](#run-locally) · [Contribute](#contribute)
 
 ## Why Rarebird?
 
@@ -44,7 +44,7 @@ Use it inside a research assistant, a personal briefing or a watchlist workflow.
 
 ### 1. Explore in your browser
 
-Search a company name or ticker on [newsbeat.dev](https://www.newsbeat.dev/#company-news). Open the [intelligence page](https://www.newsbeat.dev/intelligence) to see a reported change alongside the context your agent can use.
+Search a company name or ticker in [Market checks](https://www.newsbeat.dev/intelligence#discovery). Open the [intelligence page](https://www.newsbeat.dev/intelligence) to see a reported change alongside the context your agent can use.
 
 **No setup, account or API key required for public reads.**
 
@@ -127,6 +127,20 @@ See the [methodology](docs/QUANTITATIVE.md) for the measurements, thresholds and
 
 Rarebird also scans the market independently of reporting: it looks for unusual relative moves, compares them with earlier behavior and records what happened next. The same existing venue data powers this discovery layer; a headline is not required to start an investigation. [How discovery works](docs/QUANTITATIVE.md#independent-discovery-market-discovery-v1)
 
+## Build history
+
+The repository records **50+ merged pull requests**. These milestones show how the product responded to requests for faster discovery, better evidence, and forecasts that can be checked.
+
+| What users wanted to do | What shipped | Implementation |
+| --- | --- | --- |
+| What changed, and where’s the evidence? | Sourced ticker briefs and help for configured Telegram groups | [Ticker briefs](https://github.com/thepeternemec/NewsBeat/pull/121) |
+| What’s worth looking at right now? | Proactive news discovery across 2,030 stocks and crypto assets, with source and collection times | [Market discovery](https://github.com/thepeternemec/NewsBeat/pull/131) |
+| Am I looking at the right token? | Chain-and-contract lookup with pool-level evidence | [Token intelligence](https://github.com/thepeternemec/NewsBeat/pull/125) |
+| How do I know the forecast is useful? | Hourly BTC and ETH move-risk forecasts evaluated against a historical baseline | [Forecast evaluation](https://github.com/thepeternemec/NewsBeat/pull/130) |
+| Can I follow the original evidence? | Direct issuer filing checks for four pilot issuers | [SEC filing evidence](https://github.com/thepeternemec/NewsBeat/pull/119) |
+
+[Commit history](https://github.com/thepeternemec/NewsBeat/commits/main/) · [Merged pull requests](https://github.com/thepeternemec/NewsBeat/pulls?q=is%3Apr+is%3Amerged) · [Changelog](CHANGELOG.md) · [Build checks](https://github.com/thepeternemec/NewsBeat/actions) · [Live service status](https://www.newsbeat.dev/status)
+
 ## Project status
 
 **Early development · active research pilot · MIT licensed**
@@ -138,7 +152,7 @@ Rarebird also scans the market independently of reporting: it looks for unusual 
 | Agent access | Public MCP and REST interfaces; asset discovery and batched watchlist reads |
 | Intelligence pilot | Six assets, three contexts, persistent interpretations, market checks and a review-alert journal |
 | Independent discovery | 15/30/60-minute anomaly scans, past-only comparisons, volatility context and an episode journal |
-| Evaluation | Prospective observations for comparing all constructions with selected review alerts |
+| Evaluation | Prospective observations for comparing all constructions with selected review alerts, plus an hourly BTC/ETH forecast scorecard |
 
 **Next:** calibrate against collected outcomes, add richer evidence and expectation changes, and expand measured coverage. Saved watches, notification delivery and verified tokenized-asset mapping are planned.
 
@@ -151,8 +165,8 @@ The catalog is scheduled every 10 minutes. One-minute news collection for a prio
 Use **Node.js 22 or 24** and npm.
 
 ```bash
-git clone https://github.com/thepeternemec/NewsBeat.git
-cd Rarebird
+git clone https://github.com/thepeternemec/NewsBeat.git rarebird
+cd rarebird
 npm ci
 npm run build
 npm test
@@ -193,7 +207,7 @@ Optional account keys offer a seven-day REST evaluation, starting on the first m
 
 ## Contribute
 
-Rarebird is young, and there is room to help shape it. Good places to start:
+Tell the project what you were trying to do and where the evidence, timing or workflow came up short. Contributions could include:
 
 - Improve a setup step, example or explanation.
 - Report a confusing signal or asset match, including the source and time.
@@ -205,6 +219,5 @@ Read [CONTRIBUTING.md](CONTRIBUTING.md), [open an issue](https://github.com/thep
 [MIT license](LICENSE) · [Code of conduct](CODE_OF_CONDUCT.md) · [Security](SECURITY.md)
 
 <p align="center">
-  Built by <a href="https://github.com/thepeternemec">Peter Nemec</a> and contributors.<br>
-  <a href="https://www.newsbeat.dev">newsbeat.dev</a> · <a href="https://x.com/newsbeat_">@newsbeat_</a> · <a href="mailto:contact@newsbeat.dev">contact@newsbeat.dev</a>
+  <a href="https://www.newsbeat.dev">Rarebird live preview</a> · <a href="https://x.com/newsbeat_">@newsbeat_</a> · <a href="mailto:contact@newsbeat.dev">contact@newsbeat.dev</a>
 </p>
