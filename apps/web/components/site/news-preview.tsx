@@ -188,7 +188,7 @@ export default function NewsPreview({ cryptoFirst = false }: { cryptoFirst?: boo
         aria-busy={state.status === "loading"}
       >
         <div className="news-preview-result-label">
-          <span>NEWSBEAT FINDS</span>
+          <span>RAREBIRD FINDS</span>
           <span>
             {state.status === "ready" && state.data.freshness.status === "fresh"
               ? "Recent headlines"

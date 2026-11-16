@@ -2,18 +2,20 @@ import { ArrowUpRight, FileSearch, ScanLine, TimerReset } from "lucide-react";
 import WorkspaceShell from "@/components/site/workspace-shell";
 import MarketDiscovery from "@/components/site/market-discovery";
 import { ForecastWorkspace } from "@/components/site/market-briefing";
+import CryptoMarketBoard from "@/components/site/crypto-market-board";
 
 export const metadata = {
-  title: "Market intelligence app | Rarebird",
-  description: "Follow developments across stocks and crypto, inspect the original evidence, and explore Rarebird’s research tools and hourly forecasts.",
+  title: "Crypto market prices and watchlist | Rarebird",
+  description: "Compare crypto prices, market caps and movers. Save a watchlist and open the original evidence and forecasts behind the coins you follow.",
   alternates: { canonical: "/app" },
 };
 
 export default function WorkspacePage() {
-  return <WorkspaceShell active="/app" title="Market intelligence"
-    description="Follow what just changed across stocks and crypto. Open the sources, check the market and see what’s worth investigating.">
+  return <WorkspaceShell active="/app" title="Crypto markets"
+    description="Track prices and movers, build a watchlist, and follow the reporting behind the coins you care about.">
+    <CryptoMarketBoard />
     <div className="rb-app-snapshot">
-      <MarketDiscovery compact showControls />
+      <MarketDiscovery compact initialMarket="crypto" />
       <ForecastWorkspace compact />
     </div>
     <section className="rb-app-process" id="how-it-works" aria-labelledby="how-it-works-title">

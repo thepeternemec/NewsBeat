@@ -5,16 +5,17 @@ import {
 } from "lucide-react";
 import SiteNav from "./site-nav";
 import SiteFooter from "./site-footer";
+import BrandMark from "./brand-mark";
 import "./workspace-shell.css";
 
 const GROUPS = [
   {
     label: "Markets",
     links: [
-      { href: "/app", label: "Overview", icon: LayoutDashboard },
+      { href: "/app", label: "Markets", icon: LayoutDashboard },
       { href: "/intelligence", label: "Market checks", icon: ListFilter },
       { href: "/app/forecasts", label: "Forecasts", icon: ChartNoAxesCombined },
-      { href: "/crypto", label: "Crypto markets", icon: Activity },
+      { href: "/crypto", label: "Indicators", icon: Activity },
     ],
   },
   {
@@ -32,39 +33,37 @@ type WorkspacePath = (typeof GROUPS)[number]["links"][number]["href"];
 
 export default function WorkspaceShell({ active, title, description, children }: {
   active: WorkspacePath;
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   children: ReactNode;
 }) {
   return <>
     <SiteNav active={active} />
     <div className="rb-app">
       <a className="rb-app-skip" href="#workspace-content">Skip to workspace content</a>
-      <aside className="rb-app-sidebar">
-        <nav className="rb-app-nav" aria-label="Rarebird workspace">
-          {GROUPS.map(group => (
-            <div key={group.label} className="rb-app-nav-group">
-              <p>{group.label}</p>
-              {group.links.map(({ href, label, icon: Icon }) => (
-                <a key={href} href={href} aria-current={href === active ? "page" : undefined}>
-                  <Icon size={16} aria-hidden="true" />
-                  {label}
-                </a>
-              ))}
-            </div>
-          ))}
-          <a className="rb-app-agent-link" href="/docs/quickstart">
-            <Unplug size={16} aria-hidden="true" />
-            Connect an agent
-            <ArrowUpRight size={13} aria-hidden="true" />
-          </a>
-        </nav>
-      </aside>
+      <nav className="rb-app-nav" aria-label="Rarebird workspace">
+        <a className="rb-app-symbol" href="/app" aria-label="Rarebird markets"><BrandMark size={26} /></a>
+        {GROUPS.map(group => (
+          <div key={group.label} className="rb-app-nav-group" role="group" aria-label={group.label}>
+            {group.links.map(({ href, label, icon: Icon }) => (
+              <a key={href} href={href} aria-current={href === active ? "page" : undefined}>
+                <Icon size={15} aria-hidden="true" />
+                {label}
+              </a>
+            ))}
+          </div>
+        ))}
+        <a className="rb-app-agent-link" href="/docs/quickstart">
+          <Unplug size={15} aria-hidden="true" />
+          Connect an agent
+          <ArrowUpRight size={12} aria-hidden="true" />
+        </a>
+      </nav>
       <main className="rb-app-main" id="workspace-content">
-        <header className="rb-app-heading">
+        {title && <header className="rb-app-heading">
           <h1>{title}</h1>
-          <p>{description}</p>
-        </header>
+          {description && <p>{description}</p>}
+        </header>}
         {children}
       </main>
     </div>

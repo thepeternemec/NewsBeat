@@ -1,4 +1,4 @@
-import { BrandWordmark } from "./brand-mark";
+import BrandMark, { BrandWordmark } from "./brand-mark";
 import SpotlightCard from "@/components/ui/spotlight-card/spotlight-card";
 import "./site-footer.css";
 
@@ -10,7 +10,7 @@ const COLUMNS = [
       { href: "/app", label: "Open app" },
       { href: "/app/forecasts", label: "Forecasts" },
       { href: "/intelligence#opportunities", label: "Market checks" },
-      { href: "/crypto", label: "Crypto overview" },
+      { href: "/crypto", label: "Crypto indicators" },
       { href: "/tokens", label: "Token contracts" },
       { href: "/ask", label: "Ticker research" },
       { href: "/pricing", label: "Pricing" },
@@ -62,6 +62,7 @@ export default function SiteFooter() {
             <div className="footer-brand">
               <div className="footer-brand-line">
                 <a className="footer-co footer-wordmark" href="/" aria-label="Rarebird home">
+                  <BrandMark className="brand-emblem" size={28} />
                   <BrandWordmark className="brand-wordmark" width={136} />
                 </a>
                 <a className="footer-mobile-contact" href="mailto:contact@newsbeat.dev">Contact <span aria-hidden="true">↗</span></a>

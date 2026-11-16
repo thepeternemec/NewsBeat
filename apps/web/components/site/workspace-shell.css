@@ -1,10 +1,7 @@
 .rb-app {
-  width: min(100%, 1440px);
+  width: min(100%, 1328px);
   margin-inline: auto;
-  padding: 92px clamp(18px, 3.5vw, 44px) 64px;
-  display: grid;
-  grid-template-columns: 180px minmax(0, 1fr);
-  gap: clamp(22px, 3.2vw, 44px);
+  padding: 74px clamp(14px, 3vw, 40px) 64px;
   color: var(--text-primary);
 }
 .rb-app-skip {
@@ -17,27 +14,24 @@
   transform: translateY(calc(-100% - 16px));
 }
 .rb-app-skip:focus { transform: none; }
-.rb-app-sidebar {
-  position: sticky;
-  top: 86px;
-  align-self: start;
-  padding-right: 14px;
-  border-right: 1px solid var(--border-default);
+.rb-app-nav {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  padding: 3px 3px 10px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--border-default);
 }
-.rb-app-nav { display: grid; gap: 18px; }
-.rb-app-nav-group { display: grid; gap: 3px; }
-.rb-app-nav-group > p {
-  margin: 0 10px 5px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-secondary);
-}
+.rb-app-nav-group { display: flex; flex: none; gap: 2px; }
+.rb-app-nav-group + .rb-app-nav-group { border-left: 1px solid var(--border-default); padding-left: 7px; }
 .rb-app-nav a {
   display: flex;
-  min-height: 40px;
+  min-height: 37px;
   align-items: center;
-  gap: 8px;
-  padding: 7px 10px;
+  gap: 6px;
+  padding: 5px 9px;
   border: 1px solid transparent;
   border-radius: 8px;
   font-size: 13px;
@@ -53,13 +47,13 @@
   border-color: var(--border-default);
   font-weight: 600;
 }
-.rb-app-nav .rb-app-agent-link { border-color: var(--border-default); }
-.rb-app-agent-link svg:last-child { margin-left: auto; }
+.rb-app-nav .rb-app-agent-link { margin-left: auto; }
+.rb-app-nav .rb-app-symbol { flex: none; min-height: 37px; padding: 3px; }
 .rb-app-main { min-width: 0; scroll-margin-top: 78px; }
-.rb-app-heading { margin: 0 0 23px; }
+.rb-app-heading { margin: 0 0 18px; }
 .rb-app-heading h1 {
   margin: 0;
-  font-size: clamp(34px, 4.5vw, 54px);
+  font-size: clamp(32px, 4.5vw, 48px);
   line-height: 1.06;
   font-weight: 600;
   letter-spacing: -.048em;
@@ -75,6 +69,7 @@
   grid-template-columns: minmax(0, 1.65fr) minmax(265px, 1fr);
   gap: 14px;
   align-items: start;
+  margin-top: 20px;
 }
 .rb-app-snapshot .rb-discovery-controls { align-items: stretch; }
 .rb-app-snapshot .rb-discovery-search { width: 100%; }
@@ -135,23 +130,12 @@
   .rb-app-main .terminal-page .metrics-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 760px) {
-  .rb-app { display: block; padding-top: 76px; }
-  .rb-app-sidebar { position: static; padding: 0; border: 0; margin-bottom: 18px; }
-  .rb-app-nav {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 4px 5px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--border-default);
-  }
-  .rb-app-nav-group { display: contents; }
-  .rb-app-nav-group > p { display: none; }
-  .rb-app-nav a { min-width: 0; white-space: normal; line-height: 1.25; }
-  .rb-app-nav .rb-app-agent-link { border-color: transparent; }
-  .rb-app-agent-link svg:last-child { display: none; }
+  .rb-app { padding-top: 72px; }
+  .rb-app-nav { gap: 4px; margin-bottom: 16px; }
+  .rb-app-nav-group a svg, .rb-app-agent-link svg:last-child { display: none; }
   .rb-app-heading > p { font-size: 15px; }
 }
 @media (max-width: 610px) {
-  .rb-app-nav a { padding-inline: 5px; font-size: 12px; gap: 5px; }
-  .rb-app-nav a svg { width: 13px; }
+  .rb-app-nav a { padding-inline: 7px; font-size: 12px; }
   .rb-app-process > ol { grid-template-columns: 1fr; }
 }

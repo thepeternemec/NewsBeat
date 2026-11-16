@@ -93,6 +93,27 @@ export interface PricesPayload {
   unsupported: string[];
 }
 
+export interface CryptoMarketRow {
+  id: string;
+  symbol: string;
+  name: string;
+  rank: number | null;
+  icon_url: string | null;
+  price_usd: number | null;
+  market_cap_usd: number | null;
+  volume_24h_usd: number | null;
+  change_1h: number | null;
+  change_24h: number | null;
+  change_7d: number | null;
+  sparkline_7d: number[];
+  observed_at: string | null;
+}
+
+export interface CryptoMarketsPayload {
+  coverage: "market_cap_ranked" | "tracked_basket";
+  assets: CryptoMarketRow[];
+}
+
 /** One call, one screen: everything a dashboard needs, each part attributed separately. */
 export interface MarketOverview {
   fear_greed: Sourced<FearGreedPayload> | Unavailable;

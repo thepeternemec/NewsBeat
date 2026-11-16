@@ -1,5 +1,7 @@
 "use client";
 
+import BrandMark from "./brand-mark";
+
 import { useId, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Activity, ArrowUpRight, BookOpen, ChevronDown, Code2, FileText, GitBranch, CircleHelp, Mail, Play, Plug } from "lucide-react";
@@ -42,8 +44,8 @@ export default function DocsSide() {
       </button>
       <div className="docs-nav-panel" id={id} data-lenis-prevent>
         <a className="docs-nav-brand" href="/docs">
-          <span className="docs-nav-mark"><BookOpen size={19} strokeWidth={1.6} aria-hidden="true" /></span>
-          <span><small>NEWSBEAT</small><strong>Documentation</strong></span>
+          <span className="docs-nav-mark"><BrandMark size={26} /></span>
+          <span><small>RAREBIRD</small><strong>Documentation</strong></span>
         </a>
         <nav className="docs-nav-groups" aria-label="Documentation">
           {GROUPS.map(group => (

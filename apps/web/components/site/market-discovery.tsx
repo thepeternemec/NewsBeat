@@ -17,9 +17,10 @@ const tabs = [{ id: "all", label: "All markets" }, { id: "equity", label: "Stock
 export default function MarketDiscovery({
   compact = false,
   showControls = !compact,
-}: { compact?: boolean; showControls?: boolean }) {
+  initialMarket = "all",
+}: { compact?: boolean; showControls?: boolean; initialMarket?: (typeof tabs)[number]["id"] }) {
   const heading = useId();
-  const [asset, setAsset] = useState<(typeof tabs)[number]["id"]>("all");
+  const [asset, setAsset] = useState(initialMarket);
   const [selection, setSelection] = useState<LookupAsset | null>(null);
   const beatId = selection?.beat_id;
   const scope = beatId ?? asset;
@@ -83,7 +84,7 @@ export default function MarketDiscovery({
   const empty = !failed && feed && (feed.status === "ready" || feed.status === "partial") && !feed.events.length;
   return <section className="rb-discovery" aria-labelledby={heading}>
     <header>
-      <h2 id={heading}>What changed</h2>
+      <h2 id={heading}>{compact && initialMarket === "crypto" ? "What changed in crypto" : "What changed"}</h2>
       {feed?.coverage.scanned_at && <p className="rb-discovery-meta">
         {feed.coverage.fresh_news_feeds.toLocaleString()} of {feed.coverage.catalog_total.toLocaleString()} news feeds current
         {" · "} Scanned <time dateTime={feed.coverage.scanned_at}>{format(feed.coverage.scanned_at)}</time>

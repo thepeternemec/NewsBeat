@@ -39,7 +39,8 @@ html .nav.nav-site .nav-logo {
   font-size: 13px;
   letter-spacing: .09em;
 }
-.brand-wordmark { display: block; max-width: 100%; height: auto; }
+.brand-wordmark { display: block; max-width: 100%; min-width: 0; height: auto; }
+.brand-emblem { display: block; flex: none; }
 html .nav.nav-site .nav-link {
   min-height: 44px;
   padding: 10px 11px;
@@ -184,4 +185,4 @@ html[data-theme="light"] footer.site { background: #f5f5f7; }
   html footer.site .footer-panel { padding-bottom: 16px; }
 }
 
-.footer-wordmark { display: inline-flex; align-items: center; min-height: 28px; }
+.footer-wordmark { display: inline-flex; align-items: center; gap: 7px; min-height: 28px; }

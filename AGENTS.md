@@ -225,6 +225,8 @@ ticker is ambiguous across chains. These are public endpoints read through a cac
 a value may be a few minutes old; `refresh_in_seconds` says when it will be re-read.
 These market readings are reference data. Hourly BTC/USD and ETH/USD forecasts are available separately.
 
+`GET /v2/markets` returns the Rarebird market board. Read `data.coverage` before interpreting ranks. A `tracked_basket` response has null ranks and no seven-day series. Each coin includes an observation timestamp when the provider supplies one.
+
 ### Ask, chain and contracts
 
 | Tool | Route | Returns |
