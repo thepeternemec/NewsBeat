@@ -31,6 +31,7 @@ Start with the guide that matches what you want to do.
 | [Product direction](INTELLIGENCE.md) | The problem Rarebird is solving and the intelligence direction |
 | [Current capabilities](STATUS.md) | What is available, experimental and planned |
 | [Quantitative methodology](QUANTITATIVE.md) | Market sources, information deltas, timing gates and prospective evaluation |
+| [Build history](../README.md#build-history) | User needs, shipped capabilities and original pull requests |
 | [Changelog](../CHANGELOG.md) | Implementation changes and project decisions |
 
 The six-asset intelligence pilot is in development. Headline interpretations, observed venue movements and review alerts are different kinds of evidence; keep their timestamps and uncertainty when presenting them.

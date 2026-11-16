@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11-16 — Rarebird launch preview
+
+- Applied the Rarebird identity to the website and project assets. Public launch is planned for late November 2026.
+- Added a public build history linking user needs to the resulting pull requests and live tools.
+- Kept the original project history available through the [commit log](https://github.com/thepeternemec/NewsBeat/commits/main/), [merged pull requests](https://github.com/thepeternemec/NewsBeat/pulls?q=is%3Apr+is%3Amerged), and [build checks](https://github.com/thepeternemec/NewsBeat/actions).
+- The preview continues to serve from [newsbeat.dev](https://www.newsbeat.dev) during setup for `rarebird.network`.
+
+
 ## 2026-11-06 — Requested one-minute collection
 
 - Changed the catalog schedule and catalog metadata to ten minutes. Removed unconditional pilot news collection from the five-minute analysis job.

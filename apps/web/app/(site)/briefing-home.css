@@ -1,15 +1,16 @@
-.rb-focus-home :is(#real-intelligence, #agent-workflow, #market-timing, #connect-agent, #community) {
+.rb-focus-home :is(#real-intelligence, #agent-workflow, #market-timing, #connect-agent, #build-history, #community) {
   scroll-margin-top: 90px;
 }
 .rb-focus-home.ni-home .bs-hero-grid { align-items: center; }
 .rb-focus-home.ni-home .bs-hero .bs-hero-copy { padding-top: 0; }
 .rb-focus-home.ni-home #agent-workflow,
 .rb-focus-home .rb-focus-tools,
+.rb-focus-home .rb-focus-history,
 .rb-focus-home .rb-focus-pricing {
   padding-block: clamp(30px, 5vw, 58px);
   border-top: 1px solid var(--border-default);
 }
-.rb-focus-home :is(.rb-focus-method, .rb-focus-tools, .rb-focus-pricing) h2 {
+.rb-focus-home :is(.rb-focus-method, .rb-focus-tools, .rb-focus-history, .rb-focus-pricing) h2 {
   font-size: clamp(25px, 4vw, 41px);
   line-height: 1.14;
   letter-spacing: -.045em;
@@ -38,6 +39,48 @@
 .rb-focus-pricing { justify-content: space-between; align-items: center; }
 .rb-focus-pricing p { margin: 0; }
 .rb-focus-home .rb-brief-search { margin-top: 20px; }
+
+.rb-focus-history {
+  display: grid;
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  align-items: start;
+  gap: clamp(24px, 5vw, 70px);
+}
+.rb-focus-history header > p, .rb-focus-history li > p {
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+.rb-focus-history .rb-history-launch {
+  font-size: 13px;
+  margin: 0 0 12px;
+}
+.rb-focus-history nav { display: flex; flex-wrap: wrap; gap: 10px 16px; margin-top: 20px; }
+.rb-focus-history a { font-size: 14px; text-decoration: underline; text-underline-offset: 4px; }
+.rb-focus-history a svg { display: inline; vertical-align: -.16em; }
+.rb-focus-history ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.rb-focus-history li {
+  border: 1px solid var(--border-default);
+  border-radius: 14px;
+  padding: clamp(15px, 2vw, 22px);
+}
+.rb-focus-history li h3 { margin: 7px 0 8px; font-size: 18px; line-height: 1.25; }
+.rb-focus-history li p { margin: 0 0 10px; font-size: 14px; }
+.rb-focus-history li .rb-history-question { font-size: 12px; margin: 0; }
+
+@media (max-width: 900px) {
+  .rb-focus-history { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 540px) {
+  .rb-focus-history ul { grid-template-columns: 1fr; }
+}
 
 @media (max-width: 650px) {
   .rb-focus-home.ni-home .bs-hero { padding-top: 106px; }

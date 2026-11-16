@@ -160,3 +160,10 @@ The repository is https://github.com/thepeternemec/NewsBeat. The live primary do
 The domain is connected. Keep the OAuth app callback aligned with the primary origin before using sign-in there. Verify `/api/health`, MCP and a real news read after deployments. Retain alternate API hosts for existing clients; do not introduce redirects for API POST requests without testing clients.
 
 New configuration uses `NEWSBEAT_*`. Existing `NEWSBEAT_*` variables remain supported as fallbacks so a branding deployment does not invalidate credentials. Existing cursor signatures and cached MCP tool names also remain valid. No database migration is needed for this rename.
+
+## Connect rarebird.network
+
+1. Add `rarebird.network` to the [existing production project](https://vercel.com/peter-ee6e/newsbeat/settings/domains). Add `www.rarebird.network` as a redirect to the apex if both addresses should work.
+2. Add the exact DNS records Vercel shows at the authoritative DNS provider. Keep mail and unrelated TXT records. Verify configuration in Vercel, then verify HTTPS on the new host.
+3. Check the home page, sitemap, share metadata, GitHub sign-in callback, API responses and an MCP handshake on the new address. Update canonical URLs, onboarding links and social listings after these checks pass.
+4. Keep the existing `www.newsbeat.dev` API and MCP URLs working during migration. Verify legacy clients before introducing any domain-wide redirect.
