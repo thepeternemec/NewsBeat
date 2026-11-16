@@ -35,10 +35,7 @@
 }
 .rb-discovery-search {
   width: min(100%, 330px);
-  --catalog-background: #fafafa;
-  --catalog-ink: #161616;
-  --catalog-muted: #535353;
-  --catalog-border: #dedede;
+  --catalog-background: var(--bg-input);
 }
 .rb-discovery-tabs { display: flex; flex-wrap: wrap; gap: 6px; }
 .rb-discovery-tabs button, .rb-discovery-selection button {
