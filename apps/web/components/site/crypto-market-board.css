@@ -178,7 +178,6 @@
 .rb-coin-stat > a { display: inline-block; margin-top: 8px; font-size: 13px; }
 .rb-coin-evidence { margin-top: 14px; }
 .rb-coin-evidence-heading { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 9px; }
-.rb-coin-evidence-heading h2 { display: inline-flex; align-items: center; gap: 7px; }
 .rb-coin-evidence-heading a, .rb-coin-evidence p { font-size: 13px; }
 .rb-coin-evidence p { margin: 8px 0 0; color: var(--text-secondary); }
 .rb-coin-evidence ul { display: grid; gap: 0; margin: 10px 0 0; padding: 0; list-style: none; }

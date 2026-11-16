@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import { ArrowRight, Menu, X } from "lucide-react";
-import BrandMark, { BrandWordmark } from "./brand-mark";
+import { BrandWordmark } from "./brand-mark";
 import ThemeToggle from "./theme-toggle";
 
 type NavigationLink = { href: string; label: string; description: string };
@@ -39,7 +39,6 @@ export default function MobileNavigation({ links, active }: { links: NavigationL
         <div className="mobile-nav-panel">
           <div className="mobile-nav-heading">
             <a className="nav-logo" href="/" aria-label="Rarebird home" onClick={() => setOpen(false)}>
-              <BrandMark className="brand-emblem" size={28} />
               <BrandWordmark className="brand-wordmark" />
             </a>
             <h2 id={id + "-title"} className="mobile-nav-title">Navigation</h2>

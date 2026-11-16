@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { ArrowDown, ArrowDownUp, ArrowLeft, ArrowRight, ArrowUp, ArrowUpRight, RefreshCw, Search, Star } from "lucide-react";
 import type { CryptoMarketRow, CryptoMarketsPayload, Sourced } from "@newsbeat/contracts";
-import BrandMark from "./brand-mark";
 import { API_BASE } from "./content";
 import { findAssets, readCoverage, type LookupAsset, type LookupNews } from "./landing-lookup-data";
 import "./crypto-market-board.css";
@@ -328,7 +327,7 @@ function CoinEvidence({ coin }: { coin: CryptoMarketRow }) {
   const coverage = evidence?.coverage;
   const research = evidence?.topic && "/ask?" + new URLSearchParams({ ticker: evidence.topic.ticker, beat_id: evidence.topic.beat_id });
   return <section className="rb-coin-evidence">
-    <div className="rb-coin-evidence-heading"><h2><BrandMark size={24} /> Rarebird evidence</h2>
+    <div className="rb-coin-evidence-heading"><h2>Rarebird evidence</h2>
       {research && <a href={research}>Research {coin.symbol} <ArrowUpRight size={14} aria-hidden="true" /></a>}
     </div>
     {!evidence && <p role="status">Finding matching coverage…</p>}

@@ -43,9 +43,9 @@ export default function DocsSide() {
         <ChevronDown size={16} aria-hidden="true" />
       </button>
       <div className="docs-nav-panel" id={id} data-lenis-prevent>
-        <a className="docs-nav-brand" href="/docs">
+        <a className="docs-nav-brand" href="/docs" aria-label="Rarebird documentation">
           <span className="docs-nav-mark"><BrandMark size={26} /></span>
-          <span><small>RAREBIRD</small><strong>Documentation</strong></span>
+          <strong>Documentation</strong>
         </a>
         <nav className="docs-nav-groups" aria-label="Documentation">
           {GROUPS.map(group => (

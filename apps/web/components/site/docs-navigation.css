@@ -15,8 +15,6 @@
 .docs-nav-panel { max-height: calc(100dvh - 132px); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; padding: 18px 12px 10px; }
 .docs-nav-brand { display: flex; align-items: center; gap: 11px; padding: 0 8px 18px; border-bottom: 1px solid var(--border-default); }
 .docs-nav-mark { display: grid; place-items: center; width: 36px; height: 36px; flex: none; border: 1px solid var(--border-default); border-radius: 10px; background: var(--bg-raised); color: var(--text-primary); }
-.docs-nav-brand > span:last-child { display: flex; flex-direction: column; gap: 3px; }
-.docs-nav-brand small { font: 11px/1.4 var(--font-mono); letter-spacing: .09em; color: var(--text-tertiary); }
 .docs-nav-brand strong { font-size: 16px; font-weight: 550; color: var(--text-primary); letter-spacing: -.02em; }
 .docs-nav-groups { padding: 19px 0 16px; }
 .docs-nav-groups section + section { margin-top: 21px; }
