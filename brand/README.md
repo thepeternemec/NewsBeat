@@ -11,7 +11,9 @@ Rarebird helps AI agents understand stock and crypto developments: what changed,
 The Rarebird identity uses the supplied outlined wordmark and the [R emblem](rarebird-emblem.svg). The emblem appears on a black tile at icon sizes.
 
 - Use [the icon source](../apps/web/app/icon.svg) for the mark.
-- Use `BrandWordmark` and `BrandMark` from [brand-mark.tsx](../apps/web/components/site/brand-mark.tsx) for the full logo and compact icon.
+- Set the wordmark on its own in navigation, footers, and share cards.
+- Use the R emblem on its own for app and browser icons, or as a separate element in an illustration.
+- Use `BrandWordmark` and `BrandMark` from [brand-mark.tsx](../apps/web/components/site/brand-mark.tsx) for these placements.
 - Use the site's theme variables for legible dark and light interfaces.
 - Give the mark space and keep text readable at small sizes.
 
