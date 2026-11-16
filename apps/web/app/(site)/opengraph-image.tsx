@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { BrandWordmark } from "@/components/site/brand-mark";
 
-export const alt = "Rarebird — See what just changed.";
+export const alt = "Rarebird — Find your edge. In either direction.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -23,16 +23,16 @@ export default function OpenGraphImage() {
 
       <div style={{ display: "flex", flexDirection: "column", marginTop: 60 }}>
         <span style={{ fontSize: 18, color: "#bbbbbb", letterSpacing: 2 }}>
-          MARKET DISCOVERY
+          INTELLIGENCE FOR EVERY MARKET
         </span>
         <span style={{ marginTop: 22, fontSize: 56, fontWeight: 700, letterSpacing: -2, lineHeight: 1.09 }}>
-          See what
+          Find your edge.
         </span>
         <span style={{ fontSize: 56, fontWeight: 700, letterSpacing: -2, lineHeight: 1.09 }}>
-          just changed.
+          In either direction.
         </span>
         <span style={{ marginTop: 26, fontSize: 24, color: "#bbbbbb" }}>
-          Market checks, original sources, and a clear next check.
+          Opportunity. Risk. A clearer perspective.
         </span>
       </div>
 
@@ -48,7 +48,7 @@ export default function OpenGraphImage() {
           fontSize: 18,
         }}
       >
-        <span>Live market briefing</span>
+        <span>Built for people and AI agents</span>
         <span>RAREBIRD.NETWORK</span>
       </div>
     </div>,
