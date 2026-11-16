@@ -54,7 +54,7 @@ export default function CatalogSearch({ id, className, onSelect }: {
     onSelect(topic);
   }
 
-  return <form className={"catalog-search" + (className ? " " + className : "")} role="search"
+  return <form className={"rb-catalog-search" + (className ? " " + className : "")} role="search"
     aria-label="Search by ticker or company"
     onBlur={event => {
       if (event.currentTarget.contains(event.relatedTarget)) return;

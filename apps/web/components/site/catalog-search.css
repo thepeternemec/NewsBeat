@@ -1,5 +1,5 @@
-.catalog-search { position: relative; min-width: 0; }
-.catalog-search:focus-within { z-index: 4; }
+.rb-catalog-search { position: relative; min-width: 0; }
+.rb-catalog-search:focus-within { z-index: 4; }
 .catalog-search-field {
   display: flex;
   align-items: center;
