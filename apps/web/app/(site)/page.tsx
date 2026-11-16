@@ -1,4 +1,7 @@
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import {
+  Activity, ArrowRight, ArrowUpRight, ChartNoAxesCombined, Coins,
+  ListFilter, MessageSquareText, Newspaper, Search,
+} from "lucide-react";
 import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
 import MarketDiscovery from "@/components/site/market-discovery";
@@ -23,6 +26,15 @@ export const metadata = {
 };
 
 const REPO = "https://github.com/thepeternemec/NewsBeat";
+
+const APP_TOOLS = [
+  { label: "Market checks", description: "Open recent developments, filings and review candidates.", href: "/intelligence", icon: ListFilter },
+  { label: "Forecasts", description: "Inspect hourly BTC and ETH forecasts and the scorecards.", href: "/app/forecasts", icon: ChartNoAxesCombined },
+  { label: "Crypto markets", description: "Track breadth, DEX activity, funding and sentiment.", href: "/crypto", icon: Activity },
+  { label: "Ticker research", description: "Get a sourced brief on a stock or crypto ticker.", href: "/ask", icon: Search },
+  { label: "Ask a question", description: "Compare assets and inspect the evidence behind the answer.", href: "/app/research", icon: MessageSquareText },
+  { label: "Token contracts", description: "Match an on-chain address to pools and issuer records.", href: "/tokens", icon: Coins },
+];
 
 const MILESTONES = [
   {
@@ -65,10 +77,10 @@ export default function Home() {
           <div className="bs-hero-copy">
             <span className="bs-kicker"><span /> Market discovery across 2,030 assets</span>
             <h1 id="home-title"><span className="nb-headline-line" data-hero-line>See what</span><span className="nb-headline-line nb-headline-muted" data-hero-line>just changed.</span></h1>
-            <p className="bs-lede">Rarebird scans for earnings, guidance changes, deals and market disruptions across stocks and crypto. See the evidence and when Rarebird first recorded it.</p>
+            <p className="bs-lede">Follow developments in stocks and crypto, inspect the evidence, and check what the market did next. Use Rarebird on the web or connect the same tools to your agent.</p>
             <div className="hero-cta">
-              <a className="btn-primary" href="#real-intelligence">Open live discovery <ArrowRight size={16} aria-hidden="true" /></a>
-              <a className="bs-text-link" href="#build-history">Explore the open-source project <ArrowUpRight size={16} aria-hidden="true" /></a>
+              <a className="btn-primary" href="/app">Open app <ArrowRight size={16} aria-hidden="true" /></a>
+              <a className="bs-text-link" href="#connect-agent">Explore features <ArrowRight size={16} aria-hidden="true" /></a>
             </div>
           </div>
           <div className="ni-hero-model nb-live-stage" id="real-intelligence">
@@ -89,13 +101,18 @@ export default function Home() {
       </section>
 
       <section className="wrap rb-focus-tools" id="connect-agent" aria-labelledby="tools-title">
-        <h2 id="tools-title">Open the evidence</h2>
-        <nav aria-label="Research tools">
-          <a href="/intelligence#opportunities">Review candidates <ArrowUpRight size={15} aria-hidden="true" /></a>
-          <a href="/crypto">Market data <ArrowUpRight size={15} aria-hidden="true" /></a>
-          <a href="/tokens">Token contracts <ArrowUpRight size={15} aria-hidden="true" /></a>
-          <a href="/ask">Ticker research <ArrowUpRight size={15} aria-hidden="true" /></a>
-          <a href="/docs/quickstart">Connect an agent <ArrowUpRight size={15} aria-hidden="true" /></a>
+        <h2 id="tools-title">Explore the app</h2>
+        <nav className="rb-home-tool-grid" aria-label="Rarebird app features">
+          {APP_TOOLS.map(({ href, label, description, icon: Icon }) => <a key={href} href={href}>
+            <Icon className="rb-home-tool-icon" size={19} aria-hidden="true" />
+            <span><strong>{label}</strong><small>{description}</small></span>
+            <ArrowUpRight className="rb-home-tool-arrow" size={16} aria-hidden="true" />
+          </a>)}
+        </nav>
+        <nav className="rb-home-tool-links" aria-label="More ways to use Rarebird">
+          <a href="/dashboard"><Newspaper size={14} aria-hidden="true" /> Open the full news map</a>
+          <a href="/app#how-it-works">How the intelligence works <ArrowUpRight size={14} aria-hidden="true" /></a>
+          <a href="/docs/quickstart">Connect an agent <ArrowUpRight size={14} aria-hidden="true" /></a>
         </nav>
         <details className="rb-brief-search"><summary>Search stock and crypto news</summary><LandingNewsLookup /></details>
       </section>

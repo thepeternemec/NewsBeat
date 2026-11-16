@@ -1,8 +1,5 @@
 "use client";
 
-import InteriorPage from "@/components/site/interior-page";
-import SiteNav from "@/components/site/site-nav";
-
 import { useCallback, useEffect, useRef, useState } from "react";
 
 /** Clusters to load articles for. One request each, so this stays small. */
@@ -291,21 +288,8 @@ export default function Dashboard() {
   };
 
   return (
-    <>
-      <SiteNav active="/dashboard" />
-
-      <InteriorPage className="wrap dash-main terminal-page">
-        <div className="terminal-heading">
-          <div>
-            <span className="sec-eyebrow">Rarebird / Intelligence terminal</span>
-            <h1 style={{ margin: 0, fontSize: "clamp(30px, 4vw, 44px)", lineHeight: 1.05, letterSpacing: "-0.035em", color: "var(--text-primary)", fontWeight: 600 }}>
-              Evidence for your agent.
-            </h1>
-          </div>
-          <span style={{ font: "11px var(--font-mono), monospace", color: "var(--text-ghost)" }}>
-            {stamp ? `updated ${stamp}` : "connecting…"}
-          </span>
-        </div>
+    <div className="interior-page terminal-page">
+        <p className="rb-app-terminal-status">{stamp ? `Catalog checked at ${stamp}` : "Loading the catalog…"}</p>
 
         <div className="terminal-view-tabs">
             <FluidTabs
@@ -392,9 +376,6 @@ export default function Dashboard() {
               </div>
             </div>
           </div>
-          <p className="hero-tiny" style={{ marginTop: 30 }}>
-            The news foundation · sources and freshness included · deeper intelligence planned
-          </p>
         </div>
 
         {query.trim().length > 0 && view === "clusters" && filteredClusters.length === 0 && (
@@ -565,26 +546,7 @@ export default function Dashboard() {
             )}
           </div>
         )}
-      </InteriorPage>
-
-      <footer className="site">
-        <div className="wrap">
-          <div className="footer-row">
-            <div className="footer-brand-line">
-              <span className="footer-co">RAREBIRD</span>
-              <span style={{ color: "var(--border-strong)" }}>/</span>
-              <span className="footer-address">read-only · live graph</span>
-            </div>
-            <div className="footer-links">
-              <a href="/">Home</a>
-              <a href="/docs/connect">API contract</a>
-              <a href="/pricing">Pricing</a>
-              <a href="/faq">FAQ</a>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </>
+    </div>
   );
 }
 

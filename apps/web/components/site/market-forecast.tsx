@@ -18,11 +18,16 @@ function Scorecard({ title, data }: { title: string; data: ForecastScorecard }) 
   </div>;
 }
 
-export function MarketForecastPanel({ outlook, now, unavailable }: { outlook?: MarketForecasts; now: number; unavailable: boolean }) {
+export function MarketForecastPanel({ outlook, now, unavailable, compact = false }: {
+  outlook?: MarketForecasts;
+  now: number;
+  unavailable: boolean;
+  compact?: boolean;
+}) {
   return <section className="rb-forecast" aria-label="Hourly crypto forecasts">
     <header>
-      <p>Hourly move risk · Experimental</p>
-      <h2>How likely is a 1% move?</h2>
+      <p>BTC and ETH · Experimental</p>
+      <h2>{compact ? "Next-hour move risk" : "How likely is a 1% move?"}</h2>
     </header>
     {outlook && outlook.status !== "unavailable" ? <div className="rb-forecast-assets">
       {outlook.assets.map(({ ticker, pair, forecast, move_risk, scorecard, recent }) => {
@@ -31,13 +36,15 @@ export function MarketForecastPanel({ outlook, now, unavailable }: { outlook?: M
         return <article key={ticker} className="rb-forecast-asset">
           <h3>{pair}</h3>
           {risk ? <>
-            <p className="rb-forecast-call"><strong>{percent.format(risk.probability)}</strong> estimated chance of closing at least {percent.format(risk.threshold_fraction)} away from {usd.format(risk.reference_price_usd)}</p>
-            <p className="rb-forecast-meta">Target <time dateTime={risk.target_at}>{stamp(risk.target_at)}</time> · {percent.format(risk.baseline_probability)} historical base rate</p>
-            <a className="rb-brief-source" href={risk.source.url} target="_blank" rel="noreferrer">
+            <p className="rb-forecast-call"><strong>{percent.format(risk.probability)}</strong> {compact
+              ? "chance of a ≥" + percent.format(risk.threshold_fraction) + " move at close"
+              : "estimated chance of closing at least " + percent.format(risk.threshold_fraction) + " away from " + usd.format(risk.reference_price_usd)}</p>
+            <p className="rb-forecast-meta">Target <time dateTime={risk.target_at}>{stamp(risk.target_at)}</time>{!compact && " · " + percent.format(risk.baseline_probability) + " historical base rate"}</p>
+            {!compact && <a className="rb-brief-source" href={risk.source.url} target="_blank" rel="noreferrer">
               {risk.source.name} <ArrowUpRight size={12} aria-hidden="true" />
-            </a>
+            </a>}
           </> : <p className="rb-forecast-meta">No current move risk forecast for this hour.</p>}
-          <details>
+          {!compact && <details>
             <summary>Forecast evidence and results</summary>
             {risk && <p className="rb-forecast-meta">Past-hour realized volatility was {percent.format(risk.realized_volatility_1h)}. A 1% move followed {risk.matched_moves} of {risk.matched_windows} hours with similar volatility in {risk.sample_size} usable hours. The model blends that rate with the 30-day base rate.</p>}
             {move_risk && <Scorecard title={outlook.scorecard_days + "-day move risk scorecard"} data={move_risk.scorecard} />}
@@ -65,10 +72,11 @@ export function MarketForecastPanel({ outlook, now, unavailable }: { outlook?: M
               <time dateTime={result.target_at}>{stamp(result.target_at)}</time>
               <span>{percent.format(result.probability_above)} above {usd.format(result.reference_price_usd)} · {result.outcome === "missing" || result.target_price_usd === null ? "Close missing" : "Closed at " + usd.format(result.target_price_usd)}</span>
             </li>)}</ul>}
-          </details>
+          </details>}
         </article>;
       })}
     </div> : <p className="rb-forecast-meta">{unavailable || outlook?.status === "unavailable" ? "Forecasts temporarily unavailable." : "Checking the latest forecasts…"}</p>}
-    <a className="rb-brief-source" href="https://github.com/thepeternemec/NewsBeat/blob/main/docs/QUANTITATIVE.md#historical-replay">Method and historical results <ArrowUpRight size={12} aria-hidden="true" /></a>
+    {compact ? <a className="rb-brief-detail" href="/app/forecasts">Forecast evidence and results <ArrowUpRight size={13} aria-hidden="true" /></a>
+      : <a className="rb-brief-source" href="https://github.com/thepeternemec/NewsBeat/blob/main/docs/QUANTITATIVE.md#historical-replay">Method and historical results <ArrowUpRight size={12} aria-hidden="true" /></a>}
   </section>;
 }

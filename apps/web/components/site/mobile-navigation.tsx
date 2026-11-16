@@ -52,7 +52,7 @@ export default function MobileNavigation({ links, active }: { links: NavigationL
             ))}
           </nav>
           <div className="mobile-nav-bottom">
-            <a className="mobile-nav-primary" href="/#real-intelligence" onClick={() => setOpen(false)}>Read the live briefing<ArrowRight size={16} aria-hidden="true" /></a>
+            <a className="mobile-nav-primary" href="/app" onClick={() => setOpen(false)}>Open app<ArrowRight size={16} aria-hidden="true" /></a>
             <div className="mobile-nav-appearance"><span>Appearance</span><ThemeToggle /></div>
           </div>
         </div>

@@ -14,7 +14,10 @@ const visitKey = "rarebird:discovery-last-read";
 type FeedSnapshot = { scope: string; feed: DiscoveryFeed | null; failed: boolean };
 const tabs = [{ id: "all", label: "All markets" }, { id: "equity", label: "Stocks" }, { id: "crypto", label: "Crypto" }] as const;
 
-export default function MarketDiscovery({ compact = false }: { compact?: boolean }) {
+export default function MarketDiscovery({
+  compact = false,
+  showControls = !compact,
+}: { compact?: boolean; showControls?: boolean }) {
   const heading = useId();
   const [asset, setAsset] = useState<(typeof tabs)[number]["id"]>("all");
   const [selection, setSelection] = useState<LookupAsset | null>(null);
@@ -86,7 +89,7 @@ export default function MarketDiscovery({ compact = false }: { compact?: boolean
         {" · "} Scanned <time dateTime={feed.coverage.scanned_at}>{format(feed.coverage.scanned_at)}</time>
       </p>}
     </header>
-    {!compact && <>
+    {showControls && <>
       <div className="rb-discovery-controls">
         <CatalogSearch id={searchId} className="rb-discovery-search" onSelect={setSelection} />
         <div className="rb-discovery-tabs" role="group" aria-label="Filter market developments">
@@ -143,7 +146,7 @@ export default function MarketDiscovery({ compact = false }: { compact?: boolean
         </li>;
       })}
     </ol>}
-    {!compact && feed?.coverage.scanned_at && <p className="rb-discovery-meta">
+    {showControls && feed?.coverage.scanned_at && <p className="rb-discovery-meta">
       Official filings checked for {feed.coverage.fresh_official_issuers} of {feed.coverage.official_issuer_total} pilot issuers.
     </p>}
     {compact && <a className="rb-discovery-more" href="/intelligence#discovery">Explore the discovery feed <ArrowUpRight size={14} aria-hidden="true" /></a>}

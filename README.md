@@ -15,7 +15,7 @@
 </p>
 
 <p align="center">
-  <a href="https://www.newsbeat.dev"><strong>Try Rarebird</strong></a> ·
+  <a href="https://www.newsbeat.dev/app"><strong>Open the app</strong></a> ·
   <a href="https://www.newsbeat.dev/intelligence">Explore a signal</a> ·
   <a href="https://www.newsbeat.dev/docs/quickstart">Connect your agent</a> ·
   <a href="https://www.newsbeat.dev/docs">Docs</a> ·
@@ -44,7 +44,7 @@ Use it inside a research assistant, a personal briefing or a watchlist workflow.
 
 ### 1. Explore in your browser
 
-Search a company name or ticker in [Market checks](https://www.newsbeat.dev/intelligence#discovery). Open the [intelligence page](https://www.newsbeat.dev/intelligence) to see a reported change alongside the context your agent can use.
+Open the [Rarebird app](https://www.newsbeat.dev/app) to see market developments and hourly crypto forecasts. Search by company or ticker, then follow the evidence into the market checks, research briefs, news map or token lookup.
 
 **No setup, account or API key required for public reads.**
 
