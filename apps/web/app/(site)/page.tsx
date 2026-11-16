@@ -30,7 +30,7 @@ const REPO = "https://github.com/thepeternemec/NewsBeat";
 const APP_TOOLS = [
   { label: "Market checks", description: "Open recent developments, filings and review candidates.", href: "/intelligence", icon: ListFilter },
   { label: "Forecasts", description: "Inspect hourly BTC and ETH forecasts and the scorecards.", href: "/app/forecasts", icon: ChartNoAxesCombined },
-  { label: "Crypto markets", description: "Track breadth, DEX activity, funding and sentiment.", href: "/crypto", icon: Activity },
+  { label: "Crypto markets", description: "Browse ranked coins, see movers and save a watchlist.", href: "/app", icon: Activity },
   { label: "Ticker research", description: "Get a sourced brief on a stock or crypto ticker.", href: "/ask", icon: Search },
   { label: "Ask a question", description: "Compare assets and inspect the evidence behind the answer.", href: "/app/research", icon: MessageSquareText },
   { label: "Token contracts", description: "Match an on-chain address to pools and issuer records.", href: "/tokens", icon: Coins },
@@ -75,9 +75,9 @@ export default function Home() {
       <section className="bs-hero" id="top">
         <div className="wrap bs-hero-grid">
           <div className="bs-hero-copy">
-            <span className="bs-kicker"><span /> Market discovery across 2,030 assets</span>
+            <span className="bs-kicker"><span /> Crypto market intelligence</span>
             <h1 id="home-title"><span className="nb-headline-line" data-hero-line>See what</span><span className="nb-headline-line nb-headline-muted" data-hero-line>just changed.</span></h1>
-            <p className="bs-lede">Follow developments in stocks and crypto, inspect the evidence, and check what the market did next. Use Rarebird on the web or connect the same tools to your agent.</p>
+            <p className="bs-lede">Compare crypto prices, save the coins you follow, and open the evidence behind market developments. Connect the same research tools to your agent.</p>
             <div className="hero-cta">
               <a className="btn-primary" href="/app">Open app <ArrowRight size={16} aria-hidden="true" /></a>
               <a className="bs-text-link" href="#connect-agent">Explore features <ArrowRight size={16} aria-hidden="true" /></a>
@@ -85,7 +85,7 @@ export default function Home() {
           </div>
           <div className="ni-hero-model nb-live-stage" id="real-intelligence">
             <span className="nb-live-stage-orbit" aria-hidden="true" />
-            <MarketDiscovery compact />
+            <MarketDiscovery compact initialMarket="crypto" />
           </div>
         </div>
       </section>

@@ -10,7 +10,7 @@ export const metadata = {
 };
 
 export default function CryptoPage() {
-  return <WorkspaceShell active="/crypto" title="Crypto markets"
+  return <WorkspaceShell active="/crypto" title="Crypto market indicators"
     description="See how widely crypto is moving, where trading is active and what’s being reported.">
     <WorkspaceEvidence title="Where the market readings come from">
       <p>Breadth counts the current readings in the tracked basket. DEX activity, funding and sentiment carry their own source and update time.</p>

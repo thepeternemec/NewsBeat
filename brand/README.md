@@ -8,7 +8,7 @@ Rarebird helps AI agents understand stock and crypto developments: what changed,
 
 ## Visual identity
 
-The Rarebird identity uses the supplied outlined wordmark. The first letter serves as the compact icon on a black rounded tile.
+The Rarebird identity uses the supplied outlined wordmark and the [R emblem](rarebird-emblem.svg). The emblem appears on a black tile at icon sizes.
 
 - Use [the icon source](../apps/web/app/icon.svg) for the mark.
 - Use `BrandWordmark` and `BrandMark` from [brand-mark.tsx](../apps/web/components/site/brand-mark.tsx) for the full logo and compact icon.

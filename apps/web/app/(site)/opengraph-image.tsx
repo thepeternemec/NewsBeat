@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { BrandWordmark } from "@/components/site/brand-mark";
+import BrandMark, { BrandWordmark } from "@/components/site/brand-mark";
 
 export const alt = "Rarebird — See what just changed.";
 export const size = { width: 1200, height: 630 };
@@ -19,7 +19,10 @@ export default function OpenGraphImage() {
         fontFamily: "sans-serif",
       }}
     >
-      <BrandWordmark width={235} color="#F2F4F7" />
+      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        <BrandMark size={46} />
+        <BrandWordmark width={235} color="#F2F4F7" />
+      </div>
 
       <div style={{ display: "flex", flexDirection: "column", marginTop: 60 }}>
         <span style={{ fontSize: 18, color: "#bbbbbb", letterSpacing: 2 }}>

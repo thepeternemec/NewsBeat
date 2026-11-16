@@ -10,7 +10,7 @@ const STAGES = [
 export default function IntelligenceModel() {
   return (
     <aside className="intelligence-model" aria-label="The path from reporting to agent intelligence">
-      <div className="intelligence-model-bar"><span><BrandMark size={26} /> NEWSBEAT</span><span>SIGNAL CONSTRUCTION</span></div>
+      <div className="intelligence-model-bar"><span><BrandMark size={26} /> RAREBIRD</span><span>SIGNAL CONSTRUCTION</span></div>
       <ol className="intelligence-model-stages">
         {STAGES.map(stage => <li key={stage.number} data-planned={stage.planned}>
           <div className="intelligence-model-index" aria-hidden="true">{stage.number}</div>

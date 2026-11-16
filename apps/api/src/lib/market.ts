@@ -16,6 +16,8 @@
 import type {
   AssetMarket,
   ChainTvl,
+  CryptoMarketRow,
+  CryptoMarketsPayload,
   FearGreedPayload,
   FearGreedPoint,
   Freshness,
@@ -35,6 +37,7 @@ export const TTL = {
   chainTvl: 5 * 60_000,
   totalTvlHistory: 15 * 60_000,
   prices: 90_000,
+  rankedPrices: 120_000,
 } as const;
 
 const SOURCE_URL = {
@@ -253,6 +256,93 @@ export async function prices(ids: string[] = [...DEFAULT_PRICE_IDS]): Promise<So
     freshness: freshness(cached.fetchedAt, TTL.prices, "about once a minute"),
     data: { assets, unsupported },
   };
+}
+
+interface RawRankedCoin extends RawCoin {
+  image?: string;
+  market_cap_rank?: number | null;
+  price_change_percentage_1h_in_currency?: number | null;
+  price_change_percentage_7d_in_currency?: number | null;
+  sparkline_in_7d?: { price: number[] };
+}
+
+const rankedLimit = 50;
+const finite = (value: unknown) => typeof value === "number" && Number.isFinite(value) ? value : null;
+const fraction = (value: unknown) => {
+  const number = finite(value);
+  return number === null ? null : number / 100;
+};
+
+function rankedRow(coin: RawRankedCoin): CryptoMarketRow {
+  const sample = coin.sparkline_in_7d?.price;
+  const pointCount = Math.min(25, sample?.length ?? 0);
+  const sparkline = Array.isArray(sample) && pointCount > 1 && sample.every(value => finite(value) !== null && value > 0)
+    ? Array.from({ length: pointCount }, (_, i) => sample[Math.round(i * (sample.length - 1) / (pointCount - 1))]!)
+    : [];
+  const timestamp = Date.parse(coin.last_updated);
+  const rank = coin.market_cap_rank;
+  return {
+    id: coin.id,
+    symbol: coin.symbol.toUpperCase(),
+    name: coin.name,
+    rank: typeof rank === "number" && Number.isInteger(rank) && rank > 0 ? rank : null,
+    icon_url: typeof coin.image === "string" && /^https:\/\/(?:coin-images|assets)\.coingecko\.com\//.test(coin.image) ? coin.image : null,
+    price_usd: finite(coin.current_price),
+    market_cap_usd: finite(coin.market_cap),
+    volume_24h_usd: finite(coin.total_volume),
+    change_1h: fraction(coin.price_change_percentage_1h_in_currency),
+    change_24h: fraction(coin.price_change_percentage_24h),
+    change_7d: fraction(coin.price_change_percentage_7d_in_currency),
+    sparkline_7d: sparkline,
+    observed_at: Number.isFinite(timestamp) ? new Date(timestamp).toISOString() : null,
+  };
+}
+
+export async function cryptoMarkets(): Promise<Sourced<CryptoMarketsPayload>> {
+  try {
+    const cached = await upstreamCache.read("prices:ranked:usd", TTL.rankedPrices, async () => {
+      const coins = await getJson<RawRankedCoin[]>(
+        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc" +
+        "&per_page=" + rankedLimit + "&page=1&sparkline=true&price_change_percentage=1h,24h,7d",
+      );
+      const rows = new Map<string, CryptoMarketRow>();
+      for (const coin of coins) {
+        if (!coin || typeof coin.id !== "string" || !/^[a-z0-9][a-z0-9-]{0,99}$/.test(coin.id)
+          || typeof coin.name !== "string" || !coin.name.trim() || typeof coin.symbol !== "string" || !coin.symbol.trim()) continue;
+        rows.set(coin.id, rankedRow(coin));
+      }
+      if (rows.size === 0) throw new Error("CoinGecko returned no ranked markets");
+      return [...rows.values()].slice(0, rankedLimit);
+    });
+    return {
+      source: "coingecko",
+      source_url: SOURCE_URL.coingecko,
+      fetched_at: new Date(cached.fetchedAt).toISOString(),
+      ttl_seconds: Math.round(TTL.rankedPrices / 1000),
+      freshness: freshness(cached.fetchedAt, TTL.rankedPrices, "about once a minute"),
+      data: { coverage: "market_cap_ranked", assets: cached.value },
+    };
+  } catch {
+    const snapshot = await prices();
+    return {
+      ...snapshot,
+      data: {
+        coverage: "tracked_basket",
+        assets: snapshot.data.assets.map(asset => ({
+          ...asset,
+          rank: null,
+          icon_url: null,
+          price_usd: finite(asset.price_usd),
+          market_cap_usd: finite(asset.market_cap_usd),
+          volume_24h_usd: finite(asset.volume_24h_usd),
+          change_1h: null,
+          change_24h: finite(asset.change_24h),
+          change_7d: null,
+          sparkline_7d: [],
+        })),
+      },
+    };
+  }
 }
 
 // ── Overview ────────────────────────────────────────────────────────────

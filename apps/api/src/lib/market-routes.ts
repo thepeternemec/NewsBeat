@@ -7,7 +7,7 @@
  */
 
 import { Hono } from "hono";
-import { chainTvl, DEFAULT_PRICE_IDS, fearGreed, overview, prices } from "./market.js";
+import { chainTvl, cryptoMarkets, DEFAULT_PRICE_IDS, fearGreed, overview, prices } from "./market.js";
 import { chainPulse, contractToken } from "./chain.js";
 import { ask } from "./ask.js";
 import { signals } from "./signals.js";
@@ -74,6 +74,12 @@ marketRoutes.get("/prices", async (c) => {
 
 marketRoutes.get("/chain", async (c) => {
   const payload = await chainPulse();
+  attributed(c, payload.source, payload.fetched_at, payload.ttl_seconds);
+  return c.json(payload);
+});
+
+marketRoutes.get("/crypto-markets", async (c) => {
+  const payload = await cryptoMarkets();
   attributed(c, payload.source, payload.fetched_at, payload.ttl_seconds);
   return c.json(payload);
 });
