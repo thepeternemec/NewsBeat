@@ -2,7 +2,7 @@
  * Plain anchors remount each page's scroll and reveal controllers on navigation.
  */
 import ThemeToggle from "./theme-toggle";
-import BrandMark from "./brand-mark";
+import { BrandWordmark } from "./brand-mark";
 import MobileNavigation from "./mobile-navigation";
 import "./mobile-navigation.css";
 
@@ -17,8 +17,7 @@ export default function SiteNav({ active }: { active?: string }) {
     <nav className="nav nav-site" aria-label="Main navigation">
       <div className="nav-pill">
         <a className="nav-logo" href="/" aria-label="Rarebird home">
-          <BrandMark className="brand-beat" />
-          RAREBIRD
+          <BrandWordmark className="brand-wordmark" />
         </a>
         <span className="nav-links">
           {LINKS.map(link => (
