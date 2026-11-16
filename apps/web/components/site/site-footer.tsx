@@ -1,4 +1,4 @@
-import BrandMark from "./brand-mark";
+import { BrandWordmark } from "./brand-mark";
 import SpotlightCard from "@/components/ui/spotlight-card/spotlight-card";
 import "./site-footer.css";
 
@@ -59,7 +59,9 @@ export default function SiteFooter() {
           <div className="footer-grid">
             <div className="footer-brand">
               <div className="footer-brand-line">
-                <a className="footer-co footer-wordmark" href="/"><BrandMark size={27} />RAREBIRD</a>
+                <a className="footer-co footer-wordmark" href="/" aria-label="Rarebird home">
+                  <BrandWordmark className="brand-wordmark" width={136} />
+                </a>
                 <a className="footer-mobile-contact" href="mailto:contact@newsbeat.dev">Contact <span aria-hidden="true">↗</span></a>
               </div>
               <p className="footer-tag">Know what’s worth watching.</p>

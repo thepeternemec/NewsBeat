@@ -8,10 +8,10 @@ Rarebird helps AI agents understand stock and crypto developments: what changed,
 
 ## Visual identity
 
-The Rarebird mark uses a white bird in flight on a black rounded tile. The palette is black, white and grey.
+The Rarebird identity uses the supplied outlined wordmark. The first letter serves as the compact icon on a black rounded tile.
 
 - Use [the icon source](../apps/web/app/icon.svg) for the mark.
-- Use [BrandMark](../apps/web/components/site/brand-mark.tsx) inside the website.
+- Use `BrandWordmark` and `BrandMark` from [brand-mark.tsx](../apps/web/components/site/brand-mark.tsx) for the full logo and compact icon.
 - Use the site's theme variables for legible dark and light interfaces.
 - Give the mark space and keep text readable at small sizes.
 
