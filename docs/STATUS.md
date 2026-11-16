@@ -1,10 +1,10 @@
-# NewsBeat project status
+# Rarebird project status
 
 Updated **2026-11-07** from the current main-branch implementation. Counts describe the bundled catalog, not a guarantee of live article coverage.
 
 ## Product direction
 
-NewsBeat is building meaningful signals for AI agents. The source-linked news foundation is live; a first general signal-construction pilot is implemented for six assets. Task-specific relevance, broader context and stronger verification remain planned. Stocks and crypto describe coverage. [Read the product direction](INTELLIGENCE.md).
+Rarebird is building meaningful signals for AI agents. The source-linked news foundation is live; a first general signal-construction pilot is implemented for six assets. Task-specific relevance, broader context and stronger verification remain planned. Stocks and crypto describe coverage. [Read the product direction](INTELLIGENCE.md).
 
 ## Current main branch
 
@@ -43,7 +43,7 @@ REST story snapshots scan 200 reports by default (`limit` 1–500). MCP returns 
 
 ## Brand and domain
 
-The product and repository are **NewsBeat**, live at **https://www.newsbeat.dev**. The public mission is meaningful signals for AI agents. The live news foundation covers stocks and crypto. Pilot xStock exchange pairs are verified against the venue directory; onchain contract, redemption and consolidated underlying-stock verification remain planned. Use `https://www.newsbeat.dev/api` for REST and `https://www.newsbeat.dev/api/mcp` for MCP. The `news-beat.vercel.app` host remains an alternate service address. Public reads are free during early access; no API key or credit card is needed. Account keys have a **seven-day evaluation** from the first metered REST call, with up to **$6 in trial credit**. The start is recorded per account in the usage ledger, so rotating a key does not reset it. Existing accounts keep their balances and start their seven-day window on their next metered call after this release. `GET /api/keys/trial` reports the deadline and spendable credit. When the trial ends, unused trial credit becomes unavailable and keyed reads return `402 trial_expired`; public anonymous reads continue. Stripe checkout is not live.
+The product and repository are **Rarebird**, live at **https://www.newsbeat.dev**. The public mission is meaningful signals for AI agents. The live news foundation covers stocks and crypto. Pilot xStock exchange pairs are verified against the venue directory; onchain contract, redemption and consolidated underlying-stock verification remain planned. Use `https://www.newsbeat.dev/api` for REST and `https://www.newsbeat.dev/api/mcp` for MCP. The `news-beat.vercel.app` host remains an alternate service address. Public reads are free during early access; no API key or credit card is needed. Account keys have a **seven-day evaluation** from the first metered REST call, with up to **$6 in trial credit**. The start is recorded per account in the usage ledger, so rotating a key does not reset it. Existing accounts keep their balances and start their seven-day window on their next metered call after this release. `GET /api/keys/trial` reports the deadline and spendable credit. When the trial ends, unused trial credit becomes unavailable and keyed reads return `402 trial_expired`; public anonymous reads continue. Stripe checkout is not live.
 
 New discovery uses `newsbeat_*` tool names. Old tool names, deployed environment-variable names and existing signed cursors retain compatibility. Workspace package names use `@newsbeat/*` and `newsbeat-*`.
 

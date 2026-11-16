@@ -1,8 +1,8 @@
-# NewsBeat documentation
+# Rarebird documentation
 
 Start with the guide that matches what you want to do.
 
-## Use NewsBeat
+## Use Rarebird
 
 | Goal | Guide |
 | --- | --- |
@@ -21,14 +21,14 @@ Start with the guide that matches what you want to do.
 | [Local development](DEVELOPMENT.md) | Installation, PostgreSQL, environment files, ingestion and checks |
 | [Contributing](../CONTRIBUTING.md) | A first contribution, pull requests and project conventions |
 | [Architecture](ARCHITECTURE.md) | How the application, workers and storage fit together |
-| [Brand](../brand/README.md) | NewsBeat assets, palette and voice |
+| [Brand](../brand/README.md) | Rarebird assets, palette and voice |
 | [Security](../SECURITY.md) | Private vulnerability reporting |
 
 ## Understand the research
 
 | Guide | What you will find |
 | --- | --- |
-| [Product direction](INTELLIGENCE.md) | The problem NewsBeat is solving and the intelligence direction |
+| [Product direction](INTELLIGENCE.md) | The problem Rarebird is solving and the intelligence direction |
 | [Current capabilities](STATUS.md) | What is available, experimental and planned |
 | [Quantitative methodology](QUANTITATIVE.md) | Market sources, information deltas, timing gates and prospective evaluation |
 | [Changelog](../CHANGELOG.md) | Implementation changes and project decisions |

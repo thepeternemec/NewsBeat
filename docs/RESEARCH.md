@@ -1,6 +1,6 @@
 # Question-driven research
 
-Ask NewsBeat a question about a supported stock or crypto asset. It resolves identity, selects relevant reporting, checks available measurements and returns an answer with conditional reasoning, unknowns and observable next checks.
+Ask Rarebird a question about a supported stock or crypto asset. It resolves identity, selects relevant reporting, checks available measurements and returns an answer with conditional reasoning, unknowns and observable next checks.
 
 Try it at https://www.newsbeat.dev/docs/try or connect https://www.newsbeat.dev/api/mcp and call `newsbeat_research`.
 

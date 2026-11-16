@@ -4,7 +4,7 @@ import CopyButton from "@/components/site/copy-button";
 import "./try.css";
 
 export const metadata = {
-  title: "Ask NewsBeat",
+  title: "Ask Rarebird",
   description: "Ask a stock or crypto research question. Get a direct answer, evidence, uncertainty and the next check.",
 };
 const REQUEST = `curl -X POST "https://www.newsbeat.dev/api/v2/research" \\
@@ -18,7 +18,7 @@ export default function TryNewsBeat() {
         <span className="sec-eyebrow">Your question · an evidence-led answer</span>
         <h1>Understand the picture.</h1>
         <p className="docs-lead">Ask what could matter, what the market confirms and what would change the view.
-          NewsBeat checks the available evidence and explains its answer. No account or key needed.</p>
+          Rarebird checks the available evidence and explains its answer. No account or key needed.</p>
       </header>
       <ResearchQuestion />
       <h2>From a question to a next check</h2>

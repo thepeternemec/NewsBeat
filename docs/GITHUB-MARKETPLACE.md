@@ -1,10 +1,10 @@
 # GitHub Marketplace webhook
 
-NewsBeat currently offers free public news and MCP access. The Marketplace receiver records plan notifications; it does not bill customers, grant credits, restrict public access, or provision paid plans. Keep the listing free until paid-plan provisioning and reconciliation are implemented and tested.
+Rarebird currently offers free public news and MCP access. The Marketplace receiver records plan notifications; it does not bill customers, grant credits, restrict public access, or provision paid plans. Keep the listing free until paid-plan provisioning and reconciliation are implemented and tested.
 
 ## Listing configuration
 
-Under **GitHub Marketplace → NewsBeat Agent → Webhook**, use:
+Under **GitHub Marketplace → Rarebird Agent → Webhook**, use:
 
 | Field            | Value                                                                   |
 | ---------------- | ----------------------------------------------------------------------- |
@@ -41,7 +41,7 @@ order by received_at desc
 limit 50;
 ```
 
-The webhook completes this listing configuration step. It does not verify that a separately registered GitHub App's installation/OAuth setup is complete. Test the actual install and onboarding flow before submitting for review. NewsBeat's agent integration is MCP; a Marketplace listing does not itself add an `@newsbeat-agent` Copilot chat command.
+The webhook completes this listing configuration step. It does not verify that a separately registered GitHub App's installation/OAuth setup is complete. Test the actual install and onboarding flow before submitting for review. Rarebird's agent integration is MCP; a Marketplace listing does not itself add an `@newsbeat-agent` Copilot chat command.
 
 ## Before offering paid Marketplace plans
 

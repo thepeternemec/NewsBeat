@@ -1,6 +1,6 @@
 # Measured market timing
 
-NewsBeat separates source interpretation from quantitative measurement. A small model proposes one grounded market hypothesis; deterministic code measures information delta, price response, participation and observed liquidity. A `review_now` record asks an agent to investigate. It does not execute a trade.
+Rarebird separates source interpretation from quantitative measurement. A small model proposes one grounded market hypothesis; deterministic code measures information delta, price response, participation and observed liquidity. A `review_now` record asks an agent to investigate. It does not execute a trade.
 
 ## Data and identity
 
@@ -23,7 +23,7 @@ The always-uncommitted final OHLC row is excluded. Invalid or duplicated timesta
 
 The current immutable thesis revision is compared with its preceding revision. A changed reported development, reporting state, economic channel, direction or trigger state requires newly cited reporting before it is a meaningful revision delta. Repeated coverage and adding a first interpretation to old reporting do not create a fresh information edge. Materiality wording alone does not qualify.
 
-The knowledge anchor is the later of the thesis revision time and newly cited reports' first-indexed times. This is when NewsBeat knew the thesis, not the publisher's claimed market arrival time. The first complete five-minute bucket after that anchor is used for the post-thesis window. Pre-anchor price action is checked separately to avoid presenting an existing run-up as a new signal.
+The knowledge anchor is the later of the thesis revision time and newly cited reports' first-indexed times. This is when Rarebird knew the thesis, not the publisher's claimed market arrival time. The first complete five-minute bucket after that anchor is used for the post-thesis window. Pre-anchor price action is checked separately to avoid presenting an existing run-up as a new signal.
 
 ## Baseline and measured response
 

@@ -1,6 +1,6 @@
 # News collection frequency
 
-NewsBeat's catalog is scheduled every **10 minutes**. Faster news checks are optional for NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum.
+Rarebird's catalog is scheduled every **10 minutes**. Faster news checks are optional for NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum.
 
 ## Request one-minute checks
 

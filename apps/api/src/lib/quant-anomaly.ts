@@ -60,7 +60,7 @@ export function discoverMarket(profile: MarketProfile, snapshots: Map<string, Ma
   return { detector_version: ANOMALY_VERSION, scanned_at: iso(now), status, windows, reporting, records: [],
     headline: status === "data_hold" ? "The independent scan needs fresher market evidence." : status === "warming_up" ? "Building a comparison with earlier market behavior." : focus ? "An unusual relative move deserves investigation." : "No unusual relative move stands out.",
     explanation: focus ? "The " + focus.minutes + "-minute move differs from both its market proxy and earlier scored windows. Check whether it persists, fades or reflects a change in volatility before treating it as an opportunity."
-      : "NewsBeat scans market behavior independently of headlines. It compares new moves with earlier observations instead of requiring a news story to start the analysis.",
+      : "Rarebird scans market behavior independently of headlines. It compares new moves with earlier observations instead of requiring a news story to start the analysis.",
     note: "Three exploratory horizons share data and are not independent tests. Historical ranks are not return probabilities. Regime and venue effects can explain an anomaly; no directional edge or market outperformance is established." };
 }
 

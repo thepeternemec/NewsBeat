@@ -1,4 +1,4 @@
-# Develop NewsBeat locally
+# Develop Rarebird locally
 
 [Documentation](README.md) · [Contributing](../CONTRIBUTING.md) · [Repository](../README.md)
 
@@ -10,7 +10,7 @@ Use Node.js 22 or 24 and npm:
 
 ```bash
 git clone https://github.com/thepeternemec/NewsBeat.git
-cd NewsBeat
+cd Rarebird
 npm ci
 npm run build
 npm test
