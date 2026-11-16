@@ -45,6 +45,7 @@
 .rb-brief-search summary { cursor: pointer; margin-bottom: 12px; font-size: 14px; }
 
 .rb-forecast { padding-bottom: 19px; margin-bottom: 19px; border-bottom: 1px solid var(--border-default); }
+.rb-brief-forecast .rb-forecast { padding: 0; margin: 0; border: 0; }
 .rb-forecast header h2 { margin-bottom: 13px; }
 .rb-forecast-assets { display: grid; gap: 10px; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
 .rb-forecast-asset { min-width: 0; padding: 13px; border: 1px solid var(--border-default); border-radius: 12px; }

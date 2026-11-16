@@ -5,6 +5,9 @@ const ORIGIN = "https://www.newsbeat.dev";
 // Only public, indexable pages. API endpoints and generated image routes are omitted.
 const PAGES = [
   "/",
+  "/app",
+  "/app/forecasts",
+  "/app/research",
   "/connect",
   "/intelligence",
   "/ask",

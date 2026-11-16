@@ -1,6 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
-import SiteNav from "@/components/site/site-nav";
-import SiteFooter from "@/components/site/site-footer";
+import WorkspaceShell, { WorkspaceEvidence } from "@/components/site/workspace-shell";
 import SignalInspector from "@/components/site/signal-inspector";
 import OpportunityBrief from "@/components/site/opportunity-brief";
 import MarketBriefingCard from "@/components/site/market-briefing";
@@ -18,13 +16,19 @@ export const metadata = {
 };
 
 export default function IntelligencePage() {
-  return <>
-    <SiteNav active="/intelligence" />
-    <main className="wrap ni-quant-home rb-market-workspace">
-      <header>
-        <h1>Market checks</h1>
-        <p>Browse recent developments and follow the evidence for any asset that matters to you.</p>
-      </header>
+  return <WorkspaceShell active="/intelligence" title="Market checks"
+    description="Search a stock or crypto asset, open the original evidence and see which developments warrant a closer look.">
+    <WorkspaceEvidence title="How a report becomes a review candidate">
+      <p>The catalog scan checks for relevant reporting across 2,030 assets. Four pilot issuers also have direct SEC filing checks.</p>
+      <p>For six pilot assets, Rarebird tests fresh reporting against market participation, relative price moves and trading costs. The asset inspector shows the sources, timing checks and reasons to wait.</p>
+      <a href="/docs/intelligence#pilot-and-policy">Read the criteria for a review</a>
+    </WorkspaceEvidence>
+    <nav className="rb-app-jump" aria-label="Jump to a market check">
+      <a href="#discovery">Developments</a>
+      <a href="#opportunities">Reviews and filings</a>
+      <a href="#real-signal">Asset inspector</a>
+    </nav>
+    <div className="rb-market-workspace">
       <div id="discovery"><MarketDiscovery /></div>
       <MarketBriefingCard />
       <div id="opportunities"><OpportunityBrief /></div>
@@ -32,12 +36,6 @@ export default function IntelligencePage() {
         <h2 id="real-signal-title">Inspect an asset</h2>
         <SignalInspector />
       </section>
-      <div className="rb-workspace-links">
-        <a href="/crypto">Crypto overview <ArrowUpRight size={14} aria-hidden="true" /></a>
-        <a href="/tokens">Token contracts <ArrowUpRight size={14} aria-hidden="true" /></a>
-        <a href="/docs/intelligence">How the checks work <ArrowUpRight size={14} aria-hidden="true" /></a>
-      </div>
-    </main>
-    <SiteFooter />
-  </>;
+    </div>
+  </WorkspaceShell>;
 }

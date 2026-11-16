@@ -7,7 +7,8 @@ const COLUMNS = [
   {
     head: "Product",
     links: [
-      { href: "/#real-intelligence", label: "Live briefing" },
+      { href: "/app", label: "Open app" },
+      { href: "/app/forecasts", label: "Forecasts" },
       { href: "/intelligence#opportunities", label: "Market checks" },
       { href: "/crypto", label: "Crypto overview" },
       { href: "/tokens", label: "Token contracts" },

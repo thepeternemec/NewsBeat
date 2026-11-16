@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
-import type { BriefingSource, MarketBriefing } from "@newsbeat/contracts";
+import type { BriefingSource, MarketBriefing, MarketForecasts } from "@newsbeat/contracts";
 import { MarketForecastPanel } from "./market-forecast";
 import { API_BASE } from "./content";
 import "./market-briefing.css";
@@ -16,8 +16,8 @@ function Source({ source }: { source: BriefingSource }) {
   </a>;
 }
 
-export default function MarketBriefingCard({ compact = false }: { compact?: boolean }) {
-  const [brief, setBrief] = useState<MarketBriefing | null>(null);
+function useMarketSnapshot<T>(path: string) {
+  const [snapshot, setSnapshot] = useState<T | null>(null);
   const [failed, setFailed] = useState(false);
   const [now, setNow] = useState(0);
   useEffect(() => {
@@ -30,12 +30,12 @@ export default function MarketBriefingCard({ compact = false }: { compact?: bool
       request = controller;
       const timeout = window.setTimeout(() => controller.abort(), 12000);
       try {
-        const response = await fetch(API_BASE + "/v2/briefing", { signal: controller.signal, cache: "no-store" });
-        if (!response.ok) throw new Error("Briefing unavailable");
-        const result = await response.json() as MarketBriefing;
-        if (active && request === controller) { setBrief(result); setFailed(false); }
+        const response = await fetch(API_BASE + path, { signal: controller.signal, cache: "no-store" });
+        if (!response.ok) throw new Error("Market data unavailable");
+        const result = await response.json() as T;
+        if (active && request === controller) { setSnapshot(result); setFailed(false); }
       } catch {
-        if (active && request === controller) { setBrief(null); setFailed(true); }
+        if (active && request === controller) { setSnapshot(null); setFailed(true); }
       } finally {
         window.clearTimeout(timeout);
         if (active) setNow(Date.now());
@@ -52,8 +52,20 @@ export default function MarketBriefingCard({ compact = false }: { compact?: bool
       document.removeEventListener("visibilitychange", load);
       request?.abort();
     };
-  }, []);
+  }, [path]);
 
+  return { snapshot, failed, now };
+}
+
+export function ForecastWorkspace({ compact = false }: { compact?: boolean }) {
+  const { snapshot, failed, now } = useMarketSnapshot<MarketForecasts>("/v2/forecasts");
+  return <div className="rb-brief rb-brief-forecast">
+    <MarketForecastPanel outlook={snapshot ?? undefined} now={now} unavailable={failed} compact={compact} />
+  </div>;
+}
+
+export default function MarketBriefingCard({ compact = false }: { compact?: boolean }) {
+  const { snapshot: brief, failed, now } = useMarketSnapshot<MarketBriefing>("/v2/briefing");
   const market = brief?.market;
   const reporting = brief?.reporting;
   const watch = brief?.watch;

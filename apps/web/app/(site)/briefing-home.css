@@ -29,13 +29,40 @@
   font-size: 15px;
   line-height: 1.55;
 }
-.rb-focus-tools nav, .rb-focus-pricing {
+.rb-home-tool-links, .rb-focus-pricing {
   display: flex;
   flex-wrap: wrap;
   gap: 12px 24px;
 }
-.rb-focus-tools a { font-size: 14px; text-decoration: underline; text-underline-offset: 4px; }
-.rb-focus-tools a svg { display: inline; vertical-align: -.16em; }
+.rb-home-tool-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.rb-home-tool-grid a {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 12px;
+  min-height: 100%;
+  padding: 17px;
+  border: 1px solid var(--border-default);
+  border-radius: 13px;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  transition: border-color 160ms ease, background 160ms ease;
+}
+.rb-home-tool-grid a:hover {
+  border-color: var(--border-strong);
+  background: color-mix(in srgb, var(--text-primary) 5%, var(--bg-primary));
+}
+.rb-home-tool-grid a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+.rb-home-tool-icon, .rb-home-tool-arrow { margin-top: 3px; color: var(--text-secondary); }
+.rb-home-tool-grid strong { display: block; font-size: 15px; font-weight: 650; }
+.rb-home-tool-grid small { display: block; margin-top: 5px; font-size: 13px; line-height: 1.45; color: var(--text-secondary); }
+.rb-home-tool-links { margin-top: 15px; }
+.rb-home-tool-links a { font-size: 14px; text-decoration: underline; text-underline-offset: 4px; }
+.rb-home-tool-links a svg { display: inline; vertical-align: -.16em; }
 .rb-focus-pricing { justify-content: space-between; align-items: center; }
 .rb-focus-pricing p { margin: 0; }
 .rb-focus-home .rb-brief-search { margin-top: 20px; }
@@ -76,10 +103,11 @@
 
 @media (max-width: 900px) {
   .rb-focus-history { grid-template-columns: 1fr; }
+  .rb-home-tool-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 540px) {
-  .rb-focus-history ul { grid-template-columns: 1fr; }
+  .rb-focus-history ul, .rb-home-tool-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 650px) {

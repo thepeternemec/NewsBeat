@@ -1,6 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
-import SiteNav from "@/components/site/site-nav";
-import SiteFooter from "@/components/site/site-footer";
+import WorkspaceShell, { WorkspaceEvidence } from "@/components/site/workspace-shell";
 import MarketBriefingCard from "@/components/site/market-briefing";
 import CryptoOverview from "@/components/site/crypto-overview";
 import "./crypto.css";
@@ -12,22 +10,16 @@ export const metadata = {
 };
 
 export default function CryptoPage() {
-  return <>
-    <SiteNav active="/crypto" />
-    <main className="crypto-overview">
-      <div className="crypto-overview-shell">
-        <header className="crypto-overview-heading">
-          <div>
-            <p className="crypto-overview-kicker">Crypto market overview</p>
-            <h1>See the bigger picture.</h1>
-            <p>See how widely crypto is moving, where trading is active, and which stories deserve a closer look.</p>
-          </div>
-          <a href="/tokens">Look up a token contract <ArrowUpRight size={16} aria-hidden="true" /></a>
-        </header>
-        <MarketBriefingCard />
-        <CryptoOverview />
-      </div>
-    </main>
-    <SiteFooter />
-  </>;
+  return <WorkspaceShell active="/crypto" title="Crypto markets"
+    description="See how widely crypto is moving, where trading is active and what’s being reported.">
+    <WorkspaceEvidence title="Where the market readings come from">
+      <p>Breadth counts the current readings in the tracked basket. DEX activity, funding and sentiment carry their own source and update time.</p>
+      <p>Expand or follow the source under each reading to see where it came from and how recently it was checked.</p>
+      <a href="/app/forecasts">See the hourly BTC and ETH forecast results</a>
+    </WorkspaceEvidence>
+    <div className="crypto-overview">
+      <MarketBriefingCard />
+      <CryptoOverview />
+    </div>
+  </WorkspaceShell>;
 }
