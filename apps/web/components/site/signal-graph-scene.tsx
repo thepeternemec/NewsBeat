@@ -1,9 +1,9 @@
 import type { CSSProperties } from "react";
+import { perspectiveProjector, sceneXY as xy, type ScenePoint as Point } from "./scene-projection";
 
 export type SignalStage = "anomaly" | "evidence" | "timing" | "decision" | "outcomes";
 export type GraphView = { yaw: number; pitch: number };
 export type SignalBranch = "review" | "watch";
-type Point = readonly [x: number, y: number, z: number];
 
 export const DEFAULT_GRAPH_VIEW: GraphView = { yaw: -0.24, pitch: 0.6 };
 
@@ -53,23 +53,6 @@ export function rotateGraph(view: GraphView, yawDelta: number, pitchDelta: numbe
   };
 }
 
-function makeProjector({ yaw, pitch }: GraphView) {
-  const sinYaw = Math.sin(yaw);
-  const cosYaw = Math.cos(yaw);
-  const sinPitch = Math.sin(pitch);
-  const cosPitch = Math.cos(pitch);
-  return ([x, y, z]: Point) => {
-    const depth = x * sinYaw + z * cosYaw;
-    const cameraX = x * cosYaw - z * sinYaw;
-    const cameraY = y * cosPitch - depth * sinPitch;
-    const cameraZ = y * sinPitch + depth * cosPitch;
-    const scale = FOCAL_LENGTH / (FOCAL_LENGTH - cameraZ);
-    return { x: WIDTH / 2 + cameraX * scale, y: HEIGHT * 0.535 - cameraY * scale, z: cameraZ, scale };
-  };
-}
-
-const xy = ({ x, y }: { x: number; y: number }) => `${x.toFixed(1)},${y.toFixed(1)}`;
-
 export default function SignalGraphScene({
   stage, view, liveBranch, uid, onSelect,
 }: {
@@ -79,7 +62,7 @@ export default function SignalGraphScene({
   uid: string;
   onSelect: (stage: SignalStage) => void;
 }) {
-  const project = makeProjector(view);
+  const project = perspectiveProjector(view, [WIDTH / 2, HEIGHT * 0.535], FOCAL_LENGTH);
   const path = (points: readonly Point[]) => points.map(point => xy(project(point))).join(" ");
   const projected = (Object.keys(NODES) as NodeName[]).map(name => ({
     name,
