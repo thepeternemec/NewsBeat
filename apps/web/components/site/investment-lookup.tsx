@@ -60,11 +60,15 @@ export default function InvestmentLookup({ initialTicker, initialBeat }: { initi
 
   return <div className="investment-lookup">
     <section className="investment-search" aria-label="Look up an investment ticker">
-      <form onSubmit={event => { event.preventDefault(); void lookup(ticker, ticker === initialTicker ? initialBeat : undefined); }}>
+      <form onSubmit={event => {
+        event.preventDefault();
+        if (window.matchMedia("(hover: none) and (pointer: coarse)").matches) event.currentTarget.querySelector("input")?.blur();
+        void lookup(ticker, ticker === initialTicker ? initialBeat : undefined);
+      }}>
         <label htmlFor="investment-ticker">Stock or crypto ticker</label>
         <div className="investment-field">
           <input id="investment-ticker" value={ticker} onChange={event => setTicker(event.target.value.toUpperCase())}
-            placeholder="BTC, NVDA, AAPL" maxLength={21} autoComplete="off" autoCapitalize="characters" spellCheck={false} required />
+            placeholder="BTC, NVDA, AAPL" maxLength={21} autoComplete="off" autoCapitalize="characters" spellCheck={false} enterKeyHint="search" required />
           <button type="submit" disabled={loading || !validTicker.test(ticker.trim())}>Get the brief <ArrowRight size={17} aria-hidden="true" /></button>
         </div>
       </form>

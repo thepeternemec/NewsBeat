@@ -83,3 +83,10 @@
   font: 11px/1.4 var(--font-mono);
 }
 .catalog-search-menu p { margin: 0; padding: 7px 8px; font-size: 13px; color: var(--text-secondary); }
+@media (max-width: 760px) {
+  .catalog-search-field { min-height: 50px; }
+  .catalog-search-clear { min-width: 44px; min-height: 44px; }
+  .catalog-search-menu { max-height: min(340px, 45dvh); overflow-y: auto; overscroll-behavior: contain; }
+  .catalog-search-menu li { min-height: 56px; padding: 10px; }
+  .catalog-search-menu small, .catalog-search-menu li > span:last-child { font-size: 12px; }
+}

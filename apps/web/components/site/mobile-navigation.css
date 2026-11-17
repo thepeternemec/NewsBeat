@@ -18,7 +18,7 @@
 .mobile-nav-links > a { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 14px 12px; min-height: 64px; border-radius: 10px; color: var(--text-secondary); transition: background .15s; }
 .mobile-nav-links > a + a { border-top: 1px solid var(--border-subtle); }
 .mobile-nav-links strong { display: block; font-size: 16px; line-height: 1.5; color: var(--text-primary); font-weight: 500; }
-.mobile-nav-links > a > span > span { display: block; font-size: 11px; line-height: 1.6; color: var(--text-tertiary); margin-top: 2px; }
+.mobile-nav-links > a > span > span { display: block; font-size: 12px; line-height: 1.6; color: var(--text-secondary); margin-top: 2px; }
 .mobile-nav-links > a > svg { flex: none; color: var(--text-tertiary); }
 .mobile-nav-links > a:hover, .mobile-nav-links > a[aria-current="page"] { background: color-mix(in srgb, var(--text-primary) 5%, transparent); }
 .mobile-nav-links > a[aria-current="page"] > svg { color: var(--text-primary); }

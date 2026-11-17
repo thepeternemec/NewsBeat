@@ -2,6 +2,7 @@
   width: min(100%, 1328px);
   margin-inline: auto;
   padding: 74px clamp(14px, 3vw, 40px) 64px;
+  padding-inline: max(clamp(14px, 3vw, 40px), env(safe-area-inset-left)) max(clamp(14px, 3vw, 40px), env(safe-area-inset-right));
   color: var(--text-primary);
 }
 .rb-app-skip {
@@ -124,15 +125,54 @@
 .rb-app-jump, .rb-app-shortcuts { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-block: 0 14px; }
 .rb-app-shortcuts { margin-block: 16px 0; }
 .rb-app .crypto-overview { padding: 0; }
+.rb-app-mobile-nav { display: none; }
 
 @media (max-width: 1070px) {
   .rb-app-snapshot { grid-template-columns: 1fr; }
   .rb-app-main .terminal-page .metrics-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-@media (max-width: 760px) {
-  .rb-app { padding-top: 72px; }
-  .rb-app-nav { gap: 4px; margin-bottom: 16px; }
-  .rb-app-nav-group a svg, .rb-app-agent-link svg:last-child { display: none; }
+@media (max-width: 900px) {
+  .rb-app { padding-top: calc(88px + env(safe-area-inset-top)); }
+  .rb-app-nav { display: none; }
+  .rb-app-mobile-nav {
+    position: fixed;
+    inset: auto 0 0;
+    z-index: 45;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 4px;
+    padding: 6px max(12px, env(safe-area-inset-right)) max(8px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+    border-top: 1px solid var(--border-default);
+    background: color-mix(in srgb, var(--bg-base) 94%, transparent);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+  .rb-app-mobile-nav > a, .rb-app-more-toggle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    min-width: 0;
+    min-height: 54px;
+    padding: 6px 2px;
+    border: 0;
+    border-radius: 9px;
+    background: transparent;
+    color: var(--text-secondary);
+    font: 500 11px/1.4 var(--font-sans);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .rb-app-mobile-nav > a[aria-current="page"],
+  .rb-app-mobile-nav[data-more-active="true"] > .rb-app-more-toggle,
+  .rb-app-more-toggle[aria-expanded="true"] {
+    background: color-mix(in srgb, var(--text-primary) 8%, transparent);
+    color: var(--text-primary);
+  }
+  .rb-app-mobile-nav > :is(a, button):focus-visible { outline: 2px solid var(--text-primary); outline-offset: -2px; }
+  .rb-app:has(input:focus, textarea:focus) .rb-app-mobile-nav { display: none; }
+  .rb-app ~ footer.site { padding-bottom: calc(88px + env(safe-area-inset-bottom)); }
   .rb-app-heading > p { font-size: 15px; }
 }
 @media (max-width: 610px) {

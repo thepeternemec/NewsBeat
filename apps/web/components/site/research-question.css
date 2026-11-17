@@ -40,3 +40,11 @@
 @keyframes research-appear { from { opacity: .2; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 .documentation-page .research-question li { padding-left: 0; margin: 8px 0; }
 .documentation-page .research-question li::before { content: none; }
+@media (max-width: 760px) {
+  .research-question textarea { font-size: 16px; }
+  .research-question-examples { display: grid; grid-template-columns: 1fr; }
+  .research-question-examples button, .research-question-candidates button { min-height: 44px; font-size: 13px; }
+  .research-question summary { min-height: 44px; padding-block: 10px; font-size: 14px; }
+  .research-question-sources a { min-height: 44px; font-size: 13px; }
+  .research-question :is(p, li) { font-size: 14px; }
+}

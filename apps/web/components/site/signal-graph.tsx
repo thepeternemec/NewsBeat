@@ -142,6 +142,10 @@ export default function SignalGraph() {
     const dy = event.clientY - start.y;
     if (!start.moved) {
       if (Math.hypot(dx, dy) < 5) return;
+      if (event.pointerType === "touch" && Math.abs(dy) > Math.abs(dx)) {
+        drag.current = null;
+        return;
+      }
       event.currentTarget.setPointerCapture(event.pointerId);
       start.moved = true;
     }

@@ -34,3 +34,8 @@
 .investment-links { display: flex; gap: 1rem 1.5rem; flex-wrap: wrap; margin-top: 1.7rem; }
 .investment-links a { color: var(--text-primary); text-underline-offset: 4px; }
 @media (max-width: 570px) { .investment-field, .investment-example-grid { grid-template-columns: 1fr; } .investment-shell { width: calc(100% - 1.75rem); } }
+@media (max-width: 760px) {
+  .investment-field button { min-height: 48px; }
+  .investment-examples button { min-height: 44px; min-width: 52px; }
+  .investment-share { width: 100%; min-height: 48px; }
+}

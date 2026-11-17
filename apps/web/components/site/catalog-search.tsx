@@ -47,7 +47,8 @@ export default function CatalogSearch({ id, className, onSelect }: {
   }, [open, term, retry]);
 
   function choose(topic: LookupAsset) {
-    input.current?.focus();
+    if (window.matchMedia("(hover: none) and (pointer: coarse)").matches) input.current?.blur();
+    else input.current?.focus();
     setQuery("");
     setOpen(false);
     setIndex(-1);
@@ -78,7 +79,7 @@ export default function CatalogSearch({ id, className, onSelect }: {
       <input ref={input} id={id} type="text" role="combobox" aria-label="Search ticker or company"
         aria-autocomplete="list" aria-expanded={expanded} aria-controls={expanded ? menu : undefined}
         aria-activedescendant={expanded && topics[index] ? optionId(topics[index]) : undefined}
-        placeholder="Search ticker or company" autoComplete="off" autoCapitalize="off" spellCheck={false} maxLength={80}
+        placeholder="Search ticker or company" autoComplete="off" autoCapitalize="off" spellCheck={false} maxLength={80} enterKeyHint="search"
         value={query} onFocus={() => setOpen(true)}
         onChange={event => { setQuery(event.target.value); setOpen(true); setIndex(-1); }}
         onKeyDown={event => {
@@ -96,7 +97,7 @@ export default function CatalogSearch({ id, className, onSelect }: {
       {query && <button className="catalog-search-clear" type="button" aria-label="Clear search"
         onClick={() => { setQuery(""); setIndex(-1); setOpen(false); input.current?.focus(); }}><X size={15} aria-hidden="true" /></button>}
     </div>
-    {expanded && <div className="catalog-search-menu">
+    {expanded && <div className="catalog-search-menu" data-lenis-prevent>
       <ul id={menu} role="listbox" aria-label="Matching stocks and crypto">
         {topics.map((topic, position) => <li key={topic.beat_id} id={optionId(topic)} role="option" aria-selected={position === index}
           onPointerDown={event => event.preventDefault()} onClick={() => choose(topic)}>
