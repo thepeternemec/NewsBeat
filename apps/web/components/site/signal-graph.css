@@ -63,8 +63,8 @@
 .rb-signal-board-tools button {
   display: grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border: 1px solid #3b404a;
   border-radius: 7px;
   color: #e6e8ee;
@@ -79,7 +79,7 @@
   width: 100%;
   aspect-ratio: 760 / 432;
   container-type: inline-size;
-  touch-action: pan-y;
+  touch-action: pan-y pinch-zoom;
   user-select: none;
   cursor: grab;
 }

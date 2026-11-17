@@ -7,6 +7,7 @@ import type LenisClass from "lenis";
 export default function SmoothScroll() {
   useEffect(() => {
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const mouse = window.matchMedia("(hover: hover) and (pointer: fine)");
     let disposed = false;
     let generation = 0;
     let lenis: LenisClass | null = null;
@@ -15,10 +16,10 @@ export default function SmoothScroll() {
       const current = ++generation;
       lenis?.destroy();
       lenis = null;
-      if (preference.matches) return;
+      if (preference.matches || !mouse.matches) return;
 
       const { default: Lenis } = await import("lenis");
-      if (disposed || current !== generation || preference.matches) return;
+      if (disposed || current !== generation || preference.matches || !mouse.matches) return;
       lenis = new Lenis({
         autoRaf: true,
         autoResize: true,
@@ -35,6 +36,7 @@ export default function SmoothScroll() {
     const sync = () => { void syncPreference().catch(() => { /* Native scrolling remains available. */ }); };
     sync();
     preference.addEventListener("change", sync);
+    mouse.addEventListener("change", sync);
     window.addEventListener("load", resize);
     window.addEventListener("pageshow", resize);
     void document.fonts.ready.then(() => { if (!disposed) resize(); });
@@ -43,6 +45,7 @@ export default function SmoothScroll() {
       disposed = true;
       generation++;
       preference.removeEventListener("change", sync);
+      mouse.removeEventListener("change", sync);
       window.removeEventListener("load", resize);
       window.removeEventListener("pageshow", resize);
       lenis?.destroy();

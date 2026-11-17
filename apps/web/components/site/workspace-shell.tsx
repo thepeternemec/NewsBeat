@@ -6,28 +6,39 @@ import {
 import SiteNav from "./site-nav";
 import SiteFooter from "./site-footer";
 import BrandMark from "./brand-mark";
+import MobileNavigation from "./mobile-navigation";
 import "./workspace-shell.css";
 
 const GROUPS = [
   {
     label: "Markets",
     links: [
-      { href: "/app", label: "Markets", icon: LayoutDashboard },
-      { href: "/intelligence", label: "Market checks", icon: ListFilter },
-      { href: "/app/forecasts", label: "Forecasts", icon: ChartNoAxesCombined },
-      { href: "/crypto", label: "Indicators", icon: Activity },
+      { href: "/app", label: "Markets", description: "Browse stock and crypto developments", icon: LayoutDashboard },
+      { href: "/intelligence", label: "Market checks", description: "Inspect evidence and review candidates", icon: ListFilter },
+      { href: "/app/forecasts", label: "Forecasts", description: "Compare forecasts with recorded outcomes", icon: ChartNoAxesCombined },
+      { href: "/crypto", label: "Indicators", description: "Check crypto market conditions", icon: Activity },
     ],
   },
   {
     label: "Research",
     links: [
-      { href: "/ask", label: "Ticker research", icon: Search },
-      { href: "/app/research", label: "Ask a question", icon: MessageSquareText },
-      { href: "/tokens", label: "Token contracts", icon: Coins },
-      { href: "/dashboard", label: "News map", icon: Newspaper },
+      { href: "/ask", label: "Ticker research", description: "Get a sourced brief on a stock or token", icon: Search },
+      { href: "/app/research", label: "Ask a question", description: "Investigate a market question or comparison", icon: MessageSquareText },
+      { href: "/tokens", label: "Token contracts", description: "Look up an asset by chain and contract", icon: Coins },
+      { href: "/dashboard", label: "News map", description: "Explore reporting across the asset catalog", icon: Newspaper },
     ],
   },
 ] as const;
+
+const MOBILE_PRIMARY = [
+  { ...GROUPS[0].links[0], label: "Markets" },
+  { ...GROUPS[0].links[1], label: "Checks" },
+  { ...GROUPS[1].links[0], label: "Research" },
+];
+const ALL_TOOLS = [
+  ...GROUPS.flatMap(group => group.links.map(({ href, label, description }) => ({ href, label, description }))),
+  { href: "/docs/quickstart", label: "Connect an agent", description: "Use Rarebird through your AI assistant" },
+];
 
 type WorkspacePath = (typeof GROUPS)[number]["links"][number]["href"];
 
@@ -66,6 +77,13 @@ export default function WorkspaceShell({ active, title, description, children }:
         </header>}
         {children}
       </main>
+      <nav className="rb-app-mobile-nav" aria-label="Mobile workspace"
+        data-more-active={!MOBILE_PRIMARY.some(link => link.href === active)}>
+        {MOBILE_PRIMARY.map(({ href, label, icon: Icon }) => <a key={href} href={href} aria-current={href === active ? "page" : undefined}>
+          <Icon size={20} aria-hidden="true" /><span>{label}</span>
+        </a>)}
+        <MobileNavigation links={ALL_TOOLS} active={active} variant="workspace" />
+      </nav>
     </div>
     <SiteFooter />
   </>;

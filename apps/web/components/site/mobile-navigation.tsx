@@ -8,11 +8,16 @@ import ThemeToggle from "./theme-toggle";
 type NavigationLink = { href: string; label: string; description: string };
 
 /** Native modal behavior keeps focus and scrolling inside the mobile menu. */
-export default function MobileNavigation({ links, active }: { links: NavigationLink[]; active?: string }) {
+export default function MobileNavigation({ links, active, variant = "site" }: {
+  links: NavigationLink[];
+  active?: string;
+  variant?: "site" | "workspace";
+}) {
   const [open, setOpen] = useState(false);
   const dialog = useRef<HTMLDialogElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
   const id = useId();
+  const workspace = variant === "workspace";
 
   useEffect(() => {
     const panel = dialog.current;
@@ -34,14 +39,16 @@ export default function MobileNavigation({ links, active }: { links: NavigationL
 
   return (
     <>
-      <button ref={trigger} type="button" className="nav-menu-toggle" aria-label="Open navigation menu" aria-haspopup="dialog" aria-expanded={open} aria-controls={id} onClick={() => setOpen(true)}><Menu size={20} aria-hidden="true" /></button>
+      <button ref={trigger} type="button" className={workspace ? "rb-app-more-toggle" : "nav-menu-toggle"}
+        aria-label={workspace ? "Open workspace tools" : "Open navigation menu"} aria-haspopup="dialog" aria-expanded={open} aria-controls={id}
+        onClick={() => setOpen(true)}><Menu size={20} aria-hidden="true" />{workspace && <span>More</span>}</button>
       <dialog ref={dialog} id={id} className="mobile-nav-dialog" aria-labelledby={id + "-title"} data-lenis-prevent onCancel={() => setOpen(false)} onClose={() => setOpen(false)} onClick={event => { if (event.target === event.currentTarget) setOpen(false); }}>
         <div className="mobile-nav-panel">
           <div className="mobile-nav-heading">
             <a className="nav-logo" href="/" aria-label="Rarebird home" onClick={() => setOpen(false)}>
               <BrandWordmark className="brand-wordmark" />
             </a>
-            <h2 id={id + "-title"} className="mobile-nav-title">Navigation</h2>
+            <h2 id={id + "-title"} className="mobile-nav-title">{workspace ? "Workspace tools" : "Navigation"}</h2>
             <button type="button" className="nav-menu-close" aria-label="Close navigation menu" onClick={() => setOpen(false)} autoFocus><X size={20} aria-hidden="true" /></button>
           </div>
           <nav className="mobile-nav-links" aria-label="Mobile navigation">
@@ -52,7 +59,7 @@ export default function MobileNavigation({ links, active }: { links: NavigationL
             ))}
           </nav>
           <div className="mobile-nav-bottom">
-            <a className="mobile-nav-primary" href="/app" onClick={() => setOpen(false)}>Open app<ArrowRight size={16} aria-hidden="true" /></a>
+            {!workspace && <a className="mobile-nav-primary" href="/app" onClick={() => setOpen(false)}>Open app<ArrowRight size={16} aria-hidden="true" /></a>}
             <div className="mobile-nav-appearance"><span>Appearance</span><ThemeToggle /></div>
           </div>
         </div>

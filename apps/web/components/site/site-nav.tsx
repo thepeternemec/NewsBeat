@@ -13,6 +13,13 @@ const LINKS = [
   { href: "/docs", label: "Developers", description: "Connect with MCP and REST" },
 ];
 
+const MOBILE_LINKS = [
+  LINKS[0],
+  { href: "/ask", label: "Ticker research", description: "Research a stock or crypto asset" },
+  { href: "/app/forecasts", label: "Forecasts", description: "Explore forecasts and recorded outcomes" },
+  ...LINKS.slice(1),
+];
+
 export default function SiteNav({ active }: { active?: string }) {
   return (
     <nav className="nav nav-site" aria-label="Main navigation">
@@ -29,7 +36,7 @@ export default function SiteNav({ active }: { active?: string }) {
         <a className="nav-cta" href="/app" aria-current={active === "/app" ? "page" : undefined}>
           Open app
         </a>
-        <MobileNavigation links={LINKS} active={active} />
+        <MobileNavigation links={MOBILE_LINKS} active={active} />
       </div>
     </nav>
   );

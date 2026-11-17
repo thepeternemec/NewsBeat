@@ -157,12 +157,14 @@ html[data-theme="light"] footer.site { background: #f5f5f7; }
   html .nb-product-page .nb-product-cards article { padding: 28px 24px; }
 }
 @media (max-width: 900px) {
-  html .nav.nav-site .nav-pill { gap: 10px; padding-inline: 24px; }
+  html .nav.nav-site { padding-top: env(safe-area-inset-top); }
+  html .nav.nav-site .nav-pill { gap: 8px; padding-inline: max(16px, env(safe-area-inset-left)) max(16px, env(safe-area-inset-right)); }
   html .nav.nav-site .nav-logo { flex: 1; min-width: 0; min-height: 44px; }
+  html .nav.nav-site .nav-logo .brand-wordmark { width: 120px; }
   html .nav.nav-site :is(.nav-links, .nav-desktop-theme, .nav-cta-wide) { display: none; }
   html .nav.nav-site .nav-cta-compact { display: inline; }
   html .nav.nav-site .nav-menu-toggle { display: inline-flex; border: 0; border-radius: 50%; }
-  html .nav.nav-site .nav-cta { min-height: 40px; padding: 9px 18px; }
+  html .nav.nav-site .nav-cta { min-height: 44px; padding: 10px 16px; }
 }
 @media (max-width: 700px) {
   html .nb-product-page { padding-top: 128px; padding-bottom: 80px; }
