@@ -1,7 +1,8 @@
 "use client";
 
 import { useId, useRef, useState } from "react";
-import { ArrowDownRight, ArrowRight, ArrowUpRight, Minus } from "lucide-react";
+import { ArrowDownRight, ArrowRight, ArrowUpRight } from "lucide-react";
+import MarketDirectionScene from "./market-direction-scene";
 
 const PERSPECTIVES = [
   {
@@ -19,7 +20,7 @@ const PERSPECTIVES = [
     href: "/ask", action: "Examine an asset’s outlook", note: "Understand the downside case",
   },
   {
-    id: "sideways", label: "Markets sideways", icon: Minus, word: "Patience.",
+    id: "sideways", label: "Markets sideways", icon: ArrowRight, word: "Patience.",
     title: "What would make the next move meaningful?",
     description: "A quiet market still has a story. Follow fresh developments, inspect the experimental move-risk forecasts and identify the evidence you’re waiting for.",
     checks: ["Which new developments matter?", "What is still unconfirmed?", "What should be checked next?"],
@@ -32,7 +33,6 @@ export default function MarketPerspective() {
   const id = useId();
   const tabs = useRef<Array<HTMLButtonElement | null>>([]);
   const active = PERSPECTIVES[selected];
-  const Icon = active.icon;
 
   return <div className="rb-perspective">
     <div className="rb-perspective-tabs" role="tablist" aria-label="Explore a market condition">
@@ -51,7 +51,10 @@ export default function MarketPerspective() {
     </div>
     {PERSPECTIVES.map((item, index) => <div key={item.id} id={id + "-panel-" + item.id} role="tabpanel" aria-labelledby={id + "-" + item.id} hidden={selected !== index} tabIndex={0}>
       {selected === index && <div className="rb-perspective-body" data-market={active.id}>
-        <div className="rb-perspective-visual" aria-hidden="true"><Icon className="rb-perspective-symbol" strokeWidth={0.65} /><span>{active.word}</span><small>{active.note}</small></div>
+        <div className="rb-perspective-visual">
+          <MarketDirectionScene active={active.id} id={`${id}-directions`} />
+          <div className="rb-direction-caption"><span>{active.word}</span><small>{active.note}</small></div>
+        </div>
         <div className="rb-perspective-copy"><p className="rb-home-eyebrow">Research playbook / Illustrative</p><h3>{active.title}</h3><p>{active.description}</p>
           <ol>{active.checks.map((check, i) => <li key={check}><span>0{i + 1}</span>{check}</li>)}</ol>
           <a className="rb-home-text-link" href={active.href}>{active.action}<ArrowRight size={17} aria-hidden="true" /></a>

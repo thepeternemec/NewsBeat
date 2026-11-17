@@ -59,10 +59,39 @@ body:has(.rb-home) > :is(.grid-field, .aurora-layer, .noise-overlay) { display: 
 .rb-perspective-tabs button[aria-selected="true"] { color: var(--text-primary); border-bottom-color: var(--text-primary); background: color-mix(in srgb, var(--text-primary) 5%, transparent); }
 .rb-perspective-tabs button:focus-visible { outline-offset: -6px; }
 .rb-perspective-body { display: grid; grid-template-columns: 1fr 1.15fr; min-height: 460px; }
-.rb-perspective-visual { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; border-right: 1px solid var(--border-subtle); background: radial-gradient(ellipse at 50% 40%, color-mix(in srgb, var(--text-primary) 6%, transparent), transparent 70%); }
-.rb-perspective-symbol { width: 175px; height: 175px; margin-bottom: 24px; }
-.rb-perspective-visual > span { font-size: clamp(30px, 3vw, 42px); letter-spacing: -.04em; line-height: 1.2; }
-.rb-perspective-visual > small { margin-top: 12px; color: var(--text-secondary); font-size: 12px; }
+.rb-perspective-visual {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  min-width: 0;
+  gap: 12px;
+  padding: 22px clamp(12px, 2.5vw, 32px) 33px;
+  border-right: 1px solid var(--border-subtle);
+  background: radial-gradient(ellipse at 53% 39%, #1e2024 0%, transparent 68%), #0b0c0e;
+  color: #f0f1f3;
+}
+.rb-direction-scene { display: block; width: 100%; height: auto; max-width: 560px; }
+.rb-direction-floor { fill: #111316; stroke: #393c43; stroke-width: 1; }
+.rb-direction-floor-top { stroke: #63666c; stroke-opacity: .49; }
+.rb-direction-grid { stroke: #8e929b; stroke-opacity: .15; fill: none; }
+.rb-direction-trace { fill: none; stroke: #80848d; stroke-opacity: .56; stroke-width: 1; stroke-dasharray: 3 5; }
+.rb-direction-trace polyline { stroke-opacity: .28; }
+.rb-direction-trace circle { fill: #9fa3ad; stroke: none; }
+.rb-direction-trace[data-active="true"] { stroke: #c2c7d0; stroke-opacity: .73; }
+.rb-direction-trace[data-active="true"] circle { fill: #d4d7dc; }
+.rb-direction-anchor { fill: #1e2126; stroke: #6c727d; stroke-width: 1.1; }
+.rb-direction-anchor polygon:first-child { fill: none; stroke-opacity: .52; stroke-dasharray: 2 5; }
+.rb-direction-anchor line { stroke-dasharray: 2 4; }
+.rb-direction-anchor circle:last-child { fill: #f0f1f4; stroke: none; }
+.rb-direction-lead { fill: none; stroke: #737984; stroke-width: 1.2; }
+.rb-direction-wall { fill: #242830; stroke: #424852; stroke-width: .7; stroke-linejoin: round; }
+.rb-direction-face { stroke: #777d86; stroke-width: 1; stroke-linejoin: round; }
+.rb-direction-arrow[data-active="true"] .rb-direction-wall { fill: #464a51; stroke: #8e939e; }
+.rb-direction-arrow[data-active="true"] .rb-direction-face { stroke: #f3f4f6; filter: drop-shadow(0 0 8px #eef0f44a); }
+.rb-direction-arrow[data-active="true"] .rb-direction-lead { stroke: #e7e9ed; stroke-width: 1.7; }
+.rb-direction-caption { display: grid; gap: 5px; text-align: center; }
+.rb-direction-caption span { font-size: clamp(30px, 3vw, 42px); letter-spacing: -.04em; line-height: 1.2; }
+.rb-direction-caption small { color: #c3c5cb; font-size: 12px; }
 .rb-perspective-copy { padding: 42px; }
 .rb-perspective-copy h3 { margin-top: 18px; font-size: 28px; line-height: 1.2; letter-spacing: -.035em; font-weight: 500; max-width: 420px; }
 .rb-perspective-copy > p:not(.rb-home-eyebrow) { margin-top: 16px; font-size: 14px; line-height: 1.75; color: var(--text-secondary); }
@@ -125,10 +154,9 @@ body:has(.rb-home) > :is(.grid-field, .aurora-layer, .noise-overlay) { display: 
   .rb-perspective { margin-top: 32px; }
   .rb-perspective-tabs button { font-size: 12px; min-height: 75px; flex-direction: column; gap: 6px; padding: 10px 4px; }
   .rb-perspective-body { grid-template-columns: 1fr; }
-  .rb-perspective-visual { position: relative; min-height: 205px; padding: 30px; border-right: 0; border-bottom: 1px solid var(--border-subtle); }
-  .rb-perspective-symbol { position: absolute; width: 150px; height: 150px; right: 5%; top: 15%; margin: 0; opacity: .16; }
-  .rb-perspective-visual > span, .rb-perspective-visual > small { position: relative; }
-  .rb-perspective-visual > span { font-size: 40px; }
+  .rb-perspective-visual { padding: 14px 17px 24px; border-right: 0; border-bottom: 1px solid var(--border-subtle); }
+  .rb-direction-scene { max-width: 420px; }
+  .rb-direction-caption span { font-size: 34px; }
   .rb-perspective-copy { padding: 28px; min-height: 440px; }
   .rb-perspective-copy h3 { font-size: 26px; }
   .rb-home-capability-list { margin-top: 38px; }
