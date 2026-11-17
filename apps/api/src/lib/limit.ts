@@ -22,10 +22,10 @@ import {
   resolveKey,
   spend,
   trialFor,
-} from "@newsbeat/db";
+} from "@rarebird/db";
 
-const ANON_LIMIT = Math.max(1, Number(env("NEWSBEAT_RATE_ANON") ?? 120));
-const KEYED_LIMIT = Math.max(1, Number(env("NEWSBEAT_RATE_KEYED") ?? 1200));
+const ANON_LIMIT = Math.max(1, Number(env("RAREBIRD_RATE_ANON") ?? 120));
+const KEYED_LIMIT = Math.max(1, Number(env("RAREBIRD_RATE_KEYED") ?? 1200));
 
 /** Advertised at the API root so clients can discover the ceiling. */
 export const rateLimits = { anonymous: `${ANON_LIMIT}/minute`, with_key: `${KEYED_LIMIT}/minute` };
@@ -106,8 +106,8 @@ export async function rateLimit(c: Context, next: Next): Promise<Response | void
       const balance = await openBalance(sql, accountId);
       const trial = await trialFor(sql, accountId);
       const available = (trial.expired ? 0 : balance.creditsMicro) + balance.toppedUpMicro;
-      c.header("X-Newsgraph-Credits-Micro", String(available));
-      if (trial.expiresAt) c.header("X-Newsbeat-Trial-Expires-At", trial.expiresAt.toISOString());
+      c.header("X-Rarebird-Credits-Micro", String(available));
+      if (trial.expiresAt) c.header("X-Rarebird-Trial-Expires-At", trial.expiresAt.toISOString());
       // Let an expired account inspect its trial without minting another key.
       if (available <= 0 && !c.req.path.endsWith("/keys/trial")) {
         // 402, not 429: this is not "you are going too fast", it is "there is
@@ -141,7 +141,7 @@ export async function rateLimit(c: Context, next: Next): Promise<Response | void
   // Hono returns void from next(); the response it produced is on the context.
   const response = c.res;
   const costMicro = costFor(c.req.path, await peekJson(response));
-  c.header("X-Newsgraph-Cost-Micro", String(costMicro));
+  c.header("X-Rarebird-Cost-Micro", String(costMicro));
 
   const keyHash = bucket.startsWith("key:") ? bucket.slice(4) : null;
   if (accountId && costMicro > 0) {
@@ -159,8 +159,8 @@ export async function rateLimit(c: Context, next: Next): Promise<Response | void
         beatId: c.req.query("beat_id") ?? null,
         costMicro,
       });
-      c.header("X-Newsgraph-Credits-Micro", String(balance.availableMicro));
-      c.header("X-Newsgraph-Charged-Micro", String(charged));
+      c.header("X-Rarebird-Credits-Micro", String(balance.availableMicro));
+      c.header("X-Rarebird-Charged-Micro", String(charged));
     } catch (error) {
       console.error("spend failed:", error);
     }
@@ -176,7 +176,7 @@ export async function rateLimit(c: Context, next: Next): Promise<Response | void
       creditsAfter: null,
     });
   }
-  c.header("X-Newsgraph-Ms", String(Date.now() - started));
+  c.header("X-Rarebird-Ms", String(Date.now() - started));
   return response;
 }
 

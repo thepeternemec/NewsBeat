@@ -1,5 +1,5 @@
 /**
- * NewsBeat API.
+ * Rarebird API.
  *
  * Read-only news interfaces: topics, articles, changes since a cursor, and an
  * MCP server for agent frameworks. This is the canonical source for the
@@ -64,13 +64,13 @@ app.use("*", async (c, next) => {
 });
 app.use("*", rateLimit);
 
-app.get("/health", (c) => c.json({ ok: true, service: "newsbeat", version: "0.3.0" }));
+app.get("/health", (c) => c.json({ ok: true, service: "rarebird", version: "0.3.0" }));
 
 app.get("/", (c) =>
   c.json({
     service: "Rarebird",
-    docs: "https://www.newsbeat.dev/docs",
-    repo: "https://github.com/thepeternemec/NewsBeat",
+    docs: "https://www.rarebird.network/docs",
+    repo: "https://github.com/thepeternemec/rarebird",
     routes: ["/v2/discovery", "/v2/research", "/v2/investment", "/v2/briefing", "/v2/forecasts", "/v2/tokens", "/v2/catalysts", "/v2/collection", "/v2/topics", "/v2/news", "/v2/changes", "/v2/watch", "/v2/brief", "/v2/stories", "/v2/summary", "/v2/intelligence", "/v2/opportunities", "/v2/tools", "/mcp", "/health", "/status", "/status/feed", "/keys/authorize"],
     rate_limits: rateLimits,
   }),

@@ -1,9 +1,9 @@
 import { randomUUID } from "node:crypto";
-import { db, hasDatabaseEnv, type Sql } from "@newsbeat/db";
+import { db, hasDatabaseEnv, type Sql } from "@rarebird/db";
 import {
   INTELLIGENCE_VERSION, QUANT_POLICY_VERSION, SIGNAL_CONTEXTS, SEED_BEATS, type IntelligenceSignal, type IntelligenceResponse,
   type MarketSnapshot, type MarketBar, type QuantBundle, type QuantEvaluationRecord, type SignalAlert, type MarketAnomalyRecord,
-} from "@newsbeat/contracts";
+} from "@rarebird/contracts";
 import { constructSignal } from "./signal-construction.js";
 import { freshness } from "./news.js";
 import { MARKET_PROFILES, fetchMarketSnapshots, type MarketRefresh, type MarketProfile } from "./quant-market.js";

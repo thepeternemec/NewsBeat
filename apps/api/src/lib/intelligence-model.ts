@@ -1,5 +1,5 @@
-import { env } from "@newsbeat/db";
-import type { IntelligenceEvidence, IntelligenceSignal } from "@newsbeat/contracts";
+import { env } from "@rarebird/db";
+import type { IntelligenceEvidence, IntelligenceSignal } from "@rarebird/contracts";
 import { inspectIntelligence } from "./intelligence-core.js";
 
 export const INTELLIGENCE_MODEL = "openai/gpt-4.1-mini";
@@ -122,7 +122,7 @@ export async function generateValidatedIntelligence(evidence: IntelligenceEviden
       headers: { Authorization: `Bearer ${credential}`, "Content-Type": "application/json" },
       body: JSON.stringify({
         model: INTELLIGENCE_MODEL, temperature: 0, max_tokens: 4000,
-        response_format: { type: "json_schema", json_schema: { name: "newsbeat_contextual_signals", strict: true, schema } },
+        response_format: { type: "json_schema", json_schema: { name: "rarebird_contextual_signals", strict: true, schema } },
         messages,
       }),
       signal,

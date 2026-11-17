@@ -4,18 +4,18 @@ import { useId, useRef, useState } from "react";
 import { ArrowRight, Terminal } from "lucide-react";
 import CopyButton from "./copy-button";
 
-const MCP = "https://www.newsbeat.dev/api/mcp";
+const MCP = "https://www.rarebird.network/api/mcp";
 const EXAMPLES = [
   {
     id: "curl", label: "cURL", language: "Bash", title: "Find a supported topic",
-    code: `curl --fail-with-body --get "https://www.newsbeat.dev/api/v2/topics" \\
+    code: `curl --fail-with-body --get "https://www.rarebird.network/api/v2/topics" \\
   --data-urlencode "q=bitcoin" \\
   --data-urlencode "limit=5"`,
   },
   {
     id: "javascript", label: "JavaScript", language: "JavaScript", title: "Find a supported topic",
     code: `const response = await fetch(
-  "https://www.newsbeat.dev/api/v2/topics?q=bitcoin&limit=5"
+  "https://www.rarebird.network/api/v2/topics?q=bitcoin&limit=5"
 );
 if (!response.ok) {
   throw new Error(\`Rarebird: HTTP \${response.status}\`);
@@ -25,7 +25,7 @@ console.log(catalog.topics);`,
   },
   {
     id: "mcp", label: "MCP config", language: "JSON", title: "For clients that accept mcpServers configuration",
-    code: JSON.stringify({ mcpServers: { newsbeat: { url: MCP } } }, null, 2),
+    code: JSON.stringify({ mcpServers: { rarebird: { url: MCP } } }, null, 2),
   },
 ] as const;
 

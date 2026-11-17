@@ -1,19 +1,19 @@
 import assert from "node:assert/strict";
 
-const endpoint = "https://www.newsbeat.dev/api/mcp";
+const endpoint = "https://www.rarebird.network/api/mcp";
 let protocolVersion = "2025-03-26";
 let id = 0;
-async function call(method, params) {
+async function call(method, params, timeoutMs = 30000) {
   const response = await fetch(endpoint, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json, text/event-stream",
       "MCP-Protocol-Version": protocolVersion,
-      "X-NewsBeat-Traffic": "synthetic",
+      "X-Rarebird-Traffic": "synthetic",
     },
     body: JSON.stringify({ jsonrpc: "2.0", id: ++id, method, params }),
-    signal: AbortSignal.timeout(30000),
+    signal: AbortSignal.timeout(timeoutMs),
   });
   assert.equal(response.status, 200, method + " HTTP status");
   const body = await response.json();
@@ -23,20 +23,32 @@ async function call(method, params) {
   return body.result;
 }
 
-const initialized = await call("initialize", {
-  protocolVersion, capabilities: {},
-  clientInfo: { name: "newsbeat-ci", version: "1.0" },
-});
-assert.equal(initialized.serverInfo.name, "newsbeat");
-assert.ok(initialized.instructions.includes("newsbeat_research"));
+let initialized;
+let initializationError;
+for (let attempt = 0; attempt < 10; attempt++) {
+  try {
+    initialized = await call("initialize", {
+      protocolVersion, capabilities: {},
+      clientInfo: { name: "rarebird-ci", version: "1.0" },
+    }, 4000);
+    assert.equal(initialized.serverInfo.name, "rarebird");
+    initializationError = undefined;
+    break;
+  } catch (error) {
+    initializationError = error;
+    if (attempt < 9) await new Promise(resolve => setTimeout(resolve, 5000));
+  }
+}
+if (initializationError) throw initializationError;
+assert.ok(initialized.instructions.includes("rarebird_research"));
 protocolVersion = initialized.protocolVersion;
 
 const catalog = await call("tools/list", {});
-assert.ok(catalog.tools.some(tool => tool.name === "newsbeat_research"));
+assert.ok(catalog.tools.some(tool => tool.name === "rarebird_research"));
 assert.equal(new Set(catalog.tools.map(tool => tool.name)).size, catalog.tools.length);
 
 const called = await call("tools/call", {
-  name: "newsbeat_research", arguments: { question: "What happened with SUI?" },
+  name: "rarebird_research", arguments: { question: "What happened with SUI?" },
 });
 assert.notEqual(called.isError, true);
 assert.equal(called.structuredContent.status, "needs_clarification");
@@ -44,7 +56,7 @@ assert.equal(called.structuredContent.answer, null);
 assert.deepEqual(called.structuredContent.candidates.map(asset => asset.asset).sort(), ["crypto", "equity"]);
 
 const start = Date.now();
-const bitcoin = await call("tools/call", { name: "newsbeat_investment", arguments: { ticker: "BTC" } });
+const bitcoin = await call("tools/call", { name: "rarebird_investment", arguments: { ticker: "BTC" } });
 assert.notEqual(bitcoin.isError, true);
 const brief = bitcoin.structuredContent;
 const research = brief.research;

@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
-import { db, closeDb } from "@newsbeat/db";
-import { INTELLIGENCE_VERSION, MARKET_INTERVAL_MS, type IntelligenceSignal, type MarketSnapshot, type QuantEvaluationRecord, type MarketAnomalyRecord } from "@newsbeat/contracts";
+import { db, closeDb } from "@rarebird/db";
+import { INTELLIGENCE_VERSION, MARKET_INTERVAL_MS, type IntelligenceSignal, type MarketSnapshot, type QuantEvaluationRecord, type MarketAnomalyRecord } from "@rarebird/contracts";
 import { quantitativeFixture } from "./quant-fixtures.js";
 import { runMarketIntelligence } from "./quant-store.js";
 import { readIntelligence } from "./intelligence.js";
@@ -10,10 +10,10 @@ import { readOpportunities } from "./opportunities.js";
 import { readMarketForecasts } from "./forecast-store.js";
 import { FORECAST_HOUR } from "./forecast.js";
 
-const connection = process.env.NEWSBEAT_INTELLIGENCE_TEST_DATABASE_URL;
+const connection = process.env.RAREBIRD_INTELLIGENCE_TEST_DATABASE_URL;
 if (connection) {
   const url = new URL(connection);
-  if (!["localhost", "127.0.0.1"].includes(url.hostname) || url.pathname !== "/newsbeat_intelligence_test") throw new Error("Quantitative tests require the dedicated localhost database.");
+  if (!["localhost", "127.0.0.1"].includes(url.hostname) || url.pathname !== "/rarebird_intelligence_test") throw new Error("Quantitative tests require the dedicated localhost database.");
 }
 const truncate = "truncate public.newsbeat_market_forecasts,public.newsbeat_market_anomalies,public.newsbeat_quant_alerts,public.newsbeat_quant_evaluations,public.newsbeat_quant_contexts,public.newsbeat_quant_worker,public.newsbeat_market_bars,public.newsbeat_market_sources,public.newsbeat_signal_alerts,public.newsbeat_intelligence_revisions,public.newsbeat_intelligence_events,public.newsbeat_intelligence_jobs,public.news_articles,public.news_ingestion_status restart identity";
 

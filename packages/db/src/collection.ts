@@ -1,5 +1,5 @@
 import { createHash, randomBytes, randomUUID } from "node:crypto";
-import { PRIORITY_BEAT_IDS, type CollectionStatus, type CollectionResult } from "@newsbeat/contracts";
+import { PRIORITY_BEAT_IDS, type CollectionStatus, type CollectionResult } from "@rarebird/contracts";
 import { db } from "./client.js";
 
 export const FAST_COLLECTION_SCHEMA = "create table if not exists public.newsbeat_fast_collection (beat_id text primary key,token_hash text not null,requested_at timestamptz not null,expires_at timestamptz not null,lease_token text,lease_until timestamptz,last_attempt_at timestamptz,last_success_at timestamptz,last_error text)";

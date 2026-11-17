@@ -1,6 +1,6 @@
 # Local Git hooks
 
-NewsBeat installs these hooks through the root `prepare` script during `npm ci` or `npm install`.
+Rarebird installs these hooks through the root `prepare` script during `npm ci` or `npm install`.
 
 | Hook | Purpose |
 | --- | --- |

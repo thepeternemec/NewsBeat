@@ -1,4 +1,4 @@
-import { MarketAssessmentSchema, type IntelligenceSignal, type SignalContext, type ConstructedSignal } from "@newsbeat/contracts";
+import { MarketAssessmentSchema, type IntelligenceSignal, type SignalContext, type ConstructedSignal } from "@rarebird/contracts";
 import { hash, quoteMatches } from "./intelligence-core.js";
 
 export interface SignalConditions { source_freshness: string; analysis_ready: boolean; analysis_at: string | null; now: string }

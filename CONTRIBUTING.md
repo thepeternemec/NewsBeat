@@ -1,23 +1,23 @@
-# Contributing to NewsBeat
+# Contributing to Rarebird
 
-Thanks for helping build NewsBeat. We are developing an open-source intelligence layer for AI agents, and contributions of every size are welcome.
+Thanks for helping build Rarebird. We are developing an open-source intelligence layer for AI agents, and contributions of every size are welcome.
 
 You can help with code, documentation, accessibility, asset matching, source quality or research evaluation. You do not need to be a market expert to improve someone's first experience.
 
 ## Find a starting point
 
-- **Trying NewsBeat?** Tell us where setup, a response or a signal was confusing.
+- **Trying Rarebird?** Tell us where setup, a response or a signal was confusing.
 - **New to the codebase?** Start with a documentation fix, a small UI improvement or a reproducible bug.
 - **Working on intelligence?** Read the [product direction](docs/INTELLIGENCE.md) and [quantitative methodology](docs/QUANTITATIVE.md).
-- **Proposing a larger change?** [Open an issue](https://github.com/thepeternemec/NewsBeat/issues/new/choose) or [discussion](https://github.com/thepeternemec/NewsBeat/discussions) so we can agree on the approach.
+- **Proposing a larger change?** [Open an issue](https://github.com/thepeternemec/rarebird/issues/new/choose) or [discussion](https://github.com/thepeternemec/rarebird/discussions) so we can agree on the approach.
 
 ## Set up your workspace
 
 Use Node.js 22 or 24 and npm:
 
 ```bash
-git clone https://github.com/thepeternemec/NewsBeat.git
-cd NewsBeat
+git clone https://github.com/thepeternemec/rarebird.git
+cd Rarebird
 npm ci
 npm run build
 npm test
@@ -55,7 +55,7 @@ CI also runs intelligence and ingestion integration tests against disposable Pos
 - **Preserve identifiers.** Existing `beat_id` values and cursor behavior are part of the integration contract.
 - **Respect the evidence boundary.** News items contain headline metadata. Briefs preserve original headlines; generated summaries and interpretations must be labeled and source-grounded.
 - **Treat timing as research.** A review alert needs its applicable evidence and market checks. Do not lower gates to force alerts or imply proven returns.
-- **Use the NewsBeat brand.** The public palette is black, white and grey. See the [brand guide](brand/README.md).
+- **Use the Rarebird brand.** The public palette is black, white and grey. See the [brand guide](brand/README.md).
 - **Keep secrets local.** Use development credentials and ignored environment files.
 
 ## Where to make changes

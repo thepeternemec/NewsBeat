@@ -35,18 +35,18 @@ jobs:
       postgres:
         image: postgres:17-alpine
         env:
-          POSTGRES_DB: newsbeat_intelligence_test
+          POSTGRES_DB: rarebird_intelligence_test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
         ports:
           - 5499:5432
         options: >-
-          --health-cmd "pg_isready -U postgres -d newsbeat_intelligence_test"
+          --health-cmd "pg_isready -U postgres -d rarebird_intelligence_test"
           --health-interval 5s
           --health-timeout 5s
           --health-retries 10
     env:
-      NEWSBEAT_INTELLIGENCE_TEST_DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5499/newsbeat_intelligence_test
+      RAREBIRD_INTELLIGENCE_TEST_DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5499/rarebird_intelligence_test
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -56,7 +56,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Build pipeline packages
-        run: npm run build:packages && npm run build -w @newsbeat/api && npm run build -w newsbeat-worker
+        run: npm run build:packages && npm run build -w @rarebird/api && npm run build -w rarebird-worker
       - name: Verify event memory against disposable Postgres
         run: node --test --test-concurrency=1 apps/api/dist/lib/intelligence-store.test.js apps/api/dist/lib/discovery-store.test.js apps/api/dist/lib/market-intelligence-store.test.js apps/api/dist/lib/catalyst-store.test.js apps/api/dist/lib/investment.test.js apps/worker/dist/ingest-news-store.test.js apps/worker/dist/priority-collection-store.test.js
 

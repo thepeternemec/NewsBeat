@@ -1,4 +1,4 @@
-import type { ConstructedSignal, IntelligenceResponse, QuantBundle, QuantSignalDecision, MarketContext } from "@newsbeat/contracts";
+import type { ConstructedSignal, IntelligenceResponse, QuantBundle, QuantSignalDecision, MarketContext } from "@rarebird/contracts";
 import "./quantitative-panel.css";
 import { presentTiming } from "./signal-presentation";
 

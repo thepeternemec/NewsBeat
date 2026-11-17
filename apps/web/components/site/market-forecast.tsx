@@ -1,5 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
-import type { ForecastScorecard, MarketForecasts } from "@newsbeat/contracts";
+import type { ForecastScorecard, MarketForecasts } from "@rarebird/contracts";
 
 const usd = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
 const percent = new Intl.NumberFormat("en-US", { style: "percent", maximumFractionDigits: 1 });
@@ -77,6 +77,6 @@ export function MarketForecastPanel({ outlook, now, unavailable, compact = false
       })}
     </div> : <p className="rb-forecast-meta">{unavailable || outlook?.status === "unavailable" ? "Forecasts temporarily unavailable." : "Checking the latest forecasts…"}</p>}
     {compact ? <a className="rb-brief-detail" href="/app/forecasts">Forecast evidence and results <ArrowUpRight size={13} aria-hidden="true" /></a>
-      : <a className="rb-brief-source" href="https://github.com/thepeternemec/NewsBeat/blob/main/docs/QUANTITATIVE.md#historical-replay">Method and historical results <ArrowUpRight size={12} aria-hidden="true" /></a>}
+      : <a className="rb-brief-source" href="https://github.com/thepeternemec/rarebird/blob/main/docs/QUANTITATIVE.md#historical-replay">Method and historical results <ArrowUpRight size={12} aria-hidden="true" /></a>}
   </section>;
 }

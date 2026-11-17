@@ -1,10 +1,10 @@
 import { createHash, timingSafeEqual } from "node:crypto";
-import { InvestmentTickerSchema, type InvestmentBrief } from "@newsbeat/contracts";
-import { consumeRateLimit, db } from "@newsbeat/db";
+import { InvestmentTickerSchema, type InvestmentBrief } from "@rarebird/contracts";
+import { consumeRateLimit, db, env } from "@rarebird/db";
 import { z } from "zod";
 import { readInvestmentBrief } from "./investment.js";
 
-const site = "https://www.newsbeat.dev/ask";
+const site = "https://www.rarebird.network/ask";
 const updateSchema = z.object({ update_id: z.number().int().nonnegative().safe(), message: z.object({
   message_id: z.number().int().positive().safe(), message_thread_id: z.number().int().positive().safe().optional(),
   chat: z.object({ id: z.number().int().safe(), type: z.enum(["group", "supergroup", "private", "channel"]) }),
@@ -12,11 +12,11 @@ const updateSchema = z.object({ update_id: z.number().int().nonnegative().safe()
 }).optional() });
 
 function config() {
-  const token = process.env.NEWSBEAT_TELEGRAM_BOT_TOKEN;
-  const group = process.env.NEWSBEAT_TELEGRAM_CHAT_ID;
-  const username = process.env.NEWSBEAT_TELEGRAM_BOT_USERNAME?.replace(/^@/, "").toLowerCase();
+  const token = env("RAREBIRD_TELEGRAM_BOT_TOKEN");
+  const group = env("RAREBIRD_TELEGRAM_CHAT_ID");
+  const username = env("RAREBIRD_TELEGRAM_BOT_USERNAME")?.replace(/^@/, "").toLowerCase();
   if (!token || !/^\d+:[\w-]+$/.test(token) || !group || !/^-[1-9]\d+$/.test(group) || !username || !/^[a-z0-9_]+$/.test(username)) return null;
-  const topic = process.env.NEWSBEAT_TELEGRAM_TOPIC_ID;
+  const topic = env("RAREBIRD_TELEGRAM_TOPIC_ID");
   if (topic && (!/^[1-9]\d*$/.test(topic) || !Number.isSafeInteger(Number(topic)))) return null;
   return { token, group, username, topic: topic ? Number(topic) : undefined };
 }
@@ -87,7 +87,7 @@ async function sendTelegram(bot: BotConfig, body: ReturnType<typeof formatTelegr
 
 export async function handleTelegramUpdate(request: Request): Promise<Response> {
   const bot = config();
-  const secret = process.env.NEWSBEAT_TELEGRAM_WEBHOOK_SECRET;
+  const secret = env("RAREBIRD_TELEGRAM_WEBHOOK_SECRET");
   if (!bot || !secret || !/^[\w-]{32,256}$/.test(secret)) return Response.json({ error: "telegram_not_configured" }, { status: 503 });
   if (!equalSecret(secret, request.headers.get("x-telegram-bot-api-secret-token") ?? "")) return Response.json({ error: "unauthorized" }, { status: 401 });
   if (Number(request.headers.get("content-length") ?? 0) > 16384) return Response.json({ error: "update_too_large" }, { status: 413 });
@@ -123,7 +123,7 @@ export async function runTelegramFeed(request: Request): Promise<Response> {
   const secret = process.env.CRON_SECRET;
   if (!secret || !equalSecret(`Bearer ${secret}`, request.headers.get("authorization") ?? "")) return Response.json({ error: "unauthorized" }, { status: 401 });
   const bot = config();
-  const list = process.env.NEWSBEAT_TELEGRAM_FEED_TICKERS?.trim();
+  const list = env("RAREBIRD_TELEGRAM_FEED_TICKERS")?.trim();
   if (!bot || !list) return Response.json({ status: "disabled" });
   const parsed = z.array(InvestmentTickerSchema).min(1).max(3).safeParse(list.split(","));
   if (!parsed.success) return Response.json({ error: "invalid_feed_tickers" }, { status: 503 });

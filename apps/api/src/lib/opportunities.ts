@@ -1,7 +1,7 @@
 import {
   QUANT_POLICY_VERSION, SignalContextIdSchema,
   type IntelligenceResponse, type SignalContextId,
-} from "@newsbeat/contracts";
+} from "@rarebird/contracts";
 import { z } from "zod";
 import { PILOT_BEATS, readIntelligence } from "./intelligence.js";
 import { NewsError } from "./news.js";

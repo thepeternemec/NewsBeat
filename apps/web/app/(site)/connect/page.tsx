@@ -9,7 +9,7 @@ import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
 import LiveResponse from "@/components/site/live-response";
 
-const API_BASE = "https://www.newsbeat.dev/api";
+const API_BASE = "https://www.rarebird.network/api";
 
 const OPTIONS = [
   {
@@ -34,7 +34,7 @@ type OptionId = (typeof OPTIONS)[number]["id"];
 const SNIPPETS: Record<OptionId, string> = {
   mcp: `{
   "mcpServers": {
-    "newsbeat": {
+    "rarebird": {
       "url": "${API_BASE}/mcp"
     }
   }
@@ -56,8 +56,8 @@ curl -s "${API_BASE}/v2/market"`,
 const { tools } = await fetch("${API_BASE}/v2/tools").then((r) => r.json());
 
 // Pass them to your model, execute what it calls, send the results back.
-// News tools: newsbeat_topics, newsbeat_news, newsbeat_changes,
-// newsbeat_brief, newsbeat_stories, newsbeat_summary, newsbeat_watch.`,
+// News tools: rarebird_topics, rarebird_news, rarebird_changes,
+// rarebird_brief, rarebird_stories, rarebird_summary, rarebird_watch.`,
 };
 
 export default function Connect() {
@@ -107,7 +107,7 @@ export default function Connect() {
           params: {
             protocolVersion: "2025-06-18",
             capabilities: {},
-            clientInfo: { name: "newsbeat-connect-check", version: "1.0.0" },
+            clientInfo: { name: "rarebird-connect-check", version: "1.0.0" },
           },
         }),
       });

@@ -1,6 +1,6 @@
 import WorkspaceShell, { WorkspaceEvidence } from "@/components/site/workspace-shell";
 import TokenLookup from "@/components/site/token-lookup";
-import { parseTokenAsset } from "@newsbeat/contracts";
+import { parseTokenAsset } from "@rarebird/contracts";
 
 export const metadata = {
   title: "Token intelligence | Rarebird",

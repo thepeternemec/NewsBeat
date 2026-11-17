@@ -1,13 +1,13 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
-import { closeDb, db } from "@newsbeat/db";
+import { closeDb, db } from "@rarebird/db";
 import { readDiscovery, runDiscovery } from "./discovery.js";
 
-const connection = process.env.NEWSBEAT_INTELLIGENCE_TEST_DATABASE_URL;
+const connection = process.env.RAREBIRD_INTELLIGENCE_TEST_DATABASE_URL;
 if (connection) {
   const url = new URL(connection);
-  if (!["localhost", "127.0.0.1"].includes(url.hostname) || url.pathname !== "/newsbeat_intelligence_test") throw new Error("Discovery tests require the dedicated localhost database.");
+  if (!["localhost", "127.0.0.1"].includes(url.hostname) || url.pathname !== "/rarebird_intelligence_test") throw new Error("Discovery tests require the dedicated localhost database.");
 }
 
 test("scheduled discovery persists first observations, includes non-pilot assets and never journals on a public read", { skip: !connection, timeout: 20000 }, async () => {

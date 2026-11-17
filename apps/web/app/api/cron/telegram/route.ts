@@ -1,4 +1,4 @@
-import { runTelegramFeed } from "@newsbeat/api";
+import { runTelegramFeed } from "@rarebird/api";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

@@ -93,7 +93,7 @@ something. 6 is not optional and is the one most likely to be skipped.
   obligations a subscription does not. Worth a lawyer before phase 4, not after.
 - **What happens to the free surface at the moment of enforcement?** Existing
   integrations break the day a key is required. A deprecation window with
-  `X-Newsgraph-Deprecation` headers costs little and keeps the promise that this
+  `X-Rarebird-Deprecation` headers costs little and keeps the promise that this
   project does not surprise its users.
 
 ---

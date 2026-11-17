@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
-import type { BriefingSource, MarketBriefing, MarketForecasts } from "@newsbeat/contracts";
+import type { BriefingSource, MarketBriefing, MarketForecasts } from "@rarebird/contracts";
 import { MarketForecastPanel } from "./market-forecast";
 import { API_BASE } from "./content";
 import "./market-briefing.css";

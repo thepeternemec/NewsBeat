@@ -47,7 +47,7 @@ export default function Terms() {
               Rarebird is operated by founder Peter Nemec through <strong>Tephra d.o.o.</strong>,
               a company registered in the court register of the Republic of Slovenia
               (&ldquo;Rarebird&rdquo;, &ldquo;we&rdquo;). You can reach us at{" "}
-              <a href="mailto:contact@newsbeat.dev">contact@newsbeat.dev</a>.
+              <a href="mailto:contact@rarebird.network">contact@rarebird.network</a>.
             </p>
 
             <h2>2. What the service is</h2>
@@ -170,7 +170,7 @@ export default function Terms() {
             <h2>12. Contact</h2>
             <p>
               Questions about these terms, or a deal that needs a different one:{" "}
-              <a href="mailto:contact@newsbeat.dev">contact@newsbeat.dev</a>.
+              <a href="mailto:contact@rarebird.network">contact@rarebird.network</a>.
             </p>
 
             <div className="docs-nav-foot">

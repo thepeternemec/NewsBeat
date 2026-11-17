@@ -1,5 +1,5 @@
 import { timingSafeEqual } from "node:crypto";
-import { runMarketIntelligence } from "@newsbeat/api";
+import { runMarketIntelligence } from "@rarebird/api";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 120;

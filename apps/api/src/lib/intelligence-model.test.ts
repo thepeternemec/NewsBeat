@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import type { IntelligenceEventDraft, IntelligenceEvidence } from "@newsbeat/contracts";
+import type { IntelligenceEventDraft, IntelligenceEvidence } from "@rarebird/contracts";
 import { generateValidatedIntelligence, intelligenceInput, intelligenceOutputSchema, parseIntelligenceResult } from "./intelligence-model.js";
 import { reconcileSignal } from "./intelligence-core.js";
 

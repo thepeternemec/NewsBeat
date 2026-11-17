@@ -1,13 +1,13 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { closeDb, db } from "@newsbeat/db";
+import { closeDb, db } from "@rarebird/db";
 import { CATALYST_SCHEMA, readCatalysts, runOfficialEvidence } from "./catalysts.js";
 import { readOpportunities } from "./opportunities.js";
 
-const connection = process.env.NEWSBEAT_INTELLIGENCE_TEST_DATABASE_URL;
+const connection = process.env.RAREBIRD_INTELLIGENCE_TEST_DATABASE_URL;
 if (connection) {
   const url = new URL(connection);
-  if (!["localhost", "127.0.0.1"].includes(url.hostname) || url.pathname !== "/newsbeat_intelligence_test") {
+  if (!["localhost", "127.0.0.1"].includes(url.hostname) || url.pathname !== "/rarebird_intelligence_test") {
     throw new Error("Official evidence tests require the dedicated localhost database.");
   }
 }
@@ -26,7 +26,7 @@ test("scheduler persists evidence, public reads reuse it, and refresh failures h
       calls++;
       const url = new URL(String(input));
       assert.equal(url.origin, "https://data.sec.gov");
-      assert.match(new Headers(init?.headers).get("user-agent") ?? "", /contact@newsbeat\.dev/);
+      assert.match(new Headers(init?.headers).get("user-agent") ?? "", /contact@rarebird\.network/);
       const cik = url.pathname.match(/CIK(\d{10})/)![1]!;
       const accession = `${cik}-26-000100`;
       if (url.pathname.startsWith("/submissions/")) return Response.json({ cik, filings: { recent: {

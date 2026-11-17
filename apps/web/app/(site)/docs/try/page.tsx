@@ -7,11 +7,11 @@ export const metadata = {
   title: "Ask Rarebird",
   description: "Ask a stock or crypto research question. Get a direct answer, evidence, uncertainty and the next check.",
 };
-const REQUEST = `curl -X POST "https://www.newsbeat.dev/api/v2/research" \\
+const REQUEST = `curl -X POST "https://www.rarebird.network/api/v2/research" \\
   -H "Content-Type: application/json" \\
   -d '{"question":"What could change the outlook for NVIDIA?"}'`;
 
-export default function TryNewsBeat() {
+export default function TryRarebird() {
   return (
     <div className="try-guide">
       <header className="docs-head">
@@ -30,7 +30,7 @@ export default function TryNewsBeat() {
       <p>News research covers the 2,030-asset catalog. Deeper measured market checks remain a six-asset pilot.
         Questions requiring older history, full reports or unavailable market data will show those limits.</p>
       <h2>Bring this flow into your agent</h2>
-      <p>Connect the remote MCP server and ask your assistant to use <code>newsbeat_research</code> with your actual question.
+      <p>Connect the remote MCP server and ask your assistant to use <code>rarebird_research</code> with your actual question.
         The browser above uses the same research flow.</p>
       <a className="try-next" href="/docs/quickstart">Connect your assistant <ArrowRight size={15} /></a>
       <h2>Use the API</h2>

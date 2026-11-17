@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, ExternalLink, RefreshCw } from "lucide-react";
-import type { IntelligenceResponse, SignalContextId } from "@newsbeat/contracts";
+import type { IntelligenceResponse, SignalContextId } from "@rarebird/contracts";
 import "./signal-inspector.css";
 import QuantitativePanel from "./quantitative-panel";
 import { selectSignalIndex } from "./signal-presentation";

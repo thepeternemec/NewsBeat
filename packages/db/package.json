@@ -1,7 +1,7 @@
 {
-  "name": "@newsbeat/db",
+  "name": "@rarebird/db",
   "version": "0.2.0",
-  "description": "Postgres access for NewsBeat.",
+  "description": "Postgres access for Rarebird.",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -18,7 +18,7 @@
     "build": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@newsbeat/contracts": "0.2.0",
+    "@rarebird/contracts": "0.2.0",
     "postgres": "^3.4.5"
   },
   "devDependencies": {

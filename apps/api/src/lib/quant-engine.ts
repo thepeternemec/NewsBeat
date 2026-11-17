@@ -2,7 +2,7 @@ import {
   MARKET_INTERVAL_MS as INTERVAL, QUANT_POLICY_VERSION, type ConstructedSignal, type IntelligenceSignal,
   type InformationDelta, type MarketContext, type MarketFit, type MarketSnapshot, type MarketWindow,
   type QuantSignalDecision, type QuantEvaluationRecord, type ForwardOutcome,
-} from "@newsbeat/contracts";
+} from "@rarebird/contracts";
 import { hash } from "./intelligence-core.js";
 import { benchmarkFor, type MarketProfile } from "./quant-market.js";
 

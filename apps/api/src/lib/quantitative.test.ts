@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { MARKET_INTERVAL_MS as I, SIGNAL_CONTEXTS } from "@newsbeat/contracts";
+import { MARKET_INTERVAL_MS as I, SIGNAL_CONTEXTS } from "@rarebird/contracts";
 import { parseBook, parseClosedBars, verifyInstrument, MARKET_PROFILES } from "./quant-market.js";
 import { alignMarket, fitBefore, buildMarketContext, informationDelta, measureWindow } from "./quant-engine.js";
 import { decideTiming, applyTiming, beginEvaluation, updateOutcomes } from "./quant-decision.js";

@@ -1,4 +1,4 @@
-import { MARKET_INTERVAL_MS, type MarketBar, type MarketBook, type MarketInstrument, type MarketSnapshot } from "@newsbeat/contracts";
+import { MARKET_INTERVAL_MS, type MarketBar, type MarketBook, type MarketInstrument, type MarketSnapshot } from "@rarebird/contracts";
 
 export interface MarketProfile {
   id: string; pair: string; base: string; ticker: string; kind: MarketInstrument["kind"]; beat_id?: string;
@@ -103,7 +103,7 @@ export function marketRequester(dependencies: { fetch?: typeof fetch; now?: () =
       nextStart = start + 1100;
       if (start > clock()) await wait(start - clock());
       let response: Response;
-      try { response = await request(url, { signal: AbortSignal.timeout(8000), headers: { accept: "application/json", "user-agent": "NewsBeat/0.4 contact@newsbeat.dev" } }); }
+      try { response = await request(url, { signal: AbortSignal.timeout(8000), headers: { accept: "application/json", "user-agent": "Rarebird/0.4 contact@rarebird.network" } }); }
       catch (error) { if (!attempt) continue; throw error; }
       if (!response.ok) {
         if (!attempt && (response.status === 429 || response.status >= 500)) {

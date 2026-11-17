@@ -4,7 +4,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { ArrowUpRight, RefreshCw } from "lucide-react";
 import type {
   AssetMarket, FearGreedPayload, PricesPayload, SignalsPayload, Sourced,
-} from "@newsbeat/contracts";
+} from "@rarebird/contracts";
 import { API_BASE } from "./content";
 
 const POLL_MS = 90_000;

@@ -158,7 +158,7 @@
   animation: cryptoPacket 1.9s cubic-bezier(.45,.05,.25,1) infinite;
 }
 
-/* Context visibly leaves NewsBeat for the agent during the final step. */
+/* Context visibly leaves Rarebird for the agent during the final step. */
 .bs-crypto-return { position:absolute; z-index:3; width:8px; height:8px; border-radius:50%; background:var(--text-primary); box-shadow:0 0 0 5px color-mix(in srgb,var(--text-primary) 12%,transparent); opacity:0; pointer-events:none; }
 .bs-crypto-stage[data-step="verify"] .bs-crypto-return { animation:cryptoPacket 1.9s cubic-bezier(.45,.05,.25,1) infinite reverse; }
 .bs-crypto-stage[data-step="discover"] .bs-crypto-core-value { font-size:21px; }

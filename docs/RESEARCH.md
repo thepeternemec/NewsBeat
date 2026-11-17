@@ -2,10 +2,10 @@
 
 Ask Rarebird a question about a supported stock or crypto asset. It resolves identity, selects relevant reporting, checks available measurements and returns an answer with conditional reasoning, unknowns and observable next checks.
 
-Try it at https://www.newsbeat.dev/docs/try or connect https://www.newsbeat.dev/api/mcp and call `newsbeat_research`.
+Try it at https://www.rarebird.network/docs/try or connect https://www.rarebird.network/api/mcp and call `rarebird_research`.
 
 ```bash
-curl -X POST https://www.newsbeat.dev/api/v2/research \
+curl -X POST https://www.rarebird.network/api/v2/research \
   -H 'Content-Type: application/json' \
   -d '{"question":"Compare the risks in AMD and NVIDIA."}'
 ```
@@ -53,7 +53,7 @@ This is not a profitable-performance claim. Review alerts, notification delivery
 
 ## Runtime
 
-Research is explicit POST/MCP work and uses Vercel AI Gateway. The question path defaults to the full GPT-4.1 model for evidence reasoning, independently of the scheduled pilot model; set NEWSBEAT_RESEARCH_MODEL to a verified Gateway model ID to override it. Full-model requests cost more than the mini model. Provider pricing and availability must be checked before changing the deployment setting. Both attempts share an 18-second deadline, and each has a 1,600-token output cap. Identical question/evidence fingerprints share a five-minute in-memory cache and one in-flight request chain. At most four analyses run concurrently per instance. Existing public request limits apply. A missing credential, provider failure, timeout or unresolved validation failure returns evidence_only.
+Research is explicit POST/MCP work and uses Vercel AI Gateway. The question path defaults to the full GPT-4.1 model for evidence reasoning, independently of the scheduled pilot model; set RAREBIRD_RESEARCH_MODEL to a verified Gateway model ID to override it. Full-model requests cost more than the mini model. Provider pricing and availability must be checked before changing the deployment setting. Both attempts share an 18-second deadline, and each has a 1,600-token output cap. Identical question/evidence fingerprints share a five-minute in-memory cache and one in-flight request chain. At most four analyses run concurrently per instance. Existing public request limits apply. A missing credential, provider failure, timeout or unresolved validation failure returns evidence_only.
 
 GET intelligence remains a stored read. Research does not generate or mutate stored signal constructions, start fast collection, create a schedule, send notifications or place trades.
 

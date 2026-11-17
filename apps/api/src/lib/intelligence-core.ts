@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { IntelligenceDraftSchema, INTELLIGENCE_VERSION, type IntelligenceEventDraft, type IntelligenceEvidence, type IntelligenceSignal } from "@newsbeat/contracts";
+import { IntelligenceDraftSchema, INTELLIGENCE_VERSION, type IntelligenceEventDraft, type IntelligenceEvidence, type IntelligenceSignal } from "@rarebird/contracts";
 
 export const hash = (value: unknown) => createHash("sha256").update(JSON.stringify(value)).digest("hex");
 const fold = (value: string) => value.normalize("NFKC").toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();

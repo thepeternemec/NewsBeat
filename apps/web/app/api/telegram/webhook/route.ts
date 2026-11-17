@@ -1,4 +1,4 @@
-import { handleTelegramUpdate } from "@newsbeat/api";
+import { handleTelegramUpdate } from "@rarebird/api";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;

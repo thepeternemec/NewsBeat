@@ -5,7 +5,7 @@ session to establish and no token to refresh. This file exists so an agent does 
 spend a turn looking for an auth flow that does not exist — and so that the one
 optional flow that does exist is not a surprise.
 
-Host: `www.newsbeat.dev` · API base: `https://www.newsbeat.dev/api`
+Host: `www.rarebird.network` · API base: `https://www.rarebird.network/api`
 
 ## 1. Register
 
@@ -22,7 +22,7 @@ Send no `Authorization` header. Every request succeeds without one.
 
 ```http
 GET /v2/brief?beat_id=b_bb964843350e HTTP/1.1
-Host: www.newsbeat.dev
+Host: www.rarebird.network
 ```
 
 Responses carry `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`
@@ -54,14 +54,14 @@ To see your exact deadline and remaining credit, call `GET /api/keys/trial`
 with your bearer key. Creating another key for the same account does not restart
 the trial. Public news is still available without a key.
 
-**Self-serve is available** at `https://www.newsbeat.dev/keys` — GitHub, scope
+**Self-serve is available** at `https://www.rarebird.network/keys` — GitHub, scope
 `read:user`, the key shown once. That is a browser flow: it needs a human to
 authorise it, so an agent cannot complete it alone. The key is then a bearer token
 in a header.
 
 ```http
 GET /v2/topics?limit=1 HTTP/1.1
-Host: www.newsbeat.dev
+Host: www.rarebird.network
 Authorization: Bearer ng_...
 ```
 
@@ -73,36 +73,36 @@ for it to describe.
 
 ```http
 GET /v2/tools HTTP/1.1
-Host: www.newsbeat.dev
+Host: www.rarebird.network
 ```
 
 Returns 16 research calls plus one explicit collection-control call in OpenAI function-call shape:
 
 | Tool | Purpose | REST route |
 | --- | --- | --- |
-| `newsbeat_research` | Question → asset-specific evidence → cited answer, uncertainty and next checks. Explicit on-demand model call; quantitative coverage is limited. | `POST /v2/research` |
-| `newsbeat_investment` | The ticker brief shown on Ask Rarebird, with its stance, supporting evidence and limits. | `POST /v2/investment` |
-| `newsbeat_collection` | Explicitly request one-minute collection for 15 minutes, read status, or stop with your token. | `GET/POST /v2/collection` |
-| `newsbeat_intelligence` | Stored event memory, conditional implications and follow-up checks for the six-asset pilot | `GET /v2/intelligence?beat_id=` |
-| `newsbeat_discovery` | Scheduled catalog discoveries with source links and first-recorded times | `GET /v2/discovery` |
-| `newsbeat_opportunities` | Review and watch shortlist across the six measured assets | `GET /v2/opportunities` |
-| `newsbeat_catalysts` | Recent SEC filings and comparable reported results for four issuers | `GET /v2/catalysts` |
-| `newsbeat_topics` | Find a supported stock or crypto asset. | `GET /v2/topics?q=…` |
-| `newsbeat_news` | Read headlines and establish a baseline cursor. | `GET /v2/news?beat_id=…` |
-| `newsbeat_changes` | Get new items since the saved cursor. | `GET /v2/changes?beat_id=…&cursor=…` |
-| `newsbeat_brief` | Read three relevant recent headlines verbatim. | `GET /v2/brief?beat_id=…` |
-| `newsbeat_stories` | Read grouped headlines and their sources. | `GET /v2/stories?beat_id=…` |
-| `newsbeat_summary` | Deprecated verbatim compatibility read; no generated summary. | `GET /v2/summary?beat_id=…` |
-| `newsbeat_watch` | Check up to 50 topics once. | `POST /v2/watch` |
-| `newsbeat_ask` | Resolve an asset and gather news, prices and chain context. | `GET /v2/ask?q=bitcoin` |
-| `newsbeat_market` | Read a sourced crypto market overview. | `GET /v2/market` |
-| `newsbeat_prices` | Read crypto prices by CoinGecko ID. | `GET /v2/prices?ids=bitcoin` |
-| `newsbeat_fear_greed` | Read the daily fear and greed index. | `GET /v2/sentiment` |
-| `newsbeat_chain` | Read Ethereum and Solana chain state. | `GET /v2/chain` |
-| `newsbeat_token` | Read a reference price by contract address. | `GET /v2/token?asset=…` |
-| `newsbeat_token_intelligence` | Read exact-contract pool data, issuer mappings and available underlying reporting. | `GET /v2/tokens?asset=…` |
-| `newsbeat_market_briefing` | Read the current crypto briefing and its sources. | `GET /v2/briefing` |
-| `newsbeat_signals` | Read funding, DEX volume and stablecoin supply. | `GET /v2/signals` |
+| `rarebird_research` | Question → asset-specific evidence → cited answer, uncertainty and next checks. Explicit on-demand model call; quantitative coverage is limited. | `POST /v2/research` |
+| `rarebird_investment` | The ticker brief shown on Ask Rarebird, with its stance, supporting evidence and limits. | `POST /v2/investment` |
+| `rarebird_collection` | Explicitly request one-minute collection for 15 minutes, read status, or stop with your token. | `GET/POST /v2/collection` |
+| `rarebird_intelligence` | Stored event memory, conditional implications and follow-up checks for the six-asset pilot | `GET /v2/intelligence?beat_id=` |
+| `rarebird_discovery` | Scheduled catalog discoveries with source links and first-recorded times | `GET /v2/discovery` |
+| `rarebird_opportunities` | Review and watch shortlist across the six measured assets | `GET /v2/opportunities` |
+| `rarebird_catalysts` | Recent SEC filings and comparable reported results for four issuers | `GET /v2/catalysts` |
+| `rarebird_topics` | Find a supported stock or crypto asset. | `GET /v2/topics?q=…` |
+| `rarebird_news` | Read headlines and establish a baseline cursor. | `GET /v2/news?beat_id=…` |
+| `rarebird_changes` | Get new items since the saved cursor. | `GET /v2/changes?beat_id=…&cursor=…` |
+| `rarebird_brief` | Read three relevant recent headlines verbatim. | `GET /v2/brief?beat_id=…` |
+| `rarebird_stories` | Read grouped headlines and their sources. | `GET /v2/stories?beat_id=…` |
+| `rarebird_summary` | Deprecated verbatim compatibility read; no generated summary. | `GET /v2/summary?beat_id=…` |
+| `rarebird_watch` | Check up to 50 topics once. | `POST /v2/watch` |
+| `rarebird_ask` | Resolve an asset and gather news, prices and chain context. | `GET /v2/ask?q=bitcoin` |
+| `rarebird_market` | Read a sourced crypto market overview. | `GET /v2/market` |
+| `rarebird_prices` | Read crypto prices by CoinGecko ID. | `GET /v2/prices?ids=bitcoin` |
+| `rarebird_fear_greed` | Read the daily fear and greed index. | `GET /v2/sentiment` |
+| `rarebird_chain` | Read Ethereum and Solana chain state. | `GET /v2/chain` |
+| `rarebird_token` | Read a reference price by contract address. | `GET /v2/token?asset=…` |
+| `rarebird_token_intelligence` | Read exact-contract pool data, issuer mappings and available underlying reporting. | `GET /v2/tokens?asset=…` |
+| `rarebird_market_briefing` | Read the current crypto briefing and its sources. | `GET /v2/briefing` |
+| `rarebird_signals` | Read funding, DEX volume and stablecoin supply. | `GET /v2/signals` |
 
 `GET /v2/topics?q=` searches by ticker or company name across +2000 topics —
 US-listed equities and the largest crypto assets. A coin and a company can share a ticker
@@ -130,4 +130,4 @@ ceremony, and the RFC 7523 exchange. It will not describe them before they exist
 because an agent that follows a flow this service does not implement wastes a
 turn and learns to distrust the file.
 
-The intelligence tool accepts optional `context`: `fundamentals`, `liquidity` or `risk`. `constructions` contains context-qualified hypotheses and alert checks; `alerts` contains review records with stable IDs. Reads do not start generation or deliver notifications. The pilot adds `quantitative`: verified Kraken xStock/crypto prices, five-minute closed candles, a pre-information beta baseline, residual moves, relative volume and observed book costs. `constructions[].quantitative` explains information delta and timing gates; `market_reaction` can be `observed` when an aligned post-thesis window exists, without establishing causality. Missing, stale, thin or unprocessed data holds alerts. `evaluation` compares prospective all-construction and review-alert cohorts; `evaluations` freezes entry references and later 15/60/240-minute observations. Returns exclude fees and are not executable P&L. Thresholds are research heuristics awaiting calibration. Notification delivery and execution are not connected. See [methodology](https://github.com/thepeternemec/NewsBeat/blob/main/docs/QUANTITATIVE.md).
+The intelligence tool accepts optional `context`: `fundamentals`, `liquidity` or `risk`. `constructions` contains context-qualified hypotheses and alert checks; `alerts` contains review records with stable IDs. Reads do not start generation or deliver notifications. The pilot adds `quantitative`: verified Kraken xStock/crypto prices, five-minute closed candles, a pre-information beta baseline, residual moves, relative volume and observed book costs. `constructions[].quantitative` explains information delta and timing gates; `market_reaction` can be `observed` when an aligned post-thesis window exists, without establishing causality. Missing, stale, thin or unprocessed data holds alerts. `evaluation` compares prospective all-construction and review-alert cohorts; `evaluations` freezes entry references and later 15/60/240-minute observations. Returns exclude fees and are not executable P&L. Thresholds are research heuristics awaiting calibration. Notification delivery and execution are not connected. See [methodology](https://github.com/thepeternemec/rarebird/blob/main/docs/QUANTITATIVE.md).

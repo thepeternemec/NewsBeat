@@ -20,7 +20,7 @@ Rarebird is building meaningful signals for AI agents. The source-linked news fo
 | Question research | Evidence-led answers, conditional reasoning, unknowns and next checks across the catalog; missing market data explicit |
 | Batched watch | Up to 50 assets per request; each result can succeed or fail independently |
 | REST and function calling | 16 research operations plus explicit collection control and schemas at `/api/v2/tools` |
-| Hosted MCP | 17 tools over Streamable HTTP at `/api/mcp`, 16 research operations plus the explicit `newsbeat_collection` control |
+| Hosted MCP | 17 tools over Streamable HTTP at `/api/mcp`, 16 research operations plus the explicit `rarebird_collection` control |
 | Supporting reference utilities | Sourced crypto prices, sentiment, chain readings, contract prices and positioning, retained through REST and MCP |
 | Intelligence workbench | Full-width measured market path, context selection, thesis/evidence inspector, timing reasons and forward observation cohorts. The former `/crypto` page redirects here. |
 | Web news explorer | Asset search, grouped stories, source expansion, Show more controls and on-demand research questions |
@@ -33,7 +33,7 @@ The scheduled worker uses a time budget and prioritizes overdue assets. A schedu
 
 ## Question research and ranked coverage
 
-Use `newsbeat_research` or `POST /api/v2/research` with the actual question. Identity resolution, relevant reporting and available market checks feed a direct answer, cited conditional reasoning, unknowns and next checks. The news catalog is available on demand; measured quantitative coverage stays at six assets. Ambiguous identities return candidates, and missing measurements cannot establish timing or a price reaction.
+Use `rarebird_research` or `POST /api/v2/research` with the actual question. Identity resolution, relevant reporting and available market checks feed a direct answer, cited conditional reasoning, unknowns and next checks. The news catalog is available on demand; measured quantitative coverage stays at six assets. Ambiguous identities return candidates, and missing measurements cannot establish timing or a price reaction.
 
 Generation uses the existing gateway with an 18-second timeout, a 1,600-token output cap, a five-minute per-instance cache and bounded per-instance concurrency. Invalid, unavailable or failed model output returns evidence_only, never an invented successful answer. Existing GET intelligence reads remain stored reads. No collection session, schedule, notification or trade is created. [Details](RESEARCH.md).
 
@@ -43,13 +43,13 @@ REST story snapshots scan 200 reports by default (`limit` 1–500). MCP returns 
 
 ## Brand and domain
 
-**Rarebird** is live at **https://www.newsbeat.dev**. The public mission is meaningful signals for AI agents. The live news foundation covers stocks and crypto. Pilot xStock exchange pairs are verified against the venue directory; onchain contract, redemption and consolidated underlying-stock verification remain planned. Use `https://www.newsbeat.dev/api` for REST and `https://www.newsbeat.dev/api/mcp` for MCP. The `news-beat.vercel.app` host remains an alternate service address. Public reads are free during early access; no API key or credit card is needed. Account keys have a **seven-day evaluation** from the first metered REST call, with up to **$6 in trial credit**. The start is recorded per account in the usage ledger, so rotating a key does not reset it. Existing accounts keep their balances and start their seven-day window on their next metered call after this release. `GET /api/keys/trial` reports the deadline and spendable credit. When the trial ends, unused trial credit becomes unavailable and keyed reads return `402 trial_expired`; public anonymous reads continue. Stripe checkout is not live.
+**Rarebird** is live at **https://www.rarebird.network**. The public mission is meaningful signals for AI agents. The live news foundation covers stocks and crypto. Pilot xStock exchange pairs are verified against the venue directory; onchain contract, redemption and consolidated underlying-stock verification remain planned. Use `https://www.rarebird.network/api` for REST and `https://www.rarebird.network/api/mcp` for MCP. The app and connected agent are free through December 31, 2026. Rarebird Pro is planned at $8.99 USD per month for both. Public reads require no API key or credit card. Account keys have a **seven-day evaluation** from the first metered REST call, with up to **$6 in trial credit**. The start is recorded per account in the usage ledger, so rotating a key does not reset it. Existing accounts keep their balances and start their seven-day window on their next metered call after this release. `GET /api/keys/trial` reports the deadline and spendable credit. When the trial ends, unused trial credit becomes unavailable and keyed reads return `402 trial_expired`; public anonymous reads continue. Stripe checkout is not live.
 
-New discovery uses `newsbeat_*` tool names. Old tool names, deployed environment-variable names and existing signed cursors retain compatibility. Workspace package names use `@newsbeat/*` and `newsbeat-*`.
+New discovery uses `rarebird_*` tool names. Old tool names, deployed environment-variable names and existing signed cursors retain compatibility. Workspace package names use `@rarebird/*` and `rarebird-*`.
 
 ## Planned connector expansion
 
-[PR #11](https://github.com/thepeternemec/NewsBeat/pull/11) implements eight shared MCP/REST operations, general news search and source-record lookup, named independent keys, atomic account metering, OAuth resource-server verification, saved watches and signed webhooks. It also includes Telegram/Discord relay and Grok API examples.
+[PR #11](https://github.com/thepeternemec/rarebird/pull/11) implements eight shared MCP/REST operations, general news search and source-record lookup, named independent keys, atomic account metering, OAuth resource-server verification, saved watches and signed webhooks. It also includes Telegram/Discord relay and Grok API examples.
 
 PR #11 was closed without merging. Its implementation remains a reference for future work and is not available on main. Shipping those capabilities requires additive database migration, environment configuration and end-to-end activation. An external OAuth authorization server and platform-specific consent/client registration must be configured separately.
 

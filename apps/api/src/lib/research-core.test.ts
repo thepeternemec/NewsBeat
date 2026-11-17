@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { SEED_BEATS, type ResearchEvidence } from "@newsbeat/contracts";
+import { SEED_BEATS, type ResearchEvidence } from "@rarebird/contracts";
 import { qualifiesReport, resolveResearchAssets, validateResearchAnswer, researchFigures, researchEvidenceRole } from "./research-core.js";
 import { researchQuestion, priceIdsForAsset } from "./research.js";
 

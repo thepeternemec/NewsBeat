@@ -8,9 +8,9 @@ What has to be true before the site is serving real news, and how to check each 
 | --- | --- | --- |
 | 1 | A Postgres database | `DATABASE_URL` |
 | 2 | The schema | `npm run db:setup` once |
-| 3 | *(optional)* a newsapi.ai key | `NEWSAPI_API_KEY` — only for `NEWSBEAT_PROVIDER=newsapi` |
+| 3 | *(optional)* a newsapi.ai key | `NEWSAPI_API_KEY` — only for `RAREBIRD_PROVIDER=newsapi` |
 
-Plus `NEWSBEAT_CURSOR_SECRET`, which signs cursors. Rotating it invalidates every cursor already
+Plus `RAREBIRD_CURSOR_SECRET`, which signs cursors. Rotating it invalidates every cursor already
 issued, so treat it as long-lived.
 
 ## 1. Create the database
@@ -43,8 +43,8 @@ Vercel → Project → Settings → Environment Variables (Production and Previe
 ```
 DATABASE_URL              (usually injected by the Storage integration)
 NEWSAPI_API_KEY           your full-access key
-NEWSBEAT_CURSOR_SECRET   32 random bytes, hex
-NEWSBEAT_CRON_SECRET     optional; only for manual ingestion runs
+RAREBIRD_CURSOR_SECRET   32 random bytes, hex
+RAREBIRD_CRON_SECRET     optional; only for manual ingestion runs
 ```
 
 ## 4. Put the topics in
@@ -75,8 +75,8 @@ orphans every cursor already in the wild — so add, never renumber.
 ## 5. Run the first ingestion
 
 ```bash
-curl -H "Authorization: Bearer $NEWSBEAT_CRON_SECRET" \
-     https://www.newsbeat.dev/api/cron/ingest
+curl -H "Authorization: Bearer $RAREBIRD_CRON_SECRET" \
+     https://www.rarebird.network/api/cron/ingest
 ```
 
 It returns one line per topic:
@@ -96,7 +96,7 @@ per topic. The response says how many it made:
 Then check the topics:
 
 ```bash
-curl https://www.newsbeat.dev/api/v2/topics
+curl https://www.rarebird.network/api/v2/topics
 ```
 
 A topic that ingested successfully reads `fresh` or `stale`; one that has never run reads
@@ -106,7 +106,7 @@ A topic that ingested successfully reads `fresh` or `stale`; one that has never 
 ## 6. The schedule
 
 `vercel.json` runs `/api/cron/ingest` every 10 minutes. Vercel signs its own cron requests, so no
-secret is needed for those; `NEWSBEAT_CRON_SECRET` only guards manual runs.
+secret is needed for those; `RAREBIRD_CRON_SECRET` only guards manual runs.
 
 > **Hobby plan crons run once per day.** A 10-minute cadence needs Pro. If you are on Hobby,
 > either change the schedule in `vercel.json` or drive it from GitHub Actions instead.
@@ -115,7 +115,7 @@ secret is needed for those; `NEWSBEAT_CRON_SECRET` only guards manual runs.
 
 - [ ] `DATABASE_URL` set, and `npm run db:setup` has been run against it
 - [ ] `NEWSAPI_API_KEY` set
-- [ ] `NEWSBEAT_CURSOR_SECRET` set
+- [ ] `RAREBIRD_CURSOR_SECRET` set
 - [ ] Topics added to `packages/contracts/src/seed.ts`, and `npm test` passes
 - [ ] First ingestion returned `ok: true` with a non-zero `inserted`
 - [ ] `/api/v2/topics` shows `fresh` or `stale` rather than `unavailable`
@@ -127,8 +127,8 @@ Keys are issued by hand until this is configured. Two values, from an OAuth app
 that **cannot be created by an API** — GitHub only exposes it as a settings form:
 
 1. Open <https://github.com/settings/developers> → **New OAuth App**.
-2. Name: anything. Homepage: `https://www.newsbeat.dev`.
-3. **Authorization callback URL**: `https://www.newsbeat.dev/api/keys/callback`
+2. Name: anything. Homepage: `https://www.rarebird.network`.
+3. **Authorization callback URL**: `https://www.rarebird.network/api/keys/callback`
    — it must match exactly, including the scheme and the path.
 4. Copy the Client ID, generate a Client Secret.
 5. Set both on Vercel as `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET`, then redeploy.
@@ -150,20 +150,15 @@ OAuth app, so a preview will refuse the redirect unless you register a second ap
 
 ## Rarebird production domain
 
-The repository is https://github.com/thepeternemec/NewsBeat. The live primary domain is **https://www.newsbeat.dev**; `https://news-beat.vercel.app` remains an alternate host.
+The repository is [thepeternemec/rarebird](https://github.com/thepeternemec/rarebird). The canonical public host is [www.rarebird.network](https://www.rarebird.network).
 
-- REST base: `https://www.newsbeat.dev/api`
-- MCP: `https://www.newsbeat.dev/api/mcp`
-- GitHub OAuth homepage: `https://www.newsbeat.dev`
-- GitHub OAuth callback: `https://www.newsbeat.dev/api/keys/callback`
+- REST base: `https://www.rarebird.network/api`
+- MCP endpoint: `https://www.rarebird.network/api/mcp`
+- GitHub OAuth homepage: `https://www.rarebird.network`
+- GitHub OAuth callback: `https://www.rarebird.network/api/keys/callback`
 
-The domain is connected. Keep the OAuth app callback aligned with the primary origin before using sign-in there. Verify `/api/health`, MCP and a real news read after deployments. Retain alternate API hosts for existing clients; do not introduce redirects for API POST requests without testing clients.
+Set the callback on the GitHub OAuth application before enabling self-serve keys. If you run a separate OAuth application for a staging origin, set `RAREBIRD_GITHUB_OAUTH_ORIGIN` to its registered HTTPS origin in that environment. Use the same callback during authorization and code exchange.
 
-New configuration uses `NEWSBEAT_*`. Existing `NEWSBEAT_*` variables remain supported as fallbacks so a branding deployment does not invalidate credentials. Existing cursor signatures and cached MCP tool names also remain valid. No database migration is needed for this rename.
+Publish `RAREBIRD_*` configuration keys for new deployments. The server accepts older deployed keys as fallbacks and keeps existing cursor signatures, cached MCP tool calls and stored intelligence compatible. Local and hosted database data can be reused without a schema migration.
 
-## Connect rarebird.network
-
-1. Add `rarebird.network` to the [existing production project](https://vercel.com/peter-ee6e/newsbeat/settings/domains). Add `www.rarebird.network` as a redirect to the apex if both addresses should work.
-2. Add the exact DNS records Vercel shows at the authoritative DNS provider. Keep mail and unrelated TXT records. Verify configuration in Vercel, then verify HTTPS on the new host.
-3. Check the home page, sitemap, share metadata, GitHub sign-in callback, API responses and an MCP handshake on the new address. Update canonical URLs, onboarding links and social listings after these checks pass.
-4. Keep the existing `www.newsbeat.dev` API and MCP URLs working during migration. Verify legacy clients before introducing any domain-wide redirect.
+After deploying, check the home page, app, pricing, site icons, sitemap, `/api/health`, a real news read, and MCP initialization, tool discovery and one read. Check the OAuth and Telegram callbacks if those integrations are configured. Before adding a root-domain redirect, preserve unrelated mail and verification records at your DNS provider.

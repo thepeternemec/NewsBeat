@@ -1,5 +1,5 @@
 import { timingSafeEqual } from "node:crypto";
-import { runIntelligence, runOfficialEvidence } from "@newsbeat/api";
+import { runIntelligence, runOfficialEvidence } from "@rarebird/api";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

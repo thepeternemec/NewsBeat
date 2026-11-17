@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { CollectionRequestSchema } from "@newsbeat/contracts";
+import { CollectionRequestSchema } from "@rarebird/contracts";
 import app from "../index.js";
 import { mcpResponse } from "./mcp.js";
 
@@ -22,6 +22,6 @@ test("malformed and cross-origin starts are rejected before scheduling", async (
 test("MCP labels collection control as a write while research tools remain read-only", async () => {
   const response = await mcpResponse(new Request("http://localhost:3000/api/mcp", { method: "POST", headers: { "Content-Type": "application/json", accept: "application/json, text/event-stream" }, body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "tools/list", params: {} }) }));
   const body = await response.json() as { result: { tools: Array<{ name: string; annotations: { readOnlyHint: boolean } }> } };
-  assert.equal(body.result.tools.find(t => t.name === "newsbeat_collection")?.annotations.readOnlyHint, false);
-  assert.ok(body.result.tools.filter(t => t.name !== "newsbeat_collection").every(t => t.annotations.readOnlyHint));
+  assert.equal(body.result.tools.find(t => t.name === "rarebird_collection")?.annotations.readOnlyHint, false);
+  assert.ok(body.result.tools.filter(t => t.name !== "rarebird_collection").every(t => t.annotations.readOnlyHint));
 });

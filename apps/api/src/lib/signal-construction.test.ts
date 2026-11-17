@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { SIGNAL_CONTEXTS, type IntelligenceEventDraft, type IntelligenceEvidence } from "@newsbeat/contracts";
+import { SIGNAL_CONTEXTS, type IntelligenceEventDraft, type IntelligenceEvidence } from "@rarebird/contracts";
 import { reconcileSignal, validateIntelligence } from "./intelligence-core.js";
 import { constructSignal, type SignalConditions } from "./signal-construction.js";
 

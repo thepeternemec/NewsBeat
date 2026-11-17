@@ -1,4 +1,4 @@
-import type { QuantBundle, ResearchEvidence } from "@newsbeat/contracts";
+import type { QuantBundle, ResearchEvidence } from "@rarebird/contracts";
 
 export function researchFreshness(status: string, at: string | null, maxAge: number, now = Date.now()): ResearchEvidence["freshness"] {
   if (!at) return "unavailable";
@@ -45,7 +45,7 @@ export function quantitativeResearchEvidence(beatId: string, quant: Pick<QuantBu
         + (window.empirical_tail_fraction === null ? " No usable historical rarity estimate." : " Descriptive historical tail fraction: " + window.empirical_tail_fraction.toFixed(4) + ".")
         + " Historical rarity is not a probability of future profit.",
       source: "Rarebird deterministic discovery / Kraken " + instrument.pair,
-      url: "https://www.newsbeat.dev/api/v2/intelligence?beat_id=" + beatId,
+      url: "https://www.rarebird.network/api/v2/intelligence?beat_id=" + beatId,
       observed_at: window.end_at, freshness: researchFreshness(discoveryStatus, window.end_at, 600_000, now),
     });
   }

@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { SEED_BEATS, type FilingEvidence } from "@newsbeat/contracts";
+import { SEED_BEATS, type FilingEvidence } from "@rarebird/contracts";
 import { filingDiscovery, pressDiscovery, rankDiscovery } from "./discovery-core.js";
 
 const published = "2026-11-15T19:00:00.000Z";

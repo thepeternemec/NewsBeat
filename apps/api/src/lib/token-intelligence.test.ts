@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { parseTokenAsset, TOKENIZED_EQUITIES, type TokenIntelligence } from "@newsbeat/contracts";
+import { parseTokenAsset, TOKENIZED_EQUITIES, type TokenIntelligence } from "@rarebird/contracts";
 import app from "../index.js";
 import { matchTokenPools, readTokenIntelligence } from "./token-intelligence.js";
 

@@ -1,13 +1,13 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
-import { db, closeDb } from "@newsbeat/db";
+import { db, closeDb } from "@rarebird/db";
 import { persistNews } from "./ingest-news.js";
 
-const connection = process.env.NEWSBEAT_INTELLIGENCE_TEST_DATABASE_URL;
+const connection = process.env.RAREBIRD_INTELLIGENCE_TEST_DATABASE_URL;
 if (connection) {
   const url = new URL(connection);
-  if (!["localhost", "127.0.0.1"].includes(url.hostname) || url.pathname !== "/newsbeat_intelligence_test") throw new Error("Ingestion regression requires the dedicated localhost test database.");
+  if (!["localhost", "127.0.0.1"].includes(url.hostname) || url.pathname !== "/rarebird_intelligence_test") throw new Error("Ingestion regression requires the dedicated localhost test database.");
 }
 test("a long emoji headline persists with its batch and advances real collection freshness", { skip: !connection, timeout: 15000 }, async () => {
   process.env.DATABASE_URL = connection!;

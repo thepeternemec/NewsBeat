@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import { ArrowRight, ArrowUpRight, Sparkles } from "lucide-react";
-import type { ResearchResponse } from "@newsbeat/contracts";
+import type { ResearchResponse } from "@rarebird/contracts";
 import { API_BASE } from "./content";
 import "./research-question.css";
 

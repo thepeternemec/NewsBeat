@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import type { MarketContext, MarketResearch } from "@newsbeat/contracts";
+import type { MarketContext, MarketResearch } from "@rarebird/contracts";
 import { quantitativeResearchEvidence, researchFreshness } from "./research-market.js";
 
 const now = Date.parse("2026-11-07T12:00:00Z");

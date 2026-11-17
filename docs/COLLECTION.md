@@ -6,7 +6,7 @@ Rarebird's catalog is scheduled every **10 minutes**. Faster news checks are opt
 
 On the intelligence page, select an asset and choose **Request 1-min news · 15 min**. Only that button starts a session. Loading the page, changing the focus, reading news or checking status does not start one.
 
-An agent must use `newsbeat_collection` only when the user explicitly asks for one-minute collection:
+An agent must use `rarebird_collection` only when the user explicitly asks for one-minute collection:
 
 ```json
 { "action": "start", "beat_id": "b_bb964843350e", "interval_seconds": 60 }
@@ -25,7 +25,7 @@ GET /api/v2/collection?beat_id=b_bb964843350e
 Start explicitly:
 
 ```bash
-curl -X POST "https://www.newsbeat.dev/api/v2/collection" \
+curl -X POST "https://www.rarebird.network/api/v2/collection" \
   -H "Content-Type: application/json" \
   -d '{"action":"start","beat_id":"b_bb964843350e","interval_seconds":60}'
 ```
@@ -45,4 +45,4 @@ The authenticated priority cron claims only active requests and makes no provide
 
 The one-minute target describes collection scheduling, not guaranteed publication-to-signal latency. Google News indexing, provider failures, retries, deferred work and later analysis add delay. Fast sessions use the Google News collector and do not enable paid-provider polling. No notifications or trades are created.
 
-[MCP setup](https://www.newsbeat.dev/docs/quickstart) · [Development](DEVELOPMENT.md)
+[MCP setup](https://www.rarebird.network/docs/quickstart) · [Development](DEVELOPMENT.md)

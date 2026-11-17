@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
-import { db, hasDatabaseEnv } from "@newsbeat/db";
-import { SEED_BEATS, INTELLIGENCE_VERSION, SIGNAL_CONTEXTS, type SignalContextId, type IntelligenceResponse, type IntelligenceSignal, type IntelligenceEvidence } from "@newsbeat/contracts";
+import { db, hasDatabaseEnv } from "@rarebird/db";
+import { SEED_BEATS, INTELLIGENCE_VERSION, SIGNAL_CONTEXTS, type SignalContextId, type IntelligenceResponse, type IntelligenceSignal, type IntelligenceEvidence } from "@rarebird/contracts";
 import { stories, topicById, freshness } from "./news.js";
 import { hash, reconcileSignal, selectIntelligenceEvidence } from "./intelligence-core.js";
 import { generateIntelligence, INTELLIGENCE_MODEL, INTELLIGENCE_GENERATION_VERSION } from "./intelligence-model.js";

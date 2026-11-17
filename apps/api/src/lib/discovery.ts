@@ -1,5 +1,5 @@
-import { db, hasDatabaseEnv } from "@newsbeat/db";
-import { CatalystSnapshotSchema, DiscoveryQuerySchema, SEED_BEATS, type DiscoveryFeed } from "@newsbeat/contracts";
+import { db, hasDatabaseEnv } from "@rarebird/db";
+import { CatalystSnapshotSchema, DiscoveryQuerySchema, SEED_BEATS, type DiscoveryFeed } from "@rarebird/contracts";
 import { NewsError } from "./news.js";
 import { OFFICIAL_FRESH_MS, OFFICIAL_ISSUERS } from "./catalyst-core.js";
 import {

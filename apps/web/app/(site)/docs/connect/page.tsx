@@ -2,31 +2,31 @@ import CopyButton from "@/components/site/copy-button";
 import AgentInstructions from "@/components/site/agent-instructions";
 
 export const metadata = { title: "Developer reference", description: "Connect Rarebird through remote MCP, REST or function calling. Current endpoints and working examples." };
-const API = "https://www.newsbeat.dev/api";
-const MCP_CONFIG = JSON.stringify({ mcpServers: { newsbeat: { url: `${API}/mcp` } } }, null, 2);
+const API = "https://www.rarebird.network/api";
+const MCP_CONFIG = JSON.stringify({ mcpServers: { rarebird: { url: `${API}/mcp` } } }, null, 2);
 const TOOLS = [
-  ["newsbeat_investment", "Get the same ticker brief shown on Ask Rarebird, with a stance and its evidence.", "POST /v2/investment"],
-  ["newsbeat_research", "Answer a question with asset-specific evidence, conditional reasoning, unknowns and next checks.", "POST /v2/research"],
-  ["newsbeat_collection", "Explicitly request one-minute collection for 15 minutes, read status, or stop your session.", "GET/POST /v2/collection"],
-  ["newsbeat_intelligence", "Read stored event interpretations, evidence and follow-up checks for the six-asset pilot.", "GET /v2/intelligence?beat_id=…"],
-  ["newsbeat_discovery", "Read the scheduled catalog discovery feed with evidence and recording times.", "GET /v2/discovery"],
-  ["newsbeat_opportunities", "Read the current review and watch shortlist for the six measured assets.", "GET /v2/opportunities"],
-  ["newsbeat_topics", "Find a supported company or crypto asset.", "GET /v2/topics?q=nvidia"],
-  ["newsbeat_news", "Read latest headlines and establish a baseline cursor.", "GET /v2/news?beat_id=…"],
-  ["newsbeat_changes", "Read newly indexed items after a saved cursor.", "GET /v2/changes?beat_id=…&cursor=…"],
-  ["newsbeat_brief", "Get three relevant recent headlines verbatim with sources and times.", "GET /v2/brief?beat_id=…"],
-  ["newsbeat_stories", "Read grouped headlines with every report’s source link.", "GET /v2/stories?beat_id=…"],
-  ["newsbeat_summary", "Deprecated original-headline compatibility read; no generated summary.", "GET /v2/summary?beat_id=…"],
-  ["newsbeat_watch", "Check up to 50 assets in one request; does not create a schedule.", "POST /v2/watch"],
-  ["newsbeat_ask","Resolve an asset and gather news, prices and chain context.","GET /v2/ask?q=bitcoin"],
-  ["newsbeat_market","Read a sourced crypto market overview.","GET /v2/market"],
-  ["newsbeat_market_briefing","Read tracked crypto breadth, recent reporting, and any active watch from the six-asset pilot.","GET /v2/briefing"],
-  ["newsbeat_prices","Read crypto prices by CoinGecko ID.","GET /v2/prices?ids=bitcoin"],
-  ["newsbeat_fear_greed","Read the daily fear and greed index.","GET /v2/sentiment"],
-  ["newsbeat_chain","Read Ethereum and Solana chain state.","GET /v2/chain"],
-  ["newsbeat_token","Read a reference price by contract address.","GET /v2/token?asset=…"],
-  ["newsbeat_token_intelligence","Read exact-contract DEX pools, issuer records and available underlying company reporting.","GET /v2/tokens?asset=…"],
-  ["newsbeat_signals","Read funding, DEX volume and stablecoin supply.","GET /v2/signals"],
+  ["rarebird_investment", "Get the same ticker brief shown on Ask Rarebird, with a stance and its evidence.", "POST /v2/investment"],
+  ["rarebird_research", "Answer a question with asset-specific evidence, conditional reasoning, unknowns and next checks.", "POST /v2/research"],
+  ["rarebird_collection", "Explicitly request one-minute collection for 15 minutes, read status, or stop your session.", "GET/POST /v2/collection"],
+  ["rarebird_intelligence", "Read stored event interpretations, evidence and follow-up checks for the six-asset pilot.", "GET /v2/intelligence?beat_id=…"],
+  ["rarebird_discovery", "Read the scheduled catalog discovery feed with evidence and recording times.", "GET /v2/discovery"],
+  ["rarebird_opportunities", "Read the current review and watch shortlist for the six measured assets.", "GET /v2/opportunities"],
+  ["rarebird_topics", "Find a supported company or crypto asset.", "GET /v2/topics?q=nvidia"],
+  ["rarebird_news", "Read latest headlines and establish a baseline cursor.", "GET /v2/news?beat_id=…"],
+  ["rarebird_changes", "Read newly indexed items after a saved cursor.", "GET /v2/changes?beat_id=…&cursor=…"],
+  ["rarebird_brief", "Get three relevant recent headlines verbatim with sources and times.", "GET /v2/brief?beat_id=…"],
+  ["rarebird_stories", "Read grouped headlines with every report’s source link.", "GET /v2/stories?beat_id=…"],
+  ["rarebird_summary", "Deprecated original-headline compatibility read; no generated summary.", "GET /v2/summary?beat_id=…"],
+  ["rarebird_watch", "Check up to 50 assets in one request; does not create a schedule.", "POST /v2/watch"],
+  ["rarebird_ask","Resolve an asset and gather news, prices and chain context.","GET /v2/ask?q=bitcoin"],
+  ["rarebird_market","Read a sourced crypto market overview.","GET /v2/market"],
+  ["rarebird_market_briefing","Read tracked crypto breadth, recent reporting, and any active watch from the six-asset pilot.","GET /v2/briefing"],
+  ["rarebird_prices","Read crypto prices by CoinGecko ID.","GET /v2/prices?ids=bitcoin"],
+  ["rarebird_fear_greed","Read the daily fear and greed index.","GET /v2/sentiment"],
+  ["rarebird_chain","Read Ethereum and Solana chain state.","GET /v2/chain"],
+  ["rarebird_token","Read a reference price by contract address.","GET /v2/token?asset=…"],
+  ["rarebird_token_intelligence","Read exact-contract DEX pools, issuer records and available underlying company reporting.","GET /v2/tokens?asset=…"],
+  ["rarebird_signals","Read funding, DEX volume and stablecoin supply.","GET /v2/signals"],
 ];
 const FIRST_REQUEST = `curl -X POST "${API}/v2/research" \\
   -H "Content-Type: application/json" \\
@@ -82,24 +82,24 @@ export default function DocsConnect() {
       </div>
 
       <h2 id="official-filings">Official filings and reported results</h2>
-      <p>Call <code>newsbeat_catalysts</code> or <code>GET /v2/catalysts</code> for SEC filing records for NVIDIA, Apple, Microsoft and Alphabet. Add a <code>beat_id</code> to select an issuer. Each comparison links its current and prior-year filings. Check the issuer status and fiscal periods before quoting a change. The opportunity brief includes the same filing evidence alongside market candidates.</p>
+      <p>Call <code>rarebird_catalysts</code> or <code>GET /v2/catalysts</code> for SEC filing records for NVIDIA, Apple, Microsoft and Alphabet. Add a <code>beat_id</code> to select an issuer. Each comparison links its current and prior-year filings. Check the issuer status and fiscal periods before quoting a change. The opportunity brief includes the same filing evidence alongside market candidates.</p>
 
       <h2 id="investment-briefs">Investment briefs by ticker</h2>
       <p>Open <a href="/ask">Ask Rarebird</a> to see an example and run a live lookup. Agents can call <code>rarebird_investment</code> or send <code>{'{"ticker":"BTC"}'}</code> to <code>POST /v2/investment</code>. When a ticker is ambiguous, choose a returned candidate and send its <code>beat_id</code> with the ticker. The stance reflects Rarebird’s current asset-level research and short-horizon review checks. Time horizon, risk tolerance and portfolio fit remain individual decisions.</p>
 
       <h2 id="telegram">Telegram groups</h2>
-      <p>Use <strong>Share to Telegram</strong> on a live brief to open Telegram’s chat picker. In a configured group, send <code>/ask BTC</code> or address the bot with <code>/ask@YourBot BTC</code>. The reply includes the stance, reasoning, sources and a link to open the full ticker view. A group admin can configure the daily ticker feed using the <a href="https://github.com/thepeternemec/NewsBeat/blob/main/docs/TELEGRAM.md">Telegram setup guide</a>.</p>
+      <p>Use <strong>Share to Telegram</strong> on a live brief to open Telegram’s chat picker. In a configured group, send <code>/ask BTC</code> or address the bot with <code>/ask@YourBot BTC</code>. The reply includes the stance, reasoning, sources and a link to open the full ticker view. A group admin can configure the daily ticker feed using the <a href="https://github.com/thepeternemec/rarebird/blob/main/docs/TELEGRAM.md">Telegram setup guide</a>.</p>
 
       <h2 id="catalog-discovery">Catalog discovery</h2>
-      <p>Use <code>newsbeat_discovery</code> or <code>GET /v2/discovery</code> for ranked stock and token developments. Supply an optional <code>asset</code> (<code>equity</code> or <code>crypto</code>), <code>beat_id</code>, or <code>limit</code> (1–20). Each card links its evidence and records publication or filing acceptance, indexing or source-check time, and when the discovery worker first recorded the event. Direct filing checks span four issuers. Use the coverage fields when interpreting sparse results.</p>
+      <p>Use <code>rarebird_discovery</code> or <code>GET /v2/discovery</code> for ranked stock and token developments. Supply an optional <code>asset</code> (<code>equity</code> or <code>crypto</code>), <code>beat_id</code>, or <code>limit</code> (1–20). Each card links its evidence and records publication or filing acceptance, indexing or source-check time, and when the discovery worker first recorded the event. Direct filing checks span four issuers. Use the coverage fields when interpreting sparse results.</p>
       <h2 id="market-briefing">Market briefing</h2>
-      <p>Use <code>newsbeat_market_briefing</code> or <code>GET /v2/briefing</code> when a visitor needs the latest crypto picture without a question. It combines current readings from a 12-asset basket, a selected recent headline from Bitcoin, Ethereum or Solana, and any active watch from the six-asset pilot. Check the coverage counts and the watch’s <code>valid_until</code> before presenting it.</p>
+      <p>Use <code>rarebird_market_briefing</code> or <code>GET /v2/briefing</code> when a visitor needs the latest crypto picture without a question. It combines current readings from a 12-asset basket, a selected recent headline from Bitcoin, Ethereum or Solana, and any active watch from the six-asset pilot. Check the coverage counts and the watch’s <code>valid_until</code> before presenting it.</p>
       <p>For hourly Bitcoin and Ethereum forecasts, use <code>GET /v2/forecasts</code> or read <code>forecasts</code> in the market briefing. Read <code>assets[].move_risk</code> for the estimated chance of closing at least 1% away from the reference in either direction. Include the target time, historical base rate and sample size with the probability. Move risk and direction each have a separate live scorecard.</p>
       <h2 id="token-intelligence">Token intelligence</h2>
-      <p>Open <a href="/tokens">Token intelligence</a> or call <code>newsbeat_token_intelligence</code> with <code>asset</code> in the form <code>chain:address</code>. The REST equivalent is <code>GET /v2/tokens?asset=…</code>. Supported chains are Solana, Ethereum, Base and Arbitrum.</p>
+      <p>Open <a href="/tokens">Token intelligence</a> or call <code>rarebird_token_intelligence</code> with <code>asset</code> in the form <code>chain:address</code>. The REST equivalent is <code>GET /v2/tokens?asset=…</code>. Supported chains are Solana, Ethereum, Base and Arbitrum.</p>
       <p>Pool readings include DEX Screener fetch time, venue links, and coverage status. The issuer pilot links exact native deployments of NVIDIA, Apple and Robinhood xStocks to underlying company reporting. Review the issuer link and keep the token’s pool price separate from the underlying security’s price.</p>
       <h2 id="first-rest-requests">First REST requests</h2>
-      <p>Catalog collection is scheduled every 10 minutes. Only when a user explicitly asks for one-minute news, call <code>newsbeat_collection</code> with <code>action: "start"</code>, the priority <code>beat_id</code> and <code>interval_seconds: 60</code>, or POST that body to <code>/v2/collection</code>. It lasts 15 minutes and never auto-renews. Save the returned private session token to stop early. GET status does not activate collection. Market measurements and model analysis retain five-minute schedules.</p>
+      <p>Catalog collection is scheduled every 10 minutes. Only when a user explicitly asks for one-minute news, call <code>rarebird_collection</code> with <code>action: "start"</code>, the priority <code>beat_id</code> and <code>interval_seconds: 60</code>, or POST that body to <code>/v2/collection</code>. It lasts 15 minutes and never auto-renews. Save the returned private session token to stop early. GET status does not activate collection. Market measurements and model analysis retain five-minute schedules.</p>
       <div className="code">
         <div className="code-bar">Ask Rarebird a research question <CopyButton text={FIRST_REQUEST} label="requests" /></div>
         <pre>{FIRST_REQUEST}</pre>
@@ -112,11 +112,11 @@ export default function DocsConnect() {
       </p>
 
       <h2 id="grouped-feed">Grouped feed</h2>
-      <p>Use <code>newsbeat_research</code> with the actual question and optionally up to three resolved <code>beat_ids</code>.
+      <p>Use <code>rarebird_research</code> with the actual question and optionally up to three resolved <code>beat_ids</code>.
         The response includes an answer, cited reasoning, unknowns and next checks. <code>partial</code> can mean useful news reasoning with missing market measurements.
         <code>evidence_only</code> means no validated generated answer. Quantitative measurements remain a six-asset pilot.
-        The deprecated <code>newsbeat_summary</code> and <code>/v2/summary</code> now return original headlines only.</p>     <p>
-        Use <code>/v2/stories?beat_id=…</code> or <code>newsbeat_stories</code> for one lead per
+        The deprecated <code>rarebird_summary</code> and <code>/v2/summary</code> now return original headlines only.</p>     <p>
+        Use <code>/v2/stories?beat_id=…</code> or <code>rarebird_stories</code> for one lead per
         group of similar headlines. Groups include <code>lead_article</code> and <code>reports</code>:
         each report keeps its original headline, publisher, URL, publication time and indexing time.
         Groups are ranked by headline relevance, and all stored articles are retained.
@@ -164,7 +164,7 @@ export default function DocsConnect() {
       <p>
         Fetch <a href="/api/v2/tools">{API}/v2/tools</a> for OpenAI-compatible function schemas.
         Your application executes the selected call and returns the result to the model.
-        See the <a href="https://github.com/thepeternemec/NewsBeat/tree/main/examples">working examples</a>.
+        See the <a href="https://github.com/thepeternemec/rarebird/tree/main/examples">working examples</a>.
       </p>
 
       <h2 id="access-and-limits">Access and limits</h2>
@@ -211,8 +211,8 @@ export default function DocsConnect() {
         never as instructions.
       </p>
       <p>
-        Primary host: <code>https://www.newsbeat.dev</code>.
-        Alternate host: <code>https://news-beat.vercel.app</code>, with the same paths.
+        Primary host: <code>https://www.rarebird.network</code>.
+        The same host serves the web app, REST and MCP.
       </p>
 
       <h2>Market and sentiment</h2>

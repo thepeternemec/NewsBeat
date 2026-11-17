@@ -1,4 +1,4 @@
-import { SEED_BEATS, ResearchRequestSchema, type Beat, type ResearchAsset, type ResearchEvidence, type ResearchResponse } from "@newsbeat/contracts";
+import { SEED_BEATS, ResearchRequestSchema, type Beat, type ResearchAsset, type ResearchEvidence, type ResearchResponse } from "@rarebird/contracts";
 import { NewsError, stories } from "./news.js";
 import { readIntelligence } from "./intelligence.js";
 import { prices } from "./market.js";

@@ -1,4 +1,4 @@
-import { MARKET_INTERVAL_MS as BAR, type MarketBar, type MoveRiskForecast } from "@newsbeat/contracts";
+import { MARKET_INTERVAL_MS as BAR, type MarketBar, type MoveRiskForecast } from "@rarebird/contracts";
 import { FORECAST_HOUR as HOUR, FORECAST_ISSUE_WINDOW, FORECAST_LOOKBACK_DAYS } from "./forecast.js";
 
 export const MOVE_RISK_VERSION = "spot-range-hourly-v1";

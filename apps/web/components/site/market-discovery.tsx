@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useState } from "react";
 import { ArrowUpRight, X } from "lucide-react";
-import type { DiscoveryFeed } from "@newsbeat/contracts";
+import type { DiscoveryFeed } from "@rarebird/contracts";
 import CatalogSearch from "./catalog-search";
 import type { LookupAsset } from "./landing-lookup-data";
 import { API_BASE } from "./content";

@@ -15,7 +15,7 @@
  * to start without them rather than redirecting somewhere broken.
  */
 import { createHmac, timingSafeEqual } from "node:crypto";
-import { env } from "@newsbeat/db";
+import { env } from "@rarebird/db";
 
 const AUTHORIZE = "https://github.com/login/oauth/authorize";
 const TOKEN = "https://github.com/login/oauth/access_token";
@@ -23,7 +23,9 @@ const USER = "https://api.github.com/user";
 
 /** One registered callback for all hosted aliases and preview deployments. */
 export function oauthOrigin(origin: string): string {
-  return env("VERCEL") === "1" ? "https://www.newsbeat.dev" : new URL(origin).origin;
+  const registeredOrigin = env("RAREBIRD_GITHUB_OAUTH_ORIGIN");
+  if (registeredOrigin) return new URL(registeredOrigin).origin;
+  return env("VERCEL") === "1" ? "https://www.rarebird.network" : new URL(origin).origin;
 }
 
 /** Used identically during authorization and the code exchange. */
@@ -54,8 +56,8 @@ export function oauthConfig(): OAuthConfig | null {
 const STATE_TTL_MS = 10 * 60_000;
 
 function stateKey(): string {
-  const secret = env("NEWSBEAT_CURSOR_SECRET");
-  if (!secret) throw new Error("NEWSBEAT_CURSOR_SECRET is required to sign OAuth state");
+  const secret = env("RAREBIRD_CURSOR_SECRET");
+  if (!secret) throw new Error("RAREBIRD_CURSOR_SECRET is required to sign OAuth state");
   return secret;
 }
 
@@ -125,7 +127,7 @@ export async function exchangeCodeForUser(
     headers: {
       Authorization: `Bearer ${token.access_token}`,
       Accept: "application/vnd.github+json",
-      "User-Agent": "newsbeat",
+      "User-Agent": "rarebird",
     },
     signal: AbortSignal.timeout(15_000),
   });

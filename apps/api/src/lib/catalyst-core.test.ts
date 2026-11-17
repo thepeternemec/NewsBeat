@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import type { CatalystCoverage, FilingEvidence } from "@newsbeat/contracts";
+import type { CatalystCoverage, FilingEvidence } from "@rarebird/contracts";
 import { buildCatalystRadar, compareReportedConcept, FINANCIAL_CONCEPTS, filingUrl, OFFICIAL_ISSUERS, parseFilings } from "./catalyst-core.js";
 import { officialResearchEvidence, readCatalysts } from "./catalysts.js";
 
