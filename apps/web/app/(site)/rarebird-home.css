@@ -70,25 +70,19 @@ body:has(.rb-home) > :is(.grid-field, .aurora-layer, .noise-overlay) { display: 
   background: radial-gradient(ellipse at 53% 39%, #1e2024 0%, transparent 68%), #0b0c0e;
   color: #f0f1f3;
 }
-.rb-direction-scene { display: block; width: 100%; height: auto; max-width: 560px; }
-.rb-direction-floor { fill: #111316; stroke: #393c43; stroke-width: 1; }
-.rb-direction-floor-top { stroke: #63666c; stroke-opacity: .49; }
-.rb-direction-grid { stroke: #8e929b; stroke-opacity: .15; fill: none; }
-.rb-direction-trace { fill: none; stroke: #80848d; stroke-opacity: .56; stroke-width: 1; stroke-dasharray: 3 5; }
-.rb-direction-trace polyline { stroke-opacity: .28; }
-.rb-direction-trace circle { fill: #9fa3ad; stroke: none; }
-.rb-direction-trace[data-active="true"] { stroke: #c2c7d0; stroke-opacity: .73; }
-.rb-direction-trace[data-active="true"] circle { fill: #d4d7dc; }
-.rb-direction-anchor { fill: #1e2126; stroke: #6c727d; stroke-width: 1.1; }
-.rb-direction-anchor polygon:first-child { fill: none; stroke-opacity: .52; stroke-dasharray: 2 5; }
-.rb-direction-anchor line { stroke-dasharray: 2 4; }
-.rb-direction-anchor circle:last-child { fill: #f0f1f4; stroke: none; }
-.rb-direction-lead { fill: none; stroke: #737984; stroke-width: 1.2; }
-.rb-direction-wall { fill: #242830; stroke: #424852; stroke-width: .7; stroke-linejoin: round; }
-.rb-direction-face { stroke: #777d86; stroke-width: 1; stroke-linejoin: round; }
-.rb-direction-arrow[data-active="true"] .rb-direction-wall { fill: #464a51; stroke: #8e939e; }
-.rb-direction-arrow[data-active="true"] .rb-direction-face { stroke: #f3f4f6; filter: drop-shadow(0 0 8px #eef0f44a); }
-.rb-direction-arrow[data-active="true"] .rb-direction-lead { stroke: #e7e9ed; stroke-width: 1.7; }
+.rb-market-chart { display: block; width: 100%; height: auto; max-width: 560px; }
+.rb-market-chart-grid { fill: none; stroke: #bdc7d8; stroke-opacity: .075; stroke-width: .7; }
+.rb-market-chart-floor { fill: none; stroke: #a4afc0; stroke-opacity: .12; stroke-width: .7; }
+.rb-market-chart-floor path:first-child { stroke-opacity: .38; }
+.rb-market-bar-enter, .rb-market-bar { transform-box: fill-box; transform-origin: center bottom; }
+.rb-market-bar-front { stroke: #b6c1d2; stroke-opacity: .16; stroke-width: .7; }
+.rb-market-bar-side { fill: #3a424e; fill-opacity: .65; stroke: #9aa7bb; stroke-opacity: .17; stroke-width: .6; }
+.rb-market-bar-top { fill: #a8b4c8; fill-opacity: .58; stroke: #dce4f0; stroke-opacity: .26; stroke-width: .6; }
+.rb-market-curve, .rb-market-curve-sheen { fill: none; stroke: #dce2ec; stroke-width: 2.3; stroke-linecap: round; stroke-linejoin: round; }
+.rb-market-curve-sheen { stroke: #fff; stroke-width: 2.8; stroke-dasharray: .14 .86; filter: drop-shadow(0 0 5px #e3ebff80); }
+.rb-market-end-guide { fill: none; stroke: #c2cbd9; stroke-width: .8; stroke-opacity: .28; stroke-dasharray: 2 6; }
+.rb-market-end-ring { fill: #dae2f0; fill-opacity: .1; stroke: #dae2f0; stroke-opacity: .22; transform-box: fill-box; transform-origin: center; }
+.rb-market-end-dot { fill: #f1f4fa; filter: drop-shadow(0 0 6px #e3ebff80); }
 .rb-direction-caption { display: grid; gap: 5px; text-align: center; }
 .rb-direction-caption span { font-size: clamp(30px, 3vw, 42px); letter-spacing: -.04em; line-height: 1.2; }
 .rb-direction-caption small { color: #c3c5cb; font-size: 12px; }
@@ -121,10 +115,20 @@ body:has(.rb-home) > :is(.grid-field, .aurora-layer, .noise-overlay) { display: 
   .rb-home-path-down { animation: rb-home-flow 12s -6s linear infinite; }
   .rb-home-emblem { animation: rb-home-float 8s ease-in-out infinite; }
   .rb-perspective-body { animation: rb-home-arrive .3s ease-out both; }
+  .rb-market-bar-enter { animation: rb-market-bar-rise .85s cubic-bezier(.22, 1, .36, 1) var(--bar-delay) both; }
+  .rb-market-bar { animation: rb-market-bar-breathe 5.8s ease-in-out var(--bar-phase) infinite; }
+  .rb-market-curve { stroke-dasharray: 1; animation: rb-market-curve-draw 1.8s .15s ease-out both; }
+  .rb-market-curve-sheen { animation: rb-market-curve-flow 5s 1.8s linear infinite; }
+  .rb-market-end-ring { animation: rb-market-end-pulse 3s ease-out infinite; }
 }
 @keyframes rb-home-flow { to { stroke-dashoffset: -1; } }
 @keyframes rb-home-float { 50% { transform: translateY(-9px) rotate(-5deg); } }
 @keyframes rb-home-arrive { from { opacity: .4; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+@keyframes rb-market-bar-rise { from { opacity: 0; transform: scaleY(.05); } to { opacity: 1; transform: scaleY(1); } }
+@keyframes rb-market-bar-breathe { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(.96); } }
+@keyframes rb-market-curve-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes rb-market-curve-flow { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes rb-market-end-pulse { 0% { opacity: .8; transform: scale(1); } 85%, 100% { opacity: 0; transform: scale(2.3); } }
 @media (max-width: 1000px) {
   .rb-home .rb-home-width { padding-inline: 32px; }
   .rb-home .rb-home-hero { min-height: 740px; padding-top: 140px; padding-bottom: 75px; }
@@ -155,7 +159,7 @@ body:has(.rb-home) > :is(.grid-field, .aurora-layer, .noise-overlay) { display: 
   .rb-perspective-tabs button { font-size: 12px; min-height: 75px; flex-direction: column; gap: 6px; padding: 10px 4px; }
   .rb-perspective-body { grid-template-columns: 1fr; }
   .rb-perspective-visual { padding: 14px 17px 24px; border-right: 0; border-bottom: 1px solid var(--border-subtle); }
-  .rb-direction-scene { max-width: 420px; }
+  .rb-market-chart { max-width: 420px; }
   .rb-direction-caption span { font-size: 34px; }
   .rb-perspective-copy { padding: 28px; min-height: 440px; }
   .rb-perspective-copy h3 { font-size: 26px; }
