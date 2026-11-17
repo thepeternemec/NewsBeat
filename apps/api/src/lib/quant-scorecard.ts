@@ -1,5 +1,5 @@
-import type { ReviewCostScenario } from "@newsbeat/contracts";
-import type { Sql } from "@newsbeat/db";
+import type { ReviewCostScenario } from "@rarebird/contracts";
+import type { Sql } from "@rarebird/db";
 
 const MAX_RECORDS = 300;
 const MIN_OBSERVATIONS = 20;

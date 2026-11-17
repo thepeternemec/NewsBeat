@@ -1,5 +1,5 @@
 import { timingSafeEqual } from "node:crypto";
-import { runRequestedIngestion } from "newsbeat-worker";
+import { runRequestedIngestion } from "rarebird-worker";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;

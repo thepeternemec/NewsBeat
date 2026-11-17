@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { test } from "node:test";
-import { QUANT_POLICY_VERSION, type IntelligenceResponse, type InvestmentBrief, type ResearchResponse } from "@newsbeat/contracts";
-import { closeDb, db } from "@newsbeat/db";
+import { QUANT_POLICY_VERSION, type IntelligenceResponse, type InvestmentBrief, type ResearchResponse } from "@rarebird/contracts";
+import { closeDb, db } from "@rarebird/db";
 import app from "../index.js";
 import { investmentEvidenceAnswer, investmentStance } from "./investment.js";
 import { buildMarketContext } from "./quant-engine.js";
@@ -86,24 +86,24 @@ test("Telegram formatter links the full brief when a symbol needs disambiguation
   const response = await app.request("/v2/investment", { method: "POST", body: JSON.stringify({ ticker: "SUI" }) });
   const message = formatTelegramBrief(await response.json() as InvestmentBrief);
   assert.match(message.text, /choose the one you mean/i);
-  assert.equal(message.reply_markup.inline_keyboard[0]?.[0]?.url, "https://www.newsbeat.dev/ask?ticker=SUI");
+  assert.equal(message.reply_markup.inline_keyboard[0]?.[0]?.url, "https://www.rarebird.network/ask?ticker=SUI");
   assert.ok(message.text.length < 4096);
 });
 
 test("Telegram webhook authenticates and ignores updates from outside the configured group", async t => {
   const before = { ...process.env };
   t.after(() => {
-    for (const key of Object.keys(process.env)) if (key.startsWith("NEWSBEAT_TELEGRAM_")) {
+    for (const key of Object.keys(process.env)) if (key.startsWith("RAREBIRD_TELEGRAM_")) {
       if (before[key] === undefined) delete process.env[key];
       else process.env[key] = before[key];
     }
   });
-  process.env.NEWSBEAT_TELEGRAM_BOT_TOKEN = "123:fake-test-token";
-  process.env.NEWSBEAT_TELEGRAM_CHAT_ID = "-100000000001";
-  process.env.NEWSBEAT_TELEGRAM_BOT_USERNAME = "RarebirdBot";
-  process.env.NEWSBEAT_TELEGRAM_WEBHOOK_SECRET = "a".repeat(40);
-  delete process.env.NEWSBEAT_TELEGRAM_TOPIC_ID;
-  const request = (secret: string) => new Request("https://www.newsbeat.dev/api/telegram/webhook", {
+  process.env.RAREBIRD_TELEGRAM_BOT_TOKEN = "123:fake-test-token";
+  process.env.RAREBIRD_TELEGRAM_CHAT_ID = "-100000000001";
+  process.env.RAREBIRD_TELEGRAM_BOT_USERNAME = "RarebirdBot";
+  process.env.RAREBIRD_TELEGRAM_WEBHOOK_SECRET = "a".repeat(40);
+  delete process.env.RAREBIRD_TELEGRAM_TOPIC_ID;
+  const request = (secret: string) => new Request("https://www.rarebird.network/api/telegram/webhook", {
     method: "POST", headers: { "x-telegram-bot-api-secret-token": secret },
     body: JSON.stringify({ update_id: 42, message: { message_id: 10, chat: { id: -100000000002, type: "supergroup" }, text: "/ask BTC" } }),
   });
@@ -112,14 +112,14 @@ test("Telegram webhook authenticates and ignores updates from outside the config
   assert.deepEqual(await result.json(), { ok: true });
 });
 
-const connection = process.env.NEWSBEAT_INTELLIGENCE_TEST_DATABASE_URL;
+const connection = process.env.RAREBIRD_INTELLIGENCE_TEST_DATABASE_URL;
 
 test("Telegram retries of an accepted group command send one reply", { skip: !connection }, async t => {
   const url = new URL(connection!);
-  assert.ok(["localhost", "127.0.0.1"].includes(url.hostname) && url.pathname === "/newsbeat_intelligence_test");
+  assert.ok(["localhost", "127.0.0.1"].includes(url.hostname) && url.pathname === "/rarebird_intelligence_test");
   const settings = {
-    DATABASE_URL: connection!, NEWSBEAT_TELEGRAM_BOT_TOKEN: "123:fake-test-token", NEWSBEAT_TELEGRAM_CHAT_ID: "-100000000001",
-    NEWSBEAT_TELEGRAM_BOT_USERNAME: "RarebirdBot", NEWSBEAT_TELEGRAM_WEBHOOK_SECRET: "a".repeat(40), NEWSBEAT_TELEGRAM_TOPIC_ID: "",
+    DATABASE_URL: connection!, RAREBIRD_TELEGRAM_BOT_TOKEN: "123:fake-test-token", RAREBIRD_TELEGRAM_CHAT_ID: "-100000000001",
+    RAREBIRD_TELEGRAM_BOT_USERNAME: "RarebirdBot", RAREBIRD_TELEGRAM_WEBHOOK_SECRET: "a".repeat(40), RAREBIRD_TELEGRAM_TOPIC_ID: "",
   };
   const before = Object.fromEntries(Object.keys(settings).map(key => [key, process.env[key]]));
   Object.assign(process.env, settings);
@@ -135,14 +135,14 @@ test("Telegram retries of an accepted group command send one reply", { skip: !co
   t.mock.method(globalThis, "fetch", async (input: string, init: RequestInit) => {
     assert.match(input, /^https:\/\/api\.telegram\.org\/bot123:fake-test-token\/sendMessage$/);
     const message = JSON.parse(String(init.body));
-    assert.equal(message.chat_id, settings.NEWSBEAT_TELEGRAM_CHAT_ID);
+    assert.equal(message.chat_id, settings.RAREBIRD_TELEGRAM_CHAT_ID);
     assert.equal(message.reply_parameters.message_id, 12);
     assert.match(message.text, /SUI/);
     sends++;
     return Response.json({ ok: true });
   });
-  const request = () => new Request("https://www.newsbeat.dev/api/telegram/webhook", {
-    method: "POST", headers: { "x-telegram-bot-api-secret-token": settings.NEWSBEAT_TELEGRAM_WEBHOOK_SECRET },
+  const request = () => new Request("https://www.rarebird.network/api/telegram/webhook", {
+    method: "POST", headers: { "x-telegram-bot-api-secret-token": settings.RAREBIRD_TELEGRAM_WEBHOOK_SECRET },
     body: JSON.stringify({ update_id: Date.now(), message: { message_id: 12, chat: { id: -100000000001, type: "supergroup" }, text: "/ask SUI" } }),
   });
   const original = request();

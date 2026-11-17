@@ -1,4 +1,4 @@
-import type { ResearchAnswer, ResearchAsset, ResearchEvidence } from "@newsbeat/contracts";
+import type { ResearchAnswer, ResearchAsset, ResearchEvidence } from "@rarebird/contracts";
 import { resolveResearchAssets } from "./research-core.js";
 
 const QUOTE_WORDS = new Set("what whats is are the current latest reference spot price prices quote quotes bid bids ask asks mid midpoint for of and or me show give tell please how much does do a an s in usd dollar dollars now today live source sources with at as observed observation timestamp timestamps time update updated when can you i".split(" "));

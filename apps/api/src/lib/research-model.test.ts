@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import type { ResearchEvidence } from "@newsbeat/contracts";
+import type { ResearchEvidence } from "@rarebird/contracts";
 import { reasonAboutQuestion } from "./research-model.js";
 
 const evidence: ResearchEvidence[] = [{

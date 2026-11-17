@@ -9,7 +9,7 @@ export const metadata = {
     "Operational checks for the Rarebird news API, MCP connection and news collection, with a public status feed.",
   alternates: {
     types: {
-      "application/atom+xml": "https://www.newsbeat.dev/api/status/feed",
+      "application/atom+xml": "https://www.rarebird.network/api/status/feed",
     },
   },
 };
@@ -70,8 +70,8 @@ export default function StatusPage() {
           </section>
           <div className="status-contact">
             <span>Something looks wrong?</span>
-            <a href="mailto:contact@newsbeat.dev">
-              contact@newsbeat.dev <span aria-hidden="true">↗</span>
+            <a href="mailto:contact@rarebird.network">
+              contact@rarebird.network <span aria-hidden="true">↗</span>
             </a>
             <a href="/api/status">
               JSON status <span aria-hidden="true">↗</span>

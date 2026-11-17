@@ -34,7 +34,7 @@ export default function Page() {
               <h2 className="sec-title">Your questions, answered.</h2>
             </div>
             <p>From your first question to your next integration.</p>
-            <a className="aside-contact" href="mailto:contact@newsbeat.dev"><span>Can’t find the answer?</span>contact@newsbeat.dev <span aria-hidden="true">↗</span></a>
+            <a className="aside-contact" href="mailto:contact@rarebird.network"><span>Can’t find the answer?</span>contact@rarebird.network <span aria-hidden="true">↗</span></a>
             <a className="quiet-link" href="#status">See what’s available ↓</a>
             </div>
             <div className="faq">

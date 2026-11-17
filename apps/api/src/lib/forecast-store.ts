@@ -1,5 +1,5 @@
-import { db, hasDatabaseEnv, type Sql } from "@newsbeat/db";
-import { type MarketBar, type MarketForecast, type MarketForecasts, type MarketSnapshot, type MoveRiskForecast } from "@newsbeat/contracts";
+import { db, hasDatabaseEnv, type Sql } from "@rarebird/db";
+import { type MarketBar, type MarketForecast, type MarketForecasts, type MarketSnapshot, type MoveRiskForecast } from "@rarebird/contracts";
 import {
   buildHourlyForecast, FORECAST_HOUR, FORECAST_ISSUE_WINDOW, FORECAST_LOOKBACK_DAYS, FORECAST_MARKETS,
   FORECAST_MISSING_AFTER_HOURS, FORECAST_VERSION,

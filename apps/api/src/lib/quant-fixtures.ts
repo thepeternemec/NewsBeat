@@ -1,4 +1,4 @@
-import { MARKET_INTERVAL_MS as I, INTELLIGENCE_VERSION, SIGNAL_CONTEXTS, type IntelligenceSignal, type MarketSnapshot, type MarketInstrument } from "@newsbeat/contracts";
+import { MARKET_INTERVAL_MS as I, INTELLIGENCE_VERSION, SIGNAL_CONTEXTS, type IntelligenceSignal, type MarketSnapshot, type MarketInstrument } from "@rarebird/contracts";
 import { MARKET_PROFILES } from "./quant-market.js";
 import { constructSignal } from "./signal-construction.js";
 

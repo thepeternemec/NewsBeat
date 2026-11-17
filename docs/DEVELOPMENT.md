@@ -9,7 +9,7 @@ The website, REST API and MCP endpoint run in one Next.js application. PostgreSQ
 Use Node.js 22 or 24 and npm:
 
 ```bash
-git clone https://github.com/thepeternemec/NewsBeat.git
+git clone https://github.com/thepeternemec/rarebird.git
 cd Rarebird
 npm ci
 npm run build
@@ -26,7 +26,7 @@ npm run dev
 
 Open http://localhost:3000. The API is mounted at http://localhost:3000/api; a separate API process is not required.
 
-Without a database, pages can render but local news endpoints cannot return stored news. To explore populated data immediately, use the [hosted service](https://www.newsbeat.dev).
+Without a database, pages can render but local news endpoints cannot return stored news. To explore populated data immediately, use the [hosted service](https://www.rarebird.network).
 
 ## 3. Configure local news data
 
@@ -41,7 +41,7 @@ Set these values in `apps/web/.env.local`:
 | Variable | Purpose |
 | --- | --- |
 | `DATABASE_URL` | Connection string for your development database |
-| `NEWSBEAT_CURSOR_SECRET` | A stable random value used to sign article cursors |
+| `RAREBIRD_CURSOR_SECRET` | A stable random value used to sign article cursors |
 
 Generate a cursor secret with:
 
@@ -78,9 +78,9 @@ A successful collection can contain no matching articles. Freshness describes th
 | --- | --- |
 | Generated summaries and pilot analysis | Server-side Vercel AI Gateway credentials; `AI_GATEWAY_API_KEY` outside Vercel, or the deployment's OIDC identity on Vercel |
 | Pilot scheduled routes | `CRON_SECRET`; send the matching bearer authorization when invoking them |
-| Manual general ingestion | `NEWSBEAT_CRON_SECRET` |
+| Manual general ingestion | `RAREBIRD_CRON_SECRET` |
 | GitHub-issued account keys | `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET`; callback at your local origin's `/api/keys/callback` |
-| Optional NewsAPI.ai collection | `NEWSBEAT_PROVIDER=newsapi` and `NEWSAPI_API_KEY` |
+| Optional NewsAPI.ai collection | `RAREBIRD_PROVIDER=newsapi` and `NEWSAPI_API_KEY` |
 
 Model requests consume the operator's provider allowance or credits. Reading stored intelligence does not run the analysis model. A fresh local database will not contain pilot interpretations until the authenticated analysis worker runs.
 

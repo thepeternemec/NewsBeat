@@ -6,7 +6,7 @@ import type {
   OperationState,
   OperationSnapshot,
   OperationStatus,
-} from "@newsbeat/contracts";
+} from "@rarebird/contracts";
 import { API_BASE } from "./content";
 import { timelineSlots, indexHistory, historyStats } from "./status-history";
 
@@ -24,7 +24,7 @@ const TITLES: Record<OperationState, string> = {
 };
 const COMPONENTS = [
   { id: "api", name: "News API", kind: "REST", endpoint: "GET /api/v2/news", method: "News read + cursor validation", scope: "Checks a real NVIDIA news response, its freshness field and follow-up cursor." },
-  { id: "mcp", name: "Agent connection", kind: "MCP", endpoint: "POST /api/mcp", method: "Initialize + newsbeat_brief", scope: "Checks protocol initialization, then calls the news briefing tool." },
+  { id: "mcp", name: "Agent connection", kind: "MCP", endpoint: "POST /api/mcp", method: "Initialize + rarebird_brief", scope: "Checks protocol initialization, then calls the news briefing tool." },
   { id: "ingestion", name: "News collection", kind: "INGESTION", endpoint: "/api/cron/ingest", method: "Catalog-wide freshness", scope: "Reads collection records for every supported topic against its own freshness window. Collection is scheduled every 15 minutes." },
 ] as const;
 function stamp(value: string, precise = false, zone: DisplayZone = "utc") {
@@ -362,7 +362,7 @@ export default function StatusBoard() {
         </a>
       </div>
 
-      <div className="status-monitor-facts" aria-label="Monitor information"><span><strong>3</strong> monitored services</span><span><strong>5 min</strong> check interval</span><span><strong>{hours * 12}</strong> bars per service</span><span title="The monitor calls the production newsbeat.dev service">Production monitor</span></div>
+      <div className="status-monitor-facts" aria-label="Monitor information"><span><strong>3</strong> monitored services</span><span><strong>5 min</strong> check interval</span><span><strong>{hours * 12}</strong> bars per service</span><span title="The monitor calls the production rarebird.network service">Production monitor</span></div>
 
       <section className="status-services" aria-labelledby="status-services-title">
         <div className="status-section-heading">

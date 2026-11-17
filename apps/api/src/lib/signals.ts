@@ -24,7 +24,7 @@ import type {
   Sourced,
   StablecoinPayload,
   Unavailable,
-} from "@newsbeat/contracts";
+} from "@rarebird/contracts";
 import { upstreamCache } from "./market-cache.js";
 
 const TIMEOUT_MS = 8_000;
@@ -40,7 +40,7 @@ export const SIGNAL_TTL = {
 async function getJson<T>(url: string): Promise<T> {
   const response = await fetch(url, {
     signal: AbortSignal.timeout(TIMEOUT_MS),
-    headers: { accept: "application/json", "user-agent": "newsbeat/0.3" },
+    headers: { accept: "application/json", "user-agent": "rarebird/0.3" },
   });
   if (!response.ok) throw new Error(`${new URL(url).host} responded ${response.status}`);
   return (await response.json()) as T;

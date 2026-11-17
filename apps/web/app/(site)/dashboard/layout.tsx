@@ -8,9 +8,9 @@ const DESCRIPTION = "Explore the reporting behind an asset, read the original so
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  alternates: { canonical: "https://www.newsbeat.dev/dashboard" },
+  alternates: { canonical: "https://www.rarebird.network/dashboard" },
   robots: { index: false, follow: true },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: "https://www.newsbeat.dev/dashboard" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: "https://www.rarebird.network/dashboard" },
   twitter: { title: TITLE, description: DESCRIPTION },
 };
 

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ArrowDown, ArrowDownUp, ArrowLeft, ArrowRight, ArrowUp, ArrowUpRight, RefreshCw, Search, Star } from "lucide-react";
-import type { CryptoMarketRow, CryptoMarketsPayload, Sourced } from "@newsbeat/contracts";
+import type { CryptoMarketRow, CryptoMarketsPayload, Sourced } from "@rarebird/contracts";
 import { API_BASE } from "./content";
 import { findAssets, readCoverage, type LookupAsset, type LookupNews } from "./landing-lookup-data";
 import "./crypto-market-board.css";

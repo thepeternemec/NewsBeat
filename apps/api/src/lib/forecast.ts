@@ -1,4 +1,4 @@
-import { MARKET_INTERVAL_MS as BAR, type ForecastIndicators, type MarketBar, type MarketForecast } from "@newsbeat/contracts";
+import { MARKET_INTERVAL_MS as BAR, type ForecastIndicators, type MarketBar, type MarketForecast } from "@rarebird/contracts";
 
 export const FORECAST_VERSION = "spot-hourly-v1";
 export const FORECAST_HOUR = 60 * 60_000;

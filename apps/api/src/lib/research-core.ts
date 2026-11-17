@@ -1,4 +1,4 @@
-import { SEED_BEATS, ResearchAnswerSchema, type Beat, type ResearchAnswer, type ResearchEvidence } from "@newsbeat/contracts";
+import { SEED_BEATS, ResearchAnswerSchema, type Beat, type ResearchAnswer, type ResearchEvidence } from "@rarebird/contracts";
 
 const STOP = new Set("a an the is are was were be been being it on in at to for of or and with from by as has have had can could may might will would should do does did all any now new why how what when where which who market markets stock stocks crypto news price prices risk risks data flow near link target core best buy sell next last today yesterday tomorrow week weeks month months year years gas request research signal signals intelligence outlook context timing act action capital demand expectations performance change changes changed moving moved pressure reaction return returns".split(" "));
 const normalize = (s: string) => s.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim().replace(/\s+/g, " ");

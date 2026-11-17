@@ -1,25 +1,45 @@
-import { ArrowDownRight, ArrowRight, ArrowUpRight, Check, Code2 } from "lucide-react";
+import { ArrowDownRight, ArrowRight, ArrowUpRight, Bot, Search, Terminal } from "lucide-react";
 import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
 import BrandMark, { BrandWordmark } from "@/components/site/brand-mark";
 import MarketPerspective from "@/components/site/market-perspective";
+import { EARLY_ACCESS_END } from "@/components/site/access-offer";
 import "./rarebird-home.css";
 
-const TITLE = "Rarebird — Find your edge. In either direction.";
-const DESCRIPTION = "Market intelligence for rising and falling markets. Explore developments, weigh the evidence and understand what could change the outlook with Rarebird.";
-const REPO = "https://github.com/thepeternemec/NewsBeat";
+const TITLE = "Rarebird — Market intelligence for stocks and crypto";
+const DESCRIPTION = "Follow fresh market developments, research tickers and see what could change the outlook. Use the Rarebird app or connect your AI agent.";
+const REPO = "https://github.com/thepeternemec/rarebird";
 
 export const metadata = {
-  title: TITLE, description: DESCRIPTION,
-  alternates: { canonical: "https://www.newsbeat.dev" },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: "https://www.newsbeat.dev", siteName: "Rarebird", type: "website" },
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: "/" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: "/", siteName: "Rarebird", type: "website" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
-const CAPABILITIES = [
-  { number: "01", title: "Find what deserves your attention.", description: "Follow new developments across 2,030 stocks and crypto assets. See the original source, when it appeared and what needs checking next.", tag: "Market discovery", href: "/intelligence#discovery", action: "Explore market checks" },
-  { number: "02", title: "Build a view. Know what could break it.", description: "Research a ticker and weigh the supporting evidence, the risks and the unknowns. Get a clear next check, including when the evidence says to wait.", tag: "Ticker intelligence", href: "/ask", action: "Research an asset" },
-  { number: "03", title: "Hold the forecast accountable.", description: "Inspect hourly Bitcoin and Ethereum forecasts, then see how they compare with actual outcomes and a historical baseline. Experimental forecasts, with the scorecard open.", tag: "Forecasts & outcomes", href: "/app/forecasts", action: "See the scorecard" },
+const RESEARCH_PATHS = [
+  {
+    name: "Market timing",
+    title: "See what deserves a closer look.",
+    description: "Follow new developments across 2,030 stocks and crypto assets. See when a source published, when Rarebird picked it up, and what to check next.",
+    href: "/intelligence#discovery",
+    action: "Explore market checks",
+  },
+  {
+    name: "Risk research",
+    title: "Know what could change your view.",
+    description: "Ask about any covered ticker. See the supporting evidence, the risks and the missing information. Market measurements are included where available.",
+    href: "/ask",
+    action: "Research a ticker",
+  },
+  {
+    name: "Forecasts and outcomes",
+    title: "See how forecasts actually performed.",
+    description: "Inspect experimental hourly Bitcoin and Ethereum forecasts, then compare the results with a historical baseline.",
+    href: "/app/forecasts",
+    action: "See the scorecard",
+  },
 ];
 
 export default function Home() {
@@ -28,14 +48,14 @@ export default function Home() {
     <main className="rb-home">
       <section className="rb-home-hero rb-home-width" id="top" aria-labelledby="home-title">
         <div className="rb-home-hero-copy">
-          <p className="rb-home-eyebrow"><span className="rb-home-dot" /> Intelligence for every market</p>
+          <p className="rb-home-eyebrow"><span className="rb-home-dot" /> Market intelligence for stocks and crypto</p>
           <h1 id="home-title">Find your edge.<br /><span>In either<br className="rb-home-desktop-break" /> direction.</span></h1>
-          <p className="rb-home-lede">When markets rise, find the substance.<br />When markets fall, see the bigger picture.<br />Make your next move with evidence.</p>
+          <p className="rb-home-lede">Rarebird follows the market as it moves. See what changed, trace it to the source, and know what to check before your next decision.</p>
           <div className="rb-home-actions">
-            <a className="rb-home-button" href="/app">Explore Rarebird <ArrowUpRight size={19} aria-hidden="true" /></a>
-            <a className="rb-home-text-link" href="#market-perspective">Discover your edge <ArrowRight size={17} aria-hidden="true" /></a>
+            <a className="rb-home-button" href="/app">Open the app <ArrowUpRight size={19} aria-hidden="true" /></a>
+            <a className="rb-home-text-link" href="/for-agents">Connect your agent <ArrowRight size={17} aria-hidden="true" /></a>
           </div>
-          <p className="rb-home-access">Free early access <span aria-hidden="true">/</span> Built for people and AI agents</p>
+          <p className="rb-home-access">App and agent free through {EARLY_ACCESS_END}.</p>
         </div>
         <div className="rb-home-sculpture" aria-hidden="true">
           <div className="rb-home-sculpture-grid" />
@@ -52,66 +72,63 @@ export default function Home() {
           <div className="rb-home-emblem"><BrandMark size={230} /></div>
           <span className="rb-home-direction rb-home-direction-up"><ArrowUpRight size={20} /> Find opportunity</span>
           <span className="rb-home-direction rb-home-direction-down"><ArrowDownRight size={20} /> Understand risk</span>
-          <span className="rb-home-art-caption">A wider perspective. A clearer next move.</span>
         </div>
       </section>
 
-      <div className="rb-home-proof rb-home-width" aria-label="Inside Rarebird">
-        <span>One intelligence layer.</span>
-        <p>Market discovery <i /> Source evidence <i /> Risk context <i /> AI agents</p>
-      </div>
-
-      <section className="rb-home-section rb-home-width" id="market-perspective" aria-labelledby="perspective-title">
+      <section className="rb-home-section rb-home-width rb-home-platform" id="agent-workflow" aria-labelledby="platform-title">
         <header className="rb-home-section-heading">
-          <p className="rb-home-eyebrow">01 / A wider perspective</p>
-          <h2 id="perspective-title">The market changes.<br /><span>Your thinking should, too.</span></h2>
-          <p>A rally, a sell-off, a market going nowhere. Each calls for a different question. Rarebird gives you the tools to investigate it.</p>
+          <p className="rb-home-eyebrow">The app and the agent</p>
+          <h2 id="platform-title">One view of the market.<br /><span>Two ways to work.</span></h2>
         </header>
-        <MarketPerspective />
+        <div className="rb-home-product-grid">
+          <article className="rb-home-product-card">
+            <Terminal size={24} strokeWidth={1.4} aria-hidden="true" />
+            <h3>Open the workspace</h3>
+            <p>Start with what changed across stocks and crypto. Research an asset, inspect the evidence, or check the forecast scorecard.</p>
+            <a className="rb-home-text-link" href="/app">Explore the app <ArrowUpRight size={17} aria-hidden="true" /></a>
+          </article>
+          <article className="rb-home-product-card">
+            <Bot size={24} strokeWidth={1.4} aria-hidden="true" />
+            <h3>Ask through your agent</h3>
+            <p>Connect a compatible AI assistant through MCP and ask in your own words. Get reporting, market checks and open questions in the answer.</p>
+            <a className="rb-home-text-link" href="/docs/quickstart">Set up the agent <ArrowUpRight size={17} aria-hidden="true" /></a>
+          </article>
+        </div>
+        <p className="rb-home-offer">Both are included in Rarebird Pro. <a href="/pricing">See pricing <ArrowRight size={15} aria-hidden="true" /></a></p>
       </section>
 
       <section className="rb-home-section rb-home-capabilities" id="connect-agent" aria-labelledby="tools-title">
         <div className="rb-home-width">
           <header className="rb-home-section-heading">
-            <p className="rb-home-eyebrow">02 / From noise to a point of view</p>
-            <h2 id="tools-title">An advantage you<br /><span>can investigate.</span></h2>
+            <p className="rb-home-eyebrow">Evidence you can inspect</p>
+            <h2 id="tools-title">From market move<br /><span>to informed decision.</span></h2>
           </header>
           <div className="rb-home-capability-list">
-            {CAPABILITIES.map(item => <article className="rb-home-capability" key={item.number}>
-              <span className="rb-home-capability-number" aria-hidden="true">{item.number}</span>
-              <div><p className="rb-home-eyebrow">{item.tag}</p><h3>{item.title}</h3></div>
+            {RESEARCH_PATHS.map(item => <article className="rb-home-capability" key={item.href}>
+              <div><p className="rb-home-eyebrow">{item.name}</p><h3>{item.title}</h3></div>
               <div><p>{item.description}</p><a className="rb-home-text-link" href={item.href}>{item.action} <ArrowUpRight size={17} aria-hidden="true" /></a></div>
             </article>)}
           </div>
+          <p className="rb-home-roadmap"><strong>In development.</strong> Portfolio risk and position sizing based on your loss limits, liquidity and existing exposure.</p>
         </div>
       </section>
 
-      <section className="rb-home-section rb-home-width rb-home-agent" id="agent-workflow" aria-labelledby="agent-title">
-        <div className="rb-home-agent-copy">
-          <p className="rb-home-eyebrow">03 / Your intelligence. Everywhere.</p>
-          <h2 id="agent-title">One research layer.<br /><span>You and your agent.</span></h2>
-          <p>Explore in the app. Bring the same research tools to your AI assistant through MCP or API. Use ticker briefs in configured Telegram groups.</p>
-          <a className="rb-home-button rb-home-button-outline" href="/docs/quickstart">Connect your agent <ArrowUpRight size={18} aria-hidden="true" /></a>
-          <a className="rb-home-text-link" href="/docs/connect#telegram">Set up Telegram <ArrowUpRight size={15} aria-hidden="true" /></a>
-        </div>
-        <div className="rb-home-research-note">
-          <div className="rb-home-note-top"><Code2 size={18} aria-hidden="true" /><span>The research brief</span><span>MCP / API / APP</span></div>
-          <h3>What would change<br />the outlook for Bitcoin?</h3>
-          <p>Inside a Rarebird answer</p>
-          <ul>{["The current view and its evidence", "Supporting and opposing developments", "Missing data and uncertainty", "What to check next"].map(item => <li key={item}><Check size={16} aria-hidden="true" />{item}</li>)}</ul>
-          <a href="/ask?ticker=BTC">Open Bitcoin research <ArrowUpRight size={17} aria-hidden="true" /></a>
-        </div>
+      <section className="rb-home-section rb-home-width" id="market-perspective" aria-labelledby="perspective-title">
+        <header className="rb-home-section-heading">
+          <p className="rb-home-eyebrow">The research playbook</p>
+          <h2 id="perspective-title">The market changes.<br /><span>So does the next question.</span></h2>
+        </header>
+        <MarketPerspective />
       </section>
 
       <section className="rb-home-build rb-home-width" id="build-history" aria-labelledby="build-title">
-        <div><p className="rb-home-eyebrow">Built in the open</p><h2 id="build-title">The work is there to see.</h2><p>Open-source code. Published methodology. Forecast scorecards. Follow how Rarebird is built and help shape what comes next.</p></div>
+        <div><p className="rb-home-eyebrow">Built in the open</p><h2 id="build-title">Check how it works.</h2><p>Inspect the source code, see how we measure forecasts, and follow the work as it ships.</p></div>
         <nav aria-label="Open-source project"><a href={REPO}>Explore the code <ArrowUpRight size={17} aria-hidden="true" /></a><a href={REPO + "/commits/main/"}>See the build history <ArrowUpRight size={17} aria-hidden="true" /></a><a href="/docs/intelligence">Read the methodology <ArrowUpRight size={17} aria-hidden="true" /></a></nav>
       </section>
 
       <section className="rb-home-close rb-home-width" id="community" aria-labelledby="closing-title">
-        <p className="rb-home-eyebrow">Stay curious. Move with context.</p>
-        <h2 id="closing-title">Up. Down.<br /><span>Eyes open.</span></h2>
-        <a className="rb-home-button" href="/app">Find your next perspective <ArrowUpRight size={19} aria-hidden="true" /></a>
+        <h2 id="closing-title">What are you<br /><span>watching?</span></h2>
+        <a className="rb-home-button" href="/ask">Research a stock or token <Search size={18} aria-hidden="true" /></a>
         <div className="rb-home-signature" role="img" aria-label="Rarebird"><BrandWordmark width={1040} /></div>
       </section>
     </main>

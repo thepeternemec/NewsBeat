@@ -13,7 +13,7 @@ body:has(.rb-home) > :is(.grid-field, .aurora-layer, .noise-overlay) { display: 
 .rb-home-hero-copy { position: relative; z-index: 2; min-width: 0; }
 .rb-home h1 { max-width: none; font-size: clamp(58px, 6.3vw, 88px); letter-spacing: -.065em; line-height: 1.015; font-weight: 550; margin: 27px 0 28px; }
 .rb-home h1 > span { color: var(--text-secondary); }
-.rb-home .rb-home-lede { font-size: 18px; line-height: 1.7; color: var(--text-secondary); }
+.rb-home .rb-home-lede { max-width: 38ch; font-size: 18px; line-height: 1.7; color: var(--text-secondary); }
 .rb-home-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 22px; margin-top: 34px; }
 .rb-home .rb-home-button { display: inline-flex; justify-content: center; align-items: center; gap: 22px; min-height: 52px; padding: 14px 23px; border: 1px solid var(--text-primary); border-radius: 7px; background: var(--text-primary); color: var(--bg-base); font-size: 14px; font-weight: 550; transition: transform .2s, opacity .2s; }
 .rb-home .rb-home-button:hover { transform: translateY(-2px); opacity: .88; }
@@ -21,7 +21,6 @@ body:has(.rb-home) > :is(.grid-field, .aurora-layer, .noise-overlay) { display: 
 .rb-home-text-link svg { flex: none; transition: transform .2s; }
 .rb-home-text-link:hover svg { transform: translateX(3px); }
 .rb-home .rb-home-access { margin-top: 22px; font-size: 11px; color: var(--text-secondary); }
-.rb-home-access span { margin-inline: 10px; opacity: .5; }
 .rb-home-sculpture { position: relative; aspect-ratio: 1; width: 112%; margin-left: -5%; color: var(--text-primary); }
 .rb-home-sculpture-grid { position: absolute; inset: -8%; background-image: linear-gradient(var(--border-subtle) 1px, transparent 1px), linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px); background-size: 45px 45px; mask-image: radial-gradient(circle, #000 0%, transparent 68%); opacity: .7; }
 .rb-home-orbit { position: absolute; border: 1px solid var(--border-subtle); border-radius: 50%; inset: 11%; }
@@ -35,11 +34,17 @@ body:has(.rb-home) > :is(.grid-field, .aurora-layer, .noise-overlay) { display: 
 .rb-home-direction { position: absolute; display: inline-flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-secondary); }
 .rb-home-direction-up { right: 0; top: 18%; }
 .rb-home-direction-down { right: 0; bottom: 18%; }
-.rb-home-art-caption { position: absolute; bottom: 3%; width: 100%; text-align: center; font: 10px var(--font-mono); letter-spacing: .025em; color: var(--text-secondary); }
-.rb-home .rb-home-proof { display: flex; align-items: center; justify-content: space-between; gap: 25px; padding-top: 26px; padding-bottom: 26px; border-top: 1px solid var(--border-default); border-bottom: 1px solid var(--border-default); font-size: 12px; }
-.rb-home-proof > span { color: var(--text-primary); }
-.rb-home-proof p { display: flex; align-items: center; gap: 22px; color: var(--text-secondary); }
-.rb-home-proof i { width: 3px; height: 3px; border-radius: 50%; background: var(--text-secondary); }
+.rb-home-platform { border-top: 1px solid var(--border-default); }
+.rb-home-product-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 40px; }
+.rb-home-product-card { display: flex; flex-direction: column; align-items: flex-start; padding: clamp(24px, 4vw, 44px); border: 1px solid var(--border-default); border-radius: 10px; background: color-mix(in srgb, var(--text-primary) 3%, var(--bg-base)); }
+.rb-home-product-card > svg { margin-bottom: 32px; }
+.rb-home-product-card h3 { font-size: clamp(25px, 3vw, 32px); line-height: 1.15; font-weight: 500; letter-spacing: -.035em; }
+.rb-home-product-card p { max-width: 42ch; margin: 14px 0 20px; color: var(--text-secondary); font-size: 15px; line-height: 1.75; }
+.rb-home-product-card .rb-home-text-link { margin-top: auto; }
+.rb-home .rb-home-offer { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin-top: 18px; color: var(--text-secondary); font-size: 13px; }
+.rb-home-offer a { display: inline-flex; align-items: center; gap: 6px; color: var(--text-primary); min-height: 44px; }
+.rb-home .rb-home-roadmap { margin-top: 26px; padding-top: 23px; border-top: 1px solid var(--border-default); max-width: 72ch; color: var(--text-secondary); font-size: 14px; }
+.rb-home-roadmap strong { color: var(--text-primary); }
 .rb-home .rb-home-section { padding-top: 116px; padding-bottom: 116px; scroll-margin-top: 78px; }
 .rb-home h2 { font-size: clamp(34px, 4.15vw, 55px); font-weight: 500; line-height: 1.1; letter-spacing: -.05em; }
 .rb-home h2 > span { color: var(--text-secondary); }
@@ -64,27 +69,11 @@ body:has(.rb-home) > :is(.grid-field, .aurora-layer, .noise-overlay) { display: 
 .rb-perspective-copy li > span { font: 10px var(--font-mono); color: var(--text-secondary); }
 .rb-home-capabilities { background: color-mix(in srgb, var(--text-primary) 3%, var(--bg-base)); border-block: 1px solid var(--border-subtle); }
 .rb-home-capability-list { margin-top: 54px; }
-.rb-home-capability { display: grid; grid-template-columns: 44px 1fr 1fr; gap: 32px; padding-block: 38px; border-top: 1px solid var(--border-default); }
+.rb-home-capability { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; padding-block: 38px; border-top: 1px solid var(--border-default); }
 .rb-home-capability:last-child { padding-bottom: 0; }
-.rb-home-capability-number { font: 12px var(--font-mono); padding-top: 4px; color: var(--text-secondary); }
 .rb-home-capability h3 { margin-top: 13px; max-width: 340px; font-size: 29px; font-weight: 500; line-height: 1.18; letter-spacing: -.035em; }
 .rb-home-capability > div:last-child > p { color: var(--text-secondary); font-size: 15px; line-height: 1.8; }
 .rb-home-capability .rb-home-text-link { margin-top: 12px; }
-.rb-home .rb-home-agent { display: grid; grid-template-columns: 1fr 1fr; gap: 85px; align-items: center; }
-.rb-home-agent-copy h2 { margin-top: 22px; }
-.rb-home-agent-copy > p:not(.rb-home-eyebrow) { margin-top: 26px; font-size: 16px; line-height: 1.75; color: var(--text-secondary); max-width: 450px; }
-.rb-home .rb-home-button-outline { background: transparent; color: var(--text-primary); border-color: var(--border-strong); }
-.rb-home-agent-copy .rb-home-button { margin-top: 30px; }
-.rb-home-agent-copy > .rb-home-text-link { display: flex; width: fit-content; margin-top: 14px; }
-.rb-home-research-note { padding: 30px; background: color-mix(in srgb, var(--text-primary) 3%, var(--bg-base)); border: 1px solid var(--border-default); border-radius: 10px; box-shadow: 0 28px 70px #0001; }
-.rb-home-note-top { display: flex; align-items: center; gap: 10px; color: var(--text-secondary); font-size: 11px; padding-bottom: 24px; border-bottom: 1px solid var(--border-default); }
-.rb-home-note-top > span:last-child { margin-left: auto; font: 9px var(--font-mono); }
-.rb-home-research-note h3 { font-size: 27px; line-height: 1.3; letter-spacing: -.035em; font-weight: 500; margin-top: 29px; }
-.rb-home-research-note > p { color: var(--text-secondary); font: 10px var(--font-mono); text-transform: uppercase; letter-spacing: .05em; margin-top: 30px; }
-.rb-home-research-note ul { padding: 0; list-style: none; margin: 15px 0 28px; }
-.rb-home-research-note li { display: flex; align-items: center; gap: 12px; padding: 8px 0; font-size: 13px; color: var(--text-secondary); }
-.rb-home-research-note li svg { flex: none; color: var(--text-primary); }
-.rb-home-research-note > a { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 13px; border-top: 1px solid var(--border-default); padding-top: 22px; }
 .rb-home .rb-home-build { display: grid; grid-template-columns: 1.5fr 1fr; gap: 90px; padding-top: 54px; padding-bottom: 54px; border-block: 1px solid var(--border-default); scroll-margin-top: 90px; }
 .rb-home-build h2 { font-size: 30px; margin-top: 15px; }
 .rb-home-build p:last-child { margin-top: 16px; max-width: 510px; font-size: 14px; line-height: 1.8; color: var(--text-secondary); }
@@ -113,12 +102,8 @@ body:has(.rb-home) > :is(.grid-field, .aurora-layer, .noise-overlay) { display: 
   .rb-home-direction { font-size: 10px; }
   .rb-home-direction-up { top: 15%; }
   .rb-home-direction-down { bottom: 15%; }
-  .rb-home-art-caption { font-size: 8px; bottom: 0; }
-  .rb-home .rb-home-agent { gap: 38px; }
-  .rb-home .rb-home-proof { font-size: 11px; }
-  .rb-home-proof p { gap: 13px; }
   .rb-perspective-copy { padding: 30px; }
-  .rb-home-capability { gap: 24px; grid-template-columns: 30px 1fr 1fr; }
+  .rb-home-capability { gap: 24px;  }
 }
 @media (max-width: 760px) {
   .rb-home .rb-home-width { padding-inline: 24px; }
@@ -131,11 +116,10 @@ body:has(.rb-home) > :is(.grid-field, .aurora-layer, .noise-overlay) { display: 
   .rb-home-direction { font-size: 12px; }
   .rb-home-direction-up { top: 18%; }
   .rb-home-direction-down { bottom: 18%; }
-  .rb-home-art-caption { bottom: 2%; font-size: 9px; }
-  .rb-home .rb-home-proof { flex-direction: column; align-items: flex-start; gap: 14px; padding-block: 24px; }
-  .rb-home-proof p { flex-wrap: wrap; gap: 10px; font-size: 11px; }
   .rb-home .rb-home-section { padding-block: 76px; }
   .rb-home h2 { font-size: clamp(34px, 6vw, 44px); }
+  .rb-home-product-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; margin-top: 30px; }
+  .rb-home-product-card > svg { margin-bottom: 23px; }
   .rb-perspective { margin-top: 32px; }
   .rb-perspective-tabs button { font-size: 12px; min-height: 75px; flex-direction: column; gap: 6px; padding: 10px 4px; }
   .rb-perspective-body { grid-template-columns: 1fr; }
@@ -146,11 +130,8 @@ body:has(.rb-home) > :is(.grid-field, .aurora-layer, .noise-overlay) { display: 
   .rb-perspective-copy { padding: 28px; min-height: 440px; }
   .rb-perspective-copy h3 { font-size: 26px; }
   .rb-home-capability-list { margin-top: 38px; }
-  .rb-home-capability { grid-template-columns: 24px 1fr; gap: 18px; padding-block: 30px; }
-  .rb-home-capability > div:last-child { grid-column: 2; }
+  .rb-home-capability { grid-template-columns: minmax(0, 1fr); gap: 18px; padding-block: 30px; }
   .rb-home-capability h3 { max-width: none; font-size: 27px; }
-  .rb-home .rb-home-agent { grid-template-columns: 1fr; gap: 40px; }
-  .rb-home-research-note { padding: 26px; }
   .rb-home .rb-home-build { grid-template-columns: 1fr; gap: 25px; padding-block: 40px; }
   .rb-home-build h2 { font-size: 28px; }
   .rb-home .rb-home-close { padding-top: 78px; padding-bottom: 30px; }
@@ -164,7 +145,6 @@ body:has(.rb-home) > :is(.grid-field, .aurora-layer, .noise-overlay) { display: 
   .rb-home .rb-home-access { max-width: 260px; line-height: 1.7; }
   .rb-perspective-copy { padding: 22px; }
   .rb-perspective-copy li { font-size: 12px; }
-  .rb-home-note-top > span:last-child { font-size: 8px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .rb-home *, .rb-home *::before, .rb-home *::after { animation: none !important; transition: none !important; }

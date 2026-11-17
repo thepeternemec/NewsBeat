@@ -8,7 +8,7 @@ Under **GitHub Marketplace → Rarebird Agent → Webhook**, use:
 
 | Field            | Value                                                                   |
 | ---------------- | ----------------------------------------------------------------------- |
-| Payload URL      | `https://www.newsbeat.dev/api/webhooks/github/marketplace`              |
+| Payload URL      | `https://www.rarebird.network/api/webhooks/github/marketplace`              |
 | Content type     | `application/json`                                                      |
 | Secret           | The same random value as production `GITHUB_MARKETPLACE_WEBHOOK_SECRET` |
 | SSL verification | Enabled                                                                 |
@@ -41,7 +41,7 @@ order by received_at desc
 limit 50;
 ```
 
-The webhook completes this listing configuration step. It does not verify that a separately registered GitHub App's installation/OAuth setup is complete. Test the actual install and onboarding flow before submitting for review. Rarebird's agent integration is MCP; a Marketplace listing does not itself add an `@newsbeat-agent` Copilot chat command.
+The webhook completes this listing configuration step. It does not verify that a separately registered GitHub App's installation/OAuth setup is complete. Test the actual install and onboarding flow before submitting for review. Rarebird's agent integration is MCP; a Marketplace listing does not itself add an `@rarebird-agent` Copilot chat command.
 
 ## Before offering paid Marketplace plans
 

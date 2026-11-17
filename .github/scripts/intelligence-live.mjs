@@ -1,11 +1,11 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
-const origin = "https://www.newsbeat.dev";
+const origin = "https://www.rarebird.network";
 const expected = readFileSync(new URL("../../packages/contracts/src/intelligence.ts", import.meta.url), "utf8").match(/INTELLIGENCE_VERSION = "([^"]+)"/)[1];
 const policy = readFileSync(new URL("../../packages/contracts/src/quantitative.ts", import.meta.url), "utf8").match(/QUANT_POLICY_VERSION = "([^"]+)"/)[1];
 const read = async path => {
-  const response = await fetch(origin + path, { signal: AbortSignal.timeout(15000), headers: { "X-NewsBeat-Traffic": "synthetic" } });
+  const response = await fetch(origin + path, { signal: AbortSignal.timeout(15000), headers: { "X-Rarebird-Traffic": "synthetic" } });
   assert.equal(response.status, 200); return response.json();
 };
 function verifyMarket(data, kind) {
@@ -76,14 +76,14 @@ for (let attempt = 0; attempt < 32; attempt++) {
       const topics = await read("/api/v2/topics?q=ethereum&limit=5");
       const eth = topics.topics.find(item => item.ticker === "ETH"); assert.ok(eth);
       verifyMarket(await read("/api/v2/intelligence?beat_id=" + eth.beat_id), "crypto");
-      const invalid = await fetch(origin + "/api/v2/intelligence?beat_id=b_bb964843350e&context=invented", { headers: { "X-NewsBeat-Traffic": "synthetic" } }); assert.equal(invalid.status, 400);
+      const invalid = await fetch(origin + "/api/v2/intelligence?beat_id=b_bb964843350e&context=invented", { headers: { "X-Rarebird-Traffic": "synthetic" } }); assert.equal(invalid.status, 400);
       for (const route of ["intelligence", "market-intelligence", "priority-news", "discovery"]) {
         const cron = await fetch(origin + "/api/cron/" + route); assert.equal(cron.status, 401);
       }
       const tools = await read("/api/v2/tools");
-      const tool = tools.tools.find(item => item.function?.name === "newsbeat_intelligence");
+      const tool = tools.tools.find(item => item.function?.name === "rarebird_intelligence");
       assert.deepEqual(tool.function.parameters.properties.context.enum, ["fundamentals", "liquidity", "risk"]);
-      assert.ok(tools.tools.some(item => item.function?.name === "newsbeat_collection"));
+      assert.ok(tools.tools.some(item => item.function?.name === "rarebird_collection"));
       const collection = await read("/api/v2/collection?beat_id=b_bb964843350e");
       assert.equal(collection.catalog_interval_seconds, 600);
       assert.equal(collection.interval_seconds, 60);
@@ -91,8 +91,9 @@ for (let attempt = 0; attempt < 32; attempt++) {
       assert.equal(collection.session_token, undefined, "status reads never reveal cancellation tokens");
       const home = await fetch(origin + "/?verify=timing").then(result => result.text());
       assert.ok(!/event.intelligence/i.test(home)); assert.ok(home.includes('id="agent-workflow"'));
-      assert.ok(home.includes("Open live discovery"), "catalog discovery is the homepage entry point");
-      assert.ok(home.includes('id="landing-company-query"'), "live company search remains available");
+      assert.ok(home.includes('href="/app"') && home.includes('href="/for-agents"'), "app and agent are both accessible from the homepage");
+      const app = await fetch(origin + "/app?verify=discovery").then(result => result.text());
+      assert.ok(app.includes("Filter market developments"), "the workspace offers stock and crypto discovery");
       assert.ok(home.includes('href="/ask"'), "visitors can open the ticker lookup");
       const pilots = [["NVDA", "b_bb964843350e"], ["AAPL", "b_7d5acdda6186"], ["MSFT", "b_a723a1d2787f"],
         ["GOOGL", "b_c0c3f9282a94"], ["BTC", "b_06c91290de1c"], ["ETH", "b_edbc5b5af755"]];

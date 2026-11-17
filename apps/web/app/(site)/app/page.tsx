@@ -5,19 +5,19 @@ import { ForecastWorkspace } from "@/components/site/market-briefing";
 import CryptoMarketBoard from "@/components/site/crypto-market-board";
 
 export const metadata = {
-  title: "Crypto market prices and watchlist | Rarebird",
-  description: "Compare crypto prices, market caps and movers. Save a watchlist and open the original evidence and forecasts behind the coins you follow.",
+  title: "Stock and crypto workspace | Rarebird",
+  description: "Follow stock and crypto developments, research a ticker, and check the evidence, forecasts and crypto watchlist.",
   alternates: { canonical: "/app" },
 };
 
 export default function WorkspacePage() {
-  return <WorkspaceShell active="/app" title="Crypto markets"
-    description="Track prices and movers, build a watchlist, and follow the reporting behind the coins you care about.">
-    <CryptoMarketBoard />
+  return <WorkspaceShell active="/app" title="Market workspace"
+    description="Find what changed across stocks and crypto, then open the research, sources and market data behind the assets you follow.">
     <div className="rb-app-snapshot">
-      <MarketDiscovery compact initialMarket="crypto" />
+      <MarketDiscovery compact showControls />
       <ForecastWorkspace compact />
     </div>
+    <CryptoMarketBoard />
     <section className="rb-app-process" id="how-it-works" aria-labelledby="how-it-works-title">
       <h2 id="how-it-works-title">From source to signal</h2>
       <ol>

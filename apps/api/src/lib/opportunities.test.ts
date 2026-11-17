@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { QUANT_POLICY_VERSION, type IntelligenceResponse } from "@newsbeat/contracts";
+import { QUANT_POLICY_VERSION, type IntelligenceResponse } from "@rarebird/contracts";
 import { buildOpportunityBrief } from "./opportunities.js";
 import { discoverMarket } from "./quant-anomaly.js";
 import { buildMarketContext } from "./quant-engine.js";

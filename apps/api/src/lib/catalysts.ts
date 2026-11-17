@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
-import { db, hasDatabaseEnv } from "@newsbeat/db";
-import { CatalystSnapshotSchema, type CatalystCoverage, type CatalystSnapshot, type ResearchEvidence } from "@newsbeat/contracts";
+import { db, hasDatabaseEnv } from "@rarebird/db";
+import { CatalystSnapshotSchema, type CatalystCoverage, type CatalystSnapshot, type ResearchEvidence } from "@rarebird/contracts";
 import { z } from "zod";
 import { NewsError } from "./news.js";
 import { buildCatalystRadar, compareReportedConcept, FINANCIAL_CONCEPTS, OFFICIAL_FRESH_MS, OFFICIAL_ISSUERS, parseFilings } from "./catalyst-core.js";
@@ -62,7 +62,7 @@ function safelyDecode(value: string): unknown {
 
 async function secJson(path: string, request: typeof fetch) {
   const response = await request("https://data.sec.gov/" + path, {
-    headers: { "User-Agent": "Rarebird official evidence contact@newsbeat.dev", Accept: "application/json" },
+    headers: { "User-Agent": "Rarebird official evidence contact@rarebird.network", Accept: "application/json" },
     signal: AbortSignal.timeout(8_000), redirect: "error",
   });
   if (!response.ok) throw new Error(response.status === 429 ? "source_rate_limited" : "source_unavailable");

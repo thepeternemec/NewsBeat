@@ -1,15 +1,15 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
-import { db, closeDb } from "@newsbeat/db";
-import { INTELLIGENCE_VERSION, type IntelligenceEventDraft } from "@newsbeat/contracts";
+import { db, closeDb } from "@rarebird/db";
+import { INTELLIGENCE_VERSION, type IntelligenceEventDraft } from "@rarebird/contracts";
 import { runIntelligence, readIntelligence, PILOT_BEATS } from "./intelligence.js";
 import { validateIntelligence } from "./intelligence-core.js";
 
-const connection = process.env.NEWSBEAT_INTELLIGENCE_TEST_DATABASE_URL;
+const connection = process.env.RAREBIRD_INTELLIGENCE_TEST_DATABASE_URL;
 if (connection) {
   const url = new URL(connection);
-  if (!["localhost", "127.0.0.1"].includes(url.hostname) || url.pathname !== "/newsbeat_intelligence_test") {
+  if (!["localhost", "127.0.0.1"].includes(url.hostname) || url.pathname !== "/rarebird_intelligence_test") {
     throw new Error("Intelligence integration tests require the dedicated localhost test database.");
   }
 }

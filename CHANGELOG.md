@@ -1,17 +1,23 @@
 # Changelog
 
+## 2026-11-17 — Rarebird launch identity
+
+- Renamed the GitHub repository, workspace packages, public API identity and advertised tool names to Rarebird.
+- Made `www.rarebird.network` the canonical website, REST and MCP host.
+- Unified the web app and connected agent under one planned Pro membership. Both are free through December 31, 2026.
+
 ## 2026-11-16 — Rarebird launch preview
 
 - Applied the Rarebird identity to the website and project assets. Public launch is planned for late November 2026.
 - Added a public build history linking user needs to the resulting pull requests and live tools.
-- Kept the original project history available through the [commit log](https://github.com/thepeternemec/NewsBeat/commits/main/), [merged pull requests](https://github.com/thepeternemec/NewsBeat/pulls?q=is%3Apr+is%3Amerged), and [build checks](https://github.com/thepeternemec/NewsBeat/actions).
-- The preview continues to serve from [newsbeat.dev](https://www.newsbeat.dev) during setup for `rarebird.network`.
+- Kept the original project history available through the [commit log](https://github.com/thepeternemec/rarebird/commits/main/), [merged pull requests](https://github.com/thepeternemec/rarebird/pulls?q=is%3Apr+is%3Amerged), and [build checks](https://github.com/thepeternemec/rarebird/actions).
+- [Rarebird Network](https://www.rarebird.network) is the public home for the app and agent.
 
 
 ## 2026-11-06 — Requested one-minute collection
 
 - Changed the catalog schedule and catalog metadata to ten minutes. Removed unconditional pilot news collection from the five-minute analysis job.
-- Added explicit 15-minute fast-collection sessions for the six priority assets through the website, REST and the `newsbeat_collection` MCP control. Reads never opt in; sessions do not auto-renew.
+- Added explicit 15-minute fast-collection sessions for the six priority assets through the website, REST and the `rarebird_collection` MCP control. Reads never opt in; sessions do not auto-renew.
 - Coalesced duplicate requests, protected cancellation with hashed tokens, and leased scheduled work to prevent overlapping fetches. An idle one-minute cron makes no provider requests.
 - Kept model analysis and market-candle schedules unchanged. Added disposable-Postgres checks for opt-in behavior, expiry, cancellation and overlapping jobs.
 
@@ -83,10 +89,10 @@
 - Reframed raw prices, funding and chain readings as supporting reference utilities, preserving existing API compatibility.
 - Added the product direction in docs/INTELLIGENCE.md and aligned roadmap, FAQ, agent guidance and tool descriptions.
 
-## 2026-11-03 — NewsBeat website and project refresh
+## 2026-11-03 — Rarebird website and project refresh
 
 - Reframed the homepage around stock and crypto news for AI agents, with a live lookup in the hero and a separate agent prompt builder.
-- Restored consistent NewsBeat language across navigation, the news explorer, footer, social preview and GitHub README.
+- Restored consistent Rarebird language across navigation, the news explorer, footer, social preview and GitHub README.
 - Improved landing-page text sizes, responsive spacing, dark/light styling and reduced-motion support.
 - Added stock and crypto shortcuts and fixed lookup timeouts that could leave search or summaries loading indefinitely.
 - Aligned agent discovery docs and reference tables with all 14 implemented MCP and REST tools.
@@ -101,7 +107,7 @@ is a record of decisions, because the reasoning is the thing that gets lost.
 - **$6 trial credit.** New API-key accounts receive $6 of trial credit. Website, API key onboarding, README and agent documentation now state the same amount. Existing account balances retain their recorded credits and usage.
 - **Guided assistant setup.** The quickstart now has three numbered setup cards, a prominent copyable MCP address, a first-question prompt and reusable question cards. Optional agent instructions and troubleshooting expand on demand. The layout works in both themes and on mobile, with entrance motion that respects reduced-motion preferences.
 - **Polished interior pages.** Connection, pricing, FAQ, key, reference and legal pages use balanced hero layouts and clearer sections. Documentation has a centered reading column and an active contents rail. The terminal has structured metric cards and theme-aware headings. Subtle entrance and hover motion respects reduced-motion preferences; layouts adapt to phone and tablet screens.
-- **“What happened?” summaries are live.** The terminal’s **Summarize headlines** button, `GET /api/v2/summary?beat_id=…`, and the `newsbeat_summary` MCP tool return up to three short explanations grounded in recent publisher headlines. Each item retains report links and publication times.
+- **“What happened?” summaries are live.** The terminal’s **Summarize headlines** button, `GET /api/v2/summary?beat_id=…`, and the `rarebird_summary` MCP tool return up to three short explanations grounded in recent publisher headlines. Each item retains report links and publication times.
 - **Honest generation fallback.** Responses state `basis: "headlines_only"` and `method: "generated"` or `"extractive"`. Failed generation or rejected output returns original headlines. Story IDs keep sentences attached to their sources even when the model changes their order; output checks also reject new numeric figures and missing selected uncertainty cues.
 - **Relevance ranking and distinct stories.** Grouped coverage and briefs favor concrete developments, recent reports and publisher coverage, while downranking routine ownership notices and shopping headlines. Digests prioritize development headlines and avoid treating “looks back” or “send money back” as investment events. These are heuristics, not market-impact judgments.
 - **Grouped feed with source expansion.** Similar headlines appear under one original lead; users can inspect each publisher, headline, link and time. Original reporting is retained. The terminal initially shows 24 stories and offers **Show more stories**.
@@ -112,9 +118,9 @@ is a record of decisions, because the reasoning is the thing that gets lost.
 
 ### Current service context
 
-- **NewsBeat is the current brand**, with `https://www.newsbeat.dev` as the primary site and API host, and `news-beat.vercel.app` as an alternate. The bundled catalog contains 2,030 assets: 1,528 US-listed equities and 502 crypto assets.
-- **Clearer onboarding and contact.** The README, FAQ and docs explain assistant setup and everyday company-news questions. Contact is [@newsbeat_ on X](https://x.com/newsbeat_).
-- **Early access stays public.** No API key or credit card is required for anonymous reads. Optional keyed REST metering remains separate; Stripe checkout and the expanded connectors in draft [PR #11](https://github.com/thepeternemec/NewsBeat/pull/11) are not live.
+- **A broader asset catalog.** This release bundled 2,030 assets: 1,528 US-listed equities and 502 crypto assets.
+- **Clearer onboarding and contact.** The README, FAQ and docs explain assistant setup and everyday company-news questions. Contact options are listed in the project documentation.
+- **Early access stays public.** No API key or credit card is required for anonymous reads. Optional keyed REST metering remains separate; Stripe checkout and the expanded connectors in draft [PR #11](https://github.com/thepeternemec/rarebird/pull/11) are not live.
 
 ## 2026-09-22
 

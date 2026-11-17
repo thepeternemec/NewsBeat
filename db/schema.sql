@@ -1,6 +1,6 @@
--- NewsBeat schema.
+-- Rarebird schema. Existing table and index identifiers are stable across upgrades.
 --
--- The whole thing: three tables and one function. Apply to any empty Postgres:
+-- Apply to an empty or existing Rarebird PostgreSQL database:
 --
 --   npm run db:setup          # uses DATABASE_URL
 --

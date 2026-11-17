@@ -8,7 +8,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-process.env.NEWSBEAT_CURSOR_SECRET ??= "test-secret-for-state-signing";
+process.env.RAREBIRD_CURSOR_SECRET ??= "test-secret-for-state-signing";
 
 const { signState, verifyState, redirectUri, authorizeUrl, exchangeCodeForUser } = await import("./github.js");
 const { keyRoutes } = await import("./key-routes.js");
@@ -55,21 +55,21 @@ test("local development retains its local callback", () => withOAuthEnv("", () =
 }));
 
 test("hosted aliases and previews use the registered production callback", () => withOAuthEnv("1", () => {
-  for (const origin of ["https://www.newsbeat.dev", "https://news-beat.vercel.app", "https://newsgraph-preview.vercel.app"]) {
-    assert.equal(redirectUri(origin), "https://www.newsbeat.dev/api/keys/callback");
+  for (const origin of ["https://www.rarebird.network", "https://rarebird-branch.example.test", "https://rarebird-preview.example.test"]) {
+    assert.equal(redirectUri(origin), "https://www.rarebird.network/api/keys/callback");
     assert.equal(new URL(authorizeUrl(origin, "test-state")).searchParams.get("redirect_uri"), redirectUri(origin));
   }
 }));
 
 test("preview sign-in starts on production before state is issued", () => withOAuthEnv("1", async () => {
-  const response = await keyRoutes.request("https://newsgraph-preview.vercel.app/authorize");
+  const response = await keyRoutes.request("https://rarebird-preview.example.test/authorize");
   assert.equal(response.status, 302);
-  assert.equal(response.headers.get("location"), "https://www.newsbeat.dev/api/keys/authorize");
+  assert.equal(response.headers.get("location"), "https://www.rarebird.network/api/keys/authorize");
   assert.equal(response.headers.get("cache-control"), "no-store");
-  const canonical = await keyRoutes.request("https://www.newsbeat.dev/authorize");
+  const canonical = await keyRoutes.request("https://www.rarebird.network/authorize");
   const location = new URL(canonical.headers.get("location")!);
   assert.equal(location.origin, "https://github.com");
-  assert.equal(location.searchParams.get("redirect_uri"), "https://www.newsbeat.dev/api/keys/callback");
+  assert.equal(location.searchParams.get("redirect_uri"), "https://www.rarebird.network/api/keys/callback");
   assert.equal(verifyState(location.searchParams.get("state")!), true);
 }));
 
@@ -77,10 +77,10 @@ test("code exchange uses the same registered callback as authorization", () => w
   const mockFetch = (async (url: string | URL | Request, init?: RequestInit) => {
     if (String(url).endsWith("/access_token")) {
       const payload = JSON.parse(String(init?.body));
-      assert.equal(payload.redirect_uri, "https://www.newsbeat.dev/api/keys/callback");
+      assert.equal(payload.redirect_uri, "https://www.rarebird.network/api/keys/callback");
       return Response.json({ access_token: "test-token" });
     }
     return Response.json({ id: 1, login: "test-user" });
   }) as typeof fetch;
-  assert.equal((await exchangeCodeForUser("https://newsgraph-preview.vercel.app", "test-code", mockFetch)).login, "test-user");
+  assert.equal((await exchangeCodeForUser("https://rarebird-preview.example.test", "test-code", mockFetch)).login, "test-user");
 }));

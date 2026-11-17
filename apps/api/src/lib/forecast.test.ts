@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { MARKET_INTERVAL_MS as BAR, type MarketBar } from "@newsbeat/contracts";
+import { MARKET_INTERVAL_MS as BAR, type MarketBar } from "@rarebird/contracts";
 import { buildHourlyForecast, FORECAST_HOUR as HOUR } from "./forecast.js";
 
 const end = Date.UTC(2026, 10, 13, 13);

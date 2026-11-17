@@ -1,4 +1,4 @@
-import { InvestmentRequestSchema, SEED_BEATS, type IntelligenceResponse, type InvestmentBrief, type ResearchAnswer, type ResearchResponse } from "@newsbeat/contracts";
+import { InvestmentRequestSchema, SEED_BEATS, type IntelligenceResponse, type InvestmentBrief, type ResearchAnswer, type ResearchResponse } from "@rarebird/contracts";
 import { readIntelligence } from "./intelligence.js";
 import { NewsError } from "./news.js";
 import { buildOpportunityBrief } from "./opportunities.js";

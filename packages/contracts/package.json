@@ -1,7 +1,7 @@
 {
-  "name": "@newsbeat/contracts",
+  "name": "@rarebird/contracts",
   "version": "0.2.0",
-  "description": "Canonical NewsBeat schemas: beats, packs, receipts, errors, tools, seed catalog.",
+  "description": "Canonical Rarebird schemas: beats, packs, receipts, errors, tools, seed catalog.",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

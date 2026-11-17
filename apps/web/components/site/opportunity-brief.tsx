@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { ArrowUpRight, RefreshCw } from "lucide-react";
-import type { OpportunityBrief as Brief } from "@newsbeat/api";
-import type { ReportedComparison } from "@newsbeat/contracts";
+import type { OpportunityBrief as Brief } from "@rarebird/api";
+import type { ReportedComparison } from "@rarebird/contracts";
 import "./opportunity-brief.css";
 
 const endpoint = (process.env.NEXT_PUBLIC_API_BASE_URL ?? "/api") + "/v2/opportunities";

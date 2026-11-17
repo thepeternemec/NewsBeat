@@ -1,4 +1,4 @@
-import { SEED_BEATS, type MarketBriefing, type PricesPayload, type Sourced } from "@newsbeat/contracts";
+import { SEED_BEATS, type MarketBriefing, type PricesPayload, type Sourced } from "@rarebird/contracts";
 import { readIntelligence, PILOT_BEATS } from "./intelligence.js";
 import { DEFAULT_PRICE_IDS, prices } from "./market.js";
 import { stories } from "./news.js";

@@ -3,7 +3,7 @@ import type {
   OperationSnapshot,
   OperationState,
   OperationStatus,
-} from "@newsbeat/contracts";
+} from "@rarebird/contracts";
 
 export const CHECK_INTERVAL_MINUTES = 5;
 export const MONITOR_STALE_MS = 12 * 60_000;
@@ -150,8 +150,8 @@ export function atomFeed(document: OperationStatus): string {
   const entries = document.history
     .map(
       (report) =>
-        `<entry><id>urn:newsbeat:check:${xml(report.checked_at)}</id><title>${xml(`Rarebird check: ${report.status}`)}</title><updated>${xml(report.checked_at)}</updated><link href="https://www.newsbeat.dev/status"/><summary>${xml(report.components.map((c) => `${c.name}: ${c.status}. ${c.detail}`).join(" "))}</summary></entry>`,
+        `<entry><id>urn:rarebird:check:${xml(report.checked_at)}</id><title>${xml(`Rarebird check: ${report.status}`)}</title><updated>${xml(report.checked_at)}</updated><link href="https://www.rarebird.network/status"/><summary>${xml(report.components.map((c) => `${c.name}: ${c.status}. ${c.detail}`).join(" "))}</summary></entry>`,
     )
     .join("");
-  return `<?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom"><id>https://www.newsbeat.dev/status</id><title>Rarebird operational checks</title><subtitle>Five-minute checks. Missing checks do not establish service availability.</subtitle><link href="https://www.newsbeat.dev/api/status/feed" rel="self"/><link href="https://www.newsbeat.dev/status"/><updated>${xml(document.latest?.checked_at ?? document.generated_at)}</updated>${entries}</feed>`;
+  return `<?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom"><id>https://www.rarebird.network/status</id><title>Rarebird operational checks</title><subtitle>Five-minute checks. Missing checks do not establish service availability.</subtitle><link href="https://www.rarebird.network/api/status/feed" rel="self"/><link href="https://www.rarebird.network/status"/><updated>${xml(document.latest?.checked_at ?? document.generated_at)}</updated>${entries}</feed>`;
 }

@@ -35,7 +35,7 @@ The Hono app is mounted at `/api/*` by the Next.js catch-all route. REST uses `/
 
 ## On-demand question research
 
-Explicit POST `/api/v2/research` and MCP `newsbeat_research` resolve up to three catalog identities, retrieve bounded relevant reporting and available asset-specific measurements, then call the existing gateway for a validated answer. This path is separate from stored GET intelligence: it does not update signal memory, collect the catalog, send notifications or trade. A per-instance cache and concurrency bound limit duplicate work; failures return original evidence and gaps. See [research runtime and limits](RESEARCH.md).
+Explicit POST `/api/v2/research` and MCP `rarebird_research` resolve up to three catalog identities, retrieve bounded relevant reporting and available asset-specific measurements, then call the existing gateway for a validated answer. This path is separate from stored GET intelligence: it does not update signal memory, collect the catalog, send notifications or trade. A per-instance cache and concurrency bound limit duplicate work; failures return original evidence and gaps. See [research runtime and limits](RESEARCH.md).
 
 ## News foundation
 

@@ -42,10 +42,10 @@ Bounds remain two asset jobs per five-minute run, one initial model call plus at
 ## Interfaces
 
 ```bash
-curl 'https://www.newsbeat.dev/api/v2/intelligence?beat_id=b_bb964843350e&context=fundamentals'
+curl 'https://www.rarebird.network/api/v2/intelligence?beat_id=b_bb964843350e&context=fundamentals'
 ```
 
-MCP: `newsbeat_intelligence({ "beat_id": "b_bb964843350e", "context": "fundamentals" })`.
+MCP: `rarebird_intelligence({ "beat_id": "b_bb964843350e", "context": "fundamentals" })`.
 
 Responses preserve `signals` and add `context`, `constructions`, measured `alerts` and `quantitative`. Inspect gate reasons, freshness, analysis state/times, partial coverage and market-reaction status. The quantitative bundle includes verified pair metadata, matched price paths, information deltas, decision fits, frozen reference records and forward outcome cohorts. Track stable alert IDs in authorized monitoring workflows.
 

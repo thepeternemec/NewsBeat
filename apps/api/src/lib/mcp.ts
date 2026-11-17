@@ -1,9 +1,9 @@
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
 import { CallToolRequestSchema, ListToolsRequestSchema, type CallToolRequest } from "@modelcontextprotocol/sdk/types.js";
-import { env } from "@newsbeat/db";
-import { NEWS_TOOLS, NEWS_AGENT_INSTRUCTIONS } from "@newsbeat/contracts";
-import { callNewsTool } from "./news-routes.js";
+import { env } from "@rarebird/db";
+import { NEWS_TOOLS, NEWS_AGENT_INSTRUCTIONS } from "@rarebird/contracts";
+import { callNewsTool, canonicalToolName } from "./news-routes.js";
 import { NewsError } from "./news.js";
 import { recordServiceCall } from "./telemetry.js";
 
@@ -12,16 +12,22 @@ const knownTools = new Set<string>(NEWS_TOOLS.map(tool => tool.name));
 export async function mcpResponse(request: Request) {
     const oidcToken = request.headers.get("x-vercel-oidc-token");
     const origin = request.headers.get("origin");
-    const allowed = ["https://www.newsbeat.dev", "https://www.newsbeat.dev", "https://news-beat.vercel.app", "https://newsgraph.vercel.app", "http://localhost:3000", "http://127.0.0.1:3000", "http://localhost:8787", ...[env("VERCEL_URL"), env("VERCEL_BRANCH_URL")].filter(Boolean).map(host => `https://${host}`), ...(env("NEWSBEAT_MCP_ORIGINS") ?? "").split(",").filter(Boolean)];
+    const allowed = [
+        "https://www.rarebird.network", "https://rarebird.network",
+        "http://localhost:3000", "http://127.0.0.1:3000", "http://localhost:8787",
+        ...[env("VERCEL_URL"), env("VERCEL_BRANCH_URL")]
+            .filter(Boolean).map(host => `https://${host}`),
+        ...(env("RAREBIRD_MCP_ORIGINS") ?? "").split(",").map(value => value.trim()).filter(Boolean),
+    ];
     if (origin && !allowed.includes(origin))
         return new Response("Origin not allowed", { status: 403 });
     if (Number(request.headers.get("content-length") ?? 0) > 16384)
         return new Response("Request too large", { status: 413 });
-    const server = new Server({ name: "newsbeat", title: "Rarebird", version: "0.3.0" }, { capabilities: { tools: {} }, instructions: NEWS_AGENT_INSTRUCTIONS });
-    server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools: NEWS_TOOLS.map(tool => ({ ...tool, inputSchema: { ...tool.inputSchema, type: "object" as const }, annotations: { readOnlyHint: tool.name !== "newsbeat_collection", destructiveHint: false, openWorldHint: true } })) }));
+    const server = new Server({ name: "rarebird", title: "Rarebird", version: "0.3.0" }, { capabilities: { tools: {} }, instructions: NEWS_AGENT_INSTRUCTIONS });
+    server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools: NEWS_TOOLS.map(tool => ({ ...tool, inputSchema: { ...tool.inputSchema, type: "object" as const }, annotations: { readOnlyHint: tool.name !== "rarebird_collection", destructiveHint: false, openWorldHint: true } })) }));
     server.setRequestHandler(CallToolRequestSchema, async (call: CallToolRequest) => {
         const startedAt = performance.now();
-        const toolName = call.params.name.replace(/^(?:newsgraph|rarebird)_/, "newsbeat_");
+        const toolName = canonicalToolName(call.params.name);
         const operation = knownTools.has(toolName) ? toolName : "unknown";
         let outcome: "success" | "tool_error" = "tool_error";
         try {

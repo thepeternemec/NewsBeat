@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { IntelligenceResponse } from "@newsbeat/contracts";
+import type { IntelligenceResponse } from "@rarebird/contracts";
 import "./intelligence-panel.css";
 
 const date = (value: string) => new Date(value).toLocaleString();

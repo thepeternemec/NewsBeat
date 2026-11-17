@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { z } from "zod";
-import { NEWS_TOOLS, SignalContextIdSchema } from "@newsbeat/contracts";
+import { NEWS_TOOLS, SignalContextIdSchema } from "@rarebird/contracts";
 import { NewsError, topics, topicIdentities, newsPage, brief, stories, watchMany, WATCH_LIMIT, TOPIC_PAGE_DEFAULT, TOPIC_PAGE_MAX } from "./news.js";
 import { headlineSummary } from "./headline-summary.js";
 import { fearGreed, overview, prices, DEFAULT_PRICE_IDS } from "./market.js";
@@ -145,86 +145,88 @@ newsRoutes.get("/news", async (c) => c.json(await newsPage(c.req.query("beat_id"
 newsRoutes.get("/changes", async (c) => { const cursor = c.req.query("cursor"); if (!cursor)
     throw new NewsError("missing_cursor", "Read latest news first and save its cursor."); return c.json(await newsPage(c.req.query("beat_id") ?? "", cursor)); });
 newsRoutes.get("/tools", c => c.json({ tools: NEWS_TOOLS.map(t => ({ type: "function", function: { name: t.name, description: t.description, parameters: t.inputSchema } })) }));
+/** Accept older tool names that a connected assistant may still have cached. */
+export function canonicalToolName(name: string): string {
+    return name.replace(/^(?:newsgraph|newsbeat)_/, "rarebird_");
+}
+
 export async function callNewsTool(name: string, args: unknown, oidcToken?: string | null) {
-    // Old clients keep their cached tool names working. The API has been through
-    // `newsgraph_*`, `newsbeat_*` and briefly `newsbeat_*`; all three resolve and the
-    // advertised name is `newsbeat_*` again. Remove a prefix once its callers have moved.
-    name = name.replace(/^(?:newsgraph|newsbeat|rarebird)_/, "newsbeat_");
-    if (name === "newsbeat_discovery") return readDiscovery(args);
-    if (name === "newsbeat_research") return researchQuestion(args, oidcToken);
-    if (name === "newsbeat_investment") return readInvestmentBrief(args, oidcToken);
-    if (name === "newsbeat_market_briefing") {
+    name = canonicalToolName(name);
+    if (name === "rarebird_discovery") return readDiscovery(args);
+    if (name === "rarebird_research") return researchQuestion(args, oidcToken);
+    if (name === "rarebird_investment") return readInvestmentBrief(args, oidcToken);
+    if (name === "rarebird_market_briefing") {
         z.object({}).strict().parse(args);
         return readMarketBriefing();
     }
-    if (name === "newsbeat_token_intelligence") {
+    if (name === "rarebird_token_intelligence") {
         const input = z.object({ asset: z.string().max(80) }).strict().parse(args);
         return readTokenIntelligence(input.asset);
     }
-    if (name === "newsbeat_collection") return collectionControl(args);
-    if (name === "newsbeat_opportunities") return readOpportunities(args);
-    if (name === "newsbeat_catalysts") return readCatalysts(args);
-    if (name === "newsbeat_topics") {
+    if (name === "rarebird_collection") return collectionControl(args);
+    if (name === "rarebird_opportunities") return readOpportunities(args);
+    if (name === "rarebird_catalysts") return readCatalysts(args);
+    if (name === "rarebird_topics") {
         const input = z.object({ query: z.string().max(200).optional() }).strict().parse(args);
         // MCP callers have no way to page, so this surface asks for the whole
         // catalog. The REST route is where pagination belongs.
         return topics(input.query, TOPIC_PAGE_MAX, 0);
     }
-    if (name === "newsbeat_news") {
+    if (name === "rarebird_news") {
         const input = z.object({ beat_id: z.string() }).strict().parse(args);
         return newsPage(input.beat_id);
     }
-    if (name === "newsbeat_brief") {
+    if (name === "rarebird_brief") {
         const input = z.object({ beat_id: z.string() }).strict().parse(args);
         return brief(input.beat_id);
     }
-    if (name === "newsbeat_stories") {
+    if (name === "rarebird_stories") {
         const input = z.object({ beat_id: z.string() }).strict().parse(args);
         return stories(input.beat_id, 40, 200);
     }
-    if (name === "newsbeat_intelligence") {
+    if (name === "rarebird_intelligence") {
         const input = z.object({ beat_id: z.string(), context: SignalContextIdSchema.optional() }).strict().parse(args);
         return readIntelligence(input.beat_id, input.context);
     }
-    if (name === "newsbeat_summary") {
+    if (name === "rarebird_summary") {
         const input = z.object({ beat_id: z.string() }).strict().parse(args);
         return headlineSummary(input.beat_id, oidcToken);
     }
-    if (name === "newsbeat_watch") {
+    if (name === "rarebird_watch") {
         const input = z.object({
             watches: z.array(z.object({ beat_id: z.string(), cursor: z.string().max(2048).optional() })).min(1).max(WATCH_LIMIT),
         }).strict().parse(args);
         return watchMany(input.watches.map((w) => ({ beat_id: w.beat_id, cursor: w.cursor ?? "" })));
     }
-    if (name === "newsbeat_signals") {
+    if (name === "rarebird_signals") {
         z.object({}).strict().parse(args);
-        return { ...(await signals()), tool: "newsbeat_signals" };
+        return { ...(await signals()), tool: "rarebird_signals" };
     }
-    if (name === "newsbeat_ask") {
+    if (name === "rarebird_ask") {
         const input = z.object({ q: z.string().min(1).max(120) }).strict().parse(args);
-        return { ...(await ask(input.q)), tool: "newsbeat_ask" };
+        return { ...(await ask(input.q)), tool: "rarebird_ask" };
     }
-    if (name === "newsbeat_chain") {
+    if (name === "rarebird_chain") {
         z.object({}).strict().parse(args);
-        return { ...(await chainPulse()), tool: "newsbeat_chain" };
+        return { ...(await chainPulse()), tool: "rarebird_chain" };
     }
-    if (name === "newsbeat_token") {
+    if (name === "rarebird_token") {
         const input = z.object({ asset: z.string().min(3).max(120) }).strict().parse(args);
-        return { ...(await contractToken(input.asset)), tool: "newsbeat_token" };
+        return { ...(await contractToken(input.asset)), tool: "rarebird_token" };
     }
-    if (name === "newsbeat_market") {
+    if (name === "rarebird_market") {
         z.object({}).strict().parse(args);
-        return { ...(await overview()), tool: "newsbeat_market" };
+        return { ...(await overview()), tool: "rarebird_market" };
     }
-    if (name === "newsbeat_prices") {
+    if (name === "rarebird_prices") {
         const input = z.object({ ids: z.array(z.string().min(1).max(80)).max(20).optional() }).strict().parse(args);
-        return { ...(await prices(input.ids?.length ? input.ids : [...DEFAULT_PRICE_IDS])), tool: "newsbeat_prices" };
+        return { ...(await prices(input.ids?.length ? input.ids : [...DEFAULT_PRICE_IDS])), tool: "rarebird_prices" };
     }
-    if (name === "newsbeat_fear_greed") {
+    if (name === "rarebird_fear_greed") {
         const input = z.object({ limit: z.number().int().min(1).max(30).optional() }).strict().parse(args);
-        return { ...(await fearGreed(input.limit ?? 7)), tool: "newsbeat_fear_greed" };
+        return { ...(await fearGreed(input.limit ?? 7)), tool: "rarebird_fear_greed" };
     }
-    if (name === "newsbeat_changes") {
+    if (name === "rarebird_changes") {
         const input = z.object({ beat_id: z.string(), cursor: z.string().max(2048) }).strict().parse(args);
         return newsPage(input.beat_id, input.cursor);
     }

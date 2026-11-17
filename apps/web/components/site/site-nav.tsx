@@ -8,7 +8,7 @@ import "./mobile-navigation.css";
 
 const LINKS = [
   { href: "/intelligence", label: "Market checks", description: "See which developments passed the market checks" },
-  { href: "/app#how-it-works", label: "How it works", description: "See how sources become market intelligence" },
+  { href: "/for-agents", label: "Agent", description: "Connect Rarebird to your AI assistant" },
   { href: "/pricing", label: "Pricing", description: "See the Rarebird Pro membership" },
   { href: "/docs", label: "Developers", description: "Connect with MCP and REST" },
 ];

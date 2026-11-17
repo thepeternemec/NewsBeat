@@ -1,9 +1,9 @@
 # Operational status
 
-Public page: https://www.newsbeat.dev/status
+Public page: https://www.rarebird.network/status
 
-- JSON: `GET https://www.newsbeat.dev/api/status`
-- Atom: `GET https://www.newsbeat.dev/api/status/feed`
+- JSON: `GET https://www.rarebird.network/api/status`
+- Atom: `GET https://www.rarebird.network/api/status/feed`
 - Scheduled writer: `GET /api/cron/status`, every five minutes in production.
 
 The writer requires `Authorization: Bearer $CRON_SECRET`. A user-agent header is
@@ -12,7 +12,7 @@ Vercel Secret; Vercel adds it to scheduled requests. Preview deployments do not
 schedule monitoring. Do not expose the value or put it in public client config.
 
 Each check makes an anonymous request to the fixed production news API, initializes
-MCP and calls `newsbeat_brief` for Nvidia. It also reads the last successful
+MCP and calls `rarebird_brief` for Nvidia. It also reads the last successful
 ingestion time for every catalog asset and compares it with that asset's configured
 freshness window. Empty news results are valid. AI-generated summaries, GitHub OAuth
 completion, payments, individual publisher availability and other assets' end-to-end
@@ -50,7 +50,7 @@ The page defaults to 24 hours (288 five-minute bars per service), with 4-hour an
 
 ## Verification
 
-Run `npm run build:packages`, `npm run build -w @newsbeat/api`, and
+Run `npm run build:packages`, `npm run build -w @rarebird/api`, and
 `node --test apps/api/dist/lib/operations-policy.test.js`. The normal `npm test`
 also includes those tests and the web history tests for slot alignment, duplicate observation ordering and missing-data percentages. Build the web app and verify the `/status` page on
 mobile and desktop. The public cron URL must reject unauthenticated requests,

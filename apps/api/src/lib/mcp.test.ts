@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { NEWS_TOOLS, type CatalystRadar, type InvestmentBrief, type ResearchResponse } from "@newsbeat/contracts";
+import { NEWS_TOOLS, type CatalystRadar, type InvestmentBrief, type ResearchResponse } from "@rarebird/contracts";
 import { mcpResponse } from "./mcp.js";
 
 type RpcBody<T> = {
@@ -15,7 +15,7 @@ type RpcBody<T> = {
 };
 
 async function call<T = ResearchResponse>(method: string, params: unknown) {
-  const response = await mcpResponse(new Request("https://www.newsbeat.dev/api/mcp", {
+  const response = await mcpResponse(new Request("https://www.rarebird.network/api/mcp", {
     method: "POST",
     headers: { "Content-Type": "application/json", Accept: "application/json, text/event-stream", "MCP-Protocol-Version": "2025-03-26" },
     body: JSON.stringify({ jsonrpc: "2.0", id: 1, method, params }),
@@ -27,10 +27,10 @@ async function call<T = ResearchResponse>(method: string, params: unknown) {
 }
 
 test("MCP initializes through the Streamable HTTP transport and publishes research guidance", { timeout: 10000 }, async () => {
-  const result = await call("initialize", { protocolVersion: "2025-03-26", capabilities: {}, clientInfo: { name: "newsbeat-test", version: "1.0" } });
-  assert.equal(result?.serverInfo?.name, "newsbeat");
+  const result = await call("initialize", { protocolVersion: "2025-03-26", capabilities: {}, clientInfo: { name: "rarebird-test", version: "1.0" } });
+  assert.equal(result?.serverInfo?.name, "rarebird");
   assert.equal(result?.serverInfo?.title, "Rarebird");
-  assert.ok(result?.instructions?.includes("newsbeat_research"));
+  assert.ok(result?.instructions?.includes("rarebird_research"));
 });
 
 test("MCP transport advertises exactly the shared tool catalog", { timeout: 10000 }, async () => {
@@ -40,7 +40,7 @@ test("MCP transport advertises exactly the shared tool catalog", { timeout: 1000
 });
 
 test("MCP research preserves ambiguous identities without storage or generation", { timeout: 10000 }, async () => {
-  const result = await call("tools/call", { name: "newsbeat_research", arguments: { question: "What happened with SUI?" } });
+  const result = await call("tools/call", { name: "rarebird_research", arguments: { question: "What happened with SUI?" } });
   assert.notEqual(result?.isError, true);
   assert.equal(result?.structuredContent?.status, "needs_clarification");
   assert.equal(result?.structuredContent?.answer, null);
@@ -48,7 +48,7 @@ test("MCP research preserves ambiguous identities without storage or generation"
 });
 
 test("MCP transport distinguishes application tool failures from protocol failures", { timeout: 10000 }, async () => {
-  const result = await call("tools/call", { name: "newsbeat_nonexistent", arguments: {} });
+  const result = await call("tools/call", { name: "rarebird_nonexistent", arguments: {} });
   assert.equal(result?.isError, true);
 });
 

@@ -1,5 +1,5 @@
 import { MARKET_INTERVAL_MS as I, type IntelligenceSignal, type MarketAnomalyRecord, type MarketAnomalyWindow,
-  type MarketContext, type MarketResearch, type MarketSnapshot } from "@newsbeat/contracts";
+  type MarketContext, type MarketResearch, type MarketSnapshot } from "@rarebird/contracts";
 import { alignMarket, fitBefore, measureWindow, TIMING_POLICY } from "./quant-engine.js";
 import { benchmarkFor, type MarketProfile } from "./quant-market.js";
 import { hash } from "./intelligence-core.js";

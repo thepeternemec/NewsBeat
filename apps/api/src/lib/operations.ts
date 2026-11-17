@@ -1,10 +1,10 @@
 import { Hono } from "hono";
-import { db, hasDatabaseEnv } from "@newsbeat/db";
+import { db, hasDatabaseEnv } from "@rarebird/db";
 import {
   SEED_BEATS,
   type OperationComponent,
   type OperationSnapshot,
-} from "@newsbeat/contracts";
+} from "@rarebird/contracts";
 import {
   atomFeed,
   decodeSnapshot,
@@ -14,7 +14,7 @@ import {
 } from "./operations-policy.js";
 
 // Fixed targets prevent callers from turning the monitor into a URL fetch proxy.
-const ORIGIN = "https://www.newsbeat.dev";
+const ORIGIN = "https://www.rarebird.network";
 const NVIDIA = "b_bb964843350e";
 type Json = Record<string, unknown>;
 async function requestJson(path: string, init?: RequestInit): Promise<Json> {
@@ -90,7 +90,7 @@ export async function runOperationalCheck(): Promise<OperationSnapshot> {
           params: {
             protocolVersion: "2025-03-26",
             capabilities: {},
-            clientInfo: { name: "newsbeat-status", version: "1.0" },
+            clientInfo: { name: "rarebird-status", version: "1.0" },
           },
         }),
       });
@@ -104,7 +104,7 @@ export async function runOperationalCheck(): Promise<OperationSnapshot> {
           jsonrpc: "2.0",
           id: 2,
           method: "tools/call",
-          params: { name: "newsbeat_brief", arguments: { beat_id: NVIDIA } },
+          params: { name: "rarebird_brief", arguments: { beat_id: NVIDIA } },
         }),
       });
       const result = called.result as Json | undefined;

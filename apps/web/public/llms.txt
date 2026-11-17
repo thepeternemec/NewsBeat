@@ -9,23 +9,23 @@ one asset you follow, addressed by a stable `beat_id`.
 
 ## Catalog discovery
 
-Call `newsbeat_discovery` or `GET /api/v2/discovery` to read developments recorded by the scheduled stock and token scan. Optional inputs are `asset` (`equity` or `crypto`), `beat_id` and `limit` (1–20). Link the evidence and keep its timestamps. A press publication timestamp describes the article. A filing acceptance timestamp describes the official disclosure. `first_recorded_at` measures when the discovery worker recorded qualifying evidence. Catalog news checks cover 2,030 assets and direct filing checks cover four pilot issuers.
+Call `rarebird_discovery` or `GET /api/v2/discovery` to read developments recorded by the scheduled stock and token scan. Optional inputs are `asset` (`equity` or `crypto`), `beat_id` and `limit` (1–20). Link the evidence and keep its timestamps. A press publication timestamp describes the article. A filing acceptance timestamp describes the official disclosure. `first_recorded_at` measures when the discovery worker recorded qualifying evidence. Catalog news checks cover 2,030 assets and direct filing checks cover four pilot issuers.
 
 ## Hourly BTC and ETH forecasts
 
-Read `GET /api/v2/forecasts` or the `forecasts` field from `newsbeat_market_briefing`. Rarebird estimates the chance that the next Kraken hour closes at least 1% away from the reference in either direction under `assets[].move_risk`. The existing directional forecast and its scorecard are reported separately. Quote the target, base rate, matching sample count and source. A null forecast means the current hour has no recorded call. The forward scorecard compares the model and historical base rate on the same resolved observations. Historical matches are descriptive and the probabilities are experimental.
+Read `GET /api/v2/forecasts` or the `forecasts` field from `rarebird_market_briefing`. Rarebird estimates the chance that the next Kraken hour closes at least 1% away from the reference in either direction under `assets[].move_risk`. The existing directional forecast and its scorecard are reported separately. Quote the target, base rate, matching sample count and source. A null forecast means the current hour has no recorded call. The forward scorecard compares the model and historical base rate on the same resolved observations. Historical matches are descriptive and the probabilities are experimental.
 
 ## Question-driven research
 
-Start with `newsbeat_research` or `POST /api/v2/research` and pass the user's actual `question`. Optionally supply one to three resolved `beat_ids` and `context` (`fundamentals`, `liquidity` or `risk`). The flow resolves the asset, retrieves relevant reporting, checks available market measurements, and returns a direct answer, cited reasoning, unknowns and observable next checks. It is available across the 2,030-asset news catalog; measured quantitative coverage remains the six-asset pilot. Comparisons are bounded to three assets.
+Start with `rarebird_research` or `POST /api/v2/research` and pass the user's actual `question`. Optionally supply one to three resolved `beat_ids` and `context` (`fundamentals`, `liquidity` or `risk`). The flow resolves the asset, retrieves relevant reporting, checks available market measurements, and returns a direct answer, cited reasoning, unknowns and observable next checks. It is available across the 2,030-asset news catalog; measured quantitative coverage remains the six-asset pilot. Comparisons are bounded to three assets.
 
 Read `status`, `method`, `assets` and `limitations`. A `partial` response can contain useful reasoning with missing market data. `needs_clarification` returns candidates instead of guessing an ambiguous identity. `evidence_only` means no validated model answer was produced. Missing prices cannot establish a market reaction, anomaly or entry time. Evidence is a bounded latest-day headline window, not full reporting or complete history.
 
-This explicit POST/MCP research call can generate one bounded interpretation through the existing gateway; it does not alter stored intelligence, start collection, schedule work, notify or trade. Existing GET intelligence reads continue to read stored results without model generation. Generated headline summarization is retired: `newsbeat_summary` and its GET route remain only as deprecated verbatim compatibility reads. See [research behavior and limits](https://github.com/thepeternemec/NewsBeat/blob/main/docs/RESEARCH.md).
+This explicit POST/MCP research call can generate one bounded interpretation through the existing gateway; it does not alter stored intelligence, start collection, schedule work, notify or trade. Existing GET intelligence reads continue to read stored results without model generation. Generated headline summarization is retired: `rarebird_summary` and its GET route remain only as deprecated verbatim compatibility reads. See [research behavior and limits](https://github.com/thepeternemec/rarebird/blob/main/docs/RESEARCH.md).
 
 ## First contextual-signal pilot
 
-For NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum, call `newsbeat_intelligence` or `GET /v2/intelligence?beat_id=` to read stored event interpretations. These include an exact reported change, named entities, conditional implications with mechanisms, uncertainty, next checks and persistent event IDs. Reads do not run a model. Check pilot/status, analysis timestamps, source freshness and partial coverage; pending or unavailable output can include older event memory. This remains model inference from headlines, not verified causality. Other assets use question-driven research with explicit market-coverage limits.
+For NVIDIA, Apple, Microsoft, Alphabet, Bitcoin and Ethereum, call `rarebird_intelligence` or `GET /v2/intelligence?beat_id=` to read stored event interpretations. These include an exact reported change, named entities, conditional implications with mechanisms, uncertainty, next checks and persistent event IDs. Reads do not run a model. Check pilot/status, analysis timestamps, source freshness and partial coverage; pending or unavailable output can include older event memory. This remains model inference from headlines, not verified causality. Other assets use question-driven research with explicit market-coverage limits.
 
 ## Product direction and current capability
 
@@ -41,7 +41,7 @@ Static definitions and unrelated tasks do not need a lookup. Respect host permis
 Rarebird does not run the agent in the background; recurring checks need a user-requested
 schedule in the host application.
 
-For people: https://www.newsbeat.dev/docs/quickstart
+For people: https://www.rarebird.network/docs/quickstart
 
 ## The loop
 
@@ -55,21 +55,21 @@ An empty page is a success. Report "nothing new" and do not retry it.
 
 ## Endpoints
 
-- Catalog — https://www.newsbeat.dev/api/v2/topics
-- News — https://www.newsbeat.dev/api/v2/news?beat_id=b_bb964843350e
-- Changes since a cursor — https://www.newsbeat.dev/api/v2/changes?beat_id=…&cursor=…
-- Brief, three relevant recent headlines verbatim — https://www.newsbeat.dev/api/v2/brief?beat_id=b_bb964843350e
-- Stories, the events behind a topic — https://www.newsbeat.dev/api/v2/stories?beat_id=b_bb964843350e
-- Legacy verbatim compatibility read, deprecated — https://www.newsbeat.dev/api/v2/summary?beat_id=b_bb964843350e
-- Watch, up to 50 topics in one call — https://www.newsbeat.dev/api/v2/watch
-- Tool definitions — https://www.newsbeat.dev/api/v2/tools
-- Opportunity brief — https://www.newsbeat.dev/api/v2/opportunities
-- SEC filings and comparable reported results — https://www.newsbeat.dev/api/v2/catalysts
-- MCP, Streamable HTTP — https://www.newsbeat.dev/api/mcp
+- Catalog — https://www.rarebird.network/api/v2/topics
+- News — https://www.rarebird.network/api/v2/news?beat_id=b_bb964843350e
+- Changes since a cursor — https://www.rarebird.network/api/v2/changes?beat_id=…&cursor=…
+- Brief, three relevant recent headlines verbatim — https://www.rarebird.network/api/v2/brief?beat_id=b_bb964843350e
+- Stories, the events behind a topic — https://www.rarebird.network/api/v2/stories?beat_id=b_bb964843350e
+- Legacy verbatim compatibility read, deprecated — https://www.rarebird.network/api/v2/summary?beat_id=b_bb964843350e
+- Watch, up to 50 topics in one call — https://www.rarebird.network/api/v2/watch
+- Tool definitions — https://www.rarebird.network/api/v2/tools
+- Opportunity brief — https://www.rarebird.network/api/v2/opportunities
+- SEC filings and comparable reported results — https://www.rarebird.network/api/v2/catalysts
+- MCP, Streamable HTTP — https://www.rarebird.network/api/mcp
 
 Tools, for frameworks that would rather be handed a schema than a URL:
-`newsbeat_topics`, `newsbeat_news`, `newsbeat_changes`, `newsbeat_brief`,
-`newsbeat_stories`, `newsbeat_summary`, `newsbeat_watch`.
+`rarebird_topics`, `rarebird_news`, `rarebird_changes`, `rarebird_brief`,
+`rarebird_stories`, `rarebird_summary`, `rarebird_watch`.
 
 ## Market and sentiment
 
@@ -79,9 +79,9 @@ Read `freshness.status` before quoting a number, and quote the time with the pri
 
 | Tool | Route | Returns |
 | --- | --- | --- |
-| `newsbeat_market` | `GET /v2/market` | Sentiment, DeFi TVL and prices in one call |
-| `newsbeat_prices` | `GET /v2/prices?ids=` | Price, market cap and 24h change by CoinGecko id |
-| `newsbeat_fear_greed` | `GET /v2/sentiment?limit=` | Daily fear and greed index and history |
+| `rarebird_market` | `GET /v2/market` | Sentiment, DeFi TVL and prices in one call |
+| `rarebird_prices` | `GET /v2/prices?ids=` | Price, market cap and 24h change by CoinGecko id |
+| `rarebird_fear_greed` | `GET /v2/sentiment?limit=` | Daily fear and greed index and history |
 
 Prices take CoinGecko ids (`bitcoin`, `ethereum`, `solana`), not tickers, because a
 ticker is ambiguous across chains. These are public endpoints read through a cache, so
@@ -91,7 +91,7 @@ These market readings are reference data. Hourly BTC/USD and ETH/USD forecasts a
 
 ## Grouped overview
 
-Use `newsbeat_stories` for one lead per group of similar headlines, ranked by headline relevance.
+Use `rarebird_stories` for one lead per group of similar headlines, ranked by headline relevance.
 Each group includes `lead_article` and `reports`, preserving publishers, links and timestamps.
 Grouping is approximate and never deletes reporting. Source counts are not independent verification.
 MCP returns up to 40 ranked groups from 200 reports in the last 24 hours; REST scans 200 by default (`limit` 1–500).
@@ -105,7 +105,7 @@ A key raises that to 1,200 and is metered — each check costs $0.0005 when noth
 moved and $0.004 when it did, against a $6.00 trial. At zero the key returns
 `402 payment_required`; the anonymous tier stays free.
 
-Keys are self-serve at https://www.newsbeat.dev/keys — GitHub, scope `read:user`,
+Keys are self-serve at https://www.rarebird.network/keys — GitHub, scope `read:user`,
 shown once. That is a browser flow and needs a human.
 
 ## Constraints
@@ -120,10 +120,10 @@ shown once. That is a browser flow and needs a human.
 
 ## Elsewhere
 
-- Agent instructions — https://www.newsbeat.dev/skill.md
-- Auth and registration — https://www.newsbeat.dev/auth.md (none is required)
-- Docs — https://www.newsbeat.dev/docs
-- Source — https://github.com/thepeternemec/NewsBeat
+- Agent instructions — https://www.rarebird.network/skill.md
+- Auth and registration — https://www.rarebird.network/auth.md (none is required)
+- Docs — https://www.rarebird.network/docs
+- Source — https://github.com/thepeternemec/rarebird
 
 ## Mission
 Rarebird is a news feed for AI agents following stocks and crypto. It exposes 16 research tools plus one explicit collection-control tool over MCP and REST, including the signal-construction pilot. Verified tokenized-asset mapping is planned; current news resolves the underlying company or cryptocurrency.
@@ -132,17 +132,17 @@ Rarebird is a news feed for AI agents following stocks and crypto. It exposes 16
 
 | Tool | Route | Returns |
 | --- | --- | --- |
-| `newsbeat_ask` | `GET /v2/ask?q=` | Identity, headlines, prices and chain state in one attributed call |
-| `newsbeat_chain` | `GET /v2/chain` | Ethereum block and base fee, Solana slot |
-| `newsbeat_token` | `GET /v2/token?asset=` | Token price by contract address |
-| `newsbeat_token_intelligence` | `GET /v2/tokens?asset=` | Contract-specific DEX pools and selected issuer mappings |
-| `newsbeat_signals` | `GET /v2/signals` | Funding rates, DEX volume and stablecoin supply |
+| `rarebird_ask` | `GET /v2/ask?q=` | Identity, headlines, prices and chain state in one attributed call |
+| `rarebird_chain` | `GET /v2/chain` | Ethereum block and base fee, Solana slot |
+| `rarebird_token` | `GET /v2/token?asset=` | Token price by contract address |
+| `rarebird_token_intelligence` | `GET /v2/tokens?asset=` | Contract-specific DEX pools and selected issuer mappings |
+| `rarebird_signals` | `GET /v2/signals` | Funding rates, DEX volume and stablecoin supply |
 
-For questions, use newsbeat_research first. Use original news and changes tools for exact reporting and cursor follow-ups.
-The optional `newsbeat_ask` utility combines news with reference market and chain context;
+For questions, use rarebird_research first. Use original news and changes tools for exact reporting and cursor follow-ups.
+The optional `rarebird_ask` utility combines news with reference market and chain context;
 its `notes` array states what was missing. Chain readings
 move every twelve seconds or less; none of this reads balances or quotes swaps.
 
-Contextual signals: pass context=fundamentals, liquidity or risk to /v2/intelligence, or the context argument to newsbeat_intelligence. Read constructions for hypotheses, trigger conditions, invalidation and alert checks; alerts is the persisted review-alert journal. Actions: review_now, keep_watching, no_alert, reassess. The pilot adds `quantitative`: verified Kraken xStock/crypto prices, five-minute closed candles, a pre-information beta baseline, residual moves, relative volume and observed book costs. `constructions[].quantitative` explains information delta and timing gates; `market_reaction` can be `observed` when an aligned post-thesis window exists, without establishing causality. Missing, stale, thin or unprocessed data holds alerts. `evaluation` compares prospective all-construction and review-alert cohorts; `evaluations` freezes entry references and later 15/60/240-minute observations. Returns exclude fees and are not executable P&L. Thresholds are research heuristics awaiting calibration. Notification delivery and execution are not connected. See [methodology](https://github.com/thepeternemec/NewsBeat/blob/main/docs/QUANTITATIVE.md).
+Contextual signals: pass context=fundamentals, liquidity or risk to /v2/intelligence, or the context argument to rarebird_intelligence. Read constructions for hypotheses, trigger conditions, invalidation and alert checks; alerts is the persisted review-alert journal. Actions: review_now, keep_watching, no_alert, reassess. The pilot adds `quantitative`: verified Kraken xStock/crypto prices, five-minute closed candles, a pre-information beta baseline, residual moves, relative volume and observed book costs. `constructions[].quantitative` explains information delta and timing gates; `market_reaction` can be `observed` when an aligned post-thesis window exists, without establishing causality. Missing, stale, thin or unprocessed data holds alerts. `evaluation` compares prospective all-construction and review-alert cohorts; `evaluations` freezes entry references and later 15/60/240-minute observations. Returns exclude fees and are not executable P&L. Thresholds are research heuristics awaiting calibration. Notification delivery and execution are not connected. See [methodology](https://github.com/thepeternemec/rarebird/blob/main/docs/QUANTITATIVE.md).
 
-Temporary fast collection: only when the user explicitly asks for one-minute news, call newsbeat_collection with action=start, the priority beat_id and interval_seconds=60. It expires in 15 minutes and never auto-renews. Status reads do not activate it. Store the returned session_token privately for stop. This does not accelerate market candles, run model analysis immediately or deliver notifications. See https://www.newsbeat.dev/docs/connect.
+Temporary fast collection: only when the user explicitly asks for one-minute news, call rarebird_collection with action=start, the priority beat_id and interval_seconds=60. It expires in 15 minutes and never auto-renews. Status reads do not activate it. Store the returned session_token privately for stop. This does not accelerate market candles, run model analysis immediately or deliver notifications. See https://www.rarebird.network/docs/connect.

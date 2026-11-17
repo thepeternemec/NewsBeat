@@ -4,15 +4,15 @@ import OpportunityBrief from "@/components/site/opportunity-brief";
 import MarketBriefingCard from "@/components/site/market-briefing";
 import MarketDiscovery from "@/components/site/market-discovery";
 import "../landing.css";
-import "../newsbeat.css";
-import "../newsbeat-polish.css";
+import "../rarebird.css";
+import "../rarebird-polish.css";
 import "../quantitative.css";
 import "./workspace.css";
 
 export const metadata = {
   title: "Rarebird — Market checks",
   description: "Scan company and token developments, open the original evidence, and inspect deeper market checks.",
-  alternates: { canonical: "https://www.newsbeat.dev/intelligence" },
+  alternates: { canonical: "https://www.rarebird.network/intelligence" },
 };
 
 export default function IntelligencePage() {

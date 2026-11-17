@@ -5,7 +5,7 @@ import {
   recordMarketplaceDelivery,
   type MarketplaceDelivery,
   type DeliveryResult,
-} from "@newsbeat/db";
+} from "@rarebird/db";
 
 const MAX_BYTES = 1024 * 1024;
 const id = z.number().int().positive().safe();

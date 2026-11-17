@@ -4,7 +4,7 @@ import SiteFooter from "@/components/site/site-footer";
 import InteriorPage from "@/components/site/interior-page";
 import "../product-features.css";
 
-export const metadata = { title: "Timing — Rarebird", description: "How Rarebird checks unusual moves, market participation and timing across its six-asset intelligence pilot.", alternates: { canonical: "https://www.newsbeat.dev/market-checks" } };
+export const metadata = { title: "Timing — Rarebird", description: "How Rarebird checks unusual moves, market participation and timing across its six-asset intelligence pilot.", alternates: { canonical: "https://www.rarebird.network/market-checks" } };
 const CHECKS = [
   ["01", "Is the move unusual?", "Compare the asset with its market baseline, rather than treating every price change as a signal."],
   ["02", "Is there support?", "Check traded volume, spread and available liquidity before treating a move as confirmed."],

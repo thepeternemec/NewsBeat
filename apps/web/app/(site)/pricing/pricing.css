@@ -1,29 +1,33 @@
-.rb-pricing { padding-block: 125px 80px; }
-.rb-pricing .rb-pricing-intro { padding-bottom: 32px; }
-.rb-pricing .rb-pricing-intro .sec-sub { max-width: 55ch; margin-inline: 0; margin-bottom: 20px; }
+.rb-pricing { padding-block: 144px 96px; }
+.rb-pricing .rb-pricing-intro { padding-bottom: 44px; }
+.rb-pricing-intro h1 { max-width: 22ch; margin: 18px 0 23px; font-size: clamp(42px, 6.5vw, 78px); font-weight: 500; line-height: 1.02; letter-spacing: -.06em; text-wrap: balance; }
+.rb-pricing-intro h1 > span, .rb-pricing-intro > p:last-child { color: var(--text-secondary); }
+.rb-pricing-intro > p:last-child { max-width: 58ch; }
+.rb-price-kicker { color: var(--text-secondary); font: 11px/1.5 var(--font-mono); text-transform: uppercase; letter-spacing: .08em; }
 .rb-pricing-offer { scroll-margin-top: 96px; }
-.rb-price-card {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 22px 40px;
-  border: 1px solid var(--border-default);
-  border-radius: 22px;
-  padding: clamp(22px, 4vw, 48px);
-  color: var(--text-primary);
-  background: var(--bg-primary);
-}
-.rb-price-card h2 { margin: 3px 0 10px; font-size: clamp(27px, 4vw, 40px); letter-spacing: -.04em; }
-.rb-price-card .rb-price { margin: 10px 0; font-variant-numeric: tabular-nums; }
-.rb-price strong { font-size: clamp(35px, 6vw, 66px); letter-spacing: -.06em; line-height: 1; }
+.rb-price-card { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); border: 1px solid var(--border-default); border-radius: 14px; overflow: hidden; color: var(--text-primary); background: var(--bg-raised); }
+.rb-price-plan, .rb-price-features { padding: clamp(24px, 4vw, 48px); }
+.rb-price-plan { border-right: 1px solid var(--border-default); background: color-mix(in srgb, var(--text-primary) 3%, var(--bg-base)); }
+.rb-price-plan > svg { display: block; margin-bottom: 28px; border: 1px solid #363636; border-radius: 11px; }
+.rb-price-plan h2 { margin: 12px 0 14px; font-size: clamp(30px, 4vw, 46px); font-weight: 500; letter-spacing: -.045em; line-height: 1.12; }
+.rb-price-plan .rb-price { margin: 12px 0 16px; font-variant-numeric: tabular-nums; }
+.rb-price strong { font-size: clamp(48px, 6vw, 73px); letter-spacing: -.07em; line-height: 1; }
 .rb-price span, .rb-price-status, .rb-pricing-dev p { color: var(--text-secondary); }
 .rb-price-status { font-size: 13px; }
-.rb-price-card ul { padding-left: 20px; margin: 0 0 20px; }
-.rb-price-card li + li { margin-top: 8px; }
-.rb-price-card .btn-primary { white-space: normal; }
-.rb-pricing-dev { margin-top: 35px; }
-.rb-pricing-dev h2 { font-size: 21px; letter-spacing: -.025em; }
+.rb-price-features { display: flex; flex-direction: column; justify-content: center; }
+.rb-price-features article { display: flex; align-items: flex-start; gap: 18px; padding-block: 20px; }
+.rb-price-features article:first-child { padding-top: 0; }
+.rb-price-features article + article { border-top: 1px solid var(--border-default); }
+.rb-price-features article > svg { flex: none; margin-top: 4px; }
+.rb-price-features h3 { margin: 0 0 6px; font-size: 20px; font-weight: 550; }
+.rb-price-features p { margin: 0; color: var(--text-secondary); font-size: 14px; line-height: 1.7; }
+.rb-price-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 9px; }
+.rb-price-actions > a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 14px; }
+.rb-pricing-dev { margin-top: 42px; }
+.rb-pricing-dev h2 { font-size: 22px; letter-spacing: -.025em; }
 .rb-pricing-dev a { text-decoration: underline; text-underline-offset: 4px; }
 @media (max-width: 650px) {
-  .rb-pricing { padding-block: 100px 60px; }
+  .rb-pricing { padding-block: 112px 68px; }
   .rb-price-card { grid-template-columns: 1fr; }
+  .rb-price-plan { border-right: 0; border-bottom: 1px solid var(--border-default); }
 }

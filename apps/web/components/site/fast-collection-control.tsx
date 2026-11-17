@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import type { CollectionResult, CollectionStatus } from "@newsbeat/contracts";
+import type { CollectionResult, CollectionStatus } from "@rarebird/contracts";
 const API = process.env.NEXT_PUBLIC_API_BASE_URL ?? "/api";
 
 /** Mounting and refreshing read status only. POST start is confined to the explicit button. */

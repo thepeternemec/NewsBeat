@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import type { ConstructedSignal, QuantSignalDecision } from "@newsbeat/contracts";
+import type { ConstructedSignal, QuantSignalDecision } from "@rarebird/contracts";
 import { applyTiming } from "./quant-decision.js";
 
 const now = Date.parse("2026-11-05T20:00:00Z");

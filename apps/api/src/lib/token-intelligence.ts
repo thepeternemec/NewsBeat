@@ -2,7 +2,7 @@ import { z } from "zod";
 import {
   parseTokenAsset, SEED_BEATS, TOKEN_ADDRESS_ERROR, TOKEN_CHAINS, TOKENIZED_EQUITIES,
   type TokenChain, type TokenIntelligence,
-} from "@newsbeat/contracts";
+} from "@rarebird/contracts";
 import { upstreamCache } from "./market-cache.js";
 import { NewsError, stories } from "./news.js";
 

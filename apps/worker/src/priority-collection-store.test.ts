@@ -1,9 +1,9 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { db, closeDb, FAST_COLLECTION_SCHEMA, readCollection, startCollection, stopCollection, claimCollection, finishCollection } from "@newsbeat/db";
+import { db, closeDb, FAST_COLLECTION_SCHEMA, readCollection, startCollection, stopCollection, claimCollection, finishCollection } from "@rarebird/db";
 import { runRequestedIngestion } from "./index.js";
-const connection = process.env.NEWSBEAT_INTELLIGENCE_TEST_DATABASE_URL;
-if (connection) { const u = new URL(connection); if (!["localhost", "127.0.0.1"].includes(u.hostname) || u.pathname !== "/newsbeat_intelligence_test") throw new Error("Dedicated local test database required."); }
+const connection = process.env.RAREBIRD_INTELLIGENCE_TEST_DATABASE_URL;
+if (connection) { const u = new URL(connection); if (!["localhost", "127.0.0.1"].includes(u.hostname) || u.pathname !== "/rarebird_intelligence_test") throw new Error("Dedicated local test database required."); }
 test("requested collection is opt-in, shared, leased, cancellable and expires without renewal", { skip: !connection, timeout: 20000 }, async () => {
   process.env.DATABASE_URL = connection!;
   const sql = db(), beat = "b_bb964843350e", now = Date.now();

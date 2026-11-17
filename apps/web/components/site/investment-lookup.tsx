@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ArrowUpRight, Send } from "lucide-react";
-import type { InvestmentBrief } from "@newsbeat/contracts";
+import type { InvestmentBrief } from "@rarebird/contracts";
 import { API_BASE } from "./content";
 import { ResearchDetails } from "./research-question";
 import "./investment-lookup.css";
@@ -54,7 +54,7 @@ export default function InvestmentLookup({ initialTicker, initialBeat }: { initi
   const asset = result?.research.assets[0];
   const stance = expired ? { label: "Wait for a fresh check", reason: "The market evidence window has expired. Refresh the brief for the latest stance." } : result?.stance;
   const shareLink = result && asset && stance ? `https://t.me/share/url?${new URLSearchParams({
-    url: `https://www.newsbeat.dev/ask?${new URLSearchParams({ ticker: result.ticker, beat_id: asset.beat_id })}`,
+    url: `https://www.rarebird.network/ask?${new URLSearchParams({ ticker: result.ticker, beat_id: asset.beat_id })}`,
     text: `Rarebird · ${asset.label} (${result.ticker})\n${new Date(result.generated_at).toISOString().slice(0, 16).replace("T", " ")} UTC\n${stance.label}\n${stance.reason}${!expired && result.stance?.valid_until ? `\nTiming evidence through ${result.stance.valid_until.slice(0, 16).replace("T", " ")} UTC` : ""}\n\n${result.research.answer?.answer ?? ""}`.slice(0, 1000),
   })}` : null;
 

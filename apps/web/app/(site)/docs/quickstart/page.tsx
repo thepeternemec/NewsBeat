@@ -4,7 +4,7 @@ import AgentInstructions from "@/components/site/agent-instructions";
 import "./quickstart.css";
 
 export const metadata = { title: "Use Rarebird with your assistant", description: "Connect Rarebird in three steps. Add the connection address, ask a news question, and get sources and dates in your assistant." };
-const MCP_URL = "https://www.newsbeat.dev/api/mcp";
+const MCP_URL = "https://www.rarebird.network/api/mcp";
 const FIRST_QUESTION = "Use Rarebird. What could explain Bitcoin’s latest move, and what should I check next?";
 const questions = [
   { label: "Follow a company", text: "What are the main risks in Apple’s latest reporting?" },
@@ -36,7 +36,7 @@ export default function DocsQuickstart() {
 
       <nav className="quickstart-route" aria-label="Setup steps">
         <a href="#choose-assistant"><span>01</span> Choose your assistant <ArrowRight size={14} /></a>
-        <a href="#add-newsbeat"><span>02</span> Add Rarebird <ArrowRight size={14} /></a>
+        <a href="#add-rarebird"><span>02</span> Add Rarebird <ArrowRight size={14} /></a>
         <a href="#first-question"><span>03</span> Ask a question <ArrowDown size={14} /></a>
       </nav>
 
@@ -50,8 +50,8 @@ export default function DocsQuickstart() {
           </div>
         </section>
 
-        <section className="quickstart-step quickstart-connection" aria-labelledby="add-newsbeat">
-          <div className="quickstart-step-heading"><span className="quickstart-number">02</span><div><span className="quickstart-kicker">ONE ADDRESS. YOUR NEWS CONNECTION.</span><h2 id="add-newsbeat">Add the Rarebird address.</h2></div><Link2 className="quickstart-step-icon" size={22} /></div>
+        <section className="quickstart-step quickstart-connection" aria-labelledby="add-rarebird">
+          <div className="quickstart-step-heading"><span className="quickstart-number">02</span><div><span className="quickstart-kicker">ONE ADDRESS. YOUR NEWS CONNECTION.</span><h2 id="add-rarebird">Add the Rarebird address.</h2></div><Link2 className="quickstart-step-icon" size={22} /></div>
           <div className="quickstart-step-body">
             <p>Add a new connection named <strong>Rarebird</strong>. Paste this address, then follow your app’s prompts to enable its news tools.</p>
             <div className="quickstart-endpoint">
@@ -93,7 +93,7 @@ export default function DocsQuickstart() {
         <div className="quickstart-section-label"><CircleHelp size={16} /><span>A LITTLE HELP, IF YOU NEED IT</span></div>
         <h2 id="setup-help">Something not clicking?</h2>
         <div className="quickstart-help-list">{help.map(item => <details key={item.question}><summary>{item.question}<span aria-hidden="true">+</span></summary><p>{item.answer}</p></details>)}</div>
-        <div className="quickstart-contact"><span>We’re here to help you get connected.</span><a href="mailto:contact@newsbeat.dev">Contact Rarebird <ArrowUpRight size={14} /></a></div>
+        <div className="quickstart-contact"><span>We’re here to help you get connected.</span><a href="mailto:contact@rarebird.network">Contact Rarebird <ArrowUpRight size={14} /></a></div>
       </section>
     </div>
   );

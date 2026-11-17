@@ -1,4 +1,4 @@
-import type { ComponentId, OperationSnapshot, OperationState } from "@newsbeat/contracts";
+import type { ComponentId, OperationSnapshot, OperationState } from "@rarebird/contracts";
 
 export const STATUS_INTERVAL_MS = 5 * 60_000;
 export const STATUS_HISTORY_HOURS = 24;

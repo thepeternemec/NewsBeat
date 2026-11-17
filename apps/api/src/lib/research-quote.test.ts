@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import type { ResearchAsset, ResearchEvidence } from "@newsbeat/contracts";
+import type { ResearchAsset, ResearchEvidence } from "@rarebird/contracts";
 import { isReferenceQuoteQuestion, referenceQuoteAnswer } from "./research-quote.js";
 
 const asset: ResearchAsset = { beat_id: "b_06c91290de1c", label: "Bitcoin", ticker: "BTC", asset: "crypto",

@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { SEED_BEATS, type Beat, type DiscoveryAsset, type DiscoveryEvidence, type DiscoveryEvent, type DiscoveryKind, type FilingEvidence } from "@newsbeat/contracts";
+import { SEED_BEATS, type Beat, type DiscoveryAsset, type DiscoveryEvidence, type DiscoveryEvent, type DiscoveryKind, type FilingEvidence } from "@rarebird/contracts";
 import { sameStory } from "./cluster.js";
 
 const HOUR = 3600_000;

@@ -1,5 +1,5 @@
-import { CollectionRequestSchema } from "@newsbeat/contracts";
-import { env, readCollection, startCollection, stopCollection } from "@newsbeat/db";
+import { CollectionRequestSchema } from "@rarebird/contracts";
+import { env, readCollection, startCollection, stopCollection } from "@rarebird/db";
 import { NewsError } from "./news.js";
 
 export async function collectionControl(input: unknown) {
@@ -8,6 +8,6 @@ export async function collectionControl(input: unknown) {
   const request = parsed.data;
   if (request.action === "status") return readCollection(request.beat_id);
   if (request.action === "stop") return stopCollection(request.beat_id, request.session_token);
-  if ((env("NEWSBEAT_PROVIDER") ?? "google").toLowerCase() !== "google") throw new NewsError("service_unavailable", "One-minute collection is available only with the Google News collector.", 503);
+  if ((env("RAREBIRD_PROVIDER") ?? "google").toLowerCase() !== "google") throw new NewsError("service_unavailable", "One-minute collection is available only with the Google News collector.", 503);
   return startCollection(request.beat_id);
 }

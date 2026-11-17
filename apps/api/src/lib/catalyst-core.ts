@@ -1,5 +1,5 @@
 import { z } from "zod";
-import type { CatalystCoverage, CatalystRadar, FilingEvidence, ReportedComparison } from "@newsbeat/contracts";
+import type { CatalystCoverage, CatalystRadar, FilingEvidence, ReportedComparison } from "@rarebird/contracts";
 
 export const OFFICIAL_ISSUERS = [
   { beat_id: "b_bb964843350e", label: "NVIDIA", cik: "0001045810" },

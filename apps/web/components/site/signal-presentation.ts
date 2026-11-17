@@ -1,4 +1,4 @@
-import type { IntelligenceResponse, QuantSignalDecision } from "@newsbeat/contracts";
+import type { IntelligenceResponse, QuantSignalDecision } from "@rarebird/contracts";
 
 type TimingView = Pick<QuantSignalDecision, "phase" | "action"> & Partial<Pick<QuantSignalDecision, "checks">>;
 export interface SignalReadiness { constructed: boolean; analysisStatus?: IntelligenceResponse["status"]; loading?: boolean }

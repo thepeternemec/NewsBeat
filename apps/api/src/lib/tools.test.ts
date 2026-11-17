@@ -1,7 +1,7 @@
 /**
  * Every advertised tool must be callable.
  *
- * `newsbeat_stories` shipped in `tools/list`, documented in AGENTS.md, and
+ * `rarebird_stories` shipped in `tools/list`, documented in AGENTS.md, and
  * absent from the dispatcher — so an agent that chose it by its advertised
  * schema got `unknown_tool`. Three places have to agree about a tool (the
  * definition, the docs, the handler) and the guards covered only the first two.
@@ -12,19 +12,19 @@
  */
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { NEWS_TOOLS } from "@newsbeat/contracts";
+import { NEWS_TOOLS } from "@rarebird/contracts";
 import { callNewsTool } from "./news-routes.js";
 
 /** The smallest arguments each tool will accept. */
 const MINIMAL: Record<string, unknown> = {
-  newsbeat_research: { question: "What changed with NVIDIA?" },
-  newsbeat_collection: { action: "status", beat_id: "b_bb964843350e" },
-  newsbeat_topics: {},
-  newsbeat_news: { beat_id: "b_bb964843350e" },
-  newsbeat_changes: { beat_id: "b_bb964843350e", cursor: "x" },
-  newsbeat_brief: { beat_id: "b_bb964843350e" },
-  newsbeat_stories: { beat_id: "b_bb964843350e" },
-  newsbeat_summary: { beat_id: "b_bb964843350e" },
+  rarebird_research: { question: "What changed with NVIDIA?" },
+  rarebird_collection: { action: "status", beat_id: "b_bb964843350e" },
+  rarebird_topics: {},
+  rarebird_news: { beat_id: "b_bb964843350e" },
+  rarebird_changes: { beat_id: "b_bb964843350e", cursor: "x" },
+  rarebird_brief: { beat_id: "b_bb964843350e" },
+  rarebird_stories: { beat_id: "b_bb964843350e" },
+  rarebird_summary: { beat_id: "b_bb964843350e" },
 };
 
 test("every advertised tool has a handler", async () => {
@@ -49,15 +49,13 @@ test("every advertised tool has a handler", async () => {
 test("legacy tool names still reach a handler", async () => {
   for (const tool of NEWS_TOOLS) {
     await assert.doesNotReject(async () => {
-      try { await callNewsTool(tool.name.replace(/^newsbeat_/, "newsgraph_"), MINIMAL[tool.name] ?? {}); }
+      try { await callNewsTool(tool.name.replace(/^rarebird_/, "newsgraph_"), MINIMAL[tool.name] ?? {}); }
       catch (error) { assert.notEqual((error as {code?: string}).code, "unknown_tool"); }
     });
   }
 });
 
-test("Rarebird tool aliases reach the same read handlers", async () => {
-  for (const name of ["catalysts", "opportunities"]) {
-    const result = await callNewsTool("rarebird_" + name, {});
-    assert.ok(result && typeof result === "object");
-  }
+test("cached previous tool names return the same read shape as the canonical name", async () => {
+  const result = await callNewsTool("newsbeat_catalysts", {});
+  assert.ok(result && typeof result === "object" && "coverage" in result);
 });

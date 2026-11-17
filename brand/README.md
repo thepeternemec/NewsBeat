@@ -1,10 +1,10 @@
 # Rarebird brand
 
-**Meaningful signals. Built for agents.**
+**Market intelligence for stocks and crypto.**
 
 Rarebird helps AI agents understand stock and crypto developments: what changed, why it could matter and what to check next.
 
-[Website](https://www.newsbeat.dev) · [Project README](../README.md) · [Contact](mailto:contact@newsbeat.dev)
+[Website](https://www.rarebird.network) · [Project README](../README.md) · [Contact](mailto:contact@rarebird.network)
 
 ## Visual identity
 
@@ -21,7 +21,9 @@ The Rarebird identity uses the supplied outlined wordmark and the [R emblem](rar
 
 | File | Format and size | Use |
 | --- | --- | --- |
-| [GitHub header](newsbeat-github.svg) | SVG · 1280 × 440 | Repository introduction |
+| [GitHub header](rarebird-github.svg) | SVG · 1280 × 382 | Repository introduction |
+| [Rarebird wordmark](rarebird-wordmark.svg) | SVG · 654 × 75 | Headers and share cards on dark backgrounds |
+| [R emblem](rarebird-emblem.svg) | SVG | Standalone app and browser icon |
 
 The website generates its current link preview in [opengraph-image.tsx](../apps/web/app/(site)/opengraph-image.tsx). Check static exports against the current mark and message before publishing.
 

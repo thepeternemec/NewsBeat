@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import type { IntelligenceEventDraft, IntelligenceEvidence } from "@newsbeat/contracts";
+import type { IntelligenceEventDraft, IntelligenceEvidence } from "@rarebird/contracts";
 import { validateIntelligence, reconcileSignal } from "./intelligence-core.js";
 
 const now = "2026-11-03T12:00:00Z";

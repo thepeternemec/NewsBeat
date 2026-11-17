@@ -9,7 +9,7 @@
  * and in any proxy log on the way — and this is the one value that must not leak.
  */
 import { Hono } from "hono";
-import { db, describeKeyForAccount, findOrCreateAccount, hasDatabaseEnv, issueKeyForAccount, openBalance, resolveKey, trialFor, TRIAL_DAYS } from "@newsbeat/db";
+import { db, describeKeyForAccount, findOrCreateAccount, hasDatabaseEnv, issueKeyForAccount, openBalance, resolveKey, trialFor, TRIAL_DAYS } from "@rarebird/db";
 import { authorizeUrl, exchangeCodeForUser, oauthConfig, oauthOrigin, signState, verifyState } from "./github.js";
 
 export const keyRoutes = new Hono();

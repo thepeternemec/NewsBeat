@@ -1,4 +1,4 @@
-import { db, hasDatabaseEnv } from "@newsbeat/db";
+import { db, hasDatabaseEnv } from "@rarebird/db";
 import type { ProviderArticle } from "./newsapi.js";
 
 /** PostgreSQL JSON/text rejects NUL and lone UTF-16 surrogates. */
