@@ -1,0 +1,251 @@
+.rb-home .rb-signal-section {
+  padding-top: 28px;
+  padding-bottom: clamp(74px, 9vw, 112px);
+  scroll-margin-top: 94px;
+}
+.rb-signal-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr);
+  align-items: end;
+  gap: 24px 60px;
+  padding-top: 45px;
+  border-top: 1px solid var(--border-default);
+}
+.rb-home .rb-signal-heading h2 { margin-top: 17px; }
+.rb-signal-heading > p {
+  max-width: 40ch;
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.75;
+  padding-bottom: 3px;
+}
+.rb-signal-graph {
+  margin-top: 31px;
+  border: 1px solid var(--border-default);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--text-primary) 2.3%, var(--bg-base));
+  overflow: clip;
+}
+.rb-signal-main {
+  display: grid;
+  grid-template-columns: minmax(0, 2.18fr) minmax(0, 1fr);
+  grid-template-areas: "board inspector" "steps steps";
+}
+.rb-signal-board {
+  grid-area: board;
+  --rb-scene-line: #98a1af;
+  position: relative;
+  display: grid;
+  align-content: center;
+  min-width: 0;
+  min-height: 435px;
+  padding-top: 27px;
+  color: #e6e8ee;
+  background:
+    radial-gradient(ellipse at 50% 45%, #1c1e23 0%, transparent 67%),
+    radial-gradient(ellipse at 78% 86%, #12141a 0%, transparent 52%),
+    #090a0c;
+  overflow: hidden;
+}
+.rb-signal-board-tools {
+  position: absolute;
+  z-index: 1;
+  inset: 14px 18px auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: #b1b7c2;
+  font-size: 12px;
+  pointer-events: none;
+}
+.rb-signal-board-tools > div { display: flex; gap: 5px; pointer-events: auto; }
+.rb-signal-board-tools button {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #3b404a;
+  border-radius: 7px;
+  color: #e6e8ee;
+  background: #15171b;
+  cursor: pointer;
+}
+.rb-signal-board-tools button:hover { background: #2b2e35; }
+.rb-home .rb-signal-board-tools button:focus-visible,
+.rb-home .rb-signal-node:focus-visible { outline-color: #f4f5f8; outline-offset: 2px; }
+.rb-signal-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 760 / 432;
+  container-type: inline-size;
+  touch-action: pan-y;
+  user-select: none;
+  cursor: grab;
+}
+.rb-signal-stage:active { cursor: grabbing; }
+.rb-signal-scene { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.rb-signal-grid-plane { fill: #171a20; fill-opacity: .55; stroke: #454b56; stroke-opacity: .38; }
+.rb-signal-grid-line { stroke: var(--rb-scene-line); stroke-opacity: .16; }
+.rb-signal-pedestal { fill: #171b23; fill-opacity: .8; stroke: #798390; stroke-opacity: .46; stroke-width: 1; }
+.rb-signal-pedestal[data-active="true"] { stroke: #cdd1da; stroke-opacity: .75; }
+.rb-signal-pedestal .rb-signal-floor-ring { fill: none; stroke-opacity: .34; stroke-dasharray: 2 4; }
+.rb-signal-pedestal circle { fill: #c7cdd8; stroke: none; }
+.rb-signal-edge { fill: none; }
+.rb-signal-edge-base { stroke: #8090a5; stroke-opacity: .56; stroke-width: 1.45; }
+.rb-signal-edge[data-branch="watch"] .rb-signal-edge-base { stroke-dasharray: 3.5 4.5; }
+.rb-signal-edge[data-lit="true"] .rb-signal-edge-base { stroke: #b6c2d4; stroke-opacity: .82; stroke-width: 1.6; }
+.rb-signal-edge-flow {
+  stroke: #edf1fa;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-dasharray: 7 93;
+  filter: drop-shadow(0 0 5px #c1d5f8);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .rb-signal-edge-flow { animation: rb-signal-flow 4.8s linear infinite; }
+}
+@keyframes rb-signal-flow { to { stroke-dashoffset: -100; } }
+.rb-signal-orb-orbit { fill: #2d3440; fill-opacity: .22; stroke: #748294; stroke-opacity: .55; stroke-width: 1; }
+.rb-signal-orb-border { stroke: #9ba7b8; stroke-opacity: .75; stroke-width: 1.1; }
+.rb-signal-orb-rim { stroke: #c7d2e4; stroke-opacity: .15; fill: none; stroke-width: 1; }
+.rb-signal-orb-glyph { fill: none; stroke: #d8deea; stroke-width: 1.55; stroke-linecap: round; stroke-linejoin: round; }
+.rb-signal-orb[data-active="true"] .rb-signal-orb-border { stroke: #edf2fc; stroke-opacity: 1; stroke-width: 1.5; }
+.rb-signal-orb[data-active="true"] .rb-signal-orb-orbit { stroke: #bac7db; stroke-opacity: .8; }
+.rb-signal-node {
+  position: absolute;
+  z-index: 0;
+  display: grid;
+  place-items: end center;
+  width: 48px;
+  height: 48px;
+  width: max(44px, calc(2 * var(--rb-node-radius)));
+  height: max(44px, calc(2 * var(--rb-node-radius)));
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: #e4e8f0;
+  background: transparent;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+.rb-signal-node span {
+  position: absolute;
+  top: calc(50% + var(--rb-node-radius) + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 2px 8px 3px;
+  border: 1px solid #414751;
+  border-radius: 5px;
+  background: #121419;
+  font: 500 11px/1.35 var(--font-sans);
+  white-space: nowrap;
+}
+.rb-signal-node[data-active="true"] span, .rb-signal-node:hover span { color: #fff; border-color: #a9b1bf; }
+.rb-signal-inspector {
+  grid-area: inspector;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  gap: 20px;
+  padding: clamp(22px, 3vw, 37px);
+  border-left: 1px solid var(--border-default);
+}
+.rb-signal-inspector-icon {
+  display: grid;
+  place-items: center;
+  width: 43px;
+  height: 43px;
+  border: 1px solid var(--border-default);
+  border-radius: 9px;
+  background: var(--bg-raised);
+}
+.rb-signal-inspector .rb-signal-meta { color: var(--text-secondary); font: 11px/1.4 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; }
+.rb-signal-inspector h3 { margin-top: 10px; font-size: clamp(23px, 2.3vw, 31px); line-height: 1.12; letter-spacing: -.045em; font-weight: 530; }
+.rb-signal-inspector .rb-signal-description { margin-top: 14px; color: var(--text-secondary); font-size: 14px; line-height: 1.65; }
+.rb-signal-inspector .rb-signal-detail {
+  padding: 11px 0 11px 13px;
+  border-left: 1px solid var(--border-strong);
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.55;
+}
+.rb-signal-inspector .rb-home-text-link { margin-top: auto; font-size: 13px; }
+.rb-signal-steps {
+  grid-area: steps;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  border-block: 1px solid var(--border-default);
+}
+.rb-signal-steps button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 57px;
+  gap: 9px;
+  padding: 7px 6px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--text-secondary);
+  font: 500 13px/1.4 var(--font-sans);
+  cursor: pointer;
+}
+.rb-signal-steps button + button { border-left: 1px solid var(--border-subtle); }
+.rb-signal-steps button:hover, .rb-signal-steps button[aria-pressed="true"] { color: var(--text-primary); background: color-mix(in srgb, var(--text-primary) 5%, transparent); }
+.rb-signal-steps button[aria-pressed="true"] { border-bottom-color: var(--text-primary); }
+.rb-home .rb-signal-steps button:focus-visible { outline-offset: -5px; }
+.rb-signal-live {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 22px;
+  padding: 18px clamp(17px, 3vw, 29px);
+}
+.rb-signal-live-text { min-width: 0; overflow-wrap: anywhere; }
+.rb-signal-live-text strong { color: var(--text-primary); font-size: 14px; font-weight: 570; }
+.rb-signal-live-text p { margin-top: 3px; color: var(--text-secondary); line-height: 1.55; font-size: 13px; }
+.rb-signal-live-text .rb-signal-live-time { margin-top: 6px; font-size: 12px; }
+.rb-signal-live-actions { display: flex; flex: none; flex-direction: column; align-items: center; gap: 7px; }
+.rb-signal-live-actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 13px;
+  border: 1px solid var(--border-strong);
+  border-radius: 7px;
+  color: var(--text-primary);
+  background: transparent;
+  font: 500 13px/1.3 var(--font-sans);
+  cursor: pointer;
+}
+.rb-signal-live-actions button:hover { background: var(--bg-raised); }
+.rb-signal-live-actions button:disabled { cursor: wait; opacity: .65; }
+.rb-signal-live-actions a { color: var(--text-secondary); text-decoration: underline; text-underline-offset: 3px; font-size: 12px; }
+@media (max-width: 960px) {
+  .rb-signal-board { min-height: 380px; }
+  .rb-signal-inspector { gap: 15px; }
+  .rb-signal-inspector-icon { width: 36px; height: 36px; }
+}
+@media (max-width: 760px) {
+  .rb-home .rb-signal-section { padding-top: 16px; }
+  .rb-signal-heading { grid-template-columns: 1fr; gap: 12px; padding-top: 33px; }
+  .rb-signal-graph { margin-top: 23px; }
+  .rb-signal-main { grid-template-columns: minmax(0, 1fr); grid-template-areas: "board" "steps" "inspector"; }
+  .rb-signal-board { min-height: 0; padding-top: 52px; padding-bottom: 4px; }
+  .rb-signal-board-tools { inset: 8px 10px auto; padding-left: 5px; }
+  .rb-signal-inspector { padding: 20px; border-left: 0; border-bottom: 1px solid var(--border-default); }
+  .rb-signal-inspector-icon { display: none; }
+  .rb-signal-inspector h3 { margin-top: 8px; }
+  .rb-signal-inspector .rb-signal-description { margin-top: 8px; }
+  .rb-signal-steps button { flex-direction: column; gap: 4px; font-size: 11px; }
+  .rb-signal-live { align-items: flex-start; flex-direction: column; }
+  .rb-signal-live-actions { flex-direction: row; flex-wrap: wrap; gap: 12px; }
+}
+@media (max-width: 480px) {
+  .rb-signal-node span { font-size: 9px; padding-inline: 5px; top: calc(50% + var(--rb-node-radius) + 5px); }
+  .rb-signal-inspector .rb-signal-detail { font-size: 12px; }
+}
