@@ -3,6 +3,7 @@ import SiteNav from "@/components/site/site-nav";
 import SiteFooter from "@/components/site/site-footer";
 import BrandMark, { BrandWordmark } from "@/components/site/brand-mark";
 import MarketPerspective from "@/components/site/market-perspective";
+import SignalGraph from "@/components/site/signal-graph";
 import { EARLY_ACCESS_END } from "@/components/site/access-offer";
 import "./rarebird-home.css";
 
@@ -56,6 +57,7 @@ export default function Home() {
             <a className="rb-home-text-link" href="/for-agents">Connect your agent <ArrowRight size={17} aria-hidden="true" /></a>
           </div>
           <p className="rb-home-access">App and agent free through {EARLY_ACCESS_END}.</p>
+          <a className="rb-home-text-link rb-home-graph-link" href="#signal-graph">Explore the signal graph <ArrowRight size={15} aria-hidden="true" /></a>
         </div>
         <div className="rb-home-sculpture" aria-hidden="true">
           <div className="rb-home-sculpture-grid" />
@@ -73,6 +75,17 @@ export default function Home() {
           <span className="rb-home-direction rb-home-direction-up"><ArrowUpRight size={20} /> Find opportunity</span>
           <span className="rb-home-direction rb-home-direction-down"><ArrowDownRight size={20} /> Understand risk</span>
         </div>
+      </section>
+
+      <section className="rb-signal-section rb-home-width" id="signal-graph" aria-labelledby="signal-graph-title">
+        <header className="rb-signal-heading">
+          <div>
+            <p className="rb-home-eyebrow">How Rarebird works</p>
+            <h2 id="signal-graph-title">From anomaly to<br /><span>signal intelligence.</span></h2>
+          </div>
+          <p>See how unusual market activity and source evidence feed into the timing checks. Select a node to see what goes into a review and what Rarebird measures afterward.</p>
+        </header>
+        <SignalGraph />
       </section>
 
       <section className="rb-home-section rb-home-width rb-home-platform" id="agent-workflow" aria-labelledby="platform-title">

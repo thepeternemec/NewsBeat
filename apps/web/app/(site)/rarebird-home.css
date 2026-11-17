@@ -21,6 +21,8 @@ body:has(.rb-home) > :is(.grid-field, .aurora-layer, .noise-overlay) { display: 
 .rb-home-text-link svg { flex: none; transition: transform .2s; }
 .rb-home-text-link:hover svg { transform: translateX(3px); }
 .rb-home .rb-home-access { margin-top: 22px; font-size: 11px; color: var(--text-secondary); }
+.rb-home .rb-home-graph-link { margin-top: 9px; font-size: 13px; color: var(--text-secondary); }
+.rb-home .rb-home-graph-link:hover { color: var(--text-primary); }
 .rb-home-sculpture { position: relative; aspect-ratio: 1; width: 112%; margin-left: -5%; color: var(--text-primary); }
 .rb-home-sculpture-grid { position: absolute; inset: -8%; background-image: linear-gradient(var(--border-subtle) 1px, transparent 1px), linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px); background-size: 45px 45px; mask-image: radial-gradient(circle, #000 0%, transparent 68%); opacity: .7; }
 .rb-home-orbit { position: absolute; border: 1px solid var(--border-subtle); border-radius: 50%; inset: 11%; }
