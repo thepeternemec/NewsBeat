@@ -1,12 +1,12 @@
 <p align="center">
-  <a href="https://www.newsbeat.dev">
-    <img src="brand/newsbeat-github.svg" alt="Rarebird — Meaningful signals. Built for agents. News becomes context your agent can use." width="100%">
+  <a href="https://rarebird.network">
+    <img src="brand/newsbeat-github.svg" alt="Rarebird — Market intelligence for stocks and crypto." width="100%">
   </a>
 </p>
 
 <p align="center">
-  <strong>Open-source market intelligence for AI agents.</strong><br>
-  What changed across stocks and crypto, the evidence behind it, and what to check next.
+  <strong>Market timing, risk and position sizing for stocks and crypto.</strong><br>
+  An open-source market intelligence network for traders and their AI agents.
 </p>
 
 <p align="center">
@@ -15,7 +15,8 @@
 </p>
 
 <p align="center">
-  <a href="https://www.newsbeat.dev/app"><strong>Open the app</strong></a> ·
+  <a href="https://rarebird.network"><strong>rarebird.network</strong></a> ·
+  <a href="https://www.newsbeat.dev/app">Open the live preview</a> ·
   <a href="https://www.newsbeat.dev/intelligence">Explore a signal</a> ·
   <a href="https://www.newsbeat.dev/docs/quickstart">Connect your agent</a> ·
   <a href="https://www.newsbeat.dev/docs">Docs</a> ·
@@ -24,21 +25,17 @@
 
 ---
 
-Rarebird is an open-source intelligence layer for AI agents. It brings together stock and crypto reporting, issuer filings and market checks that help an agent decide what to investigate. The [opportunity brief](https://www.newsbeat.dev/intelligence#opportunities) shows recent filings and the evidence behind market candidates.
+Rarebird is an open-source market intelligence network for stocks and crypto. The goal is to build an agent you can check throughout the trading day for three decisions: **when to act, what could go wrong, and how much risk to take**.
 
-**Live preview now. Public launch planned for late November 2026.** Rarebird is built in the open and shaped by requests to find market changes sooner, check their evidence, and measure what happens next.
+| Decision | What Rarebird does today | Where it’s going |
+| --- | --- | --- |
+| **Market timing** | Finds new developments across 2,030 stock and crypto topics. A six-asset pilot checks unusual moves, volume and liquidity. BTC and ETH have hourly move-risk forecasts with a public scorecard. | Broader measured coverage and timing signals evaluated against outcomes and trading costs. |
+| **Risk management** | Ticker briefs show adverse evidence, gaps and what would invalidate the current view. Measured checks flag stale data and weak confirmation. | Monitor exposures and show which positions need another look as conditions change. |
+| **Position sizing** | Research provides asset-level context such as observed volatility and liquidity where coverage is available. | Estimate hypothetical position sizes from a user-defined loss budget, an invalidation level, liquidity and existing exposure. |
+
+The aim is to help traders spot opportunities and limit avoidable losses. A useful answer might be to investigate a move, reduce exposure or wait for confirmation. Today Rarebird provides research and experimental forecasts. Portfolio-aware risk and position sizing are planned.
 
 [Get started](#get-started) · [How it works](#how-it-works) · [Build history](#build-history) · [Project status](#project-status) · [Run locally](#run-locally) · [Contribute](#contribute)
-
-## Why Rarebird?
-
-A headline tells your agent something happened. A useful signal helps it understand what deserves attention.
-
-- **See what actually changed.** Discover recent reporting, group repeated coverage and follow new arrivals.
-- **Understand the context.** Read a source-linked interpretation, its uncertainty and the questions it raises.
-- **Know what to check next.** Inspect market confirmation, conditions that would change the view and explicit reasons to wait.
-
-Use it inside a research assistant, a personal briefing or a watchlist workflow. Start with the underlying company or cryptocurrency when researching a tokenized asset.
 
 ## Get started
 
@@ -154,7 +151,7 @@ The repository records **50+ merged pull requests**. These milestones show how t
 | Independent discovery | 15/30/60-minute anomaly scans, past-only comparisons, volatility context and an episode journal |
 | Evaluation | Prospective observations for comparing all constructions with selected review alerts, plus an hourly BTC/ETH forecast scorecard |
 
-**Next:** calibrate against collected outcomes, add richer evidence and expectation changes, and expand measured coverage. Saved watches, notification delivery and verified tokenized-asset mapping are planned.
+**Next:** expand measured coverage, evaluate signals against outcomes and costs, and develop portfolio risk and position sizing with explicit user limits. Saved watches, notification delivery and verified tokenized-asset mapping are planned.
 
 The catalog is scheduled every 10 minutes. One-minute news collection for a priority asset starts only on explicit request, lasts 15 minutes and never auto-renews. Analysis and market measurements remain on five-minute schedules. Read freshness and analysis timestamps: schedules do not guarantee fresh results for every asset.
 
@@ -219,5 +216,5 @@ Read [CONTRIBUTING.md](CONTRIBUTING.md), [open an issue](https://github.com/thep
 [MIT license](LICENSE) · [Code of conduct](CODE_OF_CONDUCT.md) · [Security](SECURITY.md)
 
 <p align="center">
-  <a href="https://www.newsbeat.dev">Rarebird live preview</a> · <a href="https://x.com/newsbeat_">@newsbeat_</a> · <a href="mailto:contact@newsbeat.dev">contact@newsbeat.dev</a>
+  <a href="https://rarebird.network">Rarebird Network</a> · <a href="https://www.newsbeat.dev">Live preview</a> · <a href="https://x.com/newsbeat_">@newsbeat_</a> · <a href="mailto:contact@newsbeat.dev">contact@newsbeat.dev</a>
 </p>
