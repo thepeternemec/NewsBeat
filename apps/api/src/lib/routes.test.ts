@@ -184,7 +184,7 @@ test("every public route is mentioned in the docs", () => {
 /** POST is allowed only where a request body is the whole point, and writes nothing. */
 const POST_READS = new Set(["/v2/watch", "/v2/investment"]);
 
-test("stored reads stay GET; research generation and collection control are explicit POST exceptions", () => {
+test("stored reads stay GET; research, conversation generation and collection control are explicit POST exceptions", () => {
   // The contract is read-only. A mutating verb appearing here would be a product
   // change, not a refactor. `/v2/watch` is a POST because fifty cursors do not fit
   // in a URL — it reads, and the allowlist is explicit so the next one has to be
@@ -192,6 +192,7 @@ test("stored reads stay GET; research generation and collection control are expl
   for (const route of served()) {
     if (!route.path.startsWith("/v2/")) continue;
     if (route.path === "/v2/research") { assert.ok(["GET", "POST"].includes(route.method)); continue; }
+    if (route.path === "/v2/agent") { assert.ok(["GET", "POST"].includes(route.method)); continue; }
     if (route.path === "/v2/collection") { assert.ok(["GET", "POST"].includes(route.method)); continue; }
     if (POST_READS.has(route.path)) {
       assert.equal(route.method, "POST", `${route.path} is in the POST allowlist but served as ${route.method}`);
@@ -199,6 +200,17 @@ test("stored reads stay GET; research generation and collection control are expl
     }
     assert.equal(route.method, "GET", `${route.path} is served as ${route.method}`);
   }
+});
+
+test("conversation routes reject invalid scope and history before running tools", async () => {
+  const invalidMarket = await app.request("/v2/agent?market=unknown");
+  assert.equal(invalidMarket.status, 400);
+  const invalidAsset = await app.request("/v2/agent?beat_id=unknown");
+  assert.equal(invalidAsset.status, 400);
+  const invalidHistory = await app.request("/v2/agent", { method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ question: "Bitcoin", history: [{ question: "Before", beat_ids: ["unknown"] }] }) });
+  assert.equal(invalidHistory.status, 400);
+  assert.equal(invalidHistory.headers.get("cache-control"), "no-store");
 });
 
 test("the advertising documents name at least the core routes", () => {
