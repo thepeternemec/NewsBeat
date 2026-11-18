@@ -1,22 +1,55 @@
+body:has(.rb-feed) > :is(.grid-field, .aurora-layer, .noise-overlay) { display: none; }
+.rb-app:has(.rb-feed) {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1600px;
+  height: 100dvh;
+  padding: 64px 16px 0;
+}
+.rb-app:has(.rb-feed) .rb-app-nav { flex-shrink: 0; margin-bottom: 0; padding-block: 8px; }
+.rb-app:has(.rb-feed) .rb-app-main { flex: 1; min-height: 0; }
+.rb-app:has(.rb-feed) ~ footer.site { display: none; }
 .rb-feed {
   position: relative;
-  width: min(100%, 1120px);
-  min-height: 80vh;
-  margin-inline: auto;
-  padding: calc(98px + env(safe-area-inset-top, 0px)) clamp(16px, 4vw, 36px) 64px;
+  display: grid;
+  grid-template-columns: 224px minmax(0, 1fr);
+  height: 100%;
+  min-height: 0;
+  border: 1px solid var(--border-default);
+  border-bottom: 0;
+  border-radius: 12px 12px 0 0;
+  background: var(--bg-base);
   color: var(--text-primary);
 }
-body:has(.rb-feed) > :is(.grid-field, .aurora-layer, .noise-overlay) { display: none; }
-.rb-feed-head { margin-bottom: 24px; }
-.rb-feed-head h1 { margin: 0; font-size: clamp(36px, 5vw, 54px); line-height: 1.08; letter-spacing: -.055em; }
-.rb-feed-head > p { margin: 8px 0 18px; color: var(--text-secondary); font-size: 15px; }
-.rb-feed-head .rb-catalog-search { max-width: 540px; }
-.rb-feed-head .catalog-search-field { min-height: 52px; }
-.rb-feed-layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); align-items: start; gap: 24px; }
-.rb-feed-sidebar { position: sticky; top: 85px; min-width: 0; }
-.rb-feed-scopes, .rb-feed-followed nav { display: grid; gap: 4px; }
-.rb-feed-sidebar a { text-decoration: none; }
-.rb-feed-scopes a, .rb-feed-followed nav a {
+.rb-feed-sidebar {
+  min-width: 0;
+  padding: 18px 12px;
+  border-right: 1px solid var(--border-default);
+  background: color-mix(in srgb, var(--text-primary) 2.5%, var(--bg-base));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.rb-feed-main { display: grid; grid-template-rows: auto minmax(0, 1fr); min-height: 0; min-width: 0; }
+.rb-feed-head {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  min-width: 0;
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.rb-feed-title { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.rb-feed-head h1 { margin: 0; font-size: 24px; line-height: 1.2; letter-spacing: -.035em; }
+.rb-feed-head .rb-feed-title p { margin: 3px 0 0; color: var(--text-secondary); font-size: 13px; }
+.rb-feed-head .rb-catalog-search { width: min(100%, 300px); }
+.rb-feed-head .catalog-search-field { min-height: 46px; }
+.rb-feed-head .catalog-search-field input { font-size: 14px; }
+.rb-feed-new, .rb-feed-scopes a, .rb-feed-followed nav a {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -26,65 +59,140 @@ body:has(.rb-feed) > :is(.grid-field, .aurora-layer, .noise-overlay) { display: 
   border-radius: 9px;
   color: var(--text-secondary);
   font-size: 14px;
+  text-decoration: none;
 }
-.rb-feed-sidebar nav a[aria-current="page"], .rb-feed-sidebar nav a:hover {
-  border-color: var(--border-default);
-  background: var(--bg-raised);
+.rb-feed-new { color: var(--text-primary); border-color: var(--border-default); margin-bottom: 16px; }
+.rb-feed-scopes, .rb-feed-followed nav { display: grid; gap: 4px; }
+.rb-feed-scopes a[aria-current="page"], .rb-feed-followed nav a[aria-current="page"],
+.rb-feed-new:hover, .rb-feed-scopes a:hover, .rb-feed-followed nav a:hover {
+  background: color-mix(in srgb, var(--text-primary) 6%, transparent);
   color: var(--text-primary);
 }
-.rb-feed-followed { margin-top: 17px; padding: 12px 0 0; border-top: 1px solid var(--border-default); }
-.rb-feed-followed h2 { margin: 0 0 6px; font-size: 14px; font-weight: 600; }
-.rb-feed-followed nav { max-height: 40vh; overflow: auto; }
-.rb-feed-followed nav a { display: grid; gap: 0; }
-.rb-feed-followed strong { color: var(--text-primary); }
+.rb-feed-followed { margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--border-default); }
+.rb-feed-followed h2 { margin: 0 0 8px; font-size: 12px; font-weight: 600; color: var(--text-secondary); }
+.rb-feed-followed nav a { display: grid; gap: 2px; overflow-wrap: anywhere; }
+.rb-feed-followed strong { color: var(--text-primary); font-size: 13px; }
 .rb-feed-followed nav a span, .rb-feed-note { color: var(--text-secondary); font-size: 12px; line-height: 1.55; }
-.rb-feed-about { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; margin-top: 8px; font-size: 13px; color: var(--text-secondary); }
-.rb-feed-stream { display: grid; gap: 14px; min-width: 0; }
-.rb-feed-asset { display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center; gap: 12px; }
-.rb-feed-asset h2 { margin: 0; font-size: clamp(25px, 4vw, 37px); line-height: 1.14; letter-spacing: -.04em; overflow-wrap: anywhere; }
 .rb-feed-note { margin: 0 0 5px; }
-.rb-feed-button, .rb-feed-views button {
+.rb-feed-about { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; margin-top: 8px; font-size: 13px; color: var(--text-secondary); }
+.rb-feed-about:hover { color: var(--text-primary); }
+.rb-feed-button, .rb-feed-views button, .rb-feed-mobile-toggle, .rb-feed-mobile-close {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 7px;
   min-height: 44px;
-  padding: 7px 14px;
+  padding: 7px 12px;
   border: 1px solid var(--border-default);
   border-radius: 9px;
-  background: var(--bg-primary);
+  background: transparent;
   color: var(--text-primary);
-  font: inherit;
-  font-size: 14px;
+  font: 500 13px var(--font-sans);
   cursor: pointer;
 }
-.rb-feed-button[aria-pressed="true"], .rb-feed-views button[aria-pressed="true"] { border-color: var(--border-strong); background: var(--bg-raised); font-weight: 600; }
-.rb-feed-views { display: flex; gap: 7px; }
-.rb-feed .rb-discovery, .rb-feed-reporting { border-radius: 14px; }
-.rb-feed .rb-discovery-list > li { padding-block: 17px; }
-.rb-feed .rb-discovery-list h3 { font-size: 17px; }
+.rb-feed-button:disabled { opacity: .5; cursor: default; }
+.rb-feed-button[aria-pressed="true"], .rb-feed-views button[aria-pressed="true"] {
+  border-color: var(--border-strong);
+  background: var(--bg-raised);
+}
+.rb-feed-views { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+.rb-feed-response-heading { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 15px; }
+.rb-feed-speaker { margin: 0; color: var(--text-primary); font-size: 14px; font-weight: 600; }
+.rb-feed-conversation { display: grid; grid-template-rows: minmax(0, 1fr) auto; min-height: 0; }
+.rb-feed-thread { min-height: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+.rb-feed-thread-content { width: min(100%, 780px); margin-inline: auto; padding: 24px clamp(16px, 3vw, 32px); }
+.rb-feed-response .rb-discovery, .rb-feed-reporting, .rb-feed-response .event-intelligence {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.rb-feed .rb-discovery h2, .rb-feed-reporting h2 { margin: 0 0 7px; font-size: 25px; letter-spacing: -.035em; }
+.rb-feed .rb-discovery-list > li { padding: 18px; margin-top: 12px; border: 1px solid var(--border-default); border-radius: 12px; }
+.rb-feed .rb-discovery-list h3 { font-size: 17px; line-height: 1.45; }
 .rb-feed .rb-discovery-tags a { color: var(--text-primary); text-underline-offset: 3px; }
-.rb-feed-reporting { padding: clamp(16px, 3vw, 28px); border: 1px solid var(--border-default); background: var(--bg-primary); }
-.rb-feed-reporting h2 { margin: 0 0 5px; font-size: 24px; letter-spacing: -.035em; }
+.rb-feed .rb-discovery details summary { padding-block: 10px; }
 .rb-feed-reporting ol { list-style: none; padding: 0; margin: 14px 0 0; }
-.rb-feed-reporting ol > li { padding-block: 14px; border-top: 1px solid var(--border-default); }
-.rb-feed-reporting h3 { margin: 0; font-size: 16px; line-height: 1.45; overflow-wrap: anywhere; }
+.rb-feed-reporting ol > li { padding-block: 16px; border-top: 1px solid var(--border-default); }
+.rb-feed-reporting h3 { margin: 0; font-size: 16px; line-height: 1.5; overflow-wrap: anywhere; }
 .rb-feed-reporting h3 a { color: var(--text-primary); text-decoration: none; }
-.rb-feed-reporting h3 a:hover, .rb-feed-about:hover { text-decoration: underline; }
+.rb-feed-reporting h3 a:hover { text-decoration: underline; }
 .rb-feed-reporting h3 svg { display: inline; vertical-align: -.15em; }
 .rb-feed-reporting details { margin-top: 5px; font-size: 13px; color: var(--text-secondary); }
-.rb-feed-reporting summary { cursor: pointer; padding-block: 8px; }
+.rb-feed-reporting summary { cursor: pointer; padding-block: 10px; }
 .rb-feed-reporting details li { margin-block: 6px; overflow-wrap: anywhere; }
-.rb-feed :focus-visible { outline: 2px solid var(--text-primary); outline-offset: 2px; }
-@media (max-width: 700px) {
-  .rb-feed-layout { grid-template-columns: minmax(0, 1fr); gap: 17px; }
-  .rb-feed-head { margin-bottom: 14px; }
-  .rb-feed-sidebar { position: static; }
-  .rb-feed-scopes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .rb-feed-scopes a { justify-content: center; padding-inline: 3px; text-align: center; }
-  .rb-feed-followed { margin-top: 8px; }
-  .rb-feed-followed nav { display: flex; flex-wrap: wrap; max-height: 104px; }
-  .rb-feed-followed nav a { max-width: 100%; border-color: var(--border-default); }
-  .rb-feed-sidebar .rb-feed-about { margin-top: 0; }
+.rb-feed-check { margin-top: 28px; }
+.rb-feed-user-message {
+  width: fit-content;
+  max-width: 88%;
+  margin: 0 0 22px auto;
+  padding: 12px 17px;
+  border-radius: 18px 18px 4px 18px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border-default);
+  color: var(--text-primary);
+  font-size: 15px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.rb-feed-check .rb-feed-check-answer { margin: 0; padding: 0; border: 0; background: transparent; }
+.rb-feed-check-answer .rb-feed-speaker { font-size: 14px; margin-bottom: 14px; }
+.rb-feed-check-answer .research-question-answer { font-size: 17px; line-height: 1.7; }
+.rb-feed-check-answer :is(p, li) { font-size: 14px; }
+.rb-feed-composer-wrap { width: min(100%, 780px); margin-inline: auto; padding: 12px clamp(16px, 3vw, 32px) 10px; background: var(--bg-base); }
+.rb-feed-composer {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 20px;
+  background: var(--bg-raised);
+}
+.rb-feed-composer:focus-within { outline: 1px solid var(--text-secondary); outline-offset: 2px; }
+.rb-feed-composer textarea {
+  flex: 1;
+  min-width: 0;
+  max-height: 140px;
+  min-height: 48px;
+  padding: 0 4px;
+  border: 0;
+  outline: 0;
+  resize: vertical;
+  background: transparent;
+  color: var(--text-primary);
+  font: 400 16px/1.5 var(--font-sans);
+}
+.rb-feed-composer textarea::placeholder { color: var(--text-secondary); }
+.rb-feed-send { display: grid; place-items: center; flex: none; width: 44px; height: 44px; border: 0; border-radius: 12px; background: var(--text-primary); color: var(--bg-base); cursor: pointer; }
+.rb-feed-send:disabled { opacity: .35; cursor: default; }
+.rb-feed-composer-hint { margin: 6px 0 0; text-align: center; color: var(--text-secondary); font-size: 11px; }
+.rb-feed-tools { margin-top: 28px; border-top: 1px solid var(--border-default); }
+.rb-feed-tools > details { border-bottom: 1px solid var(--border-default); scroll-margin-top: 12px; }
+.rb-feed-tools > details > summary { cursor: pointer; padding-block: 14px; min-height: 48px; font-size: 14px; color: var(--text-secondary); }
+.rb-feed-tool-content { padding-bottom: 16px; }
+.rb-feed-visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.rb-feed-mobile-toggle { display: none; }
+.rb-feed-mobile-feeds { inset: calc(78px + env(safe-area-inset-top)) 12px auto; margin: 0 auto; width: min(340px, calc(100vw - 24px)); max-height: 70dvh; overflow-y: auto; padding: 14px; border: 1px solid var(--border-strong); border-radius: 14px; background: var(--bg-raised); color: var(--text-primary); box-shadow: 0 16px 50px #0006; }
+.rb-feed-mobile-close { display: flex; margin: 0 0 10px auto; }
+.rb-feed :focus-visible { outline: 2px solid var(--text-primary); outline-offset: 3px; }
+@media (max-width: 900px) {
+  .rb-app:has(.rb-feed) { padding: calc(64px + env(safe-area-inset-top)) max(0px, env(safe-area-inset-right)) calc(68px + env(safe-area-inset-bottom)) max(0px, env(safe-area-inset-left)); }
+  .rb-app:has(.rb-feed input:focus, .rb-feed textarea:focus) { padding-bottom: env(safe-area-inset-bottom); }
+  .rb-feed { grid-template-columns: minmax(0, 1fr); border-inline: 0; border-radius: 0; }
+  .rb-feed-sidebar { display: none; }
+  .rb-feed-mobile-toggle { display: inline-flex; width: 44px; padding: 0; }
+}
+@media (max-width: 600px) {
+  .rb-feed-head { padding: 10px 14px; gap: 8px; }
+  .rb-feed-head h1 { font-size: 21px; }
+  .rb-feed-head .rb-catalog-search { width: 100%; }
+  .rb-feed-head .catalog-search-field input { font-size: 16px; }
+  .rb-feed-thread-content { padding: 18px 14px; }
+  .rb-feed-composer-wrap { padding: 8px 12px 10px; }
+  .rb-feed-composer-hint { display: none; }
+  .rb-feed .rb-discovery-list > li { padding: 14px; }
   .rb-feed-views button { flex: 1; }
 }

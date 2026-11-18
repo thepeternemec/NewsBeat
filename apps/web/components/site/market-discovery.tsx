@@ -128,7 +128,7 @@ export default function MarketDiscovery({
         return <li key={event.id}>
           <div className="rb-discovery-tags">
             <span>{linkFeeds ? event.assets.map((item, index) => <span key={item.beat_id}>
-              {index > 0 && " · "}<a href={"/?beat=" + encodeURIComponent(item.beat_id)}>{item.ticker}</a>
+              {index > 0 && " · "}<a href={"/intelligence?beat=" + encodeURIComponent(item.beat_id)}>{item.ticker}</a>
             </span>) : event.assets.map(item => item.ticker).join(" · ")}</span>
             <span>{event.label}</span>
             {newSinceLastRead && <span className="rb-discovery-new">Since your last visit</span>}

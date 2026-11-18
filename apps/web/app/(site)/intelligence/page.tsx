@@ -1,8 +1,9 @@
-import WorkspaceShell, { WorkspaceEvidence } from "@/components/site/workspace-shell";
+import { SEED_BEATS } from "@rarebird/contracts";
+import WorkspaceShell from "@/components/site/workspace-shell";
+import FeedWorkspace from "@/components/site/feed-workspace";
 import SignalInspector from "@/components/site/signal-inspector";
 import OpportunityBrief from "@/components/site/opportunity-brief";
 import MarketBriefingCard from "@/components/site/market-briefing";
-import MarketDiscovery from "@/components/site/market-discovery";
 import "../landing.css";
 import "../rarebird.css";
 import "../rarebird-polish.css";
@@ -11,31 +12,34 @@ import "./workspace.css";
 
 export const metadata = {
   title: "Rarebird — Market checks",
-  description: "Scan company and token developments, open the original evidence, and inspect deeper market checks.",
-  alternates: { canonical: "https://www.rarebird.network/intelligence" },
+  description: "Follow company and token feeds, read current evidence, and ask market questions in one conversation.",
+  alternates: { canonical: "/intelligence" },
 };
 
-export default function IntelligencePage() {
-  return <WorkspaceShell active="/intelligence" title="Market checks"
-    description="Search a stock or crypto asset, open the original evidence and see which developments warrant a closer look.">
-    <WorkspaceEvidence title="How a report becomes a review candidate">
-      <p>The catalog scan checks for relevant reporting across 2,030 assets. Four pilot issuers also have direct SEC filing checks.</p>
-      <p>For six pilot assets, Rarebird tests fresh reporting against market participation, relative price moves and trading costs. The asset inspector shows the sources, timing checks and reasons to wait.</p>
-      <a href="/docs/intelligence#pilot-and-policy">Read the criteria for a review</a>
-    </WorkspaceEvidence>
-    <nav className="rb-app-jump" aria-label="Jump to a market check">
-      <a href="#discovery">Developments</a>
-      <a href="#opportunities">Reviews and filings</a>
-      <a href="#real-signal">Asset inspector</a>
-    </nav>
-    <div className="rb-market-workspace">
-      <div id="discovery"><MarketDiscovery /></div>
-      <MarketBriefingCard />
-      <div id="opportunities"><OpportunityBrief /></div>
-      <section className="ni-quant-workspace" id="real-signal" aria-labelledby="real-signal-title">
-        <h2 id="real-signal-title">Inspect an asset</h2>
-        <SignalInspector />
-      </section>
-    </div>
+export default async function IntelligencePage({ searchParams }: {
+  searchParams: Promise<{ beat?: string; market?: string }>;
+}) {
+  const query = await searchParams;
+  const beat = typeof query.beat === "string" ? SEED_BEATS.find(item => item.beat_id === query.beat) : undefined;
+  const asset = beat ? { beat_id: beat.beat_id, label: beat.label, ticker: beat.ticker, asset: beat.asset ?? "equity" } : null;
+  const market = query.market === "equity" || query.market === "crypto" ? query.market : "all";
+
+  return <WorkspaceShell active="/intelligence">
+    <FeedWorkspace key={asset?.beat_id ?? market} asset={asset} market={market} unknownAsset={Boolean(query.beat && !asset)}>
+      <div className="rb-feed-tools rb-market-workspace" aria-label="More market tools">
+        <details>
+          <summary>Market briefing</summary>
+          <div className="rb-feed-tool-content"><MarketBriefingCard /></div>
+        </details>
+        <details id="opportunities">
+          <summary>Reviews and filings</summary>
+          <div className="rb-feed-tool-content"><OpportunityBrief /></div>
+        </details>
+        <details id="real-signal">
+          <summary>Asset inspector</summary>
+          <div className="rb-feed-tool-content ni-quant-workspace"><SignalInspector /></div>
+        </details>
+      </div>
+    </FeedWorkspace>
   </WorkspaceShell>;
 }
