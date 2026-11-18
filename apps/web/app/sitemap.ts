@@ -5,6 +5,7 @@ const ORIGIN = "https://www.rarebird.network";
 // Only public, indexable pages. API endpoints and generated image routes are omitted.
 const PAGES = [
   "/",
+  "/about",
   "/app",
   "/app/forecasts",
   "/app/research",

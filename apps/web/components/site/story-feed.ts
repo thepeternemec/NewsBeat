@@ -17,8 +17,8 @@ export interface StorySnapshot {
   coverage_truncated: boolean;
   freshness: { status: string; last_success_at: string | null };
 }
-export async function loadStoryFeed(base: string, beatId: string, limit = 200) {
-  const response = await fetch(`${base}/v2/stories?beat_id=${encodeURIComponent(beatId)}&limit=${limit}`, { cache: "no-store" });
+export async function loadStoryFeed(base: string, beatId: string, limit = 200, signal?: AbortSignal) {
+  const response = await fetch(`${base}/v2/stories?beat_id=${encodeURIComponent(beatId)}&limit=${limit}`, { cache: "no-store", signal });
   if (!response.ok) throw new Error("News coverage could not be loaded. Please try again.");
   const page = await response.json() as StorySnapshot;
   return {

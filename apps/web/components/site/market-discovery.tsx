@@ -18,10 +18,12 @@ export default function MarketDiscovery({
   compact = false,
   showControls = !compact,
   initialMarket = "all",
-}: { compact?: boolean; showControls?: boolean; initialMarket?: (typeof tabs)[number]["id"] }) {
+  initialSelection = null,
+  linkFeeds = false,
+}: { compact?: boolean; showControls?: boolean; initialMarket?: (typeof tabs)[number]["id"]; initialSelection?: LookupAsset | null; linkFeeds?: boolean }) {
   const heading = useId();
   const [asset, setAsset] = useState(initialMarket);
-  const [selection, setSelection] = useState<LookupAsset | null>(null);
+  const [selection, setSelection] = useState<LookupAsset | null>(initialSelection);
   const beatId = selection?.beat_id;
   const scope = beatId ?? asset;
   const searchId = heading + "-search";
@@ -125,7 +127,9 @@ export default function MarketDiscovery({
         const primary = lead.type === "official_filing";
         return <li key={event.id}>
           <div className="rb-discovery-tags">
-            <span>{event.assets.map(item => item.ticker).join(" · ")}</span>
+            <span>{linkFeeds ? event.assets.map((item, index) => <span key={item.beat_id}>
+              {index > 0 && " · "}<a href={"/?beat=" + encodeURIComponent(item.beat_id)}>{item.ticker}</a>
+            </span>) : event.assets.map(item => item.ticker).join(" · ")}</span>
             <span>{event.label}</span>
             {newSinceLastRead && <span className="rb-discovery-new">Since your last visit</span>}
           </div>
