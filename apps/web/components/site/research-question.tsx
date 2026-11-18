@@ -3,7 +3,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { ArrowRight, ArrowUpRight, Sparkles } from "lucide-react";
 import type { ResearchResponse } from "@rarebird/contracts";
-import { API_BASE } from "./content";
+import { requestResearch } from "./research-request";
 import "./research-question.css";
 
 const EXAMPLES = [
@@ -33,14 +33,7 @@ export default function ResearchQuestion({ beatIds, label, compact = false }: {
     const timeout = window.setTimeout(() => controller.abort(), 35000);
     setQuestion(text); setLoading(true); setError(""); setResult(null);
     try {
-      const response = await fetch(API_BASE + "/v2/research", {
-        method: "POST", headers: { "Content-Type": "application/json" }, cache: "no-store",
-        signal: controller.signal,
-        body: JSON.stringify({ question: text.trim(), ...((selected ?? beatIds)?.length ? { beat_ids: selected ?? beatIds } : {}) }),
-      });
-      if (!response.ok) throw new Error(response.status === 429 ? "Too many requests. Wait a moment before trying again." : "Research is unavailable right now. Please try again.");
-      const data = await response.json() as ResearchResponse;
-      if (data.version !== "question-research-v1" || !Array.isArray(data.evidence)) throw new Error("The research response could not be read.");
+      const data = await requestResearch(text, selected ?? beatIds, controller.signal);
       if (current === revision.current) setResult(data);
     } catch (cause) {
       if (current === revision.current) setError(controller.signal.aborted ? "The request took too long. Please try again." : cause instanceof Error ? cause.message : "Research is unavailable.");
