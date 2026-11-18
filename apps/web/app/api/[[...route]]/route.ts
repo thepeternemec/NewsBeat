@@ -13,6 +13,7 @@ import app from "@rarebird/api";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const maxDuration = 60;
 
 const mounted = new Hono().basePath("/api").route("/", app);
 

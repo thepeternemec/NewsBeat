@@ -19,3 +19,4 @@ export * from "./token-intelligence.js";
 export * from "./market-briefing.js";
 export * from "./catalysts.js";
 export * from "./discovery.js";
+export * from "./agent.js";

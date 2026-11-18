@@ -12,7 +12,7 @@ const PRICE_IDS: Record<string, string> = { BTC: "bitcoin", ETH: "ethereum", SOL
 export const priceIdsForAsset = (asset: Pick<Beat, "ticker" | "asset"> | null) =>
   asset?.asset === "crypto" && PRICE_IDS[asset.ticker] ? [PRICE_IDS[asset.ticker]!] : [];
 
-async function gather(asset: Beat, question: string, context: "fundamentals" | "liquidity" | "risk", intelligenceRead: typeof readIntelligence) {
+export async function gatherResearchEvidence(asset: Beat, question: string, context: "fundamentals" | "liquidity" | "risk", intelligenceRead = readIntelligence) {
   const meta: ResearchAsset = { ...assetView(asset), news_status: "unavailable", market_status: "unavailable", reports_scanned: 0, coverage_truncated: false, limitations: [] };
   const evidence: ResearchEvidence[] = [];
   const [news, intelligence, quote, official] = await Promise.allSettled([
@@ -84,7 +84,7 @@ export async function researchQuestion(raw: unknown, oidcToken?: string | null, 
     message: resolved.issue, generation_error: null, assets: [], candidates: resolved.candidates, evidence: [], limitations: [],
     flow: [{ step: "Resolve assets", status: resolved.issue ? "limited" : "complete" }] };
   if (resolved.issue) return base;
-  const gathered = await Promise.all(resolved.assets.map(asset => gather(asset, input.question, input.context, intelligenceRead)));
+  const gathered = await Promise.all(resolved.assets.map(asset => gatherResearchEvidence(asset, input.question, input.context, intelligenceRead)));
   base.assets = gathered.map(g => g.asset);
   base.evidence = gathered.flatMap(g => g.evidence);
   base.limitations = [...new Set(gathered.flatMap(g => g.asset.limitations))];
