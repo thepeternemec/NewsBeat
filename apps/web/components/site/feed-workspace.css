@@ -9,6 +9,7 @@ body:has(.rb-feed) > :is(.grid-field, .aurora-layer, .noise-overlay) { display: 
 }
 .rb-app:has(.rb-feed) .rb-app-nav { flex-shrink: 0; margin-bottom: 0; padding-block: 8px; }
 .rb-app:has(.rb-feed) .rb-app-main { flex: 1; min-height: 0; }
+.rb-app:has(.rb-feed) ~ footer.site { display: none; }
 .rb-feed {
   position: relative;
   display: grid;
