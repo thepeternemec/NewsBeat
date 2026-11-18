@@ -63,6 +63,8 @@ test("fallback routing covers the app and carries tool context if planning is un
   const result = await planAgent(input, "test-credential", async () => new Response("Unavailable", { status: 503 }));
   assert.deepEqual(result.tools, ["forecasts"]);
   assert.match(result.question, /Bitcoin/);
+  const risk = fallbackAgentPlan("What are its risks?", [{ question: "NVIDIA headlines", beat_ids: [nvda.beat_id], tools: ["reporting"] }]);
+  assert(risk.tools.includes("research"));
 });
 
 test("contracts require a supported chain and valid address; addresses keep case where needed", () => {
@@ -113,6 +115,16 @@ test("a generation failure still returns fresh source observations", async () =>
   assert.equal(result.method, "evidence_only");
   assert.equal(result.generation_error, "generation_failed");
   assert(result.answer);
+});
+
+test("provider refusal preserves evidence and makes an unavailable assessment explicit", async () => {
+  const result = await runAgent({ question: "What are NVIDIA's risks?" }, undefined, {
+    ...dependencies(["research"]), reason: async (_input, _token, _request, onFailure) => { onFailure?.("provider_402"); return null; },
+  });
+  assert.equal(result.generation_error, "provider_402");
+  assert.match(result.message!, /Live interpretation is currently unavailable/);
+  assert.match(result.answer!.answer, /validated risk assessment is unavailable/);
+  assert.equal(result.evidence.length, 1);
 });
 
 test("an identified current price keeps the exact value without model generation", async () => {

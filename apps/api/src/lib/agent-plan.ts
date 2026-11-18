@@ -34,6 +34,8 @@ export function fallbackAgentPlan(question: string, history: AgentRequest["histo
   if (/\b(discover|developments|across the catalog)/i.test(question)) add("discovery");
   const previous = history.at(-1);
   const explicit = resolveResearchAssets(question);
+  if (/\b(risks?|downside|weakness|concerns?)\b/i.test(question)
+    && (explicit.assets.length || previous?.beat_ids.length) && !previous?.token_asset) add("research");
   const followUp = !!previous && !explicit.assets.length && !explicit.candidates.length
     && /\b(it|its|that|these|those|they|them|their|also|why|risks?|downside|what about|how about|and|explain|more|accurate|performed|results|baseline)\b/i.test(question);
   if (followUp && !tools.length) for (const tool of previous.tools ?? []) add(tool);

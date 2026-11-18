@@ -29,6 +29,8 @@ export default function FeedConversation({ asset, market, onFollow, followedIds,
   const sequence = useRef(0);
   const active = useRef<AbortController | null>(null);
   const thread = useRef<HTMLDivElement>(null);
+  const latestCheck = useRef<HTMLElement>(null);
+  const followAnswer = useRef(true);
   const input = useRef<HTMLTextAreaElement>(null);
   const briefing = useRef<AgentResponse | null>(null);
   const recordBriefing = useCallback((result: AgentResponse) => { briefing.current = result; }, []);
@@ -39,15 +41,20 @@ export default function FeedConversation({ asset, market, onFollow, followedIds,
     request?.abort();
   }, []);
 
+  const lastCheck = checks.at(-1);
   useEffect(() => {
-    if (checks.length && thread.current) thread.current.scrollTop = thread.current.scrollHeight;
-  }, [checks.length]);
+    const container = thread.current;
+    const latest = latestCheck.current;
+    if (!container || !latest || !followAnswer.current) return;
+    container.scrollTop += latest.getBoundingClientRect().top - container.getBoundingClientRect().top - 16;
+  }, [lastCheck?.id, lastCheck?.state.status]);
 
   async function run(text: string, beatIds?: string[], retryId?: number) {
     const trimmed = text.trim();
     if (trimmed.length < 3 || trimmed.length > 600 || active.current) return;
     const controller = new AbortController();
     active.current = controller;
+    followAnswer.current = true;
     const checkId = retryId ?? ++sequence.current;
     const history: AgentRequest["history"] = checks.flatMap(check => check.id < checkId && check.state.status === "ready" ? [{
       question: check.question,
@@ -89,11 +96,12 @@ export default function FeedConversation({ asset, market, onFollow, followedIds,
   }
 
   return <div className="rb-feed-conversation">
-    <div className="rb-feed-thread" ref={thread} data-lenis-prevent tabIndex={0} aria-label="Market updates and research answers">
+    <div className="rb-feed-thread" ref={thread} data-lenis-prevent tabIndex={0} aria-label="Market updates and research answers"
+      onScroll={event => { const node = event.currentTarget; followAnswer.current = node.scrollHeight - node.clientHeight - node.scrollTop < 160; }}>
       <div className="rb-feed-thread-content">
         <AgentBriefing asset={asset} market={market} disabled={busy} onAsk={text => void run(text)} onFollow={onFollow} followedIds={followedIds} onResult={recordBriefing} />
         {children && <div className="rb-feed-tools-extra">{children}</div>}
-        {checks.map(check => <section className="rb-feed-check" key={check.id} aria-label={check.question}>
+        {checks.map(check => <section className="rb-feed-check" key={check.id} ref={check.id === lastCheck?.id ? latestCheck : undefined} aria-label={check.question}>
           <p className="rb-feed-user-message">{check.question}</p>
           <div className="rb-feed-check-answer research-question">
             {check.state.status === "loading" && <p role="status">Choosing the relevant Rarebird tools and checking current evidence…</p>}

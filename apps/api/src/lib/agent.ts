@@ -55,11 +55,16 @@ function observedAnswer(question: string, evidence: ResearchEvidence[], limitati
   if (!lead) return null;
   const seekingRecommendation = /best|recommend|attention|opportunit|prioriti|watch/i.test(question);
   const reviewMissing = seekingRecommendation && !current.some(item => /^agent:(review|watch):/.test(item.id));
+  const riskQuestion = /\b(risks?|downside|weakness|concerns?)\b/i.test(question);
+  const prefix = reviewMissing ? "Current review checks do not supply a qualified leading candidate. The following is a source observation to investigate. "
+    : riskQuestion ? "A validated risk assessment is unavailable. Here is current source evidence to review: " : "";
   return {
-    answer: (reviewMissing ? "Current review checks do not supply a qualified leading candidate. The following is a source observation to investigate. " : "") + lead.text.slice(0, reviewMissing ? 650 : 850),
+    answer: prefix + lead.text.slice(0, 900 - prefix.length),
     reasoning: current.slice(0, 3).map(item => ({ kind: "observation", claim: item.text.slice(0, 490), evidence_ids: [item.id] })),
     unknowns: limitations.slice(0, 6).map(item => item.slice(0, 300)),
-    next_checks: [reviewMissing ? "Check for a fresh review with passing market confirmation before prioritizing a candidate." : "Check the linked source, observation time and missing confirmation before making a decision."],
+    next_checks: [reviewMissing ? "Check for a fresh review with passing market confirmation before prioritizing a candidate."
+      : riskQuestion ? "Verify the reported concerns against issuer disclosures and current market evidence; a headline alone does not measure downside risk."
+        : "Check the linked source, observation time and missing confirmation before making a decision."],
   };
 }
 
@@ -164,7 +169,9 @@ async function execute(input: AgentRequest, oidcToken: string | null | undefined
   if (!output.answer) {
     output.answer = observedAnswer(input.question, output.evidence, output.limitations);
     output.message = proactive ? "Prioritized from available review checks, reporting and market observations."
-      : output.answer ? "Showing source observations. A generated interpretation could not be validated."
+      : output.answer ? output.generation_error?.startsWith("provider_") || output.generation_error === "not_configured"
+        ? "Live interpretation is currently unavailable. Showing current source observations."
+        : "Showing source observations. A generated interpretation could not be validated."
         : output.limitations.join(" ") || "Current sources are unavailable. Try this check again.";
   }
   output.status = !usable.length ? "unavailable" : output.tools.every(tool => tool.status === "complete") ? "ready" : "partial";
